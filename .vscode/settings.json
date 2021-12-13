@@ -1,0 +1,46 @@
+{
+  "workbench.colorTheme": "Default Dark+",
+  "window.zoomLevel": -2,
+  // Exclude third party modules and build artifacts from the editor watchers/searches.
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/bazel-out/**": true,
+    "**/dist/**": true,
+    "**/aio/src/generated/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/vendor": true,
+    "**/bower_components": true,
+    "**/bazel-out": true,
+    "**/dist": true,
+    "**/aio/src/generated": true,
+    ".history": true
+  },
+  "files.eol": "\n",
+  "git.ignoreLimitWarning": true,
+  "shellformat.useEditorConfig": true,
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": null,
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

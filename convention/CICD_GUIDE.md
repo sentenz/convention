@@ -1,4 +1,3 @@
-<!-- omit in toc -->
 # CI/CD Guide
 
 - [CD](#cd)

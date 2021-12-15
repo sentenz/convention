@@ -1,63 +1,90 @@
-<!-- omit in toc -->
 # Style Guides
 
-- [C](#c)
-- [C++](#c-1)
-- [Python](#python)
-- [Shell](#shell)
-- [Kotlin](#kotlin)
-- [Go](#go)
-- [Rust](#rust)
-- [Git](#git)
-- [Markdown](#markdown)
-- [CMake](#cmake)
+- [1. C](#1-c)
+  - [1.1. Convention](#11-convention)
+  - [1.2. Architecture](#12-architecture)
+  - [1.3. Lint](#13-lint)
+  - [1.4. Unit-Testing Frameworks](#14-unit-testing-frameworks)
+  - [1.5. Compiler](#15-compiler)
+  - [1.6. Editor](#16-editor)
+- [2. C++](#2-c)
+  - [2.1. Convention](#21-convention)
+  - [2.2. Architecture](#22-architecture)
+  - [2.3. Lint](#23-lint)
+  - [2.4. Unit-Testing Frameworks](#24-unit-testing-frameworks)
+  - [2.5. Compiler](#25-compiler)
+  - [2.6. Editor](#26-editor)
+- [3. Python](#3-python)
+  - [3.1. Convention](#31-convention)
+- [4. Shell](#4-shell)
+  - [4.1. Convention](#41-convention)
+  - [4.2. Lint](#42-lint)
+  - [4.3. Editor](#43-editor)
+- [5. Kotlin](#5-kotlin)
+  - [5.1. Convention](#51-convention)
+  - [5.2. Lint](#52-lint)
+  - [5.3. Guides](#53-guides)
+  - [5.4. Editor](#54-editor)
+- [6. Go](#6-go)
+  - [6.1. Convention](#61-convention)
+  - [6.2. Static Analysis](#62-static-analysis)
+  - [6.3. Lint](#63-lint)
+  - [6.4. Architecture](#64-architecture)
+  - [6.5. UI](#65-ui)
+  - [6.6. Editor](#66-editor)
+  - [6.7. Links](#67-links)
+- [7. Rust](#7-rust)
+  - [7.1. Convention](#71-convention)
+  - [7.2. Lint](#72-lint)
+- [8. Git](#8-git)
+  - [8.1. Convention](#81-convention)
+  - [8.2. Lint](#82-lint)
+- [9. Markdown](#9-markdown)
+  - [9.1. Convention](#91-convention)
+  - [9.2. Lint](#92-lint)
+  - [9.3. Editor](#93-editor)
+- [10. CMake](#10-cmake)
+  - [10.1. Convention](#101-convention)
+  - [10.2. Lint](#102-lint)
+  - [10.3. Editor](#103-editor)
 
-## C
+## 1. C
 
-<!-- omit in toc -->
-### Convention
+### 1.1. Convention
 
-- See [C++](#c-1)
+- See [C++](#2-c)
 
-<!-- omit in toc -->
-### Architecture
+### 1.2. Architecture
 
-- See [C++](#c-1)
+- See [C++](#2-c)
 
-<!-- omit in toc -->
-### Lint
+### 1.3. Lint
 
-- See [C++](#c-1)
+- See [C++](#2-c)
 
-<!-- omit in toc -->
-### Unit-Testing Frameworks
+### 1.4. Unit-Testing Frameworks
 
 - [TODO](https://www.jetbrains.com/lp/devecosystem-2021/cpp/#Which-unit-testing-frameworks-do-you-regularly-use).
 
-<!-- omit in toc -->
-### Compiler
+### 1.5. Compiler
 
-- See [C++](#c-1)
+- See [C++](#2-c)
 
-<!-- omit in toc -->
-### Editor
+### 1.6. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-## C++
+## 2. C++
 
-<!-- omit in toc -->
-### Convention
+### 2.1. Convention
 
 - [Google C++ Style Guides](https://sentenz.github.io/essay/github/google/styleguide/cppguide.html)
 
-<!-- omit in toc -->
-### Architecture
+### 2.2. Architecture
 
 - [Project Layout](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs)
 
-<!-- omit in toc -->
-### Lint
+### 2.3. Lint
 
 - Code Check
   - [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) tool and [doc](https://clang.llvm.org/extra/clang-tidy/#id2)
@@ -85,13 +112,11 @@
 - Memory Check
   - [Valgrind](https://valgrind.org/)
 
-<!-- omit in toc -->
-### Unit-Testing Frameworks
+### 2.4. Unit-Testing Frameworks
 
 - [TODO](https://www.jetbrains.com/lp/devecosystem-2021/cpp/#Which-unit-testing-frameworks-do-you-regularly-use)
 
-<!-- omit in toc -->
-### Compiler
+### 2.5. Compiler
 
 See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/default.htm) for the complete option list.
 
@@ -108,28 +133,24 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
    - [Run-time memory models](https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_ldq1505906267474.htm)
    - [The vector table](https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_kqu1505906156419.htm)
 
-<!-- omit in toc -->
-### Editor
+### 2.6. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-## Python
+## 3. Python
 
-<!-- omit in toc -->
-### Convention
+### 3.1. Convention
 
 - [Google Python Guides](https://sentenz.github.io/essay/github/google/styleguide/pyguide.html)
 
-## Shell
+## 4. Shell
 
-<!-- omit in toc -->
-### Convention
+### 4.1. Convention
 
 - [Google Shell Style Guides](https://sentenz.github.io/essay/github/google/styleguide/shellguide.html)
   > [Gitlab Shell Scripting Recommendation](https://docs.gitlab.com/ee/development/shell_scripting_guide/)
 
-<!-- omit in toc -->
-### Lint
+### 4.2. Lint
 
 - Code Format
   - [shfmt](https://github.com/mvdan/sh)
@@ -137,63 +158,53 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
   - [shellcheck](https://github.com/koalaman/shellcheck)
     > Configure [.shellcheckrc](https://github.com/koalaman/shellcheck/issues/725) in the root project.
 
-<!-- omit in toc -->
-### Editor
+### 4.3. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-## Kotlin
+## 5. Kotlin
 
-<!-- omit in toc -->
-### Convention
+### 5.1. Convention
 
 - [Kotlin Style Guide](https://developer.android.com/kotlin/style-guide)
 
-<!-- omit in toc -->
-### Lint
+### 5.2. Lint
 
 - Code Check
   - [Kotlin Lint](https://developer.android.com/studio/write/lint)
     > [Manually run inspections](https://developer.android.com/studio/write/lint#manuallyRunInspections)
 
-<!-- omit in toc -->
-### Guides
+### 5.3. Guides
 
 - Learn Kotlin with [Getting Started](https://kotlinlang.org/docs/reference/).
 
-<!-- omit in toc -->
-### Editor
+### 5.4. Editor
 
 - [Android Studio](https://developer.android.com/studio)
 
-## Go
+## 6. Go
 
-<!-- omit in toc -->
-### Convention
+### 6.1. Convention
 
 - [Effective Go](https://golang.org/doc/effective_go)
 - [Golang Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
 
-<!-- omit in toc -->
-### Static Analysis
+### 6.2. Static Analysis
 
 - [Awesome Go Linters](https://github.com/golangci/awesome-go-linters)
 
-<!-- omit in toc -->
-### Lint
+### 6.3. Lint
 
 - [golangci-lint](https://github.com/golangci/golangci-lint)
   > Configure [.golangci.yml](https://github.com/golangci/golangci-lint/blob/master/.golangci.yml) in the project.
 
-<!-- omit in toc -->
-### Architecture
+### 6.4. Architecture
 
 - [Project Layout](https://github.com/golang-standards/project-layout)
 - [Project Layout Generator](https://github.com/insidieux/inizio/tree/v1.1.1)
 - [Go Clean Template](https://github.com/evrone/go-clean-template)
 
-<!-- omit in toc -->
-### UI
+### 6.5. UI
 
 - [go-echarts](https://github.com/go-echarts/go-echarts)
 - [go-chart](https://github.com/wcharczuk/go-chart)
@@ -201,38 +212,32 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [Gonum Plot](https://github.com/gonum/plot)
 - [Go GUI Projects](https://github.com/go-graphics/go-gui-projects)
 
-<!-- omit in toc -->
-### Editor
+### 6.6. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-<!-- omit in toc -->
-### Links
+### 6.7. Links
 
 - [FAQ](https://golang.org/doc/faq)
 
-## Rust
+## 7. Rust
 
-<!-- omit in toc -->
-### Convention
+### 7.1. Convention
 
 - [TODO](https://example.com/)
 
-<!-- omit in toc -->
-#### Lint
+### 7.2. Lint
 
 - Code Check
   - [Miri](https://github.com/rust-lang/miri)
 
-## Git
+## 8. Git
 
-<!-- omit in toc -->
-### Convention
+### 8.1. Convention
 
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
-<!-- omit in toc -->
-### Lint
+### 8.2. Lint
 
 - Commit Check
   - [commitlint](https://github.com/conventional-changelog/commitlint)
@@ -244,15 +249,13 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - Commit Check for CI
   - [commitlint-github-action](https://github.com/wagoid/commitlint-github-action)
 
-## Markdown
+## 9. Markdown
 
-<!-- omit in toc -->
-### Convention
+### 9.1. Convention
 
 - [Markdown Rules](https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md)
 
-<!-- omit in toc -->
-### Lint
+### 9.2. Lint
 
 - Code Check
   - [markdownlint](https://github.com/markdownlint/markdownlint)
@@ -276,21 +279,18 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
     > - [.alexrc.yml](https://github.com/get-alex/alex#configuration)
     > - [.alexignore](https://github.com/get-alex/alex/blob/main/.alexignore)
 
-<!-- omit in toc -->
-### Editor
+### 9.3. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-## CMake
+## 10. CMake
 
-<!-- omit in toc -->
-### Convention
+### 10.1. Convention
 
 - [KDE CMake Coding Style](https://community.kde.org/Policies/CMake_Coding_Style)
 - [CMake Developer](https://cmake.org/cmake/help/latest/manual/cmake-developer.7.html#modules)
 
-<!-- omit in toc -->
-### Lint
+### 10.2. Lint
 
 - Code Check
   - [cmake_format](https://github.com/cheshirekow/cmake_format)
@@ -301,7 +301,6 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
     >
   - [cmake-lint](https://github.com/cmake-lint/cmake-lint)
 
-<!-- omit in toc -->
-### Editor
+### 10.3. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)

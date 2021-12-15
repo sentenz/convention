@@ -25,9 +25,9 @@
   "editor.formatOnSave": false,
   "editor.defaultFormatter": null,
   "[markdown]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.formatOnSave": true
   },
+  "markdown.extension.toc.levels":  "2..6",
   "[yaml]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"

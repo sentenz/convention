@@ -1,0 +1,38 @@
+---
+# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
+
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - "feature/**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  release:
+    if: ${{ always() }}
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          cache: npm
+
+      - name: Install NPM CI
+        run: |
+          npm ci --ignore-scripts
+
+      - name: Release Project
+        run: |
+          npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

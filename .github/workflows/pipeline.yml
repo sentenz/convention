@@ -27,7 +27,7 @@ jobs:
           node-version: 12
           cache: npm
 
-      - name: Install NPM CI
+      - name: Install NPM
         run: |
           npm ci --ignore-scripts
 

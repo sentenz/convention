@@ -35,6 +35,7 @@
     "visualstudioexptteam.vscodeintellicode",
     "redhat.vscode-yaml",
     "alefragnani.project-manager",
-    "tht13.html-preview-vscode"
+    "tht13.html-preview-vscode",
+    "editorconfig.editorconfig"
   ]
 }

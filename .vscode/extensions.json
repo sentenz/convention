@@ -36,6 +36,7 @@
     "redhat.vscode-yaml",
     "alefragnani.project-manager",
     "tht13.html-preview-vscode",
-    "editorconfig.editorconfig"
+    "editorconfig.editorconfig",
+    "tomoki1207.pdf"
   ]
 }

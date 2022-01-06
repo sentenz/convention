@@ -1,7 +1,7 @@
 {
   "workbench.colorTheme": "Default Dark+",
   "window.zoomLevel": -2,
-  // Exclude third party modules and build artifacts from the editor watchers/searches.
+  "files.eol": "\n",
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
@@ -19,28 +19,49 @@
     "**/aio/src/generated": true,
     ".history": true
   },
-  "files.eol": "\n",
-  "git.ignoreLimitWarning": true,
-  "shellformat.useEditorConfig": true,
+  "editor.suggest.showFolders": true,
   "editor.formatOnSave": false,
   "editor.defaultFormatter": null,
+  "editor.tabSize": 2,
   "[markdown]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "markdown.extension.toc.levels":  "2..6",
+  "markdown.extension.toc.levels": "2..6",
   "[yaml]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
-    "editor.formatOnSave": false,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  "[c]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "[cpp]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "go.gotoSymbol.includeGoroot": true,
+  "go.gotoSymbol.includeImports": true,
+  "go.autocompleteUnimportedPackages": true,
+  "go.coverOnSingleTest": true,
+  "go.lintOnSave": "package",
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": [
+    "--fast"
+  ],
+  "git.ignoreLimitWarning": true,
+  "shellformat.useEditorConfig": true,
+  "clang-format.executable": "${workspaceRoot}/node_modules/.bin/clang-format",
 }

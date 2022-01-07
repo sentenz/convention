@@ -1,7 +1,5 @@
 # Architecture Decision Records
 
-- [See also](#see-also)
-
 [Architecture decision records (ADR)](https://adr.github.io/) help to explain why your infrastructure or application teams make certain design choices.
 
 An ADR captures the key options available, the main requirements that drive a decision, and the design decisions themselves. You often store ADRs in a Markdown file close to the code base relevant to that decision. If someone needs to understand the background of a specific architectural decision, such as why you use a Kubernetes cluster, they can review the ADR and then the associated code.

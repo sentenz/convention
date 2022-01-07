@@ -2,8 +2,6 @@
 
 For distributed systems and microservices, continuous monitoring in the form of centralized monitoring and logging provides the ability to detect problems and make informed decisions during operation and development.
 
-- [See also](#see-also)
-
 ## See also
 
 - Github [Prometheus](https://github.com/prometheus/prometheus) monitoring system and time series database.

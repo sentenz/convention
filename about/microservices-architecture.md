@@ -4,4 +4,4 @@
 
 ## See also
 
-- [Google introduction to microservices](https://cloud.google.com/architecture/microservices-architecture-introduction?hl=en)
+- Google [Introduction to microservices](https://cloud.google.com/architecture/microservices-architecture-introduction?hl=en) part 1 of 4.

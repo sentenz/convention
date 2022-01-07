@@ -27,4 +27,4 @@ The twelve factors:
 
 ## See also
 
-- [Google twelve-factor app](https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en)
+- Google [twelve-factor app](https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en) development on Cloud.

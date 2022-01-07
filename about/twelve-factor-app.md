@@ -2,6 +2,8 @@
 
 The [twelve-factor app](https://12factor.net/) methodology describes a set of principles and best practices, to develop scalable and resilient apps that can be continuously deployed with maximum agility.
 
+- [See also](#see-also)
+
 The twelve factors:
 
 1. Codebase

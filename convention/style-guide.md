@@ -78,7 +78,7 @@
 
 ### 2.1. Convention
 
-- [Google C++ Style Guide](https://sentenz.github.io/essay/github/google/styleguide/cppguide.html)
+- [Google C++ Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/cppguide.html)
 
 ### 2.2. Architecture
 
@@ -107,7 +107,7 @@
     >
     > - [.clang-format](https://github.com/googleapis/google-cloud-cpp/blob/main/.clang-format)
     > - [.clang-format-ignore](https://github.com/mozilla/gecko-dev/blob/master/.clang-format-ignore)
-    > - Use [clang-format-configurator](https://zed0.co.uk/clang-format-configurator/) to create a .clang-format file.
+    > - Use [clang-format-configurator](https://zed0.co.uk/clang-format-configurator/) to modify a .clang-format file.
     >
 - Memory Check
   - [Valgrind](https://valgrind.org/)
@@ -141,13 +141,13 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 3.1. Convention
 
-- [Google Python Style Guide](https://sentenz.github.io/essay/github/google/styleguide/pyguide.html)
+- [Google Python Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/pyguide.html)
 
 ## 4. Shell
 
 ### 4.1. Convention
 
-- [Google Shell Style Guide](https://sentenz.github.io/essay/github/google/styleguide/shellguide.html)
+- [Google Shell Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/shellguide.html)
   > [Gitlab Shell Scripting Recommendation](https://docs.gitlab.com/ee/development/shell_scripting_guide/)
 
 ### 4.2. Lint

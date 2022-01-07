@@ -7,7 +7,7 @@
 
 ### 1.1. Semantic Release
 
-[semantic-release](https://sentenz.github.io/essay/website/semantic-release.gitbook.io/semantic-release/index.html) is meant to be executed on the CI environment after every successful build on the release branch.
+[semantic-release](https://sentenz.github.io/backup-service/website/semantic-release.gitbook.io/semantic-release/index.html) is meant to be executed on the CI environment after every successful build on the release branch.
 
 [FAQ](https://github.com/semantic-release/semantic-release/blob/master/docs/support/FAQ.md)
 

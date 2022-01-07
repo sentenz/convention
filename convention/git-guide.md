@@ -20,32 +20,32 @@
 
 ## 1. Git
 
-[Git](https://sentenz.github.io/essay/website/git-scm.com/docs/git.html) is a free and open source distributed version control system.
+[Git](https://sentenz.github.io/backup-service/website/git-scm.com/docs/git.html) is a free and open source distributed version control system.
 
 ### 1.1. Hooks
 
-[githooks](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks) - Hooks used by Git are programs you can place in a hooks directory to trigger actions at certain points in git command. By default the hooks directory is `$GIT_DIR/hooks`.
+[githooks](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks) - Hooks used by Git are programs you can place in a hooks directory to trigger actions at certain points in git command. By default the hooks directory is `$GIT_DIR/hooks`.
 
 Some of currently supported hooks are described below:
 
-- [applypatch-msg](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_applypatch_msg)
-- [pre-applypatch](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_pre_applypatch)
-- [post-applypatch](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_post_applypatch)
-- [pre-commit](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_pre_commit)
-- [pre-merge-commit](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_pre_merge_commit)
-- [prepare-commit-msg](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_prepare_commit_msg)
-- [commit-msg](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_commit_msg)
-- [post-commit](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_post_commit)
-- [pre-rebase](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_pre_rebase)
-- [post-checkout](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_post_checkout)
-- [post-merge](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_post_merge)
-- [pre-push](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_pre_push)
-- [pre-receive](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#pre-receive)
-- [update](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#update)
-- [proc-receive](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#proc-receive)
-- [post-receive](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#post-receive)
-- [post-update](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#post-update)
-- [reference-transaction](https://sentenz.github.io/essay/website/git-scm.com/docs/githooks#_reference_transaction)
+- [applypatch-msg](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_applypatch_msg)
+- [pre-applypatch](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_applypatch)
+- [post-applypatch](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_post_applypatch)
+- [pre-commit](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_commit)
+- [pre-merge-commit](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_merge_commit)
+- [prepare-commit-msg](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_prepare_commit_msg)
+- [commit-msg](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_commit_msg)
+- [post-commit](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_post_commit)
+- [pre-rebase](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_rebase)
+- [post-checkout](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_post_checkout)
+- [post-merge](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_post_merge)
+- [pre-push](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_push)
+- [pre-receive](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#pre-receive)
+- [update](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#update)
+- [proc-receive](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#proc-receive)
+- [post-receive](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#post-receive)
+- [post-update](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#post-update)
+- [reference-transaction](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_reference_transaction)
 
 ### 1.2. Useful Git Commands
 
@@ -160,22 +160,22 @@ git fetch --prune
 
 ### 2.1. Git Flow
 
-[Git Flow](https://sentenz.github.io/essay/website/nvie.com/posts/a-successful-git-branching-model/index.html) branching strategy.
+[Git Flow](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html) branching strategy.
 
-[The major branches](https://sentenz.github.io/essay/website/nvie.com/posts/a-successful-git-branching-model/index.html#the-main-branches):
+[The major branches](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#the-main-branches):
 
 - _main_
   > Consider main to be the branch where the source code of `HEAD` always reflects a _production-ready_ state.
 - _develop_
   > Consider develop to be the `staging` branch where the source code of `HEAD` always reflects a state with the latest delivered development changes for the next release.
 
-[Supporting branches](https://sentenz.github.io/essay/website/nvie.com/posts/a-successful-git-branching-model/index.html#supporting-branches):
+[Supporting branches](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#supporting-branches):
 
-- [feature](https://sentenz.github.io/essay/website/nvie.com/posts/a-successful-git-branching-model/index.html#feature-branches)
+- [feature](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#feature-branches)
   > Feature branches are used to develop new features. Feature branches are created from and merged back into develop branches. Feature branches typically exist in developer repos only, not in _origin_.
-- [release](https://sentenz.github.io/essay/website/nvie.com/posts/a-successful-git-branching-model/index.html#release-branches)
+- [release](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#release-branches)
   > Release branches are created from develop branch, which contains a set of features & their associated bug fixes. Furthermore, they allow for minor bug fixes and preparing meta-data for a release (version number i.e [semver](#semantic-versioning), build dates, etc.). The release branch is then subjected to integration and regression testing. Any bugs identified during this phase is fixed and committed directly to the release branch. Once the release branch has been confirmed to be free of bugs, it is merged into the main branch and released into production. These fixes are also merged back into develop and other release branches if any exist.
-- [fix](https://sentenz.github.io/essay/website/nvie.com/posts/a-successful-git-branching-model/index.html#hotfix-branches)
+- [fix](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#hotfix-branches)
   > Fixes branches are created from main branch, when issues need an fix upon an undesired state of a live production version. Fix branches needs to be merged back into main and into develop, in order to safeguard that the bugfix is included in the next release.
 
 The strategy contains the following rules:
@@ -201,11 +201,11 @@ The strategy contains the following rules:
 
 ### 2.2. Trunk Based Development
 
-[Trunk-Based Development](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/index.html) is a source-control branching model, where developers collaborate on code in a single branch called `trunk`.
+[Trunk-Based Development](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/index.html) is a source-control branching model, where developers collaborate on code in a single branch called `trunk`.
 
 #### 2.2.1. Scaled Trunk-Based Development
 
-[Scaled Trunk-Based Development](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/index.html#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main/mainline/major) branch.
+[Scaled Trunk-Based Development](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/index.html#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main/mainline/major) branch.
 
 The major branch:
 
@@ -214,9 +214,9 @@ The major branch:
 
 Supporting branch:
 
-- [feature](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/short-lived-feature-branches/index.html)
-  > Short-living feature branches are used to develop new features. Feature branches are created from and merged back into _trunk_. Feature branches typically exist in developer repos only, not in _origin_. The [style](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/styles/index.html) of short-living feature branches is suitable for active committer counts [between 2 and 1000](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/styles/index.html#short-lived-feature-branches).
-- [release](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/release-from-trunk/index.html)
+- [feature](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/short-lived-feature-branches/index.html)
+  > Short-living feature branches are used to develop new features. Feature branches are created from and merged back into _trunk_. Feature branches typically exist in developer repos only, not in _origin_. The [style](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/styles/index.html) of short-living feature branches is suitable for active committer counts [between 2 and 1000](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/styles/index.html#short-lived-feature-branches).
+- [release](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html)
   > Release branch is a cut from trunk with an optional number of cherry picks that are developed on trunk and then pulled into the branch.
 
 The strategy and contains the following rules:
@@ -225,8 +225,8 @@ The strategy and contains the following rules:
    - Direct push to _trunk_ branch is forbidden.
    - All development happens on the _trunk_ branch.
    - Pull requests (PR) of short-living _feature_ branches still exist.
-   - Unfinished features are hidden behind [feature flags](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/feature-flags/index.html) until they are publish with an official release.
-   - Breaking changes stay behind [feature flags](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/feature-flags/index.html).
+   - Unfinished features are hidden behind [feature flags](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/feature-flags/index.html) until they are publish with an official release.
+   - Breaking changes stay behind [feature flags](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/feature-flags/index.html).
    - The _trunk_ contains only backward-compatible changes and feature additions.
 2. _feature_ branches are created from and merged back into _trunk_ branch.
    - Branch naming convention: _feature/ISSUETYPE-ID-short_describe_
@@ -235,16 +235,16 @@ The strategy and contains the following rules:
    - Merge _feature_ branch into _trunk_ by select `Squash and merge` option on PR merge (Squashing will combine all your commits into one).
    - Merging _feature_ branch into _trunk_ follows the [conventions](#conventions) style.
 4. _release_ branches are cut from a specific revision of the _trunk_.
-   - [Release from trunk](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/release-from-trunk/index.html) retroactively by selecting the revision in the past to branch from.
+   - [Release from trunk](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html) retroactively by selecting the revision in the past to branch from.
    - Branch naming convention, i.e. `release/1.2.x`.
-5. [Fix](https://sentenz.github.io/essay/website/trunkbaseddevelopment.com/branch-for-release/index.html#fix-production-bugs-on-trunk) production bugs on Trunk.
+5. [Fix](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/branch-for-release/index.html#fix-production-bugs-on-trunk) production bugs on Trunk.
    - fix bugs on the _trunk_ and cherry-picking them back to the release branch.
 
 ## 3. Conventions
 
 ### 3.1. Semantic Versioning
 
-Semantic Versioning [SemVer](https://sentenz.github.io/essay/website/semver.org/index.html) is a versioning system that help us keep track of what’s going on in projects.
+Semantic Versioning [SemVer](https://sentenz.github.io/backup-service/website/semver.org/index.html) is a versioning system that help us keep track of what’s going on in projects.
 
 SemVer is a 3-component system in the format:
 
@@ -269,7 +269,7 @@ Regular releases to the `next` distribution channel from the branch `next` if it
 
 ### 3.2. Conventional Commits
 
-[Conventional commits](https://sentenz.github.io/essay/website/conventionalcommits.org/en/v1.0.0/index.html) is a specification for adding human and machine readable meaning to commit messages.
+[Conventional commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html) is a specification for adding human and machine readable meaning to commit messages.
 
 The commit message should be structured as follows:
 
@@ -298,7 +298,7 @@ The commit contains the following structural elements, to communicate intent to 
    - _refactor_: A code change that neither fixes a bug nor adds a feature
    - _test_: Adding missing tests or correcting existing tests
    - _revert_: Revert a previous commit
-5. _footers_ other than `BREAKING CHANGE: <description>` may be provided and follow a convention similar to [git trailer format](https://sentenz.github.io/essay/website/git-scm.com/docs/git-interpret-trailers/en.html).
+5. _footers_ other than `BREAKING CHANGE: <description>` may be provided and follow a convention similar to [git trailer format](https://sentenz.github.io/backup-service/website/git-scm.com/docs/git-interpret-trailers/en.html).
 6. _rules_ and _config_ of conventional commits [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
 
 Additional types are not mandated by the Conventional Commits specification, and have no implicit effect in [Semantic Versioning](#semantic-versioning) (unless they include a BREAKING CHANGE). A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g.:
@@ -315,11 +315,11 @@ BREAKING CHANGE: `extends` key in config file is now used for extending other co
 
 ### 4.1. Standard Version
 
-A utility for automate [versioning](https://github.com/conventional-changelog/standard-version) using [Semantic Versioning](https://sentenz.github.io/essay/website/semver.org/index.html) and CHANGELOG generation powered by [Conventional Commits](https://sentenz.github.io/essay/website/conventionalcommits.org/en/v1.0.0/index.html).
+A utility for automate [versioning](https://github.com/conventional-changelog/standard-version) using [Semantic Versioning](https://sentenz.github.io/backup-service/website/semver.org/index.html) and CHANGELOG generation powered by [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html).
 
 ### 4.2. Commitlint
 
-[commitlint](https://github.com/conventional-changelog/commitlint) checks if the commit messages meet the [Conventional Commits](https://sentenz.github.io/essay/website/conventionalcommits.org/en/v1.0.0/index.html) format.
+[commitlint](https://github.com/conventional-changelog/commitlint) checks if the commit messages meet the [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html) format.
 
 ### 4.3. Conventional Changelog
 

@@ -4,5 +4,5 @@ For distributed systems and microservices, continuous monitoring in the form of 
 
 ## See also
 
-- Github [Prometheus](https://github.com/prometheus/prometheus) monitoring system and time series database.
-- Github [Grafana](https://github.com/grafana/grafana) composable, observability and data visualization platform. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres.
+- Github [Prometheus](https://github.com/prometheus/prometheus) monitoring system and time series database repository.
+- Github [Grafana](https://github.com/grafana/grafana) composable, observability and data visualization platform repository. Visualize metrics, logs, and traces from multiple sources like Prometheus, Loki, Elasticsearch, InfluxDB, Postgres.

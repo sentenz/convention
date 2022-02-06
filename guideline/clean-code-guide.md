@@ -1,37 +1,37 @@
 # Clean Code Guide
 
-- [1. Clean Code](#1-clean-code)
-  - [1.1. Design Principles](#11-design-principles)
-    - [1.1.1. SOLID](#111-solid)
-    - [1.1.2. Four Rules of Simple Design](#112-four-rules-of-simple-design)
-    - [1.1.3. Elegant Objects](#113-elegant-objects)
-  - [1.2. Featured Articles](#12-featured-articles)
-  - [1.3. Tutorials](#13-tutorials)
-  - [1.4. Videos](#14-videos)
-  - [1.5. Code Examples](#15-code-examples)
-  - [1.6. Git Hub](#16-git-hub)
-  - [1.7. Blogs](#17-blogs)
-  - [1.8. Books](#18-books)
-  - [1.9. Other](#19-other)
-- [2. Summary](#2-summary)
-  - [2.1. General rules](#21-general-rules)
-  - [2.2. Design rules](#22-design-rules)
-  - [2.3. Understandability tips](#23-understandability-tips)
-  - [2.4. Names rules](#24-names-rules)
-  - [2.5. Functions rules](#25-functions-rules)
-  - [2.6. Comments rules](#26-comments-rules)
-  - [2.7. Source code structure](#27-source-code-structure)
-  - [2.8. Objects and data structures](#28-objects-and-data-structures)
-  - [2.9. Tests](#29-tests)
-  - [2.10. Code smells](#210-code-smells)
+- [Clean Code](#clean-code)
+  - [Design Principles](#design-principles)
+    - [SOLID](#solid)
+    - [Four Rules of Simple Design](#four-rules-of-simple-design)
+    - [Elegant Objects](#elegant-objects)
+  - [Featured Articles](#featured-articles)
+  - [Tutorials](#tutorials)
+  - [Videos](#videos)
+  - [Code Examples](#code-examples)
+  - [Git Hub](#git-hub)
+  - [Blogs](#blogs)
+  - [Books](#books)
+  - [Other](#other)
+- [Summary](#summary)
+  - [General rules](#general-rules)
+  - [Design rules](#design-rules)
+  - [Understandability tips](#understandability-tips)
+  - [Names rules](#names-rules)
+  - [Functions rules](#functions-rules)
+  - [Comments rules](#comments-rules)
+  - [Source code structure](#source-code-structure)
+  - [Objects and data structures](#objects-and-data-structures)
+  - [Tests](#tests)
+  - [Code smells](#code-smells)
 
-## 1. Clean Code
+## Clean Code
 
 Inspired by [Awesome Clean Code](https://github.com/kkisiele/awesome-clean-code).
 
-### 1.1. Design Principles
+### Design Principles
 
-#### 1.1.1. SOLID
+#### SOLID
 
 Acronym coined by Robert C. Martin (Uncle Bob) to describe the following five principles:
 
@@ -44,7 +44,7 @@ Acronym coined by Robert C. Martin (Uncle Bob) to describe the following five pr
 A local copy of ["Design Principles and Design Patterns"](https://github.com/kkisiele/awesome-clean-code/raw/master/principles_and_patterns.pdf) by Robert C. Marin from _objectmentor.com_ website.
 More about this principles with examples can be found [here](https://lostechies.com/wp-content/uploads/2011/03/pablos_solid_ebook.pdf)
 
-#### 1.1.2. Four Rules of Simple Design
+#### Four Rules of Simple Design
 
 Inspired by [Kent Beck's Four Rules of Simple Design](https://martinfowler.com/bliki/BeckDesignRules.html)
 A design which:
@@ -54,7 +54,7 @@ A design which:
 3. No duplication.
 4. Fewest elements.
 
-#### 1.1.3. Elegant Objects
+#### Elegant Objects
 
 Inspired by [Elegant Objects](http://www.elegantobjects.org)
 
@@ -68,7 +68,7 @@ Inspired by [Elegant Objects](http://www.elegantobjects.org)
 8. No statements in test methods except assertThat.
 9. No implementation inheritance.
 
-### 1.2. Featured Articles
+### Featured Articles
 
 - [When A Method Can Do Nothing](https://michaelfeathers.silvrback.com/when-it-s-okay-for-a-method-to-do-nothing)
 - [Tell Don't Ask](https://martinfowler.com/bliki/TellDontAsk.html)
@@ -88,7 +88,7 @@ Inspired by [Elegant Objects](http://www.elegantobjects.org)
 - [Hexagonal Architecture: three principles and an implementation example](https://blog.octo.com/en/hexagonal-architecture-three-principles-and-an-implementation-example/)
 - [Getting Started With DDD When Surrounded By Legacy Systems](http://domainlanguage.com/wp-content/uploads/2016/04/GettingStartedWithDDDWhenSurroundedByLegacySystemsV1.pdf)
 
-### 1.3. Tutorials
+### Tutorials
 
 - [Refactoring a JavaScript video store](https://martinfowler.com/articles/refactoring-video-store-js)
 
@@ -104,7 +104,7 @@ Inspired by [Elegant Objects](http://www.elegantobjects.org)
 - [Reactive in practice: A complete guide to event-driven systems development in Java](https://developer.ibm.com/series/reactive-in-practice/)
 - [Writing Clean Tests](https://www.petrikainulainen.net/writing-clean-tests/)
 
-### 1.4. Videos
+### Videos
 
 - [How To Design A Good API and Why it Matters by Joshua Bloch](https://www.youtube.com/watch?v=aAb7hSCtvGw)
 
@@ -118,7 +118,7 @@ Inspired by [Elegant Objects](http://www.elegantobjects.org)
 - [Seven Ineffective Coding Habits of Many Programmers by Kevlin Henney](https://www.youtube.com/watch?v=ZsHMHukIlJY)
 - [Java Optional - The Mother of All Bikesheds by Stuart Marks](https://www.youtube.com/watch?v=Ej0sss6cq14)
 
-### 1.5. Code Examples
+### Code Examples
 
 - [Code Katas](https://github.com/kkisiele/codekata)
 
@@ -127,14 +127,14 @@ Inspired by [Elegant Objects](http://www.elegantobjects.org)
 - [jcabi-email](https://github.com/jcabi/jcabi-email)
 - [Assignment done for some interview](https://github.com/kkisiele/loganalyzer)
 
-### 1.6. Git Hub
+### Git Hub
 
 - [Nat Pryce](https://github.com/npryce)
 
 - [Steve Freeman](https://github.com/sf105)
 - [Matteo Vaccari](https://github.com/xpmatteo)
 
-### 1.7. Blogs
+### Blogs
 
 - [Martin Fowler](https://martinfowler.com/bliki)
 
@@ -158,7 +158,7 @@ Inspired by [Elegant Objects](http://www.elegantobjects.org)
 - [The Iterate Blog](https://blog.iterate.no)
 - [The Holy Java](https://theholyjava.wordpress.com)
 
-### 1.8. Books
+### Books
 
 - [Refactoring: Improving the Design of Existing Code by Martin Fowler](https://www.amazon.com/Refactoring-Improving-Existing-Addison-Wesley-Technology-ebook/dp/B007WTFWJ6) errata for the book can be found [here](https://martinfowler.com/refactoringErrata.html)
 
@@ -167,24 +167,24 @@ Inspired by [Elegant Objects](http://www.elegantobjects.org)
 - [Elegant Objects by Yegor Bugayenko](https://www.amazon.com/gp/product/1519166915/)
 - [Growing Object-Oriented Software, Guided by Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests-dp-0321503627/dp/0321503627/)
 
-### 1.9. Other
+### Other
 
 - [Code Katas](http://codekata.com)
 
-## 2. Summary
+## Summary
 
 Inspired by [Summary of 'Clean code'](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29).
 
 Code is clean if it can be understood easily – by everyone on the team. Clean code can be read and enhanced by a developer other than its original author. With understandability comes readability, changeability, extensibility and maintainability.
 
-### 2.1. General rules
+### General rules
 
 1. Follow standard conventions.
 2. Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.
 3. Boy scout rule. Leave the campground cleaner than you found it.
 4. Always find root cause. Always look for the root cause of a problem.
 
-### 2.2. Design rules
+### Design rules
 
 1. Keep configurable data at high levels.
 2. Prefer polymorphism to if/else or switch/case.
@@ -193,7 +193,7 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 5. Use dependency injection.
 6. Follow Law of Demeter. A class should know only its direct dependencies.
 
-### 2.3. Understandability tips
+### Understandability tips
 
 1. Be consistent. If you do something a certain way, do all similar things in the same way.
 2. Use explanatory variables.
@@ -202,7 +202,7 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 5. Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.
 6. Avoid negative conditionals.
 
-### 2.4. Names rules
+### Names rules
 
 1. Choose descriptive and unambiguous names.
 2. Make meaningful distinction.
@@ -211,7 +211,7 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 5. Replace magic numbers with named constants.
 6. Avoid encodings. Don't append prefixes or type information.
 
-### 2.5. Functions rules
+### Functions rules
 
 1. Small.
 2. Do one thing.
@@ -220,7 +220,7 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 5. Have no side effects.
 6. Don't use flag arguments. Split method into several independent methods that can be called from the client without the flag.
 
-### 2.6. Comments rules
+### Comments rules
 
 1. Always try to explain yourself in code.
 2. Don't be redundant.
@@ -231,7 +231,7 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 7. Use as clarification of code.
 8. Use as warning of consequences.
 
-### 2.7. Source code structure
+### Source code structure
 
 1. Separate concepts vertically.
 2. Related code should appear vertically dense.
@@ -244,7 +244,7 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 9. Use white space to associate related things and disassociate weakly related.
 10. Don't break indentation.
 
-### 2.8. Objects and data structures
+### Objects and data structures
 
 1. Hide internal structure.
 2. Prefer data structures.
@@ -256,7 +256,7 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 8. Better to have many functions than to pass some code into a function to select a behavior.
 9. Prefer non-static methods to static methods.
 
-### 2.9. Tests
+### Tests
 
 1. One assert per test.
 2. Readable.
@@ -264,7 +264,7 @@ Code is clean if it can be understood easily – by everyone on the team. Clean 
 4. Independent.
 5. Repeatable.
 
-### 2.10. Code smells
+### Code smells
 
 1. Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.
 2. Fragility. The software breaks in many places due to a single change.

@@ -8,6 +8,6 @@ ADRs can also help you run more reliable applications and services. The ADR help
 
 ## See also
 
-- Github [ADR](https://github.com/adr) hompage, tools and examples project.
-- Github [ADR](https://github.com/joelparkerhenderson/architecture_decision_record) examples for software planning, IT leadership and template documentation.
+- Github [ADR](https://github.com/adr) hompage, tools and examples project repository.
+- Github [ADR](https://github.com/joelparkerhenderson/architecture_decision_record) examples for software planning, IT leadership and template documentation repository.
 - Google [Architecture decision records (ADR)](https://cloud.google.com/architecture/architecture-decision-records?hl=en) overview.

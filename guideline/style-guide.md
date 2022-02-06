@@ -188,6 +188,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 - [Effective Go](https://golang.org/doc/effective_go)
 - [Golang Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
+- [Uber Go Style Guide](https://github.com/uber-go/guide/blob/master/style.md)
 
 ### 6.2. Static Analysis
 
@@ -236,6 +237,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 ### 8.1. Convention
 
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- [Semantic Versioning](https://sentenz.github.io/backup-service/website/semver.org/index.html)
 
 ### 8.2. Lint
 

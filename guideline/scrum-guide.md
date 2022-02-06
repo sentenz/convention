@@ -1,8 +1,40 @@
-# Agile Guide
+# Scrum Guide
 
-Inspired by this [Srum Guide](https://github.com/d-baer/scrum-guide/blob/master/scrum-guide.md).
+Within project management, [scrum](https://www.scrum.org/resources/scrum-guide) is a framework for developing, delivering, and sustaining products in a complex environment, with an initial emphasis on software development, although it has been used in other fields including research, sales, marketing and advanced technologies. It is designed for teams of ten or fewer members, who break their work into goals that can be completed within time-boxed iterations, called sprints, no longer than one month and most commonly two weeks. The scrum team assess progress in time-boxed daily meetings of 15 minutes or less, called daily scrums. At the end of the sprint, the team holds two further meetings: the sprint review which demonstrates the work done to stakeholders to elicit feedback, and sprint retrospective which enables the team to reflect and improve.
 
-This HTML version of the Scrum Guide is a direct port of the November 2020 version available [as a PDF here](https://www.scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-US.pdf).
+Read the [Scrum Guide](https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-US.pdf) version 2020.
+
+- [Purpose of the Scrum Guide](#purpose-of-the-scrum-guide)
+- [Scrum Definition](#scrum-definition)
+- [Scrum Theory](#scrum-theory)
+  - [Transparency](#transparency)
+  - [Inspection](#inspection)
+  - [Adaptation](#adaptation)
+- [Scrum Values](#scrum-values)
+- [Scrum Team](#scrum-team)
+  - [Developers](#developers)
+  - [Product Owner](#product-owner)
+  - [Scrum Master](#scrum-master)
+- [Scrum Events](#scrum-events)
+  - [The Sprint](#the-sprint)
+  - [Sprint Planning](#sprint-planning)
+    - [Topic One: Why is this Sprint valuable?](#topic-one-why-is-this-sprint-valuable)
+    - [Topic Two: What can be Done this Sprint?](#topic-two-what-can-be-done-this-sprint)
+    - [Topic Three: How will the chosen work get done?](#topic-three-how-will-the-chosen-work-get-done)
+  - [Daily Scrum](#daily-scrum)
+  - [Sprint Review](#sprint-review)
+  - [Sprint Retrospective](#sprint-retrospective)
+- [Scrum Artifacts](#scrum-artifacts)
+  - [Product Backlog](#product-backlog)
+    - [Commitment: Product Goal](#commitment-product-goal)
+  - [Sprint Backlog](#sprint-backlog)
+    - [Commitment: Sprint Goal](#commitment-sprint-goal)
+  - [Increment](#increment)
+    - [Commitment: Definition of Done](#commitment-definition-of-done)
+- [End Note](#end-note)
+  - [Acknowledgements](#acknowledgements)
+    - [People](#people)
+    - [Scrum Guide History](#scrum-guide-history)
 
 ## Purpose of the Scrum Guide
 
@@ -83,10 +115,10 @@ Developers are the people in the Scrum Team that are committed to creating any a
 
 The specific skills needed by the Developers are often broad and will vary with the domain of work. However, the Developers are always accountable for:
 
-* Creating a plan for the Sprint, the Sprint Backlog;
-* Instilling quality by adhering to a Definition of Done;
-* Adapting their plan each day toward the Sprint Goal; and,
-* Holding each other accountable as professionals.
+- Creating a plan for the Sprint, the Sprint Backlog;
+- Instilling quality by adhering to a Definition of Done;
+- Adapting their plan each day toward the Sprint Goal; and,
+- Holding each other accountable as professionals.
 
 ### Product Owner
 
@@ -94,10 +126,10 @@ The Product Owner is accountable for maximizing the value of the product resulti
 
 The Product Owner is also accountable for effective Product Backlog management, which includes:
 
-* Developing and explicitly communicating the Product Goal;
-* Creating and clearly communicating Product Backlog items;
-* Ordering Product Backlog items; and,
-* Ensuring that the Product Backlog is transparent, visible and understood.
+- Developing and explicitly communicating the Product Goal;
+- Creating and clearly communicating Product Backlog items;
+- Ordering Product Backlog items; and,
+- Ensuring that the Product Backlog is transparent, visible and understood.
 
 The Product Owner may do the above work or may delegate the responsibility to others. Regardless, the Product Owner remains accountable.
 
@@ -115,24 +147,24 @@ Scrum Masters are true leaders who serve the Scrum Team and the larger organizat
 
 The Scrum Master serves the Scrum Team in several ways, including:
 
-* Coaching the team members in self-management and cross-functionality;
-* Helping the Scrum Team focus on creating high-value Increments that meet the Definition of Done;
-* Causing the removal of impediments to the Scrum Team's progress; and,
-* Ensuring that all Scrum events take place and are positive, productive, and kept within the timebox.
+- Coaching the team members in self-management and cross-functionality;
+- Helping the Scrum Team focus on creating high-value Increments that meet the Definition of Done;
+- Causing the removal of impediments to the Scrum Team's progress; and,
+- Ensuring that all Scrum events take place and are positive, productive, and kept within the timebox.
 
 The Scrum Master serves the Product Owner in several ways, including:
 
-* Helping find techniques for effective Product Goal definition and Product Backlog management;
-* Helping the Scrum Team understand the need for clear and concise Product Backlog items;
-* Helping establish empirical product planning for a complex environment; and,
-* Facilitating stakeholder collaboration as requested or needed.
+- Helping find techniques for effective Product Goal definition and Product Backlog management;
+- Helping the Scrum Team understand the need for clear and concise Product Backlog items;
+- Helping establish empirical product planning for a complex environment; and,
+- Facilitating stakeholder collaboration as requested or needed.
 
 The Scrum Master serves the organization in several ways, including:
 
-* Leading, training, and coaching the organization in its Scrum adoption;
-* Planning and advising Scrum implementations within the organization;
-* Helping employees and stakeholders understand and enact an empirical approach for complex work; and,
-* Removing barriers between stakeholders and Scrum Teams.
+- Leading, training, and coaching the organization in its Scrum adoption;
+- Planning and advising Scrum implementations within the organization;
+- Helping employees and stakeholders understand and enact an empirical approach for complex work; and,
+- Removing barriers between stakeholders and Scrum Teams.
 
 ## Scrum Events
 
@@ -150,10 +182,10 @@ All the work necessary to achieve the Product Goal, including Sprint Planning, D
 
 During the Sprint:
 
-* No changes are made that would endanger the Sprint Goal;
-* Quality does not decrease;
-* The Product Backlog is refined as needed; and,
-* Scope may be clarified and renegotiated with the Product Owner as more is learned.
+- No changes are made that would endanger the Sprint Goal;
+- Quality does not decrease;
+- The Product Backlog is refined as needed; and,
+- Scope may be clarified and renegotiated with the Product Owner as more is learned.
 
 Sprints enable predictability by ensuring inspection and adaptation of progress toward a Product Goal at least every calendar month. When a Sprint's horizon is too long the Sprint Goal may become invalid, complexity may rise, and risk may increase. Shorter Sprints can be employed to generate more learning cycles and limit risk of cost and effort to a smaller time frame. Each Sprint may be considered a short project.
 
@@ -223,9 +255,9 @@ Scrum's artifacts represent work or value. They are designed to maximize transpa
 
 Each artifact contains a commitment to ensure it provides information that enhances transparency and focus against which progress can be measured:
 
-* For the Product Backlog it is the Product Goal.
-* For the Sprint Backlog it is the Sprint Goal.
-* For the Increment it is the Definition of Done.
+- For the Product Backlog it is the Product Goal.
+- For the Sprint Backlog it is the Sprint Goal.
+- For the Increment it is the Definition of Done.
 
 These commitments exist to reinforce empiricism and the Scrum values for the Scrum Team and their stakeholders.
 
@@ -294,5 +326,3 @@ Ken Schwaber and Jeff Sutherland first co-presented Scrum at the OOPSLA Conferen
 The Scrum Guide documents Scrum as developed, evolved, and sustained for 30-plus years by Jeff Sutherland and Ken Schwaber. Other sources provide patterns, processes, and insights that complement the Scrum framework. These may increase productivity, value, creativity, and satisfaction with the results.
 
 The complete history of Scrum is described elsewhere. To honor the first places where it was tried and proven, we recognize Individual Inc., Newspage, Fidelity Investments, and IDX (now GE Medical).
-
-_© 2020 Ken Schwaber and Jeff Sutherland This publication is offered for license under the Attribution Share-Alike license of Creative Commons, accessible at [https://creativecommons.org/licenses/by-sa/4.0/legalcode](https://creativecommons.org/licenses/by-sa/4.0/legalcode) and also described in summary form at [https://creativecommons.org/licenses/by-sa/4.0/](https://creativecommons.org/licenses/by-sa/4.0/). By utilizing this Scrum Guide, you acknowledge and agree that you have read and agree to be bound by the terms of the Attribution Share-Alike license of Creative Commons._

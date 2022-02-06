@@ -1,11 +1,11 @@
 # CI/CD Guide
 
-- [1. CD](#1-cd)
-  - [1.1. Semantic Release](#11-semantic-release)
+- [CD](#cd)
+  - [Semantic Release](#semantic-release)
 
-## 1. CD
+## CD
 
-### 1.1. Semantic Release
+### Semantic Release
 
 [semantic-release](https://sentenz.github.io/backup-service/website/semantic-release.gitbook.io/semantic-release/index.html) is meant to be executed on the CI environment after every successful build on the release branch.
 

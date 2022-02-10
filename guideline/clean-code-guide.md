@@ -2,6 +2,9 @@
 
 - [Clean Code](#clean-code)
   - [Design Principles](#design-principles)
+    - [DRY](#dry)
+    - [KISS](#kiss)
+    - [YAGNI](#yagni)
     - [SOLID](#solid)
     - [Four Rules of Simple Design](#four-rules-of-simple-design)
     - [Elegant Objects](#elegant-objects)
@@ -31,7 +34,23 @@ Inspired by [Awesome Clean Code](https://github.com/kkisiele/awesome-clean-code)
 
 ### Design Principles
 
+The code follows these principles
+
+#### DRY
+
+DRY (Don't Repeat Yourself)
+
+#### KISS
+
+KISS (Keep It Short and Simple)
+
+#### YAGNI
+
+YAGNI (You Ain't Gonna Need It)
+
 #### SOLID
+
+(SRP, OCP, LSP, ISP, DIP)
 
 Acronym coined by Robert C. Martin (Uncle Bob) to describe the following five principles:
 

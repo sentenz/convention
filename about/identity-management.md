@@ -1,5 +1,11 @@
 # Identity Management
 
+Identity management should be based on established standards such as OAuth 2.0 and Open ID Connect.
+
+- [Authentication](#authentication)
+- [Authorization](#authorization)
+- [See also](#see-also)
+
 ## Authentication
 
 ## Authorization

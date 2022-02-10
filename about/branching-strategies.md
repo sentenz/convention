@@ -2,6 +2,12 @@
 
 A branching strategy refers to the strategy that a software development team uses when writing, merging, and shipping code in the context of a version control system (VCS) such as Git.
 
+- [Git Flow](#git-flow)
+- [GitHub Flow](#github-flow)
+- [Trunk-Based Development](#trunk-based-development)
+- [Scaled Trunk-Based Development](#scaled-trunk-based-development)
+- [See also](#see-also)
+
 A branching strategy defines how a team uses branching to achieve this level of concurrent development.
 
 ## Git Flow
@@ -64,3 +70,7 @@ Supporting branch:
   > Short-living feature branches are used to develop new features. Feature branches are created from and merged back into _trunk_. Feature branches typically exist in developer repos only, not in _origin_. The [style](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/styles/index.html) of short-living feature branches is suitable for active committer counts [between 2 and 1000](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/styles/index.html#short-lived-feature-branches).
 - [release](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html)
   > Release branch is a cut from trunk with an optional number of cherry picks that are developed on trunk and then pulled into the branch.
+
+## See also
+
+- Github [TBD](https://github.com/paul-hammant/tbd) repository.

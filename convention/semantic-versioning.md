@@ -4,4 +4,4 @@ Semantic versioning [SemVer](https://sentenz.github.io/backup-service/website/se
 
 ## See also
 
-- Github [SemVer](https://github.com/semver/semver) repository.
+- Github [SemVer](https://github.com/semver/semver.org) repository.

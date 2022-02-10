@@ -2,6 +2,14 @@
 
 A build system is a program for the automated generation of software.
 
+- [CMake](#cmake)
+- [Makefile](#makefile)
+- [Gradle](#gradle)
+- [Ninja](#ninja)
+- [Autotools](#autotools)
+- [Meson](#meson)
+- [Bazel](#bazel)
+
 ## CMake
 
 [CMake](https://cmake.org/) is used to control the software compilation process using simple platform and compiler independent configuration files, and generate native makefiles and workspaces that can be used in the compiler environment of your choice.

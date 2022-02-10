@@ -9,7 +9,7 @@ The twelve factors:
 1. Codebase
    > Prescribes that code to be stored in a version control system.
    >
-   > - Stored a source code in a repository that is accessible to development, testing, and system administration such as Git, Mercurial, or Subversion.
+   > - Storing  a source code in a repository that is accessible to development, testing, and system administration such as Git, Mercurial or Subversion.
    >
 2. Dependencies
    > Prescribes that dependencies must be explicitly declared and isolated by version.
@@ -24,10 +24,14 @@ The twelve factors:
    > - Isolate secrets in a secrets management tool like Hashicorp [Vault](https://github.com/hashicorp/vault).
    > - [Dapr](https://github.com/dapr/dapr) offers a [secrets management building block](https://docs.dapr.io/developing-applications/building-blocks/secrets/secrets-overview/) abstracts away the complexity of working with secrets and secret management tools.
    >
+   > `Warning`
+   >
+   > - Never load sensitive variables such as secrets from environment variables. Environment variables, especially global ones, may be dumped. Try to avoid environment variables in general, use the `.env` file instead.
+   >
 4. Backing Services
    > Prescribes that external dependencies accessing data storage (such as MySQL or PostgreSQL), messaging/queuing systems (such as RabbitMQ), SMTP services for outgoing email (such as Postfix), and caching systems (such as Memcached) should be specified in the application configuration.
    >
-   > - Load backing services variables from a [.env](https://github.com/motdotla/dotenv) file or from environment variables.
+   > - Load backing services variables from a [.env](https://github.com/motdotla/dotenv) file.
    >
 5. Build, Release, Run
    > Prescribes a strict separation of the build (binary), release (binary and + env config) and run (exec runtime) stages.
@@ -42,8 +46,8 @@ The twelve factors:
 7. Port Binding
    > Prescribes that applications are standalone and independent processes that do not run under the control of a parent process and export services using port binding.
    >
+   > - Load port variables from a [.env](https://github.com/motdotla/dotenv) file.
    > - Define ports for services in Dockerfile.
-   > - Load port variables from a [.env](https://github.com/motdotla/dotenv) file or from environment variables.
    >
 8. Concurrency
 9. Disposability
@@ -62,6 +66,7 @@ The twelve factors:
 
 ## See also
 
+- Github [12factor]((https://github.com/heroku/12factor)) repository.
 - IBM [12+ Factors](https://www.ibm.com/cloud/blog/12-plus-factors-for-containerized-ui-microservices) for containerized UI microservices.
 - IBM [7 Missing Factors](https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications) from twelve-factor app.
 - Google [twelve-factor app](https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en) development on Cloud.

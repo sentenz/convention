@@ -1,14 +1,14 @@
 {
-  "name": "guides-service",
+  "name": "guides",
   "version": "0.0.0",
   "private": true,
-  "homepage": "https://github.com/sentenz/guides-service#readme",
-  "bugs": "https://github.com/sentenz/guides-service/issues",
+  "homepage": "https://github.com/sentenz/guides#readme",
+  "bugs": "https://github.com/sentenz/guides/issues",
   "author": "Sentenz",
   "license": "Apache License 2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sentenz/guides-service.git"
+    "url": "https://github.com/sentenz/guides.git"
   },
   "scripts": {
     "test": "run-s"

@@ -4,4 +4,4 @@ Abstraction layer is a way of hiding the working details of a subsystem, allowin
 
 ## See also
 
-- Codeopinion when NOT to write an [Abstraction Layer](https://codeopinion.com/when-not-to-write-an-abstraction-layer/).
+- Codeopinion [abstraction layer](https://codeopinion.com/when-not-to-write-an-abstraction-layer/) article.

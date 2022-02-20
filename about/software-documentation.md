@@ -16,4 +16,4 @@ Documentation must comprise an interactive User Experience, Information Architec
 
 ## See also
 
-- Website [Software Documentation - Best practices](https://document360.com/blog/software-documentation/) articel.
+- Website [software documentation](https://document360.com/blog/software-documentation/) articel.

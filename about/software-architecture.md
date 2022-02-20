@@ -39,5 +39,5 @@ The concept behind Hexagonal Architecture is that your core application logic is
 
 ## See also
 
-- Google [Introduction to microservices](https://cloud.google.com/architecture/microservices-architecture-introduction?hl=en) part 1 of 4.
+- Google [introduction to microservices](https://cloud.google.com/architecture/microservices-architecture-introduction?hl=en) article.
 - Medium [Onion vs Clean vs Hexagonal Architecture](https://medium.com/@edamtoft/onion-vs-clean-vs-hexagonal-architecture-9ad94a27da91) articel.

@@ -67,6 +67,6 @@ The twelve factors:
 ## See also
 
 - Github [12factor]((https://github.com/heroku/12factor)) repository.
-- IBM [12+ Factors](https://www.ibm.com/cloud/blog/12-plus-factors-for-containerized-ui-microservices) for containerized UI microservices.
-- IBM [7 Missing Factors](https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications) from twelve-factor app.
-- Google [twelve-factor app](https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en) development on Cloud.
+- IBM [12+ Factors](https://www.ibm.com/cloud/blog/12-plus-factors-for-containerized-ui-microservices) for containerized UI microservices article.
+- IBM [7 Missing Factors](https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications) from twelve-factor app article.
+- Google [twelve-factor app](https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en) development on Cloud article.

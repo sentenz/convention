@@ -8,5 +8,5 @@ Weaveworks is credited with creating the term GitOps.
 
 ## See also
 
-- Google managing infrastructure as code with [Terraform, Cloud Build, and GitOps](https://cloud.google.com/architecture/managing-infrastructure-as-code?hl=en&skip_cache=true).
-- GitLab about [GitOps](https://about.gitlab.com/topics/gitops/).
+- Google managing infrastructure as code with [Terraform, Cloud Build, and GitOps](https://cloud.google.com/architecture/managing-infrastructure-as-code?hl=en&skip_cache=true) article.
+- GitLab [GitOps](https://about.gitlab.com/topics/gitops/) article.

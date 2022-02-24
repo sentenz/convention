@@ -1,16 +1,19 @@
 # App Resources
 
-Resources are additional files and static content used in the code, such as bitmaps, layout definitions, user interface strings and values, animation instructions, and more.
+[App Resources](https://developer.android.com/guide/topics/resources/providing-resources) are additional files and static content used in the code, such as bitmaps, layout definitions, user interface strings and values, animation instructions, and more.
 
 - [Resource Types](#resource-types)
-- [Resource Syntax](#resource-syntax)
+- [Syntax](#syntax)
+  - [Syntax for C](#syntax-for-c)
+  - [Syntax for Go](#syntax-for-go)
+  - [Syntax for XML](#syntax-for-xml)
 - [See also](#see-also)
 
 Always externalize app resources such as images and strings from the code, so that you can maintain them independently. Also provide alternative resources for specific device configurations, by grouping them in specially-named resource directories.
 
 ## Resource Types
 
-Place each type of resource in a specific subdirectory of the project's `resource/` directory.
+Place [resource types](https://developer.android.com/guide/topics/resources/available-resources) in a specific subdirectory of the project's `resource/` directory.
 
 Resource directories supported inside project `resource/` directory.
 
@@ -27,7 +30,7 @@ Resource directories supported inside project `resource/` directory.
 | xml/      | Arbitrary XML files that can be read at runtime.                  |
 | font/     | Font files.                                                       |
 
-## Resource Syntax
+## Syntax
 
 The syntax to reference a resource in code:
 
@@ -38,6 +41,24 @@ The syntax to reference a resource in code:
 - `package_name` is the name of the package in which the resource is located.
 - `resource_type` is the subclass for the resource type.
 - `resource_name` is either the resource filename without the extension or the name attribute value.
+
+### Syntax for C
+
+```bash
+[<package_name>_]<resource_type>_<resource_name>
+```
+
+### Syntax for Go
+
+```bash
+[<package_name>.]<resource_type>_<resource_name>
+```
+
+### Syntax for XML
+
+```bash
+@[<package_name>:]<resource_type>/<resource_name>
+```
 
 ## See also
 

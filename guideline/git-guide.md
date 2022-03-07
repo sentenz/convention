@@ -41,7 +41,7 @@ The strategy contains the following rules:
    - Release branches are deleted after they are merged. If you need a specific version, use git tags instead.
 4. Merge to _main_ will create a new release version and deploy to production.
    - The merge of the _release_ branch into the _main_ branch will create a _tag_ with the release version.
-   - The release version is created according to the [semver convention](#semantic-versioning) by analyzing the [commit messages](#conventional-commits).
+   - The release version is created according to the [semver convention](./../convention/semantic-versioning.md) by analyzing the [commit messages](./../convention/conventional-commits.md).
 5. _fix_ branches of production issues that need an immediate fix of a production version.
    - Create a _fix_ branch from _main_ (naming convention, i.e. `fix/ISSUETYPE-ID-short_describe`).
    - Commit fix with commit message by [commit convention](#conventional-commits), i.e `fix(scope): what was fixed`.
@@ -65,9 +65,9 @@ The strategy and contains the following rules:
 2. _feature_ branches are created from and merged back into _trunk_ branch.
    - Branch naming convention: `feature/ISSUETYPE-ID-short_describe`.
    - Pull requests (PR) of _feature_ branches only into _trunk_ branch.
-3. Merge to _trunk_ creates a release version according to the following [conventions](#conventions).
+3. Merge to _trunk_ creates a release version.
    - Merge _feature_ branch into _trunk_ by select `Squash and merge` option on PR merge (Squashing will combine all your commits into one).
-   - Merging _feature_ branch into _trunk_ follows the [conventions](#conventions) style.
+   - The release version is created according to the [semver convention](./../convention/semantic-versioning.md) by analyzing the [commit messages](./../convention/conventional-commits.md).
 4. _release_ branches are cut from a specific revision of the _trunk_.
    - [Release from trunk](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html) retroactively by selecting the revision in the past to branch from.
    - Branch naming convention, i.e. `release/1.2.x`.

@@ -1,9 +1,10 @@
-# Branching Strategies
+# Branching Strategies // TODO
 
 A branching strategy refers to the strategy that a software development team uses when writing, merging, and shipping code in the context of a version control system (VCS) such as Git.
 
 - [Git Flow](#git-flow)
-- [GitHub Flow](#github-flow)
+- [GitHub Flow // TODO](#github-flow--todo)
+- [Release Flow // TODO](#release-flow--todo)
 - [Trunk-Based Development](#trunk-based-development)
 - [Scaled Trunk-Based Development](#scaled-trunk-based-development)
 - [See also](#see-also)
@@ -32,7 +33,7 @@ The strategy of Git flow is to isolate the work into different types of branches
 - [fix](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#hotfix-branches)
   > Fixes branches are created from main branch, when issues need an fix upon an undesired state of a live production version. Fix branches needs to be merged back into main and into develop, in order to safeguard that the bugfix is included in the next release.
 
-## GitHub Flow
+## GitHub Flow // TODO
 
 [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow) is a lightweight, branch-based workflow.
 
@@ -45,6 +46,10 @@ The major branch:
 Supporting branch:
 
 - feature
+
+## Release Flow // TODO
+
+[Release flow](http://releaseflow.org/#home) is an industry-standard approach.
 
 ## Trunk-Based Development
 
@@ -74,3 +79,6 @@ Supporting branch:
 ## See also
 
 - Github [TBD](https://github.com/paul-hammant/tbd) repository.
+- Github [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) article.
+- Azure DevOps [Release Flow](https://devblogs.microsoft.com/devops/release-flow-how-we-do-branching-on-the-vsts-team/) article.
+- YouTube [branching patterns and anti-patterns](https://www.youtube.com/watch?v=ykZbBD-CmP8) video.

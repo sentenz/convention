@@ -189,7 +189,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [Google Python Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/pyguide.html)
 - [PEP8](https://www.python.org/dev/peps/pep-0008/)
 - [PEP257](https://www.python.org/dev/peps/pep-0257/)
-- [PEP484](hhttps://www.python.org/dev/peps/pep-0484/)
+- [PEP484](https://www.python.org/dev/peps/pep-0484/)
 
 ### 3.2. Library
 

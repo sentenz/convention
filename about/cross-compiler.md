@@ -8,7 +8,7 @@ A cross compiler is a compiler capable of creating executable code for a platfor
 
 ## Namig Convention
 
-The naming rule of the cross-compilation toolchain is: arch [-vendor] [-os] [abi].
+The naming rule of the cross-compilation toolchain is: `[arch]-[vendor]-[os]-[abi]`.
 
 - `arch` refers to target architecture: arm, mips, x86, i686
 - `vendor` refers to toolchain supplier: apple

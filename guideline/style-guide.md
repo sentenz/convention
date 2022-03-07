@@ -23,6 +23,8 @@
   - [3.2. Library](#32-library)
   - [3.3. Linter](#33-linter)
   - [3.4. Unit-Testing Frameworks](#34-unit-testing-frameworks)
+  - [3.5. Architecture](#35-architecture)
+  - [3.6. Editor](#36-editor)
 - [4. Shell](#4-shell)
   - [4.1. Convention](#41-convention)
   - [4.2. Linter](#42-linter)
@@ -219,6 +221,15 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 - [PyTest](https://github.com/pytest-dev/pytest)
 - [pytest-cov](https://github.com/pytest-dev/pytest-cov)
+
+### 3.5. Architecture
+
+- [Python Project Template](https://github.com/rochacbruno/python-project-template)
+
+### 3.6. Editor
+
+- [Visual Studio Code](https://code.visualstudio.com/download)
+  > Getting Started with [Python](https://code.visualstudio.com/docs/python/python-tutorial) in VS Code.
 
 ## 4. Shell
 

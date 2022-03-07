@@ -1,151 +1,67 @@
 # Style Guides
 
-- [1. Go](#1-go)
+- [1. C/C++](#1-cc)
   - [1.1. Convention](#11-convention)
   - [1.2. Library](#12-library)
-    - [1.2.1. UI](#121-ui)
   - [1.3. Linter](#13-linter)
-  - [1.4. Architecture](#14-architecture)
-  - [1.5. Editor](#15-editor)
-  - [1.6. Links](#16-links)
-- [2. C](#2-c)
+  - [1.4. Build System](#14-build-system)
+  - [1.5. Package Manager](#15-package-manager)
+  - [1.6. Unit-Testing Frameworks](#16-unit-testing-frameworks)
+  - [1.7. Compiler](#17-compiler)
+  - [1.8. Architecture](#18-architecture)
+  - [1.9. Editor](#19-editor)
+- [2. Go](#2-go)
   - [2.1. Convention](#21-convention)
-  - [2.2. Linter](#22-linter)
-  - [2.3. Unit-Testing Frameworks](#23-unit-testing-frameworks)
+  - [2.2. Library](#22-library)
+    - [2.2.1. UI](#221-ui)
+  - [2.3. Linter](#23-linter)
   - [2.4. Architecture](#24-architecture)
-  - [2.5. Compiler](#25-compiler)
-  - [2.6. Editor](#26-editor)
-- [3. C++](#3-c)
+  - [2.5. Editor](#25-editor)
+  - [2.6. Links](#26-links)
+- [3. Python](#3-python)
   - [3.1. Convention](#31-convention)
-  - [3.2. Architecture](#32-architecture)
+  - [3.2. Library](#32-library)
   - [3.3. Linter](#33-linter)
   - [3.4. Unit-Testing Frameworks](#34-unit-testing-frameworks)
-  - [3.5. Compiler](#35-compiler)
-  - [3.6. Editor](#36-editor)
-- [4. Python](#4-python)
+- [4. Shell](#4-shell)
   - [4.1. Convention](#41-convention)
-  - [4.2. Library](#42-library)
-  - [4.3. Linter](#43-linter)
-  - [4.4. Unit-Testing Frameworks](#44-unit-testing-frameworks)
-- [5. Shell](#5-shell)
+  - [4.2. Linter](#42-linter)
+  - [4.3. Editor](#43-editor)
+- [5. Kotlin](#5-kotlin)
   - [5.1. Convention](#51-convention)
   - [5.2. Linter](#52-linter)
-  - [5.3. Editor](#53-editor)
-- [6. Kotlin](#6-kotlin)
+  - [5.3. Guides](#53-guides)
+  - [5.4. Editor](#54-editor)
+- [6. Rust](#6-rust)
   - [6.1. Convention](#61-convention)
   - [6.2. Linter](#62-linter)
-  - [6.3. Guides](#63-guides)
-  - [6.4. Editor](#64-editor)
-- [7. Rust](#7-rust)
+- [7. Git](#7-git)
   - [7.1. Convention](#71-convention)
   - [7.2. Linter](#72-linter)
-- [8. Git](#8-git)
+- [8. Markdown](#8-markdown)
   - [8.1. Convention](#81-convention)
   - [8.2. Linter](#82-linter)
-- [9. Markdown](#9-markdown)
+  - [8.3. Editor](#83-editor)
+- [9. CMake](#9-cmake)
   - [9.1. Convention](#91-convention)
   - [9.2. Linter](#92-linter)
   - [9.3. Editor](#93-editor)
-- [10. CMake](#10-cmake)
-  - [10.1. Convention](#101-convention)
-  - [10.2. Linter](#102-linter)
-  - [10.3. Editor](#103-editor)
 
-## 1. Go
+## 1. C/C++
 
-| Documentation | Build System | Package Manager | Unit Test | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
-| ------------- | ------------ | --------------- | --------- | ------------- | --------------- | ------------ | ----------------- |
-| Built-in      | Built-in     | Built-in        | Built-in  | Built-in      | Built-in        | Built-in     | Built-in          |
+| Documentation | Build System | Package Manager | Unit Test  | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | ---------- | ------------- | --------------- | ------------ | ----------------- |
+| Dependency    | Dependency   | Dependency      | Dependency | Dependency    | Dependency      | Dependency   | Dependency        |
 
 ### 1.1. Convention
 
-- [Effective Go](https://golang.org/doc/effective_go)
-- [Golang Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
-- [Uber Go Style Guide](https://github.com/uber-go/guide/blob/master/style.md)
+- [Google C++ Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/cppguide.html)
 
 ### 1.2. Library
 
-- [Go kit](https://github.com/go-kit/kit) a standard library for microservices or elegant monoliths.
-- [GORM](https://github.com/go-gorm/gorm) a ORM library for query and manipulate databases.
-- [Cobra](https://github.com/spf13/cobra) a library for CLI apps.
-- [cli](https://github.com/urfave/cli) a library for CLI apps.
-- [fuzzy](https://github.com/sahilm/fuzzy) a library that provides fuzzy string matching.
-- [lo](https://github.com/samber/lo) a Lodash for Go library.
-- [Gonum](https://github.com/gonum/gonum) is a set of packages designed to writing numerical and scientific algorithms.
-
-#### 1.2.1. UI
-
-- [go-echarts](https://github.com/go-echarts/go-echarts)
-- [go-chart](https://github.com/wcharczuk/go-chart)
-- [Statsview](https://github.com/go-echarts/statsview)
-- [Gonum Plot](https://github.com/gonum/plot)
-- [Go GUI Projects](https://github.com/go-graphics/go-gui-projects)
+- [Doxygen](https://github.com/doxygen/doxygen) documentation package for C/C++ projects.
 
 ### 1.3. Linter
-
-- [golangci-lint](https://github.com/golangci/golangci-lint)
-  > Configure [.golangci.yml](https://github.com/golangci/golangci-lint/blob/master/.golangci.yml) in the project.
-- [Awesome Go Linters](https://github.com/golangci/awesome-go-linters)
-
-### 1.4. Architecture
-
-- [Project Layout](https://github.com/golang-standards/project-layout)
-- [Project Layout Generator](https://github.com/insidieux/inizio/tree/v1.1.1)
-- [Go Clean Template](https://github.com/evrone/go-clean-template)
-
-### 1.5. Editor
-
-- [Visual Studio Code](https://code.visualstudio.com/download)
-
-### 1.6. Links
-
-- [FAQ](https://golang.org/doc/faq)
-
-## 2. C
-
-| Documentation | Build System | Package Manager | Unit Test  | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
-| ------------- | ------------ | --------------- | ---------- | ------------- | --------------- | ------------ | ----------------- |
-| Doxygen       | CMake        | Conan           | Dependency | Dependency    | Dependency      | cDependency  | Dependency        |
-
-### 2.1. Convention
-
-- See [C++](#3-c)
-
-### 2.2. Linter
-
-- See [C++](#3-c)
-
-### 2.3. Unit-Testing Frameworks
-
-- See [C++](#3-c)
-
-### 2.4. Architecture
-
-- See [C++](#3-c)
-
-### 2.5. Compiler
-
-- See [C++](#3-c)
-
-### 2.6. Editor
-
-- See [C++](#3-c)
-
-## 3. C++
-
-| Documentation | Build System | Package Manager | Unit Test  | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
-| ------------- | ------------ | --------------- | ---------- | ------------- | --------------- | ------------ | ----------------- |
-| Doxygen       | CMake        | Conan           | Dependency | Dependency    | Dependency      | Dependency   | Dependency        |
-
-### 3.1. Convention
-
-- [Google C++ Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/cppguide.html)
-
-### 3.2. Architecture
-
-- [Project Layout](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs)
-
-### 3.3. Linter
 
 - Code Check
   - [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) tool and [doc](https://clang.llvm.org/extra/clang-tidy/#id2)
@@ -173,12 +89,20 @@
 - Memory Check
   - [Valgrind](https://valgrind.org/)
 
-### 3.4. Unit-Testing Frameworks
+### 1.4. Build System
+
+CMake
+
+### 1.5. Package Manager
+
+Conan
+
+### 1.6. Unit-Testing Frameworks
 
 - [GoogleTest](https://github.com/google/googletest)
 - [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
 
-### 3.5. Compiler
+### 1.7. Compiler
 
 See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/default.htm) for the complete option list.
 
@@ -195,31 +119,88 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
    - [Run-time memory models](https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_ldq1505906267474.htm)
    - [The vector table](https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_kqu1505906156419.htm)
 
-### 3.6. Editor
+### 1.8. Architecture
+
+- [Project Layout](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs)
+
+### 1.9. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-## 4. Python
+## 2. Go
+
+| Documentation | Build System | Package Manager | Unit Test | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | --------- | ------------- | --------------- | ------------ | ----------------- |
+| Built-in      | Built-in     | Built-in        | Built-in  | Built-in      | Built-in        | Built-in     | Built-in          |
+
+### 2.1. Convention
+
+- [Effective Go](https://golang.org/doc/effective_go)
+- [Golang Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
+- [Uber Go Style Guide](https://github.com/uber-go/guide/blob/master/style.md)
+
+### 2.2. Library
+
+- [Go kit](https://github.com/go-kit/kit) a standard library for microservices or elegant monoliths.
+- [GORM](https://github.com/go-gorm/gorm) a ORM library for query and manipulate databases.
+- [Cobra](https://github.com/spf13/cobra) a library for CLI apps.
+- [cli](https://github.com/urfave/cli) a library for CLI apps.
+- [fuzzy](https://github.com/sahilm/fuzzy) a library that provides fuzzy string matching.
+- [lo](https://github.com/samber/lo) a Lodash for Go library.
+- [Gonum](https://github.com/gonum/gonum) is a set of packages designed to writing numerical and scientific algorithms.
+- [grpc-go](https://github.com/grpc/grpc-go) the Go language implementation of gRPC.
+
+#### 2.2.1. UI
+
+- [go-echarts](https://github.com/go-echarts/go-echarts)
+- [go-chart](https://github.com/wcharczuk/go-chart)
+- [Statsview](https://github.com/go-echarts/statsview)
+- [Gonum Plot](https://github.com/gonum/plot)
+- [Go GUI Projects](https://github.com/go-graphics/go-gui-projects)
+
+### 2.3. Linter
+
+- [golangci-lint](https://github.com/golangci/golangci-lint)
+  > Configure [.golangci.yml](https://github.com/golangci/golangci-lint/blob/master/.golangci.yml) in the project.
+- [Awesome Go Linters](https://github.com/golangci/awesome-go-linters)
+
+### 2.4. Architecture
+
+- [Project Layout](https://github.com/golang-standards/project-layout)
+- [Project Layout Generator](https://github.com/insidieux/inizio/tree/v1.1.1)
+- [Go Clean Template](https://github.com/evrone/go-clean-template)
+
+### 2.5. Editor
+
+- [Visual Studio Code](https://code.visualstudio.com/download)
+
+### 2.6. Links
+
+- [FAQ](https://golang.org/doc/faq)
+
+## 3. Python
 
 | Documentation | Build System | Package Manager | Unit Test  | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
 | ------------- | ------------ | --------------- | ---------- | ------------- | --------------- | ------------ | ----------------- |
-|               |              | Built-in        | Dependency | Dependency    | Dependency      | Dependency   |                   |
+| Dependency    | Built-in     | Built-in        | Dependency | Dependency    | Dependency      | Dependency   | Dependency        |
 
-### 4.1. Convention
+### 3.1. Convention
 
 - [Google Python Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/pyguide.html)
 - [PEP8](https://www.python.org/dev/peps/pep-0008/)
 - [PEP257](https://www.python.org/dev/peps/pep-0257/)
 - [PEP484](hhttps://www.python.org/dev/peps/pep-0484/)
 
-### 4.2. Library
+### 3.2. Library
 
 - [Click](https://github.com/pallets/click) is a package for creating command line interfaces.
 - [Pandas](https://github.com/pandas-dev/pandas) is a package that provides flexible and expressive data.structures.
 - [Faker](https://github.com/joke2k/faker) is a package that generates fake data.
 - [Pendulum](https://github.com/sdispater/pendulum) is a package for datetimes.
-  
-### 4.3. Linter
+- [grpcio](https://github.com/grpc/grpc/tree/master/src/python/grpcio) the Python language implementation of gRPC.
+- [Sphinx](https://github.com/sphinx-doc/sphinx) documentation package for Python projects.
+
+### 3.3. Linter
 
 - Code Check
   - [Pylint](https://github.com/PyCQA/pylint)
@@ -234,69 +215,69 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
   - [isort](https://github.com/PyCQA/isort)
   - [autoflake](https://github.com/PyCQA/autoflake)
 
-### 4.4. Unit-Testing Frameworks
+### 3.4. Unit-Testing Frameworks
 
 - [PyTest](https://github.com/pytest-dev/pytest)
 - [pytest-cov](https://github.com/pytest-dev/pytest-cov)
 
-## 5. Shell
+## 4. Shell
 
-### 5.1. Convention
+### 4.1. Convention
 
 - [Google Shell Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/shellguide.html)
   > [Gitlab Shell Scripting Recommendation](https://docs.gitlab.com/ee/development/shell_scripting_guide/)
 
-### 5.2. Linter
+### 4.2. Linter
 
-- Code Format
-  - [shfmt](https://github.com/mvdan/sh)
 - Code Check
   - [shellcheck](https://github.com/koalaman/shellcheck)
     > Configure [.shellcheckrc](https://github.com/koalaman/shellcheck/issues/725) in the root project.
+- Code Format
+  - [shfmt](https://github.com/mvdan/sh)
 
-### 5.3. Editor
+### 4.3. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-## 6. Kotlin
+## 5. Kotlin
 
-### 6.1. Convention
+### 5.1. Convention
 
 - [Kotlin Style Guide](https://developer.android.com/kotlin/style-guide)
 
-### 6.2. Linter
+### 5.2. Linter
 
 - Code Check
   - [Kotlin Lint](https://developer.android.com/studio/write/lint)
     > [Manually run inspections](https://developer.android.com/studio/write/lint#manuallyRunInspections)
 
-### 6.3. Guides
+### 5.3. Guides
 
 - Learn Kotlin with [Getting Started](https://kotlinlang.org/docs/reference/).
 
-### 6.4. Editor
+### 5.4. Editor
 
 - [Android Studio](https://developer.android.com/studio)
 
-## 7. Rust
+## 6. Rust
 
-### 7.1. Convention
+### 6.1. Convention
 
 - [TODO](https://example.com/)
 
-### 7.2. Linter
+### 6.2. Linter
 
 - Code Check
   - [Miri](https://github.com/rust-lang/miri)
 
-## 8. Git
+## 7. Git
 
-### 8.1. Convention
+### 7.1. Convention
 
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Semantic Versioning](https://sentenz.github.io/backup-service/website/semver.org/index.html)
 
-### 8.2. Linter
+### 7.2. Linter
 
 - Commit Check
   - [commitlint](https://github.com/conventional-changelog/commitlint)
@@ -308,14 +289,14 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - Commit Check for CI
   - [commitlint-github-action](https://github.com/wagoid/commitlint-github-action)
 
-## 9. Markdown
+## 8. Markdown
 
-### 9.1. Convention
+### 8.1. Convention
 
 - [Google Markdown Style Guide](https://google.github.io/styleguide/docguide/style.html)
 - [Cirosantilli Markdown Style Guide](https://cirosantilli.com/markdown-style-guide/)
 
-### 9.2. Linter
+### 8.2. Linter
 
 - Code Check
   - [markdownlint](https://github.com/markdownlint/markdownlint)
@@ -340,18 +321,18 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
     > - [.alexrc.yml](https://github.com/get-alex/alex#configuration)
     > - [.alexignore](https://github.com/get-alex/alex/blob/main/.alexignore)
 
-### 9.3. Editor
+### 8.3. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-## 10. CMake
+## 9. CMake
 
-### 10.1. Convention
+### 9.1. Convention
 
 - [KDE CMake Coding Style](https://community.kde.org/Policies/CMake_Coding_Style)
 - [CMake Developer](https://cmake.org/cmake/help/latest/manual/cmake-developer.7.html#modules)
 
-### 10.2. Linter
+### 9.2. Linter
 
 - Code Check
   - [cmake_format](https://github.com/cheshirekow/cmake_format)
@@ -362,6 +343,6 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
     >
   - [cmake-lint](https://github.com/cmake-lint/cmake-lint)
 
-### 10.3. Editor
+### 9.3. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)

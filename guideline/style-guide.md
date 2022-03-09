@@ -23,12 +23,9 @@
   - [3.2. Library](#32-library)
   - [3.3. Linter](#33-linter)
   - [3.4. Unit-Testing Frameworks](#34-unit-testing-frameworks)
+  - [Tool](#tool)
   - [3.5. Architecture](#35-architecture)
   - [3.6. Editor](#36-editor)
-- [4. Shell](#4-shell)
-  - [4.1. Convention](#41-convention)
-  - [4.2. Linter](#42-linter)
-  - [4.3. Editor](#43-editor)
 - [5. Kotlin](#5-kotlin)
   - [5.1. Convention](#51-convention)
   - [5.2. Linter](#52-linter)
@@ -37,6 +34,10 @@
 - [6. Rust](#6-rust)
   - [6.1. Convention](#61-convention)
   - [6.2. Linter](#62-linter)
+- [4. Shell](#4-shell)
+  - [4.1. Convention](#41-convention)
+  - [4.2. Linter](#42-linter)
+  - [4.3. Editor](#43-editor)
 - [7. Git](#7-git)
   - [7.1. Convention](#71-convention)
   - [7.2. Linter](#72-linter)
@@ -195,8 +196,8 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 3.2. Library
 
-- [Click](https://github.com/pallets/click) is a package for creating command line interfaces.
-- [Pandas](https://github.com/pandas-dev/pandas) is a package that provides flexible and expressive data.structures.
+- [Click](https://github.com/pallets/click) is a package for creating CLI apps.
+- [Pandas](https://github.com/pandas-dev/pandas) is a package that provides flexible and expressive data structures.
 - [Faker](https://github.com/joke2k/faker) is a package that generates fake data.
 - [Pendulum](https://github.com/sdispater/pendulum) is a package for datetimes.
 - [grpcio](https://github.com/grpc/grpc/tree/master/src/python/grpcio) the Python language implementation of gRPC.
@@ -222,8 +223,15 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [PyTest](https://github.com/pytest-dev/pytest)
 - [pytest-cov](https://github.com/pytest-dev/pytest-cov)
 
+### Tool
+
+- [virtualenv](https://github.com/pypa/virtualenv) a tool for creating isolated virtual python environments.
+- [tox](https://github.com/tox-dev/tox) command line driven CI frontend and development task automation tool.
+
 ### 3.5. Architecture
 
+- [PyScaffold](https://github.com/pyscaffold/pyscaffold) is a Python project generator.
+- [python-blueprint](https://github.com/johnthagen/python-blueprint) is a Python project using best practices.
 - [Python Project Template](https://github.com/rochacbruno/python-project-template)
 
 ### 3.6. Editor
@@ -231,26 +239,11 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [Visual Studio Code](https://code.visualstudio.com/download)
   > Getting Started with [Python](https://code.visualstudio.com/docs/python/python-tutorial) in VS Code.
 
-## 4. Shell
-
-### 4.1. Convention
-
-- [Google Shell Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/shellguide.html)
-  > [Gitlab Shell Scripting Recommendation](https://docs.gitlab.com/ee/development/shell_scripting_guide/)
-
-### 4.2. Linter
-
-- Code Check
-  - [shellcheck](https://github.com/koalaman/shellcheck)
-    > Configure [.shellcheckrc](https://github.com/koalaman/shellcheck/issues/725) in the root project.
-- Code Format
-  - [shfmt](https://github.com/mvdan/sh)
-
-### 4.3. Editor
-
-- [Visual Studio Code](https://code.visualstudio.com/download)
-
 ## 5. Kotlin
+
+| Documentation | Build System | Package Manager | Unit Test | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | --------- | ------------- | --------------- | ------------ | ----------------- |
+|               |              |                 |           |               |                 |              |                   |
 
 ### 5.1. Convention
 
@@ -272,6 +265,10 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ## 6. Rust
 
+| Documentation | Build System | Package Manager | Unit Test | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | --------- | ------------- | --------------- | ------------ | ----------------- |
+|               |              |                 |           |               |                 |              |                   |
+
 ### 6.1. Convention
 
 - [TODO](https://example.com/)
@@ -280,6 +277,25 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 - Code Check
   - [Miri](https://github.com/rust-lang/miri)
+
+## 4. Shell
+
+### 4.1. Convention
+
+- [Google Shell Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/shellguide.html)
+  > [Gitlab Shell Scripting Recommendation](https://docs.gitlab.com/ee/development/shell_scripting_guide/)
+
+### 4.2. Linter
+
+- Code Check
+  - [shellcheck](https://github.com/koalaman/shellcheck)
+    > Configure [.shellcheckrc](https://github.com/koalaman/shellcheck/issues/725) in the root project.
+- Code Format
+  - [shfmt](https://github.com/mvdan/sh)
+
+### 4.3. Editor
+
+- [Visual Studio Code](https://code.visualstudio.com/download)
 
 ## 7. Git
 

@@ -9,6 +9,7 @@ Best practices, articles of interest and general topics.
 - [Architecture Modeling Concepts](architecture-modeling-concepts.md)
 - [Branching Strategies](branching-strategies.md)
 - [Build Sytems](build-sytems.md)
+- [CRLF vs LF](crlf-vs-lf.md)
 - [Cross Compiler](cross-compiler.md)
 - [Data Management](data-management.md)
 - [Deployment Strategies](deployment-strategies.md)

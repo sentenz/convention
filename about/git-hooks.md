@@ -25,6 +25,22 @@ Some of currently supported hooks are described below:
 
 ## Useful Commands
 
+- Normalizing Line Endings
+
+  This command normalizes the line endings to the configuration in `.gitattributes`.
+
+  ```bash
+  git add --renormalize .
+  git rm --cached -r .
+  git reset --hard
+  ```
+
+  Verifying line endings.
+
+  ```bash
+  git ls-files --eol
+  ```
+
 - Diff
 
   This command shows the file differences which are not yet staged.

@@ -14,6 +14,8 @@
   - [Test Driven Development](#test-driven-development)
   - [Behavioral Driven Development](#behavioral-driven-development)
   - [Acceptance Test-Driven Development](#acceptance-test-driven-development)
+- [Mock Object](#mock-object)
+- [Test Fixture](#test-fixture)
 - [See also](#see-also)
 
 ## Software Testing
@@ -75,6 +77,14 @@ In BDD the business expert defines tests. They can drive development through wri
 ### Acceptance Test-Driven Development
 
 In Acceptance Test-Driven Development (ATDD) technique, a single acceptance test is written from the user’s perspective. It mainly focuses on satisfying the functional behavior of the system and capturing the accurate requirements.
+
+## Mock Object
+
+[Mock objects](https://code-craftsmanship-saturdays.gitbook.io/software-testing-fundamentals/mocking) are simulated objects that mimic the behavior of real objects in a controlled manner.
+
+## Test Fixture
+
+[Test fixture](https://code-craftsmanship-saturdays.gitbook.io/software-testing-fundamentals/test-fixtures) is used as environment to consistently test item, device, or piece of software. Test fixtures initialize test functions. They provide a fixed baseline so that tests execute reliably and produce consistent, repeatable, results. Initialization may setup services, state, or other operating environments.
 
 ## See also
 

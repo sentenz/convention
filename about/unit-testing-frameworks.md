@@ -1,7 +1,7 @@
 # Unit-Testing Frameworks // TODO
 
 - [Unit Testing](#unit-testing)
-  - [Google Test](#google-test)
+  - [GoogleTest](#googletest)
   - [Catch](#catch)
   - [CppUnit](#cppunit)
   - [Boost.Test](#boosttest)
@@ -17,7 +17,13 @@
 
 Unit Testing is a basic and considerable practice step in the software testing process. It is concerned with testing individual units of source code.
 
-### Google Test
+### GoogleTest
+
+| Mock     | Fixture  | Code Coverage | Build System  |
+| -------- | -------- | ------------- | ------------- |
+| Built-in | Built-in | gcov          | CMake / Bazel |
+
+[GoogleTest](https://github.com/google/googletest) is a Testing and Mocking Framework.
 
 ### Catch
 
@@ -32,6 +38,10 @@ Unit Testing is a basic and considerable practice step in the software testing p
 [Embunit](https://www.embunit.com/) is an open source unit testing framework for embedded software in C or C++ for programmers and testers developing software. It is aimed at embedded software development, but can be used to create unit tests for any software written in C or C++.
 
 ### pytest
+
+| Mock        | Fixture  | Code Coverage | Build System |
+| ----------- | -------- | ------------- | :----------: |
+| pytest-mock | Built-in | pytest-cov    |      —       |
 
 The [pytest](https://github.com/pytest-dev/pytest/) framework allows to write small, readable tests, and can be scaled to support complex functional tests for applications and libraries.
 

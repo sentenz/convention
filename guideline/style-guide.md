@@ -121,6 +121,8 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
    - [Default memory map](https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_clm1505906242639.htm)
    - [Run-time memory models](https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_ldq1505906267474.htm)
    - [The vector table](https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_kqu1505906156419.htm)
+4. Code size optimization
+   - [-ffunction-sections, -fdata-sections, & --gc-sections](https://interrupt.memfault.com/blog/best-and-worst-gcc-clang-compiler-flags#-ffunction-sections--fdata-sections----gc-sections)
 
 ### 1.8. Architecture
 
@@ -220,7 +222,9 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 3.4. Unit-Testing Frameworks
 
-- [PyTest](https://github.com/pytest-dev/pytest)
+- [pytest](https://github.com/pytest-dev/pytest)
+- [pytest fixtures](https://docs.pytest.org/en/6.2.x/fixture.html)
+- [pytest-mock](https://github.com/pytest-dev/pytest-mock)
 - [pytest-cov](https://github.com/pytest-dev/pytest-cov)
 
 ### Tool

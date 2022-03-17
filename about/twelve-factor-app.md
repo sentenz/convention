@@ -26,7 +26,7 @@ The twelve factors:
    >
    > `Warning`
    >
-   > - Never load sensitive variables such as secrets from environment variables. Environment variables, especially global ones, may be dumped. Try to avoid environment variables in general, use the `.env` file instead.
+   > - Never load sensitive variables such as secrets from environment variables, but use secret manager instead. Environment variables, especially global ones, may be dumped. Try to avoid environment variables in general, use the `.env` file instead.
    >
 4. Backing Services
    > Prescribes that external dependencies accessing data storage (such as MySQL or PostgreSQL), messaging/queuing systems (such as RabbitMQ), SMTP services for outgoing email (such as Postfix), and caching systems (such as Memcached) should be specified in the application configuration.
@@ -51,7 +51,7 @@ The twelve factors:
    >
 8. Concurrency
 9. Disposability
-   > Prescribes that application processes can be started and stopped at any time. Therefor, minimize the startup time and shut down gracefully.
+   > Prescribes that application processes can be started and stopped at any time. Therefore, minimize the startup time and shut down gracefully.
    >
    > - For instance, application shouldn’t stop when it’s writing to a backing service. To do so, our app must be able to capture signals, ensure that we finish calls, and then stop the app.
    >

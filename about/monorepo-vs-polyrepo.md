@@ -50,7 +50,7 @@ Opinion posts:
 - [Monorepos: Please don’t! - By Matt Klein](https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b)
 - [Monorepos and the Fallacy of Scale - By Paulus Esterhazy](https://presumably.de/monorepos-and-the-fallacy-of-scale.html)
 
-Hacker News dicussions:
+Hacker News discussions:
 
 - [Monorepos: Please don’t!](https://news.ycombinator.com/item?id=18808909)
 - [Monorepos and the Fallacy of Scale](https://news.ycombinator.com/item?id=18855660)
@@ -318,7 +318,7 @@ I find that shipped software actually operates better in a normal, branched mono
 
 I've worked on projects where there were 6-7 major branches active at the same time and several smaller ones, besides the master branch. Then you'd have to merge everywhere applicable, etc. This is a totally different approach from the Google monorepo approach of "master only", basically. And probably one of the main reasons why Golang is having a ton of difficulties in the outside world by not having a proper versioning story.
 
-Comment: Once youre shipping software off prem you need to patch it between major and minor releases.
+Comment: Once you're shipping software off prem you need to patch it between major and minor releases.
 Typically one way to do that is to branch when you do a release to a branch namded for the release. Say 1.2. Then when issues pop up you fix it in the branch then see if it applies to the trunk or other branches after that.
 
 ## Opinions about alternatives

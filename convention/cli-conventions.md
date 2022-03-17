@@ -1,6 +1,6 @@
 # CLI Conventions
 
-The Command-Line Interface (CLI) conventions consist of several guidlines that must be brought to the Harmony.
+The Command-Line Interface (CLI) conventions consist of several guidelines that must be brought to the Harmony.
 
 ## POSIX Utility Conventions
 

@@ -54,7 +54,7 @@ User interface (UI) testing is the process of testing the visual elements of an 
 
 ## Non-Functional Testing
 
-// TOOO
+// TODO
 
 ### Performance Testing
 
@@ -68,15 +68,15 @@ Security testing is a non-functional software testing technique used to determin
 
 ### White Box Testing
 
-// TOOO
+// TODO
 
 ### Black Box Testing
 
-// TOOO
+// TODO
 
 ### Gray Box Testing
 
-// TOOO
+// TODO
 
 ## Test Design
 

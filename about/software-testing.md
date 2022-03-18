@@ -27,6 +27,7 @@ Software testing is an organizational process within software development in whi
 - [Mock Object](#mock-object)
 - [Test Fixture](#test-fixture)
 - [Fuzzing](#fuzzing)
+- [Penetration Testing](#penetration-testing)
 - [See also](#see-also)
 
 ## Functional Testing
@@ -155,6 +156,10 @@ In Acceptance Test-Driven Development (ATDD) technique, a single acceptance test
 ## Fuzzing
 
 [Fuzz testing](https://www.synopsys.com/glossary/what-is-fuzz-testing.html) or fuzzing is an automated black box software testing method that injects invalid, malformed, or unexpected inputs into a system to reveal software defects and vulnerabilities. A fuzzing tool injects these inputs into the system and then monitors for exceptions such as crashes or information leakage.
+
+## Penetration Testing
+
+[Penetration testing](https://www.imperva.com/learn/application-security/penetration-testing) or pen test, is a simulated cyber attack against your computer system to check for exploitable vulnerabilities. In the context of web application security, penetration testing is commonly used to augment a web application firewall (WAF).
 
 ## See also
 

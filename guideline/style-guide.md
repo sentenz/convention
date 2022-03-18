@@ -6,7 +6,7 @@
   - [1.3. Linter](#13-linter)
   - [1.4. Build System](#14-build-system)
   - [1.5. Package Manager](#15-package-manager)
-  - [1.6. Unit-Testing Frameworks](#16-unit-testing-frameworks)
+  - [1.6. Software Testing](#16-software-testing)
   - [1.7. Compiler](#17-compiler)
   - [1.8. Architecture](#18-architecture)
   - [1.9. Editor](#19-editor)
@@ -15,29 +15,31 @@
   - [2.2. Library](#22-library)
     - [2.2.1. UI](#221-ui)
   - [2.3. Linter](#23-linter)
-  - [2.4. Architecture](#24-architecture)
-  - [2.5. Editor](#25-editor)
-  - [2.6. Links](#26-links)
+  - [2.4. Software Testing](#24-software-testing)
+  - [2.5. Architecture](#25-architecture)
+  - [2.6. Editor](#26-editor)
+  - [2.7. Links](#27-links)
 - [3. Python](#3-python)
   - [3.1. Convention](#31-convention)
   - [3.2. Library](#32-library)
   - [3.3. Linter](#33-linter)
-  - [3.4. Unit-Testing Frameworks](#34-unit-testing-frameworks)
-  - [Tool](#tool)
-  - [3.5. Architecture](#35-architecture)
-  - [3.6. Editor](#36-editor)
-- [5. Kotlin](#5-kotlin)
-  - [5.1. Convention](#51-convention)
-  - [5.2. Linter](#52-linter)
-  - [5.3. Guides](#53-guides)
-  - [5.4. Editor](#54-editor)
-- [6. Rust](#6-rust)
-  - [6.1. Convention](#61-convention)
-  - [6.2. Linter](#62-linter)
-- [4. Shell](#4-shell)
+  - [3.4. Software Testing](#34-software-testing)
+  - [3.5. Tool](#35-tool)
+  - [3.6. Architecture](#36-architecture)
+  - [3.7. Editor](#37-editor)
+- [4. Kotlin](#4-kotlin)
   - [4.1. Convention](#41-convention)
   - [4.2. Linter](#42-linter)
-  - [4.3. Editor](#43-editor)
+  - [4.3. Guides](#43-guides)
+  - [4.4. Editor](#44-editor)
+- [5. Rust](#5-rust)
+  - [5.1. Convention](#51-convention)
+  - [5.2. Linter](#52-linter)
+  - [5.3. Software Testing](#53-software-testing)
+- [6. Shell](#6-shell)
+  - [6.1. Convention](#61-convention)
+  - [6.2. Linter](#62-linter)
+  - [6.3. Editor](#63-editor)
 - [7. Git](#7-git)
   - [7.1. Convention](#71-convention)
   - [7.2. Linter](#72-linter)
@@ -52,9 +54,9 @@
 
 ## 1. C/C++
 
-| Documentation | Build System | Package Manager | Unit Test  | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
-| ------------- | ------------ | --------------- | ---------- | ------------- | --------------- | ------------ | ----------------- |
-| Dependency    | Dependency   | Dependency      | Dependency | Dependency    | Dependency      | Dependency   | Dependency        |
+| Documentation | Build System | Package Manager | Software Testing | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | ---------------- | ------------- | --------------- | ------------ | ----------------- |
+| Dependency    | Dependency   | Dependency      | Dependency       | Dependency    | Dependency      | Dependency   | Dependency        |
 
 ### 1.1. Convention
 
@@ -100,10 +102,12 @@ CMake
 
 Conan
 
-### 1.6. Unit-Testing Frameworks
+### 1.6. Software Testing
 
-- [GoogleTest](https://github.com/google/googletest)
-- [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
+- [GoogleTest](https://github.com/google/googletest) supports testing with mocking and fixtures.
+- [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html) is a test code coverage tool.
+- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
+- [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
 
 ### 1.7. Compiler
 
@@ -134,9 +138,9 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ## 2. Go
 
-| Documentation | Build System | Package Manager | Unit Test | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
-| ------------- | ------------ | --------------- | --------- | ------------- | --------------- | ------------ | ----------------- |
-| Built-in      | Built-in     | Built-in        | Built-in  | Built-in      | Built-in        | Built-in     | Built-in          |
+| Documentation | Build System | Package Manager | Software Testing | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | ---------------- | ------------- | --------------- | ------------ | ----------------- |
+| Built-in      | Built-in     | Built-in        | Built-in         | Built-in      | Built-in        | Built-in     | Built-in          |
 
 ### 2.1. Convention
 
@@ -169,25 +173,30 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
   > Configure [.golangci.yml](https://github.com/golangci/golangci-lint/blob/master/.golangci.yml) in the project.
 - [Awesome Go Linters](https://github.com/golangci/awesome-go-linters)
 
-### 2.4. Architecture
+### 2.4. Software Testing
+
+- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
+- [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
+
+### 2.5. Architecture
 
 - [Project Layout](https://github.com/golang-standards/project-layout)
 - [Project Layout Generator](https://github.com/insidieux/inizio/tree/v1.1.1)
 - [Go Clean Template](https://github.com/evrone/go-clean-template)
 
-### 2.5. Editor
+### 2.6. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 
-### 2.6. Links
+### 2.7. Links
 
 - [FAQ](https://golang.org/doc/faq)
 
 ## 3. Python
 
-| Documentation | Build System | Package Manager | Unit Test  | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
-| ------------- | ------------ | --------------- | ---------- | ------------- | --------------- | ------------ | ----------------- |
-| Dependency    | Built-in     | Built-in        | Dependency | Dependency    | Dependency      | Dependency   | Dependency        |
+| Documentation | Build System | Package Manager | Software Testing | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | ---------------- | ------------- | --------------- | ------------ | ----------------- |
+| Dependency    | Built-in     | Built-in        | Dependency       | Dependency    | Dependency      | Dependency   | Dependency        |
 
 ### 3.1. Convention
 
@@ -220,76 +229,84 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
   - [isort](https://github.com/PyCQA/isort)
   - [autoflake](https://github.com/PyCQA/autoflake)
 
-### 3.4. Unit-Testing Frameworks
+### 3.4. Software Testing
 
-- [pytest](https://github.com/pytest-dev/pytest)
-- [pytest fixtures](https://docs.pytest.org/en/6.2.x/fixture.html)
-- [pytest-mock](https://github.com/pytest-dev/pytest-mock)
-- [pytest-cov](https://github.com/pytest-dev/pytest-cov)
+- [pytest](https://github.com/pytest-dev/pytest) software testing framework.
+- [pytest fixtures](https://docs.pytest.org/en/6.2.x/fixture.html) is a fixtures initialize test functions.
+- [pytest-mock](https://github.com/pytest-dev/pytest-mock) supports mock test for pytest.
+- [pytest-cov](https://github.com/pytest-dev/pytest-cov) supports test code coverage for pytest.
+- [atheris fuzzing](https://github.com/google/atheris) is a fuzzing technique for automated injections.
+- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
+- [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
 
-### Tool
+### 3.5. Tool
 
 - [virtualenv](https://github.com/pypa/virtualenv) a tool for creating isolated virtual python environments.
 - [tox](https://github.com/tox-dev/tox) command line driven CI frontend and development task automation tool.
 
-### 3.5. Architecture
+### 3.6. Architecture
 
 - [PyScaffold](https://github.com/pyscaffold/pyscaffold) is a Python project generator.
 - [python-blueprint](https://github.com/johnthagen/python-blueprint) is a Python project using best practices.
 - [Python Project Template](https://github.com/rochacbruno/python-project-template)
 
-### 3.6. Editor
+### 3.7. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
   > Getting Started with [Python](https://code.visualstudio.com/docs/python/python-tutorial) in VS Code.
 
-## 5. Kotlin
+## 4. Kotlin
 
-| Documentation | Build System | Package Manager | Unit Test | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
-| ------------- | ------------ | --------------- | --------- | ------------- | --------------- | ------------ | ----------------- |
-|               |              |                 |           |               |                 |              |                   |
+| Documentation | Build System | Package Manager | Software Testing | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | ---------------- | ------------- | --------------- | ------------ | ----------------- |
+|               |              |                 |                  |               |                 |              |                   |
 
-### 5.1. Convention
+### 4.1. Convention
 
 - [Kotlin Style Guide](https://developer.android.com/kotlin/style-guide)
 
-### 5.2. Linter
+### 4.2. Linter
 
 - Code Check
   - [Kotlin Lint](https://developer.android.com/studio/write/lint)
     > [Manually run inspections](https://developer.android.com/studio/write/lint#manuallyRunInspections)
 
-### 5.3. Guides
+### 4.3. Guides
 
 - Learn Kotlin with [Getting Started](https://kotlinlang.org/docs/reference/).
 
-### 5.4. Editor
+### 4.4. Editor
 
 - [Android Studio](https://developer.android.com/studio)
 
-## 6. Rust
+## 5. Rust
 
-| Documentation | Build System | Package Manager | Unit Test | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
-| ------------- | ------------ | --------------- | --------- | ------------- | --------------- | ------------ | ----------------- |
-|               |              |                 |           |               |                 |              |                   |
+| Documentation | Build System | Package Manager | Software Testing | Code Coverage | Code Formatting | Code Linting | Cross-Compilation |
+| ------------- | ------------ | --------------- | ---------------- | ------------- | --------------- | ------------ | ----------------- |
+|               |              |                 |                  |               |                 |              |                   |
 
-### 6.1. Convention
+### 5.1. Convention
 
 - [TODO](https://example.com/)
 
-### 6.2. Linter
+### 5.2. Linter
 
 - Code Check
   - [Miri](https://github.com/rust-lang/miri)
 
-## 4. Shell
+### 5.3. Software Testing
 
-### 4.1. Convention
+- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
+- [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
+
+## 6. Shell
+
+### 6.1. Convention
 
 - [Google Shell Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/shellguide.html)
   > [Gitlab Shell Scripting Recommendation](https://docs.gitlab.com/ee/development/shell_scripting_guide/)
 
-### 4.2. Linter
+### 6.2. Linter
 
 - Code Check
   - [shellcheck](https://github.com/koalaman/shellcheck)
@@ -297,7 +314,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - Code Format
   - [shfmt](https://github.com/mvdan/sh)
 
-### 4.3. Editor
+### 6.3. Editor
 
 - [Visual Studio Code](https://code.visualstudio.com/download)
 

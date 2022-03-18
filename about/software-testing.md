@@ -79,10 +79,10 @@ Performance tests check the behaviors of the system when it is under significant
 
 Types of Performance testing:
 
-- Load testing is a type of performance testing conducted to evaluate the behavior of a system at an increasing workload.
-- Stress testing is a type of performance testing conducted to evaluate the behavior of a system at or beyond the limits of its anticipated workload.
-- Endurance testing is a type of performance testing conducted to evaluate the behavior of a system when a significant workload is given continuously.
-- Spike testing is a type of performance testing conducted to evaluate the behavior of a system when the load is suddenly and substantially increased.
+- `Load testing` is a type of performance testing conducted to evaluate the behavior of a system at an increasing workload.
+- `Stress testing` is a type of performance testing conducted to evaluate the behavior of a system at or beyond the limits of its anticipated workload.
+- `Endurance testing` is a type of performance testing conducted to evaluate the behavior of a system when a significant workload is given continuously.
+- `Spike testing` is a type of performance testing conducted to evaluate the behavior of a system when the load is suddenly and substantially increased.
 
 ### Security Testing
 

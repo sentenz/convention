@@ -26,6 +26,7 @@ Software testing is an organizational process within software development in whi
   - [Acceptance Test-Driven Development](#acceptance-test-driven-development)
 - [Mock Object](#mock-object)
 - [Test Fixture](#test-fixture)
+- [Fuzzing](#fuzzing)
 - [See also](#see-also)
 
 ## Functional Testing
@@ -151,6 +152,10 @@ In Acceptance Test-Driven Development (ATDD) technique, a single acceptance test
 
 [Test fixture](https://code-craftsmanship-saturdays.gitbook.io/software-testing-fundamentals/test-fixtures) is used as environment to consistently test item, device, or piece of software. Test fixtures initialize test functions. They provide a fixed baseline so that tests execute reliably and produce consistent, repeatable, results. Initialization may setup services, state, or other operating environments.
 
+## Fuzzing
+
+[Fuzz testing](https://www.synopsys.com/glossary/what-is-fuzz-testing.html) or fuzzing is an automated black box software testing method that injects invalid, malformed, or unexpected inputs into a system to reveal software defects and vulnerabilities. A fuzzing tool injects these inputs into the system and then monitors for exceptions such as crashes or information leakage.
+
 ## See also
 
 - Atlassian [Software Testing](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing) article.
@@ -158,3 +163,4 @@ In Acceptance Test-Driven Development (ATDD) technique, a single acceptance test
 - BrowserStack [BDD vs TDD vs ATDD](https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd) article.
 - LinkedIn [TDD vs. ATDD vs. BDD](https://www.linkedin.com/pulse/tdd-vs-atdd-bdd-vahid-farahmandian) article.
 - Cprime [TDD vs. ATDD vs. BDD](https://www.cprime.com/resources/blog/tdd-vs-bdd-vs-atdd/) article.
+- OWASP [Fuzzing](https://owasp.org/www-community/Fuzzing) article.

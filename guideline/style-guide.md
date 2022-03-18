@@ -3,7 +3,7 @@
 - [1. C/C++](#1-cc)
   - [1.1. Convention](#11-convention)
   - [1.2. Library](#12-library)
-  - [1.3. Linter](#13-linter)
+  - [1.3. Code Analysis](#13-code-analysis)
   - [1.4. Build System](#14-build-system)
   - [1.5. Package Manager](#15-package-manager)
   - [1.6. Software Testing](#16-software-testing)
@@ -14,7 +14,7 @@
   - [2.1. Convention](#21-convention)
   - [2.2. Library](#22-library)
     - [2.2.1. UI](#221-ui)
-  - [2.3. Linter](#23-linter)
+  - [2.3. Code Analysis](#23-code-analysis)
   - [2.4. Software Testing](#24-software-testing)
   - [2.5. Architecture](#25-architecture)
   - [2.6. Editor](#26-editor)
@@ -22,34 +22,34 @@
 - [3. Python](#3-python)
   - [3.1. Convention](#31-convention)
   - [3.2. Library](#32-library)
-  - [3.3. Linter](#33-linter)
+  - [3.3. Code Analysis](#33-code-analysis)
   - [3.4. Software Testing](#34-software-testing)
   - [3.5. Tool](#35-tool)
   - [3.6. Architecture](#36-architecture)
   - [3.7. Editor](#37-editor)
 - [4. Kotlin](#4-kotlin)
   - [4.1. Convention](#41-convention)
-  - [4.2. Linter](#42-linter)
+  - [4.2. Code Analysis](#42-code-analysis)
   - [4.3. Guides](#43-guides)
   - [4.4. Editor](#44-editor)
 - [5. Rust](#5-rust)
   - [5.1. Convention](#51-convention)
-  - [5.2. Linter](#52-linter)
+  - [5.2. Code Analysis](#52-code-analysis)
   - [5.3. Software Testing](#53-software-testing)
 - [6. Shell](#6-shell)
   - [6.1. Convention](#61-convention)
-  - [6.2. Linter](#62-linter)
+  - [6.2. Code Analysis](#62-code-analysis)
   - [6.3. Editor](#63-editor)
 - [7. Git](#7-git)
   - [7.1. Convention](#71-convention)
-  - [7.2. Linter](#72-linter)
+  - [7.2. Code Analysis](#72-code-analysis)
 - [8. Markdown](#8-markdown)
   - [8.1. Convention](#81-convention)
-  - [8.2. Linter](#82-linter)
+  - [8.2. Code Analysis](#82-code-analysis)
   - [8.3. Editor](#83-editor)
 - [9. CMake](#9-cmake)
   - [9.1. Convention](#91-convention)
-  - [9.2. Linter](#92-linter)
+  - [9.2. Code Analysis](#92-code-analysis)
   - [9.3. Editor](#93-editor)
 
 ## 1. C/C++
@@ -66,7 +66,7 @@
 
 - [Doxygen](https://github.com/doxygen/doxygen) documentation package for C/C++ projects.
 
-### 1.3. Linter
+### 1.3. Code Analysis
 
 - Code Check
   - [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) tool and [doc](https://clang.llvm.org/extra/clang-tidy/#id2)
@@ -167,7 +167,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [Gonum Plot](https://github.com/gonum/plot)
 - [Go GUI Projects](https://github.com/go-graphics/go-gui-projects)
 
-### 2.3. Linter
+### 2.3. Code Analysis
 
 - [golangci-lint](https://github.com/golangci/golangci-lint)
   > Configure [.golangci.yml](https://github.com/golangci/golangci-lint/blob/master/.golangci.yml) in the project.
@@ -214,7 +214,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [grpcio](https://github.com/grpc/grpc/tree/master/src/python/grpcio) the Python language implementation of gRPC.
 - [Sphinx](https://github.com/sphinx-doc/sphinx) documentation package for Python projects.
 
-### 3.3. Linter
+### 3.3. Code Analysis
 
 - Code Check
   - [Pylint](https://github.com/PyCQA/pylint)
@@ -265,7 +265,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 - [Kotlin Style Guide](https://developer.android.com/kotlin/style-guide)
 
-### 4.2. Linter
+### 4.2. Code Analysis
 
 - Code Check
   - [Kotlin Lint](https://developer.android.com/studio/write/lint)
@@ -289,7 +289,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 - [TODO](https://example.com/)
 
-### 5.2. Linter
+### 5.2. Code Analysis
 
 - Code Check
   - [Miri](https://github.com/rust-lang/miri)
@@ -306,7 +306,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [Google Shell Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/shellguide.html)
   > [Gitlab Shell Scripting Recommendation](https://docs.gitlab.com/ee/development/shell_scripting_guide/)
 
-### 6.2. Linter
+### 6.2. Code Analysis
 
 - Code Check
   - [shellcheck](https://github.com/koalaman/shellcheck)
@@ -325,7 +325,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Semantic Versioning](https://sentenz.github.io/backup-service/website/semver.org/index.html)
 
-### 7.2. Linter
+### 7.2. Code Analysis
 
 - Commit Check
   - [commitlint](https://github.com/conventional-changelog/commitlint)
@@ -344,7 +344,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [Google Markdown Style Guide](https://google.github.io/styleguide/docguide/style.html)
 - [Cirosantilli Markdown Style Guide](https://cirosantilli.com/markdown-style-guide/)
 
-### 8.2. Linter
+### 8.2. Code Analysis
 
 - Code Check
   - [markdownlint](https://github.com/markdownlint/markdownlint)
@@ -380,7 +380,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 - [KDE CMake Coding Style](https://community.kde.org/Policies/CMake_Coding_Style)
 - [CMake Developer](https://cmake.org/cmake/help/latest/manual/cmake-developer.7.html#modules)
 
-### 9.2. Linter
+### 9.2. Code Analysis
 
 - Code Check
   - [cmake_format](https://github.com/cheshirekow/cmake_format)

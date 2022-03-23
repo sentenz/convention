@@ -1,13 +1,13 @@
 # Code Analysis // TODO
 
-- [Static Analysis](#static-analysis)
-- [Dynamic Analysis](#dynamic-analysis)
+- [Static Code Analysis](#static-code-analysis)
+- [Dynamic Code Analysis](#dynamic-code-analysis)
 - [Linters](#linters)
 - [See also](#see-also)
 
-## Static Analysis
+## Static Code Analysis
 
-## Dynamic Analysis
+## Dynamic Code Analysis
 
 ## Linters
 

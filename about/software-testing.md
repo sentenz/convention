@@ -155,7 +155,7 @@ In Acceptance Test-Driven Development (ATDD) technique, a single acceptance test
 
 ## Fuzzing
 
-[Fuzz testing](https://www.synopsys.com/glossary/what-is-fuzz-testing.html) or fuzzing is an automated black box software testing method that injects invalid, malformed, or unexpected inputs into a system to reveal software defects and vulnerabilities. A fuzzing tool injects these inputs into the system and then monitors for exceptions such as crashes or information leakage.
+[Fuzz testing](https://www.synopsys.com/glossary/what-is-fuzz-testing.html) or fuzzing is an automated black box software testing method that injects invalid, malformed, or unexpected inputs into a system to reveal software defects and vulnerabilities. Fuzzing is a type of automated testing which continuously manipulates inputs to a program to find issues such as bugs or vulnerabilities to which the code may be susceptible.
 
 ## Penetration Testing
 

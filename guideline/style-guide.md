@@ -104,7 +104,7 @@ Conan
 
 ### 1.6. Software Testing
 
-- [GoogleTest](https://github.com/google/googletest) supports testing with mocking and fixtures.
+- [GoogleTest](https://github.com/google/googletest) unit-testing framework with testing with mocking and fixtures support.
 - [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html) is a test code coverage tool.
 - [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
 - [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
@@ -175,7 +175,15 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 2.4. Software Testing
 
-- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
+- [go test](https://pkg.go.dev/testing@go1.18) package testing provides support for automated testing of Go packages.
+  >
+  > - Support for [Benchmarks](https://pkg.go.dev/testing@go1.18#hdr-Benchmarks).
+  > - Support for [Examples](https://pkg.go.dev/testing@go1.18#hdr-Examples).
+  > - Support for [Fuzzing](https://pkg.go.dev/testing@go1.18#hdr-Fuzzing) see [docs](https://go.dev/doc/fuzz/).
+  > - Support for [Skipping](https://pkg.go.dev/testing@go1.18#hdr-Skipping).
+  > - Support for [Main](https://pkg.go.dev/testing@go1.18#hdr-Main).
+  >
+- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections with a [Go project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/go-lang/).
 - [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
 
 ### 2.5. Architecture
@@ -231,12 +239,12 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 3.4. Software Testing
 
-- [pytest](https://github.com/pytest-dev/pytest) software testing framework.
+- [pytest](https://github.com/pytest-dev/pytest) unit-testing framework.
 - [pytest fixtures](https://docs.pytest.org/en/6.2.x/fixture.html) is a fixtures initialize test functions.
 - [pytest-mock](https://github.com/pytest-dev/pytest-mock) supports mock test for pytest.
 - [pytest-cov](https://github.com/pytest-dev/pytest-cov) supports test code coverage for pytest.
 - [atheris fuzzing](https://github.com/google/atheris) is a fuzzing technique for automated injections.
-- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
+- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections with a [Python project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/python-lang/).
 - [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
 
 ### 3.5. Tool
@@ -296,7 +304,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 5.3. Software Testing
 
-- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
+- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections with a [Rust project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/rust-lang/).
 - [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
 
 ## 6. Shell

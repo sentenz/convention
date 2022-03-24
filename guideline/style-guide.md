@@ -225,17 +225,18 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 ### 3.3. Code Analysis
 
 - Code Check
-  - [Pylint](https://github.com/PyCQA/pylint)
-  - [Flake8](https://github.com/PyCQA/flake8)
-  - [Bandit](https://github.com/PyCQA/bandit)
-  - [Pylama](https://github.com/klen/pylama)
-  - [MyPy](https://github.com/python/mypy)
+  - [Pylint](https://github.com/PyCQA/pylint) static code analysis tool.
+  - [Flake8](https://github.com/PyCQA/flake8) is wrapper of tools to check code style and quality.
+  - [Bandit](https://github.com/PyCQA/bandit) find security issues in code.
+  - [Pylama](https://github.com/klen/pylama) code audit tool.
+  - [MyPy](https://github.com/python/mypy) optional static typing.
+  - [Pyre](https://github.com/facebook/pyre-check) performant type-checking.
 - Code Format
-  - [Black](https://github.com/psf/black)
-  - [yapf](https://github.com/google/yapf)
-  - [autopep8](https://github.com/hhatto/autopep8)
-  - [isort](https://github.com/PyCQA/isort)
-  - [autoflake](https://github.com/PyCQA/autoflake)
+  - [Black](https://github.com/psf/black) uncompromising code formatter.
+  - [yapf](https://github.com/google/yapf) code formatter for PEP8 or Google style.
+  - [autopep8](https://github.com/hhatto/autopep8) code formatter to conform to the PEP8 style guide.
+  - [isort](https://github.com/PyCQA/isort) to sort imports alphabetically.
+  - [autoflake](https://github.com/PyCQA/autoflake) removes unused imports and unused variables.
 
 ### 3.4. Software Testing
 

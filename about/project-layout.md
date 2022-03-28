@@ -17,94 +17,60 @@
 **Directories:**
 
 - `/cmd`
-
-  Contains the main application entry point files for the project, with the directory name matching the name for the binary.
-
+  > Contains the main application entry point files for the project, with the directory name matching the name for the binary.
 - `/internal`
-
-  Private application and library code.
-
+  > Private application and library code.
 - `/pkg`
-
-  Library code to use by external applications.
-
+  > Library code to use by external applications.
 - `/vendor`
-
-  Application dependencies.
+  > Application dependencies.
 
 **Common Application Directories:**
 
 - `/configs`
-
-  Configuration file templates or default configs.
-
+  > Configuration file templates or default configs.
 - `/init`
-
-  System init (systemd, upstart, sysv) and process manager/supervisor (runit, supervisord) configs.
-
+  > System init (systemd, upstart, sysv) and process manager/supervisor (runit, supervisord) configs.
 - `/scripts`
-  
-  Scripts to perform various build, install, analysis, etc operations.
-
+  > Scripts to perform various build, install, analysis, etc operations.
 - `/build`
-
-  Packaging and Continuous Integration.
-
+  > Packaging and Continuous Integration.
 - `/deployments`
-
-  IaaS, PaaS, system and container orchestration deployment configurations and templates (docker-compose, kubernetes/helm, mesos, terraform, bosh).
-
+  > IaaS, PaaS, system and container orchestration deployment configurations and templates (docker-compose, kubernetes/helm, mesos, terraform, bosh).
 - `/test`
-
-  Additional external test apps and test data.
+  > Additional external test apps and test data.
 
 **Other Directories:**
 
 - `/docs`
-
-  Design and user documents (in addition to godoc generated documentation).
-
+  > Design and user documents (in addition to godoc generated documentation).
 - `/tools`
-
-  Supporting tools for this project.
-
+  > Supporting tools for this project.
 - `/examples`
-  
-  Examples for your applications and/or public libraries.
-
+  > Examples for your applications and/or public libraries.
 - `/external`
-  
-  External helper tools, forked code and other 3rd party utilities (e.g., Swagger UI).
-
+  > External helper tools, forked code and other 3rd party utilities (e.g., Swagger UI).
 - `/githooks`
-
-  Git hooks.
-
+  > Git hooks.
 - `/assets`
-
-  Other assets to go along with your repository (images, logos, etc).
-
+  > Other assets to go along with your repository (images, logos, etc).
 - `/website`
-
-  Place to put the project's website data if you are not using GitHub pages.
+  > Place to put the project's website data if you are not using GitHub pages.
 
 **Service Application Directories:**
 
 - `/api`
-
-  Protocol definition files.
+  > Protocol definition files.
 
 **Web Application Directories:**
 
 - `/web`
-
-  Web application specific components: static web assets, server side templates and SPAs.
+  > Web application specific components: static web assets, server side templates and SPAs.
 
 **Files:**
 
 - `go.mod`
-
-  Package dependency and version management.
+  > Package dependency and version management.
 
 ## Python
 
@@ -113,29 +79,18 @@
 **Directories:**
 
 - `/module`
-
 - `/docs`
-
-  Package reference documentation.
-
+  > Package reference documentation.
 - `/tests`
-
-  Package unit tests, execution tests, integration tests.
-
+  > Package unit tests, execution tests, integration tests.
 - `/bin`
-
-  Holds executable files.
+  > Holds executable files.
 
 **Files:**
 
 - `setup.py`
-
-  Package and distribution management.
-
+  > Package and distribution management.
 - `requirements.txt`
-
-  Package dependency and version management.
-
+  > Package dependency and version management.
 - `Makefile`
-
-  Generic management tasks.
+  > Generic management tasks.

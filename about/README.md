@@ -19,6 +19,7 @@ Best practices, articles of interest and general topics.
 - [Git Hooks](git-hooks.md)
 - [GitOps vs DevOps](gitops-vs-devops.md)
 - [Identity Management](identity-management.md)
+- [Licenses](licenses.md)
 - [Merging Strategies](merging-strategies.md)
 - [Monorepo vs Polyrepo](monorepo-vs-polyrepo.md)
 - [OWASP](owasp.md)

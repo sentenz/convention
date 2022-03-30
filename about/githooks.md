@@ -1,4 +1,4 @@
-# Githooks // TODO
+# Githooks
 
 [Hooks](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks) used by Git are programs you can place in a hooks directory to trigger actions at certain points in git command.
 

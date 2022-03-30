@@ -16,7 +16,7 @@ Best practices, articles of interest and general topics.
 - [Deployment Strategies](deployment-strategies.md)
 - [Feature Toggles](feature-toggles.md)
 - [File Systems](file-systems.md)
-- [Git Hooks](git-hooks.md)
+- [Githooks](githooks.md)
 - [GitOps vs DevOps](gitops-vs-devops.md)
 - [Identity Management](identity-management.md)
 - [Licenses](licenses.md)

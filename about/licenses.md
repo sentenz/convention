@@ -1,6 +1,6 @@
 # Licenses
 
-Open source licenses grant permission for anybody to use, modify, and share licensed software for any purpose, subject to conditions preserving the provenance and openness of the software.
+Open source licenses grant permission to use, modify, and redistribute licensed software for any purpose, subject to conditions preserving the provenance and openness of the software.
 
 - [GNU AGPLv3](#gnu-agplv3)
 - [GNU GPLv3](#gnu-gplv3)
@@ -16,7 +16,7 @@ Open source licenses grant permission for anybody to use, modify, and share lice
   - [Limitations](#limitations)
 - [See also](#see-also)
 
-The following licenses are sorted by the number of conditions, from most (GNU AGPLv3) to none (Unlicense). Notice that the popular licenses featured on the home page (GNU GPLv3 and MIT) fall within this spectrum.
+The licenses represent the entire spectrum of open source licenses, from highly protective to unconditional. The following licenses are sorted by the number of conditions, from most (GNU AGPLv3) to none (Unlicense).
 
 ## GNU AGPLv3
 
@@ -129,7 +129,7 @@ A license with no conditions whatsoever which dedicates works to the public doma
 
 ## Legend
 
-[Appendix](https://choosealicense.com/appendix/) of license items.
+[Terms](https://choosealicense.com/appendix/) of licenses.
 
 ### Permissions
 
@@ -183,3 +183,4 @@ Most open source licenses also have limitations that usually disclaim warranty a
 ## See also
 
 - Open Source Initiative (OSI) [licenses](https://opensource.org/licenses/category) article.
+- Choose a [licenses](https://choosealicense.com/licenses/) article.

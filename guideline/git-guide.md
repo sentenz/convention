@@ -29,19 +29,23 @@ The strategy contains the following rules:
 
 1. There are only two major branches, called _main_ and _develop_.
    - Direct push to _main_ and _develop_ branches is forbidden.
+
 2. _feature_ branches are created from and merged back into _develop_ branches.
    - Branch naming convention: `feature/ISSUETYPE-ID-short_describe`.
    - Pull requests (PR) of _feature_ branches only into _develop_ branch.
    - Merge _feature_ branch into _develop_ by select `Squash and merge` option on PR merge (Squashing will combine all your commits into one).
    - Features should never interact directly with _main_.
+
 3. _release_ branches support preparation of a new production release and deploy to staging.
    - Create _release_ branch from _develop_ (naming convention, i.e. `release/1.2.x`).
    - Identified bugs are fixed and committed directly to the _release_ branch.
    - Pull requests (PR) of _release_ branches first into _main_ and next into _develop_ branch.
    - Release branches are deleted after they are merged. If you need a specific version, use git tags instead.
+
 4. Merge to _main_ will create a new release version and deploy to production.
    - The merge of the _release_ branch into the _main_ branch will create a _tag_ with the release version.
    - The release version is created according to the [semver convention](./../convention/semantic-versioning.md) by analyzing the [commit messages](./../convention/conventional-commits.md).
+
 5. _fix_ branches of production issues that need an immediate fix of a production version.
    - Create a _fix_ branch from _main_ (naming convention, i.e. `fix/ISSUETYPE-ID-short_describe`).
    - Commit fix with commit message by [commit convention](#conventional-commits), i.e `fix(scope): what was fixed`.
@@ -62,15 +66,19 @@ The strategy and contains the following rules:
    - Unfinished features are hidden behind [feature flags](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/feature-flags/index.html) until they are publish with an official release.
    - Breaking changes stay behind [feature flags](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/feature-flags/index.html).
    - The _trunk_ contains only backward-compatible changes and feature additions.
+
 2. _feature_ branches are created from and merged back into _trunk_ branch.
    - Branch naming convention: `feature/ISSUETYPE-ID-short_describe`.
    - Pull requests (PR) of _feature_ branches only into _trunk_ branch.
+
 3. Merge to _trunk_ creates a release version.
    - Merge _feature_ branch into _trunk_ by select `Squash and merge` option on PR merge (Squashing will combine all your commits into one).
    - The release version is created according to the [semver convention](./../convention/semantic-versioning.md) by analyzing the [commit messages](./../convention/conventional-commits.md).
+
 4. _release_ branches are cut from a specific revision of the _trunk_.
    - [Release from trunk](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html) retroactively by selecting the revision in the past to branch from.
    - Branch naming convention, i.e. `release/1.2.x`.
+
 5. [Fix](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/branch-for-release/index.html#fix-production-bugs-on-trunk) production bugs on Trunk.
    - fix bugs on the _trunk_ and cherry-picking them back to the release branch.
 
@@ -94,10 +102,13 @@ The commit contains the following structural elements, to communicate intent to 
 
 1. _fix_
    > A commit of the type `fix` patches a bug in your codebase (this correlates with `PATCH` in [Semantic Versioning](#semantic-versioning)).
+
 2. _feat_
    > A commit of the type `feat` introduces a new feature to the codebase (this correlates with `MINOR` in [Semantic Versioning](#semantic-versioning)).
+
 3. _BREAKING CHANGE_
    > A commit that has a footer `BREAKING CHANGE:`, or appends a `!` after the type/scope, introduces a breaking API change (correlating with `MAJOR` in [Semantic Versioning](#semantic-versioning)). A BREAKING CHANGE can be part of commits of any type.
+
 4. _types_ other than `fix` and `feat` are allowed:
    - _build_: Changes that affect the build system or external dependencies
    - _chore_: Other changes that don`t modify src or test files
@@ -107,7 +118,9 @@ The commit contains the following structural elements, to communicate intent to 
    - _refactor_: A code change that neither fixes a bug nor adds a feature
    - _test_: Adding missing tests or correcting existing tests
    - _revert_: Revert a previous commit
+
 5. _footers_ other than `BREAKING CHANGE: <description>` may be provided and follow a convention similar to [git trailer format](https://sentenz.github.io/backup-service/website/git-scm.com/docs/git-interpret-trailers/en.html).
+
 6. _rules_ and _config_ of conventional commits [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
 
 Additional types are not mandated by the Conventional Commits specification, and have no implicit effect in [Semantic Versioning](#semantic-versioning) (unless they include a BREAKING CHANGE). A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g.:
@@ -124,15 +137,25 @@ We follow [SemVer](https://sentenz.github.io/backup-service/website/semver.org/i
 
 SemVer is a 3-component system in the format:
 
-- `x` stands for a major version
-- `y` stands for a minor version
-- `z` stands for a patch
+- `x`
+  > Stands for a major version.
+
+- `y`
+  > Stands for a minor version.
+
+- `z`
+  > Stands for a patch.
 
 `Major`.`Minor`.`Patch`, increment cases:
 
-- `Major` version when code is incompatible or contains significant changes
-- `Minor` version when code has been changed but the changes are backwards compatible
-- `Patch` version when backwards-compatible bug fixes have been made
+- `Major`
+  > Version when code is incompatible or contains significant changes
+
+- `Minor`
+  > Version when code has been changed but the changes are backwards compatible
+
+- `Patch`
+  > Version when backwards-compatible bug fixes have been made
 
 ### Pre-release
 

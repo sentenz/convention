@@ -38,9 +38,14 @@ The syntax to reference a resource in code:
 [<package_name>.]<resource_type>.<resource_name>
 ```
 
-- `package_name` is the name of the package in which the resource is located.
-- `resource_type` is the subclass for the resource type.
-- `resource_name` is either the resource filename without the extension or the name attribute value.
+- `package_name`
+  > The name of the package in which the resource is located.
+
+- `resource_type`
+  > The subclass for the resource type.
+
+- `resource_name`
+  >  Either the resource filename without the extension or the name attribute value.
 
 ### Syntax for C
 

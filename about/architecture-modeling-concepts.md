@@ -20,7 +20,7 @@ Toolings:
   > Supported software tools.
   >
   > - [Eclipse FMC](https://www.eclipse.org/fmc/)
-  >
+
 - [TAM - The SAP way combining FMC and UML](http://www.fmc-modeling.org/fmc-and-tam)
 
 ## Technical Architecture (TA)

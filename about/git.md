@@ -1,5 +1,8 @@
 # Git // TODO
 
+- [Useful Commands](#useful-commands)
+- [See also](#see-also)
+
 ## Useful Commands
 
 - Normalizing Line Endings
@@ -124,3 +127,8 @@ git fetch --prune
   ```bash
   git status --ignored
   ```
+
+## See also
+
+- Git [book](https://git-scm.com/book/en/v2) article.
+- Git [support](https://git.logikum.hu/) article.

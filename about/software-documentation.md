@@ -11,6 +11,7 @@ Documentation must comprise an interactive User Experience, Information Architec
 
 - User Documentation
   > Refers to end-user, delivered with the product to understand and complete a certain task.
+
 - Developer Documentation
   > Refers to system related documentation.
 

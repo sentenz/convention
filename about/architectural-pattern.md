@@ -18,14 +18,16 @@ Model–view–viewmodel is also referred to as model–view–binder, especiall
 Components of MVVM pattern:
 
 - Model
-  Model refers either to a domain model, which represents real state content (an object-oriented approach), or to the data access layer, which represents content (a data-centric approach).
+  > Model refers either to a domain model, which represents real state content (an object-oriented approach), or to the data access layer, which represents content (a data-centric approach).
+
 - View
-  As in the model–view–controller (MVC) and model–view–presenter (MVP) patterns, the view is the structure, layout, and appearance of what a user sees on the screen. It displays a representation of the model and receives the user's interaction with the view (mouse clicks, keyboard input, screen tap gestures, etc.), and it forwards the handling of these to the view model via the data binding (properties, event callbacks, etc.) that is defined to link the view and view model.
+  > As in the model–view–controller (MVC) and model–view–presenter (MVP) patterns, the view is the structure, layout, and appearance of what a user sees on the screen. It displays a representation of the model and receives the user's interaction with the view (mouse clicks, keyboard input, screen tap gestures, etc.), and it forwards the handling of these to the view model via the data binding (properties, event callbacks, etc.) that is defined to link the view and view model.
+
 - View model
-  The view model is an abstraction of the view exposing public properties and commands. Instead of the controller of the MVC pattern, or the presenter of the MVP pattern, MVVM has a binder, which automates communication between the view and its bound properties in the view model. The view model has been described as a state of the data in the model.
-  The main difference between the view model and the Presenter in the MVP pattern is that the presenter has a reference to a view, whereas the view model does not. Instead, a view directly binds to properties on the view model to send and receive updates. To function efficiently, this requires a binding technology or generating boilerplate code to do the binding.
+  > The view model is an abstraction of the view exposing public properties and commands. Instead of the controller of the MVC pattern, or the presenter of the MVP pattern, MVVM has a binder, which automates communication between the view and its bound properties in the view model. The view model has been described as a state of the data in the model. The main difference between the view model and the Presenter in the MVP pattern is that the presenter has a reference to a view, whereas the view model does not. Instead, a view directly binds to properties on the view model to send and receive updates. To function efficiently, this requires a binding technology or generating boilerplate code to do the binding.
+
 - Binder
-  Declarative data and command-binding are implicit in the MVVM pattern. In the Microsoft solution stack, the binder is a markup language called XAML. The binder frees the developer from being obliged to write boiler-plate logic to synchronize the view model and view. When implemented outside of the Microsoft stack, the presence of a declarative data binding technology is what makes this pattern possible, and without a binder, one would typically use MVP or MVC instead and have to write more boilerplate (or generate it with some other tool).
+  > Declarative data and command-binding are implicit in the MVVM pattern. In the Microsoft solution stack, the binder is a markup language called XAML. The binder frees the developer from being obliged to write boiler-plate logic to synchronize the view model and view. When implemented outside of the Microsoft stack, the presence of a declarative data binding technology is what makes this pattern possible, and without a binder, one would typically use MVP or MVC instead and have to write more boilerplate (or generate it with some other tool).
 
 ## MVP
 
@@ -36,11 +38,13 @@ For the first time this design pattern was used and called in the 1990er years o
 Components of MVP pattern:
 
 - Model
-  The model represents the logic of the view. This can also be the business logic. However, all functionality must be accessible via the model in order to operate the view. The presenter alone controls the model. The model itself knows neither the view nor the presenter.
+  > The model represents the logic of the view. This can also be the business logic. However, all functionality must be accessible via the model in order to operate the view. The presenter alone controls the model. The model itself knows neither the view nor the presenter.
+
 - View
-  The view does not contain any controlling logic and is solely responsible for the presentation and the inputs and outputs. It does not get access to the functionality of the presenter nor to the model. All control of the view is done by the presenter.
+  > The view does not contain any controlling logic and is solely responsible for the presentation and the inputs and outputs. It does not get access to the functionality of the presenter nor to the model. All control of the view is done by the presenter.
+
 - Presenter
-  The presenter is the link between model and view. It controls the logical flows between the other two layers and ensures that the view can fulfill its functionality. For the presenter, interfaces are used for model and view respectively. The interfaces define the exact structure of the two layers and the presenter merely links the interfaces with each other. This ensures the complete interchangeability and reusability of Model and View.
+  > The presenter is the link between model and view. It controls the logical flows between the other two layers and ensures that the view can fulfill its functionality. For the presenter, interfaces are used for model and view respectively. The interfaces define the exact structure of the two layers and the presenter merely links the interfaces with each other. This ensures the complete interchangeability and reusability of Model and View.
 
 ## MVC
 
@@ -51,11 +55,13 @@ Traditionally used for desktop graphical user interfaces (GUIs), this pattern be
 Components of MVC pattern:
 
 - Model
-  The central component of the pattern. It is the application's dynamic data structure, independent of the user interface. The model is responsible for managing the data, logic and rules of the application. It receives user input from the controller.
+  > The central component of the pattern. It is the application's dynamic data structure, independent of the user interface. The model is responsible for managing the data, logic and rules of the application. It receives user input from the controller.
+
 - View
-  Any representation of information such as a chart, diagram or table. Multiple views of the same information are possible, such as a bar chart for management and a tabular view for accountants. The view renders presentation of the model in a particular format.
+  > Any representation of information such as a chart, diagram or table. Multiple views of the same information are possible, such as a bar chart for management and a tabular view for accountants. The view renders presentation of the model in a particular format.
+
 - Controller
-  The controller responds to the user input and performs interactions on the data model objects. The controller receives the input, optionally validates it and then passes the input to the model or view.
+  > The controller responds to the user input and performs interactions on the data model objects. The controller receives the input, optionally validates it and then passes the input to the model or view.
 
 ## See also
 

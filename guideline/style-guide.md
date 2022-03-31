@@ -68,31 +68,37 @@
 
 ### 1.3. Code Analysis
 
-- Code Check
-  - [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) tool and [doc](https://clang.llvm.org/extra/clang-tidy/#id2)
-    > Configure [.clang-tidy](https://github.com/googleapis/google-cloud-cpp/blob/main/.clang-tidy) in the project.
-  - [Cpplint](https://pypi.org/project/cpplint/)
-    >
-    > - Detect style errors, see [cpplint.py](https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py) tool.
-    > - Configure [CPPLINT.cfg](https://github.com/google/conscrypt/blob/master/CPPLINT.cfg) in the root project.
-    > - False positives can be ignored by putting `// NOLINT` at the end of the line or `// NOLINTNEXTLINE` in the previous line.
-    >
-  - [scan-build](https://github.com/rizsotto/scan-build) tool for [clang-analyzer](http://clang-analyzer.llvm.org/scan-build.html).
-  - [Cppcheck](https://github.com/danmar/cppcheck)
-    >
-    > - Configure [cppcheck-suppressions.txt](https://github.com/open62541/open62541/blob/master/cppcheck-suppressions.txt) in the project.
-    > - See [manual](http://cppcheck.sourceforge.net/manual.pdf).
-    >
-- Code Format
-  - [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
-    > Configure in the root project.
-    >
-    > - [.clang-format](https://github.com/googleapis/google-cloud-cpp/blob/main/.clang-format)
-    > - [.clang-format-ignore](https://github.com/mozilla/gecko-dev/blob/master/.clang-format-ignore)
-    > - Use [clang-format-configurator](https://zed0.co.uk/clang-format-configurator/) to modify a .clang-format file.
-    >
-- Memory Check
-  - [Valgrind](https://valgrind.org/)
+Code Check
+
+- [clang-tidy](https://clang.llvm.org/extra/clang-tidy/) tool and [doc](https://clang.llvm.org/extra/clang-tidy/#id2)
+  > Configure [.clang-tidy](https://github.com/googleapis/google-cloud-cpp/blob/main/.clang-tidy) in the project.
+
+- [Cpplint](https://pypi.org/project/cpplint/)
+  >
+  > - Detect style errors, see [cpplint.py](https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py) tool.
+  > - Configure [CPPLINT.cfg](https://github.com/google/conscrypt/blob/master/CPPLINT.cfg) in the root project.
+  > - False positives can be ignored by putting `// NOLINT` at the end of the line or `// NOLINTNEXTLINE` in the previous line.
+
+- [scan-build](https://github.com/rizsotto/scan-build)
+  > Tool for [clang-analyzer](http://clang-analyzer.llvm.org/scan-build.html).
+
+- [Cppcheck](https://github.com/danmar/cppcheck)
+  >
+  > - Configure [cppcheck-suppressions.txt](https://github.com/open62541/open62541/blob/master/cppcheck-suppressions.txt) in the project.
+  > - See [manual](http://cppcheck.sourceforge.net/manual.pdf).
+
+Code Format
+
+- [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
+  > Configure in the root project.
+  >
+  > - [.clang-format](https://github.com/googleapis/google-cloud-cpp/blob/main/.clang-format)
+  > - [.clang-format-ignore](https://github.com/mozilla/gecko-dev/blob/master/.clang-format-ignore)
+  > - Use [clang-format-configurator](https://zed0.co.uk/clang-format-configurator/) to modify a .clang-format file.
+
+Memory Check
+
+- [Valgrind](https://valgrind.org/)
 
 ### 1.4. Build System
 
@@ -104,10 +110,17 @@ Conan
 
 ### 1.6. Software Testing
 
-- [GoogleTest](https://github.com/google/googletest) unit-testing framework with testing with mocking and fixtures support.
-- [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html) is a test code coverage tool.
-- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections.
-- [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
+- [GoogleTest](https://github.com/google/googletest)
+  > Unit-testing framework with testing with mocking and fixtures support.
+
+- [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
+  > Test code coverage tool.
+
+- [OSS-Fuzz](https://github.com/google/oss-fuzz)
+  > Ffuzzing technique for automated injections.
+
+- [FuzzBench](https://github.com/google/fuzzbench)
+  > Fuzzer benchmarking as a service.
 
 ### 1.7. Compiler
 
@@ -150,14 +163,29 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 2.2. Library
 
-- [Go kit](https://github.com/go-kit/kit) a standard library for microservices or elegant monoliths.
-- [GORM](https://github.com/go-gorm/gorm) a ORM library for query and manipulate databases.
-- [Cobra](https://github.com/spf13/cobra) a library for CLI apps.
-- [cli](https://github.com/urfave/cli) a library for CLI apps.
-- [fuzzy](https://github.com/sahilm/fuzzy) a library that provides fuzzy string matching.
-- [lo](https://github.com/samber/lo) a Lodash for Go library.
-- [Gonum](https://github.com/gonum/gonum) is a set of packages designed to writing numerical and scientific algorithms.
-- [grpc-go](https://github.com/grpc/grpc-go) the Go language implementation of gRPC.
+- [Go kit](https://github.com/go-kit/kit)
+  > Standard library for microservices or elegant monoliths.
+
+- [GORM](https://github.com/go-gorm/gorm)
+  > Object-Relational Mapping (ORM) library for query and manipulate databases.
+
+- [Cobra](https://github.com/spf13/cobra)
+  > Library for CLI apps.
+
+- [cli](https://github.com/urfave/cli)
+  > Library for CLI apps.
+
+- [fuzzy](https://github.com/sahilm/fuzzy)
+  > Library that provides fuzzy string matching.
+
+- [lo](https://github.com/samber/lo)
+  > Lodash for Go library.
+
+- [Gonum](https://github.com/gonum/gonum)
+  > Set of packages designed to writing numerical and scientific algorithms.
+
+- [grpc-go](https://github.com/grpc/grpc-go)
+  > Go language implementation of gRPC.
 
 #### 2.2.1. UI
 
@@ -175,16 +203,20 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 2.4. Software Testing
 
-- [go test](https://pkg.go.dev/testing@go1.18) package testing provides support for automated testing of Go packages.
+- [go test](https://pkg.go.dev/testing@go1.18)
+  > Package testing provides support for automated testing of Go packages.
   >
   > - Support for [Benchmarks](https://pkg.go.dev/testing@go1.18#hdr-Benchmarks).
   > - Support for [Examples](https://pkg.go.dev/testing@go1.18#hdr-Examples).
   > - Support for [Fuzzing](https://pkg.go.dev/testing@go1.18#hdr-Fuzzing) see [docs](https://go.dev/doc/fuzz/).
   > - Support for [Skipping](https://pkg.go.dev/testing@go1.18#hdr-Skipping).
   > - Support for [Main](https://pkg.go.dev/testing@go1.18#hdr-Main).
-  >
-- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections with a [Go project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/go-lang/).
-- [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
+
+- [OSS-Fuzz](https://github.com/google/oss-fuzz)
+  > Fuzzing technique for automated injections with a [Go project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/go-lang/).
+
+- [FuzzBench](https://github.com/google/fuzzbench)
+  >  Fuzzer benchmarking as a service.
 
 ### 2.5. Architecture
 
@@ -215,48 +247,102 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 3.2. Library
 
-- [Click](https://github.com/pallets/click) is a package for creating CLI apps.
-- [Pandas](https://github.com/pandas-dev/pandas) is a package that provides flexible and expressive data structures.
-- [Faker](https://github.com/joke2k/faker) is a package that generates fake data.
-- [Pendulum](https://github.com/sdispater/pendulum) is a package for datetimes.
-- [grpcio](https://github.com/grpc/grpc/tree/master/src/python/grpcio) the Python language implementation of gRPC.
-- [Sphinx](https://github.com/sphinx-doc/sphinx) documentation package for Python projects.
+- [Click](https://github.com/pallets/click)
+  > Package for creating CLI apps.
+
+- [Pandas](https://github.com/pandas-dev/pandas)
+  > Package that provides flexible and expressive data structures.
+
+- [Faker](https://github.com/joke2k/faker)
+  > Package that generates fake data.
+
+- [Pendulum](https://github.com/sdispater/pendulum)
+  > Package for datetimes.
+
+- [grpcio](https://github.com/grpc/grpc/tree/master/src/python/grpcio)
+  > Python language implementation of gRPC.
+
+- [Sphinx](https://github.com/sphinx-doc/sphinx)
+  > Documentation package for Python projects.
 
 ### 3.3. Code Analysis
 
-- Code Check
-  - [Pylint](https://github.com/PyCQA/pylint) static code analysis tool.
-  - [Flake8](https://github.com/PyCQA/flake8) is wrapper of tools to check code style and quality.
-  - [Bandit](https://github.com/PyCQA/bandit) find security issues in code.
-  - [Pylama](https://github.com/klen/pylama) code audit tool.
-  - [MyPy](https://github.com/python/mypy) optional static typing.
-  - [Pyre](https://github.com/facebook/pyre-check) performant type-checking.
-- Code Format
-  - [Black](https://github.com/psf/black) uncompromising code formatter.
-  - [yapf](https://github.com/google/yapf) code formatter for PEP8 or Google style.
-  - [autopep8](https://github.com/hhatto/autopep8) code formatter to conform to the PEP8 style guide.
-  - [isort](https://github.com/PyCQA/isort) to sort imports alphabetically.
-  - [autoflake](https://github.com/PyCQA/autoflake) removes unused imports and unused variables.
+Code Check
+
+- [Pylint](https://github.com/PyCQA/pylint)
+  > Static code analysis tool.
+
+- [Flake8](https://github.com/PyCQA/flake8)
+  > Wrapper of tools to check code style and quality.
+
+- [Bandit](https://github.com/PyCQA/bandit)
+  > Find security issues in code.
+
+- [Pylama](https://github.com/klen/pylama)
+  > Code audit tool.
+
+- [MyPy](https://github.com/python/mypy)
+  > Optional static typing.
+
+- [Pyre](https://github.com/facebook/pyre-check)
+  > Performant type-checking.
+
+Code Format
+
+- [Black](https://github.com/psf/black)
+  > Uncompromising code formatter.
+
+- [yapf](https://github.com/google/yapf)
+  > Code formatter for PEP8 or Google style.
+
+- [autopep8](https://github.com/hhatto/autopep8)
+  > Code formatter to conform to the PEP8 style guide.
+
+- [isort](https://github.com/PyCQA/isort)
+  > Sort imports alphabetically.
+
+- [autoflake](https://github.com/PyCQA/autoflake)
+  > Removes unused imports and unused variables.
 
 ### 3.4. Software Testing
 
-- [pytest](https://github.com/pytest-dev/pytest) unit-testing framework.
-- [pytest fixtures](https://docs.pytest.org/en/6.2.x/fixture.html) is a fixtures initialize test functions.
-- [pytest-mock](https://github.com/pytest-dev/pytest-mock) supports mock test for pytest.
-- [pytest-cov](https://github.com/pytest-dev/pytest-cov) supports test code coverage for pytest.
-- [atheris fuzzing](https://github.com/google/atheris) is a fuzzing technique for automated injections.
-- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections with a [Python project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/python-lang/).
-- [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
+- [pytest](https://github.com/pytest-dev/pytest)
+  > Unit-testing framework.
+
+- [pytest fixtures](https://docs.pytest.org/en/6.2.x/fixture.html)
+  > Fixtures initialize test functions.
+
+- [pytest-mock](https://github.com/pytest-dev/pytest-mock)
+  > Supports mock test for pytest.
+
+- [pytest-cov](https://github.com/pytest-dev/pytest-cov)
+  > Supports test code coverage for pytest.
+
+- [atheris fuzzing](https://github.com/google/atheris)
+  > Fuzzing technique for automated injections.
+
+- [OSS-Fuzz](https://github.com/google/oss-fuzz)
+  > Fuzzing technique for automated injections with a [Python project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/python-lang/).
+
+- [FuzzBench](https://github.com/google/fuzzbench)
+  > Fuzzer benchmarking as a service.
 
 ### 3.5. Tool
 
-- [virtualenv](https://github.com/pypa/virtualenv) a tool for creating isolated virtual python environments.
-- [tox](https://github.com/tox-dev/tox) command line driven CI frontend and development task automation tool.
+- [virtualenv](https://github.com/pypa/virtualenv)
+  > Tool for creating isolated virtual python environments.
+
+- [tox](https://github.com/tox-dev/tox)
+  > Command line (CLI) driven CI frontend and development task automation tool.
 
 ### 3.6. Architecture
 
-- [PyScaffold](https://github.com/pyscaffold/pyscaffold) is a Python project generator.
-- [python-blueprint](https://github.com/johnthagen/python-blueprint) is a Python project using best practices.
+- [PyScaffold](https://github.com/pyscaffold/pyscaffold)
+  > Python project generator.
+
+- [python-blueprint](https://github.com/johnthagen/python-blueprint)
+  > Python project using best practices.
+
 - [Python Project Template](https://github.com/rochacbruno/python-project-template)
 
 ### 3.7. Editor
@@ -276,9 +362,10 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 4.2. Code Analysis
 
-- Code Check
-  - [Kotlin Lint](https://developer.android.com/studio/write/lint)
-    > [Manually run inspections](https://developer.android.com/studio/write/lint#manuallyRunInspections)
+Code Check
+
+- [Kotlin Lint](https://developer.android.com/studio/write/lint)
+  > [Manually run inspections](https://developer.android.com/studio/write/lint#manuallyRunInspections)
 
 ### 4.3. Guides
 
@@ -300,13 +387,17 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 5.2. Code Analysis
 
-- Code Check
-  - [Miri](https://github.com/rust-lang/miri)
+Code Check
+
+- [Miri](https://github.com/rust-lang/miri)
 
 ### 5.3. Software Testing
 
-- [OSS-Fuzz](https://github.com/google/oss-fuzz) is a fuzzing technique for automated injections with a [Rust project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/rust-lang/).
-- [FuzzBench](https://github.com/google/fuzzbench) fuzzer benchmarking as a service.
+- [OSS-Fuzz](https://github.com/google/oss-fuzz)
+  > Fuzzing technique for automated injections with a [Rust project support](https://google.github.io/oss-fuzz/getting-started/new-project-guide/rust-lang/).
+
+- [FuzzBench](https://github.com/google/fuzzbench)
+  > Fuzzer benchmarking as a service.
 
 ## 6. Shell
 
@@ -317,11 +408,14 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 6.2. Code Analysis
 
-- Code Check
-  - [shellcheck](https://github.com/koalaman/shellcheck)
-    > Configure [.shellcheckrc](https://github.com/koalaman/shellcheck/issues/725) in the root project.
-- Code Format
-  - [shfmt](https://github.com/mvdan/sh)
+Code Check
+
+- [shellcheck](https://github.com/koalaman/shellcheck)
+  > Configure [.shellcheckrc](https://github.com/koalaman/shellcheck/issues/725) in the root project.
+
+Code Format
+
+- [shfmt](https://github.com/mvdan/sh)
 
 ### 6.3. Editor
 
@@ -336,15 +430,16 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 7.2. Code Analysis
 
-- Commit Check
-  - [commitlint](https://github.com/conventional-changelog/commitlint)
-    >
-    > - Configure [.commitlintrc.js](https://github.com/conventional-changelog/commitlint#config) in the project.
-    > - Configure [git-husky-commitlint](https://remarkablemark.org/blog/2019/05/29/git-husky-commitlint/#test) in commit-msg.
-    > - Configure [pre-commit] to perform a test before a transfer is made.
-    >
-- Commit Check for CI
-  - [commitlint-github-action](https://github.com/wagoid/commitlint-github-action)
+Commit Check
+
+- [commitlint](https://github.com/conventional-changelog/commitlint)
+  > Configure in the root project.
+  >
+  > - [.commitlintrc.js](https://github.com/conventional-changelog/commitlint#config)
+  > - [git-husky-commitlint](https://remarkablemark.org/blog/2019/05/29/git-husky-commitlint/#test) in `commit-msg`
+
+- [commitlint-github-action](https://github.com/wagoid/commitlint-github-action)
+  > Commit check for CI
 
 ## 8. Markdown
 
@@ -355,28 +450,47 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 8.2. Code Analysis
 
-- Code Check
-  - [markdownlint](https://github.com/markdownlint/markdownlint)
-    > Description of all [markdown rules](https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md).
-- Code Check for NPM
-  - [markdownlint](https://github.com/DavidAnson/markdownlint) a Node.js style checker and lint tool.
-    > Configure [.markdownlint.json](https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc) in the project.
-- Code Check for CLI
-  - [markdownlint-cli](https://github.com/DavidAnson/markdownlint) a Command Line Interface for MarkdownLint.
-    > Configure [.markdownlint.json](https://github.com/DavidAnson/markdownlint/blob/main/.markdownlint.json) in the project.
-- Code Check for CI
-  - [markdownlint](https://github.com/actionshub/markdownlint) a Github Action tool.
-- Link Check
-  - [markdown-link-check](https://github.com/tcort/markdown-link-check)
-    > Configure [.markdown-link-check.json](https://github.com/tcort/markdown-link-check#config-file-format) in the project.
-- Spell Check
-  - [markdown-spellcheck](https://github.com/lukeapage/node-markdown-spellcheck)
-    > Configure [.spelling](https://github.com/lukeapage/node-markdown-spellcheck/blob/master/.spelling) in the root project.
-  - [alex](https://github.com/get-alex/alex) catch insensitive, inconsiderate writing.
-    > Configure in the root project.
-    >
-    > - [.alexrc.yml](https://github.com/get-alex/alex#configuration)
-    > - [.alexignore](https://github.com/get-alex/alex/blob/main/.alexignore)
+Code Check
+
+- [markdownlint](https://github.com/markdownlint/markdownlint)
+  > Description of all [markdown rules](https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md).
+
+- [markdownlint](https://github.com/DavidAnson/markdownlint)
+  > Code check for NPM - A Node.js style checker and lint tool.
+  >
+  > Configure in the root project.
+  >
+  > - [.markdownlint.json](https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc)
+
+- [markdownlint-cli](https://github.com/DavidAnson/markdownlint)
+  > Code check for CLI - A Command Line Interface for MarkdownLint.
+  >
+  > Configure in the root project.
+  >
+  > - [.markdownlint.json](https://github.com/DavidAnson/markdownlint/blob/main/.markdownlint.json)
+
+- [markdownlint](https://github.com/actionshub/markdownlint)
+  > Code check for CI - A Github Action tool.
+
+- [markdown-link-check](https://github.com/tcort/markdown-link-check)
+  > Link check for markdown.
+  >
+  > Configure in the root project.
+  >
+  > - [.markdown-link-check.json](https://github.com/tcort/markdown-link-check#config-file-format)
+
+Spell Check
+
+- [markdown-spellcheck](https://github.com/lukeapage/node-markdown-spellcheck)
+  > Configure in the root project.
+  >
+  > - [.spelling](https://github.com/lukeapage/node-markdown-spellcheck/blob/master/.spelling)
+
+- [alex](https://github.com/get-alex/alex) catch insensitive, inconsiderate writing.
+  > Configure in the root project.
+  >
+  > - [.alexrc.yml](https://github.com/get-alex/alex#configuration)
+  > - [.alexignore](https://github.com/get-alex/alex/blob/main/.alexignore)
 
 ### 8.3. Editor
 
@@ -391,14 +505,17 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 9.2. Code Analysis
 
-- Code Check
-  - [cmake_format](https://github.com/cheshirekow/cmake_format)
-    >
-    > - Configure [cmake-format](https://cmake-format.readthedocs.io/en/latest/configuration.html) configuration files.
-    > - Add cmake-format to your [pre-commit](https://cmake-format.readthedocs.io/en/latest/installation.html#pre-commit) configuration.
-    > - Official [VS Code](https://marketplace.visualstudio.com/items?itemName=cheshirekow.cmake-format) extension.
-    >
-  - [cmake-lint](https://github.com/cmake-lint/cmake-lint)
+Code Check
+
+- [cmake-lint](https://github.com/cmake-lint/cmake-lint)
+
+Code Format
+
+- [cmake_format](https://github.com/cheshirekow/cmake_format)
+  > Configure in the root project.
+  >
+  > - [cmake-format](https://cmake-format.readthedocs.io/en/latest/configuration.html)
+  > - [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=cheshirekow.cmake-format)
 
 ### 9.3. Editor
 

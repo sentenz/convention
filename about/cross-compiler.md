@@ -10,10 +10,17 @@ A cross compiler is a compiler capable of creating executable code for a platfor
 
 The naming rule of the cross-compilation toolchain is: `[arch]-[vendor]-[os]-[abi]`.
 
-- `arch` refers to target architecture: arm, mips, x86, i686
-- `vendor` refers to toolchain supplier: apple
-- `os` refers to the target operating system: darwin, linux, none (bare metal systems)
-- `eabi` refers to Embedded Application Binary Interface: eabi, gnueabi, gnueabihf
+- `arch`
+  > Refers to target architecture: arm, mips, x86, i686.
+
+- `vendor`
+  > Refers to toolchain supplier: apple.
+
+- `os`
+  > Refers to the target operating system: darwin, linux, none (bare metal systems).
+
+- `eabi`
+  > Refers to Embedded Application Binary Interface: eabi, gnueabi, gnueabihf.
 
 Illustrations as follows:
 

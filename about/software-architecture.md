@@ -14,8 +14,11 @@ Software architecture refers to the fundamental structures of a software system 
 
 However, microservices, which build on the principles of SOA, are now a reality with the introduction of new technologies, which constitute the three main building blocks of a microservices architecture. With those building blocks readily available and established, the following benefits emerge:
 
-- Containers: Software containers have created a standardized frame for all services by abstracting the core OS code from the underlying hardware.  The standardization offered by containers eliminates what was once a painful integration process in a heterogeneous infrastructure world. Thanks to vendors such as Docker, containers have revolutionized how developers build and deploy applications.
-- APIs: The adoption and increased capabilities offered by APIs has created a robust and standardized format for communications between applications, services and servers. REST (Representation State Transfer) APIs in particular are key to microservices architecture. A RESTful API breaks down a transaction to create a series of small modules, each of which addresses a particular underlying part of the transaction. This modularity provides developers with a lot of flexibility for developing lightweight APIs, which are more suitable for browser powered applications.
+- Containers
+  > Software containers have created a standardized frame for all services by abstracting the core OS code from the underlying hardware.  The standardization offered by containers eliminates what was once a painful integration process in a heterogeneous infrastructure world. Thanks to vendors such as Docker, containers have revolutionized how developers build and deploy applications.
+
+- APIs
+  > The adoption and increased capabilities offered by APIs has created a robust and standardized format for communications between applications, services and servers. REST (Representation State Transfer) APIs in particular are key to microservices architecture. A RESTful API breaks down a transaction to create a series of small modules, each of which addresses a particular underlying part of the transaction. This modularity provides developers with a lot of flexibility for developing lightweight APIs, which are more suitable for browser powered applications.
 
 The business logic for the microservices can be organized using [Domain-Driven Design (DDD)](https://martinfowler.com/tags/domain%20driven%20design.html). Based on the DDD model, an onion, hexagonal or clean architecture can be created.
 

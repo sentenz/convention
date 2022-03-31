@@ -6,9 +6,12 @@ Categories of toggles:
 
 - Release Toggles
   > Release Toggles allow incomplete and un-tested codepaths to be shipped to production as latent code which may never be turned on.
+
 - Experiment Toggles
   > Experiment Toggles are used to perform multivariate or A/B testing.
+
 - Ops Toggles
   > These flags are used to control operational aspects of our system's behavior.
+
 - Permissioning Toggles
   > These flags are used to change the features or product experience that certain users receive.

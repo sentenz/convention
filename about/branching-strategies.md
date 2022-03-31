@@ -21,6 +21,7 @@ The strategy of Git flow is to isolate the work into different types of branches
 
 - _main_
   > Consider main to be the branch where the source code of `HEAD` always reflects a _production-ready_ state.
+
 - _develop_
   > Consider develop to be the `staging` branch where the source code of `HEAD` always reflects a state with the latest delivered development changes for the next release.
 
@@ -28,8 +29,10 @@ The strategy of Git flow is to isolate the work into different types of branches
 
 - [feature](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#feature-branches)
   > Feature branches are used to develop new features. Feature branches are created from and merged back into develop branches. Feature branches typically exist in developer repos only, not in _origin_.
+
 - [release](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#release-branches)
   > Release branches are created every iteration (i.e. sprint) from develop branch, which contains a set of features and their associated bug fixes. Furthermore, they allow for minor bug fixes and preparing meta-data for a release (version number i.e [semver](#semantic-versioning), build dates, etc.). The release branch is then subjected to deployed to the staging (integration and regression testing). Any bugs identified during this phase is fixed and committed directly to the release branch. Once the release branch has been confirmed to be free of bugs, it is merged into the main branch and released into production. These fixes are also merged back into develop and other release branches if any exist.
+
 - [fix](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#hotfix-branches)
   > Fixes branches are created from main branch, when issues need an fix upon an undesired state of a live production version. Fix branches needs to be merged back into main and into develop, in order to safeguard that the bugfix is included in the next release.
 
@@ -73,6 +76,7 @@ Supporting branch:
 
 - [feature](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/short-lived-feature-branches/index.html)
   > Short-living feature branches are used to develop new features. Feature branches are created from and merged back into _trunk_. Feature branches typically exist in developer repos only, not in _origin_. The [style](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/styles/index.html) of short-living feature branches is suitable for active committer counts [between 2 and 1000](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/styles/index.html#short-lived-feature-branches).
+
 - [release](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html)
   > Release branch is a cut from trunk with an optional number of cherry picks that are developed on trunk and then pulled into the branch.
 

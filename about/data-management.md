@@ -29,7 +29,7 @@
   - 99_Sharing
     > Contains files that are shared with external parties. Here a state is frozen so that it is no longer processed after sharing.
 - 02_Requirement
-  > Contains all requirements of the project over the entire runtime.
+  > Contains all the requirements of the project throughout its life cycle.
   - HW
   - SW
 - 03_Development

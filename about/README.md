@@ -27,6 +27,7 @@ Best practices, articles of interest and general topics.
 - [Programming Language](programming-language.md)
 - [Project Layout](project-layout.md)
 - [Pull Request Reviews](pull-request-reviews.md)
+- [Serial Communication](serial-communication.md)
 - [Software Architecture](software-architecture.md)
 - [Software Design Principles](software-design-principles.md)
 - [Software Documentation](software-documentation.md)

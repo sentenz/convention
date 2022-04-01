@@ -1,6 +1,6 @@
 # Githooks
 
-[Hooks](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks) used by Git are scripts you can place in a hooks directory to trigger actions at certain points in git command.
+[Hooks](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks) are built-in features used by Git to trigger actions at certain points in git command.
 
 - [Install Hooks](#install-hooks)
 - [Customize Hooks](#customize-hooks)

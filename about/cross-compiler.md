@@ -2,11 +2,11 @@
 
 A cross compiler is a compiler capable of creating executable code for a platform other than the one on which the compiler is running. For example, a compiler that runs on a PC but generates code that runs on Android smartphone is a cross compiler.
 
-- [Namig Convention](#namig-convention)
+- [Naming Convention](#naming-convention)
 - [ABI and EABI](#abi-and-eabi)
 - [See also](#see-also)
 
-## Namig Convention
+## Naming Convention
 
 The naming rule of the cross-compilation toolchain is: `[arch]-[vendor]-[os]-[abi]`.
 

@@ -17,7 +17,7 @@
 
 ## Branching Strategy
 
-[Branching strategy](https://sentenz.github.io/guides/about/branching-strategies) defines how a team uses branching to achieve this level of concurrent development.
+[Branching strategy](https://sentenz.github.io/z-guide/about/branching-strategies) defines how a team uses branching to achieve this level of concurrent development.
 
 ### Git Flow
 

@@ -4,7 +4,6 @@
   - [Git Flow](#git-flow)
   - [Scaled Trunk-Based Development](#scaled-trunk-based-development)
 - [Merging Strategy](#merging-strategy)
-- [Commits](#commits)
 - [Versioning](#versioning)
   - [Pre-release](#pre-release)
 - [Tooling](#tooling)
@@ -83,53 +82,6 @@ The strategy and contains the following rules:
    - fix bugs on the _trunk_ and cherry-picking them back to the release branch.
 
 ## Merging Strategy
-
-## Commits
-
-We follow [conventional commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html). Conventional commits is a specification for adding human and machine readable meaning to commit messages.
-
-The commit message should be structured as follows:
-
-```txt
-<type>[optional scope]: <description>
-
-[optional body]
-
-[optional footer(s)]
-```
-
-The commit contains the following structural elements, to communicate intent to the consumers of your library:
-
-1. _fix_
-   > A commit of the type `fix` patches a bug in your codebase (this correlates with `PATCH` in [Semantic Versioning](#semantic-versioning)).
-
-2. _feat_
-   > A commit of the type `feat` introduces a new feature to the codebase (this correlates with `MINOR` in [Semantic Versioning](#semantic-versioning)).
-
-3. _BREAKING CHANGE_
-   > A commit that has a footer `BREAKING CHANGE:`, or appends a `!` after the type/scope, introduces a breaking API change (correlating with `MAJOR` in [Semantic Versioning](#semantic-versioning)). A BREAKING CHANGE can be part of commits of any type.
-
-4. _types_ other than `fix` and `feat` are allowed:
-   - _build_: Changes that affect the build system or external dependencies
-   - _chore_: Other changes that don`t modify src or test files
-   - _ci_: Changes to our CI configuration files and scripts
-   - _docs_: Documentation only changes
-   - _perf_: A code change that improves performance
-   - _refactor_: A code change that neither fixes a bug nor adds a feature
-   - _test_: Adding missing tests or correcting existing tests
-   - _revert_: Revert a previous commit
-
-5. _footers_ other than `BREAKING CHANGE: <description>` may be provided and follow a convention similar to [git trailer format](https://sentenz.github.io/backup-service/website/git-scm.com/docs/git-interpret-trailers/en.html).
-
-6. _rules_ and _config_ of conventional commits [@commitlint/config-conventional](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional).
-
-Additional types are not mandated by the Conventional Commits specification, and have no implicit effect in [Semantic Versioning](#semantic-versioning) (unless they include a BREAKING CHANGE). A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g.:
-
-```txt
-feat(parser): allow provided config object to extend other configs
-
-BREAKING CHANGE: `extends` key in config file is now used for extending other config files
-```
 
 ## Versioning
 

@@ -33,5 +33,6 @@ Best practices, articles of interest and general topics.
 - [Software Documentation](software-documentation.md)
 - [Software Testing](software-testing.md)
 - [Tabs vs Spaces](tabs-vs-spaces.md)
+- [Technical Debt](technical-dept.md)
 - [Twelve-Factor App](twelve-factor-app.md)
 - [Unit-Testing Frameworks](unit-testing-frameworks.md)

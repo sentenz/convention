@@ -10,6 +10,7 @@ Best practices, articles of interest and general topics.
 - [Branching Strategies](branching-strategies.md)
 - [Build Systems](build-sytems.md)
 - [Code Analysis](code-analysis.md)
+- [Comment](comment.md)
 - [CRLF vs LF](crlf-vs-lf.md)
 - [Cross Compiler](cross-compiler.md)
 - [Data Management](data-management.md)

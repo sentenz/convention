@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/sentenz/z-guide/compare/v1.1.0...v1.2.0) (2022-04-08)
+
+
+### Features
+
+* **about:** create an article about comment ([#23](https://github.com/sentenz/z-guide/issues/23)) ([ab37afd](https://github.com/sentenz/z-guide/commit/ab37afd162140339c4b3a43d5f798aee8fc8d315))
+
 # [1.1.0](https://github.com/sentenz/z-guide/compare/v1.0.0...v1.1.0) (2022-04-07)
 
 

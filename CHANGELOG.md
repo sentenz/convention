@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/sentenz/z-guide/compare/v1.2.0...v1.3.0) (2022-04-14)
+
+
+### Features
+
+* **about:** create an article about code analysis ([#32](https://github.com/sentenz/z-guide/issues/32)) ([9f7e621](https://github.com/sentenz/z-guide/commit/9f7e62196c8bb32ff00e5dd340641ee5f7e870be)), closes [#31](https://github.com/sentenz/z-guide/issues/31)
+
 # [1.2.0](https://github.com/sentenz/z-guide/compare/v1.1.0...v1.2.0) (2022-04-08)
 
 

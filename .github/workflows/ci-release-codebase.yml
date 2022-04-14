@@ -1,7 +1,7 @@
 ---
 # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
 
-name: CI Pipeline
+name: ci-release-codebase
 
 on:
   push:
@@ -15,10 +15,10 @@ on:
 jobs:
   release:
     if: ${{ always() }}
-    name: Release
+    name: release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Project
+      - name: Checkout Codebase
         uses: actions/checkout@v2
 
       - name: Setup Node.js
@@ -31,7 +31,7 @@ jobs:
         run: |
           npm ci --ignore-scripts
 
-      - name: Release Project
+      - name: Release Codebase
         run: |
           npx semantic-release
         env:

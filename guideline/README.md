@@ -2,5 +2,6 @@
 
 Guidelines based on the defined conventions and style guides and best practices.
 
-- [Git Guide](git-guide.md)
+- [Commit Message Guide](commit-message-guide.md)
 - [Style Guides](style-guide.md)
+- [Versioning Guide](versioning-guide.md)

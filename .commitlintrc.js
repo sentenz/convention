@@ -45,6 +45,7 @@ const Configuration = {
         "about",
         "convention",
         "guideline",
+        "release",
       ],
     ],
   },

@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/sentenz/z-guide/compare/v1.3.0...v1.4.0) (2022-04-14)
+
+
+### Features
+
+* **guideline:** create a guideline of software development ([#33](https://github.com/sentenz/z-guide/issues/33)) ([0de5c0e](https://github.com/sentenz/z-guide/commit/0de5c0e05759b9223a3101a752f82d3597f681dd)), closes [#29](https://github.com/sentenz/z-guide/issues/29)
+
 # [1.3.0](https://github.com/sentenz/z-guide/compare/v1.2.0...v1.3.0) (2022-04-14)
 
 

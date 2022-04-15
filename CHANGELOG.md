@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/sentenz/guide/compare/v1.4.0...v1.4.1) (2022-04-15)
+
+
+### Bug Fixes
+
+* modify  repo name in npm packeage resource files ([#37](https://github.com/sentenz/guide/issues/37)) ([6c27094](https://github.com/sentenz/guide/commit/6c27094bdcea1b35824dca191d0310ed84368cd2)), closes [#36](https://github.com/sentenz/guide/issues/36)
+
 # [1.4.0](https://github.com/sentenz/guide/compare/v1.3.0...v1.4.0) (2022-04-14)
 
 

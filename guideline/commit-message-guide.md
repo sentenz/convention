@@ -9,7 +9,8 @@
     - [Summary](#summary)
   - [Body](#body)
   - [Footer](#footer)
-- [Commit Message Upate](#commit-message-upate)
+- [Commit Message Update](#commit-message-update)
+- [Commit Message Linter](#commit-message-linter)
 
 ## Commit Message Guideline
 
@@ -136,7 +137,7 @@ Breaking change section should start with the phrase `BREAKING CHANGE:` followed
 
 Similarly, a Deprecation section should start with `DEPRECATED:` followed by a short description of what is deprecated, a blank line, and a detailed description of the deprecation that also mentions the recommended update path.
 
-## Commit Message Upate
+## Commit Message Update
 
 A reviewer might often suggest changes to a commit message (for example, to add more context for a change or adhere to our [Commit Message Guideline](#commit-message-guideline)).
 
@@ -162,3 +163,7 @@ In order to update the commit message of the last commit on your branch:
 
 > NOTE If you need to update the commit message of an earlier commit, you can use `git rebase` in interactive mode.
 > See the [git docs](https://git-scm.com/docs/git-rebase#_interactive_mode) for more details.
+
+## Commit Message Linter
+
+[commitlint](https://github.com/conventional-changelog/commitlint) tooling for conventional commits. Checks if the commit messages meet the [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html) format.

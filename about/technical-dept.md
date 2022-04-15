@@ -46,9 +46,9 @@ Design debt is closely linked to structuring features and adhering to design pat
 Use features by [Git hooks](githooks.md) to trigger actions at certain points of the development to enforce conventions, guidelines, standards, and policies:
 
 - pre-commit to enforce coding standards and codebase linting
-- commit-msg to enforce commit messages by Conventional Commits
-- pre-push to enforce branches by Branching Strategies
-- pre-rebase to enforce standards by Merging Strategies
+- commit-msg to enforce commit messages by [Conventional Commits](../convention/conventional-commits.md)
+- pre-push to enforce branches by [Branching Strategies](branching-strategies.md)
+- pre-rebase to enforce standards by [Merging Strategies](merging-strategies.md)
 
 ### Knowledge Debt
 
@@ -60,25 +60,24 @@ Actively share knowledge about features and important codebase changes.
 
 ## Metrics of Technical Debt
 
+Keeping dashboards with code health metrics. These can range from dashboards that show test coverage or the number and average age of `TODOs`, to more sophisticated dashboards including metrics like cyclomatic complexity or maintainability index.
+
 - Bugs
-  > Software developers should count and track their bugs. This includes both fixed and unfixed bugs. Noting the unfixed bugs allows development teams to focus on them and fix them during their agile iterations. Noting the fixed bugs helps teams measure how effective their tech debt management process is.
+  > Software developers should count and track their bugs. This includes both fixed and unfixed bugs. Noting the unfixed bugs allows development teams to focus on them and fix them during their agile iterations. Noting the fixed bugs helps teams measure how effective their tech debt management process is. Bugs on a weekly or monthly basis indicates a quality decline of the codebase.
 
 - Code Quality
-  > Code complexity can really damage the development team and the organization as a whole. Code complexity metrics are Cyclomatic complexity, Class coupling, Lines of code, Depth of Inheritance. The lower each of these measures, the better. These metrics also helps organisations know exactly which code to rework or refactor in order to reduce complexity and improve the backend side of the software.
+  > Code complexity can really damage the development team and the organization as a whole. Code complexity metrics are Cyclomatic complexity, maintainability index, Class coupling, Lines of code, Depth of Inheritance. The lower each of these measures, the better. These metrics also helps organisations know exactly which code to rework or refactor in order to reduce complexity and improve the backend side of the software.
 
 - Code Cohesion
   > A high code cohesion usually means that the code is more maintainable, reusable, and robust. It also minimises the amount of people who need to get involved in the code, which can greatly reduce complexity and decrease the chances of bit rot. High cohesion is when you have a class that does a well defined job.
 
-- Code coverage percentage and code coverage per feature
-  > A declining percentage is a signal for a growing tech debt.
+- Code Coverage
+  > A declining percentage in code coverage percentage and code coverage per feature is a signal for a growing tech debt.
 
-- Number of failed CI or CD builds
+- CI/CD
   > An increasing number of failed CI/CD builds is a strong indicator for instability in the codebase. This can be related to design and code debt.
 
-- Number of new bugs per week or month
-  > Bugs on a weekly or monthly basis indicates a quality decline of the codebase.
-
-- Feature throughput
+- Feature Throughput
   > Days it takes to push a new feature to the main branch. It’s a supporting metric that can indicate growing tech debt. Not each feature has the same size, but if you see a decline over multiple weeks, it’s time to intervene.
 
 - Issues with [non-functional](software-testing.md#non-functional-testing) requirements
@@ -86,6 +85,7 @@ Actively share knowledge about features and important codebase changes.
 
 ## See also
 
+- Google [technical debt](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=297&zoom=100,0,450) book.
 - Stepsize [technical debt](https://www.stepsize.com/blog/complete-guide-to-technical-debt) article.
 - Stepsize [tactics to prevent technical debt](https://www.stepsize.com/blog/3-best-tactics-to-prevent-technical-debt) article.
 - Stepsize [tools to track technical debt](https://www.stepsize.com/blog/tools-to-track-and-manage-technical-debt) article.

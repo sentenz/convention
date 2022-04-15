@@ -170,6 +170,7 @@ In Acceptance Test-Driven Development (ATDD) technique, a single acceptance test
 
 ## See also
 
+- Google [Testing Code](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=307&zoom=100,0,600) book.
 - Atlassian [Software Testing](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing) article.
 - Smartbear [Software Testing Methodologies](https://smartbear.com/learn/automated-testing/software-testing-methodologies/) article.
 - BrowserStack [BDD vs TDD vs ATDD](https://www.browserstack.com/guide/tdd-vs-bdd-vs-atdd) article.

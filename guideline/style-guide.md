@@ -1,4 +1,4 @@
-# Style Guides
+# Style Guide
 
 - [1. C/C++](#1-cc)
   - [1.1. Convention](#11-convention)
@@ -61,6 +61,7 @@
 ### 1.1. Convention
 
 - [Google C++ Style Guide](https://sentenz.github.io/backup-service/repository/github/google/styleguide/cppguide.html)
+- [C++ Core Guidelines](https://github.com/isocpp/CppCoreGuidelines)
 
 ### 1.2. Library
 
@@ -87,6 +88,9 @@ Code Check
   > - Configure [cppcheck-suppressions.txt](https://github.com/open62541/open62541/blob/master/cppcheck-suppressions.txt) in the project.
   > - See [manual](http://cppcheck.sourceforge.net/manual.pdf).
 
+- [Infer](https://github.com/facebook/infer)
+  > A static analyzer for Java, C, C++, and Objective-C.
+
 Code Format
 
 - [clang-format](https://clang.llvm.org/docs/ClangFormat.html)
@@ -96,9 +100,10 @@ Code Format
   > - [.clang-format-ignore](https://github.com/mozilla/gecko-dev/blob/master/.clang-format-ignore)
   > - Use [clang-format-configurator](https://zed0.co.uk/clang-format-configurator/) to modify a .clang-format file.
 
-Memory Check
+Sanitizers
 
 - [Valgrind](https://valgrind.org/)
+- [Google Sanitizers](https://github.com/google/sanitizers)
 
 ### 1.4. Build System
 
@@ -283,6 +288,9 @@ Code Check
 
 - [MyPy](https://github.com/python/mypy)
   > Optional static typing.
+
+- [pytype](https://github.com/google/pytype)
+  > A static type analyzer.
 
 - [Pyre](https://github.com/facebook/pyre-check)
   > Performant type-checking.

@@ -1,14 +1,14 @@
 {
-  "name": "z-guide",
+  "name": "",
   "version": "1.4.0",
   "private": true,
-  "homepage": "https://github.com/sentenz/z-guide#readme",
-  "bugs": "https://github.com/sentenz/z-guide/issues",
+  "homepage": "https://github.com/sentenz/#readme",
+  "bugs": "https://github.com/sentenz//issues",
   "author": "Sentenz",
   "license": "Apache License 2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sentenz/z-guide.git"
+    "url": "https://github.com/sentenz/.git"
   },
   "scripts": {
     "test": "run-s"

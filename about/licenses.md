@@ -10,7 +10,7 @@ Open source licenses grant permission to use, modify, and redistribute licensed 
 - [MIT License](#mit-license)
 - [BSL-1.0](#bsl-10)
 - [CC0 1.0](#cc0-10)
-- [Legend](#legend)
+- [Glossary](#glossary)
   - [Permissions](#permissions)
   - [Conditions](#conditions)
   - [Limitations](#limitations)
@@ -127,9 +127,9 @@ A license with no conditions whatsoever which dedicates works to the public doma
 | Modification   |            |             |
 | Private use    |            |             |
 
-## Legend
+## Glossary
 
-[Terms](https://choosealicense.com/appendix/) of licenses.
+Definitions of the license [terms](https://choosealicense.com/appendix/).
 
 ### Permissions
 

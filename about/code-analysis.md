@@ -1,7 +1,6 @@
 # Code Analysis
 
-Code analysis allows users to carry out a number of useful actions for performance profiling, checking for security-related correctness,
-code coverage reporting, and dead code elimination.
+Code analysis allows users to carry out a number of useful actions for performance profiling, checking for security-related correctness, code coverage reporting, and dead code elimination.
 
 - [Static Analysis](#static-analysis)
   - [Linters](#linters)

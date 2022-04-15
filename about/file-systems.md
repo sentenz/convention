@@ -1,14 +1,20 @@
-# File Systems
+# File Systems // TODO
 
-A file system is a structure of directories that is used to organize and store files.
+A file system is a structure of directories that is used to organize and store files. A file system is the method an operating system uses to name files and assign them locations for efficient storage and retrieval.
 
 - [Flash Driver](#flash-driver)
   - [JFFS2](#jffs2)
 - [Linux](#linux)
   - [ext3](#ext3)
+  - [extfs](#extfs)
+  - [overlay2](#overlay2)
+  - [btrfs](#btrfs)
+  - [zfs](#zfs)
 - [Microsoft](#microsoft)
   - [FAT32](#fat32)
   - [NTFS](#ntfs)
+- [macOS](#macos)
+  - [APFS](#apfs)
 - [Swap Space](#swap-space)
 - [See also](#see-also)
 
@@ -26,6 +32,14 @@ JFFS2 (Journaling Flash File System, version 2): further developed variant of JF
 
 ext3 (Third Extended File System) file system developed with the Linux kernel. ext3 is an advanced variant of ext2 with journaling.
 
+### extfs
+
+### overlay2
+
+### btrfs
+
+### zfs
+
 ## Microsoft
 
 ### FAT32
@@ -35,6 +49,10 @@ FAT32 (File Allocation Table) newer variant of the FAT file system family with e
 ### NTFS
 
 NTFS (New Technology File System) with journaling file system of the Windows NT product line.
+
+## macOS
+
+### APFS
 
 ## Swap Space
 

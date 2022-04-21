@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/sentenz/guide/compare/v1.4.1...v1.5.0) (2022-04-21)
+
+
+### Features
+
+* **guideline:** create a guideline of the branching strategies ([#38](https://github.com/sentenz/guide/issues/38)) ([a89f1f9](https://github.com/sentenz/guide/commit/a89f1f99e908b95aae7e3f54f9e48bb4284044f1)), closes [#15](https://github.com/sentenz/guide/issues/15)
+
 ## [1.4.1](https://github.com/sentenz/guide/compare/v1.4.0...v1.4.1) (2022-04-15)
 
 

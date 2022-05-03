@@ -13,6 +13,9 @@ Software testing is an organizational process within software development in whi
   - [UI Testing](#ui-testing)
 - [Non-Functional Testing](#non-functional-testing)
   - [Reliability Testing](#reliability-testing)
+  - [Scalability Testing](#scalability-testing)
+  - [Portability Testing](#portability-testing)
+  - [Availability Testing](#availability-testing)
   - [Performance Testing](#performance-testing)
   - [Security Testing](#security-testing)
   - [Compliance Testing](#compliance-testing)
@@ -73,6 +76,18 @@ Non-functional testing involves testing the non-functional features of a softwar
 ### Reliability Testing
 
 Reliability testing assures that the product is fault free and is reliable for its intended purpose. It is about exercising an application failures are discovered before the system is deployed.
+
+### Scalability Testing
+
+// TODO
+
+### Portability Testing
+
+// TODO
+
+### Availability Testing
+
+// TODO
 
 ### Performance Testing
 

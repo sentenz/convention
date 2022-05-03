@@ -1,6 +1,6 @@
 # Architecture Modeling Concepts
 
-Software architecture involves the high level structure of software system abstraction, by using decomposition and composition, with architectural style and quality attributes. The architecture design must conform to the major functionality and performance requirements of the system, as well as satisfy the non-functional requirements such as reliability, scalability, portability, and availability. A software architecture must describe its group of components, their connections, interactions among them and deployment configuration of all components.
+Software architecture involves the high level structure of software system abstraction, by using decomposition and composition, with architectural style and quality attributes. The architecture design must conform to the major functionality and performance requirements of the system, as well as satisfy the [non-functional](software-testing.md#non-functional-testing) requirements such as reliability, scalability, portability, and availability. A software architecture must describe its group of components, their connections, interactions among them and deployment configuration of all components.
 
 - [Enterprise Architecture (EA)](#enterprise-architecture-ea)
 - [Solution Architecture (SA)](#solution-architecture-sa)

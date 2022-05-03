@@ -81,7 +81,7 @@ The strategy contains the following rules:
    - Release from [main](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html) retroactively by selecting the revision in the past to branch from.
    - Branch naming convention, i.e. `release/[1.2.x]`.
 
-5. [Fix](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/branch-for-release/index.html#fix-production-bugs-on-trunk) production bugs on Trunk.
+5. [Fix](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/branch-for-release/index.html#fix-production-bugs-on-trunk) production bugs.
    - Create a *feature* branch from *main* (naming convention, i.e. `feature/[ISSUETYPE-ID]-[fix]-[short-describe]`).
    - Fix bugs on the *feature* and cherry-picking them back to the release branch.
 

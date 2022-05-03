@@ -40,6 +40,7 @@ This commit carries the `standalone` flag forward from a directive/pipe
 into its generated directive/pipe definition, allowing the runtime to
 recognize standalone entities.
 
+
 Closes #44973
 ```
 

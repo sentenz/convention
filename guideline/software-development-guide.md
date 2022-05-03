@@ -27,11 +27,17 @@ Steps in the software development lifecycle.
 
 ### Concept
 
-Projects are envisioned, designed, and prioritized. A methodology such as agile helps to guide the work process for the project. Practices like DevOps guide practices during development and operations.
+Projects are envisioned, designed, and prioritized.
+
+- A methodology such as [Agile](../about/agile.md) helps to guide the work process for the project. Practices like DevOps guide practices during development and operations.
+
+- Concept models are a fundamental part of the architectural design and development process using [Architecture Modeling Concepts](../about/architecture-modeling-concepts.md) to provide a quick and effective method to create diagrams for testing ideas and investigating constraints.
 
 ### Plan + Roadmap
 
 Stakeholders are identified, budgets set, and infrastructure requisitioned. Design documents from the concept phase are broken down into actionable tasks.
+
+- [Architecture Decision Records (ADR)](../about/architecture-decision-records.md) captures the key options available, the main requirements that drive a decision, and the design decisions themselves.
 
 ### Code, Test/Analysis, Review
 
@@ -39,13 +45,17 @@ Development teams work to build production-ready software that meets requirement
 
 - [Coding](../about/coding-guide.md) with software development patterns that should be applied during the implementation of a project to avoid bugs.
 
-- Robust [software testing](../about/software-testing.md) and [code analysis](../about/code-analysis.md) are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
+- Robust [Software Testing](../about/software-testing.md) and [Code Analysis](../about/code-analysis.md) are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
 
-- Collaborative [code review](../about/code-review-guide.md) and CI/CD pipelines that plug into the code review process.
+- Collaborative [Code Review](../about/code-review-guide.md) and CI/CD pipelines that plug into the code review process.
 
 ### Deploy, Release, Host
 
-With code approved and merged, it’s time to ship it. CI/CD pipelines make deployments. The live production code will need a place to live. Consider using cloud hosting provided by Amazon AWS, Google Cloud Platform, or Microsoft Azure.
+After the code is approved and merged, it's time to deliver it.
+
+- [Deployment Strategies](../about/deployment-strategies.md) for Continuous Delivery (CD) define how you want to deliver, change or upgrade a running instance of an application.
+
+- The live production code will need a place to live. Consider using cloud hosting provided by Amazon AWS, Google Cloud Platform, or Microsoft Azure.
 
 ### Support, Operate, Maintain
 
@@ -79,9 +89,9 @@ Key features of effective software development.
 
 Continuous Integration/Continuous Deployment [CI/CD](../about/ci-cd.md) describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, testing, integration, delivery, validation and phased deployment activities before operation in a target environment.
 
-CI is the practice of automating the integration of code changes into a software project. It allows developers to frequently merge code changes into a central repository where builds and tests are executed.
+- CI is the practice of automating the integration of code changes into a software project. It allows developers to frequently merge code changes into a central repository where builds and tests are executed.
 
-CD expands upon continuous integration by automatically deploying code changes to a testing/production environment. It follows a continuous delivery pipeline, where automated builds, tests, and deployments are orchestrated as one release workflow.
+- CD expands upon continuous integration by automatically deploying code changes to a testing/production environment. It follows a continuous delivery pipeline, where automated builds, tests, and deployments are orchestrated as one release workflow.
 
 ### Software Architecture
 

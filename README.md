@@ -1,6 +1,6 @@
 # Guide
 
-Project overview, general documentation, and white papers.
+Conventions, guidelines, general articles, and white papers.
 
 - [About](about/README.md)
 - [Convention](convention/README.md)

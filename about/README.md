@@ -18,7 +18,7 @@ Best practices, articles of interest and general topics.
 - [Feature Toggles](feature-toggles.md)
 - [File Systems](file-systems.md)
 - [Githooks](githooks.md)
-- [GitOps vs DevOps](gitops-vs-devops.md)
+- [DevOps](devops.md)
 - [Identity Management](identity-management.md)
 - [Licenses](licenses.md)
 - [Merging Strategies](merging-strategies.md)

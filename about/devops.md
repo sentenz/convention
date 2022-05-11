@@ -1,4 +1,4 @@
-# GitOps vs DevOps
+# DevOps
 
 - [GitOps](#gitops)
 - [DevOps](#devops)

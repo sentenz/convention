@@ -5,10 +5,10 @@ Code analysis allows users to carry out a number of useful actions for performan
 - [Static Analysis](#static-analysis)
   - [Linters](#linters)
 - [Dynamic Analysis](#dynamic-analysis)
-  - [Tools](#tools)
-  - [Sanitizers](#sanitizers)
+  - [Sanitizer](#sanitizer)
     - [Valgrind](#valgrind)
     - [Google Sanitizers](#google-sanitizers)
+  - [Other Tools](#other-tools)
 - [See also](#see-also)
 
 ## Static Analysis
@@ -25,23 +25,17 @@ Dynamic program analysis analyzes software by running programs, potentially in v
 
 Dynamic analysis approaches that rely on compiler support to detect memory-related errors are often called instrumentation. Compilers and dynamic program analysis tools let you configure instrumentation to collect runtime statistics on the binaries that the compilers produce, such as performance profiling information, code coverage information, and profilebased optimizations. The compiler inserts additional instructions and callbacks to a backend runtime library that surfaces and collects the relevant information when the binary is executed.
 
-### Tools
+### Sanitizer
 
-- Performance Profiler
-  > Are used to find performance issues in programs.
+Sanitizer are tools that can detect bugs such as buffer overflows or accesses, dangling pointer or different types of undefined behavior.
 
-- Code Coverage
-  > Measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.
+The two compilers that mainly support sanitizing options are [gcc](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html) and [clang](https://clang.llvm.org/docs/UsersManual.html#controlling-code-generation). These options are passed to the compiler as flags and, depending on if you are using `gcc` or `clang`, different sanitizers are supported.
 
-### Sanitizers
+The code can be instrumented using the following option to address e.g. issues with pointers and arrays:
 
-Sanitizers are tools that can detect bugs such as buffer overflows or accesses, dangling pointer or different types of undefined behavior.
-
-The two compilers that mainly support sanitizing options are gcc and [clang](https://clang.llvm.org/docs/UsersManual.html#controlling-code-generation). These options are passed to the compiler as flags and, depending on if you are using clang or [gcc](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html), different sanitizers are supported.
-
-- Performance Tradeoffs in Dynamic Program Analysis
-
-  Dynamic program analysis tools like sanitizers provide developers with useful feedback about correctness and other dimensions, such as performance and code coverage. This feedback comes at a performance cost: the compiler-instrumented binaries can be orders of magnitude slower than the native binaries. As a result, many projects are adding sanitizer-enhanced pipelines to their existing CI/CD systems, but running those pipelines less frequently—for example, nightly. This practice may catch otherwise hard-to-identify bugs caused by memory corruption issues. Other program analysis–based CI/CD-enabled pipelines collect additional developer signals, such as nightly code coverage metrics. Over time, you can use these signals to gauge various code health metrics.
+```bash
+gcc  -g  -fsanitize=address  ...
+```
 
 #### Valgrind
 
@@ -73,6 +67,14 @@ Following popular sanitizers:
 
 - LeakSanitizer (LSan)
   > Detects memory leaks and other types of leaks.
+
+### Other Tools
+
+- Performance Profiler
+  > Are used to find performance issues in programs.
+
+- Code Coverage
+  > Measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.
 
 ## See also
 

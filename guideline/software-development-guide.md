@@ -1,6 +1,6 @@
 # Software Development Guide
 
-Software development refers to the design, documentation, programming, testing, and ongoing maintenance of a software deliverable. The combination of these steps are used to create a workflow pipeline, a sequence of steps that when followed produce high-quality software deliverables. This pipeline is known as the software development lifecycle.
+Software development involves the design, documentation, programming, testing, and ongoing maintenance of a software deliverable. The combination of these steps are used to create a workflow pipeline, a sequence of steps that when followed produce high-quality software deliverables. This pipeline is known as the software development lifecycle.
 
 - [Lifecycle](#lifecycle)
   - [Concept](#concept)
@@ -13,7 +13,7 @@ Software development refers to the design, documentation, programming, testing, 
   - [Security](#security)
 - [Key Features](#key-features)
   - [Agile](#agile)
-  - [DevOps](#devops)
+  - [DevOps/DevSecOps](#devopsdevsecops)
   - [CI/CD](#cicd)
   - [Software Architecture](#software-architecture)
     - [Microservices](#microservices)
@@ -73,6 +73,8 @@ Teams should evaluate each release and generate reports to improve future releas
 
 As software applications grow in complexity and scale, traditional security that is `bolted on` at the end of a release cycle is no longer enough to keep software safe. Instead, security should be included throughout the software development lifecycle in order to minimize vulnerabilities in software code.
 
+- [Identity Management](../about/identity-management.md) or Identity & Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.
+
 ## Key Features
 
 Key features of effective software development.
@@ -81,9 +83,9 @@ Key features of effective software development.
 
 [Agile](../about/agile.md) is an iterative approach to project management and software development that helps teams deliver value to their customers faster and with fewer headaches. Agile methodologies are immensely popular in the software industry since they empower teams to be inherently flexible, well-organized, and capable of responding to change.
 
-### DevOps
+### DevOps/DevSecOps
 
-[DevOps](../about/devops.md) is a set of practices, tools, and a cultural philosophy that automate and integrate the processes between software development and IT teams. It emphasizes team empowerment, cross-team communication and collaboration, and technology automation.
+[DevOps/DevSecOps](../about/devops.md) is a set of practices, tools, and a cultural philosophy that automate and integrate the processes between software development and IT teams. It emphasizes team empowerment, cross-team communication and collaboration, and technology automation.
 
 ### CI/CD
 

@@ -49,7 +49,7 @@ The [pre-commit](https://sentenz.github.io/backup-service/website/git-scm.com/do
 
 Hook is invoked by `git-commit`.
 
-Useage:
+Usage:
 
 - Enforcing coding standards.
 
@@ -59,7 +59,7 @@ The [prepare-commit-msg](https://sentenz.github.io/backup-service/website/git-sc
 
 Hook is invoked by `git-commit`.
 
-Useage:
+Usage:
 
 - Editing the commit message.
 
@@ -74,7 +74,7 @@ The [commit-msg](https://sentenz.github.io/backup-service/website/git-scm.com/do
 
 Hook is invoked by `git-commit` and `git-merge`.
 
-Useage:
+Usage:
 
 - Enforce Conventional Commits to commit messages.
 
@@ -88,7 +88,7 @@ The [post-commit](https://sentenz.github.io/backup-service/website/git-scm.com/d
 
 Hook is invoked by `git-commit`.
 
-Useage:
+Usage:
 
 - Notification by email/app about a new commit.
 
@@ -98,7 +98,7 @@ The [pre-rebase](https://sentenz.github.io/backup-service/website/git-scm.com/do
 
 Hook is invoked by `git-rebase`.
 
-Useage:
+Usage:
 
 - Prevent a branch from getting rebased.
 
@@ -113,7 +113,7 @@ The [post-checkout](https://sentenz.github.io/backup-service/website/git-scm.com
 
 Hook is invoked by `git-checkout`, `git-switch` or `git-clone`.
 
-Useage:
+Usage:
 
 - Perform repository validity checks.
 - Enforce the creation of support branches from the major branches.
@@ -130,7 +130,7 @@ The [post-rewrite](https://sentenz.github.io/backup-service/website/git-scm.com/
 
 Hook is invoked by `git-commit` and `git-rebase`.
 
-Useage:
+Usage:
 
 - Receives a list of the rewritten commits on stdin.
 
@@ -144,7 +144,7 @@ The [post-merge](https://sentenz.github.io/backup-service/website/git-scm.com/do
 
 Hook is invoked by `git-merge`.
 
-Useage:
+Usage:
 
 - Use in conjunction with a corresponding pre-commit hook to save and restore any form of metadata associated with the working tree (e.g. permissions/ownership, ACL).
 
@@ -158,7 +158,7 @@ The [pre-push](https://sentenz.github.io/backup-service/website/git-scm.com/docs
 
 Hook is invoked by `git-push`.
 
-Useage:
+Usage:
 
 - Prevent a push.
 
@@ -191,7 +191,7 @@ The first script to run when handling a push from a client is [pre-receive](http
 
 Hook is invoked by `git-receive-pack`.
 
-Useage:
+Usage:
 
 - Push the code to production.
 
@@ -201,7 +201,7 @@ The [update](https://sentenz.github.io/backup-service/website/git-scm.com/docs/g
 
 Hook is invoked by `git-receive-pack`.
 
-Useage:
+Usage:
 
 - Enforce a `fast-forward only` policy.
 
@@ -217,7 +217,7 @@ The [post-receive](https://sentenz.github.io/backup-service/website/git-scm.com/
 
 Hook is invoked by `git-receive-pack`.
 
-Useage:
+Usage:
 
 - Push the code to production.
 

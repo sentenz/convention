@@ -1,5 +1,7 @@
 # DevOps
 
+DevOps is an assortment of practices that combines software development (Dev) and IT operations (Ops). The main goal is to reduce the development life cycle and provide continuous delivery with maximum software quality and software security.
+
 - [GitOps](#gitops)
 - [DevOps](#devops)
 - [DevSecOps](#devsecops)
@@ -7,17 +9,29 @@
 
 ## GitOps
 
-[GitOps](https://www.weave.works/blog/gitops-operations-by-pull-request) is a specific system operations process (ops) tied to a specific tool (Git). It is an evolution of Infrastructure as Code (IaC) and a DevOps best practice that uses Git as the single source of truth and control mechanism for building, updating, and deleting the system architecture. Weaveworks is credited with creating the term GitOps.
-
-GitOps is the practice of using Git pull requests to validate and automatically deploy changes to system infrastructure.
+[GitOps](https://www.weave.works/blog/gitops-operations-by-pull-request) is a specific system operations process (ops) tied to a specific tool (Git). Git is an evolution of Infrastructure as Code (IaC) and a DevOps best practice that uses Git as the single source of truth and control mechanism for building, updating, and deleting the infrastructure architecture. Weaveworks is credited with creating the term GitOps.
 
 Including principles and practices:
 
+- Pull Requests
+  > Code review and automatically deploy changes to system infrastructure.
+
 - [Branching Strategies](../about/branching-strategies.md)
+  > A branching strategy refers to the strategy that a software development team uses when writing, merging, and shipping code in the context of a version control system (VCS) such as Git.
+
 - [Merging Strategies](../about/merging-strategies.md)
+
 - [Conventional Commits](../convention/conventional-commits.md)
+  > A specification for adding human and machine readable meaning to commit messages.
+
 - [Semantic Versioning](../convention/semantic-versioning.md)
+  > Semantic versioning specification that contains a set of rules and requirements that dictate how version numbers are assigned and incremented.
+
 - [Changelog](../convention/changelog.md)
+  > A changelog is a file which contains a curated, chronologically ordered list of notable changes for each version of a project.
+
+- Auditing Complaince
+  > Software vendors conduct software compliance audits to verify adherence to the contracts and license terms they have concluded.
 
 ## DevOps
 
@@ -56,16 +70,19 @@ Including principles and practices:
 
 Including principles and practices:
 
-- Signing Git Commits and Tags
-  > Signing, or code signing specifically, is the process of using cryptography to digitally add a signature to data. The receiver of the data can verify that the signature is authentic, and therefore must've come from the signatory.
+- [Signing Contributions](../about/identity-management.md#signing-contributions)
+  > Signing commits and tags, or code signing specifically, is the process of using cryptography to digitally add a signature to data. The receiver of the data can verify that the signature is authentic, and therefore must've come from the signatory.
   >
   > Tool for authenticated encryption is GPG.
+
+- [Signing Container](../about/identity-management.md#signing-container)
+  > Docker Content Trust (DCT) allows docker image tags to be cryptographically signed. This allows users to verify the integrity and the publisher of docker.
 
 - Secrets Management
   > Secrets management refers to the tools and methods for managing digital authentication credentials (secrets), including passwords, keys, APIs, and tokens for use in applications, services, privileged accounts and other sensitive parts of the IT ecosystem.
   >
   > Tools for secrets management, encryption as a service, and privileged access management are Vault, and Darp.
-
+ 
 ## See also
 
 - Atlassian [devops](https://www.atlassian.com/devops/what-is-devops) article.

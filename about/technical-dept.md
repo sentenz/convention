@@ -43,7 +43,7 @@ Technical debt is any code that you've decided is a liability. Code debt can be 
 
 Design debt is closely linked to structuring features and adhering to design patterns or the architecture of your codebase.
 
-Use features by [Git hooks](githooks.md) to trigger actions at certain points of the development to enforce conventions, guidelines, standards, and policies:
+Use features by [Git hooks](git-hooks.md) to trigger actions at certain points of the development to enforce conventions, guidelines, standards, and policies:
 
 - pre-commit to enforce coding standards and codebase linting
 - commit-msg to enforce commit messages by [Conventional Commits](../convention/conventional-commits.md)

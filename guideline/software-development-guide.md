@@ -5,7 +5,7 @@ Software development involves the design, documentation, programming, testing, a
 - [Lifecycle](#lifecycle)
   - [Concept](#concept)
   - [Plan + Roadmap](#plan--roadmap)
-  - [Code, Test/Analysis, Review](#code-testanalysis-review)
+  - [Code, Analysis/Test, Review](#code-analysistest-review)
   - [Deploy, Release, Host](#deploy-release-host)
   - [Support, Operate, Maintain](#support-operate-maintain)
   - [Incident Management](#incident-management)
@@ -29,33 +29,44 @@ Steps in the software development lifecycle.
 
 Projects are envisioned, designed, and prioritized.
 
-- A methodology such as [Agile](../about/agile.md) helps to guide the work process for the project. Practices like DevOps guide practices during development and operations.
+- [Agile](../about/agile.md)
+  > A methodology such as agile guides the work process for the project. Practices like DevOps guide practices during development and operations.
 
-- Concept models are a fundamental part of the architectural design and development process using [Architecture Modeling Concepts](../about/architecture-modeling-concepts.md) to provide a quick and effective method to create diagrams for testing ideas and investigating constraints.
+- [Architecture Modeling Concepts](../about/architecture-modeling-concepts.md)
+  > Concept models are a fundamental part of the architectural design and development process using Architecture Modeling Concepts to provide a quick and effective method to create diagrams for testing ideas and investigating constraints.
 
 ### Plan + Roadmap
 
 Stakeholders are identified, budgets set, and infrastructure requisitioned. Design documents from the concept phase are broken down into actionable tasks.
 
-- [Architecture Decision Records (ADR)](../about/architecture-decision-records.md) captures the key options available, the main requirements that drive a decision, and the design decisions themselves.
+- [Architecture Decision Records](../about/architecture-decision-records.md)
+  > Architecture Decision Records (ADR) captures the key options available, the main requirements that drive a decision, and the design decisions themselves.
 
-### Code, Test/Analysis, Review
+### Code, Analysis/Test, Review
 
 Development teams work to build production-ready software that meets requirements and feedback. CI/CD pipelines ensure an efficient developer experience. A reliable system is resilient to failures and meets its documented service level objectives, which may also include security guarantees.
 
-- [Coding](../about/coding-guide.md) with software development patterns that should be applied during the implementation of a project to avoid bugs.
+- [Coding](../about/coding-guide.md)
+  > Coding with software development patterns that should be applied during the implementation of a project to avoid bugs.
 
-- Robust [Software Testing](../about/software-testing.md) and [Code Analysis](../about/code-analysis.md) are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
+- [Code Analysis](../about/code-analysis.md) and [Software Testing](../about/software-testing.md)
+  > Robust code analysis and software testing are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
 
-- Collaborative [Code Review](../about/code-review-guide.md) and CI/CD pipelines that plug into the code review process.
+- [Continuous Integration / Continuous Delivery](../about/ci-cd.md) pipelines
+  > Continuous Integration / Continuous Delivery CI/CD provides continuous automation and monitoring across all phases of the release process.
+
+- [Pull Request](../about/pull-request-reviews.md) and [Code Review](../about/code-review-guide.md)
+  > Collaborative code review and pull requests that plug into the code review process.
 
 ### Deploy, Release, Host
 
 After the code is approved and merged, it's time to deliver it.
 
-- [Deployment Strategies](../about/deployment-strategies.md) for Continuous Delivery (CD) define how you want to deliver, change or upgrade a running instance of an application.
+- [Deployment Strategies](../about/deployment-strategies.md) and [Continuous Deployment](../about/ci-cd.md)
+  > Deployment strategies define for continuous deployment (CD) how a running instance of an application should be deployed, modified, or updated.
 
-- The live production code will need a place to live. Consider using cloud hosting provided by Amazon AWS, Google Cloud Platform, or Microsoft Azure.
+- [Production Environment](../about/software-environments.md)
+  > The live production code will need a place to live. Consider using cloud hosting provided by Amazon AWS, Google Cloud Platform, or Microsoft Azure.
 
 ### Support, Operate, Maintain
 
@@ -85,15 +96,11 @@ Key features of effective software development.
 
 ### DevOps/DevSecOps
 
-[DevOps/DevSecOps](../about/devops.md) is a set of practices, tools, and a cultural philosophy that automate and integrate the processes between software development and IT teams. It emphasizes team empowerment, cross-team communication and collaboration, and technology automation.
+[DevOps/DevSecOps](../about/devops.md) is a set of principles and practices, tools, and a cultural philosophy that automate and integrate the processes of software development (Dev), security (Sec), and IT operation (Ops). It focuses team empowerment, cross-team communication and collaboration, and technology automation.
 
 ### CI/CD
 
-Continuous Integration/Continuous Deployment [CI/CD](../about/ci-cd.md) describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, testing, integration, delivery, validation and phased deployment activities before operation in a target environment.
-
-- CI is the practice of automating the integration of code changes into a software project. It allows developers to frequently merge code changes into a central repository where builds and tests are executed.
-
-- CD expands upon continuous integration by automatically deploying code changes to a testing/production environment. It follows a continuous delivery pipeline, where automated builds, tests, and deployments are orchestrated as one release workflow.
+Continuous Integration/Continuous Deployment [CI/CD](../about/ci-cd.md) describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a target/production environment.
 
 ### Software Architecture
 

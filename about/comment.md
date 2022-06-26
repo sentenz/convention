@@ -12,13 +12,13 @@ Tags differ, but might include:
   > A known bug that should be corrected.
 
 - FIXME
-  > Should be corrected.
+  > Should be corrected. Typically intended to be short-lived.
+
+- TODO
+  > Something to be done. Typically intended to be short-lived.
 
 - HACK
   > A workaround.
-
-- TODO
-  > Something to be done.
 
 - NOTE
   > Used to highlight especially notable gotchas.

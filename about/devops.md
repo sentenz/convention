@@ -1,6 +1,6 @@
 # DevOps
 
-DevOps is an assortment of practices that combines software development (Dev) and IT operations (Ops). The main goal is to reduce the development life cycle and provide continuous delivery with maximum software quality and software security.
+The combination of software development (Dev) and IT operations (Ops) consists of a set of principles aimed at shortening the development cycle and ensuring continuous delivery with maximum software quality and security.
 
 - [GitOps](#gitops)
 - [DevOps](#devops)
@@ -44,22 +44,10 @@ Including principles and practices:
   >
   > Tools like Confluence and Jira help DevOps teams achieve a seamless and efficient project management cycle and ensure timely product delivery.
 
-- [Continuous Integration](../about/ci-ct-cd.md)
-  > Continuous Integration (CI) is a DevOps practice in which developers frequently merge their code changes to the central repository. Then, the code is built automatically and automated tests are run against the built code. [Docker](https://www.docker.com/) containerization ensures consistency across multiple development and release cycles and provides repeatable development, build, test, and production environments.
-  >
-  > Popular tools for this phase include Kubernetes, Terraform, Chef, Ansible, and Puppet.
+- [CI/CD](../about/ci-cd.md)
+  > Automate agile software development workflow. Using a continuous and iterative process to build, test, and deploy helps avoid bugs and code failures.
 
-- [Continuous Delivery](../about/ci-ct-cd.md)
-  > In Continuous Delivery (CD), merged code changes are automatically built and deployed to a testing environment. Then, automated tests are executed against the deployed code to identify any bugs and allow the developers to fix them in advance. Typically, the code is deployed to different testing environments progressively, where the code achieves a higher level of quality through a standard automated testing procedure before deploying to the production. Continuous Delivery ensures that the team always has a development-ready code.
-  >
-  > Selenium, Travis, and Appium are some popular continuous testing tools in the IT industry.
-
-- [Continuous Testing](../about/ci-ct-cd.md)
-  > The Continuous Testing (CT) practice helps to identify potential risks as early as possible in all stages of the development lifecycle to minimize the impact on end-users. For instance, when the code is deployed to build servers, automated unit tests will run to identify any bugs in the code. If the unit tests are failed, the build will be rejected and the feedback is sent to the developer to revise the code. Thus, the code will be deployed to the QA environment for functional testing only if the build passes the unit tests.
-  >
-  > Tools such as [Jenkins](https://jenkins.io/), CircleCI, GitHub Action, and GitLab CI.
-
-- [Monitoring and Logging](../about/logging-monitoring.md)
+- [Logging and Monitoring](../about/logging-monitoring.md)
   > Software in production must be monitored to ensure stable performance and increased customer satisfaction. This stage also involves performance analysis and logging, raising smart alerts on various issues, gathering customer feedback
   >
   > Tools for performing these tasks include Prometheus, Grafana, Elastic (ELK) Stack, Splunk, and Sumo Logic.
@@ -71,12 +59,12 @@ Including principles and practices:
 Including principles and practices:
 
 - [Signing Contributions](../about/identity-management.md#signing-contributions)
-  > Signing commits and tags, or code signing specifically, is the process of using cryptography to digitally add a signature to data. The receiver of the data can verify that the signature is authentic, and therefore must've come from the signatory.
+  > Signing commits and tags, or code signing specifically, is the [Identity Management](../about/identity-management.md) process of using cryptography to digitally add a signature to data. The receiver of the data can verify that the signature is authentic, and therefore must've come from the signatory.
   >
   > Tool for authenticated encryption is GPG.
 
 - [Signing Container](../about/identity-management.md#signing-container)
-  > Docker Content Trust (DCT) allows docker image tags to be cryptographically signed. This allows users to verify the integrity and the publisher of docker.
+  > Docker Content Trust (DCT) allows docker image tags to be cryptographically signed. This [Identity Management](../about/identity-management.md) process allows users to verify the integrity and the publisher of docker.
 
 - Secrets Management
   > Secrets management refers to the tools and methods for managing digital authentication credentials (secrets), including passwords, keys, APIs, and tokens for use in applications, services, privileged accounts and other sensitive parts of the IT ecosystem.

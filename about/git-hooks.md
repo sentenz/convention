@@ -1,4 +1,4 @@
-# Githooks
+# Git Hooks
 
 [Hooks](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks) are built-in features used by Git to trigger actions at certain points in git command.
 

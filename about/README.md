@@ -9,6 +9,7 @@ Best practices, articles of interest and general topics.
 - [Architecture Modeling Concepts](architecture-modeling-concepts.md)
 - [Branching Strategies](branching-strategies.md)
 - [Build Systems](build-sytems.md)
+- [CI/CD](ci-cd.md)
 - [Code Analysis](code-analysis.md)
 - [Comment](comment.md)
 - [CRLF vs LF](crlf-vs-lf.md)

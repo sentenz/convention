@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/sentenz/guide/compare/v1.6.0...v1.7.0) (2022-06-26)
+
+
+### Features
+
+* **about:** create an article about `ci/cd` ([#55](https://github.com/sentenz/guide/issues/55)) ([fd962f2](https://github.com/sentenz/guide/commit/fd962f2249d67efcc28e71fb5d06a73be9ebc097)), closes [#30](https://github.com/sentenz/guide/issues/30)
+
 # [1.6.0](https://github.com/sentenz/guide/compare/v1.5.0...v1.6.0) (2022-06-26)
 
 

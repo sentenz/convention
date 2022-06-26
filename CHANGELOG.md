@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/sentenz/guide/compare/v1.5.0...v1.6.0) (2022-06-26)
+
+
+### Features
+
+* **about:** create an article about `software development environment` ([#52](https://github.com/sentenz/guide/issues/52)) ([bdf52be](https://github.com/sentenz/guide/commit/bdf52be9efefdf972f2867187fb9521abdce3794)), closes [#48](https://github.com/sentenz/guide/issues/48)
+
 # [1.5.0](https://github.com/sentenz/guide/compare/v1.4.1...v1.5.0) (2022-04-21)
 
 

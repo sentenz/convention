@@ -1,6 +1,6 @@
 {
   "workbench.colorTheme": "Default Dark+",
-  "window.zoomLevel": -2,
+  "window.zoomLevel": -1,
   "files.eol": "\n",
   "files.watcherExclude": {
     "**/.git/objects/**": true,

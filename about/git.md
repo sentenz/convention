@@ -1,9 +1,31 @@
 # Git // TODO
 
-- [Useful Commands](#useful-commands)
+- [Git Commands](#git-commands)
 - [See also](#see-also)
 
-## Useful Commands
+## Git Commands
+
+- Commit Hash for DevOps
+
+  Receive the currentcommit with the following built-in commands:
+
+  ```bash
+  git rev-parse HEAD
+  ```
+
+  Add the commit hash to an application:
+
+  ```bash
+  gcc main.c -o main -DGIT_COMMIT_HASH="$(git rev-parse HEAD)"
+  ```
+
+- List Contributors
+
+  Rank all contributors locally based on their commits count with the following built-in commands:
+
+  ```bash
+  git shortlog -sn
+  ```
 
 - Normalizing Line Endings
 
@@ -96,11 +118,11 @@
 
 - Prune
 
-Remove deleted and merged remote branches.
+  Remove deleted and merged remote branches.
 
-```bash
-git fetch --prune
-```
+  ```bash
+  git fetch --prune
+  ```
 
 - Ignore
 

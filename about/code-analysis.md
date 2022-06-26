@@ -1,27 +1,27 @@
 # Code Analysis
 
-Code analysis allows users to carry out a number of useful actions for performance profiling, checking for security-related correctness, code coverage reporting, and dead code elimination.
+Code analysis, generally SAST and DAST, refers to performance profiling measures, safety-related correctness testing, code coverage reporting, code quality testing, syntax style review tools, or dead code elimination.
 
-- [Static Analysis](#static-analysis)
-  - [Linters](#linters)
-- [Dynamic Analysis](#dynamic-analysis)
+- [SAST](#sast)
+  - [Linter](#linter)
+- [DAST](#dast)
   - [Sanitizer](#sanitizer)
     - [Valgrind](#valgrind)
     - [Google Sanitizers](#google-sanitizers)
   - [Other Tools](#other-tools)
 - [See also](#see-also)
 
-## Static Analysis
+## SAST
 
-Static analysis is a means of analyzing and  understanding computer programs by inspecting their source code without executing or running them. Static analyzers parse the source code and build an internal representation of the program that’s suitable for automated analysis. This approach can discover potential bugs in source code, preferably before the code is checked in or deployed in production. Numerous tools are available for various languages, as well as tools for cross-language analyses. Linters enforce style and format checks in order to maintain a cohesive codebase across developer teams.
+Static Application Security Testing (SAST) or Static Code Analysis, is a testing methodology that analyzes source code to find security vulnerabilities that make applications susceptible to attack. SAST scans an application before the code is compiled. It’s also known as white box testing.
 
-### Linters
+### Linter
 
 Automated code inspection tools perform a syntactic analysis of source code with respect to language features and usage rules. These tools, commonly referred to as linters, generally don’t model complex program behaviors like interprocedural data flow. Linters perform relatively shallow analysis, the tools scale easily to arbitrary code sizes, they can often complete their source code analysis in about the same amount of time it takes to compile the code. Code inspection tools are also extensible, and can add new rules that cover many types of bugs, especially bugs related to language features.
 
-## Dynamic Analysis
+## DAST
 
-Dynamic program analysis analyzes software by running programs, potentially in virtualized or emulated environments, for purposes beyond just testing.
+Dynamic Application Security Testing (DAST) or Dynamic Code Analysis is a method of testing that examines an application while it’s running, without knowledge of the application’s internal interactions or designs at the system level, and with no access or visibility into the source program. This “black box” testing looks at an application from the outside in, examines its running state, and observes its responses to simulated attacks made by the tool. An application’s responses to these simulations help determine whether the application is vulnerable and could be susceptible to a real malicious attack.
 
 Dynamic analysis approaches that rely on compiler support to detect memory-related errors are often called instrumentation. Compilers and dynamic program analysis tools let you configure instrumentation to collect runtime statistics on the binaries that the compilers produce, such as performance profiling information, code coverage information, and profilebased optimizations. The compiler inserts additional instructions and callbacks to a backend runtime library that surfaces and collects the relevant information when the binary is executed.
 
@@ -78,6 +78,8 @@ Following popular sanitizers:
 
 ## See also
 
+- Synopsys [SAST](https://www.synopsys.com/glossary/what-is-sast.html) article.
+- Synopsys [DAST](https://www.synopsys.com/glossary/what-is-dast.html) article.
 - Google [dynamic analysis](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=313&zoom=100,0,600) book.
 - Google [static analysis](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=326&zoom=100,0,600) book.
 - Google [sanitize](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=303&zoom=100,0,530) book.

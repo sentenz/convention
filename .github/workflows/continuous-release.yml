@@ -1,25 +1,19 @@
 ---
-# https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
-
-name: ci-release-codebase
+name: Continuous Release
 
 on:
   push:
-    branches:
-      - main
-      - "feature/**"
-  pull_request:
     branches:
       - main
 
 jobs:
   release:
     if: ${{ always() }}
-    name: release
+    name: continuous-release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Codebase
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v2

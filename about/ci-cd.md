@@ -7,6 +7,7 @@ Continuous Integration/Continuous Delivery or Continuous Deployment (CI/CD) desc
 - [Continuous Deployment](#continuous-deployment)
 - [Continuous Testing](#continuous-testing)
   - [Test Driven Development](#test-driven-development)
+- [Continuous Release](#continuous-release)
 - [Continuous Security](#continuous-security)
 - [Continuous Monitoring](#continuous-monitoring)
 - [Continuous Feedback](#continuous-feedback)
@@ -53,6 +54,18 @@ Popular tools for the continuous testing are Selenium, Travis, and Appium.
 However, if a project is set up with a CI pipeline with automatic test coverage, it is a best practice to constantly evolve and improve the test coverage. Each new feature that passes through the CI pipeline should be accompanied by a series of tests to ensure that the new code behaves as expected.
 
 [Test Driven Development (TDD)](../about/software-testing.md#test-driven-development) is the practice of writing out the test code and test cases before doing any actual feature coding. Pure TDD can closely involve the product team to help craft an expected business behavior specification, which can then be transformed into the test cases. In a pure TDD scenario, developers and product team will meet and discuss a spec or list of requirements. This list of requirements will then be converted into a checklist of code assertions. The developers will then write code that matches these assertions.
+
+## Continuous Release
+
+Continuous Release automates the package release workflow, including determining the next version number, creating the release notes and generating the changelog based on commits, and publishing the package.
+
+Popular [tools](../guideline/versioning-guide.md#tooling) for the continuous release are semantic-release, standard-version, and Conventional Changelog.
+
+Related items:
+
+- [Conventional Commits](../convention/conventional-commits.md)
+- [Semantic Versioning](../convention/semantic-versioning.md)
+- [Changelog](../convention/changelog.md)
 
 ## Continuous Security
 

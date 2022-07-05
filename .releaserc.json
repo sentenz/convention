@@ -3,6 +3,10 @@
     "main"
   ],
   "plugins": [
+    "@semantic-release/changelog",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/git",
+    "@semantic-release/github",
     [
       "@semantic-release/commit-analyzer",
       {
@@ -11,15 +15,11 @@
         ]
       }
     ],
-    "@semantic-release/release-notes-generator",
     [
-      "@semantic-release/npm",
+      "@semantic-release/exec",
       {
-        "npmPublish": false
+        "publishCmd": "git tag ${nextRelease.version}"
       }
-    ],
-    "@semantic-release/changelog",
-    "@semantic-release/git",
-    "@semantic-release/github"
+    ]
   ]
 }

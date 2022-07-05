@@ -15,18 +15,12 @@ jobs:
       - name: Checkout Codebase
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12
-          cache: npm
-
-      - name: Install NPM
+      - name: Setup Release
         run: |
-          npm ci --ignore-scripts
+          make setup/continuous-release
 
       - name: Release Codebase
         run: |
-          npx semantic-release
+          make run/continuous-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

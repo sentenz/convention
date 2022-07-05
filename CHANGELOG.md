@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/sentenz/guide/compare/v1.7.0...v1.8.0) (2022-07-05)
+
+
+### Features
+
+* create a `continuous release` pipeline ([#59](https://github.com/sentenz/guide/issues/59)) ([59f0810](https://github.com/sentenz/guide/commit/59f0810ba310bd40545bee9c95bbd4e1f273aab5)), closes [#58](https://github.com/sentenz/guide/issues/58)
+
 # [1.7.0](https://github.com/sentenz/guide/compare/v1.6.0...v1.7.0) (2022-06-26)
 
 

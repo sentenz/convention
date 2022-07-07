@@ -2,19 +2,20 @@
 
 *This specification is inspired by [Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) and follows the [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html).*
 
-- [Commit Message Guideline](#commit-message-guideline)
+- [Commit Message](#commit-message)
   - [Header](#header)
     - [Type](#type)
     - [Scope](#scope)
     - [Summary](#summary)
   - [Body](#body)
   - [Footer](#footer)
-- [Commit Message Update](#commit-message-update)
-- [Commit Message Linter](#commit-message-linter)
+- [Merge Commit Message](#merge-commit-message)
+- [Update a Commit Message](#update-a-commit-message)
+- [Lint a Commit Message](#lint-a-commit-message)
 
-## Commit Message Guideline
+## Commit Message
 
-A commit message consists of a **header**, a **body**, and a **footer**.
+A commit message consists of a `header`, a `body`, and a `footer`.
 
 ```txt
 <header>
@@ -24,24 +25,16 @@ A commit message consists of a **header**, a **body**, and a **footer**.
 <footer>
 ```
 
-The `header` is mandatory and must conform to the [Commit Message Header](#commit-message-header) format.
-
-The `body` is mandatory for all commits except for those of type "docs".
-When the body is present it must be at least 20 characters long and must conform to the [Commit Message Body](#commit-message-body) format.
-
-The `footer` is optional. The [Commit Message Footer](#commit-message-footer) format describes what the footer is used for and the structure it must have.
+The `header` is mandatory and must conform to the [Commit Message Header](#header) format. The `body` is mandatory for all commits except for those of type *docs*. When the body is present it must be at least 20 characters long and must conform to the [Commit Message Body](#body) format. The `footer` is optional. The [Commit Message Footer](#footer) format describes what the footer is used for and the structure it must have.
 
 Full example:
 
 ```txt
-feat(compiler): propagate standalone flag to runtime (#44973) 
+feat(compiler): propagate standalone flag to runtime
 
 This commit carries the `standalone` flag forward from a directive/pipe
 into its generated directive/pipe definition, allowing the runtime to
 recognize standalone entities.
-
-
-Closes #44973
 ```
 
 ### Header
@@ -92,6 +85,12 @@ A scope can be provided to a commit’s type, to provide additional contextual i
 feat(parser): allow provided config object to extend other configs
 ```
 
+or
+
+```txt
+refactor(internal): modify function to provide additional contextual information
+```
+
 #### Summary
 
 Provide in the summary field a succinct description of the change:
@@ -109,8 +108,6 @@ Explain the motivation for the change in the commit message body. This commit me
 ### Footer
 
 The footer can contain information about `breaking changes` and `deprecations` and is also the place to reference Azure stories, GitHub issues, Jira tickets, and other PRs that this commit closes or is related to.
-
-For example:
 
 ```txt
 BREAKING CHANGE: <breaking change summary>
@@ -138,33 +135,85 @@ Breaking change section should start with the phrase `BREAKING CHANGE:` followed
 
 Similarly, a Deprecation section should start with `DEPRECATED:` followed by a short description of what is deprecated, a blank line, and a detailed description of the deprecation that also mentions the recommended update path.
 
-## Commit Message Update
+For example:
 
-A reviewer might often suggest changes to a commit message (for example, to add more context for a change or adhere to our [Commit Message Guideline](#commit-message-guideline)).
+```txt
+feat: modify validation tooling (#6658)
 
-In order to update the commit message of the last commit on your branch:
+BREAKING CHANGE: bash analyzer scripts are deprecated
 
-1. Check out your branch:
+The bash analyzer scripts are replaced with the pre-commit tool.
 
-    ```shell
-    git checkout my-fix-branch
+
+Closes #5684
+```
+
+## Merge Commit Message
+
+Unlike the standard commit messages, a merge commit message consists of additional information about the related Azure stories, GitHub issues, Jira tickets, and other PRs that are closed with this merge commit.
+
+- header
+
+  A commit message to merge a pull request (PR) modifies the `header` with the associated PR number.
+
+  ```txt
+  <type>(<scope>): <short summary> (<pr number>)
+  ```
+
+  For example:
+
+  ```txt
+  feat(compiler): propagate standalone flag to runtime (#44973) 
+  ```
+
+- footer
+
+  The `footer` includes related work items like Azure stories, GitHub issues or Jira tickets.
+
+  For example:
+
+  ```txt
+  Closes #<issue number>
+  ```
+
+Full example:
+
+```txt
+feat(compiler): propagate standalone flag to runtime (#44973) 
+
+This commit carries the `standalone` flag forward from a directive/pipe
+into its generated directive/pipe definition, allowing the runtime to
+recognize standalone entities.
+
+Closes #43484
+```
+
+## Update a Commit Message
+
+A reviewer might often suggest changes to a commit message (e.g., to add more context to a change or to comply with the [commit message guideline](#commit-message-guideline)).
+
+In order to update the commit message of the last commit on the feature branch:
+
+1. Check out the feature branch:
+
+    ```bash
+    git checkout feature/7845-fix-opreation
     ```
 
 2. Amend the last commit and modify the commit message:
 
-    ```shell
+    ```bash
     git commit --amend
     ```
 
-3. Push to your repository:
+3. Push to repository:
 
-    ```shell
+    ```bash
     git push --force-with-lease
     ```
 
-> NOTE If you need to update the commit message of an earlier commit, you can use `git rebase` in interactive mode.
-> See the [git docs](https://git-scm.com/docs/git-rebase#_interactive_mode) for more details.
+> NOTE If a commit message of an earlier commit need to update, use `git rebase` in interactive mode. See the [git docs](https://git-scm.com/docs/git-rebase#_interactive_mode) for more details.
 
-## Commit Message Linter
+## Lint a Commit Message
 
 [commitlint](https://github.com/conventional-changelog/commitlint) tooling for conventional commits. Checks if the commit messages meet the [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html) format.

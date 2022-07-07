@@ -1,6 +1,8 @@
 # DevOps
 
-The combination of software development (Dev) and IT operations (Ops) consists of a set of principles aimed at shortening the development cycle and ensuring continuous delivery with maximum software quality and security.
+DevOps practices enable software developers (devs) and operations (ops) teams to accelerate delivery through automation, collaboration, fast feedback, and iterative improvement.
+
+
 
 - [GitOps](#gitops)
 - [DevOps](#devops)
@@ -35,7 +37,7 @@ Including principles and practices:
 
 ## DevOps
 
-[DevOps](https://www.bunnyshell.com/blog/what-is-devops) is an approach to culture, automation, operations, and tools that aims to produce applications and services at a high rate of deployment. Software development through faster, iterative IT service delivery and infrastructure management processes.
+[DevOps](https://www.bunnyshell.com/blog/what-is-devops) is an approach to culture, operations, tools, and automation that consists of a set of principles, best practices, and conventions aimed at producing applications and services at a high rate of deployment.
 
 Including principles and practices:
 

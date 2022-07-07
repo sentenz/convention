@@ -26,7 +26,6 @@ Best practices, articles of interest and general topics.
 - [Monorepo vs Polyrepo](monorepo-vs-polyrepo.md)
 - [OWASP](owasp.md)
 - [Package Managers](package-managers.md)
-- [Programming Language](programming-language.md)
 - [Project Layout](project-layout.md)
 - [Pull Request Reviews](pull-request-reviews.md)
 - [Serial Communication](serial-communication.md)

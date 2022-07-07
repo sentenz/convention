@@ -2,20 +2,17 @@
 
 - [Unit Testing](#unit-testing)
   - [GoogleTest](#googletest)
-    - [Assertions](#assertions)
-    - [Fixtures](#fixtures)
-    - [Setup](#setup)
   - [Boost.Test](#boosttest)
-    - [Fixtures](#fixtures-1)
-    - [Setup](#setup-1)
   - [Catch2](#catch2)
-    - [Setup](#setup-2)
   - [Doctest](#doctest)
-    - [Setup](#setup-3)
   - [pytest](#pytest)
+  - [go](#go)
 - [Code Coverage](#code-coverage)
-  - [C/C++](#cc)
-  - [Golang](#golang)
+  - [gcov](#gcov)
+  - [go](#go-1)
+- [Profiling](#profiling)
+  - [gprof](#gprof)
+  - [go](#go-2)
 - [See also](#see-also)
 
 ## Unit Testing
@@ -60,95 +57,6 @@ Test (TestGroupName, TestName)   {
 
 To learn more about Google Test, explore the [samples](https://github.com/google/googletest/blob/main/docs/samples.md) in the framework's repository. Also, take a look at [Advanced options](https://github.com/google/googletest/blob/main/docs/advanced.md#advanced-googletest-topics) for details of other noticeable Google Test features such as [value-parametrized tests](https://github.com/google/googletest/blob/main/docs/advanced.md#value-parameterized-tests) and [type-parameterized tests](https://github.com/google/googletest/blob/main/docs/advanced.md#type-parameterized-tests).
 
-#### Assertions
-
-In Google Test, the statements that check whether a condition is true are referred to as [assertions](https://github.com/google/googletest/blob/main/docs/primer.md#assertions). Non-fatal assertions have the `EXPECT_` prefix in their names, and assertions that cause fatal failure and abort the execution are named starting with `ASSERT_`. For example:
-
-```cpp
-TEST(SquareTest /*test suite name*/, PosZeroNeg /*test name*/) {
-  EXPECT_EQ(9.0, (3.0 * 2.0));   // fail, test continues
-  ASSERT_EQ(0.0, (0.0));         // success
-  ASSERT_EQ(9, (3) * (-3.0));    // fail, test interrupts
-  ASSERT_EQ(-9, (-3) * (-3.0));  // not executed due to the previous assert
-}
-```
-
-Also, Google Test supports [predicate assertions](https://github.com/google/googletest/blob/main/docs/advanced.md#predicate-assertions-for-better-error-messages) which makes output messages more informative. For example, instead of `EXPECT_EQ(a, b)` use a predicate function that checks `a` and `b` for equivalency and returns a boolean result. In `EXPECT_PRED2`, *predN* is a predicate function with N arguments. Google Test currently supports predicate assertions of arity up to 5. In case of failure, the assertion will print values of the function arguments:
-
-```cpp
-bool IsEq(int a, int b) {
-  if (a == b)
-    return true;
-  else
-    return false;
-}
-
-TEST(BasicChecks, TestEq) {
-  int a = 0;
-  int b = 1;
-  EXPECT_EQ(a, b);
-  EXPECT_PRED2(IsEq, a, b);
-}
-```
-
-```txt
-Failure
-    Value of: b
-    Actual: 1
-    Expected: a
-    Which is: 0
-
-Failure
-    IsEq(a, b) evaluates to false, where
-    a evaluates to 0
-    b evaluates to 1
-```
-
-#### Fixtures
-
-Google tests that share common objects or subroutines can be grouped into fixtures. Here is how a generalized fixture looks like:
-
-```cpp
-class myTestFixture: public ::testing::test {
-    public:
-         myTestFixture( ) {
-             // initialization;
-             // can also be done in SetUp()
-         }
-
-    void SetUp( ) {
-         // initialization or some code to run before each test
-    }
-
-    void TearDown( ) {
-         // code to run after each test;
-         // can be used instead of a destructor,
-         // but exceptions can be handled in this function only
-     }
-
-    ~myTestFixture( )  {
-         //resources cleanup, no exceptions allowed
-    }
-
-     // shared user data
-};
-```
-
-When used for a fixture, a `TEST()` macro should be replaced with `TEST_F()` to allow the test to access the fixture's members and functions:
-
-```cpp
-TEST_F( myTestFixture, TestName) {/*...*/}
-```
-
-#### Setup
-
-There are [several options](https://github.com/google/googletest/tree/main/googletest#incorporating-into-an-existing-cmake-project) to include Google Test in a CMake project:
-
-- Download the sources and copy them into the project structure.
-- Add `gtest` as a `git submodule` for the project.
-- Use CMake to download `gtest` as part of the build's configuration step.
-
-
 ### Boost.Test
 
 | Mock   | Fixture  | Fuzzing | Code Coverage | Build System |
@@ -159,34 +67,6 @@ There are [several options](https://github.com/google/googletest/tree/main/googl
 
 Boost.Test doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as [Hippomocks](https://github.com/dascandy/hippomocks), [FakeIt](https://github.com/eranpeer/FakeIt), or [Trompeloeil](https://github.com/rollbear/trompeloeil).
 
-#### Fixtures
-
-To write a fixture with Boost, you can use either a regular `BOOST_AUTO_TEST_CASE` macro written after a fixture class declaration or a special `BOOST_FIXTURE_TEST_CASE` macro:
-
-```cpp
-struct SampleF {
-  SampleF() : i(1) {}
-  ~SampleF() {}
-  int i;
-};
-
-BOOST_FIXTURE_TEST_CASE(SampleF_test, SampleF) {
-  // accessing i from SampleF directly
-  BOOST_CHECK_EQUAL(i, 1);
-  BOOST_CHECK_EQUAL(i, 2);
-  BOOST_CHECK_EQUAL(i, 3);
-}
-```
-
-#### Setup
-
-Choose between three [usage variants](https://www.boost.org/doc/libs/1_71_0/libs/test/doc/html/boost_test/usage_variants.html) for the framework:
-
-- header-only
-- static library
-- shared library
-
-When picking the most suitable option, keep in mind that Boost.Test used as header-only might require significant compilation time. Find an example of the [shared library usage variant](https://www.boost.org/doc/libs/1_71_0/libs/test/doc/html/boost_test/usage_variants.html#boost_test.usage_variants.shared_lib).
 
 ### Catch2
 
@@ -198,10 +78,6 @@ When picking the most suitable option, keep in mind that Boost.Test used as head
 
 Catch2 doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as [Hippomocks](https://github.com/dascandy/hippomocks), [FakeIt](https://github.com/eranpeer/FakeIt), or [Trompeloeil](https://github.com/rollbear/trompeloeil).
 
-#### Setup
-
-To start using Catch2, download the `catch.hpp` header using the link from the documentation and copy it into the project tree.
-
 ### Doctest
 
 | Mock   | Fixture  | Fuzzing | Code Coverage | Build System |
@@ -212,10 +88,6 @@ To start using Catch2, download the `catch.hpp` header using the link from the d
 
 Doctest doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as [Hippomocks](https://github.com/dascandy/hippomocks), [FakeIt](https://github.com/eranpeer/FakeIt), or [Trompeloeil](https://github.com/rollbear/trompeloeil).
 
-#### Setup
-
-To start using Doctest, download the latest version of [doctest.h](https://raw.githubusercontent.com/onqtam/doctest/master/doctest/doctest.h) and copy it into the project tree.
-
 ### pytest
 
 | Mock        | Fixture         | Fuzzing         | Code Coverage | Build System |
@@ -224,15 +96,15 @@ To start using Doctest, download the latest version of [doctest.h](https://raw.g
 
 [pytest](https://github.com/pytest-dev/pytest/) unit testing frameworks for Python. The pytest framework allows to write small, readable tests, and can be scaled to support complex functional tests for applications and libraries.
 
+### go
+
 ## Code Coverage
 
 In computer science, test coverage is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run. A program with high test coverage has more of its source code executed during testing, which suggests it has a lower chance of containing undetected software bugs compared to a program with low test coverage. Many different metrics can be used to calculate test coverage. Some of the most basic are the percentage of program subroutines and the percentage of program statements called during execution of the test suite.
 
-### C/C++
+### gcov
 
-```bash
-gcov
-```
+[Gcov](https://en.wikipedia.org/wiki/Gcov) is a source code coverage analysis and statement-by-statement profiling tool. Gcov generates exact counts of the number of times each statement in a program is executed and annotates source code to add instrumentation. Gcov comes as a standard utility with the GNU Compiler Collection (GCC) suite. The gcov utility gives information on how often a program executes segments of code. It produces a copy of the source file, annotated with execution frequencies.
 
 When passing the coverage flags manually, one of the following options can be used, depending on which compiler and coverage tools is preferred:
 
@@ -247,11 +119,17 @@ When passing the coverage flags manually, one of the following options can be us
 - CMake
   > Provide the flags by setting the `CMAKE_CXX_FLAGS` variable (`CMAKE_C_FLAGS` for C projects) or using other alternatives like the `add_compile_options` command. On linker errors while building the project with gcov compiler flags, try passing the same flags to the linker through `add_link_options` or `set(CMAKE_EXE_LINKER_FLAGS "")`.
 
-### Golang
+### go
 
 ```bash
 go test -race -coverprofile=coverage.out -covermode=atomic ./...
 ```
+
+## Profiling
+
+### gprof
+
+### go
 
 ## See also
 

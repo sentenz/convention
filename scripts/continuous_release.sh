@@ -21,12 +21,12 @@ readonly -a NPM_PACKAGES=(
   @semantic-release/error
   @semantic-release/exec
   @semantic-release/github
+  @semantic-release/commit-analyzer
+  @semantic-release/release-notes-generator
 
   # Default plugins
   #@semantic-release/npm
   #semantic-release-ado
-  #6@semantic-release/release-notes-generator
-  #@semantic-release/commit-analyzer
 )
 
 # Internal functions

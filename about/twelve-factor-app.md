@@ -60,7 +60,7 @@ The twelve factors:
 10. Dev/Prod Parity
     > Prescribes to keep development, staging and production as similar as possible.
     >
-    > - Using CI/CD, a merge with a major branch is automatically deployed in the development, staging and production environment.
+    > - Using CI/CD, a merge with a base branch is automatically deployed in the development, staging and production environment.
     > - Docker containers ensure that the environments stay the same for local, development, staging and production environments.
 
 11. Logs

@@ -9,17 +9,17 @@
 
 [Git Flow](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html) is a lightweight, branch-based workflow.
 
-The repository contains two major branches with an infinite lifetime:
+The repository contains two base branches with an infinite lifetime:
 
 - `main` and `develop`.
 
-Next to the major branches there are supporting branches with limited life time:
+Next to the base branches there are supporting branches with limited life time:
 
 - `feature`, `release` and `fix`.
 
 The strategy contains the following rules:
 
-1. There are only two major branches, called *main* and *develop*.
+1. There are only two base branches, called *main* and *develop*.
    - Direct push to *main* and *develop* branches is forbidden.
 
 2. *feature* branches are created from and merged back into *develop* branches.
@@ -50,17 +50,17 @@ The strategy contains the following rules:
 
 [Scaled Trunk-Based Development](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/index.html#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
 
-The repository contains one major branch with an infinite lifetime:
+The repository contains one base branch with an infinite lifetime:
 
 - `trunk` or `main`.
 
-Next to the major branches there are supporting branches with limited life time:
+Next to the base branches there are supporting branches with limited life time:
 
 - `feature` and `release`.
 
 The strategy contains the following rules:
 
-1. There is only one major branch, called *main*.
+1. There is only one base branch, called *main*.
    - Direct push to *main* branch is forbidden.
    - All development happens on the *main* branch.
    - Pull requests (PR) of short-living *feature* branches still exist.

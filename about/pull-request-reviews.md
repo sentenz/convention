@@ -6,7 +6,7 @@ In version management, a pull request or merge request refers to a (web-based) w
   > Create a pull request draft and add a reviewer in the early stages of feature development.
 
 - Pull Request by Feature Flags
-  > Add a feature to the major branch using feature flags.
+  > Add a feature to the base branch using feature flags.
 
 - Random Pull Request Reviews
   > Add a reviewer at random. This creates an optimal distribution for the exchange of knowledge, experience and opinions.

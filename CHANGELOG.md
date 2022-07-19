@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/sentenz/guide/compare/v1.9.0...v1.10.0) (2022-07-19)
+
+
+### Features
+
+* **convention:** create a convention of `material design` ([#68](https://github.com/sentenz/guide/issues/68)) ([76f72bf](https://github.com/sentenz/guide/commit/76f72bfe34f3135fdb31ad7f1ff4b636a7ecff47)), closes [#64](https://github.com/sentenz/guide/issues/64)
+
 # [1.9.0](https://github.com/sentenz/guide/compare/v1.8.0...v1.9.0) (2022-07-19)
 
 

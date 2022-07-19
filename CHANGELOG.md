@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/sentenz/guide/compare/v1.8.0...v1.9.0) (2022-07-19)
+
+
+### Features
+
+* **convention:** create a convention of `makefile conventions` ([#67](https://github.com/sentenz/guide/issues/67)) ([6f61feb](https://github.com/sentenz/guide/commit/6f61febd9d4568231915a5c87909c0a73ffd2757)), closes [#66](https://github.com/sentenz/guide/issues/66)
+
 # [1.8.0](https://github.com/sentenz/guide/compare/v1.7.0...v1.8.0) (2022-07-05)
 
 

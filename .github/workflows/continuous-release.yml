@@ -17,10 +17,10 @@ jobs:
 
       - name: Setup Release
         run: |
-          make setup/continuous-release
+          make install-continuous-release
 
       - name: Release Codebase
         run: |
-          make run/continuous-release
+          make run-continuous-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

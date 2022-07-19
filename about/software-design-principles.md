@@ -6,6 +6,7 @@ Software design principles are a set of guidelines that help developers create a
 - [DRY](#dry)
 - [KISS](#kiss)
 - [YAGNI](#yagni)
+- [POLP](#polp)
 
 ## SOLID
 
@@ -60,3 +61,7 @@ KISS (Keep It Short and Simple) - This principle states that try to keep each sm
 ## YAGNI
 
 YAGNI (You Ain't Gonna Need It) - This principle states that always implement things when you actually need them never implements things before you need them.
+
+## POLP
+
+POLP (Principle Of Least Privilege) - A concept of computer security that limits access rights to what is absolutely necessary to perform tasks. Users or processes are given permission only to read, write, or execute files or resources that are necessary to perform tasks.

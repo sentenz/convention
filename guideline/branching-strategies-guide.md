@@ -7,7 +7,7 @@
 
 ## Git Flow
 
-[Git Flow](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html) is a lightweight, branch-based workflow.
+[Git Flow](../about/branching-strategies.md#git-flow) is a lightweight, branch-based workflow.
 
 The repository contains two base branches with an infinite lifetime:
 
@@ -48,7 +48,7 @@ The strategy contains the following rules:
 
 ## Scaled Trunk-Based Development
 
-[Scaled Trunk-Based Development](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/index.html#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
+[Scaled Trunk-Based Development](../about/branching-strategies.md#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
 
 The repository contains one base branch with an infinite lifetime:
 

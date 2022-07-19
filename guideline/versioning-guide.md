@@ -12,7 +12,7 @@
 
 ## Semantic Versioning
 
-To create a version tag follow the [semantic versioning](https://sentenz.github.io/backup-service/website/semver.org/index.html). SemVer is a system that helps to keep track of versioning projects.
+To create a version tag follow the [semantic versioning](../convention/semantic-versioning.md). SemVer is a system that helps to keep track of versioning projects.
 
 ### Release
 

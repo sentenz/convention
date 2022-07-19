@@ -17,7 +17,7 @@ A branching strategy defines how a team uses branching to achieve this level of 
 
 The strategy of Git flow is to isolate the work into different types of branches. The two primary branches in Git flow are `main` and `develop`. There are three types of supporting branches with different intended purposes: `feature`, `release`, and `hotfix`.
 
-[The major branches](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#the-main-branches):
+[The base branches](https://sentenz.github.io/backup-service/website/nvie.com/posts/a-successful-git-branching-model/index.html#the-main-branches):
 
 - _main_
   > Consider main to be the branch where the source code of `HEAD` always reflects a _production-ready_ state.
@@ -42,7 +42,7 @@ The strategy of Git flow is to isolate the work into different types of branches
 
 In GitHub flow, the `main` branch contains your production-ready code. The other branches, `feature` branches, should contain work on new features and bug fixes and will be merged back into the main branch when the work is finished and properly reviewed.
 
-The major branch:
+The base branch:
 
 - main
 
@@ -58,7 +58,7 @@ Supporting branch:
 
 [Trunk-Based Development](https://trunkbaseddevelopment.com/) is a source-control branching model, where developers collaborate on code in a single branch called `trunk` (main in Git nomenclature), resist any pressure to create other long-lived development branches by employing documented techniques. They therefore avoid merge conflicts, do not break the build.
 
-The major branch:
+The base branch:
 
 - _trunk_
   > Consider trunk to be the branch where the source code of `HEAD` always contains the latest version.
@@ -67,7 +67,7 @@ The major branch:
 
 [Scaled Trunk-Based Development](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/index.html#scaled-trunk-based-development) is done with short-lived `feature` branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review and automation (CI/CD) before integrating (merging) into the `trunk` (main in Git nomenclature) branch.
 
-The major branch:
+The base branch:
 
 - _trunk_
   > Consider trunk to be the branch where the source code of `HEAD` always contains the latest version.

@@ -116,7 +116,7 @@ Hook is invoked by `git-checkout`, `git-switch` or `git-clone`.
 Usage:
 
 - Perform repository validity checks.
-- Enforce the creation of support branches from the major branches.
+- Enforce the creation of support branches from the base branches.
 
 Parameters:
 

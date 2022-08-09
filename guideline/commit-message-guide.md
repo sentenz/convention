@@ -101,7 +101,7 @@ Provide in the summary field a succinct description of the change:
 
 ### Body
 
-As in the summary, use the imperative, present tense: `fix` not `fixed` nor `fixes`.
+As in the [summary](#summary), use the imperative, present tense: `fix` not `fixed` nor `fixes`.
 
 Explain the motivation for the change in the commit message body. This commit message should explain *why* you are making the change. Include a comparison of the previous behavior with the new behavior in order to illustrate the impact of the change.
 

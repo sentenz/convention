@@ -24,9 +24,9 @@ The twelve factors:
    > - Isolate secrets in a secrets management tool like Hashicorp [Vault](https://github.com/hashicorp/vault).
    > - [Dapr](https://github.com/dapr/dapr) offers a [secrets management building block](https://docs.dapr.io/developing-applications/building-blocks/secrets/secrets-overview/) abstracts away the complexity of working with secrets and secret management tools.
    >
-   > `Warning`
    >
-   > - Never load sensitive variables such as secrets from environment variables, but use secret manager instead. Environment variables, especially global ones, may be dumped. Try to avoid environment variables in general, use the `.env` file instead.
+   >
+   > NOTE Never load sensitive variables such as secrets from environment variables, but use secret manager instead. Environment variables, especially global ones, may be dumped. Try to avoid environment variables in general, use the `.env` file instead.
 
 4. Backing Services
    > Prescribes that external dependencies accessing data storage (such as MySQL or PostgreSQL), messaging/queuing systems (such as RabbitMQ), SMTP services for outgoing email (such as Postfix), and caching systems (such as Memcached) should be specified in the application configuration.

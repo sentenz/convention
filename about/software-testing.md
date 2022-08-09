@@ -31,6 +31,7 @@ Software testing is an organizational process within software development in whi
 - [Test Fixture](#test-fixture)
 - [Fuzzing](#fuzzing)
 - [Penetration Testing](#penetration-testing)
+- [Code Coverage](#code-coverage)
 - [See also](#see-also)
 
 ## Functional Testing
@@ -182,6 +183,10 @@ In Acceptance Test-Driven Development (ATDD) technique, a single acceptance test
 ## Penetration Testing
 
 [Penetration testing](https://www.imperva.com/learn/application-security/penetration-testing) or pen test, is a simulated cyber attack against your computer system to check for exploitable vulnerabilities. In the context of web application security, penetration testing is commonly used to augment a web application firewall (WAF).
+
+## Code Coverage
+
+In computer science, test coverage is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run. A program with high test coverage has more of its source code executed during testing, which suggests it has a lower chance of containing undetected software bugs compared to a program with low test coverage. Many different metrics can be used to calculate test coverage. Some of the most basic are the percentage of program subroutines and the percentage of program statements called during execution of the test suite.
 
 ## See also
 

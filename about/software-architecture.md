@@ -5,6 +5,7 @@ Software architecture refers to the fundamental structures of a software system 
 - [Clean Architecture](#clean-architecture)
 - [Onion Architecture](#onion-architecture)
 - [Hexagonal Architecture](#hexagonal-architecture)
+- [Emergent Architecture](#emergent-architecture)
 - [See also](#see-also)
 
 ## Clean Architecture
@@ -24,6 +25,10 @@ The main rule of clean architecture is that code dependencies can only move from
 [Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture/) was introduced by Alistair Cockburn in 2005. The most bare bones application of the principal is Hexagonal or Ports and Adapters architecture. Confusingly, the pattern really has nothing to do with hexagons, it’s just how it’s usually drawn. The fact that it has 6 sides is arbitrary.
 
 The concept behind Hexagonal Architecture is that your core application logic is written with only a concept of whatever external dependencies it has. In object-oriented terms this means it declares and references and interface, but leaves the implementation of that interface out of the core logic. This can be thought of as a “port” such a display port or USB port. The outer layer of the application then creates an “adapter” which plugs into the port, so if there was a database port, the adapter would plug into that port and provide a connection to a particular database. If you wanted to switch databases, you could just write a new adapter. User interfaces would also be ports which could be filled with various adapters without modifying the core logic.
+
+## Emergent Architecture
+
+// TODO
 
 ## See also
 

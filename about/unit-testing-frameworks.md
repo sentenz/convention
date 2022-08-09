@@ -17,7 +17,7 @@
 
 ## Unit Testing
 
-Unit testing aims to check individual units of the source code separately. A unit is the smallest part of code that can be tested in isolation.
+[Unit testing](../about/software-testing.md#unit-testing) aims to check individual units of the source code separately. A unit is the smallest part of code that can be tested in isolation.
 
 Benefits of unit testing:
 
@@ -100,7 +100,7 @@ Doctest doesn't provide mocking functionality. However, combine it with standalo
 
 ## Code Coverage
 
-In computer science, test coverage is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run. A program with high test coverage has more of its source code executed during testing, which suggests it has a lower chance of containing undetected software bugs compared to a program with low test coverage. Many different metrics can be used to calculate test coverage. Some of the most basic are the percentage of program subroutines and the percentage of program statements called during execution of the test suite.
+In computer science, [test coverage](../about/software-testing.md#code-coverage) is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.
 
 ### gcov
 

@@ -1,12 +1,11 @@
 # CI/CD
 
-Continuous Integration/Continuous Delivery or Continuous Deployment (CI/CD) describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a target/production environment.
+Continuous Integration/Continuous Delivery or Continuous Deployment (CI/CD) describes the continuous pipeline stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a [target/production environment](../about/software-development-environment.md#production-environment).
 
 - [Continuous Integration](#continuous-integration)
 - [Continuous Delivery](#continuous-delivery)
 - [Continuous Deployment](#continuous-deployment)
 - [Continuous Testing](#continuous-testing)
-  - [Test Driven Development](#test-driven-development)
 - [Continuous Release](#continuous-release)
 - [Continuous Security](#continuous-security)
 - [Continuous Monitoring](#continuous-monitoring)
@@ -49,11 +48,13 @@ Continuous Testing (CT) is a critical component of DevOps pipeline and one of th
 
 Popular tools for the continuous testing are Selenium, Travis, and Appium.
 
-### Test Driven Development
+Related items:
 
-However, if a project is set up with a CI pipeline with automatic test coverage, it is a best practice to constantly evolve and improve the test coverage. Each new feature that passes through the CI pipeline should be accompanied by a series of tests to ensure that the new code behaves as expected.
+- Unit Test and Code Coverage
+  > If a project is set up with a CI pipeline with automatic [unit testing](../about/software-testing.md#code-coverage) and [test coverage](../about/software-testing.md#code-coverage), it is a best practice to constantly evolve and improve the test coverage. Each new feature that passes through the CI pipeline should be accompanied by a series of tests to ensure that the new code behaves as expected.
 
-[Test Driven Development (TDD)](../about/software-testing.md#test-driven-development) is the practice of writing out the test code and test cases before doing any actual feature coding. Pure TDD can closely involve the product team to help craft an expected business behavior specification, which can then be transformed into the test cases. In a pure TDD scenario, developers and product team will meet and discuss a spec or list of requirements. This list of requirements will then be converted into a checklist of code assertions. The developers will then write code that matches these assertions.
+- Test Driven Development
+  > [Test Driven Development (TDD)](../about/software-testing.md#test-driven-development) is the practice of writing out the test code and test cases before doing any actual feature coding. Pure TDD can closely involve the product team to help craft an expected business behavior specification, which can then be transformed into the test cases. In a pure TDD scenario, developers and product team will meet and discuss a specification or list of requirements. This list of requirements will then be converted into a checklist of code assertions. The developers will then write code that matches these assertions.
 
 ## Continuous Release
 

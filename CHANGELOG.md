@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/sentenz/guide/compare/v1.10.0...v1.11.0) (2022-08-09)
+
+
+### Features
+
+* create a guideline of `code review` ([#73](https://github.com/sentenz/guide/issues/73)) ([fde1ad2](https://github.com/sentenz/guide/commit/fde1ad22f5eb66881f76508be81fbb0aaf07a660)), closes [#25](https://github.com/sentenz/guide/issues/25)
+
 # [1.10.0](https://github.com/sentenz/guide/compare/v1.9.0...v1.10.0) (2022-07-19)
 
 

@@ -55,7 +55,7 @@ Development teams work to build production-ready software that meets requirement
 - [Continuous Integration / Continuous Delivery](../about/ci-cd.md) pipelines
   > Continuous Integration / Continuous Delivery CI/CD provides continuous automation and monitoring across all phases of the release process.
 
-- [Pull Request](../about/pull-request-reviews.md) and [Code Review](../about/code-review-guide.md)
+- [Code Review](../about/code-review-guide.md)
   > Collaborative code review and pull requests that plug into the code review process.
 
 ### Deploy, Release, Host

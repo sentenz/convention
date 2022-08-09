@@ -56,7 +56,7 @@ Actively share knowledge about features and important codebase changes.
 
 - Create documentation, examples, tests
 - Retrospective meetings
-- Random [Pull Request reviews](pull-request-reviews.md)
+- Random [Pull Request (PR) reviews](../guideline/code-review-guide.md#reviewer)
 
 ## Metrics of Technical Debt
 

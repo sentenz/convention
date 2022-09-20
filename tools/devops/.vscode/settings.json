@@ -34,7 +34,7 @@
     "editor.detectIndentation": true,
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "markdown.extension.toc.levels": "2..3",
+  "markdown.extension.toc.levels": "2..2",
   "[yaml]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -57,6 +57,11 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "xaver.clang-format"
   },
+  "cpp-check-lint.cppcheck.--language=": "c",
+  "cpp-check-lint.cppcheck.--std_c++=": "c++11",
+  "cpp-check-lint.cppcheck.--std_c=": "c11",
+  "cpp-check-lint.cpplint.--linelength=": 100,
+  "C_Cpp.dimInactiveRegions": true,
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },

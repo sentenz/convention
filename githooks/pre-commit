@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+# Enforce code style guides via linters.
+
+# -x: print a trace (debug)
+# -u: treat unset variables
+# -o pipefail: return value of a pipeline
+set -uo pipefail
+
+# Include libraries
+
+. ./scripts/utils/log.sh
+. ./scripts/utils/fs.sh
+. ./scripts/utils/git.sh
+
+# Constant variables
+
+LOG_FILE="$(get_root_dir)/logs/githooks/pre-commit.log"
+readonly LOG_FILE
+
+# Internal functions
+
+enforce_coding_standards() {
+    local -i result=0
+
+    make run-linter-staged
+    ((result = $?))
+
+    if ((result != 0)); then
+        cat <<END
+___________________________________________________________________________________________________
+Code Analysis - Enforce coding standards and static analysis through linting and code style checks.
+
+See https://sentenz.github.io/https://sentenz.github.io/guide/about/code-analysis.html
+___________________________________________________________________________________________________
+END
+    fi
+
+    return "${result}"
+}
+
+run_pre_commit() {
+    local -i result=0
+
+    create_file "${LOG_FILE}"
+
+    enforce_coding_standards >>"${LOG_FILE}"
+    ((result |= $?))
+
+    if ((result == 0)); then
+        remove_file "${LOG_FILE}"
+    fi
+
+    monitor "githooks" "pre-commit" "${result}"
+
+    return "${result}"
+}
+
+# Control flow logic
+
+run_pre_commit
+exit "${?}"

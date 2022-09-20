@@ -4,7 +4,11 @@ help: ## Display help screen
 .PHONY: help
 
 setup-devops: ## Setup dependencies and tools for the devops service
-	cd tools/devops/scripts && chmod +x setup_devops.sh && ./setup_devops.sh
+	cd scripts && chmod +x setup_devops.sh && ./setup_devops.sh
+.PHONY: setup-devops
+
+cleanup-devops: ## Cleanup dependencies and tools of the devops service
+	# TODO(AK)
 .PHONY: setup-devops
 
 setup-integration: ## Setup dependencies and tools for the integration service
@@ -12,28 +16,24 @@ setup-integration: ## Setup dependencies and tools for the integration service
 .PHONY: setup-integration
 
 run-linter-staged: ## Perform validation of local staged files
-	cd tools/devops/cmd/app && chmod +x sast.sh && ./sast.sh -l staged
+	cd cmd/app && chmod +x sast.sh && ./sast.sh -l staged
 .PHONY: run-linter-staged
 
 run-linter-diff: ## Perform validation of local modified files
-	cd tools/devops/cmd/app && chmod +x sast.sh && ./sast.sh -l diff
+	cd cmd/app && chmod +x sast.sh && ./sast.sh -l diff
 .PHONY: run-linter-diff
 
 run-linter-ci: ## Perform validation of modified files in continuous integration pipeline
-	cd tools/devops/cmd/app && chmod +x sast.sh && ./sast.sh -l ci
+	cd cmd/app && chmod +x sast.sh && ./sast.sh -l ci
 .PHONY: run-linter-ci
 
 run-linter-commit: ## Perform validation of the commit message
 	commitlint --edit .git/COMMIT_EDITMSG
 .PHONY: run-linter-commit
 
-run-sanitizer: ## Perform validation of binary files
-	cd cmd/app && chmod +x dast.sh && ./dast.sh -b cmd/bin/*
-.PHONY: run-linter-ci
-
 setup-testing: ## Setup dependencies and tools for the testing service
 	cd scripts/pipeline && chmod +x setup_continuous_testing.sh && ./setup_continuous_testing.sh
-.PHONY: run-sanitizer
+.PHONY: setup-testing
 
 setup-release: ## Setup dependencies and tools for the release service
 	cd scripts/pipeline && chmod +x setup_continuous_release.sh && ./setup_continuous_release.sh

@@ -1,0 +1,95 @@
+#!/bin/bash
+#
+# Enforce convention policies by using post-checkout:
+#
+# - Enforce the creation of support branches from the base branches.
+
+# -x: print a trace (debug)
+# -u: treat unset variables
+# -o pipefail: return value of a pipeline
+set -uo pipefail
+
+# Include libraries
+
+. ./scripts/utils/log.sh
+. ./scripts/utils/fs.sh
+. ./scripts/utils/git.sh
+
+# Constant variables
+
+LOG_FILE="$(get_root_dir)/logs/githooks/post-checkout.log"
+readonly LOG_FILE
+LOCAL_BRANCH="$(get_local_branch)"
+readonly LOCAL_BRANCH
+readonly -a BASE_BRANCHES=(
+	main
+)
+FLAG_CHECKOUT="${3}"
+readonly FLAG_CHECKOUT
+
+# Internal functions
+
+enforce_checkout_from_base_branches() {
+	local local_branch="${1:?local branch is missing}"
+	local flag_checkout="${2:?checkout flag is missing}"
+	local -a base_branches=("${@:3}")
+
+	if [[ "${flag_checkout}" == 0 ]]; then
+		return "${STATUS_SUCCESS}"
+	fi
+
+	parant_branch="$(git show-branch |
+		sed "s/].*//" |
+		grep "\*" |
+		grep -v "${local_branch}" |
+		head -n1 |
+		sed "s/^.*\[//")"
+
+	if [[ -z "${parant_branch}" ]]; then
+		return "${STATUS_SUCCESS}"
+	fi
+
+	for branch in "${base_branches[@]}"; do
+		if [[ "${branch}" == "${parant_branch}" ]]; then
+			return "${STATUS_SUCCESS}"
+		fi
+	done
+
+	git checkout "${parant_branch}"
+	git branch -d "${local_branch}"
+
+	cat <<END
+___________________________________________________________________________________________________
+Branching strategy - Enforce to create the support branches from the base branches.
+
+Branch "${local_branch}" is created from "${parant_branch}".
+Though, support branches should be created from a base branch, e.g. "${base_branches[@]}".
+
+See https://sentenz.github.io/guide/guideline/branching-strategies-guide.html
+___________________________________________________________________________________________________
+END
+
+	return "${STATUS_ERROR}"
+}
+
+run_post_checkout() {
+	local -i result=0
+
+	create_file "${LOG_FILE}"
+
+	enforce_checkout_from_base_branches "${LOCAL_BRANCH}" "${FLAG_CHECKOUT}" "${BASE_BRANCHES[@]}" >>"${LOG_FILE}"
+	((result |= $?))
+
+	if ((result == 0)); then
+		remove_file "${LOG_FILE}"
+	fi
+
+	monitor "githooks" "post-checkout" "${result}"
+
+	return "${result}"
+}
+
+# Control flow logic
+
+run_post_checkout
+exit "${?}"

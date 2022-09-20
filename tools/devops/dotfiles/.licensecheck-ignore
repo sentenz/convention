@@ -1,0 +1,1 @@
+^.*[^.]{5}$|[^\w](\.|\/\.)\w.+|^.*\.(exe|txt|sh|md|rst|log|js|json|mod|sum|html|cfg|conf)$|.*(vendor|scripts|node_modules)($|.*)

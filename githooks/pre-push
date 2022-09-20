@@ -1,0 +1,117 @@
+#!/bin/bash
+#
+# Enforce convention policies by using pre-push:
+#
+# - Prevent a direct push to the base branches.
+# - Enforce naming convention for support branches.
+
+# -x: print a trace (debug)
+# -u: treat unset variables
+# -o pipefail: return value of a pipeline
+set -uo pipefail
+
+# Include libraries
+
+. ./scripts/utils/log.sh
+. ./scripts/utils/fs.sh
+. ./scripts/utils/git.sh
+
+# Constant variables
+
+LOG_FILE="$(get_root_dir)/logs/githooks/pre-push.log"
+readonly LOG_FILE
+LOCAL_BRANCH="$(get_local_branch)"
+readonly LOCAL_BRANCH
+readonly -a BASE_BRANCHES=(
+	main
+)
+readonly -a SUPPORT_BRANCHES=(
+	feature
+	release
+	fix
+)
+
+# Internal functions
+
+prevent_push_to_base_branches() {
+	local local_branch="${1:?local branch is missing}"
+	local -a base_branches=("${@:2}")
+
+	for branch in "${base_branches[@]}"; do
+		if [[ "${branch}" == "${local_branch}" ]]; then
+			cat <<END
+___________________________________________________________________________________________________
+Branching strategy - Prevent a direct push to the base branches.
+
+Noting that contributions to base branches are not compliant with the branching strategy.
+Contributing to a base branch can only be made via pull requests (PR). Create a support branch
+from and merge back to a base branch.
+
+See https://sentenz.github.io/guide/guideline/branching-strategies-guide.html
+___________________________________________________________________________________________________
+END
+
+			return "${STATUS_ERROR}"
+		fi
+	done
+}
+
+enforce_naming_convention_of_support_branch() {
+	local local_branch="${1:?local branch is missing}"
+	local -a support_branches=("${@:2}")
+
+	regex_patterns="^($(
+		IFS=$'|'
+		echo "${support_branches[*]}"
+	))\/[0-9]+[-][a-z-]+$"
+	readonly regex_patterns
+
+	if [[ ! "${local_branch}" =~ ${regex_patterns} ]]; then
+		cat <<END
+___________________________________________________________________________________________________
+Branching strategy - Enforce naming convention for support branches.
+
+There is something wrong with the name of the local branch "${local_branch}". Rename the local
+branch according to the naming convention for support branches.
+
+The naming rule is: [support-branch]/[issue-id]-[short-description].
+
+  1. support-branch: feature, release, and fix.
+  2. followed by a slash (/)
+  3. issue-id: in digit(s)
+  4. short-description: only lowercase letters, separated by hyphens
+
+Example: feature/158-enforce-policy
+
+See https://sentenz.github.io/guide/guideline/branching-strategies-guide.html
+___________________________________________________________________________________________________
+END
+
+		return "${STATUS_ERROR}"
+	fi
+}
+
+run_pre_push() {
+	local -i result=0
+
+	create_file "${LOG_FILE}"
+
+	prevent_push_to_base_branches "${LOCAL_BRANCH}" "${BASE_BRANCHES[@]}" >>"${LOG_FILE}"
+	((result |= $?))
+
+	enforce_naming_convention_of_support_branch "${LOCAL_BRANCH}" "${SUPPORT_BRANCHES[@]}" >>"${LOG_FILE}"
+	((result |= $?))
+
+	if ((result == 0)); then
+		remove_file "${LOG_FILE}"
+	fi
+
+	monitor "githooks" "pre-push" "${result}"
+
+	return "${result}"
+}
+
+# Control flow logic
+
+run_pre_push
+exit "${?}"

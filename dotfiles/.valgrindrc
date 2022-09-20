@@ -1,0 +1,13 @@
+--leak-check=full
+--leak-check-heuristics=all
+--demangle=yes
+--show-error-list=yes
+--default-suppressions=yes
+--read-var-info=yes
+--leak-resolution=high
+--show-leak-kinds=all
+--undef-value-errors=yes
+--track-origins=yes
+--keep-stacktraces=alloc-and-free
+--show-mismatched-frees=yes
+--error-exitcode=1

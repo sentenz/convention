@@ -1,0 +1,14 @@
+# Don't suggest using -n in [ $var ].
+#disable=SC2244
+
+# Allow using `which` since it gives full paths and is common enough.
+#disable=SC2230
+
+# Double quote to prevent globbing and word splitting.
+#disable=SC2086
+
+# Word is of the form "A"B"C" (B indicated). Did you mean "ABC" or "A\"B\"C"?.
+disable=SC2140
+
+# Not following external files
+disable=SC1091

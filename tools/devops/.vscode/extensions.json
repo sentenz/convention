@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "foxundermoon.shell-format",
-    "adpyke.codesnap",
     "vivaxy.vscode-conventional-commits",
     "xaver.clang-format",
     "notskm.clang-tidy",
@@ -18,7 +17,6 @@
     "yzhang.markdown-all-in-one",
     "yzane.markdown-pdf",
     "davidanson.vscode-markdownlint",
-    "ziyasal.vscode-open-in-github",
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
     "timonwong.shellcheck",

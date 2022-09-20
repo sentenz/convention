@@ -1,0 +1,52 @@
+# https://editorconfig.org/
+
+# top-level EditorConfig file
+root = true
+
+[**/node_modules/*]
+ignore = true
+
+[**/vendor/*]
+ignore = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.sh]
+indent_style = space
+indent_size = 2
+max_line_length = 100
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+never_split = false        # like -ns
+function_next_line = false # like -fn
+keep_padding = false       # like -kp
+space_redirects = false    # like -sr
+switch_case_indent = true  # like -ci
+binary_next_line = false   # like -bn
+
+[*.md]
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = false
+
+[*.json]
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+
+[*.{yml,yaml,json}]
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+
+[*.{js,jsx,ts,tsx,css,less,sass,scss,vue,py}]
+indent_size = 2
+indent_style = space
+
+[COMMIT_EDITMSG]
+max_line_length = 72

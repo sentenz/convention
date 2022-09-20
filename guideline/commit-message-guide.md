@@ -1,19 +1,16 @@
 # Commit Message Guide
 
-*This specification is inspired by [Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) and follows the [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html).*
+*This specification is inspired by [Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) and follows the [Conventional Commits](../convention/conventional-commits.md).*
 
-- [Commit Message](#commit-message)
-  - [Header](#header)
-    - [Type](#type)
-    - [Scope](#scope)
-    - [Summary](#summary)
-  - [Body](#body)
-  - [Footer](#footer)
-- [Merge Commit Message](#merge-commit-message)
-- [Update a Commit Message](#update-a-commit-message)
-- [Lint a Commit Message](#lint-a-commit-message)
+- [1. Commit Message](#1-commit-message)
+  - [1.1. Header](#11-header)
+  - [1.2. Body](#12-body)
+  - [1.3. Footer](#13-footer)
+- [2. Merge Commit Message](#2-merge-commit-message)
+- [3. Update a Commit Message](#3-update-a-commit-message)
+- [4. Lint a Commit Message](#4-lint-a-commit-message)
 
-## Commit Message
+## 1. Commit Message
 
 A commit message consists of a `header`, a `body`, and a `footer`.
 
@@ -25,7 +22,7 @@ A commit message consists of a `header`, a `body`, and a `footer`.
 <footer>
 ```
 
-The `header` is mandatory and must conform to the [Commit Message Header](#header) format. The `body` is mandatory for all commits except for those of type *docs*. When the body is present it must be at least 20 characters long and must conform to the [Commit Message Body](#body) format. The `footer` is optional. The [Commit Message Footer](#footer) format describes what the footer is used for and the structure it must have.
+The `header` is mandatory and must conform to the [Commit Message Header](#11-header) format. The `body` is mandatory for all commits except for those of type *docs*. When the body is present it must be at least 20 characters long and must conform to the [Commit Message Body](#12-body) format. The `footer` is optional. The [Commit Message Footer](#13-footer) format describes what the footer is used for and the structure it must have.
 
 Full example:
 
@@ -37,7 +34,7 @@ into its generated directive/pipe definition, allowing the runtime to
 recognize standalone entities.
 ```
 
-### Header
+### 1.1. Header
 
 The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
 
@@ -45,13 +42,13 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 <type>(<scope>): <short summary>
 ```
 
-#### Type
+#### 1.1.1. Type
 
 - **fix**
-   > A bug fix (this correlates with `PATCH` in [Semantic Versioning](#semantic-versioning)).
+   > A bug fix (this correlates with `PATCH` in [semantic versioning](../guideline/versioning-guide.md#11-release)).
 
 - **feat**
-   > A new feature (this correlates with `MINOR` in [Semantic Versioning](#semantic-versioning)).
+   > A new feature (this correlates with `MINOR` in [Semantic Versioning](../guideline/versioning-guide.md#11-release)).
 
 - **build**
   > Changes that affect the build system or external dependencies.
@@ -77,7 +74,7 @@ The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is opti
 - **revert**
   > Revert a previous commit
 
-#### Scope
+#### 1.1.2. Scope
 
 A scope can be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis.
 
@@ -91,7 +88,7 @@ or
 refactor(internal): modify function to provide additional contextual information
 ```
 
-#### Summary
+#### 1.1.3. Summary
 
 Provide in the summary field a succinct description of the change:
 
@@ -99,13 +96,13 @@ Provide in the summary field a succinct description of the change:
 - don't capitalize the first letter
 - no period (.) at the end
 
-### Body
+### 1.2. Body
 
-As in the [summary](#summary), use the imperative, present tense: `fix` not `fixed` nor `fixes`.
+As in the [summary](#113-summary), use the imperative, present tense: `fix` not `fixed` nor `fixes`.
 
 Explain the motivation for the change in the commit message body. This commit message should explain *why* you are making the change. Include a comparison of the previous behavior with the new behavior in order to illustrate the impact of the change.
 
-### Footer
+### 1.3. Footer
 
 The footer can contain information about `breaking changes` and `deprecations` and is also the place to reference Azure stories, GitHub issues, Jira tickets, and other PRs that this commit closes or is related to.
 
@@ -131,7 +128,7 @@ Closes #<pr number>
 
 Breaking change section should start with the phrase `BREAKING CHANGE:` followed by a summary of the breaking change, a blank line, and a detailed description of the breaking change that also includes migration instructions.
 
-> NOTE A commit that has a footer `BREAKING CHANGE:`, or appends a `!` after the type/scope, introduces a breaking API change (correlating with `MAJOR` in [Semantic Versioning](#semantic-versioning)).
+> NOTE A commit that has a footer `BREAKING CHANGE:`, or appends a `!` after the type/scope, introduces a breaking API change (correlating with `MAJOR` in [Semantic Versioning](../guideline/versioning-guide.md#11-release)).
 
 Similarly, a Deprecation section should start with `DEPRECATED:` followed by a short description of what is deprecated, a blank line, and a detailed description of the deprecation that also mentions the recommended update path.
 
@@ -148,7 +145,7 @@ The bash analyzer scripts are replaced with the pre-commit tool.
 Closes #5684
 ```
 
-## Merge Commit Message
+## 2. Merge Commit Message
 
 Unlike the standard commit messages, a merge commit message consists of additional information about the related Azure stories, GitHub issues, Jira tickets, and other PRs that are closed with this merge commit.
 
@@ -188,9 +185,9 @@ recognize standalone entities.
 Closes #43484
 ```
 
-## Update a Commit Message
+## 3. Update a Commit Message
 
-A reviewer might often suggest changes to a commit message (e.g., to add more context to a change or to comply with the [commit message guideline](#commit-message-guideline)).
+A reviewer might often suggest changes to a commit message (e.g., to add more context to a change or to comply with the [commit message guide](../guideline/commit-message-guide.md)).
 
 In order to update the commit message of the last commit on the feature branch:
 
@@ -214,6 +211,6 @@ In order to update the commit message of the last commit on the feature branch:
 
 > NOTE If a commit message of an earlier commit need to update, use `git rebase` in interactive mode. See the [git docs](https://git-scm.com/docs/git-rebase#_interactive_mode) for more details.
 
-## Lint a Commit Message
+## 4. Lint a Commit Message
 
 [commitlint](https://github.com/conventional-changelog/commitlint) tooling for conventional commits. Checks if the commit messages meet the [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html) format.

@@ -2,7 +2,10 @@
 
 The term CRLF refers to Carriage Return (ASCII 13, \r) Line Feed (ASCII 10, \n). They’re used to note the termination of a line. Windows both a CR and LF are required to note the end of a line, whereas in Linux/UNIX a LF is only required.
 
-## Normalizing Line Endings
+- [1. Normalizing Line Endings](#1-normalizing-line-endings)
+- [2. See also](#2-see-also)
+
+## 1. Normalizing Line Endings
 
 In a Git-based version control software (VCS), create a [.gitattributes](https://git-scm.com/docs/gitattributes) file in the root of the repo to normalize line endings. This configuration-based approach ensures that line endings remain consistent across the code base, regardless of which operating systems or local Git settings developers use, because this file takes priority.
 
@@ -24,7 +27,7 @@ The following `.gitattributes` config normalizes line endings to `LF` for all te
 *.jpg binary
 ```
 
-## See also
+## 2. See also
 
 - Git [end-of-line conversion](http://git-scm.com/docs/gitattributes#_end_of_line_conversion) article.
 - Blog [CRLF vs LF](https://www.aleksandrhovhannisyan.com/blog/crlf-vs-lf-normalizing-line-endings-in-git/) article.

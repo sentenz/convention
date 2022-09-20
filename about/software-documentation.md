@@ -2,12 +2,12 @@
 
 Software documentation is a part of any software.
 
-- [Types](#types)
-- [See also](#see-also)
+- [1. Types](#1-types)
+- [2. See also](#2-see-also)
 
 Documentation must comprise an interactive User Experience, Information Architecture, and understanding of your audience.
 
-## Types
+## 1. Types
 
 - User Documentation
   > Refers to end-user, delivered with the product to understand and complete a certain task.
@@ -15,6 +15,6 @@ Documentation must comprise an interactive User Experience, Information Architec
 - Developer Documentation
   > Refers to system related documentation.
 
-## See also
+## 2. See also
 
 - Website [software documentation](https://document360.com/blog/software-documentation/) article.

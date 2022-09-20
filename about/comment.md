@@ -29,6 +29,9 @@ Tags differ, but might include:
 - XXX
   > Warn other programmers of problematic or misguiding code, e.g. [technical dept](technical-dept.md).
 
+- NIT
+  > Some style points that would improve the code, but are not mandatory.
+
 ## See also
 
 - Wikipedia [comment](https://en.m.wikipedia.org/wiki/Comment_(computer_programming)) article.

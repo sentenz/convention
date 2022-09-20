@@ -1,20 +1,24 @@
 # Versioning Guide
 
-- [Semantic Versioning](#semantic-versioning)
-  - [Release](#release)
-  - [Pre-release](#pre-release)
-- [Tooling](#tooling)
-  - [Semantic Release](#semantic-release)
-  - [Standard Version](#standard-version)
-  - [Conventional Changelog](#conventional-changelog)
-  - [Conventional Changelog Configuration Spec](#conventional-changelog-configuration-spec)
-  - [Release Tools](#release-tools)
+[Semantic Versioning (SemVer)](../convention/semantic-versioning.md) is a system that aids in tracking versioning projects.
 
-## Semantic Versioning
+- [1. Versioning](#1-versioning)
+  - [1.1. Release](#11-release)
+  - [1.2. Pre-release](#12-pre-release)
+- [2. Tools](#2-tools)
+  - [2.1. Semantic Release](#21-semantic-release)
+  - [2.2. Standard Version](#22-standard-version)
+  - [2.3. Conventional Changelog](#23-conventional-changelog)
+  - [2.4. Conventional Changelog Configuration Spec](#24-conventional-changelog-configuration-spec)
+  - [2.5. Release Tools](#25-release-tools)
 
-To create a version tag follow the [semantic versioning](../convention/semantic-versioning.md). SemVer is a system that helps to keep track of versioning projects.
+## 1. Versioning
 
-### Release
+The actions to create a `version tag` and a `CHANGELOG.md` file based on the `semantic versioning` convention rely on the [commit messages](../guideline/commit-message-guide.md) following the `conventional commits` convention.
+
+An yaml file containing actions for [continuous release pipeline](../about/continuous-pipelines.md#6-continuous-release) is triggered from base branch.
+
+### 1.1. Release
 
 SemVer is a 3-component system in the format:
 
@@ -38,7 +42,7 @@ SemVer is a 3-component system in the format:
 - `Patch`
   > Version when backwards-compatible bug fixes have been made
 
-### Pre-release
+### 1.2. Pre-release
 
 With Semantic Versioning, pre-releases or release candidate (rc) for a given release can be defined by appending a hyphen and an identifier to a version.
 
@@ -47,26 +51,26 @@ Regular releases to the `next` distribution channel from the branch `next` if it
 - 1.1.0 -> 1.1.0-next.1
 - 1.1.0 -> 1.1.0-rc.1
 
-## Tooling
+## 2. Tools
 
 Tools to generate changelogs and version tag from a commit messages and metadata.
 
-### Semantic Release
+### 2.1. Semantic Release
 
 [semantic-release](https://sentenz.github.io/backup-service/website/semantic-release.gitbook.io/semantic-release/index.html) automates the whole package release workflow including: determining the next version number by `Semantic Versioning`, generating the release notes based on `Conventional Commits`, and publishing the package. Unlike `standard-version`,  `semantic-release` is meant to be executed on the CI environment after every successful build on the release branch.
 
-### Standard Version
+### 2.2. Standard Version
 
 [standard-version](https://github.com/conventional-changelog/standard-version) is a CLI utility for automate versioning and CHANGELOG generation based on `Semantic Versioning` and `Conventional Commits`.
 
-### Conventional Changelog
+### 2.3. Conventional Changelog
 
 [Generate changelogs](https://github.com/conventional-changelog/conventional-changelog) and release notes from a project's commit messages and metadata.
 
-### Conventional Changelog Configuration Spec
+### 2.4. Conventional Changelog Configuration Spec
 
 A spec describing the config options supported by [conventional-config](https://github.com/conventional-changelog/conventional-changelog-config-spec) for upstream tooling.
 
-### Release Tools
+### 2.5. Release Tools
 
 Create a GitHub/GitLab/etc. [release](https://github.com/conventional-changelog/releaser-tools) using a project's commit messages and metadata.

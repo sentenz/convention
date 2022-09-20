@@ -2,10 +2,6 @@
 
 The [twelve-factor app](https://12factor.net/) methodology describes a set of principles and best practices, to develop scalable and resilient apps that can be continuously deployed with high agility.
 
-- [See also](#see-also)
-
-The twelve factors:
-
 1. Codebase
    > Prescribes that code to be stored in a version control system.
    >
@@ -23,8 +19,6 @@ The twelve factors:
    > - Load variables from a [.env](https://github.com/motdotla/dotenv) file or from environment variables.
    > - Isolate secrets in a secrets management tool like Hashicorp [Vault](https://github.com/hashicorp/vault).
    > - [Dapr](https://github.com/dapr/dapr) offers a [secrets management building block](https://docs.dapr.io/developing-applications/building-blocks/secrets/secrets-overview/) abstracts away the complexity of working with secrets and secret management tools.
-   >
-   >
    >
    > NOTE Never load sensitive variables such as secrets from environment variables, but use secret manager instead. Environment variables, especially global ones, may be dumped. Try to avoid environment variables in general, use the `.env` file instead.
 

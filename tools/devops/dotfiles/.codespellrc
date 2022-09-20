@@ -1,0 +1,5 @@
+[codespell]
+skip = *.json,*.txt,*.log,.git,.spelling,*/node_modules,*/vendor,package-lock.json,package.json
+quiet-level = 3
+check-filenames =
+check-hidden =

@@ -2,11 +2,11 @@
 
 A cross compiler is a compiler capable of creating executable code for a platform other than the one on which the compiler is running. For example, a compiler that runs on a PC but generates code that runs on Android smartphone is a cross compiler.
 
-- [Naming Convention](#naming-convention)
-- [Glossary](#glossary)
-- [See also](#see-also)
+- [1. Naming Convention](#1-naming-convention)
+- [2. Glossary](#2-glossary)
+- [3. See also](#3-see-also)
 
-## Naming Convention
+## 1. Naming Convention
 
 The naming rule of the cross-compilation toolchain is: `[arch]-[vendor]-[os]-[abi]`.
 
@@ -58,7 +58,7 @@ Illustrations as follows:
 
   hard: The default value adopted by the armhf architecture (corresponding compiler arm-linux-gnueabihf-gcc) is calculated by fpu, and the parameters are also passed by the floating-point register in the fpu, eliminating the need for conversion. The performance is the best, but the interrupt load high.
 
-## Glossary
+## 2. Glossary
 
 Definitions of terms.
 
@@ -77,6 +77,6 @@ Definitions of terms.
 - x86_64
   > x86_64 (or x86-64) refers to a 64-bit instruction set invented by AMD as an extension of Intel’s x86 architecture. AMD calls its x86_64 architecture, AMD64, and Intel calls its implementation, Intel 64.
 
-## See also
+## 3. See also
 
 - Actorsfit [arm cross compiler](https://blog.actorsfit.com/a?ID=01700-1ce8edc2-d16c-4135-9abc-fd37ff641c25) article.

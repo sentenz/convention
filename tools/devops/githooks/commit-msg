@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# Enforce commit via commit-msg:
+#
+# - Enforce commit conventions via commitlint.
+# TODO(AK) Perform commit spelling check.
+
+# -x: print a trace (debug)
+# -u: treat unset variables
+# -o pipefail: return value of a pipeline
+set -uo pipefail
+
+# Include libraries
+
+. ./scripts/utils/log.sh
+. ./scripts/utils/fs.sh
+. ./scripts/utils/git.sh
+
+# Constant variables
+
+LOG_FILE="$(get_root_dir)/logs/githooks/commit-msg.log"
+readonly LOG_FILE
+COMMIT_MESSAGE="${1}"
+readonly COMMIT_MESSAGE
+
+# Internal functions
+
+enforce_commit_message_convention() {
+  local message="${1:?message is missing}"
+
+  local -i result=0
+
+  make run-linter-commit
+  ((result = $?))
+
+  if ((result != 0)); then
+    cat <<END
+___________________________________________________________________________________________________
+Commit Message Convention - Enforce the conventional commits specification to commit messages.
+
+There is something wrong with the commit message:
+
+  "$(cat "${message}")"
+
+A commit message that is compliant with Conventional Commits consists of the format:
+
+  <type>(<scope>): <short summary>
+
+See https://sentenz.github.io/guide/guideline/commit-message-guide.html
+___________________________________________________________________________________________________
+END
+  fi
+
+  return "${result}"
+}
+
+run_commit_msg() {
+  local -i result=0
+
+  create_file "${LOG_FILE}"
+
+  enforce_commit_message_convention "${COMMIT_MESSAGE}" >>"${LOG_FILE}"
+  ((result |= $?))
+
+  if ((result == 0)); then
+    remove_file "${LOG_FILE}"
+  fi
+
+  monitor "githooks" "commit-msg" "${result}"
+
+  return "${result}"
+}
+
+# Control flow logic
+
+run_commit_msg
+exit "${?}"

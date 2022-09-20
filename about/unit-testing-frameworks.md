@@ -1,21 +1,21 @@
 # Unit-Testing Frameworks
 
-- [Unit Testing](#unit-testing)
-  - [GoogleTest](#googletest)
-  - [Boost.Test](#boosttest)
-  - [Catch2](#catch2)
-  - [Doctest](#doctest)
-  - [pytest](#pytest)
-  - [go](#go)
-- [Code Coverage](#code-coverage)
-  - [gcov](#gcov)
-  - [go](#go-1)
-- [Profiling](#profiling)
-  - [gprof](#gprof)
-  - [go](#go-2)
-- [See also](#see-also)
+- [1. Unit Testing](#1-unit-testing)
+  - [1.1. GoogleTest](#11-googletest)
+  - [1.2. Boost.Test](#12-boosttest)
+  - [1.3. Catch2](#13-catch2)
+  - [1.4. Doctest](#14-doctest)
+  - [1.5. pytest](#15-pytest)
+  - [1.6. go](#16-go)
+- [2. Code Coverage](#2-code-coverage)
+  - [2.1. gcov](#21-gcov)
+  - [2.2. go](#22-go)
+- [3. Profiling](#3-profiling)
+  - [3.1. gprof](#31-gprof)
+  - [3.2. go](#32-go)
+- [4. See also](#4-see-also)
 
-## Unit Testing
+## 1. Unit Testing
 
 [Unit testing](../about/software-testing.md#unit-testing) aims to check individual units of the source code separately. A unit is the smallest part of code that can be tested in isolation.
 
@@ -28,13 +28,13 @@ Benefits of unit testing:
   > A suite of unit tests can run it iteratively to ensure that everything [keeps working correctly](../about/software-testing.md#regression-testing) every time you add new functionality or introduce changes.
 
 - Document code
-  > Running, debugging, or even just reading tests can give a lot of information about how the original code works, [software testing](../about/software-testing.md) canbe used as implicit documentation.
+  > Running, debugging, or even just reading tests can give a lot of information about how the original code works, [software testing](../about/software-testing.md) can be used as implicit documentation.
 
 Best practices for unit testing:
 
 - Creating tests for all publicly exposed functions, including class constructors and operators.
 - Covering all code paths and checking both trivial and edge cases, including those with incorrect input data (see negative testing).
-- Assuring that each test works independently and does't prevent other tests from execution.
+- Assuring that each test works independently and doesn't prevent other tests from execution.
 - Organizing tests in a way that the order in which you run them doesn't affect the results.
 
 A single unit test is a method that checks some specific functionality and has clear pass/fail criteria. The generalized structure of a single test looks like this:
@@ -47,7 +47,7 @@ Test (TestGroupName, TestName)   {
 }
 ```
 
-### GoogleTest
+### 1.1. GoogleTest
 
 | Mock     | Fixture  | Fuzzing  | Code Coverage | Build System  |
 | -------- | -------- | -------- | ------------- | ------------- |
@@ -57,7 +57,7 @@ Test (TestGroupName, TestName)   {
 
 To learn more about Google Test, explore the [samples](https://github.com/google/googletest/blob/main/docs/samples.md) in the framework's repository. Also, take a look at [Advanced options](https://github.com/google/googletest/blob/main/docs/advanced.md#advanced-googletest-topics) for details of other noticeable Google Test features such as [value-parametrized tests](https://github.com/google/googletest/blob/main/docs/advanced.md#value-parameterized-tests) and [type-parameterized tests](https://github.com/google/googletest/blob/main/docs/advanced.md#type-parameterized-tests).
 
-### Boost.Test
+### 1.2. Boost.Test
 
 | Mock   | Fixture  | Fuzzing | Code Coverage | Build System |
 | ------ | -------- | :-----: | ------------- | ------------ |
@@ -67,8 +67,7 @@ To learn more about Google Test, explore the [samples](https://github.com/google
 
 Boost.Test doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as [Hippomocks](https://github.com/dascandy/hippomocks), [FakeIt](https://github.com/eranpeer/FakeIt), or [Trompeloeil](https://github.com/rollbear/trompeloeil).
 
-
-### Catch2
+### 1.3. Catch2
 
 |  Mock  | Fixture  | Fuzzing | Code Coverage | Build System |
 | :----: | -------- | :-----: | ------------- | ------------ |
@@ -78,7 +77,7 @@ Boost.Test doesn't provide mocking functionality. However, combine it with stand
 
 Catch2 doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as [Hippomocks](https://github.com/dascandy/hippomocks), [FakeIt](https://github.com/eranpeer/FakeIt), or [Trompeloeil](https://github.com/rollbear/trompeloeil).
 
-### Doctest
+### 1.4. Doctest
 
 | Mock   | Fixture  | Fuzzing | Code Coverage | Build System |
 | ------ | -------- | :-----: | ------------- | ------------ |
@@ -88,7 +87,7 @@ Catch2 doesn't provide mocking functionality. However, combine it with standalon
 
 Doctest doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as [Hippomocks](https://github.com/dascandy/hippomocks), [FakeIt](https://github.com/eranpeer/FakeIt), or [Trompeloeil](https://github.com/rollbear/trompeloeil).
 
-### pytest
+### 1.5. pytest
 
 | Mock        | Fixture         | Fuzzing         | Code Coverage | Build System |
 | ----------- | --------------- | --------------- | ------------- | :----------: |
@@ -96,13 +95,13 @@ Doctest doesn't provide mocking functionality. However, combine it with standalo
 
 [pytest](https://github.com/pytest-dev/pytest/) unit testing frameworks for Python. The pytest framework allows to write small, readable tests, and can be scaled to support complex functional tests for applications and libraries.
 
-### go
+### 1.6. go
 
-## Code Coverage
+## 2. Code Coverage
 
 In computer science, [test coverage](../about/software-testing.md#code-coverage) is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.
 
-### gcov
+### 2.1. gcov
 
 [Gcov](https://en.wikipedia.org/wiki/Gcov) is a source code coverage analysis and statement-by-statement profiling tool. Gcov generates exact counts of the number of times each statement in a program is executed and annotates source code to add instrumentation. Gcov comes as a standard utility with the GNU Compiler Collection (GCC) suite. The gcov utility gives information on how often a program executes segments of code. It produces a copy of the source file, annotated with execution frequencies.
 
@@ -119,19 +118,19 @@ When passing the coverage flags manually, one of the following options can be us
 - CMake
   > Provide the flags by setting the `CMAKE_CXX_FLAGS` variable (`CMAKE_C_FLAGS` for C projects) or using other alternatives like the `add_compile_options` command. On linker errors while building the project with gcov compiler flags, try passing the same flags to the linker through `add_link_options` or `set(CMAKE_EXE_LINKER_FLAGS "")`.
 
-### go
+### 2.2. go
 
 ```bash
 go test -race -coverprofile=coverage.out -covermode=atomic ./...
 ```
 
-## Profiling
+## 3. Profiling
 
-### gprof
+### 3.1. gprof
 
-### go
+### 3.2. go
 
-## See also
+## 4. See also
 
 - JetBrains [unit testing](https://www.jetbrains.com/help/clion/unit-testing-tutorial.html#0) article.
 - JetBrains [code coverage](https://www.jetbrains.com/help/clion/code-coverage-clion.html#0) article.

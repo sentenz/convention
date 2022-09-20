@@ -2,15 +2,15 @@
 
 Software design principles are a set of guidelines that help developers create a high-quality system design.
 
-- [SOLID](#solid)
-- [IDEALS](#ideals)
-- [GRASP](#grasp)
-- [DRY](#dry)
-- [KISS](#kiss)
-- [YAGNI](#yagni)
-- [POLP](#polp)
+- [1. SOLID](#1-solid)
+- [2. IDEALS](#2-ideals)
+- [3. GRASP](#3-grasp)
+- [4. DRY](#4-dry)
+- [5. KISS](#5-kiss)
+- [6. YAGNI](#6-yagni)
+- [7. POLP](#7-polp)
 
-## SOLID
+## 1. SOLID
 
 [SOLID](https://en.wikipedia.org/wiki/SOLID) is a acronym for five design principles intended to design Object-Oriented Programming (OOP) understandable, flexible, and maintainable.
 
@@ -35,26 +35,26 @@ Software design principles are a set of guidelines that help developers create a
    The [dependency inversion principle (DIP)](https://en.wikipedia.org/wiki/Dependency_inversion_principle) is a specific methodology for loosely coupling software modules. The DIP states that high-level modules should not depend on low-level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend upon abstractions.
    > The [Dependency Injection](../about/software-design-pattern.md#dependency-injection) pattern is an implementation of the DIP principle.
 
-## IDEALS
+## 2. IDEALS
 
 // TODO
 
-## GRASP
+## 3. GRASP
 
 // TODO
 
-## DRY
+## 4. DRY
 
 The Don't Repeat Yourself (states) principle states that each small pieces of knowledge (code) may only occur exactly once in the entire system. This helps us to write scalable, maintainable and reusable code.
 
-## KISS
+## 5. KISS
 
 The Keep It Short and Simple (KISS) principle states that try to keep each small piece of software simple and unnecessary complexity should be avoided. This helps us to write easy maintainable code.
 
-## YAGNI
+## 6. YAGNI
 
 The You Ain't Gonna Need It (YAGNI) principle states that always implement things when you actually need them never implements things before you need them.
 
-## POLP
+## 7. POLP
 
 The Principle Of Least Privilege (POLP) principle states that a concept of computer security that limits access rights to what is absolutely necessary to perform tasks. Users or processes are given permission only to read, write, or execute files or resources that are necessary to perform tasks.

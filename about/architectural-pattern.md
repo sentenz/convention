@@ -2,12 +2,12 @@
 
 An architectural pattern is a general, reusable solution to a commonly occurring problem in software architecture within a given context.
 
-- [MVVM](#mvvm)
-- [MVP](#mvp)
-- [MVC](#mvc)
-- [See also](#see-also)
+- [1. MVVM](#1-mvvm)
+- [2. MVP](#2-mvp)
+- [3. MVC](#3-mvc)
+- [4. See also](#4-see-also)
 
-## MVVM
+## 1. MVVM
 
 Model View ViewModel (MVVM) is a software architectural pattern that facilitates the separation of the development of the graphical user interface (the view) – be it via a markup language or GUI code – from the development of the business logic or back-end logic (the model) so that the view is not dependent on any specific model platform. The viewmodel of MVVM is a value converter, meaning the viewmodel is responsible for exposing (converting) the data objects from the model in such a way that objects are easily managed and presented. In this respect, the viewmodel is more model than view, and handles most if not all of the view's display logic. The viewmodel may implement a mediator pattern, organizing access to the back-end logic around the set of use cases supported by the view.
 
@@ -29,7 +29,7 @@ Components of MVVM pattern:
 - Binder
   > Declarative data and command-binding are implicit in the MVVM pattern. In the Microsoft solution stack, the binder is a markup language called XAML. The binder frees the developer from being obliged to write boiler-plate logic to synchronize the view model and view. When implemented outside of the Microsoft stack, the presence of a declarative data binding technology is what makes this pattern possible, and without a binder, one would typically use MVP or MVC instead and have to write more boilerplate (or generate it with some other tool).
 
-## MVP
+## 2. MVP
 
 Model View Presenter (MVP) is a software architectural pattern that emerged from the Model View Controller (MVC). It describes a new approach to completely separate the model and the view and to connect them via a presenter. Besides a clearly improved testability also the stricter separation of the individual components in contrast to MVC stands in the foreground.
 
@@ -46,7 +46,7 @@ Components of MVP pattern:
 - Presenter
   > The presenter is the link between model and view. It controls the logical flows between the other two layers and ensures that the view can fulfill its functionality. For the presenter, interfaces are used for model and view respectively. The interfaces define the exact structure of the two layers and the presenter merely links the interfaces with each other. This ensures the complete interchangeability and reusability of Model and View.
 
-## MVC
+## 3. MVC
 
 Model View Controller (MVC) is a software architectural pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
 
@@ -63,7 +63,7 @@ Components of MVC pattern:
 - Controller
   > The controller responds to the user input and performs interactions on the data model objects. The controller receives the input, optionally validates it and then passes the input to the model or view.
 
-## See also
+## 4. See also
 
 - Wikipedia [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) article.
 - Wikipedia [MVP](https://de.wikipedia.org/wiki/Model_View_Presenter) article.

@@ -1,18 +1,18 @@
 # Project Layout // TODO
 
-- [C/C++](#cc)
-- [Go](#go)
-- [Python](#python)
+- [1. C/C++](#1-cc)
+- [2. Go](#2-go)
+- [3. Python](#3-python)
 
-## C/C++
+## 1. C/C++
 
 // TODO
 
-## Go
+## 2. Go
 
 [Go Project Layout](https://github.com/golang-standards/project-layout) for applicationa. It is a set of common historical and emerging project layout patterns in the Go.
 
-**NOTE** It's not an official standard defined by the core Go dev team
+> NOTE It's not an official standard defined by the core Go dev team.
 
 **Directories:**
 
@@ -85,7 +85,7 @@
 - `go.mod`
   > Package dependency and version management.
 
-## Python
+## 3. Python
 
 [Python Project Layout](https://github.com/johnthagen/python-blueprint) using best practices.
 

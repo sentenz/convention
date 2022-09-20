@@ -2,16 +2,16 @@
 
 Technical debt (also known as `tech debt` or `code debt`code debt) often refers to a rushed development process or a lack of shared knowledge among team members. However, in many cases technical debt is inevitable and is part of any software development process.
 
-- [Impact of Technical Debt](#impact-of-technical-debt)
-- [Types of Technical Debt](#types-of-technical-debt)
-  - [Code Debt](#code-debt)
-  - [Test Debt](#test-debt)
-  - [Design Debt](#design-debt)
-  - [Knowledge Debt](#knowledge-debt)
-- [Metrics of Technical Debt](#metrics-of-technical-debt)
-- [See also](#see-also)
+- [1. Impact of Technical Debt](#1-impact-of-technical-debt)
+- [2. Types of Technical Debt](#2-types-of-technical-debt)
+  - [2.1. Code Debt](#21-code-debt)
+  - [2.2. Test Debt](#22-test-debt)
+  - [2.3. Design Debt](#23-design-debt)
+  - [2.4. Knowledge Debt](#24-knowledge-debt)
+- [3. Metrics of Technical Debt](#3-metrics-of-technical-debt)
+- [4. See also](#4-see-also)
 
-## Impact of Technical Debt
+## 1. Impact of Technical Debt
 
 Technical Debt and Its Impact on Team Morale, Velocity, and Customer Experience.
 
@@ -21,11 +21,11 @@ Technical Debt and Its Impact on Team Morale, Velocity, and Customer Experience.
 - Engineers believe the team would ship up to 100% faster if they had a process for technical debt
   > More than half of respondents claim that their companies do not deal with technical debt well, highlighting that the divide between engineers and leadership is widening rather than closing. Engineers are clearly convinced that technical debt is the primary reason for productivity losses, however, they seem to be struggling to make it a priority.
 
-## Types of Technical Debt
+## 2. Types of Technical Debt
 
 Tech debt are inevitable and appears in any software project at some point. Dealing with technical debt in an ongoing basis will help to avoid large pieces of debt.
 
-### Code Debt
+### 2.1. Code Debt
 
 Technical debt is any code that you've decided is a liability. Code debt can be solved by automated code quality:
 
@@ -34,23 +34,23 @@ Technical debt is any code that you've decided is a liability. Code debt can be 
 
 - Code and architecture refactoring
 
-### Test Debt
+### 2.2. Test Debt
 
 - Test coverage
-  > [Software testing](software-testing.md) is used to ensure that expected business systems and product features behave correctly as expected.
+  > [Software testing](../about/software-testing.md) is used to ensure that expected business systems and product features behave correctly as expected.
 
-### Design Debt
+### 2.3. Design Debt
 
 Design debt is closely linked to structuring features and adhering to design patterns or the architecture of your codebase.
 
-Use features by [Git hooks](git-hooks.md) to trigger actions at certain points of the development to enforce conventions, guidelines, standards, and policies:
+Use features by [Githooks](../about/githooks.md) to trigger actions at certain points of the development to enforce conventions, guidelines, standards, and policies:
 
 - pre-commit to enforce coding standards and codebase linting
 - commit-msg to enforce commit messages by [Conventional Commits](../convention/conventional-commits.md)
-- pre-push to enforce branches by [Branching Strategies](branching-strategies.md)
-- pre-rebase to enforce standards by [Merging Strategies](merging-strategies.md)
+- pre-push to enforce branches by [Branching Strategies](../about/branching-strategies.md)
+- pre-rebase to enforce standards by [Merging Strategies](../about/merging-strategies.md)
 
-### Knowledge Debt
+### 2.4. Knowledge Debt
 
 Actively share knowledge about features and important codebase changes.
 
@@ -58,7 +58,7 @@ Actively share knowledge about features and important codebase changes.
 - Retrospective meetings
 - Random [Pull Request (PR) reviews](../guideline/code-review-guide.md#reviewer)
 
-## Metrics of Technical Debt
+## 3. Metrics of Technical Debt
 
 Keeping dashboards with code health metrics. These can range from dashboards that show test coverage or the number and average age of `TODOs`, to more sophisticated dashboards including metrics like cyclomatic complexity or maintainability index.
 
@@ -80,10 +80,10 @@ Keeping dashboards with code health metrics. These can range from dashboards tha
 - Feature Throughput
   > Days it takes to push a new feature to the main branch. It’s a supporting metric that can indicate growing tech debt. Not each feature has the same size, but if you see a decline over multiple weeks, it’s time to intervene.
 
-- Issues with [non-functional](software-testing.md#non-functional-testing) requirements
+- Issues with [non-functional](../about/software-testing.md#non-functional-testing) requirements
   > Measuring metrics such as application performance, UX (increasingly difficult to use), or loss of compatibility are solid indicators for increased technical debt.
 
-## See also
+## 4. See also
 
 - Google [technical debt](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=297&zoom=100,0,450) book.
 - Stepsize [technical debt](https://www.stepsize.com/blog/complete-guide-to-technical-debt) article.

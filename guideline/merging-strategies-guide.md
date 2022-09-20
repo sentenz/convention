@@ -1,1 +1,0 @@
-# Merging Strategies Guide // TODO

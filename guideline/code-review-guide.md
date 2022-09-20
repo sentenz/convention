@@ -2,27 +2,27 @@
 
 The code review guide contains suggestions on how to conduct code reviews effectively.
 
-- [Code Review](#code-review)
-  - [Look For](#look-for)
-  - [Principles](#principles)
-  - [Speed](#speed)
-- [Pull Request](#pull-request)
-  - [Description](#description)
-  - [Size](#size)
-  - [Reviewer](#reviewer)
-- [Code Owners](#code-owners)
-- [See also](#see-also)
+- [1. Code Review](#1-code-review)
+  - [1.1. Look For](#11-look-for)
+  - [1.2. Principles](#12-principles)
+  - [1.3. Speed](#13-speed)
+- [2. Pull Request](#2-pull-request)
+  - [2.1. Description](#21-description)
+  - [2.2. Size](#22-size)
+  - [2.3. Reviewer](#23-reviewer)
+- [3. Code Owners](#3-code-owners)
+- [4. See also](#4-see-also)
 
 This guide is inspired by :
 
 - Google [code review](https://google.github.io/eng-practices/review/) guide.
 - SAP [code review](https://github.com/SAP/styleguides/releases/download/latest/abap-code-review-guide.pdf) guide.
 
-## Code Review
+## 1. Code Review
 
 The primary purpose of code review is to ensure that the overall code health of the codebase is improving over time.  Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions on complex topics such as data protection, privacy, security, concurrency, accessibility, internationalization, etc.
 
-### [Look For](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
+### 1.1. [Look For](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
 
 - Design
   > Is the code well-designed for appropriate system?
@@ -51,7 +51,7 @@ The primary purpose of code review is to ensure that the overall code health of 
 - Documentation
   > Did the developer also update relevant documentation? If documentation is missing, ask for it.
 
-### [Principles](https://google.github.io/eng-practices/review/reviewer/standard.html#principles)
+### 1.2. [Principles](https://google.github.io/eng-practices/review/reviewer/standard.html#principles)
 
 - **In general, reviewers should favor approving a PR once it is in a state where it definitely improves the overall code health of the system being worked on, even if the PR isn't perfect.**
 
@@ -63,7 +63,7 @@ The primary purpose of code review is to ensure that the overall code health of 
 
 - If no other rule applies, then the reviewer may ask the author to be consistent with what is in the current codebase, as long as that doesn't worsen the overall code health of the system.
 
-### [Speed](https://google.github.io/eng-practices/review/reviewer/speed.html)
+### 1.3. [Speed](https://google.github.io/eng-practices/review/reviewer/speed.html)
 
 **Optimize for the speed at which a team of developers can produce a product.**
 
@@ -71,11 +71,11 @@ Unless the reviewer is in the middle of a focused task, a code review should be 
 
 If the reviewer is in the middle of a focused task, such as writing code, do not interrupt the task to perform a code review. Research has shown that it can take a long time for a developer to get back into a smooth flow of development after being interrupted. So interrupting the task while coding is actually more expensive to the team than making another developer wait a bit for a code review. Instead, wait for a break in the task before responding to a request for review. This could be when a current coding task is completed, after lunch, returning from a meeting, coming back from the breakroom, etc.
 
-## Pull Request
+## 2. Pull Request
 
 Git-based platforms provide features such as Gerrit `Change`, GitHub `Pull Request (PR)` and Google `Changelist (CL)` that support the submission of changes to version control.
 
-### [Description](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
+### 2.1. [Description](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
 Follow the [merge commit message](../guideline/commit-message-guide.html#merge-commit-message) guide to create a PR description.
 
@@ -129,7 +129,7 @@ Read the examples below to get a sense of bad and good PR descriptions. In summa
 
       The first sentence describes what’s actually being done. The rest of the description explains why the change is being made and gives the reviewer a lot of context.
 
-### [Size](https://google.github.io/eng-practices/review/developer/small-cls.html)
+### 2.2. [Size](https://google.github.io/eng-practices/review/developer/small-cls.html)
 
 In general, the right size for a PR is **one self-contained change**.
 
@@ -161,7 +161,7 @@ Small PRs are:
 
 NOTE **Reviewers have discretion to reject your change outright for the sole reason of it being too large.** Usually they will request to split it into a series of smaller changes. It's easier to just write small PRs in the first place.
 
-### Reviewer
+### 2.3. Reviewer
 
 - Draft Pull Request
   > Create a pull request draft and add a reviewer in the early stages of feature development.
@@ -175,7 +175,7 @@ NOTE **Reviewers have discretion to reject your change outright for the sole rea
 - Code Owners
   > A advanced concepts to select reviewers. Use a CODEOWNERS file to define individuals or teams that are responsible for code in a repository.
 
-## Code Owners
+## 3. Code Owners
 
 Define individuals as [code owners](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) or teams that are responsible for code in a repository. People with admin or owner permissions can set up a CODEOWNERS file in a repository.
 
@@ -250,7 +250,7 @@ There are some syntax rules for gitignore files that do not work in CODEOWNERS f
 - Using `!` to negate a pattern
 - Using `[ ]` to define a character range
 
-## See also
+## 4. See also
 
 - Google [code review](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=343&zoom=100,0,380) book.
 - Google [culture of review](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=510&zoom=100,0,264) book.

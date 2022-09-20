@@ -1,11 +1,11 @@
 # Branching Strategies Guide
 
-[Branching strategies](../about/branching-strategies.md) defines how a team uses branching to achieve this level of concurrent development.
+[Branching strategies](../about/branching-strategies.md) defines how a team uses branching to achieve a level of concurrent development.
 
-- [Git Flow](#git-flow)
-- [Scaled Trunk-Based Development](#scaled-trunk-based-development)
+- [1. Git Flow](#1-git-flow)
+- [2. Scaled Trunk-Based Development](#2-scaled-trunk-based-development)
 
-## Git Flow
+## 1. Git Flow
 
 [Git Flow](../about/branching-strategies.md#git-flow) is a lightweight, branch-based workflow.
 
@@ -46,7 +46,7 @@ The strategy contains the following rules:
 
 7. Supporting branches are to be deleted after merging.
 
-## Scaled Trunk-Based Development
+## 2. Scaled Trunk-Based Development
 
 [Scaled Trunk-Based Development](../about/branching-strategies.md#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
 

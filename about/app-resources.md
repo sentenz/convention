@@ -2,16 +2,16 @@
 
 [App Resources](https://developer.android.com/guide/topics/resources/providing-resources) are additional files and static content used in the code, such as bitmaps, layout definitions, user interface strings and values, animation instructions, and more.
 
-- [Resource Types](#resource-types)
-- [Syntax](#syntax)
-  - [Syntax for C](#syntax-for-c)
-  - [Syntax for Go](#syntax-for-go)
-  - [Syntax for XML](#syntax-for-xml)
-- [See also](#see-also)
+- [1. Resource Types](#1-resource-types)
+- [2. Syntax](#2-syntax)
+  - [2.1. Syntax for C](#21-syntax-for-c)
+  - [2.2. Syntax for Go](#22-syntax-for-go)
+  - [2.3. Syntax for XML](#23-syntax-for-xml)
+- [3. See also](#3-see-also)
 
 Always externalize app resources such as images and strings from the code, so that you can maintain them independently. Also provide alternative resources for specific device configurations, by grouping them in specially-named resource directories.
 
-## Resource Types
+## 1. Resource Types
 
 Place [resource types](https://developer.android.com/guide/topics/resources/available-resources) in a specific subdirectory of the project's `resource/` directory.
 
@@ -30,7 +30,7 @@ Resource directories supported inside project `resource/` directory.
 | xml/      | Arbitrary XML files that can be read at runtime.                  |
 | font/     | Font files.                                                       |
 
-## Syntax
+## 2. Syntax
 
 The syntax to reference a resource in code:
 
@@ -47,25 +47,25 @@ The syntax to reference a resource in code:
 - `resource_name`
   >  Either the resource filename without the extension or the name attribute value.
 
-### Syntax for C
+### 2.1. Syntax for C
 
 ```bash
 [<package_name>_]<resource_type>_<resource_name>
 ```
 
-### Syntax for Go
+### 2.2. Syntax for Go
 
 ```bash
 [<package_name>.]<resource_type>_<resource_name>
 ```
 
-### Syntax for XML
+### 2.3. Syntax for XML
 
 ```bash
 @[<package_name>:]<resource_type>/<resource_name>
 ```
 
-## See also
+## 3. See also
 
 - Android [app resources](https://developer.android.com/guide/topics/resources/providing-resources) article.
 - Android [resource types](https://developer.android.com/guide/topics/resources/available-resources) article.

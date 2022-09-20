@@ -2,23 +2,23 @@
 
 Open source licenses grant permission to use, modify, and redistribute licensed software for any purpose, subject to conditions preserving the provenance and openness of the software.
 
-- [GNU AGPLv3](#gnu-agplv3)
-- [GNU GPLv3](#gnu-gplv3)
-- [GNU LGPLv3](#gnu-lgplv3)
-- [MPL 2.0](#mpl-20)
-- [Apache License 2.0](#apache-license-20)
-- [MIT License](#mit-license)
-- [BSL-1.0](#bsl-10)
-- [CC0 1.0](#cc0-10)
-- [Glossary](#glossary)
-  - [Permissions](#permissions)
-  - [Conditions](#conditions)
-  - [Limitations](#limitations)
-- [See also](#see-also)
+- [1. GNU AGPLv3](#1-gnu-agplv3)
+- [2. GNU GPLv3](#2-gnu-gplv3)
+- [3. GNU LGPLv3](#3-gnu-lgplv3)
+- [4. MPL 2.0](#4-mpl-20)
+- [5. Apache License 2.0](#5-apache-license-20)
+- [6. MIT License](#6-mit-license)
+- [7. BSL-1.0](#7-bsl-10)
+- [8. CC0 1.0](#8-cc0-10)
+- [9. Glossary](#9-glossary)
+  - [9.1. Permissions](#91-permissions)
+  - [9.2. Conditions](#92-conditions)
+  - [9.3. Limitations](#93-limitations)
+- [10. See also](#10-see-also)
 
 The licenses represent the entire spectrum of open source licenses, from highly protective to unconditional. The following licenses are sorted by the number of conditions, from most (GNU AGPLv3) to none (Unlicense).
 
-## GNU AGPLv3
+## 1. GNU AGPLv3
 
 [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/) (Affero General Public License v3.0)
 
@@ -32,7 +32,7 @@ Permissions of this strongest copyleft license are conditioned on making availab
 | Patent use     | Same license                 |             |
 | Private use    | State changes                |             |
 
-## GNU GPLv3
+## 2. GNU GPLv3
 
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) (General Public License v3.0)
 
@@ -46,7 +46,7 @@ Permissions of this strong copyleft license are conditioned on making available 
 | Patent use     | State changes                |             |
 | Private use    |                              |             |
 
-## GNU LGPLv3
+## 3. GNU LGPLv3
 
 [GNU LGPLv3](https://choosealicense.com/licenses/lgpl-3.0/) (Lesser General Public License v3.0)
 
@@ -60,7 +60,7 @@ Permissions of this copyleft license are conditioned on making available complet
 | Patent use     | State changes                |             |
 | Private use    |                              |             |
 
-## MPL 2.0
+## 4. MPL 2.0
 
 [MPL 2.0](https://choosealicense.com/licenses/mpl-2.0/) (Mozilla Public License 2.0)
 
@@ -74,7 +74,7 @@ Permissions of this weak copyleft license are conditioned on making available so
 | Patent use     |                              |               |
 | Private use    |                              |               |
 
-## Apache License 2.0
+## 5. Apache License 2.0
 
 [Apache License 2.0](https://choosealicense.com/licenses/)
 
@@ -88,7 +88,7 @@ A permissive license whose main conditions require preservation of copyright and
 | Patent use     |                              |               |
 | Private use    |                              |               |
 
-## MIT License
+## 6. MIT License
 
 [MIT License](https://choosealicense.com/licenses/mit/) (Massachusetts Institute of Technology)
 
@@ -101,7 +101,7 @@ A short and simple permissive license with conditions only requiring preservatio
 | Modification   |                              |             |
 | Private use    |                              |             |
 
-## BSL-1.0
+## 7. BSL-1.0
 
 [BSL-1.0](https://choosealicense.com/licenses/bsl-1.0/) (Boost Software License 1.0)
 
@@ -114,7 +114,7 @@ A simple permissive license only requiring preservation of copyright and license
 | Modification   |                                         |             |
 | Private use    |                                         |             |
 
-## CC0 1.0
+## 8. CC0 1.0
 
 [The Unlicense](https://choosealicense.com/licenses/unlicense/)
 
@@ -127,11 +127,11 @@ A license with no conditions whatsoever which dedicates works to the public doma
 | Modification   |            |             |
 | Private use    |            |             |
 
-## Glossary
+## 9. Glossary
 
 Definitions of the license [terms](https://choosealicense.com/appendix/).
 
-### Permissions
+### 9.1. Permissions
 
 Open source licenses grant to the public permissions to do things with licensed works which copyright or other `intellectual property` laws might otherwise disallow.
 
@@ -150,7 +150,7 @@ Open source licenses grant to the public permissions to do things with licensed 
 - Private use
   > The licensed material may be used and modified in private.
 
-### Conditions
+### 9.2. Conditions
 
 Most open source licenses grants of permissions are subject to compliance with conditions.
 
@@ -178,7 +178,7 @@ Most open source licenses grants of permissions are subject to compliance with c
 - State changes
   > Changes made to the licensed material must be documented.
 
-### Limitations
+### 9.3. Limitations
 
 Most open source licenses also have limitations that usually disclaim warranty and liability, and sometimes expressly exclude patents or trademarks from licenses grants.
 
@@ -194,7 +194,7 @@ Most open source licenses also have limitations that usually disclaim warranty a
 - Warranty
   > This license explicitly states that it does NOT provide any warranty.
 
-## See also
+## 10. See also
 
 - Open Source Initiative (OSI) [licenses](https://opensource.org/licenses/category) article.
 - Choose a [licenses](https://choosealicense.com/licenses/) article.

@@ -2,13 +2,13 @@
 
 [Data Management](https://www.axiomdatascience.com/best-practices/index.html) plans help to ensure that your data are well-organized, managed, and prepared for preservation into the future. Use a data management plan to document the planned research effort, the expected outputs, and the plan for documenting and archiving data.
 
-- [Folder Structure](#folder-structure)
-  - [Project Naming Convention](#project-naming-convention)
-- [File Structure](#file-structure)
-  - [File Naming Convention](#file-naming-convention)
-- [See also](#see-also)
+- [1. Folder Structure](#1-folder-structure)
+  - [1.1. Project Naming Convention](#11-project-naming-convention)
+- [2. File Structure](#2-file-structure)
+  - [2.1. File Naming Convention](#21-file-naming-convention)
+- [3. See also](#3-see-also)
 
-## Folder Structure
+## 1. Folder Structure
 
 - 00_Governance
   > Includes scoping documents, static documents for regular reference but minimal change.
@@ -46,7 +46,7 @@
 - 05_Result
   > Includes generated output of the project. This includes lessons learned and documents that are required for manufacturing / mass production.
 
-### Project Naming Convention
+### 1.1. Project Naming Convention
 
 The naming rule is: `[YYYY]_[customer]_[title]_[sequence]`.
 
@@ -66,11 +66,11 @@ Illustrations as follows:
 
 - 2022_Apple_iPhone-13_1
 
-## File Structure
+## 2. File Structure
 
 A successful [file structure](https://mitcommlab.mit.edu/broad/commkit/file-structure/) organizes your data and code with the goal of repeatability, making it easier for you and your collaborators to revisit, revise and develop your project. File structures are not fixed entities, but rather build a framework that communicates the function and purpose of elements within a project by separating concerns into a hierarchy of folders and using consistent, chronological, and descriptive names.
 
-### File Naming Convention
+### 2.1. File Naming Convention
 
 The naming rule is: `[YYYYMMDD]_[type]_[scope]_[author]_[title]_[subtitle]_[version]`.
 
@@ -107,7 +107,7 @@ Illustrations as follows:
 
 - 20220401_mm_internal_s_apple_iphone-13_mini_v01
 
-## See also
+## 3. See also
 
 - Axiom [data management](https://www.axiomdatascience.com/best-practices/index.html) article.
 - Broad [file structure](https://mitcommlab.mit.edu/broad/commkit/file-structure/) article.

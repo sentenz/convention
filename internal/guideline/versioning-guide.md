@@ -1,6 +1,6 @@
 # Versioning Guide
 
-[Semantic Versioning (SemVer)](../convention/semantic-versioning.md) is a system that aids in tracking versioning projects.
+[Semantic Versioning (SemVer)](../../internal/convention/semantic-versioning.md) is a system that aids in tracking versioning projects.
 
 - [1. Versioning](#1-versioning)
   - [1.1. Release](#11-release)
@@ -14,9 +14,9 @@
 
 ## 1. Versioning
 
-The actions to create a `version tag` and a `CHANGELOG.md` file based on the `semantic versioning` convention rely on the [commit messages](../guideline/commit-message-guide.md) following the `conventional commits` convention.
+The actions to create a `version tag` and a `CHANGELOG.md` file based on the `semantic versioning` convention rely on the [commit messages](../../internal/guideline/commit-message-guide.md) following the `conventional commits` convention.
 
-An yaml file containing actions for [continuous release pipeline](../about/continuous-pipelines.md#6-continuous-release) is triggered from base branch.
+An yaml file containing actions for [continuous release pipeline](../../internal/about/continuous-pipelines.md#6-continuous-release) is triggered from base branch.
 
 ### 1.1. Release
 

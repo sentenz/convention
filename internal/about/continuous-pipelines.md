@@ -1,6 +1,6 @@
 # Continuous Pipelines
 
-Continuous Integration/Continuous Delivery or Continuous Deployment (CI/CD) describes the continuous pipeline stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a [target/production environment](../about/software-development-environment.md#production-environment).
+Continuous Integration/Continuous Delivery or Continuous Deployment (CI/CD) describes the continuous pipeline stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a [target/production environment](../../internal/about/software-development-environment.md#production-environment).
 
 - [1. Continuous Integration](#1-continuous-integration)
 - [2. Continuous Delivery](#2-continuous-delivery)
@@ -18,11 +18,11 @@ CI/CD is an automated agile software development workflow with the continuous me
 
 ## 1. Continuous Integration
 
-Continuous integration (CI) is the practice of automating the integration of code changes from multiple contributors into the main branch of a shared source code repository. Merging changes frequently and triggering automatic testing and validation processes, minimize the possibility of code conflict, even with multiple developers working on the same application. Short-living feature branches, such as in [Trunk-Based Development](../about/branching-strategies.md#trunk-based-development), are a requirement for continuous integration. With continuous integration, errors and security issues can be identified and fixed more easily, and much earlier in the software development lifecycle.
+Continuous integration (CI) is the practice of automating the integration of code changes from multiple contributors into the main branch of a shared source code repository. Merging changes frequently and triggering automatic testing and validation processes, minimize the possibility of code conflict, even with multiple developers working on the same application. Short-living feature branches, such as in [Trunk-Based Development](../../internal/about/branching-strategies.md#trunk-based-development), are a requirement for continuous integration. With continuous integration, errors and security issues can be identified and fixed more easily, and much earlier in the software development lifecycle.
 
 The version control system is supplemented in the CI process by tools such as automated code quality tests, or syntax style review tools:  
 
-- [Code Analysis](../about/code-analysis.md)
+- [Code Analysis](../../internal/about/code-analysis.md)
   > Code analysis, generally SAST and DAST, refers to performance profiling measures, safety-related correctness testing, code coverage reporting, code quality testing, syntax style review tools, or dead code elimination.
 
 Popular tools for the CI process include Kubernetes, Terraform, Chef, Ansible, and Puppet. [Docker](https://www.docker.com/) containerization ensures consistency across multiple development and release cycles and provides repeatable development, build, test, and production environments.
@@ -45,29 +45,29 @@ This is rare and in most cases unnecessary. Usually, unicorn companies with hund
 
 ## 5. Continuous Testing  
 
-Continuous Testing (CT) is a critical component of DevOps pipeline and one of the primary enablers of continuous feedback. In a DevOps process, changes move continuously from development to testing to deployment, leading not only in faster releases, but also in higher product quality. This means that automated [Software Testing](../about/software-testing.md) is performed throughout the DevOps pipeline, including unit tests that are run on build changes.  
+Continuous Testing (CT) is a critical component of DevOps pipeline and one of the primary enablers of continuous feedback. In a DevOps process, changes move continuously from development to testing to deployment, leading not only in faster releases, but also in higher product quality. This means that automated [Software Testing](../../internal/about/software-testing.md) is performed throughout the DevOps pipeline, including unit tests that are run on build changes.  
 
 Popular tools for the continuous testing are Selenium, Travis, and Appium.
 
 Related items:
 
 - Unit Test and Code Coverage
-  > If a project is set up with a CI pipeline with automatic [unit testing](../about/software-testing.md#code-coverage) and [test coverage](../about/software-testing.md#code-coverage), it is a best practice to constantly evolve and improve the test coverage. Each new feature that passes through the CI pipeline should be accompanied by a series of tests to ensure that the new code behaves as expected.
+  > If a project is set up with a CI pipeline with automatic [unit testing](../../internal/about/software-testing.md#code-coverage) and [test coverage](../../internal/about/software-testing.md#code-coverage), it is a best practice to constantly evolve and improve the test coverage. Each new feature that passes through the CI pipeline should be accompanied by a series of tests to ensure that the new code behaves as expected.
 
 - Test Driven Development
-  > [Test Driven Development (TDD)](../about/software-testing.md#test-driven-development) is the practice of writing out the test code and test cases before doing any actual feature coding. Pure TDD can closely involve the product team to help craft an expected business behavior specification, which can then be transformed into the test cases. In a pure TDD scenario, developers and product team will meet and discuss a specification or list of requirements. This list of requirements will then be converted into a checklist of code assertions. The developers will then write code that matches these assertions.
+  > [Test Driven Development (TDD)](../../internal/about/software-testing.md#test-driven-development) is the practice of writing out the test code and test cases before doing any actual feature coding. Pure TDD can closely involve the product team to help craft an expected business behavior specification, which can then be transformed into the test cases. In a pure TDD scenario, developers and product team will meet and discuss a specification or list of requirements. This list of requirements will then be converted into a checklist of code assertions. The developers will then write code that matches these assertions.
 
 ## 6. Continuous Release
 
 Continuous Release automates the package release workflow, including determining the next version number, creating the release notes and generating the changelog based on commits, and publishing the package.
 
-Popular [tools](../guideline/versioning-guide.md#tooling) for the continuous release are semantic-release, standard-version, and Conventional Changelog.
+Popular [tools](../../internal/guideline/versioning-guide.md#tooling) for the continuous release are semantic-release, standard-version, and Conventional Changelog.
 
 Related items:
 
-- [Conventional Commits](../convention/conventional-commits.md)
-- [Semantic Versioning](../convention/semantic-versioning.md)
-- [Changelog](../convention/changelog.md)
+- [Conventional Commits](../../internal/convention/conventional-commits.md)
+- [Semantic Versioning](../../internal/convention/semantic-versioning.md)
+- [Changelog](../../internal/convention/changelog.md)
 
 ## 7. Continuous Security
 

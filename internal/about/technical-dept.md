@@ -37,18 +37,18 @@ Technical debt is any code that you've decided is a liability. Code debt can be 
 ### 2.2. Test Debt
 
 - Test coverage
-  > [Software testing](../about/software-testing.md) is used to ensure that expected business systems and product features behave correctly as expected.
+  > [Software testing](../../internal/about/software-testing.md) is used to ensure that expected business systems and product features behave correctly as expected.
 
 ### 2.3. Design Debt
 
 Design debt is closely linked to structuring features and adhering to design patterns or the architecture of your codebase.
 
-Use features by [Githooks](../about/githooks.md) to trigger actions at certain points of the development to enforce conventions, guidelines, standards, and policies:
+Use features by [Githooks](../../internal/about/githooks.md) to trigger actions at certain points of the development to enforce conventions, guidelines, standards, and policies:
 
 - pre-commit to enforce coding standards and codebase linting
-- commit-msg to enforce commit messages by [Conventional Commits](../convention/conventional-commits.md)
-- pre-push to enforce branches by [Branching Strategies](../about/branching-strategies.md)
-- pre-rebase to enforce standards by [Merging Strategies](../about/merging-strategies.md)
+- commit-msg to enforce commit messages by [Conventional Commits](../../internal/convention/conventional-commits.md)
+- pre-push to enforce branches by [Branching Strategies](../../internal/about/branching-strategies.md)
+- pre-rebase to enforce standards by [Merging Strategies](../../internal/about/merging-strategies.md)
 
 ### 2.4. Knowledge Debt
 
@@ -56,7 +56,7 @@ Actively share knowledge about features and important codebase changes.
 
 - Create documentation, examples, tests
 - Retrospective meetings
-- Random [Pull Request (PR) reviews](../guideline/code-review-guide.md#reviewer)
+- Random [Pull Request (PR) reviews](../../internal/guideline/code-review-guide.md#reviewer)
 
 ## 3. Metrics of Technical Debt
 
@@ -80,7 +80,7 @@ Keeping dashboards with code health metrics. These can range from dashboards tha
 - Feature Throughput
   > Days it takes to push a new feature to the main branch. It’s a supporting metric that can indicate growing tech debt. Not each feature has the same size, but if you see a decline over multiple weeks, it’s time to intervene.
 
-- Issues with [non-functional](../about/software-testing.md#non-functional-testing) requirements
+- Issues with [non-functional](../../internal/about/software-testing.md#non-functional-testing) requirements
   > Measuring metrics such as application performance, UX (increasingly difficult to use), or loss of compatibility are solid indicators for increased technical debt.
 
 ## 4. See also

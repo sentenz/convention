@@ -1,13 +1,13 @@
 # Branching Strategies Guide
 
-[Branching strategies](../about/branching-strategies.md) defines how a team uses branching to achieve a level of concurrent development.
+[Branching strategies](../../internal/about/branching-strategies.md) defines how a team uses branching to achieve a level of concurrent development.
 
 - [1. Git Flow](#1-git-flow)
 - [2. Scaled Trunk-Based Development](#2-scaled-trunk-based-development)
 
 ## 1. Git Flow
 
-[Git Flow](../about/branching-strategies.md#git-flow) is a lightweight, branch-based workflow.
+[Git Flow](../../internal/about/branching-strategies.md#git-flow) is a lightweight, branch-based workflow.
 
 The repository contains two base branches with an infinite lifetime:
 
@@ -30,7 +30,7 @@ The strategy contains the following rules:
 
 3. Merge to *main* will create a new release version and deploy to production.
    - Merge of the *release* branch into the *main* branch will create a *tag* with the release version.
-   - The release version is created according to the [semver convention](../convention/semantic-versioning.md) by analyzing the [commit messages](../convention/conventional-commits.md).
+   - The release version is created according to the [semver convention](../../internal/convention/semantic-versioning.md) by analyzing the [commit messages](../../internal/convention/conventional-commits.md).
 
 4. *release* branches support preparation of a new production release and deploy to staging.
    - Create *release* branch from *develop* (naming convention, i.e. `release/[1.2.x]`).
@@ -39,16 +39,16 @@ The strategy contains the following rules:
 
 5. *fix* branches of production issues that need an immediate fix of a production version.
    - Create a *fix* branch from *main* (naming convention, i.e. `fix/[ISSUETYPE-ID]-[short-describe]`).
-   - Commit fix with commit message by [conventional commits](../convention/conventional-commits.md), i.e `fix(scope): what was fixed`.
+   - Commit fix with commit message by [conventional commits](../../internal/convention/conventional-commits.md), i.e `fix(scope): what was fixed`.
    - Pull requests (PR) of *fix* branches first into *main* and next into *develop* branch.
 
-6. Pull requests (PR) title should follow the [conventional commits](../convention/conventional-commits.md).
+6. Pull requests (PR) title should follow the [conventional commits](../../internal/convention/conventional-commits.md).
 
 7. Supporting branches are to be deleted after merging.
 
 ## 2. Scaled Trunk-Based Development
 
-[Scaled Trunk-Based Development](../about/branching-strategies.md#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
+[Scaled Trunk-Based Development](../../internal/about/branching-strategies.md#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
 
 The repository contains one base branch with an infinite lifetime:
 
@@ -75,7 +75,7 @@ The strategy contains the following rules:
 
 3. Merge to *main* creates a release version.
    - Merge of the *feature* branch into the *main* branch will create a *tag* with the release version.
-   - The release version is created according to the [semver convention](../convention/semantic-versioning.md) by analyzing the [commit messages](../convention/conventional-commits.md).
+   - The release version is created according to the [semver convention](../../internal/convention/semantic-versioning.md) by analyzing the [commit messages](../../internal/convention/conventional-commits.md).
 
 4. *release* branches are cut from a specific revision of the *main*.
    - Release from [main](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html) retroactively by selecting the revision in the past to branch from.
@@ -85,6 +85,6 @@ The strategy contains the following rules:
    - Create a *feature* branch from *main* (naming convention, i.e. `feature/[ISSUETYPE-ID]-[fix]-[short-describe]`).
    - Fix bugs on the *feature* and cherry-picking them back to the release branch.
 
-6. Pull requests (PR) title should follow the [conventional commits](../convention/conventional-commits.md).
+6. Pull requests (PR) title should follow the [conventional commits](../../internal/convention/conventional-commits.md).
 
 7. Supporting branches are to be deleted after merging.

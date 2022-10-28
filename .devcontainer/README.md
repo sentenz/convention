@@ -16,3 +16,4 @@
   > - `postCreateCommand`: Run commands after the container is created.
   > - `forwardPorts`: A list of ports inside the container available locally.
   > - `features`: See features on [devcontainers](https://github.com/devcontainers/features/tree/main/src) repository.
+  > - `remoteUser`: The user VS Code Server will be started with. The default is the same user as the container.

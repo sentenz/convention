@@ -8,10 +8,12 @@ jobs:
   release:
     name: continuous-release
     runs-on: ubuntu-22.04
+    permissions: write-all
     steps:
       - name: Checkout Codebase
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.GH_TOKEN }}
           persist-credentials: false
       - name: Setup Release
         run: |

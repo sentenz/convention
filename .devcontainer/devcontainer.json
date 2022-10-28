@@ -1,5 +1,5 @@
 {
-  "name": "Ubuntu",
+  "name": "Ubuntu-22",
   "runArgs": ["--init"],
   "build": {
     "dockerfile": "../build/container/devcontainer.dockerfile",
@@ -49,5 +49,6 @@
   "onCreateCommand": "apt update && apt install -y make",
   "postCreateCommand": "make setup-devcontainer",
   "forwardPorts": [],
-  "features": {}
+  "features": {},
+  "remoteUser": "root"
 }

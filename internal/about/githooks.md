@@ -55,7 +55,7 @@ Parameters:
 
 ### 1.3. commit-msg
 
-The [commit-msg](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_commit_msg) hook takes one parameter, which again is the path to a temporary file that contains the commit message written by the developer. If this script exits non-zero, Git aborts the commit process, so use it to validate your project state or commit message before allowing a commit to go through according to the [Conventional Commits](../convention/conventional-commits.md).
+The [commit-msg](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_commit_msg) hook takes one parameter, which again is the path to a temporary file that contains the commit message written by the developer. If this script exits non-zero, Git aborts the commit process, so use it to validate your project state or commit message before allowing a commit to go through according to the [Conventional Commits](../../internal/convention/conventional-commits.md).
 
 Hook is invoked by `git-commit` and `git-merge`.
 
@@ -79,7 +79,7 @@ Usage:
 
 ### 1.5. pre-rebase
 
-The [pre-rebase](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_rebase) hook runs before you rebase anything and can halt the process by exiting non-zero. Use this hook to disallow rebasing any commits that have already been pushed according to the [Merging Strategies](../about/merging-strategies.md).
+The [pre-rebase](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_rebase) hook runs before you rebase anything and can halt the process by exiting non-zero. Use this hook to disallow rebasing any commits that have already been pushed according to the [Merging Strategies](../../internal/about/merging-strategies.md).
 
 Hook is invoked by `git-rebase`.
 
@@ -139,7 +139,7 @@ Parameters:
 
 ### 1.9. pre-push
 
-The [pre-push](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_push) hook runs during `git push`, after the remote refs have been updated but before any objects have been transferred. It receives the name and location of the remote as parameters, and a list of to-be-updated refs through `stdin`. Use it to validate a set of ref updates before a push occurs (a non-zero exit code will abort the push). Further, prevent pushing to [main/develop] branch according to the [Branching Strategies](../about/branching-strategies.md).
+The [pre-push](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_pre_push) hook runs during `git push`, after the remote refs have been updated but before any objects have been transferred. It receives the name and location of the remote as parameters, and a list of to-be-updated refs through `stdin`. Use it to validate a set of ref updates before a push occurs (a non-zero exit code will abort the push). Further, prevent pushing to [main/develop] branch according to the [Branching Strategies](../../internal/about/branching-strategies.md).
 
 Hook is invoked by `git-push`.
 

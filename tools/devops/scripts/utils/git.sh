@@ -3,6 +3,16 @@
 # Library for git actions.
 
 ########################
+# Configure ownership in repository.
+# Arguments:
+#   None
+# Returns:
+#   None
+#########################
+configure_repo_ownership() {
+  git config --global --add safe.directory "$(get_root_dir)"
+}
+########################
 # Get the absolute path of the root project by command substitution.
 # Arguments:
 #   None

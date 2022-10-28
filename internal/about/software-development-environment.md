@@ -35,7 +35,7 @@ A testing environment – even though critical for ongoing code quality assuranc
 
 ## 4. Continuous Environment
 
-Continuous environment based on [Continuous Pipelines](../about/continuous-pipelines.md) are created on demand exclusively for the continuous execution of automated [XOps](../about/xops.md) pipelines and then automatically destroyed.
+Continuous environment based on [Continuous Pipelines](../../internal/about/continuous-pipelines.md) are created on demand exclusively for the continuous execution of automated [XOps](../../internal/about/xops.md) pipelines and then automatically destroyed.
 
 The three primary approaches for the continuous method are:
 
@@ -49,9 +49,9 @@ The three primary approaches for the continuous method are:
 
 A [production environment](https://www.suse.com/suse-defines/definition/production-environment/), sometimes called deployment environment, is the set of computers where finished, user-ready software is deployed and executed. When software code is moved to the production environment, it is the final step in a 4-tier architecture that includes development, [testing](#2-test-environment), [staging](#3-staging-environment) and production. Before it reaches the production environment, the software is still under [development](#1-development-environment), and bugs and flaws are actively found and fixed. When it is deemed ready for production, it is expected to work without error.
 
-The production environment is often referred to as live, especially for servers. It is the environment that users interact with. Deploying to the production environment is handled very carefully, and may require [deployment strategies](../about/deployment-strategies.md) to enable users to transition smoothly to a new version, such as deploying one server with the old code and one with the new, and redirecting traffic to the new server. Deploying a new release can mean an interruption in service, so some user notification may be needed.
+The production environment is often referred to as live, especially for servers. It is the environment that users interact with. Deploying to the production environment is handled very carefully, and may require [deployment strategies](../../internal/about/deployment-strategies.md) to enable users to transition smoothly to a new version, such as deploying one server with the old code and one with the new, and redirecting traffic to the new server. Deploying a new release can mean an interruption in service, so some user notification may be needed.
 
-In [DevOps](../about/xops.md#1-devops), the [testing environment](#2-test-environment) and [staging environment](#3-staging-environment) are usually replaced by the [continuous environment](#4-continuous-environment).
+In [DevOps](../../internal/about/xops.md#1-devops), the [testing environment](#2-test-environment) and [staging environment](#3-staging-environment) are usually replaced by the [continuous environment](#4-continuous-environment).
 
 <!-- A production environment, sometimes called deployment environment, is where the application lives and operates after the launch. It is where you deploy all the final work for your customer or roll out your new version of the application to be accessed by your clients.
 

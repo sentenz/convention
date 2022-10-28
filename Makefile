@@ -3,9 +3,9 @@ help: ## Display help screen
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-30s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 .PHONY: help
 
-setup-devops: ## Setup dependencies and tools for the devops service
-	cd tools/devops/scripts && chmod +x setup_devops.sh && ./setup_devops.sh
-.PHONY: setup-devops
+setup: ## Setup dependencies and tools for the devops service
+	cd tools/devops/scripts && chmod +x setup.sh && ./setup.sh
+.PHONY: setup
 
 setup-integration: ## Setup dependencies and tools for the integration service
 	cd scripts/pipeline && chmod +x setup_continuous_integration.sh && ./setup_continuous_integration.sh
@@ -45,7 +45,6 @@ run-release: ## Perform release service task
 
 setup-devcontainer: ## Setup dependencies and tools for the vscode devcontainer
 	$(MAKE) setup
-	$(MAKE) setup-devops
 .PHONY: setup-devcontainer
 
 setup-continuous-integration: ## Setup dependencies and tools for the continuous integration pipeline

@@ -16,6 +16,7 @@ Best practices, articles of interest and general topics.
 - [Cross Compiler](cross-compiler.md)
 - [Data Management](data-management.md)
 - [Deployment Strategies](deployment-strategies.md)
+- [Docs as Code](docs-as-code.md)
 - [Feature Toggles](feature-toggles.md)
 - [File Systems](file-systems.md)
 - [Githooks](githooks.md)

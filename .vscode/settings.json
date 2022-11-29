@@ -24,6 +24,7 @@
   "editor.defaultFormatter": null,
   "editor.tabSize": 2,
   "editor.bracketPairColorization.enabled": true,
+  "editor.stickyScroll.enabled": true,
   "git.ignoreLimitWarning": true,
   "conventionalCommits.gitmoji": false,
   "shellformat.useEditorConfig": true,

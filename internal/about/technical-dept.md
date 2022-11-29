@@ -9,7 +9,7 @@ Technical debt (also known as `tech debt` or `code debt`code debt) often refers 
   - [2.3. Design Debt](#23-design-debt)
   - [2.4. Knowledge Debt](#24-knowledge-debt)
 - [3. Metrics of Technical Debt](#3-metrics-of-technical-debt)
-- [4. See also](#4-see-also)
+- [4. References](#4-references)
 
 ## 1. Impact of Technical Debt
 
@@ -83,7 +83,7 @@ Keeping dashboards with code health metrics. These can range from dashboards tha
 - Issues with [non-functional](../../internal/about/software-testing.md#non-functional-testing) requirements
   > Measuring metrics such as application performance, UX (increasingly difficult to use), or loss of compatibility are solid indicators for increased technical debt.
 
-## 4. See also
+## 4. References
 
 - Google [technical debt](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=297&zoom=100,0,450) book.
 - Stepsize [technical debt](https://www.stepsize.com/blog/complete-guide-to-technical-debt) article.

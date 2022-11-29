@@ -11,7 +11,7 @@ The code review guide contains suggestions on how to conduct code reviews effect
   - [2.2. Size](#22-size)
   - [2.3. Reviewer](#23-reviewer)
 - [3. Code Owners](#3-code-owners)
-- [4. See also](#4-see-also)
+- [4. References](#4-references)
 
 This guide is inspired by :
 
@@ -77,7 +77,7 @@ Git-based platforms provide features such as Gerrit `Change`, GitHub `Pull Reque
 
 ### 2.1. [Description](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
-Follow the [merge commit message](../../internal/guideline/commit-message-guide.html#merge-commit-message) guide to create a PR description.
+Follow the [merge commit message](../../internal/guideline/commit-message-guide.md#2-merge-commit-message) guide to create a PR description.
 
 Read the examples below to get a sense of bad and good PR descriptions. In summary:
 
@@ -250,7 +250,7 @@ There are some syntax rules for gitignore files that do not work in CODEOWNERS f
 - Using `!` to negate a pattern
 - Using `[ ]` to define a character range
 
-## 4. See also
+## 4. References
 
 - Google [code review](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=343&zoom=100,0,380) book.
 - Google [culture of review](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=510&zoom=100,0,264) book.

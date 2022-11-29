@@ -5,7 +5,7 @@ An architectural pattern is a general, reusable solution to a commonly occurring
 - [1. MVVM](#1-mvvm)
 - [2. MVP](#2-mvp)
 - [3. MVC](#3-mvc)
-- [4. See also](#4-see-also)
+- [4. References](#4-references)
 
 ## 1. MVVM
 
@@ -63,7 +63,7 @@ Components of MVC pattern:
 - Controller
   > The controller responds to the user input and performs interactions on the data model objects. The controller receives the input, optionally validates it and then passes the input to the model or view.
 
-## 4. See also
+## 4. References
 
 - Wikipedia [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) article.
 - Wikipedia [MVP](https://de.wikipedia.org/wiki/Model_View_Presenter) article.

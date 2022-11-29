@@ -1,7 +1,7 @@
 # Git // TODO
 
 - [Git Commands](#git-commands)
-- [See also](#see-also)
+- [References](#see-also)
 
 ## Git Commands
 
@@ -150,7 +150,7 @@
   git status --ignored
   ```
 
-## See also
+## References
 
 - Git [book](https://git-scm.com/book/en/v2) article.
 - Git [support](https://git.logikum.hu/) article.

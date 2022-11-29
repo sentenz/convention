@@ -11,7 +11,7 @@ Docs as Code enables a culture where authors and developers take ownership of do
 - [2. UML](#2-uml)
   - [2.1. Mermaid](#21-mermaid)
   - [2.2. PlantUML](#22-plantuml)
-- [3. See also](#3-see-also)
+- [3. References](#3-references)
 
 ## 1. Markup
 
@@ -63,7 +63,7 @@ As non-UML diagrams:
 
 [PlantUML](https://github.com/plantuml/plantuml) generate UML diagram from textual description.
 
-## 3. See also
+## 3. References
 
 - GitHub [markdown](https://github.com/mattcone/markdown-guide) guide.
 - Jekyll [web docs](https://jekyllrb.com/) article.

@@ -20,7 +20,7 @@
   - [2.2. update](#22-update)
   - [2.3. post-receive](#23-post-receive)
 - [3. Configuration](#3-configuration)
-- [4. See also](#4-see-also)
+- [4. References](#4-references)
 
 ## 1. Client-Side Hooks
 
@@ -218,6 +218,6 @@ The `.git` folder is not under version control, since most of its contents are d
 git config core.hooksPath githooks
 ```
 
-## 4. See also
+## 4. References
 
 - Git [book](https://git-scm.com/book/en/v2) article.

@@ -7,7 +7,7 @@ A branching strategy refers to the strategy that a software development team use
 - [3. Release Flow](#3-release-flow)
 - [4. Trunk-Based Development](#4-trunk-based-development)
 - [5. Scaled Trunk-Based Development](#5-scaled-trunk-based-development)
-- [6. See also](#6-see-also)
+- [6. References](#6-references)
 
 A branching strategy defines how a team uses branching to achieve this level of concurrent development.
 
@@ -84,7 +84,7 @@ Supporting branch:
 - [release](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html)
   > Release branch is a cut from trunk with an optional number of cherry picks that are developed on trunk and then pulled into the branch.
 
-## 6. See also
+## 6. References
 
 - Github [TBD](https://github.com/paul-hammant/tbd) repository.
 - Github [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow) article.

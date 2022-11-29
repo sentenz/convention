@@ -5,6 +5,6 @@
 - [Color Tool](https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=6002ee)
   > Create, share, and apply color palettes to UI, as well as measure the accessibility level of any color combination.
 
-## See also
+## References
 
 - Material [material components](https://github.com/material-components) repository.

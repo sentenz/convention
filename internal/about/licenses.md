@@ -14,7 +14,7 @@ Open source licenses grant permission to use, modify, and redistribute licensed 
   - [9.1. Permissions](#91-permissions)
   - [9.2. Conditions](#92-conditions)
   - [9.3. Limitations](#93-limitations)
-- [10. See also](#10-see-also)
+- [10. References](#10-references)
 
 The licenses represent the entire spectrum of open source licenses, from highly protective to unconditional. The following licenses are sorted by the number of conditions, from most (GNU AGPLv3) to none (Unlicense).
 
@@ -194,7 +194,7 @@ Most open source licenses also have limitations that usually disclaim warranty a
 - Warranty
   > This license explicitly states that it does NOT provide any warranty.
 
-## 10. See also
+## 10. References
 
 - Open Source Initiative (OSI) [licenses](https://opensource.org/licenses/category) article.
 - Choose a [licenses](https://choosealicense.com/licenses/) article.

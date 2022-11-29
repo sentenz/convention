@@ -6,7 +6,7 @@ An ADR captures the key options available, the main requirements that drive a de
 
 ADRs can also help you run more reliable applications and services. The ADR helps you understand your current state and troubleshoot when there's a problem. ADRs also build a collection of engineering decisions to help future decision choices and deployments.
 
-## See also
+## References
 
 - Github [ADR](https://github.com/adr) hompage, tools and examples project repository.
 - Github [ADR](https://github.com/joelparkerhenderson/architecture_decision_record) examples for software planning, IT leadership and template documentation repository.

@@ -63,7 +63,7 @@ The [twelve-factor app](https://12factor.net/) methodology describes a set of pr
 12. Admin Processes
     > // TODO
 
-## See also
+## References
 
 - Github [12factor]((https://github.com/heroku/12factor)) repository.
 - IBM [12+ Factors](https://www.ibm.com/cloud/blog/12-plus-factors-for-containerized-ui-microservices) for containerized UI microservices article.

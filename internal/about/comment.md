@@ -32,6 +32,6 @@ Tags differ, but might include:
 - NIT
   > Some style points that would improve the code, but are not mandatory.
 
-## See also
+## References
 
 - Wikipedia [comment](https://en.m.wikipedia.org/wiki/Comment_(computer_programming)) article.

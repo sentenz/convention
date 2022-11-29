@@ -6,7 +6,7 @@ Software architecture refers to the fundamental structures of a software system 
 - [2. Onion Architecture](#2-onion-architecture)
 - [3. Hexagonal Architecture](#3-hexagonal-architecture)
 - [4. Emergent Architecture](#4-emergent-architecture)
-- [5. See also](#5-see-also)
+- [5. References](#5-references)
 
 ## 1. Clean Architecture
 
@@ -30,6 +30,6 @@ The concept behind Hexagonal Architecture is that your core application logic is
 
 // TODO
 
-## 5. See also
+## 5. References
 
 - Medium [Onion vs Clean vs Hexagonal Architecture](https://medium.com/@edamtoft/onion-vs-clean-vs-hexagonal-architecture-9ad94a27da91) article.

@@ -7,7 +7,7 @@ A Software Development Environment (SDE) is the collection of hardware and softw
 - [3. Staging Environment](#3-staging-environment)
 - [4. Continuous Environment](#4-continuous-environment)
 - [5. Production Environment](#5-production-environment)
-- [6. See also](#6-see-also)
+- [6. References](#6-references)
 
 ## 1. Development Environment
 
@@ -59,7 +59,7 @@ Before you can deploy your code from your development environment into the produ
 
 The second activity you usually need to do before placing your code to production is the user-acceptance testing. This is when you check the entire system in the exact way it is going to be used in production, including live data volumes and types of data as well as user behavior. This type of testing requires a [staging environment](#3-staging-environment), which is identical to your production environment except that it’s not publicly accessible to end-users. -->
 
-## 6. See also
+## 6. References
 
 - Codebots [SDE](https://codebots.com/app-development/what-are-environments-in-software-development-a-guide-to-the-development-beta-and-production-environments) article.
 - Oroinc [environments types](https://doc.oroinc.com/cloud/environments/) article.

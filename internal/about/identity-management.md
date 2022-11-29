@@ -4,13 +4,13 @@ Identity management should be based on established standards such as OAuth 2.0 a
 
 - [Authentication](#authentication)
 - [Authorization](#authorization)
-- [See also](#see-also)
+- [References](#see-also)
 
 ## Authentication
 
 ## Authorization
 
-## See also
+## References
 
 - [Okta](https://www.okta.com/) identity platform.
 - [Ory](https://www.ory.sh/) identity platform.

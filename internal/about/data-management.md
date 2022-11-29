@@ -6,7 +6,7 @@
   - [1.1. Project Naming Convention](#11-project-naming-convention)
 - [2. File Structure](#2-file-structure)
   - [2.1. File Naming Convention](#21-file-naming-convention)
-- [3. See also](#3-see-also)
+- [3. References](#3-references)
 
 ## 1. Folder Structure
 
@@ -107,7 +107,7 @@ Illustrations as follows:
 
 - 20220401_mm_internal_s_apple_iphone-13_mini_v01
 
-## 3. See also
+## 3. References
 
 - Axiom [data management](https://www.axiomdatascience.com/best-practices/index.html) article.
 - Broad [file structure](https://mitcommlab.mit.edu/broad/commkit/file-structure/) article.

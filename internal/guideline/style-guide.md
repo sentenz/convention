@@ -13,7 +13,6 @@
 - [2. Go](#2-go)
   - [2.1. Convention](#21-convention)
   - [2.2. Library](#22-library)
-    - [2.2.1. UI](#221-ui)
   - [2.3. Code Analysis](#23-code-analysis)
   - [2.4. Software Testing](#24-software-testing)
   - [2.5. Architecture](#25-architecture)
@@ -316,6 +315,9 @@ Code Format
 
 - [pytest](https://github.com/pytest-dev/pytest)
   > Unit-testing framework.
+
+- [pytest-xdist](https://github.com/pytest-dev/pytest-xdist)
+  > pytest plugin for distributed testing and loop-on-failures testing modes.
 
 - [pytest fixtures](https://docs.pytest.org/en/6.2.x/fixture.html)
   > Fixtures initialize test functions.

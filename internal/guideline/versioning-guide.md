@@ -20,27 +20,27 @@ An yaml file containing actions for [continuous release pipeline](../../internal
 
 ### 1.1. Release
 
-SemVer is a 3-component system in the format:
+SemVer is a 3-component system `x`.`y`.`z`:
 
 - `x`
-  > Stands for a major version.
+  > Stands for a major version. Introduces a breaking change, code that contains incompatible or significant changes.
 
 - `y`
-  > Stands for a minor version.
+  > Stands for a minor version. Introduces a feature change, code that includes new backward compatible changes.
 
 - `z`
-  > Stands for a patch.
+  > Stands for a patch. Introduces a bug fix, code that contains backward compatible fix changes.
 
 `Major`.`Minor`.`Patch`, increment cases:
 
 - `Major`
-  > Version when code is incompatible or contains significant changes
+  > Increments the version tag `1.0.0` -> `2.0.0` and modifies the `CHANGELOG.md`.
 
 - `Minor`
-  > Version when code has been changed but the changes are backwards compatible
+  > Increments the version tag `1.0.0` -> `1.1.0` and modifies the `CHANGELOG.md`.
 
 - `Patch`
-  > Version when backwards-compatible bug fixes have been made
+  > Increments the version tag `1.0.0` -> `1.0.1` and modifies the `CHANGELOG.md`.
 
 ### 1.2. Pre-release
 
@@ -48,8 +48,11 @@ With Semantic Versioning, pre-releases or release candidate (rc) for a given rel
 
 Regular releases to the `next` distribution channel from the branch `next` if it exists:
 
-- 1.1.0 -> 1.1.0-next.1
-- 1.1.0 -> 1.1.0-rc.1
+- `1.0.0` -> `1.1.0-rc.1` -> `1.1.0-rc.2` -> `1.1.0`
+
+or
+
+- `1.0.0` -> `1.1.0-next.1` -> `1.1.0-next.2` -> `1.1.0`
 
 ## 2. Tools
 

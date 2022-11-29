@@ -1,6 +1,6 @@
 # Merging Strategies // TODO
 
-## See also
+## References
 
 - W3docs [merge strategies](https://www.w3docs.com/learn-git/git-merge-strategies.html) article.
 - GitHub [merge methods](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github) article.

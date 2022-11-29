@@ -4,7 +4,7 @@ A cross compiler is a compiler capable of creating executable code for a platfor
 
 - [1. Naming Convention](#1-naming-convention)
 - [2. Glossary](#2-glossary)
-- [3. See also](#3-see-also)
+- [3. References](#3-see-also)
 
 ## 1. Naming Convention
 
@@ -77,6 +77,6 @@ Definitions of terms.
 - x86_64
   > x86_64 (or x86-64) refers to a 64-bit instruction set invented by AMD as an extension of Intel’s x86 architecture. AMD calls its x86_64 architecture, AMD64, and Intel calls its implementation, Intel 64.
 
-## 3. See also
+## 3. References
 
 - Actorsfit [arm cross compiler](https://blog.actorsfit.com/a?ID=01700-1ce8edc2-d16c-4135-9abc-fd37ff641c25) article.

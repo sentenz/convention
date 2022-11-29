@@ -32,7 +32,7 @@ Software testing is an organizational process within software development in whi
 - [7. Fuzzing](#7-fuzzing)
 - [8. Penetration Testing](#8-penetration-testing)
 - [9. Code Coverage](#9-code-coverage)
-- [10. See also](#10-see-also)
+- [10. References](#10-see-also)
 
 ## 1. Functional Testing
 
@@ -188,7 +188,7 @@ In Acceptance Test-Driven Development (ATDD) technique, a single acceptance test
 
 In computer science, test coverage is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run. A program with high test coverage has more of its source code executed during testing, which suggests it has a lower chance of containing undetected software bugs compared to a program with low test coverage. Many different metrics can be used to calculate test coverage. Some of the most basic are the percentage of program subroutines and the percentage of program statements called during execution of the test suite.
 
-## 10. See also
+## 10. References
 
 - Google [Testing Code](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=307&zoom=100,0,600) book.
 - Atlassian [Software Testing](https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing) article.

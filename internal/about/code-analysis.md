@@ -7,7 +7,7 @@ Code analysis, generally SAST and DAST, refers to performance profiling measures
 - [2. DAST](#2-dast)
   - [2.1. Sanitizer](#21-sanitizer)
   - [2.2. Other Tools](#22-other-tools)
-- [3. See also](#3-see-also)
+- [3. References](#3-see-also)
 
 ## 1. SAST
 
@@ -74,7 +74,7 @@ Following popular sanitizers:
 - Code Coverage
   > Measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.
 
-## 3. See also
+## 3. References
 
 - NIST [list of SAST](https://www.nist.gov/itl/ssd/software-quality-group/source-code-security-analyzers) tools.
 - GitHub [list of SAST](https://www.nist.gov/itl/ssd/software-quality-group/source-code-security-analyzers) tools.

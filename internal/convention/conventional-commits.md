@@ -4,6 +4,6 @@ A specification for adding human and machine readable meaning to commit messages
 
 This convention dovetails with [SemVer](https://sentenz.github.io/backup-service/website/semver.org/index.html), by describing the features, fixes, and breaking changes made in commit messages.
 
-## See also
+## References
 
 - Github [conventional commits](https://github.com/conventional-commits/conventionalcommits.org) repository.

@@ -9,7 +9,7 @@
 - [2. Merge Commit Message](#2-merge-commit-message)
 - [3. Update a Commit Message](#3-update-a-commit-message)
 - [4. Lint a Commit Message](#4-lint-a-commit-message)
-- [5. See also](#5-see-also)
+- [5. References](#5-see-also)
 
 ## 1. Commit Message
 
@@ -229,6 +229,6 @@ In order to update the commit message of the last commit on the feature branch:
 
 [commitlint](https://github.com/conventional-changelog/commitlint) tooling for conventional commits. Checks if the commit messages meet the [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html) format.
 
-## 5. See also
+## 5. References
 
 - Karma [git commit message](http://karma-runner.github.io/1.0/dev/git-commit-msg.html) guideline.

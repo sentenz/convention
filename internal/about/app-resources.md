@@ -7,7 +7,7 @@
   - [2.1. Syntax for C](#21-syntax-for-c)
   - [2.2. Syntax for Go](#22-syntax-for-go)
   - [2.3. Syntax for XML](#23-syntax-for-xml)
-- [3. See also](#3-see-also)
+- [3. References](#3-see-also)
 
 Always externalize app resources such as images and strings from the code, so that you can maintain them independently. Also provide alternative resources for specific device configurations, by grouping them in specially-named resource directories.
 
@@ -65,7 +65,7 @@ The syntax to reference a resource in code:
 @[<package_name>:]<resource_type>/<resource_name>
 ```
 
-## 3. See also
+## 3. References
 
 - Android [app resources](https://developer.android.com/guide/topics/resources/providing-resources) article.
 - Android [resource types](https://developer.android.com/guide/topics/resources/available-resources) article.

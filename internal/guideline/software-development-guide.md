@@ -19,7 +19,7 @@ Software development refers to the design, documentation, programming, testing, 
   - [2.2. XOps](#22-xops)
   - [2.3. CI/CD](#23-cicd)
   - [2.4. Software Architecture](#24-software-architecture)
-- [See also](#see-also)
+- [References](#see-also)
 
 ## 1. Lifecycle
 
@@ -149,6 +149,6 @@ With a microservices architecture, developers can organize in smaller teams spec
 
 [Clean architecture](../../internal/about/software-architecture.md#clean-architecture) is a software design philosophy that separates the elements of a design into ring levels. An important goal of clean architecture is to provide developers with a way to organize code in such a way that it encapsulates the business logic but keeps it separate from the delivery mechanism.
 
-## See also
+## References
 
 - Atlassian [software development](https://www.atlassian.com/software-development) article.

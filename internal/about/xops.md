@@ -13,7 +13,7 @@ XOps automates processes, manages pipelines and workflows through scripts. Devel
 - [7. MLOps](#7-mlops)
 - [8. AIOps](#8-aiops)
 - [9. CloudOps](#9-cloudops)
-- [10. See also](#10-see-also)
+- [10. References](#10-see-also)
 
 ## 1. DevOps
 
@@ -72,7 +72,7 @@ MLOps refers to creating, deploying and maintaining machine learning models. It 
 
 CloudOps refers to managing activities involving optimising IT workloads or services in the cloud. It comes with different aspects such as cloud architecture, software development, security as well as compliance. The goal here is to improve the accessibility and efficiency of cloud services in the business.
 
-## 10. See also
+## 10. References
 
 - Atlassian [devops](https://www.atlassian.com/devops/what-is-devops) article.
 - GitHub [devops](https://github.com/learn/devops) article.

@@ -13,7 +13,7 @@
 - [3. Profiling](#3-profiling)
   - [3.1. gprof](#31-gprof)
   - [3.2. go](#32-go)
-- [4. See also](#4-see-also)
+- [4. References](#4-see-also)
 
 ## 1. Unit Testing
 
@@ -130,7 +130,7 @@ go test -race -coverprofile=coverage.out -covermode=atomic ./...
 
 ### 3.2. go
 
-## 4. See also
+## 4. References
 
 - JetBrains [unit testing](https://www.jetbrains.com/help/clion/unit-testing-tutorial.html#0) article.
 - JetBrains [code coverage](https://www.jetbrains.com/help/clion/code-coverage-clion.html#0) article.

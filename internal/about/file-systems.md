@@ -16,7 +16,7 @@ A file system is a structure of directories that is used to organize and store f
 - [4. macOS](#4-macos)
   - [4.1. APFS](#41-apfs)
 - [5. Swap Space](#5-swap-space)
-- [6. See also](#6-see-also)
+- [6. References](#6-see-also)
 
 ## 1. Flash Driver
 
@@ -58,6 +58,6 @@ NTFS (New Technology File System) with journaling file system of the Windows NT 
 
 The primary function of swap space is to substitute disk space for RAM memory when real RAM fills up and more space is needed. Swap space is used for virtual memory storage areas when the system does not have enough physical memory to handle current processes.
 
-## 6. See also
+## 6. References
 
 - Oracle [file systems](https://docs.oracle.com/cd/E18752_01/html/817-5093/fsoverview-51.html) article.

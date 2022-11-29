@@ -77,7 +77,7 @@ Git-based platforms provide features such as Gerrit `Change`, GitHub `Pull Reque
 
 ### 2.1. [Description](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
-Follow the [merge commit message](../../internal/guideline/commit-message-guide.html#merge-commit-message) guide to create a PR description.
+Follow the [merge commit message](../../internal/guideline/commit-message-guide.md#2-merge-commit-message) guide to create a PR description.
 
 Read the examples below to get a sense of bad and good PR descriptions. In summary:
 

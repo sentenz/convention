@@ -7,7 +7,7 @@ Code analysis, generally SAST and DAST, refers to performance profiling measures
 - [2. DAST](#2-dast)
   - [2.1. Sanitizer](#21-sanitizer)
   - [2.2. Other Tools](#22-other-tools)
-- [3. References](#3-see-also)
+- [3. References](#3-references)
 
 ## 1. SAST
 

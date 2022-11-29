@@ -9,7 +9,7 @@
 - [2. Merge Commit Message](#2-merge-commit-message)
 - [3. Update a Commit Message](#3-update-a-commit-message)
 - [4. Lint a Commit Message](#4-lint-a-commit-message)
-- [5. References](#5-see-also)
+- [5. References](#5-references)
 
 ## 1. Commit Message
 

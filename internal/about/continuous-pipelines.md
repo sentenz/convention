@@ -12,7 +12,7 @@ Continuous Integration/Continuous Delivery or Continuous Deployment (CI/CD) desc
 - [8. Continuous Monitoring](#8-continuous-monitoring)
 - [9. Continuous Operations](#9-continuous-operations)
 - [10. Continuous Feedback](#10-continuous-feedback)
-- [11. References](#11-see-also)
+- [11. References](#11-references)
 
 CI/CD is an automated agile software development workflow with the continuous method to build, test, and deploy iterative code changes. This iterative process reduces the chance that newly developed code will be based on buggy or failed previous versions. The method aims to require less or no human intervention from the development of new code until its deployment.
 

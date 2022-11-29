@@ -11,7 +11,7 @@ Docs as Code enables a culture where authors and developers take ownership of do
 - [2. UML](#2-uml)
   - [2.1. Mermaid](#21-mermaid)
   - [2.2. PlantUML](#22-plantuml)
-- [3. References](#3-see-also)
+- [3. References](#3-references)
 
 ## 1. Markup
 

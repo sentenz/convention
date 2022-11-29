@@ -6,7 +6,7 @@
   - [1.1. Project Naming Convention](#11-project-naming-convention)
 - [2. File Structure](#2-file-structure)
   - [2.1. File Naming Convention](#21-file-naming-convention)
-- [3. References](#3-see-also)
+- [3. References](#3-references)
 
 ## 1. Folder Structure
 

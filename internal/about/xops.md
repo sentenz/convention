@@ -13,7 +13,7 @@ XOps automates processes, manages pipelines and workflows through scripts. Devel
 - [7. MLOps](#7-mlops)
 - [8. AIOps](#8-aiops)
 - [9. CloudOps](#9-cloudops)
-- [10. References](#10-see-also)
+- [10. References](#10-references)
 
 ## 1. DevOps
 

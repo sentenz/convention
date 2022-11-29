@@ -13,7 +13,7 @@
 - [3. Profiling](#3-profiling)
   - [3.1. gprof](#31-gprof)
   - [3.2. go](#32-go)
-- [4. References](#4-see-also)
+- [4. References](#4-references)
 
 ## 1. Unit Testing
 

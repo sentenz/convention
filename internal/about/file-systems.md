@@ -16,7 +16,7 @@ A file system is a structure of directories that is used to organize and store f
 - [4. macOS](#4-macos)
   - [4.1. APFS](#41-apfs)
 - [5. Swap Space](#5-swap-space)
-- [6. References](#6-see-also)
+- [6. References](#6-references)
 
 ## 1. Flash Driver
 

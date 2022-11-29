@@ -7,7 +7,7 @@ A branching strategy refers to the strategy that a software development team use
 - [3. Release Flow](#3-release-flow)
 - [4. Trunk-Based Development](#4-trunk-based-development)
 - [5. Scaled Trunk-Based Development](#5-scaled-trunk-based-development)
-- [6. References](#6-see-also)
+- [6. References](#6-references)
 
 A branching strategy defines how a team uses branching to achieve this level of concurrent development.
 

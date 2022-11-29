@@ -11,7 +11,7 @@ The code review guide contains suggestions on how to conduct code reviews effect
   - [2.2. Size](#22-size)
   - [2.3. Reviewer](#23-reviewer)
 - [3. Code Owners](#3-code-owners)
-- [4. References](#4-see-also)
+- [4. References](#4-references)
 
 This guide is inspired by :
 

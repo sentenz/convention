@@ -5,7 +5,7 @@ An architectural pattern is a general, reusable solution to a commonly occurring
 - [1. MVVM](#1-mvvm)
 - [2. MVP](#2-mvp)
 - [3. MVC](#3-mvc)
-- [4. References](#4-see-also)
+- [4. References](#4-references)
 
 ## 1. MVVM
 

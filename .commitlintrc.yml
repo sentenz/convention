@@ -29,7 +29,8 @@ rules:
   scope-enum:
     - 2
     - always
-    - - about
+    - - internal
+      - about
       - convention
       - guideline
       - scripts

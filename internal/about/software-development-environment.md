@@ -7,7 +7,7 @@ A Software Development Environment (SDE) is the collection of hardware and softw
 - [3. Staging Environment](#3-staging-environment)
 - [4. Continuous Environment](#4-continuous-environment)
 - [5. Production Environment](#5-production-environment)
-- [6. References](#6-see-also)
+- [6. References](#6-references)
 
 ## 1. Development Environment
 

@@ -32,7 +32,7 @@ Software testing is an organizational process within software development in whi
 - [7. Fuzzing](#7-fuzzing)
 - [8. Penetration Testing](#8-penetration-testing)
 - [9. Code Coverage](#9-code-coverage)
-- [10. References](#10-see-also)
+- [10. References](#10-references)
 
 ## 1. Functional Testing
 

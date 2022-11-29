@@ -6,7 +6,7 @@ Software architecture refers to the fundamental structures of a software system 
 - [2. Onion Architecture](#2-onion-architecture)
 - [3. Hexagonal Architecture](#3-hexagonal-architecture)
 - [4. Emergent Architecture](#4-emergent-architecture)
-- [5. References](#5-see-also)
+- [5. References](#5-references)
 
 ## 1. Clean Architecture
 

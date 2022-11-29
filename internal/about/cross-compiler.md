@@ -4,7 +4,7 @@ A cross compiler is a compiler capable of creating executable code for a platfor
 
 - [1. Naming Convention](#1-naming-convention)
 - [2. Glossary](#2-glossary)
-- [3. References](#3-see-also)
+- [3. References](#3-references)
 
 ## 1. Naming Convention
 

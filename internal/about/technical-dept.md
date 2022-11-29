@@ -9,7 +9,7 @@ Technical debt (also known as `tech debt` or `code debt`code debt) often refers 
   - [2.3. Design Debt](#23-design-debt)
   - [2.4. Knowledge Debt](#24-knowledge-debt)
 - [3. Metrics of Technical Debt](#3-metrics-of-technical-debt)
-- [4. References](#4-see-also)
+- [4. References](#4-references)
 
 ## 1. Impact of Technical Debt
 

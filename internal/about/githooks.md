@@ -20,7 +20,7 @@
   - [2.2. update](#22-update)
   - [2.3. post-receive](#23-post-receive)
 - [3. Configuration](#3-configuration)
-- [4. References](#4-see-also)
+- [4. References](#4-references)
 
 ## 1. Client-Side Hooks
 

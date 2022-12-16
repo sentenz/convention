@@ -36,4 +36,5 @@ Best practices, articles of interest and general topics.
 - [Technical Debt](technical-dept.md)
 - [Twelve-Factor App](twelve-factor-app.md)
 - [Unit-Testing Frameworks](unit-testing-frameworks.md)
+- [Web Page](web-page.md)
 - [XOps](xops.md)

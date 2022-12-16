@@ -35,7 +35,7 @@
     "editor.detectIndentation": true,
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "markdown.extension.toc.levels": "2..3",
+  "markdown.extension.toc.levels": "2..4",
   "[yaml]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"

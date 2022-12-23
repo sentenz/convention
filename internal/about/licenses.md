@@ -1,28 +1,36 @@
-# License
+# Licenses
 
 Open source licenses grant permission to use, modify, and redistribute licensed software for any purpose, subject to conditions preserving the provenance and openness of the software.
 
-- [1. License](#1-license)
-  - [1.1. GNU AGPLv3](#11-gnu-agplv3)
-  - [1.2. GNU GPLv3](#12-gnu-gplv3)
-  - [1.3. GNU LGPLv3](#13-gnu-lgplv3)
-  - [1.4. MPL 2.0](#14-mpl-20)
-  - [1.5. Apache License 2.0](#15-apache-license-20)
-  - [1.6. MIT License](#16-mit-license)
-  - [1.7. BSL-1.0](#17-bsl-10)
-  - [1.8. CC0 1.0](#18-cc0-10)
-- [2. License Checklist](#2-license-checklist)
+- [1. License Checklist](#1-license-checklist)
+- [2. License](#2-license)
+  - [2.1. GNU AGPLv3](#21-gnu-agplv3)
+  - [2.2. GNU GPLv3](#22-gnu-gplv3)
+  - [2.3. GNU LGPLv3](#23-gnu-lgplv3)
+  - [2.4. MPL 2.0](#24-mpl-20)
+  - [2.5. Apache License 2.0](#25-apache-license-20)
+  - [2.6. MIT License](#26-mit-license)
+  - [2.7. BSL-1.0](#27-bsl-10)
+  - [2.8. CC0 1.0](#28-cc0-10)
 - [3. Glossary](#3-glossary)
   - [3.1. Permissions](#31-permissions)
   - [3.2. Conditions](#32-conditions)
   - [3.3. Limitations](#33-limitations)
 - [4. References](#4-references)
 
-## 1. License
+## 1. License Checklist
+
+When open source software is copied and redistributed, which is usually permitted by any type of open source license, a number of obligations and prohibitions are imposed on the distributor. It is common for recipients of such software to redistribute it in such a way as to create a chain of distributors and recipients who must all comply with the same license obligations.
+
+However, there has been no common understanding of how these obligations are to be fulfilled in detail, which regularly leads to misunderstandings, conflicts, or litigation.
+
+The [OSADLE License Checklists](https://www.osadl.org/OSADL-Open-Source-License-Checklists.oss-compliance-lists.0.html) provides a common [list](https://www.osadl.org/Access-to-raw-data.oss-compliance-raw-data-access.0.html) of obligations of commonly used open source software that are accepted by distributors and copyright holders and trusted by all members of the distribution chain.
+
+## 2. License
 
 The licenses represent the entire spectrum of open source licenses, from highly protective to unconditional. The following licenses are sorted by the number of conditions, from most (GNU AGPLv3) to none (Unlicense).
 
-### 1.1. GNU AGPLv3
+### 2.1. GNU AGPLv3
 
 [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/) (Affero General Public License v3.0)
 
@@ -36,7 +44,7 @@ Permissions of this strongest copyleft license are conditioned on making availab
 | Patent use     | Same license                 |             |
 | Private use    | State changes                |             |
 
-### 1.2. GNU GPLv3
+### 2.2. GNU GPLv3
 
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) (General Public License v3.0)
 
@@ -50,7 +58,7 @@ Permissions of this strong copyleft license are conditioned on making available 
 | Patent use     | State changes                |             |
 | Private use    |                              |             |
 
-### 1.3. GNU LGPLv3
+### 2.3. GNU LGPLv3
 
 [GNU LGPLv3](https://choosealicense.com/licenses/lgpl-3.0/) (Lesser General Public License v3.0)
 
@@ -64,7 +72,7 @@ Permissions of this copyleft license are conditioned on making available complet
 | Patent use     | State changes                |             |
 | Private use    |                              |             |
 
-### 1.4. MPL 2.0
+### 2.4. MPL 2.0
 
 [MPL 2.0](https://choosealicense.com/licenses/mpl-2.0/) (Mozilla Public License 2.0)
 
@@ -78,7 +86,7 @@ Permissions of this weak copyleft license are conditioned on making available so
 | Patent use     |                              |               |
 | Private use    |                              |               |
 
-### 1.5. Apache License 2.0
+### 2.5. Apache License 2.0
 
 [Apache License 2.0](https://choosealicense.com/licenses/)
 
@@ -92,11 +100,11 @@ A permissive license whose main conditions require preservation of copyright and
 | Patent use     |                              |               |
 | Private use    |                              |               |
 
-### 1.6. MIT License
+### 2.6. MIT License
 
 [MIT License](https://choosealicense.com/licenses/mit/) (Massachusetts Institute of Technology)
 
-A short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
+A short and permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
 
 | Permissions    | Conditions                   | Limitations |
 | -------------- | ---------------------------- | ----------- |
@@ -105,11 +113,11 @@ A short and simple permissive license with conditions only requiring preservatio
 | Modification   |                              |             |
 | Private use    |                              |             |
 
-### 1.7. BSL-1.0
+### 2.7. BSL-1.0
 
 [BSL-1.0](https://choosealicense.com/licenses/bsl-1.0/) (Boost Software License 1.0)
 
-A simple permissive license only requiring preservation of copyright and license notices for source (and not binary) distribution. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
+A permissive license only requiring preservation of copyright and license notices for source (and not binary) distribution. Licensed works, modifications, and larger works may be distributed under different terms and without source code.
 
 | Permissions    | Conditions                              | Limitations |
 | -------------- | --------------------------------------- | ----------- |
@@ -118,7 +126,7 @@ A simple permissive license only requiring preservation of copyright and license
 | Modification   |                                         |             |
 | Private use    |                                         |             |
 
-### 1.8. CC0 1.0
+### 2.8. CC0 1.0
 
 [The Unlicense](https://choosealicense.com/licenses/unlicense/)
 
@@ -130,16 +138,6 @@ A license with no conditions whatsoever which dedicates works to the public doma
 | Distribution   |            | Warranty    |
 | Modification   |            |             |
 | Private use    |            |             |
-
-## 2. License Checklist
-
-When open source software is copied and redistributed, which is usually permitted by any type of open source license, a number of obligations and prohibitions are imposed on the distributor. It is common for recipients of such software to redistribute it in such a way as to create a chain of distributors and recipients who must all comply with the same license obligations.
-
-However, there has been no common understanding of how these obligations are to be fulfilled in detail, which regularly leads to misunderstandings, conflicts, or litigation.
-
-The [OSADLE License Checklists](https://www.osadl.org/OSADL-Open-Source-License-Checklists.oss-compliance-lists.0.html) provides a common [list](https://www.osadl.org/Access-to-raw-data.oss-compliance-raw-data-access.0.html) of obligations of commonly used open source software that are accepted by distributors and copyright holders and trusted by all members of the distribution chain.
-
-Translated with www.DeepL.com/Translator (free version)
 
 ## 3. Glossary
 

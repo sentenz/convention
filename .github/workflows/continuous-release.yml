@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Codebase
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.ACCESS_TOKEN }}
           persist-credentials: false
       - name: Setup Release
         run: |

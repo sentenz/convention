@@ -1,6 +1,6 @@
 # Commit Message Guide
 
-*This specification is inspired by [Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) and follows the [Conventional Commits](../../internal/convention/conventional-commits.md).*
+*This specification is inspired by [Angular](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) and follows the [Conventional Commits](../convention/conventional-commits.md).*
 
 - [1. Commit Message](#1-commit-message)
   - [1.1. Header](#11-header)
@@ -56,10 +56,10 @@ The `<type>` and `<subject>` fields are mandatory. The `(<scope>)` field is opti
 #### 1.1.1. Type
 
 - **fix**
-   > A bug fix (this correlates with `PATCH` in [semantic versioning](../../internal/guideline/versioning-guide.md#11-release)).
+   > A bug fix (this correlates with `PATCH` in [semantic versioning](../guideline/versioning-guide.md#11-release)).
 
 - **feat**
-   > A new feature (this correlates with `MINOR` in [Semantic Versioning](../../internal/guideline/versioning-guide.md#11-release)).
+   > A new feature (this correlates with `MINOR` in [Semantic Versioning](../guideline/versioning-guide.md#11-release)).
 
 - **build**
   > Changes that affect the build system or external dependencies.
@@ -145,7 +145,7 @@ DEPRECATED: <what is deprecated>
 Closes #<issue number>, #<issue number>, #<issue number>
 ```
 
-> NOTE A commit that has a footer `BREAKING CHANGE:`, or appends a `!` after the type/scope, introduces a breaking API change (correlating with `MAJOR` in [Semantic Versioning](../../internal/guideline/versioning-guide.md#11-release)).
+> NOTE A commit that has a footer `BREAKING CHANGE:`, or appends a `!` after the type/scope, introduces a breaking API change (correlating with `MAJOR` in [Semantic Versioning](../guideline/versioning-guide.md#11-release)).
 
 For example:
 
@@ -201,7 +201,7 @@ Closes #43484
 
 ## 3. Update a Commit Message
 
-A reviewer might often suggest changes to a commit message (e.g., to add more context to a change or to comply with the [commit message guide](../../internal/guideline/commit-message-guide.md)).
+A reviewer might often suggest changes to a commit message (e.g., to add more context to a change or to comply with the [commit message guide](../guideline/commit-message-guide.md)).
 
 In order to update the commit message of the last commit on the feature branch:
 

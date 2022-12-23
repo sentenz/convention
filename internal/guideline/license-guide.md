@@ -1,6 +1,6 @@
 # License Guide
 
-The licenses are classified according to the [Google License Classification](https://opensource.google/documentation/reference/thirdparty/licenses). For a deeper understanding we refer to the link.
+The licenses are classified according to the [Google License Classification](https://opensource.google/documentation/reference/thirdparty/licenses). For a deeper understanding, please refer to the link.
 
 - [1. Classification](#1-classification)
 - [2. License](#2-license)
@@ -128,6 +128,20 @@ Restricted:
 - OSL-3.0
 - QPL-1.0
 - Sleepycat
+
+> NOTE `LGPL linking requirements`
+>
+> Though marked as restricted, LGPL licensed components can be used without observing of the restricted type requirements if the component is dynamically linked.
+>
+> If distributing software outside of the company that incorporates any LGPL licensed libraries, there are ways of meeting the license obligations that are less restrictive than the GPL's obligations if certain requirements are observed. The following steps are required in order to be able to take advantage of the reduced requirements:
+>
+> - The LGPL licensed library must be used as a shared library (dynamically linked).
+> - For LGPL v3 only, the user must be able to replace the shared library with a compatible library and have it work (the user must be able to swap out libraries on the device).
+> - Customers must receive either object files or source code (including any modifications) of the LGPL licensed library.
+>
+> NOTE YOU are NOT required to provide support for the LGPL licensed library. YOU are NOT required to work around bugs or problems in compatible libraries, or perform tech support for customer modifications. YOU are required to make library replacement possible (for LGPL v3). YOU are required to permit user modification of the software, and to not prohibit user modification in the terms of service.
+>
+> These requirements only apply to products shipped to end users. Software that is run internally (even if displayed on the web to the user) does not have to meet these requirements.
 
 Reciprocal:
 
@@ -264,4 +278,4 @@ trivy fs --format json --security-checks license --severity UNKNOWN,LOW,MEDIUM,H
 
 ## 4. References
 
-- Sentenz [about license](../about/license.md) article.
+- Sentenz [about license](../about/licenses.md) article.

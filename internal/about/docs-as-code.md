@@ -33,7 +33,7 @@ The Asciidoc framework [Asciidoctor](https://asciidoctor.org/) is a Ruby-based t
 
 [reStructuredText (rst)](https://docutils.sourceforge.io/rst.html) is a [plain text markup syntax](https://docutils.sourceforge.io/docs/user/rst/quickref.html) and parser system, primary defined and implement as a markup syntax for use in Python docstrings. reStructuredText is a revision and reinterpretation of the [Setext](https://docutils.sourceforge.io/mirror/setext.html) lightweight markup systems, the reStructuredText parser is a component of [Docutils](https://docutils.sourceforge.io/index.html).
 
-[Sphinx](https://www.sphinx-doc.org/en/master/index.html) is a framework for reStructuredText originally created for Python documentation. Sphinx transforms  reStructuredText plain-text files format into HTML (including Windows HTML Help), LaTeX (for printable PDF versions), ePub, Texinfo, and manual pages.
+[Sphinx](https://www.sphinx-doc.org/en/master/index.html) is a framework for reStructuredText created for Python documentation. Sphinx transforms reStructuredText plain-text files format into HTML (including Windows HTML Help), LaTeX (for printable PDF versions), ePub, Texinfo, and manual pages.
 
 ## 2. UML
 
@@ -65,7 +65,7 @@ As non-UML diagrams:
 
 ## 3. References
 
+- Sentenz [about web page](../about/web-page.md) article.
 - GitHub [markdown](https://github.com/mattcone/markdown-guide) guide.
-- Jekyll [web docs](https://jekyllrb.com/) article.
 - docToolchain [docs](http://doctoolchain.org/docToolchain/v2.0.x/index.html) article.
 - arc42 [docs](https://arc42.org/) article.

@@ -63,7 +63,7 @@ A List of [Static Site Generators](https://jamstack.org/generators/).
 
 #### 2.1.2. Hugo
 
-[Hugo](https://github.com/gohugoio/hugo) is a static site generator written in Go. Hugo is optimized for speed, useability and configurability. Hugo takes a directory with content and templates and renders them into a full html website.
+[Hugo](https://github.com/gohugoio/hugo) is a static site generator written in Go. Hugo is optimized for speed, usability and configurability. Hugo takes a directory with content and templates and renders them into a full html website.
 
 Hugo makes use of Markdown files with front matter for meta data.
 
@@ -79,7 +79,7 @@ It combines the control and scalability of dynamically rendered sites with the s
 
 #### 2.1.4. Jekyll
 
-[Jekyll](https://github.com/jekyll/jekyll) is a plain, blog-aware, static site generator perfect for personal, project, or organization sites. Think of it like a file-based CMS, without all the complexity. Jekyll takes the content, renders Markdown and Liquid templates, and creats a complete, static website ready to be served by Apache, Nginx or another web server.
+[Jekyll](https://github.com/jekyll/jekyll) is a plain, blog-aware, static site generator perfect for personal, project, or organization sites. Think of it like a file-based CMS, without all the complexity. Jekyll takes the content, renders Markdown and Liquid templates, and creates a complete, static website ready to be served by Apache, Nginx or another web server.
 
 #### 2.1.5. Nuxt.js
 
@@ -163,6 +163,7 @@ Due to its complex integration with other solutions hosted on Microsoft Azure, s
 
 ## 3. References
 
+- Sentenz [about docs as code](../about/docs-as-code.md) article.
 - GitLab [comparing static site generator](https://about.gitlab.com/blog/2022/04/18/comparing-static-site-generators/) article.
 - GitLab [dynamic vs static pages](https://about.gitlab.com/blog/2016/06/03/ssg-overview-gitlab-pages-part-1-dynamic-x-static/) article
 - GitLab [ssg pages](https://gitlab.com/pages) examples.

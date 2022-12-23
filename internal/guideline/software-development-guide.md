@@ -29,13 +29,13 @@ Steps in the Software Development Life Cycle (SDLC).
 
 Projects are envisioned, designed, and prioritized.
 
-- [Agile](../../internal/about/agile.md)
+- [Agile](../about/agile.md)
   > A methodology such as agile guides the work process for the project.
 
-- [Architecture Modeling Concepts](../../internal/about/architecture-modeling-concepts.md)
+- [Architecture Modeling Concepts](../about/architecture-modeling-concepts.md)
   > Concept models are a fundamental part of the architectural design and development process using Architecture Modeling Concepts to provide a quick and effective method to create diagrams for testing ideas and investigating constraints.
 
-- [Architecture Decision Records](../../internal/about/architecture-decision-records.md)
+- [Architecture Decision Records](../about/architecture-decision-records.md)
   > Architecture Decision Records (ADR) captures the key options available, the main requirements that drive a decision, and the design decisions themselves.
 
 ### 1.2. Plan
@@ -49,54 +49,54 @@ Stakeholders are identified, budgets set, and infrastructure requisitioned. Desi
 
 Development teams work to build production-ready software that meets requirements and feedback. CI/CD pipelines ensure an efficient developer experience.
 
-- [Coding](../../internal/about/coding-guide.md)
+- [Coding](../about/coding-guide.md)
   > Coding with software development patterns that should be applied during the implementation of a project to avoid bugs.
 
-- [Code Analysis](../../internal/about/code-analysis.md) and [Software Testing](../../internal/about/software-testing.md)
+- [Code Analysis](../about/code-analysis.md) and [Software Testing](../about/software-testing.md)
   > Robust code analysis and software testing are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
 
-- [Continuous Integration](../../internal/about/continuous-pipelines.md#1-continuous-integration)
+- [Continuous Integration](../about/continuous-pipelines.md#1-continuous-integration)
   > Continuous Integration (CI) pipeline is the automation of the integration of code changes through continuous code analysis.
 
 ### 1.4. Build and Test
 
 A reliable system is resilient to failures and meets its documented service level objectives, which may also include security guarantees.
 
-- [Software Testing](../../internal/about/software-testing.md)
+- [Software Testing](../about/software-testing.md)
   > Robust software testing are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
 
-- [Continuous Testing](../../internal/about/continuous-pipelines.md#5-continuous-testing)
+- [Continuous Testing](../about/continuous-pipelines.md#5-continuous-testing)
   > Continuous testing (CT) pipeline is the automation of testing the code base through continuous testing, which includes unit testing.
 
 ### 1.5. Review
 
 Code review is used to ensure the overall health of the codebase over time. Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions.
 
-- [Code Review](../../internal/guideline/code-review-guide.md)
+- [Code Review](../guideline/code-review-guide.md)
   > Collaborative code review and pull requests that plug into the code review process.
 
 ### 1.6. Release
 
 Release the next version number, create the release notes and generate the changelog.
 
-- [Continuous Release](../../internal/about/continuous-pipelines.md#6-continuous-release)
+- [Continuous Release](../about/continuous-pipelines.md#6-continuous-release)
   > Continuous Release (CR) pipeline is the automation of package release workflow.
 
 ### 1.7. Deploy
 
 After the code is approved and merged, it's time to deliver it.
 
-- [Deployment Strategies](../../internal/about/deployment-strategies.md) and [Continuous Deployment](../../internal/about/continuous-pipelines.md#3-continuous-deployment)
+- [Deployment Strategies](../about/deployment-strategies.md) and [Continuous Deployment](../about/continuous-pipelines.md#3-continuous-deployment)
   > Deployment strategies define for continuous deployment (CD) how a running instance of an application should be deployed, modified, or updated.
 
-- [Production Environment](../../internal/about/software-environments.md)
+- [Production Environment](../about/software-environments.md)
   > The live production code will need a place to live. Consider using cloud hosting provided by Amazon AWS, Google Cloud Platform, or Microsoft Azure.
 
 ### 1.8. Operate
 
 Support and maintenance are required of active software projects to reduce down times.
 
-- [Continuous Operations](../../internal/about/continuous-pipelines.md#9-continuous-operations)
+- [Continuous Operations](../about/continuous-pipelines.md#9-continuous-operations)
   > Continuous Operations (CO) pipeline is the automation of observe the live production code.
 
 ### 1.9. Incident Management
@@ -107,16 +107,16 @@ Incident management is the process used by DevOps and IT Operations teams to res
 
 Teams should evaluate each release and generate reports to improve future releases, ask for customers to give input about the value and impact of product features, and share business-related outcomes with stakeholders. By gathering continuous feedback, teams can improve their processes, and increase value to customers.
 
-- [Continuous Feedback](../../internal/about/continuous-pipelines.md#10-continuous-feedback)
+- [Continuous Feedback](../about/continuous-pipelines.md#10-continuous-feedback)
   > Continuous Feedback (CF) pipeline is the automation of gathering feedback from ticket systems.
 
 ### 1.11. Security
 
 Security should be included throughout the Software Development Life Cycle (SDLC) in order to minimize vulnerabilities in software code.
 
-- [Identity Management](../../internal/about/identity-management.md) or Identity & Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.
+- [Identity Management](../about/identity-management.md) or Identity & Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.
 
-- [Continuous Security](../../internal/about/continuous-pipelines.md#7-continuous-security)
+- [Continuous Security](../about/continuous-pipelines.md#7-continuous-security)
   > Continuous Security (CS) pipeline is the automation of security verification as an active and integrated part of the existing development process.
 
 ## 2. Key Features
@@ -125,29 +125,29 @@ Key features of effective software development.
 
 ### 2.1. Agile
 
-[Agile](../../internal/about/agile.md) is an iterative approach to project management and software development that helps teams deliver value to their customers faster and with fewer headaches. Agile methodologies empower teams to be inherently flexible, well-organized, and capable of responding to change.
+[Agile](../about/agile.md) is an iterative approach to project management and software development that helps teams deliver value to their customers faster and with fewer headaches. Agile methodologies empower teams to be inherently flexible, well-organized, and capable of responding to change.
 
 ### 2.2. XOps
 
-[XOps](../../internal/about/xops.md) is a set of principles and practices, tools, and a cultural philosophy that automate and integrate the processes of software development (Dev), security (Sec), and IT operation (Ops). It focuses team empowerment, cross-team communication and collaboration, and technology automation.
+[XOps](../about/xops.md) is a set of principles and practices, tools, and a cultural philosophy that automate and integrate the processes of software development (Dev), security (Sec), and IT operation (Ops). It focuses team empowerment, cross-team communication and collaboration, and technology automation.
 
 ### 2.3. CI/CD
 
-[CI/CD](../../internal/about/continuous-pipelines.md) describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a target/production environment.
+[CI/CD](../about/continuous-pipelines.md) describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a target/production environment.
 
 ### 2.4. Software Architecture
 
-[Software architecture](../../internal/about/software-architecture.md) refers to the fundamental structures of a software system and the discipline of creating software structure and design.
+[Software architecture](../about/software-architecture.md) refers to the fundamental structures of a software system and the discipline of creating software structure and design.
 
 #### 2.4.1. Microservices
 
-A microservices architecture, also known as [microservices](../../internal/about/microservices.md), is an approach to building an application as a series of independently deployable services that are decentralized and autonomously developed. These services are loosely coupled, independently deployable, and easily maintainable.
+A microservices architecture, also known as [microservices](../about/microservices.md), is an approach to building an application as a series of independently deployable services that are decentralized and autonomously developed. These services are loosely coupled, independently deployable, and easily maintainable.
 
 With a microservices architecture, developers can organize in smaller teams specializing in different services, with different stacks and decoupled deployments.
 
 #### 2.4.2. Clean Architecture
 
-[Clean architecture](../../internal/about/software-architecture.md#clean-architecture) is a software design philosophy that separates the elements of a design into ring levels. An important goal of clean architecture is to provide developers with a way to organize code in such a way that it encapsulates the business logic but keeps it separate from the delivery mechanism.
+[Clean architecture](../about/software-architecture.md#clean-architecture) is a software design philosophy that separates the elements of a design into ring levels. An important goal of clean architecture is to provide developers with a way to organize code in such a way that it encapsulates the business logic but keeps it separate from the delivery mechanism.
 
 ## References
 

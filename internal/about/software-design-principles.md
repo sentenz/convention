@@ -33,7 +33,7 @@ Software design principles are a set of guidelines that help developers create a
 5. Dependency Inversion Principle
 
    The [dependency inversion principle (DIP)](https://en.wikipedia.org/wiki/Dependency_inversion_principle) is a specific methodology for loosely coupling software modules. The DIP states that high-level modules should not depend on low-level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend upon abstractions.
-   > The [Dependency Injection](../../internal/about/software-design-pattern.md#dependency-injection) pattern is an implementation of the DIP principle.
+   > The [Dependency Injection](../about/software-design-pattern.md#dependency-injection) pattern is an implementation of the DIP principle.
 
 ## 2. IDEALS
 

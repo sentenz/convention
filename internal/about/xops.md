@@ -46,7 +46,7 @@ While DevOps is not a technology, DevOps environments generally apply common met
 
 ## 3. DevSecOps
 
-[DevSecOps](https://www.redhat.com/en/topics/devops/what-is-devsecops) is a set of principles and practices for protecting software, infrastructure, applications and data. DevSecOps stands for development, security, and operations. It's an approach to culture, automation, and platform design that integrates security as a shared responsibility throughout the entire IT lifecycle.
+[DevSecOps](https://www.redhat.com/en/topics/devops/what-is-devsecops) is a set of principles and practices for protecting software, infrastructure, applications and data. DevSecOps stands for development, security, and operations. It's an approach to culture, automation, and platform design that integrates security as a shared responsibility throughout the IT lifecycle.
 
 ## 4. SysOps
 

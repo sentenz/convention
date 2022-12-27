@@ -278,4 +278,5 @@ trivy fs --format json --security-checks license --severity UNKNOWN,LOW,MEDIUM,H
 
 ## 4. References
 
-- Sentenz [about license](../about/licenses.md) article.
+- Sentenz [SPDX convention](../convention/spdx.md) article.
+- Sentenz [about licenses](../about/licenses.md) article.

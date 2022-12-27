@@ -2,7 +2,7 @@
 
 Open source licenses grant permission to use, modify, and redistribute licensed software for any purpose, subject to conditions preserving the provenance and openness of the software.
 
-When open source software is copied and redistributed, which is usually permitted by any type of open source license, a number of obligations and prohibitions are imposed on the distributor It is common for recipients of such software to redistribute it in such a way as to create a chain of distributors and recipients who must all comply with the same license obligations.
+When open source software is copied and redistributed, which is usually permitted by any type of open source license, a number of obligations and prohibitions are imposed on the distributor It is common for recipients of such software to redistribute it in such a way as to create a chain of distributors and recipients who must all comply with the same license obligations.
 
 - [1. License List](#1-license-list)
   - [1.1. SPDX](#11-spdx)
@@ -32,7 +32,7 @@ A generated [dataset](https://github.com/spdx/license-list-data/tree/main/text) 
 
 ### 1.2. OSADLE
 
- The [OSADLE license checklists](https://www.osadl.org/OSADL-Open-Source-License-Checklists.oss-compliance-lists.0.html) provides a common [list of license in raw data](https://www.osadl.org/Access-to-raw-data.oss-compliance-raw-data-access.0.html) of obligations of commonly used open source software that are accepted by distributors and copyright holders and trusted by all members of the distribution chain.
+ The [OSADLE license checklists](https://www.osadl.org/OSADL-Open-Source-License-Checklists.oss-compliance-lists.0.html) provides a common [list of license in raw data](https://www.osadl.org/Access-to-raw-data.oss-compliance-raw-data-access.0.html) of obligations of commonly used open source software that are accepted by distributors and copyright holders and trusted by all members of the distribution chain.
 
 ## 2. License
 

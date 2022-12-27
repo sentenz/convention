@@ -1,6 +1,6 @@
 # SPDX
 
-[Software Package Data Exchange (SPDX)](https://spdx.dev/) is an open standard for communicating software bill of material information, including provenance, components, licenses, copyrights, and security references. SPDX reduces redundant work by providing common formats for organizations, companies and communities to share important data, thereby streamlining and improving compliance, security, and dependability.
+[Software Package Data Exchange (SPDX)](https://spdx.dev/) is an open standard for communicating software bill of material (SBOM) information, including provenance, components, licenses, copyrights, and security references. SPDX reduces redundant work by providing common formats for organizations, companies and communities to share important data, thereby streamlining and improving compliance, security, and dependability.
 
 The SPDX specification is recognized as the international open standard for security, license compliance, and other software supply chain artifacts as `ISO/IEC 5962:2021`.
 

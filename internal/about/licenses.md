@@ -5,8 +5,8 @@ Open source licenses grant permission to use, modify, and redistribute licensed 
 When open source software is copied and redistributed, which is usually permitted by any type of open source license, a number of obligations and prohibitions are imposed on the distributor It is common for recipients of such software to redistribute it in such a way as to create a chain of distributors and recipients who must all comply with the same license obligations.
 
 - [1. License List](#1-license-list)
-  - [1.1. 1.1 SPDX](#11-11-spdx)
-  - [1.2. 1.2 OSADLE](#12-12-osadle)
+  - [1.1. SPDX](#11-spdx)
+  - [1.2. OSADLE](#12-osadle)
 - [2. License](#2-license)
   - [2.1. GNU AGPLv3](#21-gnu-agplv3)
   - [2.2. GNU GPLv3](#22-gnu-gplv3)
@@ -24,13 +24,13 @@ When open source software is copied and redistributed, which is usuall
 
 ## 1. License List
 
-### 1.1. 1.1 SPDX
+### 1.1. SPDX
 
 The [SPDX License List](https://spdx.org/licenses/) is a list of commonly found licenses and exceptions used in free and open or collaborative software, data, hardware, or documentation.
 
-A generated [dataset](https://github.com/spdx/license-list-data/tree/main/text) of the SPDX license list in text format. See references for more informations on SPDX.
+A generated [dataset](https://github.com/spdx/license-list-data/tree/main/text) of the SPDX license list in text format. See references for more information on SPDX.
 
-### 1.2. 1.2 OSADLE
+### 1.2. OSADLE
 
  The [OSADLE license checklists](https://www.osadl.org/OSADL-Open-Source-License-Checklists.oss-compliance-lists.0.html) provides a common [list of license in raw data](https://www.osadl.org/Access-to-raw-data.oss-compliance-raw-data-access.0.html) of obligations of commonly used open source software that are accepted by distributors and copyright holders and trusted by all members of the distribution chain.
 

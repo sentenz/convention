@@ -5,7 +5,7 @@ Software architecture refers to the fundamental structures of a software system 
 - [1. Clean Architecture](#1-clean-architecture)
 - [2. Onion Architecture](#2-onion-architecture)
 - [3. Hexagonal Architecture](#3-hexagonal-architecture)
-- [4. Emergent Architecture](#4-emergent-architecture)
+- [4. Layered / N-tier Architecture](#4-layered--n-tier-architecture)
 - [5. References](#5-references)
 
 ## 1. Clean Architecture
@@ -18,17 +18,46 @@ The main rule of clean architecture is that code dependencies can only move from
 
 ## 2. Onion Architecture
 
-[Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/) was introduced by Jeffrey Palermo in 2008. It expanded on the idea to define a “Core” within the application and various layers surrounding it. The core “Domain Model” represents enterprise-wide business rules. In the next layer up are “Domain Services” such as abstract repositories (still leaving the implementation details such as a database connection to the outer layers). Further up is “Application Services” which defined the business processes of the application. In the outer-most layer are the user interface, connections to external infrastructure, and automated tests. Like ports-and-adapters, this pattern leaves the connections to all external dependencies such as databases, APIs, and user interfaces at the edge so they can be easily switched out.
+[Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/) was introduced by Jeffrey Palermo in 2008. It expanded on the idea to define a “Core” within the application and various layers surrounding it. The core “Domain Model” represents enterprise-wide business rules. In the next layer up are “Domain Services” such as abstract repositories (still leaving the implementation details such as a database connection to the outer layers). Further up is “Application Services” which defined the business processes of the application. In the outer-most layer are the user interface, connections to external infrastructure, and automated tests. Like ports-and-adapters, this pattern leaves the connections to all external dependencies such as databases, APIs, and user interfaces at the edge so they can be switched out.
 
 ## 3. Hexagonal Architecture
 
-[Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture/) was introduced by Alistair Cockburn in 2005. The most bare bones application of the principal is Hexagonal or Ports and Adapters architecture. Confusingly, the pattern really has nothing to do with hexagons, it’s just how it’s usually drawn. The fact that it has 6 sides is arbitrary.
+[Hexagonal Architecture](https://alistair.cockburn.us/hexagonal-architecture/) was introduced by Alistair Cockburn in 2005. The most bare bones application of the principal is Hexagonal or Ports and Adapters architecture. Confusingly, the pattern really has nothing to do with hexagons, it’s how it’s usually drawn. The fact that it has 6 sides is arbitrary.
 
-The concept behind Hexagonal Architecture is that your core application logic is written with only a concept of whatever external dependencies it has. In object-oriented terms this means it declares and references and interface, but leaves the implementation of that interface out of the core logic. This can be thought of as a “port” such a display port or USB port. The outer layer of the application then creates an “adapter” which plugs into the port, so if there was a database port, the adapter would plug into that port and provide a connection to a particular database. If you wanted to switch databases, you could just write a new adapter. User interfaces would also be ports which could be filled with various adapters without modifying the core logic.
+The concept behind Hexagonal Architecture is that the core application logic is written with only a concept of external dependencies it has. In object-oriented terms this means it declares and references and interface, but leaves the implementation of that interface out of the core logic. This can be thought of as a `port` such a display port or USB port. The outer layer of the application then creates an `adapter` which plugs into the port, so if there was a database port, the adapter would plug into that port and provide a connection to a particular database. If want to change the database, write a new adapter. User interfaces would also be ports which could be filled with various adapters without modifying the core logic.
 
-## 4. Emergent Architecture
+## 4. Layered / N-tier Architecture
 
-// TODO
+An [n-tier](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier) architecture divides an application into logical layers and physical tiers.
+
+Layers are a way to separate responsibilities and manage dependencies. Each layer has a specific responsibility. A higher layer can use services in a lower layer, but not the other way around.
+
+- Presentation layer (aka UI layer)
+- Application layer (aka service layer)
+- Business logic layer (aka domain layer)
+- Data access layer (aka persistence layer)
+
+Tiers are physically separated, running on separate machines. A tier can call to another tier directly, or use asynchronous messaging (message queue). Although each layer might be hosted in its own tier, that's not required. Several layers might be hosted on the same tier. Physically separating the tiers improves scalability and resiliency, but also adds latency from the additional network communication.
+
+A traditional three-tier application has a presentation tier, a middle tier, and a database tier. The middle tier is optional. More complex applications can have more than three tiers. The diagram above shows an application with two middle tiers, encapsulating different areas of functionality.
+
+An N-tier application can have a closed layer architecture or an open layer architecture:
+
+- In a closed layer architecture, a layer can only call the next layer immediately down.
+- In an open layer architecture, a layer can call any of the layers below it.
+
+A closed layer architecture limits the dependencies between layers. However, it might create unnecessary network traffic, if one layer passes requests along to the next layer.
+
+N-tier architectures are typically implemented as infrastructure-as-service (IaaS) applications, with each tier running on a separate set of VMs. However, an N-tier application doesn't need to be pure IaaS. Often, it's advantageous to use managed services for some parts of the architecture, particularly caching, messaging, and data storage.
+
+Consider an N-tier architecture for:
+
+- Basic web applications.
+- Migrating an on-premises application to Azure with minimal refactoring.
+- Unified development of on-premises and cloud applications.
+
+N-tier architectures are common in traditional on-premises applications.
+
 
 ## 5. References
 

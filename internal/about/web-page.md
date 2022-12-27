@@ -53,7 +53,7 @@ A modern web development architecture based on client-side JavaScript, reusable 
 
 ### 2.1. Static Site Generators
 
-A static site generator (SSG) is a software application that creates HTML pages from templates or components and a given content source. Most static site generators, accept Markdown-formatted text files as a source.
+A static site generator (SSG) is a software application that creates HTML pages from templates or components and a given content source. Most static site generators, accept Markdown formatted text files as a source.
 
 A List of [Static Site Generators](https://jamstack.org/generators/).
 

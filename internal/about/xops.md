@@ -29,13 +29,13 @@ While DevOps is not a technology, DevOps environments generally apply common met
   > In a Continuous pipeline, a code change committed in the version-control repository automatically triggers next steps, such as a static code analysis or build and unit tests. Tools for source code management include Git and GitHub.
 
 - Artifact Repositories
-  > Source code is compiled into an artifact for testing. Artifact repositories enable version-controlled, object-based outputs. Artifact management is a good practice for the same reasons as version-controlled source code management. Examples of artifact repositories include JFrog Artifactory and Nexus Repository.
+  > Source code is compiled into an artifact for testing. Artifact repositories enable version-controlled, object-based outputs. Artifact management is a good practice for the same reasons as version-controlled source code management. Examples of artifact repositories include JFrog Artifactory and Nexus Repository.
 
 - Continuous Pipelines
-  > Continuous pipelines enables DevOps teams to frequently validate and deliver applications to the end user through automation during the development lifecycle. The continuous integration tool initializes processes so that developers can create, test and validate code in a shared repository as often as needed without manual work. Continuous delivery extends these automatic steps through production-level tests and configuration setups for release management. Continuous deployment goes a step further, invoking tests, configuration and provisioning, as well as monitoring and potential rollback capabilities. Common tools for CI, CD or both include Jenkins, GitLab and CircleCI.
+  > Continuous pipelines enables DevOps teams to frequently validate and deliver applications to the end user through automation during the development lifecycle. The continuous integration tool initializes processes so that developers can create, test and validate code in a shared repository as often as needed without manual work. Continuous delivery extends these automatic steps through production-level tests and configuration setups for release management. Continuous deployment goes a step further, invoking tests, configuration and provisioning, as well as monitoring and potential rollback capabilities. Common tools for CI, CD or both include Jenkins, GitLab and CircleCI.
 
 - Containers
-  > Containers are isolated runtimes for software on a shared OS. Containers provide abstraction that enables code to work the same on different underlying infrastructure from development to testing and staging, and then to production. Docker is the most well-known containerization software, while Microsoft offers specific Windows container options. Container orchestrators -- such as Kubernetes and commercial Kubernetes distributions Red Hat OpenShift and Amazon Elastic Kubernetes Service -- deploy, scale and maintain containers automatically.
+  > Containers are isolated runtimes for software on a shared OS. Containers provide abstraction that enables code to work the same on different underlying infrastructure from development to testing and staging, and then to production. Docker is the most well-known containerization software, while Microsoft offers specific Windows container options. Container orchestrators -- such as Kubernetes and commercial Kubernetes distributions Red Hat OpenShift and Amazon Elastic Kubernetes Service -- deploy, scale and maintain containers automatically.
 
 - Configuration Management
   > Configuration management systems enable IT to provision and configure software, middleware and infrastructure based on a script or template. The DevOps team can set up deployment environments for software code releases and enforce policies on servers, containers and VMs through a configuration management tool. Changes to the deployment environment can be version controlled and tested, so DevOps teams can manage infrastructure as code. Configuration management tools include Puppet and Chef.
@@ -46,7 +46,7 @@ While DevOps is not a technology, DevOps environments generally apply common met
 
 ## 3. DevSecOps
 
-[DevSecOps](https://www.redhat.com/en/topics/devops/what-is-devsecops) is a set of principles and practices for protecting software, infrastructure, applications and data. DevSecOps stands for development, security, and operations. It's an approach to culture, automation, and platform design that integrates security as a shared responsibility throughout the entire IT lifecycle.
+[DevSecOps](https://www.redhat.com/en/topics/devops/what-is-devsecops) is a set of principles and practices for protecting software, infrastructure, applications and data. DevSecOps stands for development, security, and operations. It's an approach to culture, automation, and platform design that integrates security as a shared responsibility throughout the IT lifecycle.
 
 ## 4. SysOps
 

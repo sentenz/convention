@@ -1,3 +1,20 @@
+# [1.12.0](https://github.com/sentenz/guide/compare/v1.11.0...v1.12.0) (2023-01-15)
+
+
+### Bug Fixes
+
+* **about:** replace wrong spaces in article ([#136](https://github.com/sentenz/guide/issues/136)) ([53da2cc](https://github.com/sentenz/guide/commit/53da2cc6c5052a615c9a55c495da7b044c8a0992)), closes [#135](https://github.com/sentenz/guide/issues/135)
+
+
+### Features
+
+* **about:** create an article about `asymptotic notation` ([#150](https://github.com/sentenz/guide/issues/150)) ([107001a](https://github.com/sentenz/guide/commit/107001a2f542a88456e9610eaf1edc636c739912)), closes [#148](https://github.com/sentenz/guide/issues/148)
+* **about:** create an article about `docs as code` ([#104](https://github.com/sentenz/guide/issues/104)) ([79e0336](https://github.com/sentenz/guide/commit/79e0336f7eeda0e223f03e7d2927fac7d39c884f)), closes [#103](https://github.com/sentenz/guide/issues/103)
+* **about:** create an article about `web page` ([#124](https://github.com/sentenz/guide/issues/124)) ([7e4a979](https://github.com/sentenz/guide/commit/7e4a9794b0a3f38994b8ce9d352951e0e3c00bad)), closes [#121](https://github.com/sentenz/guide/issues/121)
+* **convention:** create a convention for `spdx` ([#132](https://github.com/sentenz/guide/issues/132)) ([5fa4c2d](https://github.com/sentenz/guide/commit/5fa4c2d9fb780eb751e6b06f229758092788fa46)), closes [#131](https://github.com/sentenz/guide/issues/131) [#130](https://github.com/sentenz/guide/issues/130) [#119](https://github.com/sentenz/guide/issues/119)
+* **convention:** create a convention of `container` ([#115](https://github.com/sentenz/guide/issues/115)) ([e83ee2c](https://github.com/sentenz/guide/commit/e83ee2c5ba0989d16818207a19a0f447852eb74b))
+* **guideline:** create a guideline of `license` ([#127](https://github.com/sentenz/guide/issues/127)) ([0da7b62](https://github.com/sentenz/guide/commit/0da7b62fdb761dd0cff1d5dce527a971799453e3)), closes [#126](https://github.com/sentenz/guide/issues/126)
+
 # [1.11.0](https://github.com/sentenz/guide/compare/v1.10.0...v1.11.0) (2022-08-09)
 
 

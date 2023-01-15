@@ -10,7 +10,7 @@
 # Returns:
 #   None
 #########################
-owned_by() {
+fs_owned_by() {
   local path="${1:?path is missing}"
   local owner="${2:?owner is missing}"
 
@@ -20,19 +20,19 @@ owned_by() {
 ########################
 # Check if a file exists.
 # Arguments:
-#   $1 - file
+#   $1 - filename
 #   $2 - owner
 # Returns:
 #   Boolean
 #########################
-is_file() {
-  local file="${1:?file is missing}"
+fs_is_file() {
+  local filename="${1:?filename is missing}"
 
-  if [[ -f "$file" ]]; then
-    true
-  else
-    false
+  if [[ ! -f "${filename}" ]]; then
+    return 1
   fi
+
+  return 0
 }
 
 ########################
@@ -43,14 +43,14 @@ is_file() {
 # Returns:
 #   Boolean
 #########################
-is_dir() {
+fs_is_dir() {
   local dir="${1:?directory is missing}"
 
-  if [[ -d "$dir" ]]; then
-    true
-  else
-    false
+  if [[ ! -d "${dir}" ]]; then
+    return 1
   fi
+
+  return 0
 }
 
 ########################
@@ -61,7 +61,7 @@ is_dir() {
 # Returns:
 #   None
 #########################
-copy_files() {
+fs_copy_files() {
   local src="${1:?source is missing}"
   local dest="${2:?destination is missing}"
 
@@ -71,18 +71,19 @@ copy_files() {
 ########################
 # Merge a source file into a destination file.
 # Arguments:
-#   $1 - source file
-#   $2 - destination file
+#   $1 - source filename
+#   $2 - destination filename
 # Returns:
 #   None
 #########################
-merge_file() {
-  local src="${1:?source is missing}"
-  local dest="${2:?destination is missing}"
+fs_merge_file() {
+  local src="${1:?source filename is missing}"
+  local dest="${2:?destination filename is missing}"
 
   local tmp="diff.txt"
 
-  diff --line-format="%L" -D MERGE -B "${src}" "${dest}" >"${tmp}"
+  touch "${dest}"
+  diff --line-format="%L" -D MERGE_DEVOPS -B "${src}" "${dest}" >"${tmp}"
   mv "${tmp}" "${dest}"
 }
 
@@ -94,54 +95,67 @@ merge_file() {
 # Returns:
 #   None
 #########################
-create_dir() {
+fs_create_dir() {
   local dir="${1:?directory is missing}"
   local owner="${2:-}"
 
   mkdir -p "${dir}"
   if [[ -n $owner ]]; then
-    owned_by "$dir" "$owner"
+    fs_owned_by "$dir" "$owner"
   fi
 }
 
 ########################
 # Creates a empty file and the directore if not exist.
 # Arguments:
-#   $1 - file
+#   $1 - filename
 # Returns:
 #   None
 #########################
-create_file() {
-  local file="${1:?file is missing}"
+fs_create_file() {
+  local filename="${1:?filename is missing}"
 
-  create_dir "$(dirname "${file}")" && touch "${file}"
+  fs_create_dir "$(dirname "${filename}")" && touch "${filename}"
 }
 
 ########################
 # Removes a file.
 # Arguments:
-#   $1 - file
+#   $1 - filename
 # Returns:
 #   None
 #########################
-remove_file() {
-  local file="${1:?file is missing}"
+fs_remove_file() {
+  local filename="${1:?filename is missing}"
 
-  rm -f "${file}"
+  rm -f "${filename}"
+}
+
+########################
+# Removes a directory recursively.
+# Arguments:
+#   $1 - directory
+# Returns:
+#   None
+#########################
+fs_remove_dir() {
+  local dir="${1:?directory is missing}"
+
+  rm -rf "${dir}"
 }
 
 ########################
 # Removes a empty file.
 # Arguments:
-#   $1 - file
+#   $1 - filename
 # Returns:
 #   None
 #########################
-remove_empty_file() {
-  local file="${1:?file is missing}"
+fs_remove_empty_file() {
+  local filename="${1:?filename is missing}"
 
-  if is_file_empty "${file}"; then
-    rm -f "${file}"
+  if fs_is_file_empty "${filename}"; then
+    rm -f "${filename}"
   fi
 }
 
@@ -152,31 +166,35 @@ remove_empty_file() {
 # Returns:
 #   Boolean
 #########################
-is_dir_empty() {
-  local dir="${1:?missing directory}"
+fs_is_dir_empty() {
+  local dir="${1:?directory is missing}"
 
-  if [[ ! -e "$dir" ]] || [[ -z "$(ls -A "$dir")" ]]; then
-    true
-  else
-    false
+  if fs_is_dir "${dir}"; then
+    return 1
   fi
+
+  if [[ -n "$(ls -A "${dir}")" ]]; then
+    return 1
+  fi
+
+  return 0
 }
 
 ########################
 # Checks whether a file is empty or not.
 # Arguments:
-#   $1 - file
+#   $1 - filename
 # Returns:
 #   Boolean
 #########################
-is_file_empty() {
-  local file="${1:?missing file}"
+fs_is_file_empty() {
+  local filename="${1:?filename is missing}"
 
-  if [[ -f "${file}" && -s "${file}" ]]; then
-    false
-  else
-    true
+  if [[ -f "${filename}" && -s "${filename}" ]]; then
+    return 1
   fi
+
+  return 0
 }
 
 ########################
@@ -186,12 +204,11 @@ is_file_empty() {
 # Returns:
 #   Path
 #########################
-get_sript_dir() {
+fs_get_sript_dir() {
   local retval
   retval="$(dirname "$(realpath "$0")")"
-  echo "${retval}"
 
-  return "${?}"
+  echo "${retval}"
 }
 
 ########################
@@ -208,7 +225,7 @@ get_sript_dir() {
 # Returns:
 #   None
 #########################
-configure_permissions_ownership() {
+fs_configure_permissions_ownership() {
   local -r paths="${1:?paths is missing}"
 
   local dir_mode=""

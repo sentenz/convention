@@ -1,8 +1,17 @@
 #!/bin/bash
 #
-# Enforce convention policies by using post-checkout:
+# The "post-checkout" hook runs after a successful "git checkout".
 #
-# - Enforce the creation of support branches from the base branches.
+# Details:
+# Enforce the creation of support branches from the base branches.
+#
+# Arguments:
+#   $1 - ref of the previous HEAD
+#   $2 - ref of the new HEAD
+#   $3 - flag indicator, (changing branches, flag=1) or (retrieving a file from the index, flag=0)
+#
+# Returns:
+#   Exitcode
 
 # -x: print a trace (debug)
 # -u: treat unset variables
@@ -14,79 +23,43 @@ set -uo pipefail
 . ./scripts/utils/log.sh
 . ./scripts/utils/fs.sh
 . ./scripts/utils/git.sh
+. ./scripts/utils/hook.sh
 
 # Constant variables
 
-LOG_FILE="$(get_root_dir)/logs/githooks/post-checkout.log"
-readonly LOG_FILE
-LOCAL_BRANCH="$(get_local_branch)"
-readonly LOCAL_BRANCH
-readonly -a BASE_BRANCHES=(
-	main
-)
+PREVIOUS_HEAD="${1}"
+readonly PREVIOUS_HEAD
+NEW_HEAD="${2}"
+readonly NEW_HEAD
 FLAG_CHECKOUT="${3}"
 readonly FLAG_CHECKOUT
 
+LOG_FILE="$(git_get_root_dir)/logs/githooks/post-checkout.log"
+readonly LOG_FILE
+LOCAL_BRANCH="$(git_get_local_branch)"
+readonly LOCAL_BRANCH
+readonly -a BASE_BRANCHES=(
+  main
+)
+
 # Internal functions
 
-enforce_checkout_from_base_branches() {
-	local local_branch="${1:?local branch is missing}"
-	local flag_checkout="${2:?checkout flag is missing}"
-	local -a base_branches=("${@:3}")
-
-	if [[ "${flag_checkout}" == 0 ]]; then
-		return "${STATUS_SUCCESS}"
-	fi
-
-	parant_branch="$(git show-branch |
-		sed "s/].*//" |
-		grep "\*" |
-		grep -v "${local_branch}" |
-		head -n1 |
-		sed "s/^.*\[//")"
-
-	if [[ -z "${parant_branch}" ]]; then
-		return "${STATUS_SUCCESS}"
-	fi
-
-	for branch in "${base_branches[@]}"; do
-		if [[ "${branch}" == "${parant_branch}" ]]; then
-			return "${STATUS_SUCCESS}"
-		fi
-	done
-
-	git checkout "${parant_branch}"
-	git branch -d "${local_branch}"
-
-	cat <<END
-___________________________________________________________________________________________________
-Branching strategy - Enforce to create the support branches from the base branches.
-
-Branch "${local_branch}" is created from "${parant_branch}".
-Though, support branches should be created from a base branch, e.g. "${base_branches[@]}".
-
-See https://sentenz.github.io/guide/guideline/branching-strategies-guide.html
-___________________________________________________________________________________________________
-END
-
-	return "${STATUS_ERROR}"
-}
-
 run_post_checkout() {
-	local -i result=0
+  local -i result=0
 
-	create_file "${LOG_FILE}"
+  fs_create_file "${LOG_FILE}"
 
-	enforce_checkout_from_base_branches "${LOCAL_BRANCH}" "${FLAG_CHECKOUT}" "${BASE_BRANCHES[@]}" >>"${LOG_FILE}"
-	((result |= $?))
+  hook_enforce_checkout_from_base_branches "${LOCAL_BRANCH}" "${FLAG_CHECKOUT}" "${BASE_BRANCHES[@]}" &>"${LOG_FILE}"
+  ((result = $?))
+  if ((result == 1)); then
+    log_message "githooks" "pre-push" "${result}"
 
-	if ((result == 0)); then
-		remove_file "${LOG_FILE}"
-	fi
+    return "${result}"
+  fi
 
-	monitor "githooks" "post-checkout" "${result}"
+  fs_remove_file "${LOG_FILE}"
 
-	return "${result}"
+  return "${result}"
 }
 
 # Control flow logic

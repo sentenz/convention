@@ -13,7 +13,7 @@ The code review guide contains suggestions on how to conduct code reviews effect
 - [3. Code Owners](#3-code-owners)
 - [4. References](#4-references)
 
-This guide is inspired by :
+This guide is inspired by:
 
 - Google [code review](https://google.github.io/eng-practices/review/) guide.
 - SAP [code review](https://github.com/SAP/styleguides/releases/download/latest/abap-code-review-guide.pdf) guide.

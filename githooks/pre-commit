@@ -1,6 +1,16 @@
 #!/bin/bash
 #
-# Enforce code style guides via linters.
+# The "pre-commit" hook is run just before "commit" starts doing its job, and can prevent the
+# command from running by exiting with non-zero status.
+#
+# Details:
+# Perform to verify the codebase is about to be committed.
+#
+# Arguments:
+#   None
+#
+# Returns:
+#   Exitcode
 
 # -x: print a trace (debug)
 # -u: treat unset variables
@@ -12,48 +22,31 @@ set -uo pipefail
 . ./scripts/utils/log.sh
 . ./scripts/utils/fs.sh
 . ./scripts/utils/git.sh
+. ./scripts/utils/hook.sh
 
 # Constant variables
 
-LOG_FILE="$(get_root_dir)/logs/githooks/pre-commit.log"
+LOG_FILE="$(git_get_root_dir)/logs/githooks/pre-commit.log"
 readonly LOG_FILE
 
 # Internal functions
 
-enforce_coding_standards() {
-    local -i result=0
-
-    make run-linter-staged
-    ((result = $?))
-
-    if ((result != 0)); then
-        cat <<END
-___________________________________________________________________________________________________
-Code Analysis - Enforce coding standards and static analysis through linting and code style checks.
-
-See https://sentenz.github.io/https://sentenz.github.io/guide/about/code-analysis.html
-___________________________________________________________________________________________________
-END
-    fi
-
-    return "${result}"
-}
-
 run_pre_commit() {
-    local -i result=0
+  local -i result=0
 
-    create_file "${LOG_FILE}"
+  fs_create_file "${LOG_FILE}"
 
-    enforce_coding_standards >>"${LOG_FILE}"
-    ((result |= $?))
-
-    if ((result == 0)); then
-        remove_file "${LOG_FILE}"
-    fi
-
-    monitor "githooks" "pre-commit" "${result}"
+  hook_enforce_coding_standards "make run-linter-staged" &>"${LOG_FILE}"
+  ((result = $?))
+  if ((result == 1)); then
+    log_message "githooks" "pre-push" "${result}"
 
     return "${result}"
+  fi
+
+  fs_remove_file "${LOG_FILE}"
+
+  return "${result}"
 }
 
 # Control flow logic

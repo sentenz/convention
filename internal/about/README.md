@@ -7,6 +7,7 @@ Best practices, articles of interest and general topics.
 - [Architectural Pattern](architectural-pattern.md)
 - [Architecture Decision Records](architecture-decision-records.md)
 - [Architecture Modeling Concepts](architecture-modeling-concepts.md)
+- [Asymptotic Notation](asymptotic-notation.md)
 - [Branching Strategies](branching-strategies.md)
 - [Build Systems](build-sytems.md)
 - [Code Analysis](code-analysis.md)

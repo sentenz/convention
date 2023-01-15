@@ -11,16 +11,17 @@ source "$(dirname "${BASH_SOURCE[0]}")/log.sh"
 # Returns:
 #   Boolean
 #########################
-add_apt_ppa() {
+util_add_apt_ppa() {
   local repo="${1:?repo is missing}"
 
-  local -i result=0
+  local -i retval=0
+
   if ! grep -q "${repo}" /etc/apt/sources.list; then
     sudo add-apt-repository -y "${repo}"
-    ((result = $?))
+    ((retval = $?))
   fi
 
-  return "${result}"
+  return "${retval}"
 }
 
 ########################
@@ -30,41 +31,85 @@ add_apt_ppa() {
 # Returns:
 #   Boolean
 #########################
-install_apt() {
+util_install_apt() {
   local package="${1:?package is missing}"
 
-  local -i result=0
+  local -i retval=0
+
   if ! command -v "${package}" &>/dev/null; then
     sudo apt install -y -qqq "${package}"
-    ((result = $?))
+    ((retval = $?))
   fi
 
-  return "${result}"
+  return "${retval}"
 }
 
 ########################
-# Setup apt package dependencies.
+# Uninstall apt package dependency.
+# Arguments:
+#   $1 - package
+# Returns:
+#   Boolean
+#########################
+util_uninstall_apt() {
+  local package="${1:?package is missing}"
+
+  local -i retval=0
+
+  if command -v "${package}" &>/dev/null; then
+    sudo apt remove -y -qqq "${package}"
+    ((retval = $?))
+  fi
+
+  return "${retval}"
+}
+
+########################
+# Install apt package list dependencies.
 # Arguments:
 #   $@ - packages
 # Returns:
 #   Boolean
 #########################
-setup_apt_packages() {
+util_install_apt_packages() {
   local -a packages=("$@")
 
   local -i retval=0
   local -i result=0
 
   for package in "${packages[@]}"; do
-    update_apt
+    util_update_apt
 
-    install_apt "${package}"
+    util_install_apt "${package}"
     ((result = $?))
+    ((retval |= "${result}"))
 
-    monitor "setup" "${package}" "${result}"
+    log_message "setup" "${package}" "${result}"
   done
 
-  ((retval |= "${result}"))
+  return "${retval}"
+}
+
+########################
+# Uninstall apt package list dependencies.
+# Arguments:
+#   $@ - packages
+# Returns:
+#   Boolean
+#########################
+util_uninstall_apt_packages() {
+  local -a packages=("$@")
+
+  local -i retval=0
+  local -i result=0
+
+  for package in "${packages[@]}"; do
+    util_uninstall_apt "${package}"
+    ((result = $?))
+    ((retval |= "${result}"))
+
+    log_message "teardown" "${package}" "${result}"
+  done
 
   return "${retval}"
 }
@@ -76,7 +121,7 @@ setup_apt_packages() {
 # Returns:
 #   None
 #########################
-update_apt() {
+util_update_apt() {
   sudo apt update -qqq
 }
 
@@ -87,24 +132,24 @@ update_apt() {
 # Returns:
 #   Boolean
 #########################
-cleanup_apt() {
-  local -i result=0
+util_cleanup_apt() {
+  local -i retval=0
 
-  sudo apt install -y -f -qqq
-  ((result |= $?))
+  sudo apt -f install -y -qqq
+  ((retval |= $?))
 
   sudo apt autoremove -y -qqq
-  ((result |= $?))
+  ((retval |= $?))
 
   sudo apt clean -qqq
-  ((result |= $?))
+  ((retval |= $?))
 
   sudo rm -rf /var/lib/apt/lists/*
-  ((result |= $?))
+  ((retval |= $?))
 
-  monitor "cleanup" "apt" "${result}"
+  log_message "cleanup" "apt" "${retval}"
 
-  return "${result}"
+  return "${retval}"
 }
 
 ########################
@@ -114,39 +159,39 @@ cleanup_apt() {
 # Returns:
 #   Boolean
 #########################
-install_pip() {
+util_install_pip() {
   local package="${1:?package is missing}"
 
-  local -i result=0
+  local -i retval=0
+
   if ! command -v "${package}" &>/dev/null; then
     sudo pip install -q "${package}"
-    ((result = $?))
+    ((retval = $?))
   fi
 
-  return "${result}"
+  return "${retval}"
 }
 
 ########################
-# Setup pip package dependencies.
+# Install pip package list dependencies.
 # Arguments:
 #   $@ - packages
 # Returns:
 #   Boolean
 #########################
-setup_pip_packages() {
+util_install_pip_packages() {
   local -a packages=("$@")
 
   local -i retval=0
   local -i result=0
 
   for package in "${packages[@]}"; do
-    install_pip "${package}"
+    util_install_pip "${package}"
     ((result = $?))
+    ((retval |= "${result}"))
 
-    monitor "setup" "${package}" "${result}"
+    log_message "setup" "${package}" "${result}"
   done
-
-  ((retval |= "${result}"))
 
   return "${retval}"
 }
@@ -158,26 +203,27 @@ setup_pip_packages() {
 # Returns:
 #   Boolean
 #########################
-install_go() {
+util_install_go() {
   local package="${1:?package is missing}"
 
-  local -i result=0
+  local -i retval=0
+
   if ! command -v "${package}" &>/dev/null; then
     go install "${package}"
-    ((result = $?))
+    ((retval = $?))
   fi
 
-  return "${result}"
+  return "${retval}"
 }
 
 ########################
-# Setup go package dependencies.
+# Install go package list dependencies.
 # Arguments:
 #   $@ - packages
 # Returns:
 #   Boolean
 #########################
-setup_go_packages() {
+util_install_go_packages() {
   local -a packages=("$@")
 
   local -i retval=0
@@ -187,13 +233,12 @@ setup_go_packages() {
     # HACK(AK) https://github.com/actions/setup-go/issues/14
     export PATH="${HOME}"/go/bin:/usr/local/go/bin:"${PATH}"
 
-    install_go "${package}"
+    util_install_go "${package}"
     ((result = $?))
+    ((retval |= "${result}"))
 
-    monitor "setup" "${package}" "${result}"
+    log_message "setup" "${package}" "${result}"
   done
-
-  ((retval |= "${result}"))
 
   return "${retval}"
 }
@@ -205,26 +250,27 @@ setup_go_packages() {
 # Returns:
 #   Boolean
 #########################
-install_curl() {
+util_install_curl() {
   local package="${1:?package is missing}"
 
-  local -i result=0
+  local -i retval=0
+
   if ! command -v "$(basename "${package}")" &>/dev/null; then
     curl -sS "${package}" | bash
-    ((result = $?))
+    ((retval = $?))
   fi
 
-  return "${result}"
+  return "${retval}"
 }
 
 ########################
-# Setup curl package dependencies.
+# Install curl package list dependencies.
 # Arguments:
 #   $@ - packages
 # Returns:
 #   Boolean
 #########################
-setup_curl_packages() {
+util_install_curl_packages() {
   local -a packages=("$@")
 
   local -i retval=0
@@ -233,13 +279,12 @@ setup_curl_packages() {
   for package in "${packages[@]}"; do
     export PATH="${HOME}"/.local/bin:"${PATH}"
 
-    install_curl "${package}"
+    util_install_curl "${package}"
     ((result = $?))
+    ((retval |= "${result}"))
 
-    monitor "setup" "$(basename "${package}")" "${result}"
+    log_message "setup" "$(basename "${package}")" "${result}"
   done
-
-  ((retval |= "${result}"))
 
   return "${retval}"
 }
@@ -248,42 +293,44 @@ setup_curl_packages() {
 # Install npm package dependency.
 # Arguments:
 #   $1 - package
+#   $2 - version
 # Returns:
 #   Boolean
 #########################
-install_npm() {
+util_install_npm() {
   local package="${1:?package is missing}"
+  local version="${2:?version is missing}"
 
-  local -i result=0
+  local -i retval=0
+
   if ! npm list "${package}" -g --depth=0 &>/dev/null; then
-    sudo npm i --silent -g "${package}"@latest
-    ((result |= $?))
+    sudo npm i --silent -g "${package}"@"${version}"
+    ((retval = $?))
   fi
 
-  return "${result}"
+  return "${retval}"
 }
 
 ########################
-# Setup npm package dependencies.
+# Install npm package list dependencies.
 # Arguments:
 #   $@ - packages
 # Returns:
 #   Boolean
 #########################
-setup_npm_packages() {
+util_install_npm_packages() {
   local -a packages=("$@")
 
   local -i retval=0
   local -i result=0
 
   for package in "${packages[@]}"; do
-    install_npm "${package}"
+    util_install_npm "${package}"
     ((result = $?))
+    ((retval |= "${result}"))
 
-    monitor "setup" "${package}" "${result}"
+    log_message "setup" "${package}" "${result}"
   done
-
-  ((retval |= "${result}"))
 
   return "${retval}"
 }
@@ -295,13 +342,13 @@ setup_npm_packages() {
 # Returns:
 #   Boolean
 #########################
-cleanup_npm() {
-  local -i result=0
+util_cleanup_npm() {
+  local -i retval=0
 
   npm cache clean --force --silent
-  ((result |= $?))
+  ((retval = $?))
 
-  monitor "cleanup" "npm" "${result}"
+  log_message "cleanup" "npm" "${retval}"
 
-  return "${result}"
+  return "${retval}"
 }

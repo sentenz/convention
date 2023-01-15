@@ -14,7 +14,7 @@ set -uo pipefail
 
 # Constant variables
 
-PATH_ROOT_DIR="$(get_root_dir)"
+PATH_ROOT_DIR="$(git_get_root_dir)"
 readonly PATH_ROOT_DIR
 # readonly RC_FILE=".commitlintrc.yml"
 readonly LOG_FILE="${PATH_ROOT_DIR}/logs/linter/commitlint.log"
@@ -41,7 +41,7 @@ analyzer() {
   elif [[ "${F_LINT}" == "diff" ]]; then
     return "${STATUS_SUCCESS}"
   elif [[ "${F_LINT}" == "staged" ]]; then
-    filepaths="$(get_root_dir)/.git/COMMIT_EDITMSG"
+    filepaths="$(git_get_root_dir)/.git/COMMIT_EDITMSG"
   else
     echo "error: unexpected option: ${F_LINT}" &>"${LOG_FILE}"
 
@@ -67,7 +67,7 @@ analyzer() {
 }
 
 logger() {
-  if ! is_file "${LOG_FILE}"; then
+  if ! fs_is_file "${LOG_FILE}"; then
     return "${STATUS_SUCCESS}"
   fi
 
@@ -77,7 +77,7 @@ logger() {
     return "${STATUS_ERROR}"
   fi
 
-  remove_file "${LOG_FILE}"
+  fs_remove_file "${LOG_FILE}"
 
   return "${STATUS_SUCCESS}"
 }

@@ -46,6 +46,6 @@ if [[ -f "${LOG_FILE}" ]]; then
   if [[ "${ERRORS}" -ne 0 || "${WARNINGS}" -ne 0 ]]; then
     return "${STATUS_ERROR}"
   else
-    remove_file "${LOG_FILE}"
+    fs_remove_file "${LOG_FILE}"
   fi
 fi

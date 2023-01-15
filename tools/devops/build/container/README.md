@@ -1,7 +1,7 @@
 # `/container`
 
 - devcontainer.dockerfile
-  > An container image for `.devcontainer.json` file.
+  > An container image for `.devcontainer.json` file in VS Code editor.
   >
   > Contains the commands:
   >

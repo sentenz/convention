@@ -2,10 +2,10 @@
 
 Git hooks provides the ability to trigger custom scripts when certain git actions occur.
 
-- [Configuration](#configuration)
-- [Hooks](#hooks)
+- [1. Configuration](#1-configuration)
+- [2. Hooks](#2-hooks)
 
-## Configuration
+## 1. Configuration
 
 The `.git` folder is not under version control, since most of its contents are device and user-specific. For git version 2.9 or higher, change the hooks directory using `core.hooksPath` configuration variable.
 
@@ -21,7 +21,7 @@ Make the hooks executable using the following command:
 chmod +x path/to/githooks/*
 ```
 
-## Hooks
+## 2. Hooks
 
 - pre-commit
   > Contained actions:
@@ -30,16 +30,21 @@ chmod +x path/to/githooks/*
 
 - commit-msg
   > Contained actions:
-  > 
+  >
   > - Enforce the conventional commits specification to commit messages.
 
 - pre-push
   > Contained actions:
-  > 
+  >
   > - Enforce the branching strategy to prevent direct pushes to base branches.
   > - Enforce the branching strategy of the naming convention for support branches.
 
 - post-checkout
   > Contained actions:
-  > 
+  >
   > - Enforce to create the support branches from the base branches.
+
+- pre-rebase
+  > Contained actions:
+  >
+  > - The golden rule of rebasing.

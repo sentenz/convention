@@ -26,10 +26,9 @@ readonly -a APT_PACKAGES=(
   cmake
   make
   dirmngr
-  lsb-release
 )
 readonly -a SCRIPTS=(
-  setup_continuous_integration.sh
+  setup_integration.sh
 )
 readonly -a PIPELINES=(
   continuous-integration.yml
@@ -41,75 +40,76 @@ readonly -a PIPELINES=(
 # Internal functions
 
 initialize_repo() {
-  configure_repo_ownership
+  git_configure_repo_ownership
+  chmod +x "$(fs_get_sript_dir)"/../internal/*/*.sh
 }
 
 initialize_scripts() {
-  if is_dir "$(get_sript_dir)/pipeline"; then
-    create_dir "$(get_root_dir)/scripts"
-    copy_files "$(get_sript_dir)/pipeline" "$(get_root_dir)/scripts"
+  if fs_is_dir "$(fs_get_sript_dir)/pipeline"; then
+    fs_create_dir "$(git_get_root_dir)/scripts"
+    fs_copy_files "$(fs_get_sript_dir)/pipeline" "$(git_get_root_dir)/scripts"
   fi
 
-  if is_dir "$(get_sript_dir)/utils"; then
-    create_dir "$(get_root_dir)/scripts"
-    copy_files "$(get_sript_dir)/utils" "$(get_root_dir)/scripts"
+  if fs_is_dir "$(fs_get_sript_dir)/utils"; then
+    fs_create_dir "$(git_get_root_dir)/scripts"
+    fs_copy_files "$(fs_get_sript_dir)/utils" "$(git_get_root_dir)/scripts"
   fi
 }
 
 initialize_githooks() {
-  if is_dir "$(get_sript_dir)/../githooks"; then
-    copy_files "$(get_sript_dir)/../githooks" "$(get_root_dir)"
-    chmod +x "$(get_root_dir)"/githooks/*
+  if fs_is_dir "$(fs_get_sript_dir)/../githooks"; then
+    fs_copy_files "$(fs_get_sript_dir)/../githooks" "$(git_get_root_dir)"
+    chmod +x "$(git_get_root_dir)"/githooks/*
     git config core.hooksPath githooks
   fi
 }
 
 initialize_dotfiles() {
-  if is_dir "$(get_sript_dir)/../dotfiles"; then
-    copy_files "$(get_sript_dir)/../dotfiles" "$(get_root_dir)"
-    copy_files "$(get_sript_dir)/../dotfiles/." "$(get_root_dir)"
+  if fs_is_dir "$(fs_get_sript_dir)/../dotfiles"; then
+    fs_copy_files "$(fs_get_sript_dir)/../dotfiles" "$(git_get_root_dir)"
+    fs_copy_files "$(fs_get_sript_dir)/../dotfiles/." "$(git_get_root_dir)"
   fi
 }
 
 initialize_pipelines() {
-  if is_dir "$(get_sript_dir)/../.azure"; then
-    copy_files "$(get_sript_dir)/../.azure" "$(get_root_dir)"
+  if fs_is_dir "$(fs_get_sript_dir)/../.azure"; then
+    fs_copy_files "$(fs_get_sript_dir)/../.azure" "$(git_get_root_dir)"
   fi
 
-  if is_dir "$(get_sript_dir)/../.github"; then
-    copy_files "$(get_sript_dir)/../.github" "$(get_root_dir)"
+  if fs_is_dir "$(fs_get_sript_dir)/../.github"; then
+    fs_copy_files "$(fs_get_sript_dir)/../.github" "$(git_get_root_dir)"
   fi
 }
 
 initialize_container() {
-  if is_dir "$(get_sript_dir)/../.devcontainer"; then
-    copy_files "$(get_sript_dir)/../.devcontainer" "$(get_root_dir)"
+  if fs_is_dir "$(fs_get_sript_dir)/../.devcontainer"; then
+    fs_copy_files "$(fs_get_sript_dir)/../.devcontainer" "$(git_get_root_dir)"
   fi
 
-  if is_dir "$(get_sript_dir)/../build/container"; then
-    create_dir "$(get_root_dir)/build/container"
-    copy_files "$(get_sript_dir)/../build/container" "$(get_root_dir)/build"
+  if fs_is_dir "$(fs_get_sript_dir)/../build/container"; then
+    fs_create_dir "$(git_get_root_dir)/build/container"
+    fs_copy_files "$(fs_get_sript_dir)/../build/container" "$(git_get_root_dir)/build"
   fi
 }
 
 initialize_merge() {
-  if is_file "$(get_sript_dir)/../Makefile"; then
-    merge_file "$(get_sript_dir)/../Makefile" "$(get_root_dir)/Makefile"
+  if fs_is_file "$(fs_get_sript_dir)/../Makefile"; then
+    fs_merge_file "$(fs_get_sript_dir)/../Makefile" "$(git_get_root_dir)/Makefile"
   fi
 
-  if is_dir "$(get_sript_dir)/../.vscode"; then
-    merge_file "$(get_sript_dir)/../.vscode/extensions.json" "$(get_root_dir)/.vscode/extensions.json"
+  if fs_is_dir "$(fs_get_sript_dir)/../.vscode"; then
+    fs_merge_file "$(fs_get_sript_dir)/../.vscode/extensions.json" "$(git_get_root_dir)/.vscode/extensions.json"
   fi
 
   for pipeline in "${PIPELINES[@]}"; do
-    if is_file "$(get_sript_dir)/../.azure/${pipeline}"; then
-      merge_file "$(get_sript_dir)/../.azure/${pipeline}" "$(get_root_dir)/.azure/${pipeline}"
+    if fs_is_file "$(fs_get_sript_dir)/../.azure/${pipeline}"; then
+      fs_merge_file "$(fs_get_sript_dir)/../.azure/${pipeline}" "$(git_get_root_dir)/.azure/${pipeline}"
     fi
   done
 
   for pipeline in "${PIPELINES[@]}"; do
-    if is_file "$(get_sript_dir)/../.github/workflows/${pipeline}"; then
-      merge_file "$(get_sript_dir)/../.github/workflows/${pipeline}" "$(get_root_dir)/.github/workflows/${pipeline}"
+    if fs_is_file "$(fs_get_sript_dir)/../.github/workflows/${pipeline}"; then
+      fs_merge_file "$(fs_get_sript_dir)/../.github/workflows/${pipeline}" "$(git_get_root_dir)/.github/workflows/${pipeline}"
     fi
   done
 }
@@ -120,7 +120,7 @@ run_scripts() {
   (
     local -i result=0
 
-    cd "$(get_sript_dir)/pipeline" || return "${STATUS_ERROR}"
+    cd "$(fs_get_sript_dir)/pipeline" || return "${STATUS_ERROR}"
 
     for script in "${scripts[@]}"; do
       chmod +x "${script}"
@@ -135,7 +135,7 @@ run_scripts() {
 setup() {
   local -i result=0
 
-  setup_apt_packages "${APT_PACKAGES[@]}"
+  util_install_apt_packages "${APT_PACKAGES[@]}"
   ((result |= $?))
 
   run_scripts "${SCRIPTS[@]}"
@@ -149,7 +149,7 @@ setup() {
   initialize_container
   initialize_merge
 
-  cleanup_apt
+  util_cleanup_apt
   ((result |= $?))
 
   return "${result}"

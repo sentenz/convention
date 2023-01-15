@@ -8,6 +8,9 @@
 - git.sh
   > An internal library for git actions.
 
+- hook.sh
+  > An internal library for hook actions.
+
 - fs.sh
   > An external library for file system actions from [bash-libraries](https://github.com/juan131/bash-libraries) repository.
 

@@ -34,14 +34,14 @@ readonly -a SCRIPTS=(
 
 initialize_logs() {
   local log_dir
-  log_dir="$(get_root_dir)/logs/sanitizer"
+  log_dir="$(git_get_root_dir)/logs/sanitizer"
   local regex_patterns="^.*\.(log)$"
 
-  if ! is_dir_empty "${log_dir}"; then
+  if ! fs_is_dir_empty "${log_dir}"; then
     find "${log_dir}" -type f -regextype posix-egrep -regex "${regex_patterns}" -delete
   fi
 
-  create_dir "${log_dir}"
+  fs_create_dir "${log_dir}"
 
   return "${STATUS_SUCCESS}"
 }
@@ -56,7 +56,7 @@ analyze() {
   ./"${script}.sh" -b "${f_binary}"
   ((result = $?))
 
-  monitor "sanitizer - ${f_binary}" "${script}" "${result}"
+  log_message "sanitizer - ${f_binary}" "${script}" "${result}"
 
   if ((result == STATUS_SKIP)) || ((result == STATUS_WARNING)); then
     return "${STATUS_SUCCESS}"
@@ -73,7 +73,7 @@ run_sanitizer() {
   (
     local -i result=0
 
-    cd "$(get_sript_dir)/../sanitizer" || return "${STATUS_ERROR}"
+    cd "$(fs_get_sript_dir)/../sanitizer" || return "${STATUS_ERROR}"
 
     for script in "${scripts[@]}"; do
       analyze "${script}" "${F_BINARY}"

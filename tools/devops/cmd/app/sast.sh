@@ -31,7 +31,7 @@ linter() {
   (
     local -i result=0
 
-    cd "$(get_sript_dir)/../../internal/app" || return "${STATUS_ERROR}"
+    cd "$(fs_get_sript_dir)/../../internal/app" || return "${STATUS_ERROR}"
 
     chmod +x linter.sh
     ./linter.sh -l "${f_lint}"

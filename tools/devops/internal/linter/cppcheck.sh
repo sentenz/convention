@@ -14,7 +14,7 @@ set -uo pipefail
 
 # Constant variables
 
-PATH_ROOT_DIR="$(get_root_dir)"
+PATH_ROOT_DIR="$(git_get_root_dir)"
 readonly PATH_ROOT_DIR
 readonly RC_FILE="${PATH_ROOT_DIR}/.cppcheck-suppressions"
 readonly LOG_FILE="${PATH_ROOT_DIR}/logs/linter/cppcheck.log"
@@ -38,11 +38,11 @@ analyzer() {
 
   # Get files
   if [[ "${F_LINT}" == "ci" ]]; then
-    filepaths=$(get_ci_files "${PATH_ROOT_DIR}" "${REGEX_PATTERNS}")
+    filepaths=$(git_get_ci_files "${PATH_ROOT_DIR}" "${REGEX_PATTERNS}")
   elif [[ "${F_LINT}" == "diff" ]]; then
-    filepaths=$(get_diff_files "${PATH_ROOT_DIR}" "${REGEX_PATTERNS}")
+    filepaths=$(git_get_diff_files "${PATH_ROOT_DIR}" "${REGEX_PATTERNS}")
   elif [[ "${F_LINT}" == "staged" ]]; then
-    filepaths=$(get_staged_files "${PATH_ROOT_DIR}" "${REGEX_PATTERNS}")
+    filepaths=$(git_get_staged_files "${PATH_ROOT_DIR}" "${REGEX_PATTERNS}")
   else
     echo "error: unexpected option: ${F_LINT}" &>"${LOG_FILE}"
 
@@ -68,7 +68,7 @@ analyzer() {
 }
 
 logger() {
-  if ! is_file "${LOG_FILE}"; then
+  if ! fs_is_file "${LOG_FILE}"; then
     return "${STATUS_SUCCESS}"
   fi
 
@@ -78,7 +78,7 @@ logger() {
     return "${STATUS_ERROR}"
   fi
 
-  remove_file "${LOG_FILE}"
+  fs_remove_file "${LOG_FILE}"
 
   return "${STATUS_SUCCESS}"
 }

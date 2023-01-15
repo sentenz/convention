@@ -14,7 +14,7 @@ set -uo pipefail
 
 # Constant variables
 
-PATH_ROOT_DIR="$(get_root_dir)"
+PATH_ROOT_DIR="$(git_get_root_dir)"
 readonly PATH_ROOT_DIR
 readonly LOG_FILE="${PATH_ROOT_DIR}/logs/sanitizer/valgrind.log"
 
@@ -30,7 +30,7 @@ readonly F_BINARY
 # Internal functions
 
 analyzer() {
-  local -r cmd="valgrind -s --tool=memcheck --log-file=${LOG_FILE} ./${F_BINARY}"
+  local -r cmd="valgrind --log-file=${LOG_FILE} ./${F_BINARY}"
 
   (
     cd "${PATH_ROOT_DIR}" || return "${STATUS_ERROR}"
@@ -41,17 +41,17 @@ analyzer() {
 }
 
 logger() {
-  if ! is_file "${LOG_FILE}"; then
+  if ! fs_is_file "${LOG_FILE}"; then
     return "${STATUS_SUCCESS}"
   fi
 
   local -i errors=0
-  errors=$(grep -i -c -E 'ERROR SUMMARY' "${LOG_FILE}" || true)
+  errors=$(grep -i -c -E 'ERROR SUMMARY: [^0]+' "${LOG_FILE}" || true)
   if ((errors != 0)); then
     return "${STATUS_ERROR}"
   fi
 
-  remove_file "${LOG_FILE}"
+  fs_remove_file "${LOG_FILE}"
 
   return "${STATUS_SUCCESS}"
 }

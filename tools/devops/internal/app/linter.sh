@@ -54,14 +54,14 @@ readonly -a SCRIPTS=(
 
 initialize_logs() {
   local log_dir
-  log_dir="$(get_root_dir)/logs/linter"
+  log_dir="$(git_get_root_dir)/logs/linter"
   local regex_patterns="^.*\.(log)$"
 
-  if ! is_dir_empty "${log_dir}"; then
+  if ! fs_is_dir_empty "${log_dir}"; then
     find "${log_dir}" -type f -regextype posix-egrep -regex "${regex_patterns}" -delete
   fi
 
-  create_dir "${log_dir}"
+  fs_create_dir "${log_dir}"
 
   return "${STATUS_SUCCESS}"
 }
@@ -76,7 +76,7 @@ analyze() {
   ./"${script}.sh" -l "${f_lint}"
   ((result = $?))
 
-  monitor "linter - ${f_lint}" "${script}" "${result}"
+  log_message "linter - ${f_lint}" "${script}" "${result}"
 
   if ((result == STATUS_SKIP)) || ((result == STATUS_WARNING)); then
     return "${STATUS_SUCCESS}"
@@ -93,7 +93,7 @@ run_linter() {
   (
     local -i result=0
 
-    cd "$(get_sript_dir)/../linter" || return "${STATUS_ERROR}"
+    cd "$(fs_get_sript_dir)/../linter" || return "${STATUS_ERROR}"
 
     for script in "${scripts[@]}"; do
       analyze "${script}" "${F_LINT}"

@@ -1,46 +1,64 @@
+ifneq (,$(wildcard ./.env))
+	include .env
+	export
+endif
+
 # See https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 help: ## Display help screen
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-30s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 .PHONY: help
 
-setup: ## Setup dependencies and tools for the devops service
-	cd scripts && chmod +x setup.sh && ./setup.sh
+setup: ## Setup dependencies and tools
+	cd $(@D)/scripts && chmod +x setup.sh && ./setup.sh
 .PHONY: setup
 
-cleanup: ## Cleanup dependencies and tools of the devops service
-	# TODO(AK)
-.PHONY: cleanup
+setup-devops: ## Setup dependencies and tools for the devops service
+	cd scripts && chmod +x setup.sh && ./setup.sh
+.PHONY: setup-devops
+
+teardown-devops: ## Teardown dependencies and tools for the devops service
+	cd scripts && chmod +x teardown.sh && ./teardown.sh
+.PHONY: teardown-devops
+
+update-devops: ## Update dependencies and tools for the devops service
+	$(MAKE) teardown-devops
+	$(MAKE) setup-devops
+.PHONY: update-devops
 
 setup-integration: ## Setup dependencies and tools for the integration service
-	cd scripts/pipeline && chmod +x setup_continuous_integration.sh && ./setup_continuous_integration.sh
+	cd $(@D)/scripts/pipeline && chmod +x setup_integration.sh && ./setup_integration.sh
 .PHONY: setup-integration
 
-run-linter-staged: ## Perform validation of local staged files
+run-linter-staged: ## Perform analysis of local staged files
 	cd cmd/app && chmod +x sast.sh && ./sast.sh -l staged
 .PHONY: run-linter-staged
 
-run-linter-diff: ## Perform validation of local modified files
+run-linter-diff: ## Perform analysis of local modified files
 	cd cmd/app && chmod +x sast.sh && ./sast.sh -l diff
 .PHONY: run-linter-diff
 
-run-linter-ci: ## Perform validation of modified files in continuous integration pipeline
+run-linter-ci: ## Perform analysis of modified files in continuous integration pipeline
 	cd cmd/app && chmod +x sast.sh && ./sast.sh -l ci
 .PHONY: run-linter-ci
 
-run-linter-commit: ## Perform validation of the commit message
+run-linter-commit: ## Perform analysis of the commit message
 	commitlint --edit .git/COMMIT_EDITMSG
 .PHONY: run-linter-commit
 
-run-sanitizer: ## Perform validation of binary files
-	cd cmd/app && chmod +x dast.sh && ./dast.sh -b cmd/bin/*
-.PHONY: run-sanitizer
+run-sanitizer-app: ## Perform analysis of the application binary file
+	cd cmd/app && chmod +x dast.sh && ./dast.sh -b cmd/bin/*-app
+.PHONY: run-sanitizer-app
+
+run-sanitizer-test: ## Perform analysis of the test binary file
+	cd cmd/app && chmod +x dast.sh && ./dast.sh -b cmd/bin/*-test
+.PHONY: run-sanitizer-test
 
 setup-testing: ## Setup dependencies and tools for the testing service
-	cd scripts/pipeline && chmod +x setup_continuous_testing.sh && ./setup_continuous_testing.sh
+	cd $(@D)/scripts/pipeline && chmod +x setup_integration.sh && ./setup_integration.sh
 .PHONY: setup-testing
 
 setup-release: ## Setup dependencies and tools for the release service
-	cd scripts/pipeline && chmod +x setup_continuous_release.sh && ./setup_continuous_release.sh
+	cd $(@D)/scripts/pipeline && chmod +x setup_release.sh && ./setup_release.sh
 .PHONY: setup-release
 
 run-release: ## Perform release service task
@@ -74,3 +92,7 @@ setup-continuous-release: ## Setup dependencies and tools for the continuous rel
 run-continuous-release: ## Perform task in continuous release pipeline
 	$(MAKE) run-release
 .PHONY: run-continuous-release
+
+install-extensions: ## Install recommended VS Code extensions
+	code --list-extensions | xargs -L 1 code --install-extension
+.PHONY: install-extensions

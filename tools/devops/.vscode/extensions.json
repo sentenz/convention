@@ -7,8 +7,8 @@
     "cheshirekow.cmake-format",
     "sleistner.vscode-fileutils",
     "donjayamanne.git-extension-pack",
-    "mhutchie.git-graph",
     "donjayamanne.githistory",
+    "mhutchie.git-graph",
     "github.vscode-pull-request-github",
     "codezombiech.gitignore",
     "eamodio.gitlens",
@@ -22,12 +22,16 @@
     "timonwong.shellcheck",
     "tabnine.tabnine-vscode",
     "pflannery.vscode-versionlens",
-    "visualstudioexptteam.vscodeintellicode",
     "redhat.vscode-yaml",
     "alefragnani.project-manager",
     "tht13.html-preview-vscode",
     "editorconfig.editorconfig",
     "visualstudioexptteam.intellicode-api-usage-examples",
-    "leodevbro.blockman"
+    "visualstudioexptteam.vscodeintellicode",
+    "leodevbro.blockman",
+    "ms-azuretools.vscode-docker",
+    "jgclark.vscode-todo-highlight",
+    "gruntfuggly.todo-tree",
+    "bierner.markdown-mermaid"
   ]
 }

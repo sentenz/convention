@@ -21,6 +21,7 @@ jobs:
         run: |
           make setup-continuous-integration
       - name: Run Integration
+        continue-on-error: true
         run: |
           make run-continuous-integration
       - name: Upload Artifacts

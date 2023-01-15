@@ -31,7 +31,7 @@ sanitizer() {
   (
     local -i result=0
 
-    cd "$(get_sript_dir)/../../internal/app" || return "${STATUS_ERROR}"
+    cd "$(fs_get_sript_dir)/../../internal/app" || return "${STATUS_ERROR}"
 
     chmod +x sanitizer.sh
     ./sanitizer.sh -b "${f_binary}"

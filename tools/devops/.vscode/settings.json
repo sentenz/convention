@@ -24,6 +24,7 @@
   "editor.defaultFormatter": null,
   "editor.tabSize": 2,
   "editor.bracketPairColorization.enabled": true,
+  "editor.stickyScroll.enabled": true,
   "git.ignoreLimitWarning": true,
   "conventionalCommits.gitmoji": false,
   "shellformat.useEditorConfig": true,
@@ -31,9 +32,8 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
-    "editor.detectIndentation": true,
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
-  },
+    "editor.detectIndentation": true
+ },
   "markdown.extension.toc.levels": "2..2",
   "[yaml]": {
     "editor.formatOnSave": true,
@@ -57,11 +57,6 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "xaver.clang-format"
   },
-  "cpp-check-lint.cppcheck.--language=": "c",
-  "cpp-check-lint.cppcheck.--std_c++=": "c++11",
-  "cpp-check-lint.cppcheck.--std_c=": "c11",
-  "cpp-check-lint.cpplint.--linelength=": 100,
-  "C_Cpp.dimInactiveRegions": true,
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },

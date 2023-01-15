@@ -1,9 +1,17 @@
 #!/bin/bash
 #
-# Enforce commit via commit-msg:
+# The "commit-msg" hook is run just before "git commit" starts doing its job, and can prevent the
+# command from running by exiting with non-zero status.
 #
-# - Enforce commit conventions via commitlint.
-# TODO(AK) Perform commit spelling check.
+# Details:
+# Enforce commit conventions by verify the commit log message. The hook is allowed to edit the
+# commit message file.
+#
+# Arguments:
+#   $1 - the name of the file that has the commit message
+#
+# Returns:
+#   Exitcode
 
 # -x: print a trace (debug)
 # -u: treat unset variables
@@ -15,58 +23,32 @@ set -uo pipefail
 . ./scripts/utils/log.sh
 . ./scripts/utils/fs.sh
 . ./scripts/utils/git.sh
+. ./scripts/utils/hook.sh
 
 # Constant variables
 
-LOG_FILE="$(get_root_dir)/logs/githooks/commit-msg.log"
+COMMIT_MESSAGE_FILE="${1}"
+readonly COMMIT_MESSAGE_FILE
+
+LOG_FILE="$(git_get_root_dir)/logs/githooks/commit-msg.log"
 readonly LOG_FILE
-COMMIT_MESSAGE="${1}"
-readonly COMMIT_MESSAGE
 
 # Internal functions
-
-enforce_commit_message_convention() {
-  local message="${1:?message is missing}"
-
-  local -i result=0
-
-  make run-linter-commit
-  ((result = $?))
-
-  if ((result != 0)); then
-    cat <<END
-___________________________________________________________________________________________________
-Commit Message Convention - Enforce the conventional commits specification to commit messages.
-
-There is something wrong with the commit message:
-
-  "$(cat "${message}")"
-
-A commit message that is compliant with Conventional Commits consists of the format:
-
-  <type>(<scope>): <short summary>
-
-See https://sentenz.github.io/guide/guideline/commit-message-guide.html
-___________________________________________________________________________________________________
-END
-  fi
-
-  return "${result}"
-}
 
 run_commit_msg() {
   local -i result=0
 
-  create_file "${LOG_FILE}"
+  fs_create_file "${LOG_FILE}"
 
-  enforce_commit_message_convention "${COMMIT_MESSAGE}" >>"${LOG_FILE}"
-  ((result |= $?))
+  hook_enforce_commit_message_convention "make run-linter-commit" "${COMMIT_MESSAGE_FILE}" &>"${LOG_FILE}"
+  ((result = $?))
+  if ((result == 1)); then
+    log_message "githooks" "pre-push" "${result}"
 
-  if ((result == 0)); then
-    remove_file "${LOG_FILE}"
+    return "${result}"
   fi
 
-  monitor "githooks" "commit-msg" "${result}"
+  # fs_remove_file "${LOG_FILE}"
 
   return "${result}"
 }

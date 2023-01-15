@@ -29,6 +29,10 @@
     "visualstudioexptteam.intellicode-api-usage-examples",
     "visualstudioexptteam.vscodeintellicode",
     "leodevbro.blockman",
-    "ms-azuretools.vscode-docker"
+    "ms-azuretools.vscode-docker",
+    "ms-azuretools.vscode-docker",
+    "jgclark.vscode-todo-highlight",
+    "gruntfuggly.todo-tree",
+    "bierner.markdown-mermaid"
   ]
 }

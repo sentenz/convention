@@ -48,5 +48,8 @@ insert_final_newline = true
 indent_size = 2
 indent_style = space
 
+[Makefile]
+indent_style = tab
+
 [COMMIT_EDITMSG]
 max_line_length = 72

@@ -10,6 +10,7 @@ Best practices, articles of interest and general topics.
 - [Asymptotic Notation](asymptotic-notation.md)
 - [Branching Strategies](branching-strategies.md)
 - [Build Systems](build-sytems.md)
+- [Chaos Engineering](chaos-engineering.md)
 - [Code Analysis](code-analysis.md)
 - [Comment](comment.md)
 - [Continuous Pipelines](continuous-pipelines.md)

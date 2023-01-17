@@ -1,9 +1,25 @@
 #!/bin/bash
 #
-# Enforce convention policies by using pre-push:
+# The "pre-push" hook is called by "git push" after it has checked the remote status, but before
+# anything has been pushed. If this script exits with a non-zero status nothing will be pushed.
 #
+# Details:
 # - Prevent a direct push to the base branches.
 # - Enforce naming convention for support branches.
+#
+# Arguments:
+#   $1 - the name of the remote to which the push is being done
+#   $2 - URL to which the push is being done
+#
+# If pushing without using a named remote those arguments will be equal.
+#
+# Information about the commits which are being pushed is supplied as lines to
+# the standard input in the form:
+#
+#   <local ref> <local oid> <remote ref> <remote oid>
+#
+# Returns:
+#   Exitcode
 
 # -x: print a trace (debug)
 # -u: treat unset variables
@@ -15,100 +31,54 @@ set -uo pipefail
 . ./scripts/utils/log.sh
 . ./scripts/utils/fs.sh
 . ./scripts/utils/git.sh
+. ./scripts/utils/hook.sh
 
 # Constant variables
 
-LOG_FILE="$(get_root_dir)/logs/githooks/pre-push.log"
+REMOTE_BRANCHE="${1}"
+readonly REMOTE_BRANCHE
+URL="${2}"
+readonly URL
+
+LOG_FILE="$(git_get_root_dir)/logs/githooks/pre-push.log"
 readonly LOG_FILE
-LOCAL_BRANCH="$(get_local_branch)"
+LOCAL_BRANCH="$(git_get_local_branch)"
 readonly LOCAL_BRANCH
 readonly -a BASE_BRANCHES=(
-	main
+  main
 )
 readonly -a SUPPORT_BRANCHES=(
-	feature
-	release
-	fix
+  feature
+  release
+  fix
 )
 
 # Internal functions
 
-prevent_push_to_base_branches() {
-	local local_branch="${1:?local branch is missing}"
-	local -a base_branches=("${@:2}")
-
-	for branch in "${base_branches[@]}"; do
-		if [[ "${branch}" == "${local_branch}" ]]; then
-			cat <<END
-___________________________________________________________________________________________________
-Branching strategy - Prevent a direct push to the base branches.
-
-Noting that contributions to base branches are not compliant with the branching strategy.
-Contributing to a base branch can only be made via pull requests (PR). Create a support branch
-from and merge back to a base branch.
-
-See https://sentenz.github.io/guide/guideline/branching-strategies-guide.html
-___________________________________________________________________________________________________
-END
-
-			return "${STATUS_ERROR}"
-		fi
-	done
-}
-
-enforce_naming_convention_of_support_branch() {
-	local local_branch="${1:?local branch is missing}"
-	local -a support_branches=("${@:2}")
-
-	regex_patterns="^($(
-		IFS=$'|'
-		echo "${support_branches[*]}"
-	))\/[0-9]+[-][a-z-]+$"
-	readonly regex_patterns
-
-	if [[ ! "${local_branch}" =~ ${regex_patterns} ]]; then
-		cat <<END
-___________________________________________________________________________________________________
-Branching strategy - Enforce naming convention for support branches.
-
-There is something wrong with the name of the local branch "${local_branch}". Rename the local
-branch according to the naming convention for support branches.
-
-The naming rule is: [support-branch]/[issue-id]-[short-description].
-
-  1. support-branch: feature, release, and fix.
-  2. followed by a slash (/)
-  3. issue-id: in digit(s)
-  4. short-description: only lowercase letters, separated by hyphens
-
-Example: feature/158-enforce-policy
-
-See https://sentenz.github.io/guide/guideline/branching-strategies-guide.html
-___________________________________________________________________________________________________
-END
-
-		return "${STATUS_ERROR}"
-	fi
-}
-
 run_pre_push() {
-	local -i result=0
+  local -i result=0
 
-	create_file "${LOG_FILE}"
+  fs_create_file "${LOG_FILE}"
 
-	prevent_push_to_base_branches "${LOCAL_BRANCH}" "${BASE_BRANCHES[@]}" >>"${LOG_FILE}"
-	((result |= $?))
+  hook_prevent_push_to_base_branches "${LOCAL_BRANCH}" "${BASE_BRANCHES[@]}" &>"${LOG_FILE}"
+  ((result = $?))
+  if ((result == 1)); then
+    log_message "githooks" "pre-push" "${result}"
 
-	enforce_naming_convention_of_support_branch "${LOCAL_BRANCH}" "${SUPPORT_BRANCHES[@]}" >>"${LOG_FILE}"
-	((result |= $?))
+    return "${result}"
+  fi
 
-	if ((result == 0)); then
-		remove_file "${LOG_FILE}"
-	fi
+  hook_enforce_naming_convention_of_support_branch "${LOCAL_BRANCH}" "${SUPPORT_BRANCHES[@]}" &>"${LOG_FILE}"
+  ((result = $?))
+  if ((result == 1)); then
+    log_message "githooks" "pre-push" "${result}"
 
-	monitor "githooks" "pre-push" "${result}"
+    return "${result}"
+  fi
 
-	return "${result}"
+  fs_remove_file "${LOG_FILE}"
+
+  return "${result}"
 }
 
 # Control flow logic

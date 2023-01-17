@@ -3,7 +3,7 @@
 Asymptotic notations describes the time complexity of algorithms for asymptotic analysis with a given input of N.
 
 - [1. Types of Notation](#1-types-of-notation)
-  - [1.1. Big-O Notation](#11-big-o-notation)
+  - [1.1. O Notation](#11-o-notation)
   - [1.2. Omega Notation](#12-omega-notation)
   - [1.3. Theta Notation](#13-theta-notation)
 - [2. Types of Complexity](#2-types-of-complexity)
@@ -11,9 +11,9 @@ Asymptotic notations describes the time complexity of algorithms for asymptotic 
   - [2.2. Space Complexity](#22-space-complexity)
 - [3. Complexity Classes](#3-complexity-classes)
   - [3.1. $O(1)$ - Constant Time](#31-o1---constant-time)
-  - [3.2. $O(\log{}n)$ - Logarithmic Time](#32-ologn---logarithmic-time)
+  - [3.2. $O(\\log{}n)$ - Logarithmic Time](#32-ologn---logarithmic-time)
   - [3.3. $O(n)$ - Linear Time](#33-on---linear-time)
-  - [3.4. $O(n\log{}n)$ - Quasilinear Time](#34-onlogn---quasilinear-time)
+  - [3.4. $O(n\\log{}n)$ - Quasilinear Time](#34-onlogn---quasilinear-time)
   - [3.5. $O(n^2)$ - Quadratic Time](#35-on2---quadratic-time)
   - [3.6. $O(2^n)$ - Exponential Time](#36-o2n---exponential-time)
   - [3.7. $O(n!)$ - Factorial Time](#37-on---factorial-time)
@@ -25,7 +25,7 @@ Asymptotic notations describes the time complexity of algorithms for asymptotic 
 
 The big $O$, big theta $\Theta$, and big omega $\Omega$ notations are of Bachmann-Landau or [asymptotic notations](https://www.w3schools.blog/data-structure-asymptotic-analysis). These notations describe the limiting behavior of a function in mathematics or classify algorithms in computer science according to their complexity / processing time.
 
-### 1.1. Big-O Notation
+### 1.1. O Notation
 
 The big [$O$ notation](https://www.happycoders.eu/algorithms/big-o-notation-time-complexity/) describes the worst-case running time of a program. $O$ notation represents the upper bound of the running time of an algorithm. Compute the $O$ of an algorithm by counting the iterations an algorithm in the worst-case scenario with an input of N. Typically consult the $O$ to consider the worst case.
 
@@ -33,7 +33,7 @@ The big [$O$ notation](https://www.happycoders.eu/algorithms/big-o-notation-time
 
 The big $\Omega$ notation (Omega) describes the best running time of a program. Omega notation represents the lower bound of the running time of an algorithm. Compute the $\Omega$ by counting the iterations an algorithm in the best-case scenario based on an input of N.
 
-For example, a Bubble Sort algorithm has a running time of $\Omega$(N)$ because in the best case scenario the list is already sorted, and the bubble sort will terminate after the first iteration.
+For example, a Bubble Sort algorithm has a running time of $\Omega(N)$ because in the best case scenario the list is already sorted, and the bubble sort will terminate after the first iteration.
 
 ### 1.3. Theta Notation
 

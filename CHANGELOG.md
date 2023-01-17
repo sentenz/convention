@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/sentenz/guide/compare/v1.12.0...v1.13.0) (2023-01-17)
+
+
+### Features
+
+* **about:** create an article about `chaos engineering` ([#151](https://github.com/sentenz/guide/issues/151)) ([cc625a8](https://github.com/sentenz/guide/commit/cc625a8be2a2b4ff4ca61421b6b23565222cac33)), closes [#138](https://github.com/sentenz/guide/issues/138)
+
 # [1.12.0](https://github.com/sentenz/guide/compare/v1.11.0...v1.12.0) (2023-01-15)
 
 

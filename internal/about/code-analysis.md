@@ -1,86 +1,198 @@
-# Code Analysis
+# Software Analysis
 
-Code analysis, generally SAST and DAST, refers to performance profiling measures, safety-related correctness testing, code coverage reporting, code quality testing, syntax style review tools, or dead code elimination.
+Software Analysis is the process of evaluating software systems and applications to identify potential risks, improve quality and reliability, and ensure compliance with organizational policies and industry regulations.
 
-- [1. SAST](#1-sast)
-  - [1.1. Linter](#11-linter)
-- [2. DAST](#2-dast)
-  - [2.1. Sanitizer](#21-sanitizer)
-  - [2.2. Other Tools](#22-other-tools)
-- [3. References](#3-references)
+- [1. Code Analysis](#1-code-analysis)
+  - [1.1. Static Code Analysis](#11-static-code-analysis)
+  - [1.2. Dynamic Code Analysis](#12-dynamic-code-analysis)
+  - [1.3. Code Review](#13-code-review)
+  - [1.4. Code Quality Analysis](#14-code-quality-analysis)
+  - [1.5. Performance Analysis](#15-performance-analysis)
+- [2. Component Analysis](#2-component-analysis)
+  - [2.1. Architecture Analysis](#21-architecture-analysis)
+  - [2.2. Security Analysis](#22-security-analysis)
+  - [2.3. Performance Analysis](#23-performance-analysis)
+  - [2.4. Functional Analysis](#24-functional-analysis)
+  - [2.5. Code Quality Analysis](#25-code-quality-analysis)
+  - [2.6. Dependency Analysis](#26-dependency-analysis)
+- [3. Software Composition Analysis](#3-software-composition-analysis)
+  - [3.1. License Compliance](#31-license-compliance)
+  - [3.2. Vulnerability Management](#32-vulnerability-management)
+  - [3.3. Dependency Management](#33-dependency-management)
+  - [3.4. Software Bill of Materials](#34-software-bill-of-materials)
+  - [3.5. Supply Chain Risk Management](#35-supply-chain-risk-management)
+  - [3.6. Policy Management](#36-policy-management)
+  - [3.7. Threat Intelligence](#37-threat-intelligence)
+- [4. Software Quality Assurance](#4-software-quality-assurance)
+- [5. Software Configuration Management](#5-software-configuration-management)
+- [6. Software Testing](#6-software-testing)
+- [7. Tools](#7-tools)
+  - [7.1. Linter](#71-linter)
+  - [7.2. Sanitizer](#72-sanitizer)
+- [8. References](#8-references)
 
-## 1. SAST
+## 1. Code Analysis
 
-Static Application Security Testing (SAST) or Static Code Analysis, is a testing methodology that analyzes source code to find security vulnerabilities that make applications susceptible to attack. SAST scans an application before the code is compiled. It’s also known as white box testing.
+Code Analysis is a process of evaluating the quality and security of software source code. It involves examining the code for potential issues, including coding errors, performance problems, and security vulnerabilities.
 
-### 1.1. Linter
+In modern DevSecOps environment, code analysis has galvanized the [shift left](../about/software-testing.md#40-shift-left-testing) paradigm.
 
-Automated code inspection tools perform a syntactic analysis of source code with respect to language features and usage rules. These tools, commonly referred to as linters, generally don’t model complex program behaviors like interprocedural data flow. Linters perform relatively shallow analysis, the tools scale easily to arbitrary code sizes, they can often complete their source code analysis in about the same amount of time it takes to compile the code. Code inspection tools are also extensible, and can add new rules that cover many types of bugs, especially bugs related to language features.
+### 1.1. Static Code Analysis
 
-## 2. DAST
+Static Code Analysis performs an automated analysis of source code and compiled code to identify potential coding errors, performance issues, and security vulnerabilities.
 
-Dynamic Application Security Testing (DAST) or Dynamic Code Analysis is a method of testing that examines an application while it’s running, without knowledge of the application’s internal interactions or designs at the system level, and with no access or visibility into the source program. This “black box” testing looks at an application from the outside in, examines its running state, and observes its responses to simulated attacks made by the tool. An application’s responses to these simulations help determine whether the application is vulnerable and could be susceptible to a real malicious attack.
+### 1.2. Dynamic Code Analysis
 
-Dynamic analysis approaches that rely on compiler support to detect memory-related errors are often called instrumentation. Compilers and dynamic program analysis tools let you configure instrumentation to collect runtime statistics on the binaries that the compilers produce, such as performance profiling information, code coverage information, and profilebased optimizations. The compiler inserts additional instructions and callbacks to a backend runtime library that surfaces and collects the relevant information when the binary is executed.
+Dynamic Code Analysis performs an automated analysis of code as it runs to identify performance issues, memory leaks, and other problems that may not be detected through static analysis.
 
-### 2.1. Sanitizer
+### 1.3. Code Review
 
-Sanitizer are tools that can detect bugs such as buffer overflows or accesses, dangling pointer or different types of undefined behavior.
+[Code Review](../guideline/code-review-guide.md) is a manual examination of source code to identify coding errors, performance issues, and security vulnerabilities.
 
-The two compilers that mainly support sanitizing options are [gcc](https://gcc.gnu.org/onlinedocs/gcc/Instrumentation-Options.html) and [clang](https://clang.llvm.org/docs/UsersManual.html#controlling-code-generation). These options are passed to the compiler as flags and, depending on if you are using `gcc` or `clang`, different sanitizers are supported.
+### 1.4. Code Quality Analysis
 
-The code can be instrumented using the following option to address e.g. issues with pointers and arrays:
+Code Quality Analysis performs an automated analysis of source code to identify coding patterns and practices that may impact the quality and maintainability of the code.
 
-```bash
-gcc  -g  -fsanitize=address  ...
-```
+### 1.5. Performance Analysis
 
-#### 2.1.1. Valgrind
+Performance Analysis performs an automated analysis of code to identify performance bottlenecks and other performance issues that may impact the performance of an application.
 
-The dynamic program analysis tool [Valgrind](https://valgrind.org/), provides a virtual machine and various tools to interpret a binary and check whether an execution exhibits various common bugs.
+## 2. Component Analysis
 
-The Valgrind tool Helgrind can additionally detect common synchronization errors such as:
+[Component Analysis](https://owasp.org/www-community/Component_Analysis) is analysis of individual software components in order to identify and manage potential risks and improve the quality and reliability of software applications.
 
-- Misuses of the POSIX pthreads API, e.g. unlocking a not-locked mutex, or a mutex held by another thread
-- Potential deadlocks arising from lock ordering problems
-- Data races caused by accessing memory without adequate locking or synchronization
+### 2.1. Architecture Analysis
 
-#### 2.1.2. Google Sanitizers
+Architecture Analysis performs an analysis of the structure and design of software components, including the relationships between components, to improve the maintainability and scalability of software applications.
 
-The [Google Sanitizers](https://github.com/google/sanitizers/wiki) suite provides compilation-based dynamic analysis tools for security-relevant memory misuse bugs of C/C++ programs. They were initially developed as part of the LLVM compiler infrastructure to capture common programming mistakes, and are now supported by GCC and other compilers, as well.
+### 2.2. Security Analysis
 
-Following popular sanitizers:
+Security Analysis performs an analysis of software components to identify potential security vulnerabilities and risks, such as buffer overflows, cross-site scripting, and SQL injection.
 
-- AddressSanitizer (ASan)
-  > Detects memory errors , such as out-of-bounds memory accesses, buffer overflows, use after free, incorrect initialization order.
+### 2.3. Performance Analysis
 
-- UndefinedBehaviorSanitizer (UBSan)
-  > Performs runtime flagging of undefined behavior (using misaligned  pointers; signed integer overflow; converting to, from, or between floating-point types that will overflow the destination).
+Performance Analysis performs an analysis of the performance characteristics of software components, such as memory usage, execution time, and scalability, to identify opportunities for improvement.
 
-- ThreadSanitizer (TSan)
-  > Detects race conditions and deadlocks.
+### 2.4. Functional Analysis
 
-- MemorySanitizer (MSan)
-  > Detects reading of uninitialized memory.
+Functional Analysis performs an analysis of the functional requirements and specifications of software components, including error handling, exception management, and input validation.
 
-- LeakSanitizer (LSan)
-  > Detects memory leaks and other types of leaks.
+### 2.5. Code Quality Analysis
 
-### 2.2. Other Tools
+Code Quality Analysis performs an analysis of the quality of software components, including coding standards, maintainability, and readability, to improve the quality and reliability of software applications.
 
-- Performance Profiler
-  > Are used to find performance issues in programs.
+### 2.6. Dependency Analysis
 
-- Code Coverage
-  > Measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.
+Dependency Analysis performs an analysis of the relationships between components, including dependencies on other components, version compatibility, and inter-component communication, to improve the reliability and maintainability of software applications.
 
-## 3. References
+## 3. Software Composition Analysis
 
-- NIST [list of SAST](https://www.nist.gov/itl/ssd/software-quality-group/source-code-security-analyzers) tools.
-- GitHub [list of SAST](https://www.nist.gov/itl/ssd/software-quality-group/source-code-security-analyzers) tools.
-- OWASP [SAST](https://owasp.org/www-community/Source_Code_Analysis_Tools) article.
-- Synopsys [SAST](https://www.synopsys.com/glossary/what-is-sast.html) article.
-- Synopsys [DAST](https://www.synopsys.com/glossary/what-is-dast.html) article.
-- Google [dynamic analysis](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=313&zoom=100,0,600) book.
-- Google [static analysis](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=326&zoom=100,0,600) book.
-- Google [sanitize](https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=303&zoom=100,0,530) book.
+[Software Composition Analysis (SCA)](https://snyk.io/series/open-source-security/software-composition-analysis-sca/) is a type of software analysis that focuses on identifying and managing the open-source and third-party components used in software applications. Some common topics under the umbrella of SCA include:
+
+### 3.1. License Compliance
+
+License Compliance performs an analysis of the licenses of open-source and third-party components to ensure compliance with organizational policies and industry regulations.
+
+### 3.2. Vulnerability Management
+
+Vulnerability Management performs a identification of security vulnerabilities in open-source and third-party components, and management of the remediation process.
+
+### 3.3. Dependency Management
+
+Dependency Management performs an analysis of the relationships between components, including dependencies on other components and version compatibility, to improve the reliability and maintainability of software applications.
+
+### 3.4. Software Bill of Materials
+
+Software Bill of Materials (BOM) performs a generation of a comprehensive list of all components and their versions used in a software application, to support transparency and accountability.
+
+SBOM standards are [OWASP CycloneDX](https://cyclonedx.org/) and [SPDX](https://spdx.dev/). Software Transparency is achieved through the publishing of SBOM. Evaluating SBOM standards to determine which are applicable to an organizations requirements is part of an C-SCRM strategy.
+
+### 3.5. Supply Chain Risk Management
+
+[Cyber Supply Chain Risk Management (C-SCRM)](https://csrc.nist.gov/projects/cyber-supply-chain-risk-management) performs an analysis of the supply chain for open-source and third-party components, including the risk posed by components from untrusted sources.
+
+### 3.6. Policy Management
+
+Policy Management is a management of organizational policies for the use of open-source and third-party components, including standards for license compliance, vulnerability management, and security.
+
+### 3.7. Threat Intelligence
+
+Threat Intelligence performs an integration of threat intelligence data to provide real-time information on emerging threats and vulnerabilities in open-source and third-party components.
+
+## 4. Software Quality Assurance
+
+Software Quality Assurance (SQA) performs an analysis of software applications to ensure that they meet established quality standards, including coding standards, error handling, requirements analysis, design and code reviews, testing, quality metrics analysis and documentation.
+
+SQA is essential for ensuring the reliability and usability of software. It helps to reduce the risk of bugs and defects, improve the software development process, and increase customer satisfaction. Effective SQA helps to build software that is robust, secure, and user-friendly and that meets the needs of users and stakeholders.
+
+## 5. Software Configuration Management
+
+Software Configuration Management performs an analysis of the configuration of software systems, including version control, change management, and release management.
+
+## 6. Software Testing
+
+[Software Testing](../about/software-testing.md) performs an analysis of software applications to identify potential bugs and ensure compliance with functional and performance requirements.
+
+## 7. Tools
+
+### 7.1. Linter
+
+A linter is a software tool that analyzes source code to identify and flag potential programming errors, coding standards violations, and other types of quality issues.
+
+Commonly used linter tools are:
+
+- ESLint - A popular JavaScript linter that supports various coding styles and helps enforce consistent coding practices.
+
+- Pylint - A linter for Python code, designed to identify common programming errors and improve code quality.
+
+- RuboCop - A linter for Ruby code that checks for coding style violations, security issues, and performance bottlenecks.
+
+- Clang-Tidy - A linter for C++ code that uses Clang and LLVM libraries to identify potential coding issues and improve code quality.
+
+- JSHint - A JavaScript linter that can be used in a variety of development environments, including web browsers and Node.js.
+
+- golangci-lint - A linter tool for Go code, used to detect and fix coding errors, enforce coding conventions, and improve code quality in Go projects.
+
+- Flake8 - A Python linter that combines three existing linters into a single tool: PyFlakes, McCabe, and PEP 8.
+
+- CSSLint - A linter for CSS code that checks for coding style violations, security issues, and performance bottlenecks.
+
+### 7.2. Sanitizer
+
+A sanitizer is a software tool that is used to identify and remove or correct malicious or potentially dangerous content from data inputs, such as user-generated input in a web application.
+
+Commonly used sanitizer tools are:
+
+- HTMLPurifier - A PHP library that removes malicious code from HTML input, including XSS attacks and other types of malicious content.
+
+- OWASP Java Encoder - A Java library that provides a comprehensive set of functions for encoding and escaping user input to prevent XSS attacks.
+
+- Input Sanitizer - A JavaScript library that provides a simple and flexible API for sanitizing user input to prevent XSS attacks.
+
+- Anti-Samy - An XML and XHTML sanitizer that removes malicious code from user input and ensures that the output is secure and well-formed.
+
+- XSS-Sanitizer - A Python library that provides a simple API for sanitizing user input to prevent XSS attacks.
+
+- Ruby Sanitizer - A Ruby library that provides a simple API for sanitizing user input, including functions for removing malicious code, encoding special characters, and removing dangerous attributes.
+
+- sqlmap - An open-source tool that automates the process of identifying and exploiting SQL injection vulnerabilities in web applications.
+
+Sanitizers are tools that help identify  detect bugs such as buffer overflows or accesses, dangling pointer or different types of undefined behavior at runtime and prevent security vulnerabilities in C/C++ code.
+
+Commonly used sanitizer tools for C/C++ are:
+
+- Address Sanitizer (ASan) - A tool that detects memory access errors, such as out-of-bounds memory accesses and use-after-free bugs, in C/C++ code.
+
+- Undefined Behavior Sanitizer (UBSan) - A tool that detects undefined behavior, such as signed integer overflow and division by zero, in C/C++ code.
+
+- Thread Sanitizer (TSan) - A tool that detects data races and other synchronization bugs in multithreaded C/C++ code.
+
+- Memory Sanitizer (MSan) - A tool that detects uninitialized memory reads in C/C++ code.
+
+- Control Flow Integrity (CFI) - A security mechanism that helps prevent code injection attacks by enforcing constraints on the flow of control in C/C++ code.
+
+- Valgrind - A dynamic analysis tool that can be used to detect memory leaks, buffer overflows, and other types of programming errors in C/C++ code.
+
+## 8. References
+
+- Sentenz [Application Security Testing (AST)](../about/software-testing.md#41-application-security-testing) article.

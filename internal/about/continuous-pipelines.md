@@ -22,8 +22,8 @@ Continuous integration (CI) is the practice of automating the integration of cod
 
 The version control system is supplemented in the CI process by tools such as automated code quality tests, or syntax style review tools:  
 
-- [Code Analysis](../about/code-analysis.md)
-  > Code analysis, generally SAST and DAST, refers to performance profiling measures, safety-related correctness testing, code coverage reporting, code quality testing, syntax style review tools, or dead code elimination.
+- [Code Analysis](../about/software-analysis.md#1-code-analysis)
+  > Code analysis refers to performance profiling measures, safety-related correctness testing, code coverage reporting, code quality testing, syntax style review tools, or dead code elimination.
 
 Popular tools for the CI process include Kubernetes, Terraform, Chef, Ansible, and Puppet. [Docker](https://www.docker.com/) containerization ensures consistency across multiple development and release cycles and provides repeatable development, build, test, and production environments.
 

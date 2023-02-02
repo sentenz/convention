@@ -8,7 +8,7 @@
 - continuous-integration.yml
   > An yaml file containing actions for continuous integration pipeline, triggered upon the completion of another pipeline.
   >
-  > The actions in the continuous integration pipeline, performs [code analysis](https://sentenz.github.io/guide/internal/about/code-analysis.html) to the `changed` files of a support repository.
+  > The actions in the continuous integration pipeline, performs [code analysis](https://sentenz.github.io/guide/internal/about/software-analysis.html) to the `changed` files of a support repository.
 
 - continuous-testing.yml
   > An yaml file containing actions for continuous testing pipeline, triggered upon the completion of another pipeline.

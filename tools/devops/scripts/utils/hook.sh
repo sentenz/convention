@@ -16,7 +16,7 @@ hook_prevent_push_to_base_branches() {
 
   for branch in "${base_branches[@]}"; do
     if [[ "${branch}" == "${local_branch}" ]]; then
-      cat <<END
+      cat << END
 ___________________________________________________________________________________________________
 Branching Strategy
 
@@ -56,7 +56,7 @@ hook_enforce_naming_convention_of_support_branch() {
   readonly regex_patterns
 
   if [[ ! "${local_branch}" =~ ${regex_patterns} ]]; then
-    cat <<END
+    cat << END
 ___________________________________________________________________________________________________
 Branching Strategy
 
@@ -100,13 +100,13 @@ hook_enforce_coding_standards() {
   ((result = $?))
 
   if ((result != 0)); then
-    cat <<END
+    cat << END
 ___________________________________________________________________________________________________
 Static Code Analysis
 
 Enforce coding standards and static analysis through linting and code style checks.
 
-See https://sentenz.github.io/https://sentenz.github.io/guide/internal/about/code-analysis.html
+See https://sentenz.github.io/https://sentenz.github.io/guide/internal/about/software-analysis.html
 ___________________________________________________________________________________________________
 END
   fi
@@ -132,7 +132,7 @@ hook_enforce_commit_message_convention() {
   ((result = $?))
 
   if ((result != 0)); then
-    cat <<END
+    cat << END
 ___________________________________________________________________________________________________
 Commit Message Convention
 
@@ -192,7 +192,7 @@ hook_enforce_checkout_from_base_branches() {
   git checkout "${parant_branch}"
   git branch -d "${local_branch}"
 
-  cat <<END
+  cat << END
 ___________________________________________________________________________________________________
 Branching Strategy
 

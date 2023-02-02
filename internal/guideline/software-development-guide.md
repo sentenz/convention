@@ -19,7 +19,9 @@ Software development refers to the design, documentation, programming, testing, 
   - [2.2. XOps](#22-xops)
   - [2.3. CI/CD](#23-cicd)
   - [2.4. Software Architecture](#24-software-architecture)
-- [References](#see-also)
+    - [2.4.1. Microservices](#241-microservices)
+    - [2.4.2. Clean Architecture](#242-clean-architecture)
+- [3. References](#3-references)
 
 ## 1. Lifecycle
 
@@ -52,8 +54,8 @@ Development teams work to build production-ready software that meets requirement
 - [Coding](../about/coding-guide.md)
   > Coding with software development patterns that should be applied during the implementation of a project to avoid bugs.
 
-- [Code Analysis](../about/code-analysis.md) and [Software Testing](../about/software-testing.md)
-  > Robust code analysis and software testing are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
+- [Software Analysis](../about/software-analysis.md) and [Software Testing](../about/software-testing.md)
+  > Robust software analysis and software testing are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
 
 - [Continuous Integration](../about/continuous-pipelines.md#1-continuous-integration)
   > Continuous Integration (CI) pipeline is the automation of the integration of code changes through continuous code analysis.
@@ -149,6 +151,6 @@ With a microservices architecture, developers can organize in smaller teams spec
 
 [Clean architecture](../about/software-architecture.md#clean-architecture) is a software design philosophy that separates the elements of a design into ring levels. An important goal of clean architecture is to provide developers with a way to organize code in such a way that it encapsulates the business logic but keeps it separate from the delivery mechanism.
 
-## References
+## 3. References
 
 - Atlassian [software development](https://www.atlassian.com/software-development) article.

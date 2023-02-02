@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/sentenz/guide/compare/v1.13.0...v1.13.1) (2023-02-02)
+
+
+### Bug Fixes
+
+* modify and refoctor `software analysis` and `software testing` ([#155](https://github.com/sentenz/guide/issues/155)) ([4a8efff](https://github.com/sentenz/guide/commit/4a8efff35ce1f5b9c719d5a270b069563632819f)), closes [#153](https://github.com/sentenz/guide/issues/153) [#143](https://github.com/sentenz/guide/issues/143)
+
 # [1.13.0](https://github.com/sentenz/guide/compare/v1.12.0...v1.13.0) (2023-01-17)
 
 

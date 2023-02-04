@@ -16,6 +16,7 @@ Best practices, articles of interest and general topics.
 - [CRLF vs LF](crlf-vs-lf.md)
 - [Cross Compiler](cross-compiler.md)
 - [Data Management](data-management.md)
+- [Database](database.md)
 - [Deployment Strategies](deployment-strategies.md)
 - [Docs as Code](docs-as-code.md)
 - [Feature Toggles](feature-toggles.md)

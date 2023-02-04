@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/sentenz/guide/compare/v1.13.1...v1.14.0) (2023-02-04)
+
+
+### Features
+
+* **about:** create an article about `database` ([#161](https://github.com/sentenz/guide/issues/161)) ([73a3207](https://github.com/sentenz/guide/commit/73a3207e79827b6ee71056dc34cdf7426aa0405e)), closes [#160](https://github.com/sentenz/guide/issues/160)
+
 ## [1.13.1](https://github.com/sentenz/guide/compare/v1.13.0...v1.13.1) (2023-02-02)
 
 

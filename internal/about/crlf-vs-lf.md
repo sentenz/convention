@@ -1,6 +1,12 @@
 # CRLF vs LF
 
-The term CRLF refers to Carriage Return (ASCII 13, \r) Line Feed (ASCII 10, \n). They’re used to note the termination of a line. Windows both a CR and LF are required to note the end of a line, whereas in Linux/UNIX a LF is only required.
+CRLF and LF are line ending characters that are used to represent the end of a line of text in text files.
+
+CRLF (Carriage Return and Line Feed) is a combination of the characters `carriage return` (ASCII 13, \r) and `line feed` (ASCII 10, \n), used to represent a line break in Windows based systems.
+
+LF (Line Feed) is the character `line feed` (ASCII 10, \n) and is used to represent a line break in Unix and Unix-based systems, such as Linux and macOS.
+
+In a theoretical context, the use of line ending characters is important for text processing, as it helps to distinguish between the end of a line of text and the end of a file. The use of different line ending characters can lead to compatibility issues, especially when transferring files between different operating systems. This can be resolved by standardizing the line ending representation to a specific format, such as using only LF characters.
 
 - [1. Normalizing Line Endings](#1-normalizing-line-endings)
 - [2. References](#2-references)

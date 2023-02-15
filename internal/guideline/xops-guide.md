@@ -190,7 +190,7 @@ Signing containers can be integrated into the DevSecOps process:
 - Test
   > During the testing stage, teams should perform security testing to ensure that the signed container images are working as expected. This includes testing the integrity of the signed container images to ensure that they are not vulnerable to attacks.
 
-Deploy
+- Deploy
   > During the deployment stage, signed container images should be deployed using automated tools. This includes deploying signed containers to the target environment.
 
 - Monitor

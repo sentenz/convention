@@ -1,10 +1,10 @@
-# Identity Management // TODO
+# Identity and Access Management
 
-Identity management should be based on established standards such as OAuth 2.0 and Open ID Connect.
+Identity and Access Management (IAM) should be based on established standards such as OAuth 2.0 and Open ID Connect.
 
 - [Authentication](#authentication)
 - [Authorization](#authorization)
-- [References](#see-also)
+- [References](#references)
 
 ## Authentication
 

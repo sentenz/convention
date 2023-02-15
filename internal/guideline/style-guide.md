@@ -13,6 +13,7 @@
 - [2. Go](#2-go)
   - [2.1. Convention](#21-convention)
   - [2.2. Library](#22-library)
+    - [2.2.1. UI](#221-ui)
   - [2.3. Code Analysis](#23-code-analysis)
   - [2.4. Software Testing](#24-software-testing)
   - [2.5. Architecture](#25-architecture)
@@ -106,16 +107,21 @@ Sanitizers
 
 ### 1.4. Build System
 
-CMake
+- CMake
 
 ### 1.5. Package Manager
 
-Conan
+- Conan
 
 ### 1.6. Software Testing
 
 - [GoogleTest](https://github.com/google/googletest)
   > Unit-testing framework with testing with mocking and fixtures support.
+
+- [Google Benchmark](https://github.com/google/benchmark)
+  > A microbenchmark support library.
+  >
+  > Documentation [guide](https://google.github.io/benchmark/) for benchmark.
 
 - [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
   > Test code coverage tool.

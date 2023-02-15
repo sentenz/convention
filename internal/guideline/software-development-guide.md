@@ -116,7 +116,7 @@ Teams should evaluate each release and generate reports to improve future releas
 
 Security should be included throughout the Software Development Life Cycle (SDLC) in order to minimize vulnerabilities in software code.
 
-- [Identity Management](../about/identity-management.md) or Identity & Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.
+- [Identity Management](../about/identity-and-access-management.md) or Identity & Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.
 
 - [Continuous Security](../about/continuous-pipelines.md#7-continuous-security)
   > Continuous Security (CS) pipeline is the automation of security verification as an active and integrated part of the existing development process.

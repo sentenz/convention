@@ -22,7 +22,6 @@ Best practices, articles of interest and general topics.
 - [Feature Toggles](feature-toggles.md)
 - [File Systems](file-systems.md)
 - [Githooks](githooks.md)
-- [Identity Management](identity-management.md)
 - [Licenses](licenses.md)
 - [Merging Strategies](merging-strategies.md)
 - [Monorepo vs Polyrepo](monorepo-vs-polyrepo.md)

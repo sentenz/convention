@@ -87,7 +87,7 @@ Dependency Analysis performs an analysis of the relationships between components
 
 ## 3. Software Composition Analysis
 
-[Software Composition Analysis (SCA)](https://snyk.io/series/open-source-security/software-composition-analysis-sca/) is a type of software analysis that focuses on identifying and managing the open-source and third-party components used in software applications. Some common topics under the umbrella of SCA include:
+[Software Composition Analysis (SCA)](https://snyk.io/series/open-source-security/software-composition-analysis-sca/) is a type of software analysis that focuses on identifying and managing the open-source and third-party components used in software applications.
 
 ### 3.1. License Compliance
 

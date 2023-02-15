@@ -26,6 +26,7 @@ Best practices, articles of interest and general topics.
 - [Merging Strategies](merging-strategies.md)
 - [Monorepo vs Polyrepo](monorepo-vs-polyrepo.md)
 - [Package Managers](package-managers.md)
+- [Programming Paradigms](programming-paradigms.md)
 - [Project Layout](project-layout.md)
 - [Serial Communication](serial-communication.md)
 - [Software Analysis](software-analysis.md)

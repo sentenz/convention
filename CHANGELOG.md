@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/sentenz/guide/compare/v1.14.0...v1.15.0) (2023-02-15)
+
+
+### Features
+
+* **about:** create an article about `programming paradigms` with ChatGPT ([#166](https://github.com/sentenz/guide/issues/166)) ([e698e96](https://github.com/sentenz/guide/commit/e698e961d3fe5195332f9965acdfe0bb33d72e8a)), closes [#107](https://github.com/sentenz/guide/issues/107)
+
 # [1.14.0](https://github.com/sentenz/guide/compare/v1.13.1...v1.14.0) (2023-02-04)
 
 

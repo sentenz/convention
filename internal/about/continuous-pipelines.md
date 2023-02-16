@@ -1,95 +1,127 @@
 # Continuous Pipelines
 
-Continuous Integration/Continuous Delivery or Continuous Deployment (CI/CD) describes the continuous pipeline stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a [target/production environment](../about/software-development-environment.md#production-environment).
+Continuous Pipelines refer to the process of automating the software development workflow from code creation to deployment. This process involves multiple stages such as code integration, build, testing, and deployment to production. The pipeline runs continuously, ensuring that every change made to the code is automatically built, tested, and deployed, providing quick feedback to the development team and enabling faster delivery of new features to customers. By automating this process, organizations can improve efficiency, reduce errors, and increase the speed of delivering software updates.
 
-- [1. Continuous Integration](#1-continuous-integration)
-- [2. Continuous Delivery](#2-continuous-delivery)
-- [3. Continuous Deployment](#3-continuous-deployment)
-- [4. Continuous Build](#4-continuous-build)
-- [5. Continuous Testing](#5-continuous-testing)
-- [6. Continuous Release](#6-continuous-release)
-- [7. Continuous Security](#7-continuous-security)
-- [8. Continuous Monitoring](#8-continuous-monitoring)
-- [9. Continuous Operations](#9-continuous-operations)
-- [10. Continuous Feedback](#10-continuous-feedback)
-- [11. References](#11-references)
+- [1. Categories](#1-categories)
+  - [1.1. Continuous Verification](#11-continuous-verification)
+  - [1.2. Continuous Integration](#12-continuous-integration)
+  - [1.3. Continuous Delivery](#13-continuous-delivery)
+  - [1.4. Continuous Deployment](#14-continuous-deployment)
+  - [1.5. Continuous Build](#15-continuous-build)
+  - [1.6. Continuous Testing](#16-continuous-testing)
+  - [1.7. Continuous Feedback](#17-continuous-feedback)
+  - [1.8. Continuous Monitoring](#18-continuous-monitoring)
+  - [1.9. Continuous Optimization](#19-continuous-optimization)
+  - [1.10. Continuous Compliance](#110-continuous-compliance)
+  - [1.11. Continuous Security](#111-continuous-security)
+  - [1.12. Continuous Documentation](#112-continuous-documentation)
+  - [1.13. Continuous Training](#113-continuous-training)
+- [2. Principle](#2-principle)
+- [3. Best Practice](#3-best-practice)
+- [4. References](#4-references)
 
-CI/CD is an automated agile software development workflow with the continuous method to build, test, and deploy iterative code changes. This iterative process reduces the chance that newly developed code will be based on buggy or failed previous versions. The method aims to require less or no human intervention from the development of new code until its deployment.
+## 1. Categories
 
-## 1. Continuous Integration
+### 1.1. Continuous Verification
 
-Continuous integration (CI) is the practice of automating the integration of code changes from multiple contributors into the main branch of a shared source code repository. Merging changes frequently and triggering automatic testing and validation processes, minimize the possibility of code conflict, even with multiple developers working on the same application. Short-living feature branches, such as in [Trunk-Based Development](../about/branching-strategies.md#trunk-based-development), are a requirement for continuous integration. With continuous integration, errors and security issues can be identified and fixed more easily, and much earlier in the software development lifecycle.
+Continuous Verification refers to the practice of continuously verifying the quality and functionality of software applications and systems. This can involve automating the process of testing and validating code changes, and can help organizations to catch and fix bugs and other issues before they are deployed to production. Continuous Verification helps to ensure that software is of high quality and reliable, and can improve the overall stability and user experience of applications.
 
-The version control system is supplemented in the CI process by tools such as automated code quality tests, or syntax style review tools:  
+### 1.2. Continuous Integration
 
-- [Code Analysis](../about/software-analysis.md#1-code-analysis)
-  > Code analysis refers to performance profiling measures, safety-related correctness testing, code coverage reporting, code quality testing, syntax style review tools, or dead code elimination.
+Continuous Integration (CI) refers to the practice of automating the process of integrating code changes from multiple developers into a single version control repository. This process typically involves building and testing the code changes as soon as they are committed to the repository, and providing feedback to developers on the quality and stability of their changes. The goal of CI is to catch issues early in the development process and promote collaboration among team members.
 
-Popular tools for the CI process include Kubernetes, Terraform, Chef, Ansible, and Puppet. [Docker](https://www.docker.com/) containerization ensures consistency across multiple development and release cycles and provides repeatable development, build, test, and production environments.
+### 1.3. Continuous Delivery
 
-## 2. Continuous Delivery
+Continuous Delivery (CD) is a set of practices and techniques that aim to automate the process of delivering code changes from the development environment to production. This process typically involves testing and verifying code changes at multiple stages, such as build, test, and deployment, before they are released to production. CD helps to ensure that code changes are deployed quickly, with minimal manual intervention, and with confidence in their quality and stability.
 
-[Continuous Delivery (CD)](https://continuousdelivery.com/) automatically delivers code changes to production-ready environments for approval.
+### 1.4. Continuous Deployment
 
-Continuous delivery is a software development practice that works in conjunction with continuous integration to automate the infrastructure provisioning and application release process.
+Continuous Continuous Deployment (CD) is an extension of Continuous Delivery that automates the deployment of code changes to production as soon as they pass all necessary tests and approvals. This practice is typically used in organizations that have high levels of automation and a strong focus on rapid and frequent delivery of code changes.
 
-## 3. Continuous Deployment
+### 1.5. Continuous Build
 
-Continuous Deployment (CD) automatically deploys code changes to customers directly. With continuous deployment, DevOps teams set the criteria for code releases in advance. Once these criteria are met and validated, the code is deployed to the production environment. This is done through scripts or tools that automatically push the artifact to public servers or another distribution mechanism such as an app store.
+Continuous Build refers to the practice of automatically building and compiling software applications and systems, whenever changes are committed to the source code repository. This can involve automating the process of building, compiling, and packaging software, and can help organizations to ensure that software is always up-to-date and ready for deployment. Continuous Build helps to speed up the software development process, reduce errors and inconsistencies, and improve the overall efficiency of software development and deployment.
 
-Continuous deployment entails a level of continuous integration, testing, and operations that is robust enough to automatically deploy new software versions to a production environment.
+### 1.6. Continuous Testing
 
-This is rare and in most cases unnecessary. Usually, unicorn companies with hundreds or thousands of developers and many daily releases want or need this level of automation.
+Continuous Testing refers to the practice of automating the process of testing code changes throughout the software development lifecycle. This process typically involves the use of test automation tools and scripts that run automatically as code changes are committed, built, and deployed. Continuous Testing helps to ensure that code changes are thoroughly tested and validated before they are released to production, reducing the risk of defects and improving the overall quality of the software.
 
-## 4. Continuous Build  
+### 1.7. Continuous Feedback
 
-## 5. Continuous Testing  
+Continuous Feedback refers to the practice of providing real-time feedback to developers on the quality and performance of their code changes. This can include feedback from automated testing tools, performance metrics, and user feedback, among other sources. The goal of Continuous Feedback is to provide developers with quick and actionable insights into the quality and stability of their code changes, and to promote continuous improvement in the software development process.
 
-Continuous Testing (CT) is a critical component of DevOps pipeline and one of the primary enablers of continuous feedback. In a DevOps process, changes move continuously from development to testing to deployment, leading not only in faster releases, but also in higher product quality. This means that automated [Software Testing](../about/software-testing.md) is performed throughout the DevOps pipeline, including unit tests that are run on build changes.  
+### 1.8. Continuous Monitoring
 
-Popular tools for the continuous testing are Selenium, Travis, and Appium.
+Continuous Monitoring refers to the practice of monitoring the performance and stability of software applications in production, and proactively addressing any issues that may arise. This process typically involves collecting and analyzing performance and log data, as well as monitoring system health and availability. Continuous Monitoring helps to ensure that software applications are performing optimally in production, and helps to minimize downtime and resolve issues quickly.
 
-Related items:
+### 1.9. Continuous Optimization
 
-- Unit Test and Code Coverage
-  > If a project is set up with a CI pipeline with automatic [unit testing](../about/software-testing.md#code-coverage) and [test coverage](../about/software-testing.md#code-coverage), it is a best practice to constantly evolve and improve the test coverage. Each new feature that passes through the CI pipeline should be accompanied by a series of tests to ensure that the new code behaves as expected.
+Continuous Optimization refers to the practice of continuously improving and refining the Continuous Pipeline to increase efficiency, reduce errors, and improve the speed of delivery. This can involve changes to the pipeline itself, as well as improvements to the underlying infrastructure and tools, and can involve a combination of technical and organizational changes. The goal of Continuous Optimization is to improve the overall effectiveness and efficiency of the software development process, and to support the delivery of high-quality software to customers.
 
-- Test Driven Development
-  > [Test Driven Development (TDD)](../about/software-testing.md#test-driven-development) is the practice of writing out the test code and test cases before doing any actual feature coding. Pure TDD can closely involve the product team to help craft an expected business behavior specification, which can then be transformed into the test cases. In a pure TDD scenario, developers and product team will meet and discuss a specification or list of requirements. This list of requirements will then be converted into a checklist of code assertions. The developers will then write code that matches these assertions.
+### 1.10. Continuous Compliance
 
-## 6. Continuous Release
+Continuous Compliance refers to the practice of ensuring that software applications and systems comply with relevant regulations and standards throughout their lifecycle. This can involve automating the process of verifying compliance with data privacy, security, and other regulatory requirements, and can help organizations to reduce the risk of non-compliance and penalties.
 
-Continuous Release automates the package release workflow, including determining the next version number, creating the release notes and generating the changelog based on commits, and publishing the package.
+### 1.11. Continuous Security
 
-Popular [tools](../guideline/versioning-guide.md#tooling) for the continuous release are semantic-release, standard-version, and Conventional Changelog.
+Continuous Security refers to the practice of integrating security into the software development lifecycle, and continuously monitoring and verifying the security of applications and systems. This can involve automated security testing, security scans, and regular security audits, and helps organizations to identify and remediate security vulnerabilities before they can be exploited.
 
-Related items:
+### 1.12. Continuous Documentation
 
-- [Conventional Commits](../convention/conventional-commits.md)
-- [Semantic Versioning](../convention/semantic-versioning.md)
-- [Changelog](../convention/changelog.md)
+Continuous Documentation refers to the practice of maintaining up-to-date and accurate documentation of software applications and systems, and ensuring that documentation is automatically updated as code changes are committed and deployed. This helps to ensure that developers and other stakeholders have access to the most current and accurate information about the software, and can help to reduce errors and improve collaboration.
 
-## 7. Continuous Security
+### 1.13. Continuous Training
 
-Continuous Security is a process where security is a part of the CI/CD process. Continuous Security works beside the Continuous Everything process and ensures that software and infrastructure are continuously secured. Applying DevOps values to software security ensures that security verification becomes an active and integrated part of the existing development process.
+Continuous Training refers to the practice of providing ongoing training and development opportunities for developers, DevOps teams, and other stakeholders involved in the software development process. This can include training on new technologies, tools, and methodologies, as well as opportunities for hands-on experience and collaboration. Continuous Training helps organizations to build a skilled and knowledgeable workforce, and to continuously improve the software development process.
 
-## 8. Continuous Monitoring
+## 2. Principle
 
-Continuous monitoring is another important component of continuous feedback. A DevOps approach entails using continuous monitoring in the staging, testing, and even development environments. It is sometimes useful to monitor pre-production environments for anomalous behavior, but in general this is an approach used to continuously assess the health and performance of applications in production.
+Principles provide a theoretical foundation for the design and implementation of effective Continuous Pipelines, to continuously improve the quality and efficiency of the software development and deployment efforts.
 
-Numerous tools and services exist to provide this functionality, and this may involve anything from monitoring your on-premise or cloud infrastructure such as server resources, networking, etc. or the performance of your application or its API interfaces.
+- Automation
+  > Automation is a key principle of Continuous Pipelines, and involves automating as many steps in the software development and deployment process as possible. By automating tasks like building, testing, and deploying software, organizations can reduce the risk of errors, save time, and improve the overall efficiency of the software development process.
 
-## 9. Continuous Operations
+- Feedback
+  > Feedback is another key principle of Continuous Pipelines, and involves providing continuous feedback to developers and other stakeholders throughout the software development and deployment process. By providing rapid feedback on code changes, test results, and other metrics, organizations can help developers to identify and address issues quickly, and continuously improve the quality of the software.
 
-Continuous operations is a relatively new and less common term, and definitions vary. One way to interpret it is as “continuous uptime”. For example in the case of a blue/green deployment strategy in which you have two separate production environments, one that is “blue” (publicly accessible) and one that is “green” (not publicly accessible). In this situation, new code would be deployed to the green environment, and when it was confirmed to be functional then a switch would be flipped (usually on a load-balancer) and traffic would switch from the “blue” system to the “green” system. The result is no downtime for the end-users.
+- Collaboration
+  > Collaboration is also a key principle of Continuous Pipelines, and involves fostering a culture of collaboration and communication among developers, DevOps teams, and other stakeholders involved in the software development process. By working together and sharing knowledge and expertise, teams can improve the quality and efficiency of the software development process.
 
-Another way to think of Continuous operations is as continuous alerting. This is the notion that engineering staff is on-call and notified if any performance anomalies in the application or infrastructure occur. In most cases, continuous alerting goes hand in hand with continuous monitoring.
+- Continuous Improvement
+  > Continuous Improvement is a key principle of Continuous Pipelines, and involves continuously analyzing and improving the software development and deployment process. By regularly reviewing metrics, identifying areas for improvement, and implementing changes, organizations can continuously improve the quality and efficiency of their software development efforts.
 
-## 10. Continuous Feedback
+- Standardization
+  > Standardization is another key principle of Continuous Pipelines, and involves establishing and following standardized processes and procedures for software development and deployment. By standardizing processes and procedures, organizations can reduce the risk of errors, improve efficiency, and ensure that software is developed and deployed in a consistent and controlled manner.
 
-The main issue with the old waterfall method of software development, and thus the reason for developing agile methods, was the absence of timely feedback. If new features took months or years to move from idea to implementation, it was almost certain that the end result would be something different than what the customer expected or wanted. Agile ensured that developers received feedback from stakeholders faster. With DevOps, developers now not only get continuous feedback from stakeholders, but also by systematically testing and monitoring their code in the pipeline.  
+- Flexibility
+  > Flexibility is also a key principle of Continuous Pipelines, and involves designing software development and deployment processes that are flexible and adaptable to changing requirements and conditions. By designing processes that can be easily modified and adapted, organizations can respond quickly to changes in the software development environment and continuously improve the quality and efficiency of their software development efforts.
 
-## 11. References
+## 3. Best Practice
+
+Best practices to build and maintain a successful Continuous Pipeline that enables to develop and deploy high-quality software applications and systems efficiently and effectively.
+
+- Maintain a culture of collaboration
+  > Continuous Pipelines rely on collaboration between developers, operations teams, and other stakeholders. Organizations should cultivate a culture of collaboration by establishing open channels of communication, encouraging cross-functional teamwork, and promoting knowledge sharing and learning.
+
+- Automate everything
+  > Automation is a key driver of efficiency and reliability in Continuous Pipelines. Organizations should strive to automate as many aspects of the software development and deployment process as possible, including testing, building, and deployment, in order to reduce manual effort, increase consistency, and improve quality.
+
+- Focus on testing
+  > Testing is a critical aspect of Continuous Pipelines. Organizations should adopt a testing strategy that emphasizes early and frequent testing, including unit testing, integration testing, and end-to-end testing, to ensure that software is thoroughly tested and validated throughout the development process.
+
+- Maintain visibility and traceability
+  > Continuous Pipelines generate a large volume of data and information. Organizations should maintain visibility into the entire pipeline, including all changes and updates, and establish traceability between changes and the corresponding tests and deployments.
+
+- Practice continuous improvement
+  > Continuous Pipelines are built on the principle of continuous improvement. Organizations should constantly assess and evaluate the pipeline, seeking opportunities for improvement in areas such as speed, quality, and efficiency, and implement changes to address identified issues and optimize the pipeline.
+
+- Embrace a DevOps mindset
+  > Continuous Pipelines require a DevOps mindset, which emphasizes collaboration, automation, and continuous improvement. Organizations should encourage DevOps practices such as cross-functional teams, shared responsibility, and continuous learning, to create a culture of collaboration and innovation.
+
+- Invest in tools and infrastructure
+  > Continuous Pipelines require robust tools and infrastructure to support automation, testing, and deployment. Organizations should invest in high-quality tools and infrastructure, and ensure that they are properly integrated and configured to support the entire pipeline.
+
+## 4. References
 
 - GitLab [CI/CD](https://about.gitlab.com/topics/ci-cd/) article.
 - Atlassian [CI](https://www.atlassian.com/continuous-delivery/continuous-integration) article.

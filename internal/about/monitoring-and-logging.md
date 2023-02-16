@@ -1,4 +1,4 @@
-# Logging and Monitoring // TODO
+# Monitoring and Logging
 
 For distributed systems and microservices, continuous monitoring in the form of centralized monitoring and logging provides the ability to detect problems and make informed decisions during operation and development.
 

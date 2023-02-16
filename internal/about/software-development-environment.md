@@ -1,65 +1,87 @@
 # Software Development Environment
 
-A Software Development Environment (SDE) is the collection of hardware and software tools a system developer uses to build software systems.
+The Software Development Environment (SDE) refers to the overall set of tools, resources, and infrastructure that are used to develop, test, and deploy software applications. This includes hardware, software, development tools, source code management systems, testing frameworks, and production servers. The SDE is designed to support the entire software development process, from requirement gathering to deployment, and is a crucial component of software development projects. An SDE can consist of various components, such as integrated development environments (IDEs), version control systems, testing tools, and deployment platforms. SDE aims to provide a stable, secure, and efficient environment for software development and deployment, while also enabling developers to work efficiently and effectively.
 
-- [1. Development Environment](#1-development-environment)
-- [2. Test Environment](#2-test-environment)
-- [3. Staging Environment](#3-staging-environment)
-- [4. Continuous Environment](#4-continuous-environment)
-- [5. Production Environment](#5-production-environment)
-- [6. References](#6-references)
+- [1. Category](#1-category)
+  - [1.1. Development Environment](#11-development-environment)
+  - [1.2. Test Environment](#12-test-environment)
+  - [1.3. Staging Environment](#13-staging-environment)
+  - [1.4. Integration Environment](#14-integration-environment)
+  - [1.5. Continuous Environment](#15-continuous-environment)
+  - [1.6. Production Environment](#16-production-environment)
+- [2. Best Practice](#2-best-practice)
+- [3. References](#3-references)
 
-## 1. Development Environment
+## 1. Category
 
-A [development environment](https://www.suse.com/suse-defines/definition/development-environment/) is the collection of processes and tools that are used to develop the source code for a program or software product. This involves the entire environment that supports the process end to end, including development, staging and production servers. The development environment automates or facilitates the routines involved in creating, testing, debugging, patching, updating, and maintaining software, including long-term maintenance.
+### 1.1. Development Environment
 
-Within the overarching development environment, the integrated development environment (IDE) is a development tool that developers use to write, build, test, and debug software programs. The IDE provides a clear and consistent interface that supports the processes of writing and testing code, and packaging it for release. Having a single tool to author, modify, compile, deploy and debug the software reduces the setup time needed when the team has to piece together different development utilities. It also improves overall developer productivity and leads to a more efficient overall development environment.
+This environment is used for developing, testing and debugging software applications. It provides the necessary resources for developers to write code and create new features.
 
-<!-- A development environment is configured to enable developers to write code quickly, verify it by creating basic tests, and be productive. This environment resources are much smaller than what it takes to run an entire application in real-life implementation. It also features developer-specific tools that may at times hinder rigorous QA validation. And most importantly, the development environment is constantly changing – with new functionality being added all the time – which makes it difficult for QA team to run time-consuming tests, e.g., regression or integration tests, without disrupting the development process. -->
+### 1.2. Test Environment
 
-## 2. Test Environment
+The test environment is used to validate the software application and to identify any issues that may arise during the testing process. This environment simulates the actual production environment to provide accurate testing results.
 
-A [test environment](https://www.suse.com/suse-defines/definition/test-environment/) is part of the software development lifecycle, and consists of all of the elements needed to test software builds and report findings. The test environment needs to mimic the production environment precisely, including hardware configuration, software configuration, operating systems, databases, etc., so it can expose any issues that are related to the environment or configuration the software will encounter when it is in production.
+### 1.3. Staging Environment
 
-Test environment management (TEM) is a part of the software delivery process that supports the testing activities by providing a stable, validated test environment where test scenarios can be executed, bugs can be replicated, and more.
+The staging environment is a replica of the production environment, used to test and validate software applications before they are deployed to production. This environment is used to identify any issues or bugs before they impact the live production environment.
 
-TEM is responsible for maintaining a repository of test environments that are suitable for the development projects in the pipeline, creating new ones when needed, monitoring and analyzing test environment data for issues and trends, and allocating these test environments to the development teams as needed.
+### 1.4. Integration Environment
 
-<!-- A testing environment is where the QA team can use a variety of testing tools to run all their different tests over the application code taken from the development environment. While developers check their code for simple bugs before passing it for quality assurance, QA engineers execute more complex and time-consuming types of tests to check the compatibility of the new and old code, the correct integration of different modules, the system’s performance, etc. Running such tests on the development environment would lead to a huge waste of the developers’ time. -->
+The integration environment is used to integrate different components of software applications, such as APIs, databases, and servers. This environment is used to test and validate the integration of different systems before deployment to production.
 
-## 3. Staging Environment
+### 1.5. Continuous Environment
 
-Even though testing is typically performed alongside development, the need for user-acceptance testing on a staging environment is of paramount importance. A staging environment is an identical replica of the customer’s production environment, which also typically contains real production data that’s been sanitized for safety purposes. It is hosted in the same way as the production servers and involves an identical setup and update operations. Therefore, testing on a staging environment offers the most reliable way to check code quality and ensure the production servers are successful.
+The continuous environment is an automated environment that supports the [Continuous Pipelines](../about/continuous-pipelines.md) , as integration and delivery of software applications. This environment is used to automate the build, test, analysis, security, and deployment process, reducing the time and effort required to bring new features and updates to production. It allows teams to quickly identify and resolve issues, delivering high-quality software applications to end-users.
 
-A testing environment – even though critical for ongoing code quality assurance – can hardly achieve the same real-life degree of the customer’s system emulation. That’s why it is a common best practice to have the application code thoroughly tested on the staging environment before moving it to production. It is considered a must for enterprise applications.
+### 1.6. Production Environment
 
-## 4. Continuous Environment
+The production environment is the live environment where software applications are deployed and made available to the end-users. This environment is monitored closely to ensure the software is functioning correctly and meeting the performance and availability requirements of the business.
 
-Continuous environment based on [Continuous Pipelines](../about/continuous-pipelines.md) are created on demand exclusively for the continuous execution of automated [XOps](../about/xops.md) pipelines and then automatically destroyed.
+## 2. Best Practice
 
-The three primary approaches for the continuous method are:
+Best practices, to create a robust and efficient SDE that ensures high-quality software development and deployment.
 
-- Continuous integration (CI) is the practice of merging all developer code into a shared repository several times a day. This practice allows developers to collaborate and identify problems early in the development phase.
+- DevOps
+  > In DevOps methodology, the software development environment (SDE) typically involves the following stages:
+  >
+  > - Development
+  >
+  >   This is the stage where software developers write and test code, debug issues, and create new features. Developers use integrated development environments (IDEs) and version control systems to manage their code.
+  >
+  > - Continuous Integration
+  >
+  >   This stage involves the automation of build and test processes. Code changes are integrated into a single repository, and automatic tests are run to validate the changes.
+  >
+  > - Continuous Deployment
+  >
+  >   In this stage, code changes are automatically deployed to the testing environment, where they are tested and validated.
+  >
+  > - Staging
+  >
+  >   This stage involves the testing of software applications in a controlled environment that mimics the production environment. This stage helps to identify any issues or bugs before they impact the live production environment.
+  >
+  > - Production
+  >
+  >   This is the final stage where software applications are deployed and made available to end-users. This stage is monitored closely to ensure the software is functioning correctly and meeting performance and availability requirements.
+  >
+  > - Continuous Monitoring
+  >
+  >   This stage involves the continuous monitoring of the production environment to identify and resolve any issues. This stage also involves collecting and analyzing data to improve the software development process.
 
-- Continuous delivery (CD) is an extension of continuous integration since it automatically deploys all code changes to a testing and/or production environment after the build stage.
+- Standardization
+  > The standardization of processes, tools, and coding conventions across the development team is important to ensure consistency and efficiency. This also allows developers to easily understand each other's code and collaborate more effectively.
 
-- Continuous deployment (CD) automates continuous delivery. With this practice, every change that passes all stages of the DevOps pipeline is released to production environment. There's no human intervention, and only a failed test will prevent a new change to be deployed to production.
+- Version Control
+  > Version control is essential to track changes made to the codebase and allows developers to collaborate without the risk of losing work. This helps to ensure that the codebase is consistent and accurate.
 
-## 5. Production Environment
+- Monitoring and Logging
+  > [Monitoring and logging](../about/monitoring-and-logging.md) are important for detecting and identifying issues in the software environment. This helps to identify performance issues, system failures, and other issues that may affect the end-users.
 
-A [production environment](https://www.suse.com/suse-defines/definition/production-environment/), sometimes called deployment environment, is the set of computers where finished, user-ready software is deployed and executed. When software code is moved to the production environment, it is the final step in a 4-tier architecture that includes development, [testing](#2-test-environment), [staging](#3-staging-environment) and production. Before it reaches the production environment, the software is still under [development](#1-development-environment), and bugs and flaws are actively found and fixed. When it is deemed ready for production, it is expected to work without error.
+- Security
+  > Security is critical to protect the software and data from unauthorized access or malicious attacks. This includes implementing secure coding practices, regularly reviewing and updating security protocols, and conducting penetration testing.
 
-The production environment is often referred to as live, especially for servers. It is the environment that users interact with. Deploying to the production environment is handled very carefully, and may require [deployment strategies](../about/deployment-strategies.md) to enable users to transition smoothly to a new version, such as deploying one server with the old code and one with the new, and redirecting traffic to the new server. Deploying a new release can mean an interruption in service, so some user notification may be needed.
-
-In [DevOps](../about/xops.md#1-devops), the [testing environment](#2-test-environment) and [staging environment](#3-staging-environment) are usually replaced by the [continuous environment](#4-continuous-environment).
-
-<!-- A production environment, sometimes called deployment environment, is where the application lives and operates after the launch. It is where you deploy all the final work for your customer or roll out your new version of the application to be accessed by your clients.
-
-Before you can deploy your code from your development environment into the production environment, there are a few more things for you to do. The first one is testing. To ensure the testing is properly set up, there’s a need for a separate [testing environment](#2-test-environment). It is specifically configured to allow the team to effectively execute their tests and check the system components in different use case scenarios.
-
-The second activity you usually need to do before placing your code to production is the user-acceptance testing. This is when you check the entire system in the exact way it is going to be used in production, including live data volumes and types of data as well as user behavior. This type of testing requires a [staging environment](#3-staging-environment), which is identical to your production environment except that it’s not publicly accessible to end-users. -->
-
-## 6. References
+## 3. References
 
 - Codebots [SDE](https://codebots.com/app-development/what-are-environments-in-software-development-a-guide-to-the-development-beta-and-production-environments) article.
 - Oroinc [environments types](https://doc.oroinc.com/cloud/environments/) article.

@@ -2,7 +2,7 @@
 
 Continuous Pipelines refer to the process of automating the software development workflow from code creation to deployment. This process involves multiple stages such as code integration, build, testing, and deployment to production. The pipeline runs continuously, ensuring that every change made to the code is automatically built, tested, and deployed, providing quick feedback to the development team and enabling faster delivery of new features to customers. By automating this process, organizations can improve efficiency, reduce errors, and increase the speed of delivering software updates.
 
-- [1. Categories](#1-categories)
+- [1. Category](#1-category)
   - [1.1. Continuous Verification](#11-continuous-verification)
   - [1.2. Continuous Integration](#12-continuous-integration)
   - [1.3. Continuous Delivery](#13-continuous-delivery)
@@ -20,7 +20,7 @@ Continuous Pipelines refer to the process of automating the software development
 - [3. Best Practice](#3-best-practice)
 - [4. References](#4-references)
 
-## 1. Categories
+## 1. Category
 
 ### 1.1. Continuous Verification
 

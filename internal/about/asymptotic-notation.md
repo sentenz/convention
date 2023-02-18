@@ -34,6 +34,7 @@ Asymptotic notation is a mathematical concept used to describe the behavior of a
     - [3.2.3. Quadratic Space](#323-quadratic-space)
     - [3.2.4. Exponential Space](#324-exponential-space)
 - [5. Complexity Classification](#5-complexity-classification)
+  - [Performance](#performance)
 - [4. Terminology](#4-terminology)
 - [6. References](#6-references)
 
@@ -281,19 +282,19 @@ The algorithms can be classified as best-to-worst performance (Time Complexity).
 ## 4. Terminology
 
 - Big O notation (O)
-  > A function f(n) is said to be O(g(n)) if there exist constants c and n0 such that |f(n)| <= c|g(n)| for all n >= n0.
+  > A function `f(n)` is said to be `O(g(n))` if there exist constants `c` and `n0` such that `|f(n)| <= c|g(n)|` for all `n >= n0`.
 
 - Omega notation (Ω)
-  > A function f(n) is said to be Ω(g(n)) if there exist constants c and n0 such that |f(n)| >= c|g(n)| for all n >= n0.
+  > A function `f(n)` is said to be `Ω(g(n))` if there exist constants `c` and `n0` such that `|f(n)| >= c|g(n)|` for all `n >= n0`.
 
 - Theta notation (Θ)
-  > A function f(n) is said to be Θ(g(n)) if it is both O(g(n)) and Ω(g(n)).
+  > A function `f(n)` is said to be `Θ(g(n))` if it is both `O(g(n))` and `Ω(g(n))`.
 
 - Little o notation (o)
-  > A function f(n) is said to be o(g(n)) if for any constant ε > 0, there exists a constant n0 such that |f(n)| < ε|g(n)| for all n >= n0.
+  > A function `f(n)` is said to be `o(g(n))` if for any constant `ε > 0`, there exists a constant `n0` such that `|f(n)| < ε|g(n)|` for all `n >= n0`.
 
 - Little omega notation (ω)
-  > A function f(n) is said to be ω(g(n)) if for any constant ε > 0, there exists a constant n0 such that |f(n)| > ε|g(n)| for all n >= n0.
+  > A function `f(n)` is said to be `ω(g(n))` if for any constant `ε > 0`, there exists a constant `n0` such that `|f(n)| > ε|g(n)|` for all `n >= n0`.
 
 ## 6. References
 

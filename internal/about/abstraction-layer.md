@@ -113,7 +113,7 @@ The System Layer is the lowest layer that interacts directly with the computer h
 
 #### 1.3.1. Hardware Abstraction Layer
 
-Hardware Abstraction Layer (HAL): This layer provides an abstraction of the hardware components and device drivers of the system, and is responsible for enabling software to interact with different types of hardware without being tied to specific hardware implementations or architectures.
+Hardware Abstraction Layer (HAL) provides an abstraction of the hardware components and device drivers of the system, and is responsible for enabling software to interact with different types of hardware without being tied to specific hardware implementations or architectures.
 
 It abstracts the hardware-specific features, such as:
 

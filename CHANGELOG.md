@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/sentenz/guide/compare/v1.15.0...v1.16.0) (2023-03-20)
+
+
+### Features
+
+* **about:** create an article about `static site generators` with ChatGPT ([#188](https://github.com/sentenz/guide/issues/188)) ([4c501d6](https://github.com/sentenz/guide/commit/4c501d653a0429e0fb5739da80ef92ce1f355a62)), closes [#184](https://github.com/sentenz/guide/issues/184)
+
 # [1.15.0](https://github.com/sentenz/guide/compare/v1.14.0...v1.15.0) (2023-02-15)
 
 

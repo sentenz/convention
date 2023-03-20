@@ -39,43 +39,43 @@ Comment tags in programming are used to annotate code with additional informatio
 
 Comment tags are helpful in managing large codebases or collaborative projects, as they track specific issues, tasks, or requirements.
 
-- TODO
+- `TODO`
   > Indicates code that needs to be completed or implemented. The tag usually includes a description of what needs to be done to complete the task.
 
-- FIX
+- `FIX`
   > Indicates code that needs to be fixed. The tag usually includes a description of what is wrong with the code.
 
-- HACK
+- `HACK`
   > Indicates code that is a quick and dirty solution to a problem. The tag usually includes a description of why the code is a hack and what needs to be done to create a more permanent solution.
 
-- OPTIMIZE
+- `OPTIMIZE`
   > Indicates code that needs to be optimized for performance or memory usage. The tag usually includes a description of how the code can be optimized.
 
-- REFACTOR
+- `REFACTOR`
   > Indicates code code that needs to be refactored to improve its structure or organization. The tag usually includes a description of how the code can be refactored.
 
-- REVIEW
+- `REVIEW`
   > Indicates code that needs to be reviewed by other programmers. The tag usually includes a description of what needs to be reviewed.
 
-- DEBUG
+- `DEBUG`
   > Indicates code that needs to be debugged. The tag usually includes a description of the problem and any steps that have been taken to debug the code.
 
-- DOC
+- `DOC`
   > Indicates code that needs to be documented. The tag usually includes a description of what needs to be documented and how it should be documented.
 
-- SECURITY
+- `SECURITY`
   > Indicates code that needs to be reviewed for security vulnerabilities. The tag usually includes a description of the potential vulnerabilities and how they can be addressed.
 
-- BUG
+- `BUG`
   > Indicates a piece of code that contains a bug or error that needs to be fixed. The tag usually includes a description of the bug and steps to reproduce it.
 
-- XXX
+- `XXX`
   > Indicate code that may be incomplete, incorrect, or not working as intended. It is typically used to highlight issues that can cause errors, crashes, or other problems in the software. It is similar to the `TODO` tag but typically denotes a more serious issue that requires immediate attention.
 
-- NIT
+- `NIT`
   > Indicates a small, minor issue or nitpick with the code that does not necessarily need to be fixed, but could be improved. The tag usually includes a description of the issue or nitpick.
 
-- NOTE
+- `NOTE`
   > Indicates code that contains a note or reminder for future reference. The tag usually includes a description of the note or reminder and may also include suggestions for how to address it. This tag can be useful for team members to communicate important information about the code.
 
 ## 2. Principle
@@ -129,13 +129,13 @@ Comment tags are helpful in managing large codebases or collaborative projects, 
   > Use short, descriptive tags that are easy to read and understand. Avoid using overly complicated tags or acronyms that may not be clear to everyone.
 
 - Be specific
-  > Use tags like `// TODO`, `// FIXME`, and `// BUG` to indicate specific issues in the code that need attention. This makes it easier for developers to prioritize their work and ensures that the code is well-maintained.
+  > Use tags like `TODO`, `FIXME`, and `BUG` to indicate specific issues in the code that need attention. This makes it easier for developers to prioritize their work and ensures that the code is well-maintained.
 
 - Use them sparingly
   > Don't overuse comment tags, as this can make the code harder to read and understand. Only use tags when they are really needed, such as when code needs to be fixed, tested, or documented.
 
 - Avoid redundancy
-  > Don't use tags that duplicate existing functionality or are redundant. For example, using both `// FIXME` and `// BUG` tags to indicate the same issue is not necessary and can make the code harder to read.
+  > Don't use tags that duplicate existing functionality or are redundant. For example, using both `FIXME` and `BUG` tags to indicate the same issue is not necessary and can make the code harder to read.
 
 - Review tags regularly
   > Regularly review comment tags to ensure that they are still relevant and necessary. Remove tags that are no longer needed, and update or add new tags as needed.

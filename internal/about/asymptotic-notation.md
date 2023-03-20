@@ -44,23 +44,33 @@ Asymptotic notation are used in computer science to analyze the time and space c
 
 ### 1.1. Big O Notation (O)
 
-Big O notation (O) represents the upper bound of an algorithm's running time. It gives an idea of how quickly the algorithm will grow in relation to the size of the input. For example, an algorithm with O(n) time complexity will have a linear growth in relation to the input size.
+Big O notation (O) represents the upper bound of an algorithm's running time. It gives an idea of how quickly the algorithm will grow in relation to the size of the input.
+
+For example, an algorithm with O(n) time complexity will have a linear growth in relation to the input size.
 
 ### 1.2. Big Omega Notation (Ω)
 
-Big Omega notation (Ω) represents the lower bound of an algorithm's running time. It gives an idea of how quickly the algorithm will perform at its best in relation to the size of the input. For example, an algorithm with Ω(n) time complexity will have a linear growth at its best.
+Big Omega notation (Ω) represents the lower bound of an algorithm's running time. It gives an idea of how quickly the algorithm will perform at its best in relation to the size of the input.
+
+For example, an algorithm with Ω(n) time complexity will have a linear growth at its best.
 
 ### 1.3. Big Theta Notation (θ)
 
-Big Theta notation (θ) represents the tight bound of an algorithm's running time. It gives an idea of how quickly the algorithm will grow in relation to the size of the input, with both the upper and lower bounds taken into account. For example, an algorithm with θ(n) time complexity will have a linear growth at its best and worst.
+Big Theta notation (θ) represents the tight bound of an algorithm's running time. It gives an idea of how quickly the algorithm will grow in relation to the size of the input, with both the upper and lower bounds taken into account.
+
+For example, an algorithm with θ(n) time complexity will have a linear growth at its best and worst.
 
 ### 1.4. Little o Notation (o)
 
-Little o notation (o) represents the upper bound of an algorithm's growth rate, but it is a stricter condition than big O notation. It is used to describe algorithms that grow slower than another algorithm. For example, an algorithm with o(n^2) growth rate will grow slower than an algorithm with O(n^2) growth rate.
+Little o notation (o) represents the upper bound of an algorithm's growth rate, but it is a stricter condition than big O notation. It is used to describe algorithms that grow slower than another algorithm.
+
+For example, an algorithm with o(n^2) growth rate will grow slower than an algorithm with O(n^2) growth rate.
 
 ### 1.5. Little omega Notation (ω)
 
-Little omega notation (ω) represents the lower bound of an algorithm's growth rate, but it is a stricter condition than omega notation. It is used to describe algorithms that grow faster than another algorithm. For example, an algorithm with ω(n^2) growth rate will grow faster than an algorithm with Ω(n^2) growth rate.
+Little omega notation (ω) represents the lower bound of an algorithm's growth rate, but it is a stricter condition than omega notation. It is used to describe algorithms that grow faster than another algorithm.
+
+For example, an algorithm with ω(n^2) growth rate will grow faster than an algorithm with Ω(n^2) growth rate.
 
 ## 2. Types of Complexity
 

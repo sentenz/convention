@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/sentenz/guide/compare/v1.17.0...v1.18.0) (2023-03-20)
+
+
+### Features
+
+* **about:** create an article about `dora` with ChatGPT ([#190](https://github.com/sentenz/guide/issues/190)) ([90a0511](https://github.com/sentenz/guide/commit/90a05114331225635d7db7cfcd4e66be8e0da791)), closes [#179](https://github.com/sentenz/guide/issues/179)
+
 # [1.17.0](https://github.com/sentenz/guide/compare/v1.16.0...v1.17.0) (2023-03-20)
 
 

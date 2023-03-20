@@ -5,182 +5,183 @@ A database is a collection of structured data that is organized and stored in a 
 Databases are typically managed by a database management system (DBMS), which provides a set of tools and interfaces for creating, modifying, and querying the data stored in the database. This can include a graphical user interface for managing the database, or a set of command-line tools and programming APIs for accessing and manipulating the data programmatically.
 
 - [1. Category](#1-category)
-  - [1.1. Relational Databases](#11-relational-databases)
-  - [1.2. Object-Relational Databases](#12-object-relational-databases)
-  - [1.3. NoSQL Databases](#13-nosql-databases)
-  - [1.4. Columnar Databases](#14-columnar-databases)
-  - [1.5. Graph Databases](#15-graph-databases)
-  - [1.6. Time-series Databases](#16-time-series-databases)
-  - [1.7. In-Memory Databases](#17-in-memory-databases)
-  - [1.8. Cloud Databases](#18-cloud-databases)
-  - [1.9. Hybrid Databases](#19-hybrid-databases)
-  - [1.10. Distributed Databases](#110-distributed-databases)
-  - [1.11. Embedded Databases](#111-embedded-databases)
-  - [1.12. XML Databases](#112-xml-databases)
-  - [1.13. Key-Value Databases](#113-key-value-databases)
-  - [1.14. Document Databases](#114-document-databases)
-  - [1.15. Geospatial Databases](#115-geospatial-databases)
-  - [1.16. Edge Databases](#116-edge-databases)
-  - [1.17. Streaming Databases](#117-streaming-databases)
-  - [1.18. Machine Learning Databases](#118-machine-learning-databases)
-  - [1.19. Event-Driven Databases](#119-event-driven-databases)
-  - [1.20. NewSQL Databases](#120-newsql-databases)
-  - [1.21. Multi-Model Databases](#121-multi-model-databases)
-- [2. Management](#2-management)
-  - [2.1. DBMS](#21-dbms)
-  - [2.2. Transaction](#22-transaction)
-  - [2.3. ACID](#23-acid)
-  - [2.4. CRUD](#24-crud)
-  - [2.5. HTAP](#25-htap)
-  - [2.6. OLTP](#26-oltp)
-  - [2.7. OLAP](#27-olap)
-  - [2.8. FDW](#28-fdw)
-  - [2.9. Streaming](#29-streaming)
-  - [2.10. Geospatial](#210-geospatial)
-  - [2.11. Time Series](#211-time-series)
-  - [2.12. Distributed Tables](#212-distributed-tables)
-  - [2.13. Schema Design](#213-schema-design)
-- [3. Principle](#3-principle)
-- [4. Best Practice](#4-best-practice)
-- [5. Terminology](#5-terminology)
+  - [1.1. Database](#11-database)
+    - [1.1.1. Relational Databases](#111-relational-databases)
+    - [1.1.2. Object-Relational Databases](#112-object-relational-databases)
+    - [1.1.3. NoSQL Databases](#113-nosql-databases)
+    - [1.1.4. Columnar Databases](#114-columnar-databases)
+    - [1.1.5. Graph Databases](#115-graph-databases)
+    - [1.1.6. Time-series Databases](#116-time-series-databases)
+    - [1.1.7. In-Memory Databases](#117-in-memory-databases)
+    - [1.1.8. Cloud Databases](#118-cloud-databases)
+    - [1.1.9. Hybrid Databases](#119-hybrid-databases)
+    - [1.1.10. Distributed Databases](#1110-distributed-databases)
+    - [1.1.11. Embedded Databases](#1111-embedded-databases)
+    - [1.1.12. XML Databases](#1112-xml-databases)
+    - [1.1.13. Key-Value Databases](#1113-key-value-databases)
+    - [1.1.14. Document Databases](#1114-document-databases)
+    - [1.1.15. Geospatial Databases](#1115-geospatial-databases)
+    - [1.1.16. Edge Databases](#1116-edge-databases)
+    - [1.1.17. Streaming Databases](#1117-streaming-databases)
+    - [1.1.18. Machine Learning Databases](#1118-machine-learning-databases)
+    - [1.1.19. Event-Driven Databases](#1119-event-driven-databases)
+    - [1.1.20. NewSQL Databases](#1120-newsql-databases)
+    - [1.1.21. Multi-Model Databases](#1121-multi-model-databases)
+  - [1.2. Management](#12-management)
+    - [1.2.1. DBMS](#121-dbms)
+    - [1.2.2. Transaction](#122-transaction)
+    - [1.2.3. ACID](#123-acid)
+    - [1.2.4. CRUD](#124-crud)
+    - [1.2.5. HTAP](#125-htap)
+    - [1.2.6. OLTP](#126-oltp)
+    - [1.2.7. OLAP](#127-olap)
+    - [1.2.8. FDW](#128-fdw)
+    - [1.2.9. Streaming](#129-streaming)
+    - [1.2.10. Geospatial](#1210-geospatial)
+    - [1.2.11. Time Series](#1211-time-series)
+    - [1.2.12. Distributed Tables](#1212-distributed-tables)
+    - [1.2.13. Schema Design](#1213-schema-design)
+- [2. Principle](#2-principle)
+- [3. Best Practice](#3-best-practice)
+- [4. Terminology](#4-terminology)
 
 ## 1. Category
 
-### 1.1. Relational Databases
+### 1.1. Database
+
+#### 1.1.1. Relational Databases
 
 Relational databases store data in a structured format using tables and relationships. The data is organized into rows and columns, and relationships are established between tables using keys.
 
 DBMS tools: MySQL, Oracle Database, Microsoft SQL Server.
 
-### 1.2. Object-Relational Databases
+#### 1.1.2. Object-Relational Databases
 
 Object-Relational databases combine the features of relational databases and object-oriented programming. They store data in tables as well as objects, allowing for more complex data structures and relationships.
 
 DBMS tools: PostgreSQL, Oracle Database.
 
-### 1.3. NoSQL Databases
+#### 1.1.3. NoSQL Databases
 
 NoSQL databases do not use a fixed schema, and instead store data in a variety of formats, such as key-value pairs, documents, or graph structures. They are designed for scalability and handling large amounts of unstructured data.
 
 DBMS tools: MongoDB, Cassandra, Amazon DynamoDB.
 
-### 1.4. Columnar Databases
+#### 1.1.4. Columnar Databases
 
 Columnar databases store data in columns rather than rows, providing faster query performance for large datasets, improving data performance and scalability. They are typically used in data warehousing and analytics.
 
 DBMS tools: Apache Cassandra, Amazon Redshift, Google Bigtable.
 
-### 1.5. Graph Databases
+#### 1.1.5. Graph Databases
 
 Graph databases store data as nodes and relationships, providing efficient querying and navigation of complex relationships. They are commonly used in social network analysis, recommendation systems, and fraud detection.
 
 DBMS tools: Neo4j, Amazon Neptune, OrientDB.
 
-### 1.6. Time-series Databases
+#### 1.1.6. Time-series Databases
 
 Time-series databases are specialized databases optimized for storing and retrieving time-stamped data. They are commonly used for monitoring and analyzing sensor data, financial data, and IoT data.
 
 DBMS tools: InfluxDB, TimescaleDB, OpenTSDB.
 
-### 1.7. In-Memory Databases
+#### 1.1.7. In-Memory Databases
 
 In-Memory databases store data in RAM, providing extremely fast query performance. They are used for real-time applications, such as gaming, financial trading, and telecommunications.
 
 DBMS tools: Redis, Apache Ignite, MemSQL.
 
-### 1.8. Cloud Databases
+#### 1.1.8. Cloud Databases
 
 Cloud databases are databases that run on cloud computing platforms, such as Amazon Web Services, Microsoft Azure, or Google Cloud Platform. They provide scalable, on-demand access to databases, allowing for easy provisioning and management of resources.
 
 DBMS tools: Amazon RDS, Microsoft Azure SQL Database, Google Cloud SQL.
 
-### 1.9. Hybrid Databases
+#### 1.1.9. Hybrid Databases
 
 Hybrid databases are databases that combine the features of multiple database categories, allowing for a variety of data formats and structures. They are designed to handle the demands of modern applications, which often require a combination of structured and unstructured data.
 
 DBMS tools: Amazon DocumentDB, Microsoft Azure Cosmos DB, Google Cloud Firestore.
 
-### 1.10. Distributed Databases
+#### 1.1.10. Distributed Databases
 
 Distributed databases are databases that are split across multiple servers, providing increased scalability and fault tolerance. They are commonly used for large-scale, data-intensive applications, such as e-commerce, online gaming, and scientific simulations.
 
 DBMS tools: Apache Cassandra, Amazon DynamoDB, Microsoft Azure Cosmos DB.
 
-### 1.11. Embedded Databases
+#### 1.1.11. Embedded Databases
 
 Embedded databases are databases that run directly on an application, rather than on a separate server. They are typically used for small-scale, standalone applications, such as mobile devices or embedded systems.
 
 DBMS tools: SQLite, Berkeley DB, H2.
 
-### 1.12. XML Databases
+#### 1.1.12. XML Databases
 
 XML databases store data in the XML format, providing a flexible and extensible data structure. They are commonly used for data exchange and web services, as well as for document management.
 
 DBMS tools: eXist-db, BaseX, Apache MarkLogic.
 
-### 1.13. Key-Value Databases
+#### 1.1.13. Key-Value Databases
 
 Key-value databases are databases that store data as key-value pairs, allowing for simple and efficient data storage and retrieval. They often support advanced key-value operations, such as key-value updates, key-value deletions, and key-value search, and they are often used in applications that require simple and efficient data storage and retrieval.
 
 DBMS tools: Amazon DynamoDB, Riak, Redis.
 
-### 1.14. Document Databases
+#### 1.1.14. Document Databases
 
 Document databases are databases that store data as semi-structured or unstructured documents, allowing for the flexible storage and retrieval of data elements. They often support advanced document operations, such as document queries, document updates, and document indexing, and they are often used in applications that require the flexible storage and retrieval of semi-structured or unstructured data elements.
 
 DBMS tools: MongoDB, Amazon DocumentDB, Couchbase.
 
-### 1.15. Geospatial Databases
+#### 1.1.15. Geospatial Databases
 
 Geospatial databases are databases that are optimized for storing and retrieving geospatial data, such as locations, maps, and geographic information. They often support advanced geospatial operations, such as spatial indexing, geospatial queries, and geospatial analytics, and they are often used in applications that require geospatial data processing and analysis.
 
 DBMS tools: PostGIS, Oracle Spatial and Graph, MongoDB Geospatial.
 
-### 1.16. Edge Databases
+#### 1.1.16. Edge Databases
 
 Edge databases are databases that run on edge devices, such as IoT devices, and are designed for low-latency data processing and storage. They often support advanced edge operations, such as local data processing, data aggregation, and data synchronization, and they are often used in applications that require low-latency data processing and storage at the edge.
 
 DBMS tools: Amazon Greengrass, Microsoft Azure IoT Edge, Google Cloud IoT Edge.
 
-### 1.17. Streaming Databases
+#### 1.1.17. Streaming Databases
 
 Streaming databases are databases that are designed for real-time data ingestion, processing, and analysis of large amounts of data. They often support advanced streaming operations, such as real-time data analysis, event processing, and data pipelines, and they are often used in applications that require real-time data processing and analysis.
 
 DBMS tools: Apache Kafka, Apache Flink, Amazon Kinesis.
 
-### 1.18. Machine Learning Databases
+#### 1.1.18. Machine Learning Databases
 
 Machine learning databases are databases that provide built-in machine learning algorithms and support for data science workflows. They often support advanced machine learning operations, such as data preprocessing, model training, and model deployment, and they are often used in applications that require machine learning and data science capabilities.
 
 DBMS tools: Google BigQuery ML, Amazon SageMaker, Databricks.
 
-### 1.19. Event-Driven Databases
+#### 1.1.19. Event-Driven Databases
 
 Event-driven databases are databases that support event-driven architectures and real-time data processing. They often support advanced event-processing operations, such as event streams, event sourcing, and event notifications, and they are often used in applications that require real-time data processing and event-driven architectures.
 
 DBMS tools: Apache Kafka, Apache Pulsar, Apache Flink.
 
-### 1.20. NewSQL Databases
+#### 1.1.20. NewSQL Databases
 
 NewSQL databases are databases that combine the scalability and performance of NoSQL databases with the transactional consistency and durability of relational databases. They often support advanced SQL operations, and they are often used in applications that require high performance and strong consistency guarantees.
 
 DBMS tools: Google Spanner, CockroachDB, NuoDB.
 
-### 1.21. Multi-Model Databases
+#### 1.1.21. Multi-Model Databases
 
 Multi-model databases are databases that support multiple data models, such as relational, document-oriented, graph, and key-value. This allows for greater flexibility in data modeling and the ability to handle a variety of data structures in a single database. Multi-model databases are often used in applications that require the ability to store and retrieve different types of data in a unified way.
 
 DBMS tools: ArangoDB, Amazon DocumentDB, OrientDB.
 
-## 2. Management
+### 1.2. Management
 
 Database Management involves organizing, storing, and maintaining data within a database system. It encompasses design principles, technologies, and methodologies to ensure data reliability, efficiency, and security. The tasks involved in database management include defining data elements, creating and maintaining the database schema, enforcing data integrity and security, optimizing performance, and implementing backup and recovery mechanisms.
 
-### 2.1. DBMS
+#### 1.2.1. DBMS
 
-DBMS (Database Management System) is a software system that provides an interface for creating, modifying, and managing databases. A DBMS is responsible for managing all aspects of a database, including the storage, retrieval, and manipulation of data.
-
-DBMS is an essential tool for managing and working with large amounts of data. There are a wide variety of DBMS products available, ranging from open-source systems to commercial software packages, each with its own strengths and weaknesses.
+A database management system (DBMS) is a software system that allows users to define, create, maintain, and control access to databases. A DBMS manages the organization, manipulation, storage, and retrieval of data, and provides an interface for interaction with the data.
 
 Key functions of a DBMS include:
 
@@ -199,11 +200,11 @@ Key functions of a DBMS include:
 - Data Consistency
   > A DBMS provides a set of features to ensure the consistency and reliability of the data in the database, including transaction management and data validation.
 
-### 2.2. Transaction
+#### 1.2.2. Transaction
 
 A transaction in database systems refers to a unit of work that is executed within a database management system (DBMS). The primary objective of transactions is to maintain the consistency and integrity of data within a database, by ensuring that the database remains in a consistent state even in the face of failures or errors. Transactions achieve this objective by implementing the Atomicity, Consistency, Isolation, and Durability (ACID) properties, which guarantee that either all the operations within a transaction are completed successfully, or none of them are completed at all.
 
-### 2.3. ACID
+#### 1.2.3. ACID
 
 ACID stands for Atomicity, Consistency, Isolation, and Durability. It is a set of properties that ensure the consistency and reliability of database transactions.
 
@@ -221,7 +222,7 @@ ACID properties ensure that database transactions are reliable, consistent, and 
 - Durability
   > Durability property ensures that once a transaction is committed, its effects are permanent and cannot be lost in the event of a failure. This is achieved through the use of transaction logs, backups, and other measures.
 
-### 2.4. CRUD
+#### 1.2.4. CRUD
 
 CRUD stands for Create, Read, Update, and Delete. It is a set of basic operations that can be performed on a database, and is used to manage data in a database.
 
@@ -239,43 +240,43 @@ The CRUD operations are the foundation of most database management systems, and 
 - Delete
   > Delete operation allows a user to remove data from a database. This can include deleting individual records, tables, or other structures in the database.
 
-### 2.5. HTAP
+#### 1.2.5. HTAP
 
 HTAP (Hybrid Transactional/Analytical Processing) is a term used to describe a database architecture that combines the characteristics of both transactional (OLTP) and analytical (OLAP) processing. HTAP databases are designed to handle both transactional and analytical workloads in real-time, providing a single source of truth for data that is both transactional and analytical.
 
-### 2.6. OLTP
+#### 1.2.6. OLTP
 
 OLTP (Online Transactional Processing) is a database design approach that focuses on optimizing transactional processing, such as inserting, updating, or deleting data. OLTP databases are designed to handle large numbers of concurrent transactions, and are optimized for high-speed and low latency.
 
-### 2.7. OLAP
+#### 1.2.7. OLAP
 
 OLAP (Online Analytical Processing) is a database design approach that focuses on optimizing analytical processing, such as complex queries and reporting. OLAP databases are designed to handle large amounts of data and complex calculations, and are optimized for high-performance data analysis.
 
-### 2.8. FDW
+#### 1.2.8. FDW
 
 FDW (Foreign Data Wrapper) is a foreign data wrapper is a database component that enables data stored in external databases to be treated as if it were part of the local database. FDWs provide a convenient way to access data stored in different databases, and can be used to create a single virtual database from multiple sources.
 
-### 2.9. Streaming
+#### 1.2.9. Streaming
 
 Streaming refers to the process of continuously receiving and processing data in real-time. In database systems, streaming can be used to handle large amounts of data that are generated in real-time, such as IoT data or social media data.
 
-### 2.10. Geospatial
+#### 1.2.10. Geospatial
 
 Geospatial databases are databases that are designed to store and manage geographic data, such as location-based data, maps, and satellite imagery. Geospatial databases are optimized for the storage and management of large amounts of data with geographic attributes, and are widely used in industries such as transportation, logistics, and real estate.
 
-### 2.11. Time Series
+#### 1.2.11. Time Series
 
 Time series databases are databases that are designed to store and manage time-based data, such as sensor data, stock prices, and weather data. Time series databases are optimized for the storage and management of large amounts of time-based data, and are widely used in industries such as finance, IoT, and weather forecasting.
 
-### 2.12. Distributed Tables
+#### 1.2.12. Distributed Tables
 
 Distributed tables are tables in a database that are spread across multiple nodes in a distributed database system. Distributed tables provide a way to scale databases horizontally, allowing for the storage and management of large amounts of data across multiple nodes. This provides increased performance and scalability, as well as improved fault tolerance.
 
-### 2.13. Schema Design
+#### 1.2.13. Schema Design
 
 Schema design is a critical component of database architecture and design, as it defines the structure of the data in a database. Schema design involves creating tables, columns, and relationships to represent the data requirements of an application. The schema defines the structure of the data and the relationships between the data elements, and it is used to ensure that the data is stored in a consistent and organized manner.
 
-## 3. Principle
+## 2. Principle
 
 - Atomicity
   > The principle of atomicity ensures that a database transaction is either completed in its entirety or not completed at all, ensuring data consistency and integrity.
@@ -370,7 +371,7 @@ Schema design is a critical component of database architecture and design, as it
 - NoSQL
   > The principle of NoSQL is a type of database that does not use a fixed schema and allows for flexible data modeling, improving data scalability and performance.
 
-## 4. Best Practice
+## 3. Best Practice
 
 - Define Clear Objectives
   > Determine the specific purpose and requirements of the database before starting the design process.
@@ -492,7 +493,7 @@ Schema design is a critical component of database architecture and design, as it
 - Optimize Queries
   > Optimize queries to improve database performance and reduce response time.
 
-## 5. Terminology
+## 4. Terminology
 
 - Relational Database
   > A type of database that organizes data into tables and uses relationships between the tables to store and retrieve data.

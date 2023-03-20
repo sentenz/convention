@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/sentenz/guide/compare/v1.16.0...v1.17.0) (2023-03-20)
+
+
+### Features
+
+* **about:** create an articel about `data serialization formats` with ChatGPT ([#189](https://github.com/sentenz/guide/issues/189)) ([11f8e88](https://github.com/sentenz/guide/commit/11f8e88a03a4bb1b43fdf4c7609f205705e43e7a)), closes [#180](https://github.com/sentenz/guide/issues/180)
+
 # [1.16.0](https://github.com/sentenz/guide/compare/v1.15.0...v1.16.0) (2023-03-20)
 
 

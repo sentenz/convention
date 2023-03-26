@@ -3,199 +3,584 @@
 Project layout refers to the arrangement of files, folders, and other resources within a project. A well-designed project layout can improve the organization, readability, and maintainability of the project's codebase.
 
 - [1. Category](#1-category)
-  - [1.1. Linear Layout](#11-linear-layout)
-  - [1.2. Hierarchical Layout](#12-hierarchical-layout)
-  - [1.3. Modular Layout](#13-modular-layout)
-  - [1.4. Component-based Layout](#14-component-based-layout)
-  - [1.5. Functional Layout](#15-functional-layout)
-  - [1.6. Task-based Layout](#16-task-based-layout)
+  - [1.1. File Types](#11-file-types)
+    - [1.1.1. Source Code](#111-source-code)
+    - [1.1.2. Header](#112-header)
+    - [1.1.3. Build](#113-build)
+    - [1.1.4. Documentation](#114-documentation)
+    - [1.1.5. Test](#115-test)
+    - [1.1.6. Data](#116-data)
+    - [1.1.7. Resource](#117-resource)
+    - [1.1.8. Log](#118-log)
+    - [1.1.9. Configuration](#119-configuration)
+    - [1.1.10. Script](#1110-script)
+    - [1.1.11. Library](#1111-library)
+  - [1.2. Directory Types](#12-directory-types)
+    - [1.2.1. Source Code](#121-source-code)
+    - [1.2.2. Documentation](#122-documentation)
+    - [1.2.3. Tests](#123-tests)
+    - [1.2.4. Configuration](#124-configuration)
+    - [1.2.5. Resources](#125-resources)
+    - [1.2.6. Data](#126-data)
+    - [1.2.7. Libraries](#127-libraries)
+    - [1.2.8. Artifacts](#128-artifacts)
+  - [1.3. Structure Types](#13-structure-types)
+    - [1.3.1. Flat Structure](#131-flat-structure)
+    - [1.3.2. Modular Structure](#132-modular-structure)
+    - [1.3.3. Hierarchical Structure](#133-hierarchical-structure)
+    - [1.3.4. Layered Structure](#134-layered-structure)
+    - [1.3.5. Component-based Structure](#135-component-based-structure)
+    - [1.3.6. Functional-based Structure](#136-functional-based-structure)
+    - [1.3.7. Task-based Structure](#137-task-based-structure)
 - [2. Principle](#2-principle)
 - [3. Best Practice](#3-best-practice)
 - [4. Terminology](#4-terminology)
+- [5. References](#5-references)
 
 ## 1. Category
 
 The project layout can be divided into several categories, depending on the type of project, its size, and its complexity.
 
-- Source code
-  > This category includes all the files that contain the actual code for the project, such as HTML, CSS, JavaScript, Python, Java, or any other programming language files.
+### 1.1. File Types
 
-- Assets
-  > This category includes all the files that are used by the source code, such as images, videos, audio files, or any other multimedia files.
+#### 1.1.1. Source Code
 
-- Libraries
-  > This category includes any external libraries or dependencies that are required for the project, such as jQuery, Bootstrap, or React.
+Source files contain the actual source code of the project. They are typically written in a programming language such as C, Python, Java, etc.
 
-- Configuration
-  > This category includes any files that configure the project environment or settings, such as configuration files for a web server, database settings, or other system settings.
+Source code files usually have file extensions that match the programming language, such as:
 
-- Documentation
-  > This category includes any documentation related to the project, such as user guides, developer guides, API documentation, or any other type of documentation.
+- `.c`
+- `.py`
+- `.java`
+- `.go`
 
-- Tests
-  > This category includes all the files related to testing the project, such as unit tests, integration tests, or any other type of tests.
+#### 1.1.2. Header
 
-- Scripts
-  > This category includes any files related to building the project, such as build scripts, deployment scripts, or any other type of scripts.
+Header files typically contain function prototypes and definitions of constants and variables used in the source code files.
 
-> NOTE The specific categories and the organization of files and folders within them can vary depending on the type of project and the development process being used.
+They are usually written in the same programming language as the source code files and have file extensions such as:
 
-### 1.1. Linear Layout
+- `.h`
+- `.hpp`
 
-Linear layout is a simple layout where files are organized in a linear or chronological order. This type of layout is commonly used for small projects or projects with a simple structure.
+#### 1.1.3. Build
 
-Example of a Website project:
+Files used to build the project, including makefiles, build scripts, and build configuration files. Build files are typically used to automate the build process and ensure that the project is built consistently across different environments.
+
+> NOTE See [build systems](../about/build-sytems.md) for details.
+
+- `Makefile`
+- `CMakeLists.txt`
+- `.gradle`
+
+#### 1.1.4. Documentation
+
+These files contain documentation for the project, including user manuals, API documentation, and other information about the project.
+
+> NOTE See [docs as code](../about/docs-as-code.md) and [static site generators](../about/static-site-generators.md) for details.
+
+Documentation files can be written in various formats:
+
+- `.md`
+- `.rst`
+- `.html`
+
+#### 1.1.5. Test
+
+These files contain tests for the project, including unit tests, integration tests, and other types of tests.
+
+Test files are typically written in the same programming language as the source code files and have appendix bevor file extensions such as:
+
+- `_test`
+
+#### 1.1.6. Data
+
+These files contain data used by the project, such as configuration files, input files, and output files.
+
+Data files can be written in various formats:
+
+- `.csv`
+- `.json`
+- `.xml`
+
+#### 1.1.7. Resource
+
+These files contain resources used by the project, such as images, icons, and other assets.
+
+Resource files can be written in various formats:
+
+- `.png`
+- `.jpg`
+- `.svg`
+- `.csv`
+
+#### 1.1.8. Log
+
+These files contain logs generated by the project, including error logs, access logs, and other types of logs.
+
+Log files can be written in various formats:
+
+- `.log`
+- `.txt`
+
+#### 1.1.9. Configuration
+
+These files contain configuration settings for the project, such as environment variables, database connection strings, and other settings that are necessary for the project to run correctly.
+
+> NOTE See [data serialization formats](../about/data-serialization-formats.md) for details.
+
+Configuration files can be written in various formats:
+
+- `.env`
+  > This is a file format used to store environment variables that are used by a software application or system. Environment variables are variables that are set in the operating system's environment and are accessible by programs running on the system. `.env` files are often used in web applications to store sensitive information such as database credentials or API keys. The file typically contains a list of key-value pairs in the format `KEY=VALUE`, with each pair on a separate line.
+
+  Example:
+
+  ```env
+  # Example .env file
+
+  DB_HOST=localhost
+  DB_PORT=5432
+  DB_NAME=mydatabase
+  DB_USER=myusername
+  DB_PASSWORD=mypassword
+  ```
+
+- `.json`
+  > JSON (JavaScript Object Notation) is a lightweight data serialization format that is commonly used for transmitting data between a web server and a client-side application. JSON is easy for humans to read and write, and easy for machines to parse and generate. JSON is often used to store configuration data, such as database connection strings, or to transmit data between different components of a software system. JSON files consist of key-value pairs in a hierarchical structure.
+
+  Example:
+
+  ```json
+  {
+    "database": {
+      "host": "localhost",
+      "port": 5432,
+      "name": "mydatabase",
+      "user": "myusername",
+      "password": "mypassword"
+    }
+  }
+  ```
+
+- `.yaml`
+  > YAML (YAML Ain't Markup Language) is a data serialization format that is designed to be human-readable and easy to parse. YAML is often used to store configuration data, such as settings for a web application or a deployment pipeline. YAML is similar to JSON in many ways, but has some additional features such as support for comments and the ability to reference other parts of the document. YAML files consist of key-value pairs in a hierarchical structure.
+
+  Example:
+
+  ```yaml
+  # Example YAML file
+
+  database:
+    host: localhost
+    port: 5432
+    name: mydatabase
+    user: myusername
+    password: mypassword
+  ```
+
+- `.ini`
+  > INI files are a simple text-based format for storing configuration data. INI files typically contain a series of sections, each of which contains a set of key-value pairs. INI files are widely used on Windows systems, where they are used to store configuration data for applications and system settings. INI files are also used in some Linux-based systems for storing configuration data for applications. While INI files are simple and easy to use, they have limited support for more complex data structures and are not well-suited for storing large amounts of data.
+
+  Example:
+
+  ```ini
+  ; Example INI file
+
+  [database]
+  host=localhost
+  port=5432
+  name=mydatabase
+  user=myusername
+  password=mypassword
+  ```
+
+#### 1.1.10. Script
+
+These are files that contain scripts used by the project.
+
+- `.sh`
+
+  > Script files written in the Bash scripting language, which is commonly used in Unix-based operating systems (such as Linux and macOS) to automate tasks and run shell commands. Bash scripts can be used to perform a wide variety of tasks, such as setting environment variables, running system commands, and automating file operations.
+
+- `.py`
+
+  > Python is a high-level, interpreted language. Python scripts can be used to automate tasks, manipulate data, and create complex software applications.
+
+> NOTE Bash and Python scripts can be executed from the command line, typically by running a command that specifies the path to the script file. For example, to run a Bash script named `myscript.sh`, type `./myscript.sh` in the terminal, assuming that the script file is located in the current working directory. Similarly, to run a Python script named `myscript.py`, type `python myscript.py` in the terminal.
+
+#### 1.1.11. Library
+
+These file extensions are related to libraries, which are collections of pre-compiled code that can be linked into a program during the build process.
+
+- `.a`
+  > These are static libraries in Unix-based systems (such as Linux or macOS). They contain pre-compiled object code that can be linked into a program at compile time. When a program is built, the linker copies the relevant object code from the `.a` file into the final executable.
+
+- `.so`
+  > These are shared libraries in Unix-based systems. They contain pre-compiled object code that can be loaded into memory at run-time. Shared libraries allow multiple programs to share the same code in memory, which can save memory and disk space. When a program is built, it links to the shared library, and the library is loaded when the program is run.
+
+- `.dll`
+  > These are dynamic link libraries in Windows-based systems. They are similar to shared libraries in Unix-based systems, in that they contain pre-compiled object code that can be loaded into memory at run-time. Like shared libraries, they allow multiple programs to share the same code in memory. When a program is built, it links to the `.dll` file, and the library is loaded when the program is run. `.dll` files are used in Windows-based systems, whereas Unix-based systems use `.so` files.
+
+### 1.2. Directory Types
+
+The categories of files and folders that can be included in a project layout, depending on the nature of the project and the tools being used. These categories can be combined and nested in various ways to create a project layout that best suits.
+
+#### 1.2.1. Source Code
+
+This category includes all the files that contain the actual code for the project, such as HTML, CSS, JavaScript, Python, Java, or any other programming language files.
+
+- `/src`
+  > This includes all the files related to the code that runs the project, such as scripts, libraries, and configuration files.
+
+  Example:
+
+  ```md
+  project/
+  ├── src/
+  │   ├── main.py
+  │   ├── module1.py
+  │   └── module2.py
+  ```
+
+- `/internal`
+  > This directory contains the internal source code of the project, organized into modules or components. The internal folder can be structured similarly to the `/src` folder, with sub-folders for each package.
+
+  Example:
+
+  ```md
+  project/
+  ├── internal/
+  │   ├── package1/
+  │   │   ├── file1.go
+  │   │   └── file2.go
+  │   └── package2/
+  │       ├── file1.go
+  │       └── file2.go
+  ```
+
+#### 1.2.2. Documentation
+
+- `/docs`
+  > This includes any documentation related to the project, such as user guides, API documentation, and technical specifications.
+
+  Example:
+
+  ```md
+  project/
+  ├── docs/
+  │   ├── adr/
+  │   ├── user_manual.pdf
+  │   └── technical_specifications.md
+  ```
+
+#### 1.2.3. Tests
+
+- `/test`
+  > This includes all the files related to testing the project, such as unit tests, integration tests, or any other type of tests.
+
+  Example:
+
+  ```md
+  project/
+  ├── tests/
+  │   ├── test_main.py
+  │   ├── test_module1.py
+  │   └── test_module2.py
+  ```
+
+#### 1.2.4. Configuration
+
+- `/config`
+  > This includes any files that configure the project environment or settings, such as configuration files for a web server, database settings, or other system settings.
+
+  Example:
+
+  ```md
+  project/
+  ├── config/
+  │   ├── config.ini
+  │   └── logging.conf
+  ```
+
+#### 1.2.5. Resources
+
+The project resources category is used for files and folders that provide support for the project development process, but are not directly part of the project source code or documentation.
+
+- `/assets`
+  > This includes any non-code assets used by the project, such as images, icons, or other multimedia resources.
+
+  Example:
+
+  ```md
+  project/
+  ├── assets/
+  │   ├── images/
+  │   │   ├── logo.png
+  │   │   └── background.jpg
+  │   └── icons/
+  │       ├── icon1.svg
+  │       └── icon2.svg
+  ```
+
+- `/tools`
+  > This directory contains various tools or utilities used in the development process, such as linters, formatters, or IDE plugins.
+
+  Example:
+
+  ```md
+  project/
+  ├── tools/
+  │   ├── devops/
+  │   └── generator/
+  ```
+
+- `/scripts`
+  > This includes any files or scripts used to build and package the project, such as build scripts, installers, or deployment scripts. Further, this directory contains various scripts that automate tasks related to the project.
+
+  Example:
+
+  ```md
+  project/
+  ├── scripts/
+  │   ├── setup.sh
+  │   ├── install.sh
+  │   ├── build_pipeline.sh
+  │   └── deploy_pipeline.sh
+  ```
+
+#### 1.2.6. Data
+
+- `/data`
+  > This includes any data files used by the project, such as datasets, images, and audio or video files.
+
+  Example:
+
+  ```md
+  project/
+  ├── data/
+  │   ├── datasets1.csv
+  │   ├── datasets2.csv
+  │   └── images/
+  │       ├── image1.jpg
+  │       └── image2.jpg
+  ```
+
+- `/db`
+  > This folder contains any database-related files used by the project, such as SQL scripts or database configuration files.
+
+  Example:
+
+  ```md
+    project/
+    ├── db/
+    │   ├── schema/
+    │   ├── quere/
+    │   ├── migration/
+    │   ├── sql/
+  ```
+
+#### 1.2.7. Libraries
+
+This category includes any external libraries or dependencies that are required for the project, such as jQuery, Bootstrap, or React.
+
+- `/external`
+  > This includes any third-party libraries or tools used by the project, such as dependencies managed by a package manager.
+
+  Example:
+
+  ```md
+  project/
+  ├── external/
+  │   ├── lodash/
+  │   │   └── lodash.go
+  │   ├── library2/
+  │   │   └── ...
+  ```
+
+- `/lib`
+  > This includes any compiled or packaged files generated by the project, such as executables, shared libraries, or distribution archives.
+
+  Example:
+
+  ```md
+  project/
+  ├── lib/
+  │   └── library1/
+  │       └── libproject.a
+
+  ```
+
+#### 1.2.8. Artifacts
+
+- `/build`
+  > This folder contains all the build artifacts created during the build and deployment process, such as compiled binaries, packaged code, and deployment artifacts. These artifacts may be stored here temporarily before being deployed to a production environment.
+
+  Example:
+
+  ```md
+  project/
+  ├── build/
+  │   ├── binaries/
+  │   │   ├── app-linux-amd64
+  │   │   ├── app-windows-amd64.exe
+  │   │   └── app-darwin-amd64
+  │   ├── libraries/
+  │   │   ├── liblinux-amd64.a
+  │   │   ├── windows-amd64.dll
+  │   │   └── app-darwin-amd64
+  │   ├── deployment-packages/
+  ```
+
+### 1.3. Structure Types
+
+There are several types of project layout structures that can be used, depending on the nature of the project and the preferences of the development team. These structure types can be combined and customized in various ways to create a project layout that best suits. It's important to choose a structure that is both functional and maintainable over time.
+
+#### 1.3.1. Flat Structure
+
+In a flat structure, all the files and folders are organized in a single directory, without any subdirectories. This can be a good option for small projects with only a few files, but it can become unwieldy for larger projects.
+
+Example:
 
 ```md
-.
-├── index.html
-├── style.css
-├── script.js
-├── about.html
-└── contact.html
+project/
+├── file1.py
+├── file2.py
+├── script1.sh
+├── script2.sh
+└── data.csv
 ```
 
-Example of a C project:
+#### 1.3.2. Modular Structure
+
+In a modular structure, the project is divided into modular components or modules, with each module containing its own set of files, resources and folders. This can be a commonly approach for larger projects that require a high degree of modularity and maintainability.
+
+Example:
 
 ```md
-.
-├── main.c
-├── functions.c
-├── functions.h
-├── input.txt
-└── output.txt
+project/
+├── module1/
+│   ├── src/
+│   │   ├── file1.py
+│   │   └── file2.py
+│   └── tests/
+│       ├── test_file1.py
+│       └── test_file2.py
+├── module2/
+│   ├── src/
+│   │   ├── file3.py
+│   │   └── file4.py
+│   └── tests/
+│       ├── test_file3.py
+│       └── test_file4.py
+├── docs/
+│   ├── user_guide.pdf
+│   └── technical_specifications.pdf
+├── data/
+│   ├── dataset1.csv
+│   └── dataset2.csv
+└── scripts/
+    ├── build_script.sh
+    └── deploy_script.sh
 ```
 
-### 1.2. Hierarchical Layout
+#### 1.3.3. Hierarchical Structure
 
-In hierarchical layout, files are organized in a hierarchical structure, with folders containing subfolders and files. This layout is suitable for medium-sized projects with multiple components.
+In a hierarchical structure, files and folders are organized into a tree-like structure, with subdirectories containing related files. This is a common structure for many types of projects, and can help to keep files organized and easy to find.
 
-Example of a Website project:
+Example:
 
 ```md
-.
-├── css
-│   └── style.css
-├── js
-│   └── script.js
-├── images
-│   ├── logo.png
-│   └── background.jpg
-└── pages
-    ├── index.html
-    ├── about.html
-    └── contact.html
+project/
+├── src/
+│   ├── module1/
+│   │   ├── file1.py
+│   │   └── file2.py
+│   └── module2/
+│       ├── file3.py
+│       └── file4.py
+├── tests/
+│   ├── module1/
+│   │   ├── test_file1.py
+│   │   └── test_file2.py
+│   └── module2/
+│       ├── test_file3.py
+│       └── test_file4.py
+├── docs/
+│   ├── user_guide.pdf
+│   └── technical_specifications.pdf
+├── data/
+│   ├── dataset1.csv
+│   └── dataset2.csv
+└── scripts/
+    ├── build_script.sh
+    └── deploy_script.sh
 ```
 
-Example of a C project:
+#### 1.3.4. Layered Structure
+
+In a layered structure, the project is organized into layers or tiers, with each layer responsible for a specific part of the project. This can be a good approach for projects that have clear separations between different components or layers, such as a web application with a front-end and back-end layer.
+
+Example:
 
 ```md
-.
-├── src
-│   ├── main.c
-│   ├── functions.c
-│   └── functions.h
-├── data
-│   ├── input.txt
-│   └── output.txt
-└── Makefile
+project/
+├── frontend/
+│   ├── src/
+│   │   ├── index.html
+│   │   ├── script.js
+│   │   └── style.css
+│   ├── tests/
+│   │   ├── test_index.html
+│   │   └── test_script.js
+│   └── package.json
+├── backend/
+│   ├── src/
+│   │   ├── database.py
+│   │   └── server.py
+│   ├── tests/
+│   │   ├── test_database.py
+│   │   └── test_server.py
+│   └── requirements.txt
+├── docs/
+│   ├── user_guide.pdf
+│   └── technical_specifications.pdf
+├── data/
+│   ├── dataset1.csv
+│   └── dataset2.csv
+└── scripts/
+    ├── build_script.sh
+    └── deploy_script.sh
 ```
 
-### 1.3. Modular Layout
+#### 1.3.5. Component-based Structure
 
-In modular layout, the project is divided into modules, with each module containing its own files and resources. This layout is commonly used for large projects with many components.
+Component-based structure is similar to the modular layout, but it emphasizes the relationships between different components of the project. This layout is commonly used for software development projects.
 
-Example of a Website project:
-
-```md
-.
-├── header
-│   ├── logo.png
-│   └── nav.html
-├── footer
-│   ├── copyright.html
-│   └── social-media.html
-├── pages
-│   ├── index.html
-│   ├── about.html
-│   └── contact.html
-├── css
-│   └── style.css
-└── js
-    └── script.js
-```
-
-Example of a C project:
-
-```md
-.
-├── src
-│   ├── header
-│   │   ├── constants.h
-│   │   └── structs.h
-│   ├── utils
-│   │   ├── helper.c
-│   │   └── helper.h
-│   ├── module1
-│   │   ├── module1.c
-│   │   └── module1.h
-│   └── main.c
-├── data
-│   ├── input.txt
-│   └── output.txt
-└── Makefile
-```
-
-### 1.4. Component-based Layout
-
-Component-based layout is similar to the modular layout, but it emphasizes the relationships between different components of the project. This layout is commonly used for software development projects.
-
-Example of a Website project:
+Example:
 
 ```md
 .
 ├── authentication
-│   ├── login.html
-│   ├── register.html
-│   └── reset-password.html
+│   ├── login.py
+│   ├── register.py
+│   └── password.py
 ├── blog
-│   ├── index.html
-│   └── post.html
+│   ├── blog.py
+│   └── post.py
 ├── products
-│   ├── index.html
-│   └── product.html
-├── css
-│   └── style.css
-└── js
-    └── script.js
-```
-
-Example of a C project:
-
-```md
-.
-├── authentication
-│   ├── login.c
-│   ├── register.c
-│   └── reset_password.c
-├── blog
-│   ├── blog.c
-│   └── post.c
-├── products
-│   ├── products.c
-│   └── product.c
+│   ├── product1.py
+│   └── product2.py
 ├── utils
-│   ├── helper.c
-│   └── helper.h
-├── main.c
-└── Makefile
+│   ├── helper.py
+│   └── util.py
 ```
 
-### 1.5. Functional Layout
+#### 1.3.6. Functional-based Structure
 
-In functional layout, files are organized according to their function or purpose. For example, all files related to user authentication might be grouped together in one folder. This layout is suitable for projects with many distinct functions or features.
+In functional-based structure, files are organized according to their function or purpose. For example, all files related to user authentication might be grouped together in one folder. This layout is suitable for projects with many distinct functions or features.
 
-Example of a Website project:
+Example of Website:
 
 ```md
 .
@@ -210,14 +595,14 @@ Example of a Website project:
 ├── authentication
 │   ├── login.html
 │   ├── register.html
-│   └── reset-password.html
-└── pages
-    ├── index.html
-    ├── about.html
-    └── contact.html
+│   └── password.html
+├── pages
+│   ├── index.html
+│   ├── about.html
+│   └── contact.html
 ```
 
-Example of a C project:
+Example of C:
 
 ```md
 .
@@ -231,7 +616,7 @@ Example of a C project:
 │   ├── authentication
 │   │   ├── login.c
 │   │   ├── register.c
-│   │   └── reset_password.c
+│   │   └── password.c
 │   ├── blog
 │   │   ├── blog.c
 │   │   └── post.c
@@ -240,14 +625,13 @@ Example of a C project:
 │   │   └── product.c
 │   ├── menu.c
 │   └── main.c
-└── Makefile
 ```
 
-### 1.6. Task-based Layout
+#### 1.3.7. Task-based Structure
 
-In task-based layout, files are organized according to the tasks they are used for. For example, all files related to design might be grouped together, while all files related to development might be grouped together in a separate folder. This layout is suitable for projects with many different roles or responsibilities.
+In task-based structure, files are organized according to the tasks they are used for. For example, all files related to design might be grouped together, while all files related to development might be grouped together in a separate folder. This layout is suitable for projects with many different roles or responsibilities.
 
-Example of a Website project:
+Example of Website:
 
 ```md
 .
@@ -266,17 +650,17 @@ Example of a Website project:
 │   │   └── style.css
 │   └── js
 │       └── script.js
-└── content
-    ├── copy
-    │   ├── homepage.txt
-    │   ├── about.txt
-    │   └── contact.txt
-    └── images
-        ├── logo.png
-        └── background.jpg
+├── content
+│   ├── copy
+│   │   ├── homepage.txt
+│   │   ├── about.txt
+│   │   └── contact.txt
+│   └── images
+│       ├── logo.png
+│       └── background.jpg
 ```
 
-Example of a C project:
+Example of C:
 
 ```md
 .
@@ -313,7 +697,6 @@ Example of a C project:
 │   └── images
 │       ├── logo.png
 │       └── background.jpg
-└── Makefile
 ```
 
 ## 2. Principle
@@ -426,3 +809,10 @@ Terminologies are used to describe the various components of a project layout an
 
 - Package
   > A package is a collection of related modules, files, and directories that are grouped together for easy distribution and installation. In many programming languages, packages are used to organize code into reusable and shareable components, and they often have a specific directory structure and naming conventions. Packages can be installed and managed using package managers, which automate the process of downloading and installing dependencies and other required files.
+
+## 5. References
+
+- Sentenz [build systems](../about/build-sytems.md) article.
+- Sentenz [docs as code](../about/docs-as-code.md) article.
+- Sentenz [static site generators](../about/static-site-generators.md) article.
+- Sentenz [data serialization formats](../about/data-serialization-formats.md) article.

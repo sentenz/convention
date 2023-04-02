@@ -284,9 +284,9 @@ This category includes all the files that contain the actual code for the projec
   ```md
   project/
   ├── tests/
-  │   ├── test_main.py
-  │   ├── test_module1.py
-  │   └── test_module2.py
+  │   ├── main_test.py
+  │   ├── module1_test.py
+  │   └── module2_test.py
   ```
 
 #### 1.2.4. Configuration
@@ -464,15 +464,15 @@ project/
 │   │   ├── file1.py
 │   │   └── file2.py
 │   └── tests/
-│       ├── test_file1.py
-│       └── test_file2.py
+│       ├── file1_test.py
+│       └── file2_test.py
 ├── module2/
 │   ├── src/
 │   │   ├── file3.py
 │   │   └── file4.py
 │   └── tests/
-│       ├── test_file3.py
-│       └── test_file4.py
+│       ├── file3_test.py
+│       └── file4_test.py
 ├── docs/
 │   ├── user_guide.pdf
 │   └── technical_specifications.pdf
@@ -501,11 +501,11 @@ project/
 │       └── file4.py
 ├── tests/
 │   ├── module1/
-│   │   ├── test_file1.py
-│   │   └── test_file2.py
+│   │   ├── file1_test.py
+│   │   └── file2_test.py
 │   └── module2/
-│       ├── test_file3.py
-│       └── test_file4.py
+│       ├── file3_test.py
+│       └── file4_test.py
 ├── docs/
 │   ├── user_guide.pdf
 │   └── technical_specifications.pdf
@@ -531,16 +531,16 @@ project/
 │   │   ├── script.js
 │   │   └── style.css
 │   ├── tests/
-│   │   ├── test_index.html
-│   │   └── test_script.js
+│   │   ├── index_test.html
+│   │   └── script_test.js
 │   └── package.json
 ├── backend/
 │   ├── src/
 │   │   ├── database.py
 │   │   └── server.py
 │   ├── tests/
-│   │   ├── test_database.py
-│   │   └── test_server.py
+│   │   ├── database_test.py
+│   │   └── server_test.py
 │   └── requirements.txt
 ├── docs/
 │   ├── user_guide.pdf
@@ -680,7 +680,7 @@ Example of C:
 │   ├── authentication
 │   │   ├── login.c
 │   │   ├── register.c
-│   │   └── reset_password.c
+│   │   └── password.c
 │   ├── blog
 │   │   ├── blog.c
 │   │   └── post.c

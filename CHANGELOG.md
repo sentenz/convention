@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/sentenz/guide/compare/v1.18.0...v1.19.0) (2023-04-02)
+
+
+### Features
+
+* **about:** create an article about `cryptography` with ChatGPT ([#195](https://github.com/sentenz/guide/issues/195)) ([d2dc635](https://github.com/sentenz/guide/commit/d2dc6356070c0dc429de4abb91986239c4831c06)), closes [#194](https://github.com/sentenz/guide/issues/194) [#42](https://github.com/sentenz/guide/issues/42)
+
 # [1.18.0](https://github.com/sentenz/guide/compare/v1.17.0...v1.18.0) (2023-03-20)
 
 

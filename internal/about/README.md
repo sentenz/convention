@@ -15,6 +15,7 @@ Best practices, articles of interest and general topics.
 - [Continuous Pipelines](continuous-pipelines.md)
 - [CRLF vs LF](crlf-vs-lf.md)
 - [Cross Compiler](cross-compiler.md)
+- [Cryptography](cryptography.md)
 - [Data Management](data-management.md)
 - [Data Serialization Formats](data-serialization-formats.md)
 - [Database](database.md)

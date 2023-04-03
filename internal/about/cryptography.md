@@ -8,7 +8,7 @@ The ciphertext can only be read by someone who possesses the key used to encrypt
   - [1.1. Symmetric Cryptography](#11-symmetric-cryptography)
   - [1.2. Asymmetric Cryptography](#12-asymmetric-cryptography)
   - [1.3. Hash Functions](#13-hash-functions)
-    - [1.3.1. Password Hash](#131-password-hash)
+    - [1.3.1. Password Hashing Algorithms](#131-password-hashing-algorithms)
   - [1.4. Steganography](#14-steganography)
   - [1.5. Cryptanalysis](#15-cryptanalysis)
   - [1.6. Cryptographic Protocols](#16-cryptographic-protocols)
@@ -39,11 +39,44 @@ Cryptography encompasses a wide range of techniques and protocols that are used 
 
 ### 1.1. Symmetric Cryptography
 
-Symmetric cryptography, also known as secret key cryptography, uses the same key for both encryption and decryption. The key is kept secret between the sender and receiver, and the encryption process is fast and efficient. However, the main challenge is to securely share the key between the sender and receiver. Some popular symmetric encryption algorithms include `Advanced Encryption Standard (AES)`, `Data Encryption Standard (DES)`, `Triple Data Encryption Standard (3DES)`, and `Blowfish`.
+Symmetric cryptography, also known as Secret Key Cryptography, uses the same key for both encryption and decryption. The key is kept secret between the sender and receiver, and the encryption process is fast and efficient.
+
+In symmetric cryptography, the plaintext is transformed into ciphertext using an algorithm that applies the secret key to the plaintext. The same secret key is then used to decrypt the ciphertext back into plaintext.
+
+The challenge is to securely share the key between the sender and receiver, which can be difficult to manage in large-scale systems.
+
+Common symmetric cryptography algorithms:
+
+- Data Encryption Standard (DES)
+  > An older block cipher that uses a 56-bit key.
+  >
+  > NOTE Considered unsecure.
+
+- Advanced Encryption Standard (AES)
+  > A widely-used block cipher that supports key sizes of 128, 192, or 256 bits.
+
+- Triple DES (3DES)
+  > A block cipher that applies DES three times to each block of plaintext, using two or three keys.
+
+- Blowfish
+  > A block cipher that supports key sizes of up to 448 bits and is designed to be computationally efficient.
 
 ### 1.2. Asymmetric Cryptography
 
-Asymmetric cryptography, also known as public key cryptography, uses two different keys for encryption and decryption. The public key is used for encryption, and the private key is used for decryption. The private key is kept secret by the owner, while the public key can be shared publicly. Asymmetric cryptography is slower than symmetric cryptography but is more secure, as the private key is never shared. Some popular asymmetric encryption algorithms include `RSA` (named after the inventors Ron Rivest, Adi Shamir, and Leonard Adleman) and `Elliptic Curve Cryptography (ECC)`.
+Asymmetric cryptography, also known as public key cryptography, uses two different keys for encryption and decryption. The public key is used for encryption, and the private key is used for decryption. The private key is kept secret by the owner, while the public key can be shared publicly. This allows for secure communication between two parties without the need for a shared secret key.
+
+The disadvantage of asymmetric cryptography is its computational complexity, but is more secure, as the private key is never shared.
+
+Common asymmetric cryptography algorithms:
+
+- RSA (Rivest, Shamir, and Adleman)
+  > A widely-used algorithm that is based on the difficulty of factoring large prime numbers.
+
+- Elliptic Curve Cryptography (ECC)
+  > A newer algorithm that is based on the mathematics of elliptic curves and is designed to be more efficient than RSA.
+
+- Diffie-Hellman
+  > A key exchange algorithm that allows two parties to securely share a secret key over an insecure channel.
 
 ### 1.3. Hash Functions
 
@@ -84,45 +117,59 @@ Family of hash functions:
 Features of hash functions:
 
 - Deterministic
-  >  Given the same input, a hash function always produces the same output.
+  > Given the same input, a hash function always produces the same output.
 
 - Fixed Output Size
-  >  The output of a hash function is always of a fixed size, regardless of the input size.
+  > The output of a hash function is always of a fixed size, regardless of the input size.
 
 - One-Way
-  >  It should be computationally infeasible to determine the input message from the hash value.
+  > It should be computationally infeasible to determine the input message from the hash value.
 
 - Collision Resistance
-  >  It should be computationally infeasible to find two input messages that produce the same hash value.
+  > It should be computationally infeasible to find two input messages that produce the same hash value.
 
 - Uniformity
-  >  A small change in the input message should produce a significant change in the hash value.
+  > A small change in the input message should produce a significant change in the hash value.
 
 - Non-Reversibility
-  >  It should be computationally infeasible to determine the input message from the hash value.
+  > It should be computationally infeasible to determine the input message from the hash value.
 
-#### 1.3.1. Password Hash
+#### 1.3.1. Password Hashing Algorithms
 
-Password hash functions are a specific type of hash function that are designed to store and verify passwords securely. Passwords are often the first line of defense in protecting user accounts and sensitive information, so it is important to store them securely.
+Password hashing algorithms are a specific type of hash function that are designed to store and verify passwords securely. Passwords are often the first line of defense in protecting user accounts and sensitive information, so it is important to store them securely.
 
-Commonly used password hash functions include `bcrypt`, `scrypt`, `PBKDF2`, and `Argon2`. These functions are designed to be slow and computationally intensive, making them more difficult to crack through brute-force attacks. It is important to choose a strong password hash function and to use a unique salt for each user's password to ensure maximum security.
+Password hashing algorithms are designed to be slow and computationally intensive, making them more difficult to crack through brute-force attacks. It is important to choose a strong password hash function and to use a unique salt for each user's password to ensure maximum security. The purpose of password hashing is to protect user passwords in case a database containing the password hashes is compromised.
 
-Features of password hash:
+Common password hashing algorithms:
 
-- Salted
-  >  Password hash functions use a salt, which is a random value added to the password before hashing. This helps prevent attackers from using precomputed hash values, such as rainbow tables, to quickly crack passwords.
+- PBKDF2
+  > PBKDF2 (Password-Based Key Derivation Function 2) is a key derivation function that is used to securely hash passwords. It is based on a hash function, such as SHA-1 or SHA-256, and uses a salt value and an iteration count to produce a derived key from a password. While PBKDF2 is considered secure, it is not as memory-hard as newer algorithms like Bcrypt, Scrypt, and Argon2.
+
+- Bcrypt
+  > Bcrypt is a password hashing algorithm that is designed to be slow and computationally expensive. Bcrypt is resistant to brute-force attacks and dictionary attacks, and is considered a secure choice for password hashing.
+
+- Scrypt
+  > Scrypt is password hashing algorithm that is designed to be memory-hard. It uses a large amount of memory to make it more difficult to implement parallel attacks, and is resistant to attacks using ASICs or GPUs. Scrypt is considered more secure than bcrypt, but is also slower and more memory-intensive.
+
+- Argon2
+  > Argon2 is a password hashing algorithm that was selected as the winner of the Password Hashing Competition in 2015. It is designed to be both memory-hard and CPU-hard, and is considered to be the most secure password hashing algorithm currently available.
+
+Features of password hashing algorithms:
+
+- Salt
+  > Password hashing algorithms use a salt, which is a random value added to the password before hashing. This helps prevent attackers from using precomputed hash values, such as rainbow tables, to quickly crack passwords.
 
 - Slow
-  >  Password hash functions are intentionally slow to make brute-force attacks more difficult. This slows down attackers who try to guess passwords by hashing them repeatedly until they find a match.
+  > Password hashing algorithms are intentionally slow to make brute-force attacks more difficult. This slows down attackers who try to guess passwords by hashing them repeatedly until they find a match.
 
 - Strong
-  >  Blowfish, SHA-256 or SHA-3 are commonly used for password storage, since MD5 and SHA-1 are considered insecure.
+  > Blowfish, SHA-256 or SHA-3 are commonly used for password storage, since MD5 and SHA-1 are considered insecure.
 
 - Non-Reversible
-  >  Password hash functions are non-reversible, meaning that it is computationally infeasible to determine the password from the hash value. This helps ensure that even if an attacker gains access to the password hash values, they cannot easily determine the passwords themselves.
+  > Password hashing algorithms are non-reversible, meaning that it is computationally infeasible to determine the password from the hash value. This helps ensure that even if an attacker gains access to the password hash values, they cannot easily determine the passwords themselves.
 
 - Unique
-  >  Password hash functions generate unique hash values for each password. This helps ensure that even if two users have the same password, their hash values will be different, making it more difficult for an attacker to attack multiple accounts at once.
+  > Password hashing algorithms generate unique hash values for each password. This helps ensure that even if two users have the same password, their hash values will be different, making it more difficult for an attacker to attack multiple accounts at once.
 
 ### 1.4. Steganography
 
@@ -134,7 +181,26 @@ Cryptanalysis is the study of methods to break cryptographic systems. Cryptanaly
 
 ### 1.6. Cryptographic Protocols
 
-Cryptographic protocols are a set of rules and procedures used to secure communication between two or more parties. Cryptographic protocols combine various cryptographic techniques, such as encryption, digital signatures, and hash functions, to provide secure communication. Some popular cryptographic protocols include `Transport Layer Security (TLS)`, `Secure Sockets Layer (SSL)`, and `Pretty Good Privacy (PGP)`.
+Cryptographic protocols are sets of rules and procedures that govern the secure exchange of information between parties. Cryptographic protocols are used in a wide range of applications, including secure communication, authentication, key exchange, and digital signatures.
+
+The design and implementation of these protocols can be complex, and there have been instances where vulnerabilities in protocols have been discovered and exploited by attackers. It is important to use trusted and well-vetted protocols, and to regularly update and patch systems to address any known vulnerabilities.
+
+Common cryptographic protocols:
+
+- Secure Sockets Layer (SSL)/Transport Layer Security (TLS)
+  > These protocols are used to secure communication between clients and servers. They provide encryption and authentication to ensure that the information being transmitted is protected from eavesdropping and tampering.
+
+- Internet Protocol Security (IPsec)
+  > This protocol is used to secure communication between network devices, such as routers and switches. It provides authentication and encryption to ensure that the information being transmitted is protected from attacks such as spoofing and man-in-the-middle attacks.
+
+- Kerberos
+  > This protocol is used for authentication in a network environment. It provides a secure way for users to authenticate to network services and systems without transmitting passwords in plain text.
+
+- Pretty Good Privacy (PGP)
+  > This protocol is used for secure email communication. It provides encryption and digital signatures to ensure that emails are protected from eavesdropping and tampering.
+
+- Secure Multipurpose Internet Mail Extensions (S/MIME)
+  > This protocol is also used for secure email communication. It provides encryption and digital signatures to ensure that emails are protected from eavesdropping and tampering, and also provides a way to verify the identity of the sender.
 
 ### 1.7. Homomorphic Encryption
 
@@ -155,22 +221,22 @@ Key management is the process of generating, storing, and distributing cryptogra
 Categories of key management:
 
 - Key Generation
-  >  This involves creating cryptographic keys using a secure random number generator. The keys should be of sufficient length and complexity to resist attacks.
+  > This involves creating cryptographic keys using a secure random number generator. The keys should be of sufficient length and complexity to resist attacks.
 
 - Key Distribution
-  >  This involves securely transferring cryptographic keys from the key generator to the users who need them. This may involve using secure channels or protocols, such as Transport Layer Security (TLS), to ensure the confidentiality and integrity of the keys during transit.
+  > This involves securely transferring cryptographic keys from the key generator to the users who need them. This may involve using secure channels or protocols, such as Transport Layer Security (TLS), to ensure the confidentiality and integrity of the keys during transit.
 
 - Key Storage
-  >  This involves storing cryptographic keys securely to prevent unauthorized access. Keys should be stored in a tamper-proof hardware security module (HSM) or a secure software key store. The keys should be protected with strong access controls, such as multi-factor authentication.
+  > This involves storing cryptographic keys securely to prevent unauthorized access. Keys should be stored in a tamper-proof hardware security module (HSM) or a secure software key store. The keys should be protected with strong access controls, such as multi-factor authentication.
 
 - Key Usage
-  >  This involves using cryptographic keys securely in cryptographic operations, such as encryption, decryption, and digital signatures. The keys should be used only for their intended purpose and should be protected from misuse or unauthorized access.
+  > This involves using cryptographic keys securely in cryptographic operations, such as encryption, decryption, and digital signatures. The keys should be used only for their intended purpose and should be protected from misuse or unauthorized access.
 
 - Key Revocation
-  >  This involves revoking cryptographic keys that are no longer needed or that may have been compromised. Keys should be revoked as soon as possible to prevent their use in future attacks. Revocation should be done securely to ensure that the revoked keys cannot be used again.
+  > This involves revoking cryptographic keys that are no longer needed or that may have been compromised. Keys should be revoked as soon as possible to prevent their use in future attacks. Revocation should be done securely to ensure that the revoked keys cannot be used again.
 
 - Key Recovery
-  >  This involves recovering cryptographic keys in case they are lost or damaged. This may involve using backup keys or key recovery agents to recreate the lost keys.
+  > This involves recovering cryptographic keys in case they are lost or damaged. This may involve using backup keys or key recovery agents to recreate the lost keys.
 
 ### 1.11. Cryptographic Hardware
 
@@ -187,13 +253,13 @@ Key exchange is the process of securely sharing cryptographic keys between two o
 Protocols for key exchange:
 
 - Diffie-Hellman Key Exchange
-  >  This is a popular key exchange protocol that allows two parties to establish a shared secret key over an insecure communication channel.
+  > This is a popular key exchange protocol that allows two parties to establish a shared secret key over an insecure communication channel.
 
 - Elliptic Curve Diffie-Hellman (ECDH)
-  >  This is a variant of the Diffie-Hellman Key Exchange that uses elliptic curves to generate the shared secret key.
+  > This is a variant of the Diffie-Hellman Key Exchange that uses elliptic curves to generate the shared secret key.
 
 - RSA Key Exchange
-  >  This is a key exchange protocol based on the RSA encryption algorithm.
+  > This is a key exchange protocol based on the RSA encryption algorithm.
 
 ### 1.14. Public Key Infrastructure
 
@@ -202,16 +268,16 @@ Public Key Infrastructure (PKI) is a set of technologies, protocols, and service
 PKI functions:
 
 - Certificate authority (CA)
-  >  A trusted third-party organization that issues digital certificates to verify the identity of users, devices, or services. The CA uses its private key to sign the digital certificate, which contains the public key of the certificate holder.
+  > A trusted third-party organization that issues digital certificates to verify the identity of users, devices, or services. The CA uses its private key to sign the digital certificate, which contains the public key of the certificate holder.
 
 - Registration authority (RA)
-  >  An entity that verifies the identity of the certificate holder before issuing a digital certificate on behalf of the CA.
+  > An entity that verifies the identity of the certificate holder before issuing a digital certificate on behalf of the CA.
 
 - Certificate management
-  >  The process of issuing, renewing, revoking, and managing digital certificates.
+  > The process of issuing, renewing, revoking, and managing digital certificates.
 
 - Certificate revocation
-  >  The process of invalidating a digital certificate before its expiration date, usually due to a compromise of the private key or other security concerns.
+  > The process of invalidating a digital certificate before its expiration date, usually due to a compromise of the private key or other security concerns.
 
 ### 1.15. Random Number Generation
 
@@ -220,10 +286,10 @@ Random number generation is a crucial component of cryptography, used in various
 Types of random number generators:
 
 - Pseudo-Random Number Generators (PRNGs)
-  >  These are algorithms that generate a sequence of numbers that appear to be random but are actually generated using a deterministic process. PRNGs use a `seed` value as the starting point to generate the sequence of numbers. While PRNGs are not truly random, they are used widely in various applications, such as simulations and games, where the sequence of numbers generated only needs to be unpredictable and not truly random.
+  > These are algorithms that generate a sequence of numbers that appear to be random but are actually generated using a deterministic process. PRNGs use a `seed` value as the starting point to generate the sequence of numbers. While PRNGs are not truly random, they are used widely in various applications, such as simulations and games, where the sequence of numbers generated only needs to be unpredictable and not truly random.
 
 - True Random Number Generators (TRNGs)
-  >  These generate a sequence of numbers that are truly random and unpredictable. TRNGs use physical sources of randomness, such as atmospheric noise, thermal noise, or radioactive decay, to generate random numbers. TRNGs are typically slower and more complex than PRNGs, but they provide a higher level of security.
+  > These generate a sequence of numbers that are truly random and unpredictable. TRNGs use physical sources of randomness, such as atmospheric noise, thermal noise, or radioactive decay, to generate random numbers. TRNGs are typically slower and more complex than PRNGs, but they provide a higher level of security.
 
 ### 1.16. Side-Channel Attacks
 
@@ -362,77 +428,77 @@ Best practices ensure the security of cryptographic systems and protect against 
 
 ## 4. Terminology
 
-Cryptography
+- Cryptography
   > The practice of secure communication in the presence of third parties.
 
 - Encryption
   > The process of converting plaintext into ciphertext to make it unreadable to unauthorized parties.
 
 - Decryption
-  >  The process of converting ciphertext back into plaintext using a decryption key.
+  > The process of converting ciphertext back into plaintext using a decryption key.
 
 - Cryptosystem
-  >  A system used for encryption and decryption of messages.
+  > A system used for encryption and decryption of messages.
 
 - Key
-  >  A secret value used to encrypt or decrypt a message.
+  > A secret value used to encrypt or decrypt a message.
 
 - Symmetric Key Cryptography
-  >  A type of cryptography where the same key is used for encryption and decryption.
+  > A type of cryptography where the same key is used for encryption and decryption.
 
 - Asymmetric Key Cryptography
-  >  A type of cryptography where different keys are used for encryption and decryption.
+  > A type of cryptography where different keys are used for encryption and decryption.
 
 - Public Key Cryptography
-  >  A type of asymmetric cryptography where a public key is used for encryption and a private key is used for decryption.
+  > A type of asymmetric cryptography where a public key is used for encryption and a private key is used for decryption.
 
 - Private Key Cryptography
-  >  A type of asymmetric cryptography where a private key is used for encryption and a public key is used for decryption.
+  > A type of asymmetric cryptography where a private key is used for encryption and a public key is used for decryption.
 
 - Hash Function
-  >  A mathematical function that converts an input into a fixed-size output called a hash value.
+  > A mathematical function that converts an input into a fixed-size output called a hash value.
 
 - Digital Signature
-  >  A cryptographic technique used to ensure the authenticity, integrity, and non-repudiation of digital messages or documents.
+  > A cryptographic technique used to ensure the authenticity, integrity, and non-repudiation of digital messages or documents.
 
 - Certificate
-  >  A digital document that contains information about the identity of a person or organization and their public key.
+  > A digital document that contains information about the identity of a person or organization and their public key.
 
 - SSL/TLS
-  >  Secure Sockets Layer/Transport Layer Security, a protocol used for secure communication over the internet.
+  > Secure Sockets Layer/Transport Layer Security, a protocol used for secure communication over the internet.
 
 - Key Exchange
-  >  The process of securely exchanging keys between two parties over an insecure channel.
+  > The process of securely exchanging keys between two parties over an insecure channel.
 
 - Brute Force Attack
-  >  A type of attack where an attacker tries all possible combinations of keys until the correct key is found.
+  > A type of attack where an attacker tries all possible combinations of keys until the correct key is found.
 
 - Man-in-the-Middle Attack
-  >  An attack where an attacker intercepts communication between two parties and can eavesdrop, modify, or manipulate the messages.
+  > An attack where an attacker intercepts communication between two parties and can eavesdrop, modify, or manipulate the messages.
 
 - Side-Channel Attack
-  >  An attack where an attacker exploits weaknesses in the physical implementation of a cryptosystem, such as measuring power consumption or electromagnetic radiation.
+  > An attack where an attacker exploits weaknesses in the physical implementation of a cryptosystem, such as measuring power consumption or electromagnetic radiation.
 
 - Digital Certificate
-  >  A digital document that contains information about the identity of a person, organization, or device, and their public key. Digital certificates are used for authentication and secure communication over the internet.
+  > A digital document that contains information about the identity of a person, organization, or device, and their public key. Digital certificates are used for authentication and secure communication over the internet.
 
 - Cryptanalysis
-  >  The study of cryptographic systems with the goal of breaking them or finding weaknesses that can be exploited.
+  > The study of cryptographic systems with the goal of breaking them or finding weaknesses that can be exploited.
 
 - One-time Pad
-  >  A type of encryption where a random key is used only once to encrypt a message. The one-time pad is considered unbreakable if used correctly.
+  > A type of encryption where a random key is used only once to encrypt a message. The one-time pad is considered unbreakable if used correctly.
 
 - Key Management
-  >  The process of generating, storing, distributing, and revoking cryptographic keys.
+  > The process of generating, storing, distributing, and revoking cryptographic keys.
 
 - Message Authentication Code (MAC)
-  >  A short piece of information that is used to verify the authenticity and integrity of a message.
+  > A short piece of information that is used to verify the authenticity and integrity of a message.
 
 - Nonce
-  >  A random number used only once in a cryptographic protocol to prevent replay attacks.
+  > A random number used only once in a cryptographic protocol to prevent replay attacks.
 
 - Salting
-  >  The process of adding a random value to data before hashing it, to prevent attacks such as rainbow table attacks.
+  > The process of adding a random value to data before hashing it, to prevent attacks such as rainbow table attacks.
 
 - Rainbow Tables
-  >  A type of precomputed hash table used in cryptography to crack password hashes.
+  > A type of precomputed hash table used in cryptography to crack password hashes.

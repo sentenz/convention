@@ -6,13 +6,18 @@ The purpose of ADRs is to ensure that important architectural decisions are prop
 
 ADRs are a valuable tool for managing the complexity of software development, providing a structure to document and communicate architectural decisions. ADRs establish a clear understanding of the architecture and ensure that important decisions are properly recorded and communicated, ultimately leading to more effective and efficient development processes.
 
-- [1. Structure](#1-structure)
+- [1. Category](#1-category)
+  - [1.1. Structure](#11-structure)
+  - [1.2. Naming Convention](#12-naming-convention)
 - [2. Principle](#2-principle)
 - [3. Best Practice](#3-best-practice)
 - [4. Terminology](#4-terminology)
 - [5. References](#5-references)
 
-## 1. Structure
+
+## 1. Category
+
+### 1.1. Structure
 
 The structure of an ADR follows a standardized format to ensure that the key information is captured and communicated effectively.
 
@@ -71,6 +76,40 @@ The Markdown template includes the key sections typically included in an ADR, an
 ## References
 [List any sources that were consulted or referenced in making the decision.]
 ```
+
+### 1.2. Naming Convention
+
+A naming convention for ADRs helps to organize and find specific records in a repository Important aspect of naming convention for ADRs is consistency.
+
+- Identifier Sequence
+
+  The unique identifier is a sequential number, which ensures that each ADR has a unique filename. The title should be a brief and descriptive summary of the decision, with words separated by hyphens.
+
+  ```txt
+  [unique-identifier]-[title].md
+  ```
+
+  An ADR file for a decision to use a microservices architecture might be named:
+
+  ```txt
+  0001-use-microservices-architecture.md
+  ```
+
+  The numbering system allows for easy tracking and sorting of ADRs in chronological order.
+
+- Date Format
+
+  In this convention, the date is written in the ISO 8601 format of year-month-day, which ensures that the files are sorted in chronological order. The short description should be a brief and meaningful summary of the decision, with words separated by hyphens.
+
+  ```txt
+  [YYYYMMDD]-[title].md
+  ```
+
+  For example, an ADR file for a decision to use a RESTful API design might be named:
+
+  ```txt
+  20230423-use-restful-api-design.md
+  ```
 
 ## 2. Principle
 
@@ -149,3 +188,4 @@ The Markdown template includes the key sections typically included in an ADR, an
 - Github [ADR](https://github.com/adr) project.
 - Github [ADR](https://github.com/joelparkerhenderson/architecture_decision_record) repository.
 - Google [ADR](https://cloud.google.com/architecture/architecture-decision-records?hl=en) article.
+- Sentenz [ISO 8601](../convention/iso-8601.md) article.

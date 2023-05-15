@@ -50,7 +50,7 @@ Common symmetric cryptography algorithms:
 - Data Encryption Standard (DES)
   > An older block cipher that uses a 56-bit key.
   >
-  > NOTE Considered unsecure.
+  > NOTE Considered insecure and should not be used.
 
 - Advanced Encryption Standard (AES)
   > A widely-used block cipher that supports key sizes of 128, 192, or 256 bits.

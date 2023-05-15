@@ -332,3 +332,4 @@ By understanding these key terminology related to Docs as Code, teams can better
 ## 5. References
 
 - Sentenz [static site generators](../about/static-site-generators.md) article.
+- Sentenz [comment](../about/comment.md) article.

@@ -26,8 +26,8 @@ Project layout refers to the arrangement of files, folders, and other resources 
     - [1.2.8. Artifacts](#128-artifacts)
   - [1.3. Structure Types](#13-structure-types)
     - [1.3.1. Flat Structure](#131-flat-structure)
-    - [1.3.2. Modular Structure](#132-modular-structure)
-    - [1.3.3. Hierarchical Structure](#133-hierarchical-structure)
+    - [1.3.2. Hierarchical Structure](#132-hierarchical-structure)
+    - [1.3.3. Modular Structure](#133-modular-structure)
     - [1.3.4. Layered Structure](#134-layered-structure)
     - [1.3.5. Component-based Structure](#135-component-based-structure)
     - [1.3.6. Functional-based Structure](#136-functional-based-structure)
@@ -421,11 +421,11 @@ This category includes any external libraries or dependencies that are required 
   ```md
   project/
   ├── build/
-  │   ├── binaries/
+  │   ├── binary/
   │   │   ├── app-linux-amd64
   │   │   ├── app-windows-amd64.exe
   │   │   └── app-darwin-amd64
-  │   ├── libraries/
+  │   ├── library/
   │   │   ├── liblinux-amd64.a
   │   │   ├── windows-amd64.dll
   │   │   └── app-darwin-amd64
@@ -438,265 +438,498 @@ There are several types of project layout structures that can be used, depending
 
 #### 1.3.1. Flat Structure
 
-In a flat structure, all the files and folders are organized in a single directory, without any subdirectories. This can be a good option for small projects with only a few files, but it can become unwieldy for larger projects.
+In a flat structure, all the files and folders are placed in the root directory, without any subdirectories.
 
-Example:
+This structure is typically used for small projects that don't require much organization or separation of concerns.
 
-```md
-project/
-├── file1.py
-├── file2.py
-├── script1.sh
-├── script2.sh
-└── data.csv
+```markdown
+/project
+├── file1.js
+├── file2.js
+├── file3.js
+└── main.js
 ```
 
-#### 1.3.2. Modular Structure
+Example:
 
-In a modular structure, the project is divided into modular components or modules, with each module containing its own set of files, resources and folders. This can be a commonly approach for larger projects that require a high degree of modularity and maintainability.
+```markdown
+project/
+├── component1.js
+├── component2.js
+├── service1.js
+├── service2.js
+├── util1.js
+├── util2.js
+├── image1.png
+├── image2.png
+├── style1.css
+├── style2.css
+├── webpack.config.js
+├── database.config.js
+├── subcomponent1.test.js
+├── subcomponent2.test.js
+├── README.md
+├── API.md
+├── .gitignore
+├── LICENSE
+└── ...
+```
+
+In the example, the project directory contains all project files in a flat structure without any subdirectories. All components, services, utilities, assets, configuration files, test files, and documentation files are placed directly in the root directory of the project.
+
+#### 1.3.2. Hierarchical Structure
+
+In a hierarchical structure, files and folders are organized into a tree-like structure, with subdirectories that represent different levels of abstraction in the project.
+
+The hierarchical structure allows for greater organization and separation of concerns, which can make it easier to manage and scale a project as it grows in size and complexity. The hierarchical structure organizes project resources based on their functional or logical relationships, making it easier to navigate and understand the project's structure. However, it can also be more challenging to navigate and understand for new contributors to the project.
+
+Hierarchical structure promotes modularity, reusability, and maintainability by separating components, services, utilities, and test files into distinct directories.
+
+```markdown
+/project
+├── /src
+│   ├── /app
+│   │   ├── server.js
+│   │   └── server.test.js
+│   ├── /controllers
+│   │   ├── file1.js
+│   │   ├── file2.js
+│   │   └── file3.test.js
+│   ├── /models
+│   │   ├── file4.js
+│   │   ├── file5.js
+│   │   └── file6.test.js
+│   └── /routes
+│       ├── file7.js
+│       ├── file8.js
+│       └── file9.test.js
+│
+├── /test
+│   ├── integration.test.js
+│   └── e2e.test.js
+│
+├── /config
+│   ├── config1.js
+│   └── config2.js
+```
 
 Example:
 
-```md
+```markdown
 project/
-├── module1/
-│   ├── src/
-│   │   ├── file1.py
-│   │   └── file2.py
-│   └── tests/
-│       ├── file1_test.py
-│       └── file2_test.py
-├── module2/
-│   ├── src/
-│   │   ├── file3.py
-│   │   └── file4.py
-│   └── tests/
-│       ├── file3_test.py
-│       └── file4_test.py
+. `Hierarchical Structure`
+├── src/
+│   ├── components/
+│   │   ├── component1.js
+│   │   ├── component2.js
+│   │   └── ...
+│   ├── services/
+│   │   ├── service1.js
+│   │   ├── service2.js
+│   │   └── ...
+│   ├── utils/
+│   │   ├── util1.js
+│   │   ├── util2.js
+│   │   └── ...
+│   └── index.js
+│
+├── config/
+│   ├── webpack.config.js
+│   ├── database.config.js
+│   └── ...
+│
+├── tests/
+│   ├── components/
+│   │   ├── component1.test.js
+│   │   ├── component2.test.js
+│   │   └── ...
+│   ├── services/
+│   │   ├── service1.test.js
+│   │   ├── service2.test.js
+│   │   └── ...
+│   └── utils/
+│       ├── util1.test.js
+│       ├── util2.test.js
+│       └── ...
+│
 ├── docs/
-│   ├── user_guide.pdf
-│   └── technical_specifications.pdf
-├── data/
-│   ├── dataset1.csv
-│   └── dataset2.csv
-└── scripts/
-    ├── build_script.sh
-    └── deploy_script.sh
+│   ├── README.md
+│   ├── API.md
+│   └── ...
+│
+├── assets/
+│   ├── images/
+│   │   ├── image1.png
+│   │   ├── image2.png
+│   │   └── ...
+│   ├── styles/
+│   │   ├── style1.css
+│   │   ├── style2.css
+│   │   └── ...
+│   └── ...
+│
+├── .gitignore
+├── LICENSE
+└── ...
 ```
 
-#### 1.3.3. Hierarchical Structure
+In the example, the project directory contains various subdirectories organized in a hierarchical structure:
 
-In a hierarchical structure, files and folders are organized into a tree-like structure, with subdirectories containing related files. This is a common structure for many types of projects, and can help to keep files organized and easy to find.
+- The `src/` directory contains the main source code files.
+  - The `components/` directory holds subdirectories for each component, with further subdirectories for their respective subcomponents.
+  - The `services/` directory contains subdirectories for each service, with further subdirectories for their respective submodules.
+  - The `utils/` directory includes utility files.
+- The `config/` directory contains configuration files for the project, such as webpack and database configurations.
+- The `tests/` directory mirrors the structure of the `src/` directory, with separate subdirectories for components, services, and corresponding test files for subcomponents and submodules.
+- The `docs/` directory holds project documentation, including a `README.md` file, an `API.md` file, and potentially other documentation files.
+- The `assets/` directory consists of subdirectories for images, stylesheets, and other project-related assets.
+- The root directory also includes files like `.gitignore`, `LICENSE`, and other project-specific files.
+
+#### 1.3.3. Modular Structure
+
+A modular structure organizes files and folders into modules, which are self-contained units of code that can be imported and used in other parts of the project. The modular structure allows for better organization and separation of concerns, making it easier to maintain and expand the project over time. Each module can be developed and tested separately, and changes to one module are less likely to affect other parts of the project.
+
+The modular structure helps in organizing the project's codebase into logical units, promoting reusability, maintainability, and testability. This structure is useful for medium-sized projects with multiple components that have distinct responsibilities and functionality.
+
+```markdown
+/project
+├── /module1
+│   ├── file1.js
+│   ├── file2.js
+│   └── file3.test.js
+│
+├── /module2
+│   ├── file4.js
+│   ├── file5.js
+│   └── file6.test.js
+│
+├── /module3
+│   ├── file7.js
+│   ├── file8.js
+│   └── file9.test.js
+│
+└── main.js
+```
 
 Example:
 
-```md
+```markdown
 project/
 ├── src/
+│   . `Modular Structure`
 │   ├── module1/
-│   │   ├── file1.py
-│   │   └── file2.py
-│   └── module2/
-│       ├── file3.py
-│       └── file4.py
+│   │   ├── components/
+│   │   │   ├── component1.js
+│   │   │   ├── component2.js
+│   │   │   └── ...
+│   │   ├── services/
+│   │   │   ├── service1.js
+│   │   │   ├── service2.js
+│   │   │   └── ...
+│   │   ├── utils/
+│   │   │   ├── util1.js
+│   │   │   ├── util2.js
+│   │   │   └── ...
+│   │   └── index.js
+│   │
+│   ├── module2/
+│   │   ├── components/
+│   │   │   ├── component1.js
+│   │   │   ├── component2.js
+│   │   │   └── ...
+│   │   ├── services/
+│   │   │   ├── service1.js
+│   │   │   ├── service2.js
+│   │   │   └── ...
+│   │   ├── utils/
+│   │   │   ├── util1.js
+│   │   │   ├── util2.js
+│   │   │   └── ...
+│   │   │
+│   │   └── index.js
+│   │
+│   └── main.js
+│
 ├── tests/
 │   ├── module1/
-│   │   ├── file1_test.py
-│   │   └── file2_test.py
-│   └── module2/
-│       ├── file3_test.py
-│       └── file4_test.py
+│   │   ├── components/
+│   │   │   ├── component1.test.js
+│   │   │   ├── component2.test.js
+│   │   │   └── ...
+│   │   ├── services/
+│   │   │   ├── service1.test.js
+│   │   │   ├── service2.test.js
+│   │   │   └── ...
+│   │   └── utils/
+│   │       ├── util1.test.js
+│   │       ├── util2.test.js
+│   │       └── ...
+│   │
+│   ├── module2/
+│   │   ├── components/
+│   │   │   ├── component1.test.js
+│   │   │   ├── component2.test.js
+│   │   │   └── ...
+│   │   ├── services/
+│   │   │   ├── service1.test.js
+│   │   │   ├── service2.test.js
+│   │   │   └── ...
+│   │   └── utils/
+│   │       ├── util1.test.js
+│   │       ├── util2.test.js
+│   │       └── ...
+│   └── main.test.js
+│
 ├── docs/
-│   ├── user_guide.pdf
-│   └── technical_specifications.pdf
-├── data/
-│   ├── dataset1.csv
-│   └── dataset2.csv
-└── scripts/
-    ├── build_script.sh
-    └── deploy_script.sh
+│   ├── README.md
+│   ├── API.md
+│   └── ...
+│
+├── config/
+│   ├── webpack.config.js
+│   ├── database.config.js
+│   └── ...
+│
+├── assets/
+│   ├── images/
+│   │   ├── image1.png
+│   │   ├── image2.png
+│   │   └── ...
+│   ├── styles/
+│   │   ├── style1.css
+│   │   ├── style2.css
+│   │   └── ...
+│   └── ...
+│
+├── .gitignore
+├── LICENSE
+└── ...
 ```
+
+In the example, the project directory contains various subdirectories representing different aspects of the project:
+
+- The `src/` directory contains modules (`module1` and `module2`), each with their own set of components, services, utilities, and an `index.js` file.
+- The `tests/` directory mirrors the `src/` directory structure, with corresponding test files for each module component, service, and utility.
+- The `docs/` directory holds project documentation, including a `README.md` file and an `API.md` file.
+- The `config/` directory contains configuration files for the project, such as webpack configuration and database configuration.
+- The `assets/` directory includes subdirectories for images, stylesheets, and other project-related assets.
+- The `packages/` directory represents external packages or libraries used in the project.
+- The root directory also contains files like `.gitignore`, `LICENSE`, and other project-specific files.
 
 #### 1.3.4. Layered Structure
 
-In a layered structure, the project is organized into layers or tiers, with each layer responsible for a specific part of the project. This can be a good approach for projects that have clear separations between different components or layers, such as a web application with a front-end and back-end layer.
+In a layered structure, files and folders are organized into layers or tiers that represent different levels of abstraction in the project. The layered structure helps in organizing the project codebase based on different responsibilities and concerns, promoting separation of concerns, modularity, and testability. Each layer focuses on specific aspects of the application, making it easier to understand and maintain the code.
+
+This structure is used for larger projects that require more organization and separation of concerns, and is often used in enterprise-level applications. The layered structure allows for a high degree of separation of concerns and modularity, which can make it easier to manage and scale a large, complex project. However, it can also be more challenging to navigate and understand for new contributors to the project.
+
+```markdown
+/project
+├── /presentation
+│   ├── /controllers
+│   │   ├── file1.js
+│   │   └── file2.js
+│   ├── /views
+│   │   ├── file3.js
+│   │   └── file4.js
+│   └── /templates
+│       ├── file5.js
+│       └── file6.js
+│
+├── /application
+│   ├── /services
+│   │   ├── file7.js
+│   │   ├── file8.js
+│   │   └── file9.test.js
+│   ├── /usecases
+│   │   ├── file10.js
+│   │   ├── file11.js
+│   │   └── file12.test.js
+│   └── /repositories
+│       ├── file13.js
+│       └── file14.test.js
+│
+├── /domain
+│   ├── /entities
+│   │   ├── file15.js
+│   │   └── file16.js
+│   ├── /objects
+│   │   ├── file17.js
+│   │   └── file18.js
+```
 
 Example:
 
-```md
+```markdown
 project/
-├── frontend/
-│   ├── src/
-│   │   ├── index.html
-│   │   ├── script.js
-│   │   └── style.css
-│   ├── tests/
-│   │   ├── index_test.html
-│   │   └── script_test.js
-│   └── package.json
-├── backend/
-│   ├── src/
-│   │   ├── database.py
-│   │   └── server.py
-│   ├── tests/
-│   │   ├── database_test.py
-│   │   └── server_test.py
-│   └── requirements.txt
+. `Layered Structure`
+├── presentation/
+│   ├── components/
+│   │   ├── component1.js
+│   │   ├── component2.js
+│   │   └── ...
+│   ├── screens/
+│   │   ├── screen1.js
+│   │   ├── screen2.js
+│   │   └── ...
+│   ├── styles/
+│   │   ├── style1.css
+│   │   ├── style2.css
+│   │   └── ...
+│   └── ...
+│
+├── domain/
+│   ├── models/
+│   │   ├── model1.js
+│   │   ├── model2.js
+│   │   └── ...
+│   ├── services/
+│   │   ├── service1.js
+│   │   ├── service2.js
+│   │   └── ...
+│   ├── repositories/
+│   │   ├── repository1.js
+│   │   ├── repository2.js
+│   │   └── ...
+│   └── ...
+│
+├── infrastructure/
+│   ├── database/
+│   │   ├── dbConnection.js
+│   │   ├── models/
+│   │   │   ├── model1Schema.js
+│   │   │   ├── model2Schema.js
+│   │   │   └── ...
+│   │   ├── migrations/
+│   │   │   ├── migration1.js
+│   │   │   ├── migration2.js
+│   │   │   └── ...
+│   │   └── ...
+│   ├── externalAPIs/
+│   │   ├── api1.js
+│   │   ├── api2.js
+│   │   └── ...
+│   ├── services/
+│   │   ├── service1.js
+│   │   ├── service2.js
+│   │   └── ...
+│   └── ...
+│
+├── tests/
+│   ├── presentation/
+│   │   ├── components/
+│   │   │   ├── component1.test.js
+│   │   │   ├── component2.test.js
+│   │   │   └── ...
+│   │   ├── screens/
+│   │   │   ├── screen1.test.js
+│   │   │   ├── screen2.test.js
+│   │   │   └── ...
+│   │   └── ...
+│   ├── domain/
+│   │   ├── models/
+│   │   │   ├── model1.test.js
+│   │   │   ├── model2.test.js
+│   │   │   └── ...
+│   │   ├── services/
+│   │   │   ├── service1.test.js
+│   │   │   ├── service2.test.js
+│   │   │   └── ...
+│   │   ├── repositories/
+│   │   │   ├── repository1.test.js
+│   │   │   ├── repository2.test.js
+│   │   │   └── ...
+│   │   └── ...
+│   └── ...
+│
 ├── docs/
-│   ├── user_guide.pdf
-│   └── technical_specifications.pdf
-├── data/
-│   ├── dataset1.csv
-│   └── dataset2.csv
-└── scripts/
-    ├── build_script.sh
-    └── deploy_script.sh
+│   ├── README.md
+│   ├── API.md
+│   └── ...
+│
+├── .gitignore
+├── LICENSE
+└── ...
 ```
+
+In the example, the project directory contains various subdirectories organized in a layered structure:
+
+- The `presentation/` directory represents the presentation layer, responsible for user interface components, screens, and styles.
+  - The `components/` directory holds individual component files.
+  - The `screens/` directory contains files representing different screens of the application.
+  - The `styles/` directory holds CSS or styling files specific to the presentation layer.
+
+- The `domain/` directory represents the domain layer, which encapsulates the business logic and models of the application.
+  - The `models/` directory includes files representing domain models.
+  - The `services/` directory contains files representing domain services.
+  - The `repositories/` directory holds files representing data repositories or data access objects (DAOs).
+
+- The `infrastructure/` directory represents the infrastructure layer, which includes code related to databases, external APIs, and other infrastructure-related concerns.
+  - The `database/` directory contains files related to database connectivity, schema models, and migrations.
+  - The `externalAPIs/` directory holds files representing integrations with external APIs.
+  - The `services/` directory includes files representing infrastructure-specific services.
+
+- The `tests/` directory mirrors the structure of the respective layers, with separate subdirectories for presentation, domain, and infrastructure tests.
+
+- The `docs/` directory contains project documentation, including a `README.md` file, an `API.md` file, and potentially other documentation files.
+
+- The root directory also includes files like `.gitignore`, `LICENSE`, and other project-specific files.
 
 #### 1.3.5. Component-based Structure
 
-Component-based structure is similar to the modular layout, but it emphasizes the relationships between different components of the project. This layout is commonly used for software development projects.
+The component-based structure promotes reusability, separation of concerns, and modularity by organizing the codebase around components and their related files. It makes it easier to locate and manage components, pages, services, and other project resources.
 
-Example:
-
-```md
-.
-├── authentication
-│   ├── login.py
-│   ├── register.py
-│   └── password.py
-├── blog
-│   ├── blog.py
-│   └── post.py
-├── products
-│   ├── product1.py
-│   └── product2.py
-├── utils
-│   ├── helper.py
-│   └── util.py
+```markdown
+/src
+├── /io
+│   ├── io.h
+│   ├── io.c
+│   └── io_test.c
+├── /math
+│   ├── math.h
+│   ├── math.c
+│   └── math_test.c
+├── /utils
+│   ├── utils.h
+│   ├── utils.c
+│   └── utils_test.c
 ```
 
 #### 1.3.6. Functional-based Structure
 
-In functional-based structure, files are organized according to their function or purpose. For example, all files related to user authentication might be grouped together in one folder. This layout is suitable for projects with many distinct functions or features.
+The function-based structure organizes the codebase around individual functions and features, making it easier to locate and manage specific functionality. It promotes modularity, testability, and the ability to focus on individual functions or features within the project.
 
-Example of Website:
-
-```md
-.
-├── css
-│   ├── style.css
-│   ├── layout.css
-│   └── typography.css
-├── js
-│   ├── scripts.js
-│   ├── menu.js
-│   └── slider.js
-├── authentication
-│   ├── login.html
-│   ├── register.html
-│   └── password.html
-├── pages
-│   ├── index.html
-│   ├── about.html
-│   └── contact.html
-```
-
-Example of C:
-
-```md
-.
-├── src
-│   ├── header
-│   │   ├── constants.h
-│   │   └── structs.h
-│   ├── utils
-│   │   ├── helper.c
-│   │   └── helper.h
-│   ├── authentication
-│   │   ├── login.c
-│   │   ├── register.c
-│   │   └── password.c
-│   ├── blog
-│   │   ├── blog.c
-│   │   └── post.c
-│   ├── products
-│   │   ├── products.c
-│   │   └── product.c
-│   ├── menu.c
-│   └── main.c
+```markdown
+/src
+├── /utils
+│   ├── io.h
+│   ├── io.c
+│   ├── io_test.c
+│   ├── math.h
+│   ├── math.c
+│   ├── math_test.c
+│   ├── utils.h
+│   ├── utils.c
+│   └── utils_test.c
 ```
 
 #### 1.3.7. Task-based Structure
 
-In task-based structure, files are organized according to the tasks they are used for. For example, all files related to design might be grouped together, while all files related to development might be grouped together in a separate folder. This layout is suitable for projects with many different roles or responsibilities.
+The task-based structure organizes the project's codebase and resources around specific tasks or functionalities, making it easier to locate and manage task-specific files. It promotes modularity, testability, and the ability to focus on individual tasks within the project.
 
-Example of Website:
-
-```md
-.
-├── design
-│   ├── mockups
-│   │   ├── homepage.png
-│   │   ├── about.png
-│   │   └── contact.png
-│   └── style-guide.html
-├── development
-│   ├── html
-│   │   ├── index.html
-│   │   ├── about.html
-│   │   └── contact.html
-│   ├── css
-│   │   └── style.css
-│   └── js
-│       └── script.js
-├── content
-│   ├── copy
-│   │   ├── homepage.txt
-│   │   ├── about.txt
-│   │   └── contact.txt
-│   └── images
-│       ├── logo.png
-│       └── background.jpg
-```
-
-Example of C:
-
-```md
-.
-├── design
-│   ├── mockups
-│   │   ├── homepage.png
-│   │   ├── about.png
-│   │   └── contact.png
-│   └── style-guide.txt
-├── src
-│   ├── header
-│   │   ├── constants.h
-│   │   └── structs.h
-│   ├── utils
-│   │   ├── helper.c
-│   │   └── helper.h
-│   ├── authentication
-│   │   ├── login.c
-│   │   ├── register.c
-│   │   └── password.c
-│   ├── blog
-│   │   ├── blog.c
-│   │   └── post.c
-│   ├── products
-│   │   ├── products.c
-│   │   └── product.c
-│   ├── menu.c
-│   └── main.c
-├── data
-│   ├── copy
-│   │   ├── homepage.txt
-│   │   ├── about.txt
-│   │   └── contact.txt
-│   └── images
-│       ├── logo.png
-│       └── background.jpg
+```markdown
+/src
+├── /read
+│   ├── read.h
+│   ├── read.c
+│   └── read_test.c
+├── /process
+│   ├── process.h
+│   ├── process.c
+│   └── process_test.c
+├── /write 
+│   ├── write.h
+│   ├── write.c
+│   └── write_test.c
 ```
 
 ## 2. Principle

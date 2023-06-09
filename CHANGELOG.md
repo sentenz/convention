@@ -1,3 +1,10 @@
+# [1.21.0](https://github.com/sentenz/guide/compare/v1.20.0...v1.21.0) (2023-06-09)
+
+
+### Features
+
+* **convention:** create a convention for `iec 62443` with ChatGPT ([#216](https://github.com/sentenz/guide/issues/216)) ([22cb574](https://github.com/sentenz/guide/commit/22cb574f9181392334f1da1efd8fdbcc8adcda22)), closes [#49](https://github.com/sentenz/guide/issues/49)
+
 # [1.20.0](https://github.com/sentenz/guide/compare/v1.19.0...v1.20.0) (2023-06-09)
 
 

@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/sentenz/guide/compare/v1.19.0...v1.20.0) (2023-06-09)
+
+
+### Features
+
+* **about:** create an article about `logging and monitoring` with ChatGPT ([#215](https://github.com/sentenz/guide/issues/215)) ([36546c7](https://github.com/sentenz/guide/commit/36546c701a9a54508004327104a7666e6188282e)), closes [#214](https://github.com/sentenz/guide/issues/214) [#9](https://github.com/sentenz/guide/issues/9)
+
 # [1.19.0](https://github.com/sentenz/guide/compare/v1.18.0...v1.19.0) (2023-04-02)
 
 

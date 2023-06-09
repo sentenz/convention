@@ -26,6 +26,7 @@ Best practices, articles of interest and general topics.
 - [File Systems](file-systems.md)
 - [Githooks](githooks.md)
 - [Licenses](licenses.md)
+- [Logging and Monitoring](logging-and-monitoring.md)
 - [Merging Strategies](merging-strategies.md)
 - [Monorepo vs Polyrepo](monorepo-vs-polyrepo.md)
 - [Package Managers](package-managers.md)

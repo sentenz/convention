@@ -61,7 +61,7 @@ The DevOps process can be divided into several stages or categories, including:
   > Operate stage involves maintaining the software in the production environment, ensuring it is functional, and providing support to end-users. The operate stage involves monitoring the software to detect and resolve any issues that may arise, applying security patches and updates, and performing regular maintenance tasks to maintain the software's performance.
 
 - Monitoring
-  > [Monitoring](../about/monitoring-and-logging.md) stage involves monitoring the software's performance and usage, and collecting data for analysis and reporting. Monitoring is an ongoing process and involves using a variety of tools and techniques to ensure that the software is performing as expected and meeting the needs of the target audience.
+  > [Monitoring](../about/logging-and-monitoring.md#12-monitoring) stage involves monitoring the software's performance and usage, and collecting data for analysis and reporting. Monitoring is an ongoing process and involves using a variety of tools and techniques to ensure that the software is performing as expected and meeting the needs of the target audience.
 
 - Feedback
   > Feedback stage involves gathering feedback from users and stakeholders, and using that feedback to drive continuous improvement in the software development process. Feedback is an ongoing process that involves gathering information from users and stakeholders, analyzing the data, and making changes to the software development process based on that data.

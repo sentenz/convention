@@ -240,6 +240,8 @@ In practice, this means that developers should design their applications to gene
 
 By treating logs as event streams, developers can gain valuable insights into the behavior and performance of their applications, and can quickly identify and diagnose issues that may arise. Centralized logging also makes it easier to manage and maintain logs, and can provide a centralized source of truth for debugging and troubleshooting.
 
+> NOTE For more information see the article about [Logging and Monitoring](../about/logging-and-monitoring.md).
+
 Benefits to treating logs as event streams:
 
 - Improved troubleshooting
@@ -300,6 +302,7 @@ Benefits to providing administrative processes as one-off processes:
 
 - Sentenz [package managers](../about/package-managers.md) article.
 - Sentenz [continuous pipelines](../about/continuous-pipelines.md) article.
+- Sentenz [logging and monitoring](../about/logging-and-monitoring.md) article.
 - Google [twelve-factor app](https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en) article.
 - IBM [twelve plus factors](https://www.ibm.com/cloud/blog/12-plus-factors-for-containerized-ui-microservices) article.
 - IBM [seven missing factors](https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications) article.

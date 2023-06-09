@@ -75,8 +75,8 @@ Best practices, to create a robust and efficient SDE that ensures high-quality s
 - Version Control
   > Version control is essential to track changes made to the codebase and allows developers to collaborate without the risk of losing work. This helps to ensure that the codebase is consistent and accurate.
 
-- Monitoring and Logging
-  > [Monitoring and logging](../about/monitoring-and-logging.md) are important for detecting and identifying issues in the software environment. This helps to identify performance issues, system failures, and other issues that may affect the end-users.
+- Logging and Monitoring
+  > [Logging and Monitoring](../about/logging-and-monitoring.md) are important for detecting and identifying issues in the software environment. This helps to identify performance issues, system failures, and other issues that may affect the end-users.
 
 - Security
   > Security is critical to protect the software and data from unauthorized access or malicious attacks. This includes implementing secure coding practices, regularly reviewing and updating security protocols, and conducting penetration testing.

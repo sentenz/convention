@@ -442,7 +442,7 @@ Code Format
 ### 7.1. Convention
 
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- [Semantic Versioning](https://sentenz.github.io/backup-service/website/semver.org/index.html)
+- [Semantic Versioning](https://semver.org/)
 
 ### 7.2. Code Analysis
 

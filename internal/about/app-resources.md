@@ -264,7 +264,7 @@ Example of Custom Package/File:
 
     - Client
 
-      In your main C file (or any other C file where you want to use the configuration values), include the `resource.h` header and utilize the constants:
+      In the `main.c` file (or any other C file), include the `resource.h` header and utilize the constants:
 
       ```c
       #include <stdio.h>
@@ -388,49 +388,81 @@ Elements of Configuration Files:
 
 1. Purpose
 
-   Configuration files are used to store configuration settings and parameters that determine how an application or system should behave. These settings can include options such as database connection details, network settings, logging levels, feature toggles, security settings, and more.
+    Configuration files are used to store configuration settings and parameters that determine how an application or system should behave. These settings can include options such as database connection details, network settings, logging levels, feature toggles, security settings, and more.
 
 2. Formats
 
-   Configuration files can be written in various formats depending on the requirements and conventions of the application or system. Common formats include plain text formats (such as INI, XML, JSON, YAML), property files (such as Java properties files), or specific configuration formats designed for a particular framework or technology.
+    Configuration files can be written in various formats depending on the requirements and conventions of the application or system. Common formats include plain text formats (such as INI, XML, JSON, YAML), property files (such as Java properties files), or specific configuration formats designed for a particular framework or technology.
 
 3. Location
 
-   Configuration files are typically stored as separate files outside the application's source code. The exact location and naming conventions for configuration files can vary depending on the operating system, framework, or development practices. Common locations include a dedicated "config" directory, a specific location within the user's home directory, or in a central configuration repository.
+    Configuration files are typically stored as separate files outside the application's source code. The exact location and naming conventions for configuration files can vary depending on the operating system, framework, or development practices. Common locations include a dedicated "config" directory, a specific location within the user's home directory, or in a central configuration repository.
 
 4. Readability and Modifiability
 
-   Configuration files are designed to be human-readable and easily modifiable. They should provide a clear and understandable representation of the configuration settings, allowing administrators or users to modify them without requiring knowledge of the underlying codebase.
+    Configuration files are designed to be human-readable and easily modifiable. They should provide a clear and understandable representation of the configuration settings, allowing administrators or users to modify them without requiring knowledge of the underlying codebase.
 
 5. Parsing and Loading
 
-   To make use of the configuration settings, the application needs to parse and load the configuration files at runtime. The parsing process involves reading the file and extracting the configuration values into memory for the application to access and utilize.
+    To make use of the configuration settings, the application needs to parse and load the configuration files at runtime. The parsing process involves reading the file and extracting the configuration values into memory for the application to access and utilize.
 
 6. Overrides and Hierarchies
 
-   Configuration files can support hierarchical structures or inheritance, allowing for the definition of default settings that can be overridden or extended by subsequent configuration files. This allows for a modular approach to configuration and simplifies managing configuration variations for different environments or deployment scenarios.
+    Configuration files can support hierarchical structures or inheritance, allowing for the definition of default settings that can be overridden or extended by subsequent configuration files. This allows for a modular approach to configuration and simplifies managing configuration variations for different environments or deployment scenarios.
 
 7. Security Considerations
 
-   Care should be taken when storing sensitive information, such as passwords or access keys, in configuration files. It is important to protect configuration files from unauthorized access and encryption or obfuscation techniques may be used to secure sensitive data.
+    Care should be taken when storing sensitive information, such as passwords or access keys, in configuration files. It is important to protect configuration files from unauthorized access and encryption or obfuscation techniques may be used to secure sensitive data.
 
 8. Reloadability
 
-   Some applications provide the ability to dynamically reload configuration files without restarting the application. This feature allows for runtime configuration changes and avoids the need for application restarts when modifying settings.
+    Some applications provide the ability to dynamically reload configuration files without restarting the application. This feature allows for runtime configuration changes and avoids the need for application restarts when modifying settings.
+
+Best Practices of Configuration Files:
+
+Applying best practices enhance the reliability, maintainability, and flexibility of the configuration design pattern, making it easier to manage and utilize configuration values within the application.
+
+1. Validation and Default Values
+
+    Add validation logic to ensure that the loaded configuration values meet the expected criteria. Validate data types, required fields, or custom validation rules. Additionally, consider setting default values for configuration properties that are optional but don't have explicit values in the configuration file.
+
+2. Separation of Concerns
+
+    Ensure that the configuration package focuses solely on loading and providing configuration values. Avoid adding business logic or unrelated functionality to the configuration package. Keep the responsibility of configuration loading separate from other parts of the application.
+
+3. Immutable Configurations
+
+    Consider making the `Config` struct immutable after it is loaded to prevent accidental modification of the configuration values during runtime. This can achieve by making the fields of the `Config` struct read-only or providing only getter methods to access the configuration properties.
+
+4. Error Handling
+
+    Implement proper error handling when loading and parsing the configuration file. Consider returning meaningful error messages or wrapping errors with additional context to aid in troubleshooting and debugging.
+
+5. Configuration Reload
+
+    If an application requires the ability to reload the configuration during runtime, consider adding a method or functionality to refresh the configuration values. This can be useful in situations where its need to update the configuration without restarting the entire application.
+
+6. Unit Testing
+
+    Write unit tests for the configuration loading and retrieval logic. Test different scenarios, such as missing configuration values, incorrect data types, or valid configurations. Unit tests can help ensure that the configuration package functions correctly and provides the expected values.
+
+7. Documentation
+
+    Document the purpose and usage of the configuration package, including any assumptions or requirements. Clearly define the configuration properties, their expected values, and any constraints or dependencies.
 
 Example of Configuration Files:
 
 1. Go
 
+    The example code follows best practices such as separation of concerns, error handling, validation, and reloading of the configuration. It also provides a clean and straightforward API for accessing the configuration throughout the application.
+
     - `config.json`
 
-      Create a configuration file named `config.json`:
+      Create a configuration file named `.env`:
 
-      ```json
-      {
-      "max_retries": 3,
-      "timeout": 10
-      }
+      ```env
+      DB_DRIVER=postgres
+      DB_URI=postgresql://root:secret@localhost:5432/crypto?sslmode=disable
       ```
 
     - Config Library
@@ -442,59 +474,181 @@ Example of Configuration Files:
 
       ```
 
-    - Client
+    - `properties.go`
 
-      Create a `main.go` file:
+      In this example, `Properties` is a struct that represents the properties of the configuration, and it provides getter methods to access the respective values. Separating the `Properties` struct and its methods into a separate file allows to have better organization and encapsulation of the configuration properties and related functionality.
 
       ```go
-      package main
+      package config
 
-      import (
-      "fmt"
-      "log"
+      import "github.com/go-playground/validator/v10"
 
-      "github.com/spf13/viper"
+      // Properties defines the properties of the configuration.
+      type (
+       Properties struct {
+        DatabaseURI    string `mapstructure:"DB_URI" validate:"required"`
+        DatabaseDriver string `mapstructure:"DB_DRIVER" validate:"required"`
+       }
       )
 
-      // Config struct to hold the configuration values
-      type Config struct {
-      MaxRetries  int    `json:"max_retries"`
-      Timeout     int    `json:"timeout"`
+      // Validate validates the EnvProperties.
+      func (p *Properties) Validate() error {
+       validate := validator.New()
+
+       return validate.Struct(p)
       }
 
-      func main() {
-      // Load configuration file
-      viper.SetConfigName("config")
-      viper.SetConfigType("json")
-      viper.AddConfigPath(".") // or specify the directory path where the config file is located
-      err := viper.ReadInConfig()
-      if err != nil {
-        log.Fatalf("Failed to read configuration file: %v", err)
+      // GetDatabaseURI returns the database URI.
+      func (p *Properties) GetDatabaseURI() string {
+       return p.DatabaseURI
       }
 
-      // Parse configuration values
-      var config Config
-      err = viper.Unmarshal(&config)
-      if err != nil {
-        log.Fatalf("Failed to parse configuration values: %v", err)
-      }
-
-      // Access configuration values
-      fmt.Println("MaxRetries:", config.MaxRetries)
-      fmt.Println("Timeout:", config.Timeout)
-
-      // Use the configuration values in the code
-      // ...
+      // GetDBDriver returns the application port.
+      func (p *Properties) GetDatabaseDriver() string {
+       return p.DatabaseDriver
       }
       ```
 
-      In this example, we're using the `github.com/spf13/viper` package to load and parse the JSON configuration file. If you haven't installed it yet, run `go get github.com/spf13/viper` before running the code.
+    - `config.go`
 
-      Make sure to adjust the path and filename in the `viper.SetConfigName` and `viper.AddConfigPath` functions according to your file's location.
+      This code implements a configuration package that handles loading and managing application configurations using the Viper library. Here's a breakdown of the code:
 
-      By following this example, you can load the configuration file, parse the values into a struct (`AppConfig` in this case), and access the magic numbers and static strings using the struct fields.
+      - The package uses a singleton pattern to ensure that only one instance of the `Config` struct is created and accessed throughout the application.
 
-      > NOTE Remember to handle errors appropriately in the actual code to ensure proper error handling and graceful failure scenarios.
+      - The `New` function returns a new instance of the `Config` struct.
+
+      - The `GetInstance` method returns the singleton instance of the `Config` struct. It uses the `once.Do` function to ensure that the instance is loaded only once.
+
+      - The `load` function loads the configuration from the specified file. It uses Viper to read and unmarshal the configuration file.
+
+      - The `validate` function performs validation using the Go Playground Validator.
+
+      - The `reload` function reloads the configuration from the config file. It unmarshals the configuration into the instance.
+
+      - The `watch` function sets up a configuration file watcher to trigger reloads on changes.
+
+      - The `getFilepath` function returns the absolute file path for the config file by getting the current working directory and joining it with the provided filename.
+
+      ```go
+      package config
+
+      import (
+        "fmt"
+        "os/exec"
+        "path/filepath"
+        "strings"
+        "sync"
+
+        "github.com/fsnotify/fsnotify"
+        "github.com/spf13/viper"
+      )
+
+      // Config represents the configuration structure.
+      type Config struct {
+        Properties *Properties
+      }
+
+      var (
+        once     sync.Once
+        instance *Config
+      )
+
+      // New creates a new instance of the Config struct.
+      func New() *Config {
+        return &Config{
+          Properties: &Properties{},
+        }
+      }
+
+      // GetInstance returns the singleton instance of the Config struct, loaded from the specified
+      // configuration file. It ensures that the configuration is loaded only once, and handles the
+      // verification and watching of the config file.
+      func (c *Config) GetInstance(filename string) *Config {
+        once.Do(func() {
+          var err error
+          instance, err = load(filename)
+          if err != nil {
+            instance = nil
+
+            return
+          }
+
+          if err := validate(instance); err != nil {
+            instance = nil
+
+            return
+          }
+
+          watch()
+        })
+
+        return instance
+      }
+
+      // load loads the configuration from the specified file.
+      func load(filename string) (*Config, error) {
+        filepath, err := getFilepath(filename)
+        if err != nil {
+          return nil, err
+        }
+
+        viper.SetConfigFile(filepath)
+
+        if err := viper.ReadInConfig(); err != nil {
+          return nil, fmt.Errorf("read configuration file: %v", err)
+        }
+
+        cfg := &Config{
+          Properties: &Properties{},
+        }
+
+        if err := viper.Unmarshal(cfg.Properties); err != nil {
+          return nil, fmt.Errorf("unmarshal configuration: %v", err)
+        }
+
+        return cfg, nil
+      }
+
+      // validate validates the loaded configuration.
+      func validate(cfg *Config) error {
+        if err := cfg.Properties.Validate(); err != nil {
+          return fmt.Errorf("validate configuration: %v", err)
+        }
+
+        return nil
+      }
+
+      // watch starts watching for changes in the config file and triggers a reload when a change occurs.
+      func watch() {
+        viper.OnConfigChange(func(e fsnotify.Event) {
+          if err := reload(); err == nil {
+            fmt.Errorf("watched file changed: %v", e.Name)
+          }
+        })
+        viper.WatchConfig()
+      }
+
+      // reload reloads the configuration from the config file.
+      func reload() error {
+        if err := viper.Unmarshal(instance.Properties); err != nil {
+          return fmt.Errorf("unmarshal configuration: %v", err)
+        }
+
+        return nil
+      }
+
+      // getFilepath returns the root path for the config file.
+      func getFilepath(filename string) (string, error) {
+        output, err := exec.Command("git", "rev-parse", "--show-toplevel").Output()
+        if err != nil {
+          return "", fmt.Errorf("project root directory: %v", err)
+        }
+
+        rootpath := strings.TrimSpace(string(output))
+
+        return filepath.Join(rootpath, filename), nil
+      }
+      ```
 
 2. C
 
@@ -573,7 +727,7 @@ Example of Configuration Files:
             printf("Max Retries: %d\n", config.maxRetries);
             printf("Default Timeout: %d\n", config.defaultTimeout);
 
-            // Use the configuration values in your code
+            // Use the configuration values in the code
             // ...
 
             return 0;
@@ -582,7 +736,7 @@ Example of Configuration Files:
 
         In this example, we define a struct `Config` to hold the configuration values. The `loadConfig` function reads the configuration file line by line, parses the key-value pairs, and assigns the values to the appropriate struct members.
 
-        By following this example, you can load the configuration file, parse the values, and access the magic numbers and static strings using the struct members.
+        This example, loads the configuration file, parse the values, and access the magic numbers and static strings using the struct members.
 
         > NOTE Error handling has been omitted for brevity in this example. In the actual code, make sure to handle potential errors while opening and reading the configuration file.
 

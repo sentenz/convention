@@ -1,6 +1,5 @@
 {
-  "workbench.colorTheme": "One Dark Pro",
-  "window.zoomLevel": -1,
+  "window.title": "${rootName}",
   "files.eol": "\n",
   "files.watcherExclude": {
     "**/.git/objects/**": true,
@@ -19,6 +18,7 @@
     "**/aio/src/generated": true,
     ".history": true
   },
+  "editor.renderWhitespace": "all",
   "editor.suggest.showFolders": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": null,
@@ -35,7 +35,7 @@
     "editor.detectIndentation": true,
     "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
-  "markdown.extension.toc.levels": "2..4",
+  "markdown.extension.toc.levels": "2..6",
   "[yaml]": {
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"

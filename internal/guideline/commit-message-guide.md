@@ -4,8 +4,12 @@
 
 - [1. Commit Message](#1-commit-message)
   - [1.1. Header](#11-header)
+    - [1.1.1. Type](#111-type)
+    - [1.1.2. Scope](#112-scope)
   - [1.2. Body](#12-body)
   - [1.3. Footer](#13-footer)
+    - [1.3.1. Referencing Issues](#131-referencing-issues)
+    - [1.3.2. Breaking Changes](#132-breaking-changes)
 - [2. Merge Commit Message](#2-merge-commit-message)
 - [3. Update a Commit Message](#3-update-a-commit-message)
 - [4. Lint a Commit Message](#4-lint-a-commit-message)
@@ -227,7 +231,7 @@ In order to update the commit message of the last commit on the feature branch:
 
 ## 4. Lint a Commit Message
 
-[commitlint](https://github.com/conventional-changelog/commitlint) tooling for conventional commits. Checks if the commit messages meet the [Conventional Commits](https://sentenz.github.io/backup-service/website/conventionalcommits.org/en/v1.0.0/index.html) format.
+[commitlint](https://github.com/conventional-changelog/commitlint) tooling for conventional commits. Checks if the commit messages meet the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
 ## 5. References
 

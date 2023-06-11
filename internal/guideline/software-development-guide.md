@@ -1,156 +1,191 @@
 # Software Development Guide
 
-Software development refers to the design, documentation, programming, testing, and ongoing maintenance of a software deliverable. The combination of these steps are used to create a workflow pipeline, a sequence of stages that when followed produce high-quality software deliverables. This pipeline is known as the Software Development Life Cycle (SDLC).
+Software development refers to the design, documentation, programming, testing, and maintenance of a software deliverable. The combination of these steps are used to create a workflow pipeline, a sequence of stages that when followed produce high-quality software deliverables. This pipeline is known as the Software Development Life Cycle (SDLC).
 
-- [1. Lifecycle](#1-lifecycle)
-  - [1.1. Concept](#11-concept)
-  - [1.2. Plan](#12-plan)
-  - [1.3. Code and Analysis](#13-code-and-analysis)
-  - [1.4. Build and Test](#14-build-and-test)
-  - [1.5. Review](#15-review)
-  - [1.6. Release](#16-release)
-  - [1.7. Deploy](#17-deploy)
-  - [1.8. Operate](#18-operate)
-  - [1.9. Incident Management](#19-incident-management)
-  - [1.10. Continuous Feedback](#110-continuous-feedback)
-  - [1.11. Security](#111-security)
-- [2. Key Features](#2-key-features)
-  - [2.1. Agile](#21-agile)
-  - [2.2. XOps](#22-xops)
-  - [2.3. CI/CD](#23-cicd)
-  - [2.4. Software Architecture](#24-software-architecture)
-    - [2.4.1. Microservices](#241-microservices)
-    - [2.4.2. Clean Architecture](#242-clean-architecture)
-- [3. References](#3-references)
+- [1. Category](#1-category)
+  - [1.1. Software Development Life Cycle](#11-software-development-life-cycle)
+    - [1.1.1. Discover](#111-discover)
+    - [1.1.2. Plan](#112-plan)
+    - [1.1.3. Code](#113-code)
+    - [1.1.4. Build, Test and Release](#114-build-test-and-release)
+    - [1.1.5. Deploy](#115-deploy)
+    - [1.1.6. Operate](#116-operate)
+    - [1.1.7. Observe](#117-observe)
+    - [1.1.8. Security](#118-security)
+  - [1.2. Key Features](#12-key-features)
+    - [1.2.1. Agile](#121-agile)
+    - [1.2.2. XOps](#122-xops)
+    - [1.2.3. Continuous Pipelines](#123-continuous-pipelines)
+    - [1.2.4. Software Architecture](#124-software-architecture)
+- [2. References](#2-references)
 
-## 1. Lifecycle
+## 1. Category
 
-Steps in the Software Development Life Cycle (SDLC).
+### 1.1. Software Development Life Cycle
 
-### 1.1. Concept
+The Software Development Life Cycle (SDLC) is a systematic approach to software development that consists of various phases and activities. Each phase has specific goals and deliverables, and it provides a structured framework for managing and controlling the software development process.
+
+#### 1.1.1. Discover
 
 Projects are envisioned, designed, and prioritized.
 
-- [Agile](../about/agile.md)
-  > A methodology such as agile guides the work process for the project.
+Elements of Discover:
 
-- [Architecture Modeling Concepts](../about/architecture-modeling-concepts.md)
-  > Concept models are a fundamental part of the architectural design and development process using Architecture Modeling Concepts to provide a quick and effective method to create diagrams for testing ideas and investigating constraints.
+1. [Process Principles](../about/software-design-principles.md#13-process-principles)
 
-- [Architecture Decision Records](../about/architecture-decision-records.md)
-  > Architecture Decision Records (ADR) captures the key options available, the main requirements that drive a decision, and the design decisions themselves.
+    Process principles refer to a set of guidelines that govern how software is developed, tested, and deployed.
 
-### 1.2. Plan
+    - [Waterfall Model](../about/software-design-principles.md#131-waterfall-model)
+      > The Waterfall Model is a sequential software development process model that follows a linear and phased approach. It consists of distinct, well-defined phases, each of which must be completed before progressing to the next phase.
 
-Stakeholders are identified, budgets set, and infrastructure requisitioned. Design documents from the [concept](#11-concept) phase are broken down into actionable tasks.
+    - [Agile](../about/software-design-principles.md#133-agile-software-development)
+      > Agile Software Development is an iterative and collaborative approach to software development that prioritizes flexibility, adaptability, and customer satisfaction. It emphasizes delivering working software in frequent iterations and incorporating feedback to continuously improve the product.
 
-- Scrum
-  > Scrum is a framework for agile, an iterative approach to project management and software development​.
+2. [Architecture Decision Records](../about/architecture-decision-records.md)
 
-### 1.3. Code and Analysis
+    Architecture Decision Records (ADR) captures the key options available, the main requirements that drive a decision, and the design decisions themselves.
 
-Development teams work to build production-ready software that meets requirements and feedback. CI/CD pipelines ensure an efficient developer experience.
+#### 1.1.2. Plan
 
-- [Coding](../about/coding-guide.md)
-  > Coding with software development patterns that should be applied during the implementation of a project to avoid bugs.
+Stakeholders are identified, budgets set, and infrastructure requisitioned. Design documents from the concept phase are broken down into actionable tasks.
 
-- [Software Analysis](../about/software-analysis.md) and [Software Testing](../about/software-testing.md)
-  > Robust software analysis and software testing are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
+Elements of Plan:
 
-- [Continuous Integration](../about/continuous-pipelines.md#1-continuous-integration)
-  > Continuous Integration (CI) pipeline is the automation of the integration of code changes through continuous code analysis.
+1. Software Architecture Description
 
-### 1.4. Build and Test
+    A software architecture description provides an overview and detailed documentation of the architecture of a software system. It describes the structure, components, relationships, and behavior of the software system, enabling developers, architects, and stakeholders to understand and communicate the design decisions and principles underlying the system.
 
-A reliable system is resilient to failures and meets its documented service level objectives, which may also include security guarantees.
+2. [Project Layout](../about/project-layout.md)
 
-- [Software Testing](../about/software-testing.md)
-  > Robust software testing are useful aids in mitigating failure risks, and should be a particular focus during the project implementation phase.
+    Project layout refers to the arrangement of files, folders, and other resources within a project. A well-designed project layout can improve the organization, readability, and maintainability of the project's codebase.
 
-- [Continuous Testing](../about/continuous-pipelines.md#5-continuous-testing)
-  > Continuous testing (CT) pipeline is the automation of testing the code base through continuous testing, which includes unit testing.
+#### 1.1.3. Code
 
-### 1.5. Review
+Development teams work to build production-ready software that meets requirements and feedback.
 
-Code review is used to ensure the overall health of the codebase over time. Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions.
+Elements of Code:
 
-- [Code Review](../guideline/code-review-guide.md)
-  > Collaborative code review and pull requests that plug into the code review process.
+1. Coding
 
-### 1.6. Release
+    Coding with software development patterns that should be applied during the implementation of a project to avoid bugs.
 
-Release the next version number, create the release notes and generate the changelog.
+    - [Software Design Principals](../about/software-design-principles.md)
+      > Software design patterns are general reusable solutions to common software design problems that have been proven effective over time. Design patterns provide a way to organize and structure software code in a way that is easily maintainable, scalable, and extensible.
 
-- [Continuous Release](../about/continuous-pipelines.md#6-continuous-release)
-  > Continuous Release (CR) pipeline is the automation of package release workflow.
+    - Software Design Patterns
+      > Software design patterns are general reusable solutions to common software design problems that have been proven effective over time. Design patterns provide a way to organize and structure software code in a way that is easily maintainable, scalable, and extensible.
 
-### 1.7. Deploy
+    - Software Architectural Patterns
+      > Software architectural patterns are high-level design templates or solutions that provide a structured approach for organizing and designing software systems. Architectural patterns offer proven solutions to recurring design problems and help architects and developers build scalable, maintainable, and robust software applications.
+
+2. [Software Analysis](../about/software-analysis.md)
+
+    Software Analysis is the process of evaluating software systems and applications to identify potential risks, improve quality and reliability, and ensure compliance with organizational policies and industry regulations.
+
+3. [Code Review](../guideline/code-review-guide.md)
+
+    Code review is used to ensure the overall health of the codebase over time. Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions. Collaborative code review and pull requests that plug into the code review process.
+
+4. [Docs as Code](../about/docs-as-code.md)
+
+    Docs as Code is a set of principles and practices that aims to treat documentation as code, and apply software development practices to documentation.
+
+5. [Conventional Commits](../convention/conventional-commits.md)
+
+    Conventional Commits is a commit message convention that provides a standardized and structured format for commit messages in software development projects. It aims to make commit messages more readable, informative, and useful for both humans and automated tools.
+
+6. [Semantic Versioning](../convention/semantic-versioning.md)
+
+    Semantic Versioning (SemVer) is a versioning scheme for software that aims to convey meaning about the underlying code changes and their impact on compatibility.
+
+7. [Changlog](../convention/changelog.md)
+
+    A changelog is a document or file that tracks and records the changes, updates, and additions made to a software project over time. It serves as a historical record of the project's evolution and provides a summary of the modifications introduced in each version or release.
+
+#### 1.1.4. Build, Test and Release
+
+A reliable system is resilient to failures and meets its documented service level objectives, which may also include security guarantees. CI/CD pipelines ensure an efficient developer experience.
+
+Elements of Build, Test and Release:
+
+1. [Continuous Pipelines](../about/continuous-pipelines.md)
+
+    Continuous Pipelines refer to the process of automating the software development workflow from code creation to deployment. This process involves multiple stages such as code integration, build, testing, and deployment to production.
+
+2. [Software Testing](../about/software-testing.md)
+
+    Software testing is a process of evaluating the functionality of a software application or system to identify any defects, bugs, vulnerabilities or issues that may impact the functionality or performance of the software. Software testing ensure that the software meets the specified requirements and specifications, and that it performs as expected in a variety of different conditions.
+
+#### 1.1.5. Deploy
 
 After the code is approved and merged, it's time to deliver it.
 
-- [Deployment Strategies](../about/deployment-strategies.md) and [Continuous Deployment](../about/continuous-pipelines.md#3-continuous-deployment)
-  > Deployment strategies define for continuous deployment (CD) how a running instance of an application should be deployed, modified, or updated.
+Elements of Deploy:
 
-- [Production Environment](../about/software-environments.md)
-  > The live production code will need a place to live. Consider using cloud hosting provided by Amazon AWS, Google Cloud Platform, or Microsoft Azure.
+1. [Deployment Strategies](../about/deployment-strategies.md)
 
-### 1.8. Operate
+    Deployment strategies define  how a running instance of an application should be deployed, modified, or updated.
+
+2. [Production Environment](../about/software-environments.md)
+
+    The live production code will need a place to live. Consider using cloud hosting provided by Amazon AWS, Google Cloud Platform, or Microsoft Azure.
+
+#### 1.1.6. Operate
 
 Support and maintenance are required of active software projects to reduce down times.
 
-- [Continuous Operations](../about/continuous-pipelines.md#9-continuous-operations)
-  > Continuous Operations (CO) pipeline is the automation of observe the live production code.
+Elements of Operate:
 
-### 1.9. Incident Management
+1. [Continuous Operations](../about/continuous-pipelines.md#9-continuous-operations)
 
-Incident management is the process used by DevOps and IT Operations teams to respond to an unplanned event or service interruption and restore the service to its operational state. Teams need a reliable method to prioritize incidents, get to resolution faster, and offer better service for users.
+    Continuous Operations (CO) pipeline is the automation of observe the live production code.
 
-### 1.10. Continuous Feedback
+#### 1.1.7. Observe
 
-Teams should evaluate each release and generate reports to improve future releases, ask for customers to give input about the value and impact of product features, and share business-related outcomes with stakeholders. By gathering continuous feedback, teams can improve their processes, and increase value to customers.
+Incident management is when Development and Operations respond to unplanned events and restore services using reliable methods for prioritizing incidents and getting to resolution fast.
 
-- [Continuous Feedback](../about/continuous-pipelines.md#10-continuous-feedback)
-  > Continuous Feedback (CF) pipeline is the automation of gathering feedback from ticket systems.
+Elements of Operate:
 
-### 1.11. Security
+1. [Logging and Monitoring](../about/logging-and-monitoring.md)
+
+    Logging and monitoring are essential components of modern software systems and infrastructure. They play a crucial role in ensuring the reliability, performance, and security of applications and services.
+
+#### 1.1.8. Security
 
 Security should be included throughout the Software Development Life Cycle (SDLC) in order to minimize vulnerabilities in software code.
 
-- [Identity Management](../about/identity-and-access-management.md) or Identity & Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.
+1. [IEC 62443](../convention/iec-62443.md)
 
-- [Continuous Security](../about/continuous-pipelines.md#7-continuous-security)
-  > Continuous Security (CS) pipeline is the automation of security verification as an active and integrated part of the existing development process.
+    IEC 62443 is a series of international standards developed by the International Electrotechnical Commission (IEC) that provides a framework for implementing cybersecurity in industrial automation and control systems (IACS). The series comprises of several parts, each of which addresses a specific aspect of IACS cybersecurity.
 
-## 2. Key Features
+2. [Identity and Access Management (IAM)](../about/identity-and-access-management.md)
+
+    Identity and Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.
+
+3. [Continuous Security](../about/continuous-pipelines.md#7-continuous-security)
+
+    Continuous Security pipeline is the automation of security verification as an active and integrated part of the existing development process.
+
+### 1.2. Key Features
 
 Key features of effective software development.
 
-### 2.1. Agile
+#### 1.2.1. Agile
 
 [Agile](../about/agile.md) is an iterative approach to project management and software development that helps teams deliver value to their customers faster and with fewer headaches. Agile methodologies empower teams to be inherently flexible, well-organized, and capable of responding to change.
 
-### 2.2. XOps
+#### 1.2.2. XOps
 
 [XOps](../about/xops.md) is a set of principles and practices, tools, and a cultural philosophy that automate and integrate the processes of software development (Dev), security (Sec), and IT operation (Ops). It focuses team empowerment, cross-team communication and collaboration, and technology automation.
 
-### 2.3. CI/CD
+#### 1.2.3. Continuous Pipelines
 
-[CI/CD](../about/continuous-pipelines.md) describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a target/production environment.
+[Continuous Pipelines](../about/continuous-pipelines.md) describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a target/production environment.
 
-### 2.4. Software Architecture
+#### 1.2.4. Software Architecture
 
-[Software architecture](../about/software-architecture.md) refers to the fundamental structures of a software system and the discipline of creating software structure and design.
+Software Architectural Patterns are high-level design templates or solutions that provide a structured approach for organizing and designing software systems. Architectural patterns offer proven solutions to recurring design problems and help architects and developers build scalable, maintainable, and robust software applications.
 
-#### 2.4.1. Microservices
-
-A microservices architecture, also known as [microservices](../about/microservices.md), is an approach to building an application as a series of independently deployable services that are decentralized and autonomously developed. These services are loosely coupled, independently deployable, and easily maintainable.
-
-With a microservices architecture, developers can organize in smaller teams specializing in different services, with different stacks and decoupled deployments.
-
-#### 2.4.2. Clean Architecture
-
-[Clean architecture](../about/software-architecture.md#clean-architecture) is a software design philosophy that separates the elements of a design into ring levels. An important goal of clean architecture is to provide developers with a way to organize code in such a way that it encapsulates the business logic but keeps it separate from the delivery mechanism.
-
-## 3. References
+## 2. References
 
 - Atlassian [software development](https://www.atlassian.com/software-development) article.

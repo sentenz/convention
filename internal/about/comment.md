@@ -18,6 +18,8 @@ Comments in computer programming, is a section of code that is not executed by t
 
 Comments are effective for providing code context and documentation and for improving code quality and maintainability. Different comment styles are used to provide different types of information about code, and it is important to use comments effectively to ensure that code is well-documented and easy to understand. By using different comment styles in appropriate ways, developers can help ensure that code is high-quality and can be easily maintained and updated over time.
 
+Types of Comment Styles:
+
 - Inline Comments
   > Inline comments are inserted directly into the code and are used to provide explanations or clarifications about specific lines or sections of code. They are often used to describe complex algorithms or to provide context for particular sections of code. Inline comments are useful for providing additional context and can help make code more readable and understandable for other developers.
 
@@ -72,6 +74,8 @@ int main(int argc, char *argv[]) {
 Comment tags in programming are used to annotate code with additional information or notes that can help developers better understand, maintain, and improve the code. These tags usually take the form of a specific syntax, such as a double slash `//` in most programming languages, and are followed by a specific keyword or label that indicates the type of comment.
 
 Comment tags are helpful in managing large codebases or collaborative projects, as they track specific issues, tasks, or requirements.
+
+Types of Comment Tags:
 
 - `TODO`
   > Indicates code that needs to be completed or implemented. The tag usually includes a description of what needs to be done to complete the task.

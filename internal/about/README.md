@@ -4,7 +4,6 @@ Best practices, articles of interest and general topics.
 
 - [Abstraction Layer](abstraction-layer.md)
 - [App Resources](app-resources.md)
-- [Architectural Pattern](architectural-pattern.md)
 - [Architecture Decision Records](architecture-decision-records.md)
 - [Architecture Modeling Concepts](architecture-modeling-concepts.md)
 - [Asymptotic Notation](asymptotic-notation.md)
@@ -34,10 +33,8 @@ Best practices, articles of interest and general topics.
 - [Project Layout](project-layout.md)
 - [Serial Communication](serial-communication.md)
 - [Software Analysis](software-analysis.md)
-- [Software Architecture](software-architecture.md)
 - [Software Design Principles](software-design-principles.md)
 - [Software Development Environment](software-development-environment.md)
-- [Software Documentation](software-documentation.md)
 - [Software Testing](software-testing.md)
 - [Static Site Generators](static-site-generators.md)
 - [Tabs vs Spaces](tabs-vs-spaces.md)

@@ -41,7 +41,12 @@ Elements of Discover:
     - [Agile](../about/software-design-principles.md#133-agile-software-development)
       > Agile Software Development is an iterative and collaborative approach to software development that prioritizes flexibility, adaptability, and customer satisfaction. It emphasizes delivering working software in frequent iterations and incorporating feedback to continuously improve the product.
 
-2. [Architecture Decision Records](../about/architecture-decision-records.md)
+2. [Software Analysis](../about/software-analysis.md)
+
+    - [Requirements Analysis](../about/software-analysis.md#111-requirements-analysis)
+      > Requirements analysis sets the foundation for the development process, guiding subsequent phases such as design, implementation, and testing. Conducting requirements analysis reduces the risk of scope creep, improves software quality, and delivers a product that meets stakeholder expectations.
+
+3. [Architecture Decision Records](../about/architecture-decision-records.md)
 
     Architecture Decision Records (ADR) captures the key options available, the main requirements that drive a decision, and the design decisions themselves.
 
@@ -59,6 +64,10 @@ Elements of Plan:
 
     Project layout refers to the arrangement of files, folders, and other resources within a project. A well-designed project layout can improve the organization, readability, and maintainability of the project's codebase.
 
+3. [Branching Strategies](../about/branching-strategies.md)
+
+    Branching strategies are used in software development team to manage concurrent work and organize code changes within a version control system. They define how developers collaborate on different features, bug fixes, and releases while maintaining stability and minimizing conflicts.
+
 #### 1.1.3. Code
 
 Development teams work to build production-ready software that meets requirements and feedback.
@@ -67,7 +76,14 @@ Elements of Code:
 
 1. Coding
 
-    Coding with software development patterns that should be applied during the implementation of a project to avoid bugs.
+    - [Comment](../about/comment.md)
+      > Comment styles and tags are used to providing code context and documentation, and annotate code with additional information for improving code quality and maintainability.
+
+    - [App Resources](../about/app-resources.md)
+      > App resources refer to the various assets and components utilized by an application, such as images, icons, sounds, videos, and other media files, as well as configuration files, database connections, external API endpoints, and managing static strings and magic numbers.
+
+    - [Feature Toggles](../about/feature-toggles.md)
+      > Feature toggles are a software development technique that enables developers to turn on and off certain features or functionality of an application or service.
 
     - [Software Design Principals](../about/software-design-principles.md)
       > Software design patterns are general reusable solutions to common software design problems that have been proven effective over time. Design patterns provide a way to organize and structure software code in a way that is easily maintainable, scalable, and extensible.
@@ -80,41 +96,80 @@ Elements of Code:
 
 2. [Software Analysis](../about/software-analysis.md)
 
-    Software Analysis is the process of evaluating software systems and applications to identify potential risks, improve quality and reliability, and ensure compliance with organizational policies and industry regulations.
+    - [Static Analysis](../about/software-analysis.md#112-static-analysis)
+      > Static analysis is a software analysis technique that examines software artifacts, such as source code, design documents, or models, without executing the program. It analyzes the structure, syntax, and semantics of the code to identify potential issues, vulnerabilities, and quality concerns. Static analysis helps detect defects, improve code quality, and ensure adherence to coding standards.
 
-3. [Code Review](../guideline/code-review-guide.md)
+3. [Continuous Pipelines](../about/continuous-pipelines.md)
 
-    Code review is used to ensure the overall health of the codebase over time. Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions. Collaborative code review and pull requests that plug into the code review process.
+    - [Continuous Integration](../about/continuous-pipelines.md#12-continuous-integration)
+      > Continuous Integration (CI) refers to the practice of automating the process of integrating code changes from multiple developers into a single version control repository. This process typically involves building and testing the code changes as soon as they are committed to the repository, and providing feedback to developers on the quality and stability of their changes. The goal of CI is to catch issues early in the development process and promote collaboration among team members.
 
-4. [Docs as Code](../about/docs-as-code.md)
+4. [Software Testing](../about/software-testing.md)
 
-    Docs as Code is a set of principles and practices that aims to treat documentation as code, and apply software development practices to documentation.
+    - [Test-Driven Development](../about/software-testing.md#42-test-driven-development)
+      > Test-Driven Development (TDD) is a software development approach that emphasizes writing automated tests before writing the actual code. TDD is based on the idea that writing tests first can lead to better code quality, better design, and improved overall software development processes.
 
 5. [Conventional Commits](../convention/conventional-commits.md)
 
     Conventional Commits is a commit message convention that provides a standardized and structured format for commit messages in software development projects. It aims to make commit messages more readable, informative, and useful for both humans and automated tools.
 
-6. [Semantic Versioning](../convention/semantic-versioning.md)
+6. [Docs as Code](../about/docs-as-code.md)
 
-    Semantic Versioning (SemVer) is a versioning scheme for software that aims to convey meaning about the underlying code changes and their impact on compatibility.
+    Docs as Code is a set of principles and practices that aims to treat documentation as code, and apply software development practices to documentation.
 
-7. [Changlog](../convention/changelog.md)
+7. [Code Review](../guideline/code-review-guide.md)
 
-    A changelog is a document or file that tracks and records the changes, updates, and additions made to a software project over time. It serves as a historical record of the project's evolution and provides a summary of the modifications introduced in each version or release.
+    Code review is used to ensure the overall health of the codebase over time. Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions. Collaborative code review and pull requests that plug into the code review process.
+
+8. [Technical Dept](../about/technical-dept.md)
+
+    Technical debt refers to the accumulated consequences of shortcuts, suboptimal solutions, and compromises made during the development process of software. Technical debt can lead to increased complexity, reduced maintainability, decreased productivity, and higher costs in the future.
 
 #### 1.1.4. Build, Test and Release
 
 A reliable system is resilient to failures and meets its documented service level objectives, which may also include security guarantees. CI/CD pipelines ensure an efficient developer experience.
 
-Elements of Build, Test and Release:
+Elements of Build:
 
-1. [Continuous Pipelines](../about/continuous-pipelines.md)
+1. [Software Analysis](../about/software-analysis.md)
 
-    Continuous Pipelines refer to the process of automating the software development workflow from code creation to deployment. This process involves multiple stages such as code integration, build, testing, and deployment to production.
+    - [Dynamic Analysis](../about/software-analysis.md#113-dynamic-analysis)
+      > Dynamic analysis is a software analysis technique that involves observing and analyzing the behavior of a software system during its execution. It helps uncover defects, validate functionality, memory leaks, assess performance, and understand system behavior under different conditions.
 
-2. [Software Testing](../about/software-testing.md)
+2. [Continuous Pipelines](../about/continuous-pipelines.md)
+
+    - [Continuous Build](../about/continuous-pipelines.md#15-continuous-build)
+      > Continuous Build refers to the practice of automatically building and compiling software applications and systems, whenever changes are committed to the source code repository. This can involve automating the process of building, compiling, and packaging software, and can help organizations to ensure that software is always up-to-date and ready for deployment. Continuous Build helps to speed up the software development process, reduce errors and inconsistencies, and improve the overall efficiency of software development and deployment.
+
+Elements of Test:
+
+1. [Software Testing](../about/software-testing.md)
 
     Software testing is a process of evaluating the functionality of a software application or system to identify any defects, bugs, vulnerabilities or issues that may impact the functionality or performance of the software. Software testing ensure that the software meets the specified requirements and specifications, and that it performs as expected in a variety of different conditions.
+
+    - [Unit Testing](../about/software-testing.md#5-unit-testing)
+      > Unit testing focuses on testing individual components of the software, such as classes or functions, to ensure that they work as expected. This type of testing is performed during the development phase and is an important part of the software development process.
+
+    - [Fuzz Testing](../about/software-testing.md#37-fuzz-testing)
+      > Fuzz testing is a type of testing that involves sending random or malformed inputs to the software in an attempt to find defects. It helps identify any security or reliability issues that may occur in the software, and helps ensure that the software is robust and resilient.
+
+    - [Test Doubles](../about/software-testing.md#421-test-double)
+      > Test doubles are an essential part of unit testing and are used to isolate code under test and ensure that tests are not dependent on external systems or objects. The choice of which test double to use will depend on the specific requirements of the test, the complexity of the system being tested, and the level of isolation desired.
+
+2. [Continuous Pipelines](../about/continuous-pipelines.md)
+
+    - [Continuous Testing](../about/continuous-pipelines.md#16-continuous-testing)
+      > Continuous Testing refers to the practice of automating the process of testing code changes throughout the software development lifecycle. This process typically involves the use of test automation tools and scripts that run automatically as code changes are committed, built, and deployed. Continuous Testing helps to ensure that code changes are thoroughly tested and validated before they are released to production, reducing the risk of defects and improving the overall quality of the software.
+
+Elements of Release:
+
+1. [Semantic Versioning](../convention/semantic-versioning.md)
+
+    Semantic Versioning (SemVer) is a versioning scheme for software that aims to convey meaning about the underlying code changes and their impact on compatibility.
+
+2. [Changlog](../convention/changelog.md)
+
+    A changelog is a document or file that tracks and records the changes, updates, and additions made to a software project over time. It serves as a historical record of the project's evolution and provides a summary of the modifications introduced in each version or release.
 
 #### 1.1.5. Deploy
 
@@ -126,19 +181,21 @@ Elements of Deploy:
 
     Deployment strategies define  how a running instance of an application should be deployed, modified, or updated.
 
-2. [Production Environment](../about/software-environments.md)
+2. [Software Development Environment](../about/software-development-environment.md)
 
-    The live production code will need a place to live. Consider using cloud hosting provided by Amazon AWS, Google Cloud Platform, or Microsoft Azure.
+    - [Production Environment](../about/software-development-environment.md#16-production-environment)
+      > The production environment is the live environment where software applications are deployed and made available to the end-users. This environment is monitored closely to ensure the software is functioning correctly and meeting the performance and availability requirements of the business.
+
+3. [Software Analysis](../about/software-analysis.md)
+
+    - [Bill of Materials (BOM)](../about/software-analysis.md#124-bill-of-materials-bom)
+      > A Bill of Materials (BOM) is a comprehensive list or inventory of all the materials, components, parts, and sub-assemblies required to manufacture or build a product. It provides detailed information about each item, including its name, quantity, description, and sometimes additional attributes such as part numbers or suppliers. BOMs are commonly used in various industries, including manufacturing, engineering, construction, and software development.
 
 #### 1.1.6. Operate
 
 Support and maintenance are required of active software projects to reduce down times.
 
 Elements of Operate:
-
-1. [Continuous Operations](../about/continuous-pipelines.md#9-continuous-operations)
-
-    Continuous Operations (CO) pipeline is the automation of observe the live production code.
 
 #### 1.1.7. Observe
 
@@ -162,9 +219,17 @@ Security should be included throughout the Software Development Life Cycle (SDLC
 
     Identity and Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.
 
-3. [Continuous Security](../about/continuous-pipelines.md#7-continuous-security)
+3. [Software Analysis](../about/software-analysis.md)
 
-    Continuous Security pipeline is the automation of security verification as an active and integrated part of the existing development process.
+    - [Security Analysis](../about/software-analysis.md#114-security-analysis)
+      > Security analysis is a software analysis technique focused on assessing the security posture of a software system. It involves identifying vulnerabilities, weaknesses, and potential risks in the software design, implementation, configuration, and deployment. The objective of security analysis is to uncover security flaws and recommend mitigations to protect the system against unauthorized access, data breaches, and malicious attacks.
+
+4. [Continuous Pipelines](../about/continuous-pipelines.md)
+
+    - [Continuous Security](../about/continuous-pipelines.md#111-continuous-security)
+
+      Continuous Security refers to the practice of integrating security into the software development lifecycle, and continuously monitoring and verifying the security of applications and systems. This can involve automated security testing, security scans, and regular security audits, and helps organizations to identify and remediate security vulnerabilities before they can be exploited.
+
 
 ### 1.2. Key Features
 
@@ -176,7 +241,7 @@ Key features of effective software development.
 
 #### 1.2.2. XOps
 
-[XOps](../about/xops.md) is a set of principles and practices, tools, and a cultural philosophy that automate and integrate the processes of software development (Dev), security (Sec), and IT operation (Ops). It focuses team empowerment, cross-team communication and collaboration, and technology automation.
+[XOps](../about/xops.md) is a set of principles and practices, tools, and a cultural philosophy that automate and integrate the processes of software development. XOps, an umbrella term used for a combination of IT tech like DevOps, DevSecOps, AIOps, MLOps, GitOps, and BizDevOps. XOps supposedly helps to shorten a system development cycles and provides continuous delivery with high software quality. It focuses team empowerment, cross-team communication and collaboration, and technology automation.
 
 #### 1.2.3. Continuous Pipelines
 

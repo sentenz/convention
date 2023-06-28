@@ -420,7 +420,7 @@ The code snippet exemplifies infrastructure debt, specifically using outdated or
 
 ### 1.2. Debt Metrics
 
-Keeping dashboards with code health metrics. These can range from dashboards that show test coverage or the number and average age of `TODO` tags, to more sophisticated dashboards including metrics like cyclomatic complexity or maintainability index.
+Keeping dashboards with code health metrics. These can range from dashboards that show test coverage or the number of `TODO` tags, to more sophisticated dashboards including metrics like cyclomatic complexity or maintainability index.
 
 - Bugs
   > Software developers should count and track their bugs. This includes both fixed and unfixed bugs. Noting the unfixed bugs allows development teams to focus on them and fix them during their agile iterations. Noting the fixed bugs helps teams measure how effective their tech debt management process is. Bugs on a weekly or monthly basis indicates a quality decline of the codebase.

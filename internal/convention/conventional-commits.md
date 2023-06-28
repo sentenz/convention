@@ -39,7 +39,7 @@ Structure of Conventional Commits:
       > Denotes the scope or module of the project that the commit affects. It can be a specific component, file, or functionality. The scope is enclosed in parentheses.
 
     - `<subject>`
-      > Briefly describes the commit's purpose in a concise and imperative manner (e.g., "add authentication module," "fix validation bug").
+      > Briefly describes the commit's purpose in a concise and imperative manner (e.g., `add authentication module`, `fix validation bug`).
 
 2. Body
 
@@ -79,31 +79,43 @@ Types of Conventional Commits:
 
 1. `feat`
 
-   This type is used for commits that introduce new features or functionalities to the project. It indicates the addition of significant user-visible changes.
+    Used for commits that introduce new features or functionalities to the project. It indicates the addition of significant user-visible changes.
 
 2. `fix`
 
-   Commits categorized as `fix` address bug fixes or resolve issues in the codebase. They indicate corrections to existing features or functionality.
+    Commits categorized as `fix` address bug fixes or resolve issues in the codebase. They indicate corrections to existing features or functionality.
 
 3. `docs`
 
-   Documentation plays a vital role in software projects. The `docs` category is used for commits that update or add documentation, including readme files, API documentation, or user guides.
+    Documentation plays a vital role in software projects. The `docs` category is used for commits that update or add documentation, including readme files, API documentation, or user guides.
 
 4. `style`
 
-   The `style` category is used for commits that focus on code style changes, such as formatting, indentation, or whitespace modifications. These commits do not affect the functionality of the code but improve its readability and maintainability.
+    The `style` category is used for commits that focus on code style changes, such as formatting, indentation, or whitespace modifications. These commits do not affect the functionality of the code but improve its readability and maintainability.
 
 5. `refactor`
 
-   Commits categorized as `refactor` involve making changes to the codebase that neither fix a bug nor add a new feature. Refactoring aims to improve code structure, organization, or efficiency without changing external behavior.
+    Commits categorized as `refactor` involve making changes to the codebase that neither fix a bug nor add a new feature. Refactoring aims to improve code structure, organization, or efficiency without changing external behavior.
 
 6. `test`
 
-   Testing is crucial for ensuring software quality. The `test` category is used for commits that add, modify, or refactor test cases, test frameworks, or testing infrastructure.
+    Used for changes that add or modify test cases, test frameworks, or other related testing infrastructure.
 
 7. `chore`
 
-   Commits classified as `chore` encompass various maintenance tasks, build system changes, or other non-functional modifications. This category is often used for commits that do not directly impact the codebase but are necessary for project maintenance.
+    Typically used for routine or miscellaneous tasks related to the project, such as code reformatting, updating dependencies, or making general project maintenance.
+
+8. `build`
+
+    Used when a commit affects the build system or external dependencies. It includes changes to build scripts, configurations, or tools used in the project.
+
+9. `ci`
+
+    Stands for `continuous integration`. This type is used for changes to the project's continuous integration or deployment configurations, scripts, or infrastructure.
+
+10. `perf`
+
+    Short for `performance`, this type is used when a commit improves the performance of the code or optimizes certain functionalities.
 
 ## 2. Principles
 
@@ -113,7 +125,7 @@ While Conventional Commits provide a specific structure and format for commit me
   > Conventional Commits aim to make commit messages more readable and understandable for humans. By following a standardized format and including clear and concise information, it becomes easier for developers, reviewers, and other stakeholders to grasp the purpose and impact of each commit.
 
 - Semantic Versioning
-  > Conventional Commits align with semantic versioning principles. By categorizing commits into types such as "feat" (new feature), "fix" (bug fix), or "chore" (maintenance), it becomes possible to automate the generation of release notes and determine the appropriate version numbers based on the types of changes introduced.
+  > Conventional Commits align with semantic versioning principles. By categorizing commits into types such as `feat` (new feature), `fix` (bug fix), or `chore` (maintenance), it becomes possible to automate the generation of release notes and determine the appropriate version numbers based on the types of changes introduced.
 
 - Changelog Generation
   > Conventional Commits enable automated changelog generation. The structured commit messages provide the necessary information to generate changelogs, which summarize the changes between different versions of the software. This helps users and stakeholders easily track and understand the evolution of the project.
@@ -147,7 +159,7 @@ The effective implementation of Conventional Commits in a project, improves code
   > Provide additional information in the body section when the commit requires more context or explanation. Use the footer to reference related issues, document breaking changes, or include other relevant details.
 
 - Follow Semantic Versioning
-  > Consider the impact of the commit and choose the appropriate commit type ("feat," "fix," etc.) according to semantic versioning guidelines. This helps automate versioning and release processes.
+  > Consider the impact of the commit and choose the appropriate commit type (`feat`, `fix`, etc.) according to semantic versioning guidelines. This helps automate versioning and release processes.
 
 - Use Tooling and Automation
   > Leverage tools and plugins that support Conventional Commits. These tools can automate the generation of release notes, changelogs, and enforce commit message formats. They can also help ensure consistent adherence to the convention across the team.
@@ -172,13 +184,13 @@ The terms are fundamental to understanding and working with Conventional Commits
   > The header is the first line of a commit message and contains the essential information about the commit, including the type, scope, and subject of the changes. It follows the format `<type>(<scope>): <subject>`.
 
 - Type
-  > The type represents the category or nature of the changes made in a commit. Common types include "feat" (new feature), "fix" (bug fix), "docs" (documentation update), "style" (code style changes), "refactor" (code refactoring), "test" (adding or modifying tests), and "chore" (maintenance tasks or non-functional changes).
+  > The type represents the category or nature of the changes made in a commit. Common types include `feat` (new feature), `fix` (bug fix), `docs` (documentation update), `style` (code style changes), `refactor` (code refactoring), `test` (adding or modifying tests), and `chore` (maintenance tasks or non-functional changes).
 
 - Scope
   > The scope (optional) provides additional context about the portion of the codebase that the commit affects. It can be a specific component, module, file, or functionality. The scope is enclosed in parentheses and helps narrow down the scope of the changes.
 
 - Subject
-  > The subject is a brief and concise description of the commit's purpose or the main change introduced. It should be written in an imperative form, starting with a verb. For example, "add authentication module" or "fix validation bug."
+  > The subject is a brief and concise description of the commit's purpose or the main change introduced. It should be written in an imperative form, starting with a verb. For example, `add authentication module` or `fix validation bug`.
 
 - Body
   > The body (optional) is the section of the commit message that provides additional information and details about the changes made in the commit. It can include a more extensive description, motivations, references to related issues, or any other relevant contextual information.

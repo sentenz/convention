@@ -32,7 +32,7 @@ Log entries (log events or log records) are individual, structured messages in a
 
 Log entries are crucial for monitoring system behavior, troubleshooting issues, and gaining insights into the health and performance of a system. Analyzing log entries collectively helps identify patterns, detect anomalies, track user actions, understand system flow, and identify areas for improvement or optimization.
 
-Elements of Log Entries:
+Features of Log Entries:
 
 1. Timestamp
 
@@ -327,7 +327,7 @@ Effective log management provides organizations with valuable insights into thei
 
 Centralized log management solutions, such as Elasticsearch, Splunk, or ELK stack (Elasticsearch, Logstash, and Kibana), are commonly used to aggregate and process logs from multiple sources.
 
-Elements of Log Management:
+Features of Log Management:
 
 1. Log Collection
 
@@ -386,7 +386,7 @@ Monitoring involves the continuous observation and measurement of various aspect
 
 Metrics are quantitative measurements used to track and analyze the performance, behavior, and health of systems, applications, or processes. They provide valuable insights into various aspects of a system's operation and help monitor key indicators to understand its overall state. Metrics help organizations to optimize their operations, troubleshoot issues, and drive continuous improvement.
 
-Elements of Metrics:
+Features of Metrics:
 
 1. Types of Metrics
 
@@ -443,7 +443,7 @@ Alerting is a crucial component of monitoring systems and plays a vital role in 
 
 Alerting enables proactive monitoring and quick response to abnormal conditions, helping organizations identify and address issues promptly. By configuring effective alert rules, defining appropriate notification channels, and establishing escalation policies, organizations can maintain system availability, minimize downtime, and provide efficient incident response.
 
- Elements of Alerting:
+ Features of Alerting:
 
 1. Alert Rules
 
@@ -506,7 +506,7 @@ Alerting enables proactive monitoring and quick response to abnormal conditions,
 
 Dashboards are powerful tools for data visualization and analysis, enabling users to monitor and understand system performance, track metrics, and make informed decisions. By presenting data in a visually appealing and accessible format, dashboards facilitate effective communication and enable stakeholders to stay informed about the health and status of systems or applications, and track key performance indicators (KPIs).
 
-Elements of Dashboards:
+Features of Dashboards:
 
 1. Data Visualization
 
@@ -554,7 +554,7 @@ Proactive analysis is an approach to data analysis that focuses on identifying p
 
 Proactive analysis empowers organizations to be ahead of the curve by leveraging data and analytics to identify and address potential issues or opportunities. By moving from reactive to proactive decision-making, organizations can gain a competitive edge, optimize operations, and drive continuous improvement.
 
- Elements of Proactive Analysis:
+ Features of Proactive Analysis:
 
 1. Data Collection
 

@@ -1,8 +1,8 @@
 # Guide
 
-Conventions, general articles, and guidelines for complex [Software Development](internal/guideline/software-development-guide.md) projects.
+Conventions, general articles, and guidelines for complex projects.
 
-Elements of Software Development:
+[Software Development](internal/guideline/software-development-guide.md)
 
 - [About](internal/about/README.md)
 - [Convention](internal/convention/README.md)

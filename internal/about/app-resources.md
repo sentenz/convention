@@ -283,7 +283,7 @@ Example of Custom Package/File:
 
 Constants are fixed values that do not change during the execution of a program. They are used to represent values that are known and fixed at compile-time. In most programming languages, constants are typically declared and defined using specific syntax and naming conventions.
 
-Elements of constants:
+Features of Constants:
 
 1. Declaration
 
@@ -384,7 +384,7 @@ Configuration files play a crucial role in software development and administrati
 
 Configuration files provide a flexible and powerful mechanism for managing application settings and behavior. They enable easy customization, improve maintainability, and facilitate the separation of configuration from code, allowing for greater flexibility and adaptability in different environments and deployment scenarios.
 
-Elements of Configuration Files:
+Features of Configuration Files:
 
 1. Purpose
 
@@ -748,7 +748,7 @@ Resource files are typically separate from the source code and are bundled with 
 
 Resource files are an essential component of many applications, enabling the storage and access of non-code assets that are necessary for the application's proper functioning or to enhance the user experience. Proper organization, management, and utilization of resource files contribute to the overall effectiveness and efficiency of the application.
 
-Elements of Resource Files:
+Features of Resource Files:
 
 1. Types of Resource Files
 
@@ -838,7 +838,7 @@ Localization is a complex process that requires collaboration between translator
 
 Localization frameworks, tools, and technologies are available to streamline the localization process and help manage translations, resource files, and language-specific assets effectively. These tools often provide features for string extraction, translation management, and resource file generation to simplify the localization workflow.
 
-Elements of Localization:
+Features of Localization:
 
 1. Language Translation
 

@@ -167,6 +167,7 @@ See [Compiler User Guides](https://www.keil.com/support/man/docs/armclang_intro/
 
 ### 2.1. Convention
 
+- [Google Go Style Guide](https://google.github.io/styleguide/go/)
 - [Effective Go](https://golang.org/doc/effective_go)
 - [Golang Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
 - [Uber Go Style Guide](https://github.com/uber-go/guide/blob/master/style.md)

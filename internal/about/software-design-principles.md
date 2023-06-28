@@ -48,10 +48,10 @@ Software design principles are fundamental concepts and guidelines that help dev
   - [1.3. Process Principles](#13-process-principles)
     - [1.3.1. Waterfall Model](#131-waterfall-model)
     - [1.3.2. V Model](#132-v-model)
-    - [1.3.3. Agile Software Development](#133-agile-software-development)
+    - [1.3.3. Agile](#133-agile)
     - [1.3.4. Lean Software Development](#134-lean-software-development)
-    - [1.3.5. Scrum](#135-scrum)
-    - [1.3.6. Kanban](#136-kanban)
+    - [1.3.5. Kanban](#135-kanban)
+    - [1.3.6. Scrum](#136-scrum)
     - [1.3.7. Extreme Programming](#137-extreme-programming)
     - [1.3.8. Feature-Driven Development](#138-feature-driven-development)
 - [2. Principles](#2-principles)
@@ -67,7 +67,7 @@ Software design principles can be broadly categorized into three main categories
 
 ### 1.1. Design Principles
 
-Design principles are a set of guidelines that deal with the overall design of a software application, including its architecture, structure, and organization. By following these design principles, software developers can create software applications that are modular, scalable, and easy to maintain. These principles help to reduce complexity and make the code more flexible, reusable, and efficient.
+Design principles are a set of guidelines that deal with the design of a software application, including its architecture, structure, and organization. By following these design principles, software developers can create software applications that are modular, scalable, and easy to maintain. These principles help to reduce complexity and make the code more flexible, reusable, and efficient.
 
 #### 1.1.1. SOLID
 
@@ -770,7 +770,7 @@ The Interface Segregation Principle (ISP) states that clients should not be forc
 
 > NOTE The exact application of the ISP may vary depending on the specific requirements and context of the software being developed. The principle encourages careful consideration of the relationships between clients and interfaces, aiming to create interfaces that are cohesive, focused, and tailored to the needs of the clients that use them.
 
-Elements of ISP:
+Features of ISP:
 
 1. Clients
 
@@ -2926,7 +2926,7 @@ The Principle of Least Astonishment (POLA) or the Principle of Least Surprise, i
 
 The principle is based on the assumption that users will make assumptions and predictions about how a system or interface should work based on their prior experiences with similar systems. Therefore, the design should align with these assumptions to minimize confusion and cognitive load.
 
-By applying the Principle of Least Astonishment, developers can create systems and interfaces that are more intuitive, predictable, and user-friendly. This reduces the learning curve for users, minimizes errors and frustration, and ultimately improves the overall user experience.
+By applying the Principle of Least Astonishment, developers can create systems and interfaces that are more intuitive, predictable, and user-friendly. This reduces the learning curve for users, minimizes errors and frustration, and ultimately improves the user experience.
 
 Types of POLA:
 
@@ -3183,7 +3183,7 @@ Benefits of POLP:
 
 3. Improved System Integrity
 
-    By separating privileges and limiting access, the overall system integrity is enhanced, preventing unintended or unauthorized modifications.
+    By separating privileges and limiting access, the system integrity is enhanced, preventing unintended or unauthorized modifications.
 
 4. Compliance with Regulations
 
@@ -3419,7 +3419,7 @@ Examples of LoD in C++:
 
     In this revised example, the `Customer` class only communicates with two objects that are passed in as parameters, and does not have direct knowledge of them. This reduces the coupling between objects and promotes loose coupling, which can improve maintainability, flexibility, and modularity.
 
-    Overall, the LoD is a useful guideline for promoting good design practices and reducing coupling between objects. By limiting the interactions between objects, the LoD can help improve the overall design of a system and make it easier to maintain and modify.
+    Overall, the LoD is a useful guideline for promoting good design practices and reducing coupling between objects. By limiting the interactions between objects, the LoD can help improve the design of a system and make it easier to maintain and modify.
 
 #### 1.1.16. Law of Conservation of Complexity
 
@@ -3429,15 +3429,15 @@ In other words, the Law of Conservation of Complexity recognizes that complexity
 
 > NOTE The Law of Conservation of Complexity does not mean that complexity should be embraced without question. Instead, it highlights the need for thoughtful consideration of complexity trade-offs and effective management of complexity throughout the development process. The Law of Conservation of Complexity provides a high-level understanding of complexity and its redistribution within a software system, guiding developers to make informed decisions to manage complexity effectively.
 
-Elements of Law of Conservation of Complexity:
+Features of Law of Conservation of Complexity:
 
 1. Complexity Redistribution
 
-    When you simplify or reduce complexity in one part of a system, it often leads to an increase in complexity in another part. For example, introducing abstractions or design patterns to simplify one component may require additional layers of code or configuration, increasing the complexity of the overall system.
+    When you simplify or reduce complexity in one part of a system, it often leads to an increase in complexity in another part. For example, introducing abstractions or design patterns to simplify one component may require additional layers of code or configuration, increasing the complexity of the system.
 
 2. Trade-offs
 
-    Simplifying one aspect of a system may require making trade-offs or accepting increased complexity in other areas. It's important to consider the overall impact of complexity redistribution and make informed decisions based on the specific needs and requirements of the system.
+    Simplifying one aspect of a system may require making trade-offs or accepting increased complexity in other areas. It's important to consider the impact of complexity redistribution and make informed decisions based on the specific needs and requirements of the system.
 
 3. Managing Complexity
 
@@ -3792,7 +3792,7 @@ Examples of Law of Clarity in Go:
     > The functions `ProcessOrder`, `calculateTotalPrice`, and `saveOrder` have clear and descriptive names that reflect their purpose and functionality.
 
   - Separation of responsibilities
-    > The code separates different responsibilities into separate functions. The `ProcessOrder` function focuses on coordinating the overall order processing, while the `calculateTotalPrice` and `saveOrder` functions handle specific tasks.
+    > The code separates different responsibilities into separate functions. The `ProcessOrder` function focuses on coordinating the order processing, while the `calculateTotalPrice` and `saveOrder` functions handle specific tasks.
 
   - Error handling
     > The code returns meaningful error messages when encountering invalid or unexpected scenarios, improving the clarity of error handling.
@@ -4185,7 +4185,7 @@ Examples of DRY in Go:
 
 YAGNI (You Aren't Gonna Need It) is a principle that suggest only to implement features that are necessary for the current requirements, and not add features that may be needed in the future but aren't required now.
 
-Applying YAGNI can help teams avoid over-engineering, reduce development time and cost, and improve overall software quality.
+Applying YAGNI can help teams avoid over-engineering, reduce development time and cost, and improve software quality.
 
 > NOTE It's important to note that YAGNI doesn't mean that potential future requirements should completely ignored. Instead, it suggests to prioritize what is needed now and keep the code flexible and adaptable to future changes.
 
@@ -4652,7 +4652,29 @@ In the Waterfall Model, each phase must be completed before moving on to the nex
 
 > NOTE The Waterfall Model has some limitations. It can be inflexible in accommodating changes, and any errors or misunderstandings in the earlier phases can have significant consequences later on. Additionally, it may not be suitable for complex or large-scale projects where requirements are subject to frequent changes.
 
-Elements of Waterfall:
+Roles of Waterfall:
+
+1. Project Manager
+
+    The Project Manager is responsible for overall project planning, coordination, and execution. They define project milestones, allocate resources, and ensure that the project progresses according to the defined schedule and requirements.
+
+2. Business Analyst
+
+    The Business Analyst gathers and analyzes requirements from stakeholders, translates them into documentation, and ensures that the requirements are accurately captured and communicated to the development team.
+
+3. Development Team
+
+    The Development Team consists of individuals responsible for implementing and coding the software based on the predefined requirements. They follow a sequential approach, completing one phase before moving on to the next.
+
+4. Quality Assurance (QA) Team
+
+    The QA Team is responsible for testing and validating the software. They ensure that the developed software meets the specified requirements and adhere to quality standards.
+
+5. Technical Writers
+
+    Technical Writers create documentation, user manuals, and other instructional materials to support the software developed in the Waterfall Model.
+
+Features of Waterfall:
 
 1. Requirements Analysis
 
@@ -4660,7 +4682,7 @@ Elements of Waterfall:
 
 2. System Design
 
-   In this phase, the system architecture and high-level design are developed. It involves defining the overall structure of the system, subsystems, modules, and their relationships. Design decisions related to hardware, software, network, and user interface are made.
+   In this phase, the system architecture and high-level design are developed. It involves defining the structure of the system, subsystems, modules, and their relationships. Design decisions related to hardware, software, network, and user interface are made.
 
 3. Implementation
 
@@ -4776,7 +4798,33 @@ One of the key advantages of the V Model is its strong emphasis on verification 
 
 > NOTE The V Model can be inflexible in accommodating changes and may not be suitable for projects with evolving or uncertain requirements. It is best suited for projects with well-defined and stable requirements, where a systematic approach to testing is crucial.
 
-Elements of V:
+Roles of V:
+
+1. Project Manager
+
+    The Project Manager oversees the project's planning, execution, and delivery. They coordinate with stakeholders, allocate resources, and ensure that the project progresses according to the defined schedule and requirements.
+
+2. Business Analyst
+
+    The Business Analyst gathers and documents requirements from stakeholders, ensuring that they align with the desired functionality of the software.
+
+3. System Architect
+
+    The System Architect designs the system architecture based on the requirements. They define the technical structure and components of the software.
+
+4. Development Team
+
+    The Development Team consists of individuals responsible for implementing the software based on the defined system architecture. They follow a sequential approach, completing one phase before moving on to the next.
+
+5. Testers
+
+    Testers are responsible for creating and executing test cases to validate the software against the specified requirements. They ensure that the software meets the expected functionality and quality standards.
+
+6. Technical Writers
+
+    Technical Writers create documentation, user manuals, and other instructional materials to support the software developed in the V Model.
+
+Features of V:
 
 1. Requirements Analysis
 
@@ -4814,7 +4862,7 @@ Benefits of V:
 
 2. Early Defect Detection
 
-    By incorporating testing activities at each phase, the V Model promotes early defect detection. Unit testing, integration testing, system testing, and acceptance testing help identify and rectify issues early in the development process, reducing the overall cost and effort required for bug fixing.
+    By incorporating testing activities at each phase, the V Model promotes early defect detection. Unit testing, integration testing, system testing, and acceptance testing help identify and rectify issues early in the development process, reducing the cost and effort required for bug fixing.
 
 3. Thorough Test Coverage
 
@@ -4916,15 +4964,13 @@ The V Model is a software development model that emphasizes a sequential and sys
     - Deliverable
       > Maintenance and Support documentation, updated system versions.
 
-#### 1.3.3. Agile Software Development
+#### 1.3.3. Agile
 
-Agile Software Development is an iterative and collaborative approach to software development that prioritizes flexibility, adaptability, and customer satisfaction. It emphasizes delivering working software in frequent iterations and incorporating feedback to continuously improve the product.
+The Agile methodology is an iterative and collaborative approach to software development that prioritizes flexibility, adaptability, and customer satisfaction. It emphasizes delivering working software in frequent iterations and incorporating feedback to continuously improve the product.
 
 By adopting Agile, organizations can increase collaboration, improve customer satisfaction, respond effectively to changes, and deliver high-quality software in a more efficient and iterative manner. Agile provides a flexible framework that allows teams to adapt to evolving requirements and deliver value to customers in a timely and incremental manner.
 
 Types of Agile frameworks:
-
-Agile methodologies include several specific frameworks, which provide guidelines for implementing the principles of agile software development.
 
 1. Scrum
 
@@ -4940,7 +4986,7 @@ Agile methodologies include several specific frameworks, which provide guideline
 
 4. Extreme Programming (XP)
 
-    Extreme Programming is an Agile framework known for its engineering practices and focus on quality. It emphasizes short iterations, continuous integration, test-driven development (TDD), pair programming, and frequent customer interaction. XP aims to deliver high-quality software through a disciplined and collaborative development approach.
+    Extreme Programming is an Agile framework known for its engineering practices and focus on quality. It emphasizes short iterations, `Continuous Integration`, `Test-Driven Development (TDD)`, `Pair Programming`, and frequent customer interaction. XP aims to deliver high-quality software through a disciplined and collaborative development approach.
 
 5. Crystal
 
@@ -4954,7 +5000,7 @@ Agile methodologies include several specific frameworks, which provide guideline
 
     FDD is an Agile framework that emphasizes feature-driven development and domain modeling. It involves breaking down development into small, manageable features and focuses on iterative development, regular inspections, and progress tracking.
 
-Elements of Agile:
+Features of Agile:
 
 1. Customer Satisfaction
 
@@ -5056,11 +5102,11 @@ Types of Lean Software Development:
 
 9. Theory of Constraints (ToC)
 
-    The Theory of Constraints is a management philosophy that focuses on identifying and eliminating bottlenecks in the system to improve overall efficiency. It can be applied in software development to identify constraints or limiting factors that hinder productivity and take actions to alleviate them.
+    The Theory of Constraints is a management philosophy that focuses on identifying and eliminating bottlenecks in the system to improve efficiency. It can be applied in software development to identify constraints or limiting factors that hinder productivity and take actions to alleviate them.
 
 > NOTE Lean Software Development is a flexible and adaptable approach, and organizations may adopt different practices or techniques based on their specific needs and context. The overarching goal is to create a lean and efficient software development process that maximizes value for the customer and minimizes waste.
 
-Elements of Lean Software Development:
+Features of Lean Software Development:
 
 1. Eliminate Waste
 
@@ -5158,166 +5204,13 @@ Example of Lean Software Development:
 
    The team actively involves the customers throughout the development process. They conduct user research, usability testing, and gather feedback to ensure that the application meets customer needs and expectations. They prioritize features based on customer feedback and work closely with them to iterate and improve the product.
 
-#### 1.3.5. Scrum
-
-Scrum is an Agile framework for managing and delivering complex projects. It provides a flexible and iterative approach to software development that focuses on delivering value to customers through regular product increments. Scrum promotes collaboration, transparency, and adaptability, allowing teams to respond quickly to changing requirements and market dynamics.
-
-Scrum is widely used in various industries and has proven effective in managing complex projects and teams. It promotes a collaborative and iterative approach, empowering teams to deliver high-quality products that meet customer expectations.
-
-Elements of Scrum:
-
-1. Scrum Team:
-
-    A Scrum team typically consists of a Product Owner, Scrum Master, and Development Team. The team is self-organizing and cross-functional, responsible for delivering the product increment.
-
-    - Product Owner
-      > The Product Owner is responsible for managing the product backlog, prioritizing the features and functionalities of the software, and ensuring that the team is working on the most valuable work items.
-
-    - Scrum Master
-      > The Scrum Master is responsible for facilitating the Scrum process, ensuring that the team is following the framework, removing any impediments that may be blocking progress, and coaching the team on how to continuously improve.
-
-    - Development Team
-      > The Development Team is responsible for designing, coding, testing, and delivering the software increments during each sprint.
-
-2. Product Backlog
-
-    The Product Owner maintains a prioritized list of product requirements, known as the Product Backlog. It represents all the work that needs to be done on the project and serves as the team's guide for development.
-
-3. Sprint
-
-    A Sprint is a time-boxed iteration in Scrum, usually lasting 1-4 weeks. The team selects a set of items from the Product Backlog to work on during the Sprint, aiming to deliver a potentially shippable product increment.
-
-4. Sprint Planning
-
-    At the beginning of each Sprint, the Scrum team holds a Sprint Planning meeting. They discuss and define the Sprint Goal, select the items from the Product Backlog to work on, and create a Sprint Backlog with the specific tasks to be completed during the Sprint.
-
-5. Daily Scrum
-
-    The Daily Scrum, also known as the Daily Stand-up, is a short daily meeting where team members provide updates on their progress, discuss any obstacles or challenges, and coordinate their work for the day. It promotes collaboration, transparency, and alignment within the team.
-
-6. Sprint Review
-
-    At the end of each Sprint, the team holds a Sprint Review meeting to demonstrate the completed work to stakeholders and gather feedback. The Product Owner reviews the Product Backlog and adjusts priorities based on the feedback received.
-
-7. Sprint Retrospective
-
-    Following the Sprint Review, the team holds a Sprint Retrospective meeting to reflect on the Sprint and identify areas for improvement. They discuss what went well, what could be improved, and take actions to enhance their processes and performance in the next Sprint.
-
-Benefits of Scrum:
-
-1. Flexibility and Adaptability
-
-    Scrum embraces change and provides a flexible framework that allows teams to respond quickly to evolving requirements, market dynamics, and customer feedback. The iterative and incremental nature of Scrum enables continuous learning and adaptation throughout the project.
-
-2. Increased Collaboration
-
-    Scrum promotes collaboration and cross-functional teamwork. It encourages open communication, regular interactions, and shared accountability among team members. Collaboration within a self-organizing Scrum team leads to better problem-solving, knowledge sharing, and a sense of collective ownership of the project.
-
-3. Faster Time to Market
-
-    Scrum emphasizes delivering valuable product increments at the end of each Sprint. By breaking down the work into small, manageable units and focusing on frequent releases, Scrum enables faster delivery of working software. This helps organizations seize market opportunities, gather customer feedback early, and iterate on the product accordingly.
-
-4. Transparency and Visibility
-
-    Scrum provides transparency into the project's progress, work completed, and upcoming priorities. Through artifacts like the Product Backlog, Sprint Backlog, and Sprint Burndown Chart, stakeholders have clear visibility into the team's activities and can track the progress towards project goals. This transparency fosters trust, collaboration, and effective decision-making.
-
-5. Continuous Improvement
-
-    Scrum encourages regular reflection and adaptation through ceremonies like the Sprint Retrospective. This dedicated time for introspection and process evaluation enables the team to identify areas for improvement, address bottlenecks, and refine their working practices. Continuous improvement becomes an integral part of the team's workflow, leading to increased productivity and quality over time.
-
-6. Customer Satisfaction
-
-    Scrum places a strong emphasis on delivering value to customers. The involvement of the Product Owner in prioritizing features and incorporating customer feedback ensures that the team is building what the customers truly need. This customer-centric approach leads to higher satisfaction levels and enhances the chances of delivering a product that meets or exceeds customer expectations.
-
-7. Empowered and Motivated Teams
-
-    Scrum empowers teams to make decisions, take ownership of their work, and collaborate effectively. By providing autonomy and a supportive environment, Scrum boosts team morale and motivation. Teams are more likely to be engaged, creative, and committed to delivering high-quality results.
-
-Example of Scrum:
-
-Scrum is a iterative and incremental approach that allows the team to adapt to changing requirements, gather feedback regularly, and deliver working software at the end of each Sprint, ensuring a high degree of customer satisfaction and continuous improvement.
-
-1. Scrum Team Formation
-
-    - Identify and form a cross-functional Scrum team consisting of a Product Owner, Scrum Master, and Development Team members.
-
-    - Determine the team's size and composition based on project requirements and available resources.
-
-2. Product Backlog
-
-    - The Product Owner collaborates with stakeholders to gather requirements.
-
-    - The Product Owner creates and maintains a prioritized list of user stories and requirements called the Product Backlog.
-
-    - User stories represent specific features or functionalities desired by the end-users or stakeholders.
-
-    - The Product Backlog is continuously refined and updated throughout the project.
-
-3. Sprint Planning
-
-    - At the beginning of each Sprint, the Scrum Team, including the Product Owner and Development Team, conducts a Sprint Planning meeting.
-
-    - The Product Owner presents the top-priority items from the Product Backlog for the upcoming Sprint.
-
-    - The Development Team estimates the effort required for each item and determines which items they commit to completing during the Sprint.
-
-4. Daily Scrum
-
-    - The Development Team holds a Daily Scrum meeting, usually lasting 15 minutes, to synchronize their work.
-
-    - Each team member shares what they accomplished since the last meeting, what they plan to do next, and any obstacles or issues they are facing.
-
-    - The Daily Scrum promotes collaboration, transparency, and quick decision-making within the team.
-
-5. Sprint
-
-    - The Development Team works on the committed items during the Sprint.
-
-    - They collaborate, design, develop, and test the features, following best practices and coding standards.
-
-    - The Development Team self-organizes and manages their work to deliver the Sprint goals.
-
-6. Sprint Review
-
-    - At the end of each Sprint, the Scrum Team conducts a Sprint Review meeting.
-
-    - The Development Team presents the completed work to the stakeholders and receives feedback.
-
-    - The Product Owner reviews and updates the Product Backlog based on the feedback and new requirements that emerge.
-
-7. Sprint Retrospective
-
-    - After the Sprint Review, the Scrum Team holds a Sprint Retrospective meeting.
-
-    - They reflect on the previous Sprint, discussing what went well, what could be improved, and actions to enhance the team's performance.
-
-    - The team identifies opportunities for process improvement and defines action items to implement in the next Sprint.
-
-8. Increment and Release
-
-     - At the end of each Sprint, the Development Team delivers an increment of the product.
-
-    - The increment is a potentially releasable product version that incorporates the completed user stories.
-
-    - The Product Owner decides when to release the product, considering the stakeholders' requirements and market conditions.
-
-9. Repeat Sprint Cycle
-
-    - The Scrum Team continues with subsequent Sprints, repeating the process of Sprint Planning, Daily Scrum, Sprint Development, Sprint Review, and Sprint Retrospective.
-
-    - The product evolves incrementally with each Sprint, responding to changing requirements and delivering value to the users.
-
-10. Monitoring and Observability
-
-    Throughout the project, the Scrum Master ensures that the Scrum framework is followed, facilitates collaboration and communication, and helps the team overcome any obstacles. The Product Owner represents the interests of the stakeholders, maintains the Product Backlog, and ensures that the team is delivering value.
-
-#### 1.3.6. Kanban
+#### 1.3.5. Kanban
 
 Kanban is a Lean software development methodology that emphasizes visualizing the workflow and limiting work in progress. It is a pull-based system that focuses on continuous delivery and continuous improvement.
 
 The Kanban methodology provides a flexible and adaptable approach to software development that allows teams to focus on delivering value quickly while improving the process over time.
 
-Elements of Kanban:
+Features of Kanban:
 
 1. Kanban Board
 
@@ -5411,7 +5304,7 @@ Example of Kanban:
 
     - By tracking the movement of tasks on the Kanban board, bottlenecks and areas of inefficiency become visible.
 
-    - Bottlenecks can be identified and addressed to improve the overall flow and productivity.
+    - Bottlenecks can be identified and addressed to improve the flow and productivity.
 
 6. Continuous Improvement
 
@@ -5429,7 +5322,7 @@ Example of Kanban:
 
     - Foster a culture of collaboration and feedback among team members.
 
-    - Encourage open communication, problem-solving, and knowledge sharing to improve the overall performance of the team.
+    - Encourage open communication, problem-solving, and knowledge sharing to improve the performance of the team.
 
 9. Continuous Delivery
 
@@ -5437,65 +5330,233 @@ Example of Kanban:
 
     - This allows for faster feedback and value delivery to the customers.
 
+#### 1.3.6. Scrum
+
+Scrum is an Agile framework for managing and delivering complex projects. It provides a flexible and iterative approach to software development that focuses on delivering value to customers through regular product increments. Scrum promotes collaboration, transparency, and adaptability, allowing teams to respond quickly to changing requirements and market dynamics.
+
+Scrum is widely used in various industries and has proven effective in managing complex projects and teams. It promotes a collaborative and iterative approach, empowering teams to deliver high-quality products that meet customer expectations.
+
+Roles of Scrum:
+
+1. Scrum Master
+
+    The Scrum Master is responsible for ensuring that the Scrum framework is understood and followed. They facilitate Scrum events, remove obstacles that hinder the team's progress, and protect the team from external disruptions. The Scrum Master promotes collaboration, self-organization, and continuous improvement within the team.
+
+2. Product Owner
+
+    The Product Owner represents the stakeholders and is responsible for maximizing the value of the product. They define and prioritize the product backlog, ensuring that it reflects the needs and vision of the stakeholders. The Product Owner collaborates with the team to refine requirements, make trade-off decisions, and accept or reject work results.
+
+3. Development Team
+
+    The Development Team consists of cross-functional members who collaborate to deliver a potentially shippable increment of the product at the end of each sprint. They self-organize and determine the best way to accomplish the work. The Development Team is responsible for estimating, planning, and delivering the committed work, as well as ensuring the quality of the product.
+
+Features of Scrum:
+
+1. Product Backlog
+
+    The `Product Owner` maintains a prioritized list of product requirements, known as the `Product Backlog`. It represents all the work that needs to be done on the project and serves as the team's guide for development.
+
+2. Sprint Planning
+
+    At the beginning of each `Sprint`, the Scrum team holds a `Sprint Planning` meeting. They discuss and define the `Sprint` goal, select the items from the `Product Backlog` to work on, and create a `Sprint Backlog` with the specific tasks to be completed during the `Sprint`.
+
+3. Sprint
+
+    A time-boxed iteration of development, typically lasting 1-4 weeks, during which the team works to deliver a potentially shippable product increment.
+
+4. Daily Scrum/Stand-up
+
+    The `Daily Scrum/Stand-up` is a short daily meeting where team members provide updates on their progress, discuss any obstacles or challenges, and coordinate their work for the day. It promotes collaboration, transparency, and alignment within the team.
+
+5. Sprint Review
+
+    At the end of each Sprint, the team holds a `Sprint Review` meeting to demonstrate the completed work to stakeholders and gather feedback. The `Product Owner` reviews the `Product Backlog` and adjusts priorities based on the feedback received.
+
+6. Sprint Retrospective
+
+    Following the `Sprint Review`, the team holds a `Sprint Retrospective` meeting to reflect on the `Sprint` and identify areas for improvement. They discuss what went well, what could be improved, and take actions to enhance their processes and performance in the next Sprint.
+
+Benefits of Scrum:
+
+1. Flexibility and Adaptability
+
+    Scrum embraces change and provides a flexible framework that allows teams to respond quickly to evolving requirements, market dynamics, and customer feedback. The iterative and incremental nature of Scrum enables continuous learning and adaptation throughout the project.
+
+2. Increased Collaboration
+
+    Scrum promotes collaboration and cross-functional teamwork. It encourages open communication, regular interactions, and shared accountability among team members. Collaboration within a self-organizing Scrum team leads to better problem-solving, knowledge sharing, and a sense of collective ownership of the project.
+
+3. Faster Time to Market
+
+    Scrum emphasizes delivering valuable product increments at the end of each Sprint. By breaking down the work into small, manageable units and focusing on frequent releases, Scrum enables faster delivery of working software. This helps organizations seize market opportunities, gather customer feedback early, and iterate on the product accordingly.
+
+4. Transparency and Visibility
+
+    Scrum provides transparency into the project's progress, work completed, and upcoming priorities. Through artifacts like the Product Backlog, Sprint Backlog, and Sprint Burndown Chart, stakeholders have clear visibility into the team's activities and can track the progress towards project goals. This transparency fosters trust, collaboration, and effective decision-making.
+
+5. Continuous Improvement
+
+    Scrum encourages regular reflection and adaptation through ceremonies like the Sprint Retrospective. This dedicated time for introspection and process evaluation enables the team to identify areas for improvement, address bottlenecks, and refine their working practices. Continuous improvement becomes an integral part of the team's workflow, leading to increased productivity and quality over time.
+
+6. Customer Satisfaction
+
+    Scrum places a strong emphasis on delivering value to customers. The involvement of the Product Owner in prioritizing features and incorporating customer feedback ensures that the team is building what the customers truly need. This customer-centric approach leads to higher satisfaction levels and enhances the chances of delivering a product that meets or exceeds customer expectations.
+
+7. Empowered and Motivated Teams
+
+    Scrum empowers teams to make decisions, take ownership of their work, and collaborate effectively. By providing autonomy and a supportive environment, Scrum boosts team morale and motivation. Teams are more likely to be engaged, creative, and committed to delivering high-quality results.
+
+Example of Scrum:
+
+Scrum is a iterative and incremental approach that allows the team to adapt to changing requirements, gather feedback regularly, and deliver working software at the end of each Sprint, ensuring a high degree of customer satisfaction and continuous improvement.
+
+1. Scrum Team Formation
+
+    - Identify and form a cross-functional Scrum team consisting of a Product Owner, Scrum Master, and Development Team members.
+
+    - Determine the team's size and composition based on project requirements and available resources.
+
+2. Product Backlog
+
+    - The Product Owner collaborates with stakeholders to gather requirements.
+
+    - The Product Owner creates and maintains a prioritized list of user stories and requirements called the Product Backlog.
+
+    - User stories represent specific features or functionalities desired by the end-users or stakeholders.
+
+    - The Product Backlog is continuously refined and updated throughout the project.
+
+3. Sprint Planning
+
+    - At the beginning of each Sprint, the Scrum Team, including the Product Owner and Development Team, conducts a Sprint Planning meeting.
+
+    - The Product Owner presents the top-priority items from the Product Backlog for the upcoming Sprint.
+
+    - The Development Team estimates the effort required for each item and determines which items they commit to completing during the Sprint.
+
+4. Daily Scrum
+
+    - The Development Team holds a Daily Scrum meeting, usually lasting 15 minutes, to synchronize their work.
+
+    - Each team member shares what they accomplished since the last meeting, what they plan to do next, and any obstacles or issues they are facing.
+
+    - The Daily Scrum promotes collaboration, transparency, and quick decision-making within the team.
+
+5. Sprint
+
+    - The Development Team works on the committed items during the Sprint.
+
+    - They collaborate, design, develop, and test the features, following best practices and coding standards.
+
+    - The Development Team self-organizes and manages their work to deliver the Sprint goals.
+
+6. Sprint Review
+
+    - At the end of each Sprint, the Scrum Team conducts a Sprint Review meeting.
+
+    - The Development Team presents the completed work to the stakeholders and receives feedback.
+
+    - The Product Owner reviews and updates the Product Backlog based on the feedback and new requirements that emerge.
+
+7. Sprint Retrospective
+
+    - After the Sprint Review, the Scrum Team holds a Sprint Retrospective meeting.
+
+    - They reflect on the previous Sprint, discussing what went well, what could be improved, and actions to enhance the team's performance.
+
+    - The team identifies opportunities for process improvement and defines action items to implement in the next Sprint.
+
+8. Increment and Release
+
+    - At the end of each Sprint, the Development Team delivers an increment of the product.
+
+    - The increment is a potentially releasable product version that incorporates the completed user stories.
+
+    - The Product Owner decides when to release the product, considering the stakeholders' requirements and market conditions.
+
+9. Repeat Sprint Cycle
+
+    - The Scrum Team continues with subsequent Sprints, repeating the process of Sprint Planning, Daily Scrum, Sprint Development, Sprint Review, and Sprint Retrospective.
+
+    - The product evolves incrementally with each Sprint, responding to changing requirements and delivering value to the users.
+
+10. Monitoring and Observability
+
+    Throughout the project, the Scrum Master ensures that the Scrum framework is followed, facilitates collaboration and communication, and helps the team overcome any obstacles. The Product Owner represents the interests of the stakeholders, maintains the Product Backlog, and ensures that the team is delivering value.
+
 #### 1.3.7. Extreme Programming
 
-Extreme Programming (XP) is an agile software development methodology that focuses on producing high-quality software through iterative and incremental development. It emphasizes collaboration, customer involvement, and continuous feedback.
+Extreme Programming (XP) is an agile methodology that focuses on producing high-quality software through iterative and incremental development. It emphasizes collaboration, customer involvement, and continuous feedback.
 
 By adopting Extreme Programming, teams can deliver high-quality software through regular iterations, continuous feedback, and collaboration. XP's practices aim to improve communication, code quality, and customer satisfaction, making it a popular choice for teams seeking agility and adaptability in software development.
 
 > NOTE Adapting Extreme Programming may vary depending on the project, team, and organization. Successful adoption of XP requires commitment, discipline, and a supportive environment that values collaboration, feedback, and continuous learning.
 
-Elements of Extreme Programming:
+Roles of XP:
 
-1. Iterative and Incremental Development
+1. Programmer
 
-    XP follows a series of short development cycles called iterations. Each iteration involves coding, testing, and delivering a working increment of the software. The software evolves through these iterations, with continuous feedback and learning.
+    The Programmer is responsible for writing code and implementing the software features. They collaborate with others through `Pair Programming`, where two programmers work together on the same task, actively reviewing and improving each other's code.
 
-2. Planning Game
+2. Customer/On-Site Customer
 
-    XP uses the `planning game` technique to involve customers and development teams in the planning process. Customers define user stories or requirements, and the team estimates the effort required for each story. Prioritization is done collaboratively, ensuring the most valuable features are developed first.
+    The Customer represents the end-users or stakeholders and provides guidance on the software's requirements and features. They work closely with the team, participating in planning, providing feedback, and making timely decisions to ensure the software meets their needs.
 
-3. Small Releases
+3. Coach
 
-    XP promotes frequent and small releases of working software. This allows for rapid feedback from customers and stakeholders, helps manage risks, and enables early delivery of value.
+    The Coach, also known as an XP Coach or Agile Coach, provides guidance and expertise on XP practices and principles. They help the team understand and adopt XP practices effectively, facilitate continuous improvement, and address any challenges or issues that arise during the development process.
 
-4. Continuous Integration
+Features of XP:
 
-    XP emphasizes continuous integration, where changes made by individual developers are frequently merged into a shared code repository. Automated builds and tests ensure that the software remains in a releasable state at all times.
+1. User Stories
 
-5. Test-Driven Development (TDD)
+    Small, actionable descriptions of features or requirements from a user's perspective.
+
+2. Pair Programming
+
+    XP encourages `Pair Programming`, where two developers work together on the same code. This practice promotes knowledge sharing, improves code quality, and helps catch errors early.
+
+3. Test-Driven Development (TDD)
 
     TDD is a core practice in XP. Developers write automated tests before writing the code. These tests drive the development process, ensure code correctness, and act as a safety net for refactoring and future changes.
 
-6. Pair Programming
+4. Continuous Integration
 
-    XP encourages pair programming, where two developers work together on the same code. This practice promotes knowledge sharing, improves code quality, and helps catch errors early.
+    Frequently integrating code changes into a shared repository, enabling early detection of integration issues and ensuring a working software baseline. Automated builds and tests ensure that the software remains in a releasable state at all times.
 
-7. Collective Code Ownership
+5. Refactoring
 
-    In XP, all team members are responsible for the codebase. There is no individual ownership of code, which fosters collaboration, encourages code reviews, and ensures that knowledge is shared among team members.
+    Restructuring and improving the codebase without changing its external behavior, design, maintainability, readability and extensibility of the codebase. Refactoring is an ongoing process that eliminates code smells and improves the quality of the software.
 
-8. Continuous Refactoring
+6. Collective Code Ownership
 
-    XP advocates for continuous refactoring to improve the design, maintainability, and readability of the codebase. Refactoring is an ongoing process that eliminates code smells and improves the overall quality of the software.
+    All team members have equal responsibility and authority to modify any part of the codebase. There is no individual ownership of code, which ensure shared code quality, collaboration, encourages code reviews, and knowledge sharing.
 
-9. Sustainable Pace
+7. On-Site Customer
 
-    XP emphasizes maintaining a sustainable pace of work. It encourages a healthy work-life balance and avoids overworking, which can lead to burnout and decreased productivity.
+    Involvement of a representative customer or end user to provide real-time feedback and clarify requirements. This close collaboration ensures that the software meets the customer's expectations.
 
-10. On-Site Customer
+8. Sustainable Pace
 
-    XP promotes having an on-site or readily accessible customer representative who can provide real-time feedback, clarify requirements, and make quick decisions. This close collaboration ensures that the software meets customer expectations.
+    Maintaining a balanced and sustainable workload to prevent burnout and promote long-term productivity and quality.
 
-Benefits of Extreme Programming:
+9. Planning Game
+
+    XP uses the `Planning Game` technique to involve customers and development teams in the planning process. Customers define user stories or requirements, and the team estimates the effort required for each story. Prioritization is done collaboratively, ensuring the most valuable features are developed first.
+
+10. Iterative and Incremental Development
+
+    XP follows a series of short development cycles called iterations. Each iteration involves coding, testing, and delivering a working increment of the software. The software evolves through these iterations, with continuous feedback and learning.
+
+Benefits of XP:
 
 1. Improved Quality
 
-    XP emphasizes practices such as test-driven development (TDD), pair programming, and continuous integration. These practices promote code quality, early defect detection, and faster bug fixing, resulting in a higher-quality product.
+    XP emphasizes practices such as `Test-Driven Development (TDD)`, `Pair Programming`, and `Continuous Integration`. These practices promote code quality, early defect detection, and faster bug fixing, resulting in a higher-quality product.
 
 2. Rapid Feedback
 
-    XP encourages frequent customer involvement and feedback. Through practices like short iterations, continuous integration, and regular customer reviews, teams can quickly incorporate feedback, address concerns, and ensure that the delivered software meets customer expectations.
+    XP encourages frequent customer involvement and feedback. Through practices like short iterations, `Continuous Integration`, and regular customer reviews, teams can quickly incorporate feedback, address concerns, and ensure that the delivered software meets customer expectations.
 
 3. Flexibility and Adaptability
 
@@ -5503,11 +5564,11 @@ Benefits of Extreme Programming:
 
 4. Collaborative Environment
 
-    XP promotes collaboration and effective communication among team members. Practices like pair programming and on-site customer involvement facilitate knowledge sharing, collective code ownership, and cross-functional collaboration, leading to a cohesive and high-performing team.
+    XP promotes collaboration and effective communication among team members. Practices like `Pair Programming` and on-site customer involvement facilitate knowledge sharing, collective code ownership, and cross-functional collaboration, leading to a cohesive and high-performing team.
 
 5. Increased Productivity
 
-    XP focuses on eliminating waste and optimizing the development process. Practices like small releases, continuous integration, and automation reduce unnecessary overhead, streamline development activities, and improve productivity.
+    XP focuses on eliminating waste and optimizing the development process. Practices like small releases, `Continuous Integration`, and automation reduce unnecessary overhead, streamline development activities, and improve productivity.
 
 6. Reduced Risk
 
@@ -5521,7 +5582,7 @@ Benefits of Extreme Programming:
 
     XP promotes a culture of continuous improvement. Regular retrospectives allow teams to reflect on their processes, identify areas for improvement, and implement changes to enhance productivity, quality, and team dynamics.
 
-Example of Extreme Programming:
+Example of XP:
 
 1. User Stories and Planning:
 
@@ -5571,41 +5632,59 @@ Each feature is developed incrementally, following the feature-centric approach 
 
 Feature-Driven Development promotes an organized and feature-centric approach to software development, enabling teams to deliver valuable features in a timely manner while maintaining a focus on quality and collaboration.
 
-Elements of FDD:
+Roles of FDD:
+
+1. Chief Architect
+
+    The Chief Architect is responsible for the technical direction and design of the system. They define the high-level architecture, ensure that it aligns with the project's goals, and provide guidance to the development teams.
+
+2. Feature Owner
+
+    The Feature Owner is responsible for a specific feature or set of features. They work with the Chief Architect to create a detailed design for the assigned feature(s), coordinate with the development teams, and ensure the timely and successful delivery of the features.
+
+3. Development Manager
+
+    The Development Manager oversees the development process, manages the resources, and ensures that the project progresses smoothly. They coordinate with the Chief Architect, Feature Owners, and development teams to monitor progress, identify and resolve issues, and maintain the project schedule.
+
+4. Chief Programmer
+
+    The Chief Programmer is responsible for the technical integrity of the codebase. They ensure that the coding standards are followed, provide technical guidance to the development teams, and oversee the integration and testing of features.
+
+5. Feature Teams
+
+    Feature Teams are responsible for implementing individual features. They collaborate with the Chief Architect, Feature Owners, and Chief Programmer to design, build, and test the assigned features.
+
+Features of FDD:
 
 1. Domain Object Modeling
 
-    FDD emphasizes domain object modeling as a means of understanding the problem domain and identifying the key entities and their relationships. The development team collaborates with domain experts and stakeholders to create an object model that forms the basis for feature development.
+    A high-level representation of the system's structure and entities, forming the basis for feature development. The development team collaborates with domain experts and stakeholders to create an object model that forms the basis for feature development.
 
 2. Feature List
 
-    FDD utilizes a feature-centric approach. The development team creates a comprehensive feature list that captures all the desired functionalities of the software. Each feature is identified, described, and prioritized based on its importance and value to the users and stakeholders.
+    FDD utilizes a feature-centric approach. A comprehensive list of features required for the system, prioritized based on business value. Each feature is identified, described, and prioritized based on its importance and value to the users and stakeholders.
 
 3. Feature Design
 
     Once the feature list is established, the team focuses on designing individual features. Design sessions are conducted to determine the technical approach, user interfaces, and interactions required to implement each feature. The design work is typically done collaboratively, involving developers, designers, and other relevant stakeholders.
 
-4. Feature Implementation
+4. Feature Iterations
 
-    FDD promotes an iterative and incremental approach to feature implementation. The development team works in short iterations, typically lasting a few days, to deliver working features. Each iteration involves analysis, design, coding, and testing activities specific to the feature being implemented.
+    Iterative development cycles focused on delivering specific features. Iteration includes analysis, design, coding, and testing activities specific to the feature being implemented.
 
-5. Regular Inspections
+5. Inspections
 
-    FDD promotes regular inspections to ensure quality and adherence to standards. Inspections are conducted at various stages of development, including design inspections, code inspections, and feature inspections. These inspections help in identifying and resolving issues early, ensuring that the software meets the desired quality standards.
+    Formal code and design reviews conducted to ensure adherence to standards and identify potential issues. Inspections are conducted at various stages of development, including design inspections, code inspections, and feature inspections.
 
-6. Milestone Reviews
+6. Reporting
 
-    FDD incorporates milestone reviews to assess the overall progress of the project. At predefined milestones, the team conducts comprehensive reviews to evaluate the completion of features, assess the software's functionality, and gather feedback from stakeholders. Milestone reviews help in tracking the project's progress and making necessary adjustments.
+    Regular reporting on the progress of feature development, allowing stakeholders to track the overall status of the system. FDD emphasizes accurate and transparent reporting to provide visibility into the project's status and progress. The team generates regular reports that highlight feature completion, project metrics, and any outstanding issues. These reports facilitate effective communication with stakeholders and support informed decision-making.
 
-7. Reporting
+7. Refactoring
 
-    FDD emphasizes accurate and transparent reporting to provide visibility into the project's status and progress. The team generates regular reports that highlight feature completion, project metrics, and any outstanding issues. These reports facilitate effective communication with stakeholders and support informed decision-making.
+    FDD recognizes the need for continuous improvement and refactoring. The development team performs iterative refactoring to improve the design, code quality, and maintainability of the software.
 
-8. Iterative Refactoring
-
-    FDD recognizes the need for continuous improvement and refactoring. The development team performs iterative refactoring to improve the design, code quality, and maintainability of the software. Refactoring is done incrementally to keep the codebase clean and manageable.
-
-9. Regular Release
+8. Release
 
     FDD promotes regular releases to deliver value to users and stakeholders. As features are completed, they are integrated, tested, and released in incremental versions. This allows for frequent user feedback and ensures that working software is delivered at regular intervals.
 
@@ -5651,7 +5730,7 @@ Example of FDD:
 
 > NOTE FDD is a flexible methodology, and the specific implementation may vary depending on the project and team dynamics. The key principles of FDD, such as domain object modeling, feature-driven development, and regular inspections, help ensure a systematic and efficient development process that delivers high-quality software.
 
-1. Develop Overall Model
+1. Develop Model
 
     Identify the key features or functionalities required for the software. Create a high-level domain object model that represents the major entities and their relationships within the software system. This model serves as a visual representation of the system's structure and functionality.
 
@@ -5683,7 +5762,7 @@ Example of FDD:
       > Foster collaboration among developers to ensure a cohesive and consistent design across features.
 
     - Review and refine the designs
-      > Conduct design reviews and make necessary refinements to ensure the designs align with the overall system architecture.
+      > Conduct design reviews and make necessary refinements to ensure the designs align with the system architecture.
 
 6. Build by Feature
 
@@ -5716,7 +5795,7 @@ Example of FDD:
 10. Deploy by Features
 
     - Prepare for release
-      > Conduct a final round of testing, including user acceptance testing, to validate the overall system's functionality and usability.
+      > Conduct a final round of testing, including user acceptance testing, to validate the functionality and usability of the system.
 
     - Deploy the software
       > Once the system is deemed ready, deploy it to the production environment, making it available to end-users.

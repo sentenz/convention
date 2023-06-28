@@ -33,7 +33,7 @@ Requirements analysis is a crucial phase in the software development life cycle 
 
 Requirements analysis sets the foundation for the development process, guiding subsequent phases such as design, implementation, and testing. Conducting requirements analysis reduces the risk of scope creep, improves software quality, and delivers a product that meets stakeholder expectations.
 
-Elements of Requirements Analysis:
+Features of Requirements Analysis:
 
 1. Elicitation
 
@@ -126,7 +126,7 @@ Static analysis can be performed manually by developers or using specialized sof
 
 > NOTE Static analysis has limitations and may generate false positives or miss certain types of issues. Static analysis should be used in conjunction with other testing and analysis techniques to achieve a comprehensive assessment of software quality.
 
-Elements of Static Analysis:
+Features of Static Analysis:
 
 1. Code Quality Analysis
 
@@ -190,7 +190,7 @@ Security analysis is a software analysis technique focused on assessing the secu
 
 The findings from security analysis are used to prioritize and address identified vulnerabilities through security patches, code fixes, configuration changes, and the implementation of additional security controls. It is an ongoing process that should be performed regularly to ensure that the software system remains secure and resilient to evolving threats.
 
-Elements of Security Analysis:
+Features of Security Analysis:
 
 1. Threat Modeling
 
@@ -266,7 +266,7 @@ Component identification involves identifying and cataloging the third-party and
 
 Component identification captures relevant metadata about a component, such as version numbers, licenses, and any associated security vulnerabilities or patches. This information helps in subsequent steps of software composition analysis, such as vulnerability assessment and license compliance analysis.
 
-Elements of Component Identification:
+Features of Component Identification:
 
 1. Build and Dependency Management Tools
 
@@ -290,7 +290,7 @@ Vulnerability analysis is a crucial step in software composition analysis that i
 
 Regular vulnerability analysis should be performed throughout the software development lifecycle to ensure that any new vulnerabilities or security issues are promptly addressed. Conducting vulnerability analysis mitigate the risks associated with the components used in their software systems and enhance the security posture.
 
-Elements of Vulnerability Analysis:
+Features of Vulnerability Analysis:
 
 1. Vulnerability Databases
 
@@ -328,7 +328,7 @@ Conducting license compliance analysis ensures  legal obligations, maintain good
 
 > NOTE License compliance analysis is important to ensure legal and ethical usage of third-party and open-source components. Non-compliance with software licenses can result in legal issues, reputational damage, and complications in software distribution.
 
-Elements of License Compliance Analysis:
+Features of License Compliance Analysis:
 
 1. License Identification
 
@@ -368,23 +368,23 @@ A Bill of Materials (BOM) is a comprehensive list or inventory of all the materi
 
 BOMs enhances the ability of organizations to manage and reduce cyber risks throughout the software and hardware supply chain. It promotes transparency, collaboration, and effective risk mitigation in the context of software development, deployment, and operations.
 
-Benefits of BOM:
+Types of BOM:
 
-1. License Compliance
+1. Software Bill of Materials (SBOM)
 
-    The BOM helps in identifying the licenses associated with each component and ensuring compliance with their terms and conditions. It allows organizations to understand the licensing requirements, obligations, and restrictions of the software components they use.
+    An SBOM is a comprehensive inventory of the components and dependencies used in a software system. It includes information about the software components, their versions, licenses, and dependencies. SBOMs are crucial for managing security, licensing, and overall risk associated with software supply chain management.
 
-2. Vulnerability Management
+2. Software-as-a-Service Bill of Materials (SaaSBOM)
 
-    By maintaining an up-to-date BOM, organizations can track the versions of components and be aware of any known security vulnerabilities associated with them. This enables proactive vulnerability management and helps in mitigating risks.
+    An SaaSBOM is similar to an SBOM but specifically tailored for software-as-a-service (SaaS) offerings. It provides a detailed inventory of the components, services, and dependencies used in a SaaS solution. SaaSBOMs help customers understand the underlying components and potential risks associated with the SaaS service they are using.
 
-3. Change Management
+3. Hardware Bill of Materials (HBOM)
 
-    The BOM provides visibility into the dependencies between components, allowing organizations to assess the impact of changes and plan accordingly. It helps in managing version upgrades, patches, or replacements of components.
+    An HBOM is a list of all the components, parts, and materials required to manufacture a hardware product. It includes information about the electronic components, mechanical parts, packaging materials, and other hardware elements needed for production. HBOMs are commonly used in the manufacturing and electronics industries.
 
-4. Supply Chain Management
+4. Operations Bill of Materials (OBOM)
 
-    BOMs are useful for managing relationships with component suppliers or vendors. They provide a centralized view of the components used and their associated suppliers, facilitating communication, support, and maintenance activities.
+    An OBOM is used in the context of operations management and supply chain management. It includes a list of materials, tools, equipment, and resources required to perform specific operational tasks or processes. OBOMs help in planning and managing the resources needed for efficient operations.
 
 Standards of BOM:
 
@@ -404,23 +404,23 @@ Standards of BOM:
 
     SPDX is widely adopted and supported by various tools and systems in the software development ecosystem. It enables easy integration with build systems, package managers, and software repositories, facilitating the automation of BOM generation and license compliance checks.
 
-Types of BOM:
+Benefits of BOM:
 
-1. Software Bill of Materials (SBOM)
+1. License Compliance
 
-    An SBOM is a comprehensive inventory of the components and dependencies used in a software system. It includes information about the software components, their versions, licenses, and dependencies. SBOMs are crucial for managing security, licensing, and overall risk associated with software supply chain management.
+    The BOM helps in identifying the licenses associated with each component and ensuring compliance with their terms and conditions. It allows organizations to understand the licensing requirements, obligations, and restrictions of the software components they use.
 
-2. Software-as-a-Service Bill of Materials (SaaSBOM)
+2. Vulnerability Management
 
-    An SaaSBOM is similar to an SBOM but specifically tailored for software-as-a-service (SaaS) offerings. It provides a detailed inventory of the components, services, and dependencies used in a SaaS solution. SaaSBOMs help customers understand the underlying components and potential risks associated with the SaaS service they are using.
+    By maintaining an up-to-date BOM, organizations can track the versions of components and be aware of any known security vulnerabilities associated with them. This enables proactive vulnerability management and helps in mitigating risks.
 
-3. Hardware Bill of Materials (HBOM)
+3. Change Management
 
-    An HBOM is a list of all the components, parts, and materials required to manufacture a hardware product. It includes information about the electronic components, mechanical parts, packaging materials, and other hardware elements needed for production. HBOMs are commonly used in the manufacturing and electronics industries.
+    The BOM provides visibility into the dependencies between components, allowing organizations to assess the impact of changes and plan accordingly. It helps in managing version upgrades, patches, or replacements of components.
 
-4. Operations Bill of Materials (OBOM)
+4. Supply Chain Management
 
-    An OBOM is used in the context of operations management and supply chain management. It includes a list of materials, tools, equipment, and resources required to perform specific operational tasks or processes. OBOMs help in planning and managing the resources needed for efficient operations.
+    BOMs are useful for managing relationships with component suppliers or vendors. They provide a centralized view of the components used and their associated suppliers, facilitating communication, support, and maintenance activities.
 
 ### 1.3. Tools
 

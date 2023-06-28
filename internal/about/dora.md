@@ -1,5 +1,8 @@
 # DORA
 
+DORA (DevOps Research and Assessment) is an organization that conducts research and provides assessments related to DevOps practices in software development. They have developed the DORA metrics, which measure software delivery performance and help organizations improve their DevOps capabilities.
+
+
 - [1. Category](#1-category)
   - [1.1. Deployment Frequency](#11-deployment-frequency)
   - [1.2. Lead Time for Changes](#12-lead-time-for-changes)
@@ -12,7 +15,9 @@
 
 ## 1. Category
 
-DORA (DevOps Research and Assessment) has identified four key categories that are essential for high-performing DevOps organizations. The categories are often referred to as the [Four Key Metrics](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance) or the `DORA Metrics`.
+The DORA (DevOps Research and Assessment) metrics are a set of key performance indicators (KPIs) developed by the DevOps Research and Assessment organization. These metrics are designed to assess the performance of software delivery teams and provide insights into the effectiveness of DevOps practices.
+
+DORA has identified four key categories that are essential for high-performing DevOps organizations. The categories are often referred to as the [Four Key Metrics](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance) or the `DORA Metrics`.
 
 By measuring and improving the four key metrics, organizations can achieve faster and more reliable software delivery, which is a key goal of DevOps. The DORA metrics provide a framework for organizations to assess their DevOps practices and identify areas for improvement.
 

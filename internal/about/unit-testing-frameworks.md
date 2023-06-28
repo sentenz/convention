@@ -51,11 +51,16 @@ Test (TestGroupName, TestName)   {
 
 | Mock     | Fixture  | Fuzzing  | Code Coverage | Build System  |
 | -------- | -------- | -------- | ------------- | ------------- |
-| Built-in | Built-in | Built-in | gcov          | CMake / Bazel |
+| Built-in | Built-in | FuzzTest | gcov          | CMake / Bazel |
 
-[GoogleTest](https://github.com/google/googletest) framework is portable, it includes a rich set of fatal and non-fatal assertions, provides instruments for creating fixtures and test groups, gives informative messages, and exports the results in XML. Probably the only drawback is a need to build gtest/gmock in your project in order to use it.
+[GoogleTest](https://github.com/google/googletest) is Google Testing and Mocking Framework, it includes a rich set of fatal and non-fatal assertions, provides instruments for creating fixtures and test groups, gives informative messages, and exports the results in XML.
 
 To learn more about Google Test, explore the [samples](https://github.com/google/googletest/blob/main/docs/samples.md) in the framework's repository. Also, take a look at [Advanced options](https://github.com/google/googletest/blob/main/docs/advanced.md#advanced-googletest-topics) for details of other noticeable Google Test features such as [value-parametrized tests](https://github.com/google/googletest/blob/main/docs/advanced.md#value-parameterized-tests) and [type-parameterized tests](https://github.com/google/googletest/blob/main/docs/advanced.md#type-parameterized-tests).
+
+Tools for GoogleTest:
+
+- [FuzzTest](https://github.com/google/fuzztest)
+  > FuzzTest is a C++ testing framework for writing and executing fuzz tests, which are property-based tests.
 
 ### 1.2. Boost.Test
 

@@ -29,17 +29,17 @@ The Software Development Life Cycle (SDLC) is a systematic approach to software 
 
 Projects are envisioned, designed, and prioritized.
 
-Elements of Discover:
+Features of Discover:
 
 1. [Process Principles](../about/software-design-principles.md#13-process-principles)
 
-    Process principles refer to a set of guidelines that govern how software is developed, tested, and deployed.
+    - [Agile](../about/software-design-principles.md#133-agile)
 
-    - [Waterfall Model](../about/software-design-principles.md#131-waterfall-model)
-      > The Waterfall Model is a sequential software development process model that follows a linear and phased approach. It consists of distinct, well-defined phases, each of which must be completed before progressing to the next phase.
+      - [Scrum](../about/software-design-principles.md#136-scrum)
+        > Scrum is an Agile framework for managing and delivering complex projects. It provides a flexible and iterative approach to software development that focuses on delivering value to customers through regular product increments. Scrum promotes collaboration, transparency, and adaptability, allowing teams to respond quickly to changing requirements and market dynamics.
 
-    - [Agile](../about/software-design-principles.md#133-agile-software-development)
-      > Agile Software Development is an iterative and collaborative approach to software development that prioritizes flexibility, adaptability, and customer satisfaction. It emphasizes delivering working software in frequent iterations and incorporating feedback to continuously improve the product.
+      - [Extreme Programming](../about/software-design-principles.md#137-extreme-programming)
+        > Extreme Programming (XP) is an agile methodology that focuses on producing high-quality software through iterative and incremental development. It emphasizes collaboration, customer involvement, and continuous feedback.
 
 2. [Software Analysis](../about/software-analysis.md)
 
@@ -54,25 +54,47 @@ Elements of Discover:
 
 Stakeholders are identified, budgets set, and infrastructure requisitioned. Design documents from the concept phase are broken down into actionable tasks.
 
-Elements of Plan:
+Features of Plan:
 
 1. Software Architecture Description
 
     A software architecture description provides an overview and detailed documentation of the architecture of a software system. It describes the structure, components, relationships, and behavior of the software system, enabling developers, architects, and stakeholders to understand and communicate the design decisions and principles underlying the system.
 
-2. [Project Layout](../about/project-layout.md)
+2. [Software Development Environment](../about/software-development-environment.md)
+
+    - [Development Environment](../about/software-development-environment.md#11-development-environment)
+      > This environment is used for developing, testing and debugging software applications. It provides the necessary resources for developers to write code and create new features.
+
+3. Dependency Manager
+
+    Dependency managers automate the process of acquiring, installing and managing the dependencies of a software project. They ensure that the necessary dependencies are available and compatible with each other, eliminating the need to manually download, configure and track external libraries, frameworks, modules or packages.
+
+4. Build System
+
+    A build system is a software tool or framework that automates the process of compiling source code into executable software or other target artifacts. It helps manage the dependencies, configurations, and tasks required to build a software project.
+
+5. [Project Layout](../about/project-layout.md)
 
     Project layout refers to the arrangement of files, folders, and other resources within a project. A well-designed project layout can improve the organization, readability, and maintainability of the project's codebase.
 
-3. [Branching Strategies](../about/branching-strategies.md)
+6. Software Architectural Patterns
+
+    - Component-Driven Development (CDD)
+      > Component-Driven Development (CDD) is an approach to software development that emphasizes the construction of applications by composing modular, reusable components. It focuses on building and integrating self-contained, loosely coupled components as the primary building blocks of an application.
+
+7. [Branching Strategies](../about/branching-strategies.md)
 
     Branching strategies are used in software development team to manage concurrent work and organize code changes within a version control system. They define how developers collaborate on different features, bug fixes, and releases while maintaining stability and minimizing conflicts.
+
+8. Merging Strategies
+
+    Merging strategies are used in a version control system to combine changes into a single cohesive version.
 
 #### 1.1.3. Code
 
 Development teams work to build production-ready software that meets requirements and feedback.
 
-Elements of Code:
+Features of Code:
 
 1. Coding
 
@@ -129,7 +151,7 @@ Elements of Code:
 
 A reliable system is resilient to failures and meets its documented service level objectives, which may also include security guarantees. CI/CD pipelines ensure an efficient developer experience.
 
-Elements of Build:
+Features of Build:
 
 1. [Software Analysis](../about/software-analysis.md)
 
@@ -141,7 +163,7 @@ Elements of Build:
     - [Continuous Build](../about/continuous-pipelines.md#15-continuous-build)
       > Continuous Build refers to the practice of automatically building and compiling software applications and systems, whenever changes are committed to the source code repository. This can involve automating the process of building, compiling, and packaging software, and can help organizations to ensure that software is always up-to-date and ready for deployment. Continuous Build helps to speed up the software development process, reduce errors and inconsistencies, and improve the overall efficiency of software development and deployment.
 
-Elements of Test:
+Features of Test:
 
 1. [Software Testing](../about/software-testing.md)
 
@@ -161,7 +183,7 @@ Elements of Test:
     - [Continuous Testing](../about/continuous-pipelines.md#16-continuous-testing)
       > Continuous Testing refers to the practice of automating the process of testing code changes throughout the software development lifecycle. This process typically involves the use of test automation tools and scripts that run automatically as code changes are committed, built, and deployed. Continuous Testing helps to ensure that code changes are thoroughly tested and validated before they are released to production, reducing the risk of defects and improving the overall quality of the software.
 
-Elements of Release:
+Features of Release:
 
 1. [Semantic Versioning](../convention/semantic-versioning.md)
 
@@ -175,7 +197,7 @@ Elements of Release:
 
 After the code is approved and merged, it's time to deliver it.
 
-Elements of Deploy:
+Features of Deploy:
 
 1. [Deployment Strategies](../about/deployment-strategies.md)
 
@@ -188,24 +210,35 @@ Elements of Deploy:
 
 3. [Software Analysis](../about/software-analysis.md)
 
-    - [Bill of Materials (BOM)](../about/software-analysis.md#124-bill-of-materials-bom)
-      > A Bill of Materials (BOM) is a comprehensive list or inventory of all the materials, components, parts, and sub-assemblies required to manufacture or build a product. It provides detailed information about each item, including its name, quantity, description, and sometimes additional attributes such as part numbers or suppliers. BOMs are commonly used in various industries, including manufacturing, engineering, construction, and software development.
+    - [Software Composition Analysis](../about/software-analysis.md#12-software-composition-analysis)
+
+      - [Bill of Materials (BOM)](../about/software-analysis.md#124-bill-of-materials-bom)
+        > A Bill of Materials (BOM) is a comprehensive list or inventory of all the materials, components, parts, and sub-assemblies required to manufacture or build a product. It provides detailed information about each item, including its name, quantity, description, and sometimes additional attributes such as part numbers or suppliers. BOMs are commonly used in various industries, including manufacturing, engineering, construction, and software development.
 
 #### 1.1.6. Operate
 
 Support and maintenance are required of active software projects to reduce down times.
 
-Elements of Operate:
+Features of Operate:
 
 #### 1.1.7. Observe
 
 Incident management is when Development and Operations respond to unplanned events and restore services using reliable methods for prioritizing incidents and getting to resolution fast.
 
-Elements of Operate:
+Features of Observe:
 
 1. [Logging and Monitoring](../about/logging-and-monitoring.md)
 
     Logging and monitoring are essential components of modern software systems and infrastructure. They play a crucial role in ensuring the reliability, performance, and security of applications and services.
+
+2. [DORA](../about/dora.md)
+
+    The DORA (DevOps Research and Assessment) metrics are a set of key performance indicators (KPIs) developed by the DevOps Research and Assessment organization. These metrics are designed to assess the performance of software delivery teams and provide insights into the effectiveness of DevOps practices.
+
+3. [Technical Dept](../about/technical-dept.md)
+
+    - [Debt Metrics](../about/technical-dept.md#12-debt-metrics)
+      > Keeping dashboards with code health metrics. These can range from dashboards that show test coverage or the number of `TODO` tags, to more sophisticated dashboards including metrics like cyclomatic complexity or maintainability index.
 
 #### 1.1.8. Security
 
@@ -224,12 +257,13 @@ Security should be included throughout the Software Development Life Cycle (SDLC
     - [Security Analysis](../about/software-analysis.md#114-security-analysis)
       > Security analysis is a software analysis technique focused on assessing the security posture of a software system. It involves identifying vulnerabilities, weaknesses, and potential risks in the software design, implementation, configuration, and deployment. The objective of security analysis is to uncover security flaws and recommend mitigations to protect the system against unauthorized access, data breaches, and malicious attacks.
 
+    - [Software Composition Analysis](../about/software-analysis.md#12-software-composition-analysis)
+      > Software Composition Analysis (SCA) is a software analysis technique that focuses on identifying, analyzing and managing the composition of third-party and open-source software components used in a software system.
+
 4. [Continuous Pipelines](../about/continuous-pipelines.md)
 
     - [Continuous Security](../about/continuous-pipelines.md#111-continuous-security)
-
-      Continuous Security refers to the practice of integrating security into the software development lifecycle, and continuously monitoring and verifying the security of applications and systems. This can involve automated security testing, security scans, and regular security audits, and helps organizations to identify and remediate security vulnerabilities before they can be exploited.
-
+      > Continuous Security refers to the practice of integrating security into the software development lifecycle, and continuously monitoring and verifying the security of applications and systems. This can involve automated security testing, security scans, and regular security audits, and helps organizations to identify and remediate security vulnerabilities before they can be exploited.
 
 ### 1.2. Key Features
 

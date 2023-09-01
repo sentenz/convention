@@ -33,6 +33,7 @@ Best practices, articles of interest and general topics.
 - [Package Managers](package-managers.md)
 - [Programming Paradigms](programming-paradigms.md)
 - [Project Layout](project-layout.md)
+- [Risk Management](risk-management.md)
 - [Serial Communication](serial-communication.md)
 - [Software Analysis](software-analysis.md)
 - [Software Design Principles](software-design-principles.md)

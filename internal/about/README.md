@@ -11,6 +11,7 @@ Best practices, articles of interest and general topics.
 - [Build Systems](build-sytems.md)
 - [Chaos Engineering](chaos-engineering.md)
 - [Comment](comment.md)
+- [Configuration Management](configuration-management.md)
 - [Continuous Pipelines](continuous-pipelines.md)
 - [CRLF vs LF](crlf-vs-lf.md)
 - [Cross Compiler](cross-compiler.md)

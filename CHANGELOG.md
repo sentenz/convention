@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/sentenz/guide/compare/v1.25.0...v1.26.0) (2023-09-01)
+
+
+### Features
+
+* **about:** create an article about `Configuration Management` with ChatGPT ([#252](https://github.com/sentenz/guide/issues/252)) ([41f5ff9](https://github.com/sentenz/guide/commit/41f5ff9601818d785d7a3b21768718f2a566f556)), closes [#233](https://github.com/sentenz/guide/issues/233)
+
 # [1.25.0](https://github.com/sentenz/guide/compare/v1.24.0...v1.25.0) (2023-09-01)
 
 

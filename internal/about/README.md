@@ -38,6 +38,7 @@ Best practices, articles of interest and general topics.
 - [Software Analysis](software-analysis.md)
 - [Software Design Principles](software-design-principles.md)
 - [Software Development Environment](software-development-environment.md)
+- [Software Metric](software-metric.md)
 - [Software Testing](software-testing.md)
 - [Static Site Generators](static-site-generators.md)
 - [Tabs vs Spaces](tabs-vs-spaces.md)

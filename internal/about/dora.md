@@ -2,7 +2,6 @@
 
 DORA (DevOps Research and Assessment) is an organization that conducts research and provides assessments related to DevOps practices in software development. They have developed the DORA metrics, which measure software delivery performance and help organizations improve their DevOps capabilities.
 
-
 - [1. Category](#1-category)
   - [1.1. Deployment Frequency](#11-deployment-frequency)
   - [1.2. Lead Time for Changes](#12-lead-time-for-changes)
@@ -25,7 +24,7 @@ By measuring and improving the four key metrics, organizations can achieve faste
 
 This category measures how often code changes are deployed to production. High-performing DevOps organizations typically deploy changes more frequently, often multiple times per day, using techniques like continuous integration and continuous deployment.
 
-Performance metric:
+Performance Metric:
 
 - Elite
   > On-Demand (multiple deploys per day)
@@ -43,7 +42,7 @@ Performance metric:
 
 This category measures the time it takes for code changes to go from development to production. It includes all the processes and steps involved in delivering a software change, such as coding, testing, building, and deploying. Shortening delivery lead time is a key goal of DevOps, as it enables organizations to respond faster to changing customer needs and market demands.
 
-Performance metric:
+Performance Metric:
 
 - Elite
   > Less than one day
@@ -61,7 +60,7 @@ Performance metric:
 
 This category measures how quickly an organization can recover from a production incident or outage. High-performing DevOps organizations have a shorter Mean Time to Recovery (MTTR), indicating that they are able to detect and resolve incidents quickly and minimize the impact on customers.
 
-Performance metric:
+Performance Metric:
 
 - Elite
   > Less than one hour
@@ -79,7 +78,7 @@ Performance metric:
 
 This category measures the percentage of code changes that fail in production, e.g. lead to service impairment or service outage. High-performing DevOps organizations have a lower change failure rate, indicating that they are more reliable and resilient.
 
-Performance metric:
+Performance Metric:
 
 - Elite
   > 0%-15%

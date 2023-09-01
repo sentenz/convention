@@ -1,6 +1,6 @@
 # Guide
 
-Conventions, general articles, and guidelines for complex projects.
+Conventions, general articles, and guidelines for complex software projects.
 
 [Software Development](internal/guideline/software-development-guide.md)
 

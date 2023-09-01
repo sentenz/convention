@@ -360,10 +360,7 @@ The project resources category is used for files and folders that provide suppor
   project/
   ├── data/
   │   ├── datasets1.csv
-  │   ├── datasets2.csv
-  │   └── images/
-  │       ├── image1.jpg
-  │       └── image2.jpg
+  │   └── datasets2.csv
   ```
 
 - `/db`

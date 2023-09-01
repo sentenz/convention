@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/sentenz/guide/compare/v1.24.0...v1.25.0) (2023-09-01)
+
+
+### Features
+
+* **about:** create an article about `Software Metric` with ChatGPT ([#251](https://github.com/sentenz/guide/issues/251)) ([d15944e](https://github.com/sentenz/guide/commit/d15944ea511cfbffd9e77543410f3073198fe0cb)), closes [#243](https://github.com/sentenz/guide/issues/243)
+
 # [1.24.0](https://github.com/sentenz/guide/compare/v1.23.0...v1.24.0) (2023-09-01)
 
 

@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/sentenz/guide/compare/v1.21.0...v1.22.0) (2023-09-01)
+
+
+### Features
+
+* **about:** create an article about `Everything as Code (XaC)` with ChatGPT  ([#248](https://github.com/sentenz/guide/issues/248)) ([2fbf7d0](https://github.com/sentenz/guide/commit/2fbf7d0c1249cf3273962ba90f31118c6ffccbb2)), closes [#240](https://github.com/sentenz/guide/issues/240)
+
 # [1.21.0](https://github.com/sentenz/guide/compare/v1.20.0...v1.21.0) (2023-06-09)
 
 

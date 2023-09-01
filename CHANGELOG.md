@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/sentenz/guide/compare/v1.23.0...v1.24.0) (2023-09-01)
+
+
+### Features
+
+* **about:** create an article about `Risk Management` with ChatGPT ([#250](https://github.com/sentenz/guide/issues/250)) ([4dc136a](https://github.com/sentenz/guide/commit/4dc136aac64cf36a0c90fdba8ef10c83cb37fe97)), closes [#246](https://github.com/sentenz/guide/issues/246)
+
 # [1.23.0](https://github.com/sentenz/guide/compare/v1.22.0...v1.23.0) (2023-09-01)
 
 

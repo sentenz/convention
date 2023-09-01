@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/sentenz/guide/compare/v1.22.0...v1.23.0) (2023-09-01)
+
+
+### Features
+
+* **about:** create an article about `Incident Management` with ChatGPT ([#249](https://github.com/sentenz/guide/issues/249)) ([790474f](https://github.com/sentenz/guide/commit/790474f9576064cfa62c10f530c12f175da71fdb)), closes [#235](https://github.com/sentenz/guide/issues/235)
+
 # [1.22.0](https://github.com/sentenz/guide/compare/v1.21.0...v1.22.0) (2023-09-01)
 
 

@@ -1,5 +1,5 @@
 ---
-name: Continuous Release
+name: Continuous-Release
 on:
   push:
     branches:

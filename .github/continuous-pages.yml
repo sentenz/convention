@@ -1,5 +1,5 @@
 ---
-name: Continuous Documentation
+name: Continuous-Pages
 on:
   push:
     branches:
@@ -16,8 +16,8 @@ defaults:
   run:
     shell: bash
 jobs:
-  build-documentation:
-    name: continuous-documentation
+  build-pages:
+    name: continuous-pages
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.108.0
@@ -51,12 +51,12 @@ jobs:
         with:
           path: ./public
 
-  deploy-documentation:
+  deploy-pages:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build-documentation
+    needs: build-pages
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

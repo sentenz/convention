@@ -5924,4 +5924,4 @@ These principles are not mutually exclusive and often overlap with one another. 
 
 ## 5. References
 
-- Sentenz [software design patterns](./about/software-design-patterns.md) article.
+- Sentenz [software design patterns](./articles/software-design-patterns.md) article.

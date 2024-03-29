@@ -247,7 +247,7 @@ Standards and guidelines provide recommendations for Software metric. These stan
 
     The DevOps Research and Assessment (DORA) framework emphasizes Four Key Metrics of DevOps related to deployment frequency, lead time, change failure rate, and time to restore service. It's geared towards improving software delivery and operations.
 
-    > NOTE See [DORA](../about/dora.md) for details.
+    > NOTE See [DORA](../articles/dora.md) for details.
 
 9. SPACE
 

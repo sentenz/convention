@@ -48,7 +48,7 @@ resource "aws_instance" "example" {
 
 In Configuration-as-Code (CaC) application and system configurations are represented as code, treating application config resources as versioned artifacts to manage and deploy consistent configurations across different environments.
 
-> NOTE See [configuration management](../about/configuration-management.md) for details.
+> NOTE See [configuration management](../articles/configuration-management.md) for details.
 
 Tools:
 
@@ -77,7 +77,7 @@ Using `Ansible` to install and configure Nginx on a server:
 
 Documentation-as-Code (DaC) involves writing documentation as code, allowing teams to manage documentation in version-controlled repositories and automate documentation generation.
 
-> NOTE See [docs as code](../about/docs-as-code.md) for details.
+> NOTE See [docs as code](../articles/docs-as-code.md) for details.
 
 Tools:
 
@@ -187,7 +187,7 @@ Using `Liquibase` to manage database schema changes:
 
 Test-as-Code (TaC) involves writing automated tests and test scenarios as code to ensure software quality and enable continuous testing in CI/CD pipelines.
 
-> NOTE See [testing patterns](../about/software-testing.md#11-testing-patterns) for details.
+> NOTE See [testing patterns](../articles/software-testing.md#11-testing-patterns) for details.
 
 Tools:
 

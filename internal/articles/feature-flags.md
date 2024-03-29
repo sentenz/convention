@@ -1,6 +1,6 @@
-# Feature Toggles
+# Feature Flags
 
-Feature toggles, also known as feature flags, are a software development technique that enables developers to turn on and off certain features or functionality of an application or service without deploying new code.
+Feature Flags, also known as Feature Flags, are a software development technique that enables developers to turn on and off certain features or functionality of an application or service without deploying new code.
 
 In essence, a feature toggle is a conditional statement that checks whether a particular feature is enabled or disabled, and determines the behavior of the application accordingly.
 
@@ -17,7 +17,7 @@ In essence, a feature toggle is a conditional statement that checks whether a pa
 
 ## 1. Category
 
-Feature toggles can be implemented in a number of different ways, including using conditional statements in code, using configuration files, or using external services such as LaunchDarkly or Split. However, it's important to use feature toggles judiciously, as they can add complexity to code and make it harder to maintain over time. It's also important to have a clear strategy for managing feature toggles, including documenting them, testing them thoroughly, and removing them once they are no longer needed.
+Feature flags can be implemented in a number of different ways, including using conditional statements in code, using configuration files, or using external services such as LaunchDarkly or Split. However, it's important to use feature flags judiciously, as they can add complexity to code and make it harder to maintain over time. It's also important to have a clear strategy for managing feature flags, including documenting them, testing them thoroughly, and removing them once they are no longer needed.
 
 ### 1.1. Release Toggles
 
@@ -130,10 +130,10 @@ if (configuration.getBoolean("newFeatureEnabled")) {
 
 ## 2. Principle
 
-By following these principles, developers can ensure that feature toggles are used effectively and do not negatively impact software quality or user experience. Feature toggles can be a valuable technique for managing software development and deployment, but their use should be carefully considered and managed to ensure their proper use.
+By following these principles, developers can ensure that feature flags are used effectively and do not negatively impact software quality or user experience. Feature flags can be a valuable technique for managing software development and deployment, but their use should be carefully considered and managed to ensure their proper use.
 
 - Plan ahead
-  > Feature toggles should be planned and designed before any coding begins. This ensures that they are integrated into the codebase in a consistent and organized way. It's important to think about the purpose of each toggle, and how it will be used throughout the development cycle.
+  > Feature flags should be planned and designed before any coding begins. This ensures that they are integrated into the codebase in a consistent and organized way. It's important to think about the purpose of each toggle, and how it will be used throughout the development cycle.
 
 - Use meaningful names
   > Toggle names should be clear and descriptive, so that other developers can easily understand what they do. It's also important to avoid using generic names, such as "flag" or "toggle", which can cause confusion.
@@ -142,39 +142,39 @@ By following these principles, developers can ensure that feature toggles are us
   > Before deploying a feature toggle, it should be thoroughly tested in a staging or testing environment to ensure that it works as intended. It's important to test all possible scenarios and edge cases, and to have a plan in place for rolling back if something goes wrong.
 
 - Document everything
-  > All feature toggles should be documented in a centralized location, such as a wiki or documentation site. This should include information on the purpose of the toggle, when it was implemented, and who implemented it. This documentation should be kept up to date as the project evolves.
+  > All feature flags should be documented in a centralized location, such as a wiki or documentation site. This should include information on the purpose of the toggle, when it was implemented, and who implemented it. This documentation should be kept up to date as the project evolves.
 
 - Remove toggles as soon as possible
-  > Feature toggles should be removed from the codebase as soon as they are no longer needed. This helps to keep the codebase clean and maintainable, and reduces the risk of bugs or conflicts. It's important to have a clear process in place for removing toggles, including testing and deployment procedures.
+  > Feature flags should be removed from the codebase as soon as they are no longer needed. This helps to keep the codebase clean and maintainable, and reduces the risk of bugs or conflicts. It's important to have a clear process in place for removing toggles, including testing and deployment procedures.
 
 ## 3. Best Practice
 
-By following these best practices, developers can use feature toggles to manage software development in a flexible and efficient way, while minimizing the risk of bugs and conflicts.
+By following these best practices, developers can use feature flags to manage software development in a flexible and efficient way, while minimizing the risk of bugs and conflicts.
 
 - Limit the number of toggles
-  > Feature toggles should be used sparingly and only when necessary. The more toggles there are, the more complex the codebase becomes, and the harder it is to maintain.
+  > Feature flags should be used sparingly and only when necessary. The more toggles there are, the more complex the codebase becomes, and the harder it is to maintain.
 
-- Use feature toggles in combination with other techniques
-  > Feature toggles should be used in combination with other techniques, such as continuous integration and continuous deployment, to ensure that new features are delivered in a timely and efficient manner.
+- Use feature flags in combination with other techniques
+  > Feature flags should be used in combination with other techniques, such as continuous integration and continuous deployment, to ensure that new features are delivered in a timely and efficient manner.
 
 - Use version control
-  > Feature toggles should be managed using version control tools, such as Git or SVN, to keep track of changes and make it easy to roll back if something goes wrong.
+  > Feature flags should be managed using version control tools, such as Git or SVN, to keep track of changes and make it easy to roll back if something goes wrong.
 
 - Use descriptive names
-  > Feature toggles should be named in a descriptive and meaningful way, so that other developers can easily understand their purpose and function.
+  > Feature flags should be named in a descriptive and meaningful way, so that other developers can easily understand their purpose and function.
 
 - Test thoroughly
-  > All feature toggles should be thoroughly tested before deployment to ensure that they work as intended. This includes testing all possible scenarios and edge cases, and having a plan in place for rolling back if something goes wrong.
+  > All feature flags should be thoroughly tested before deployment to ensure that they work as intended. This includes testing all possible scenarios and edge cases, and having a plan in place for rolling back if something goes wrong.
 
 - Monitor toggles in production
-  > Feature toggles should be monitored in production to ensure that they are performing as expected and not causing any performance or security issues.
+  > Feature flags should be monitored in production to ensure that they are performing as expected and not causing any performance or security issues.
 
 - Remove toggles as soon as possible
-  > Feature toggles should be removed from the codebase as soon as they are no longer needed. This helps to keep the codebase clean and maintainable, and reduces the risk of bugs or conflicts.
+  > Feature flags should be removed from the codebase as soon as they are no longer needed. This helps to keep the codebase clean and maintainable, and reduces the risk of bugs or conflicts.
 
 ## 4. Terminology
 
-By understanding these terminologies, developers can effectively use feature toggles and related deployment strategies to manage software development and releases.
+By understanding these terminologies, developers can effectively use feature flags and related deployment strategies to manage software development and releases.
 
 - Toggle
   > A toggle is a piece of code that controls the behavior of a feature or functionality. It can be turned on or off to enable or disable the feature.
@@ -183,7 +183,7 @@ By understanding these terminologies, developers can effectively use feature tog
   > A feature flag is another name for a feature toggle. It is a mechanism for controlling the release and visibility of features in software development.
 
 - Flagsmith
-  > Flagsmith is an open-source feature flagging and remote configuration platform. It provides a centralized way to manage feature toggles, and includes features like multivariate testing and targeting.
+  > Flagsmith is an open-source feature flagging and remote configuration platform. It provides a centralized way to manage feature flags, and includes features like multivariate testing and targeting.
 
 ## 5. References
 

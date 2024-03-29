@@ -17,7 +17,7 @@
 
 ## 1. Unit Testing
 
-[Unit testing](../about/software-testing.md#unit-testing) aims to check individual units of the source code separately. A unit is the smallest part of code that can be tested in isolation.
+[Unit testing](../articles/software-testing.md#unit-testing) aims to check individual units of the source code separately. A unit is the smallest part of code that can be tested in isolation.
 
 Benefits of unit testing:
 
@@ -25,10 +25,10 @@ Benefits of unit testing:
   > As code's testability depends on its design, unit tests facilitate breaking it into specialized test pieces.
 
 - Avoid regressions
-  > A suite of unit tests can run it iteratively to ensure that everything [keeps working correctly](../about/software-testing.md#regression-testing) every time you add new functionality or introduce changes.
+  > A suite of unit tests can run it iteratively to ensure that everything [keeps working correctly](../articles/software-testing.md#regression-testing) every time you add new functionality or introduce changes.
 
 - Document code
-  > Running, debugging, or even just reading tests can give a lot of information about how the original code works, [software testing](../about/software-testing.md) can be used as implicit documentation.
+  > Running, debugging, or even just reading tests can give a lot of information about how the original code works, [software testing](../articles/software-testing.md) can be used as implicit documentation.
 
 Best practices for unit testing:
 
@@ -104,7 +104,7 @@ Doctest doesn't provide mocking functionality. However, combine it with standalo
 
 ## 2. Code Coverage
 
-In computer science, [test coverage](../about/software-testing.md#code-coverage) is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.
+In computer science, [test coverage](../articles/software-testing.md#code-coverage) is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.
 
 ### 2.1. gcov
 

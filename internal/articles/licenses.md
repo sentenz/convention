@@ -217,6 +217,6 @@ Most open source licenses also have limitations that usually disclaim warranty a
 ## 4. References
 
 - Sentenz [SPDX convention](../convention/spdx.md) article.
-- Sentenz [license guide](../guideline/license-guide.md) article.
+- Sentenz [license guide](../guides/license-guide.md) article.
 - Open Source Initiative (OSI) [licenses](https://opensource.org/licenses/category) article.
 - Choose a [licenses](https://choosealicense.com/licenses/) article.

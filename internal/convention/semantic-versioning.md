@@ -140,7 +140,7 @@ Understanding the terminologies help to navigate and communicate effectively wit
 
 ## 5. References
 
-- Sentenz [versioning guide](../guideline/versioning-guide.md) article.
+- Sentenz [versioning guide](../guides/versioning-guide.md) article.
 - Sentnez [conventional commits](../convention/conventional-commits.md) article.
 - Sentnez [changelog](../convention/changelog.md) article.
 - Github [semver](https://github.com/semver/semver.org) repository.

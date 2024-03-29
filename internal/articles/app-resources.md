@@ -388,7 +388,7 @@ Features of Configuration Files:
 
 1. Purpose
 
-    Configuration files are used to store configuration settings and parameters that determine how an application or system should behave. These settings can include options such as database connection details, network settings, logging levels, feature toggles, security settings, and more.
+    Configuration files are used to store configuration settings and parameters that determine how an application or system should behave. These settings can include options such as database connection details, network settings, logging levels, feature flags, security settings, and more.
 
 2. Formats
 
@@ -1024,7 +1024,7 @@ Understanding and using terminology help facilitate effective communication and 
 - Memory Management
   > The management of system memory, including the allocation and deallocation of memory for resources, to prevent memory leaks and optimize memory usage.
 
-- Dependency Management
+- Dependency Manager
   > The handling of dependencies between resources or software components, ensuring that all required resources are available and loaded in the correct order.
 
 - Lazy Loading

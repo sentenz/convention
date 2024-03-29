@@ -32,7 +32,7 @@ The integration environment is used to integrate different components of softwar
 
 ### 1.5. Continuous Environment
 
-The continuous environment is an automated environment that supports the [Continuous Pipelines](../about/continuous-pipelines.md), as integration and delivery of software applications. This environment is used to automate the build, test, analysis, security, and deployment process, reducing the time and effort required to bring new features and updates to production. It allows teams to quickly identify and resolve issues, delivering high-quality software applications to end-users.
+The continuous environment is an automated environment that supports the [Continuous Pipelines](../articles/continuous-pipelines.md), as integration and delivery of software applications. This environment is used to automate the build, test, analysis, security, and deployment process, reducing the time and effort required to bring new features and updates to production. It allows teams to quickly identify and resolve issues, delivering high-quality software applications to end-users.
 
 ### 1.6. Production Environment
 
@@ -76,7 +76,7 @@ Best practices, to create a robust and efficient SDE that ensures high-quality s
   > Version control is essential to track changes made to the codebase and allows developers to collaborate without the risk of losing work. This helps to ensure that the codebase is consistent and accurate.
 
 - Logging and Monitoring
-  > [Logging and Monitoring](../about/logging-and-monitoring.md) are important for detecting and identifying issues in the software environment. This helps to identify performance issues, system failures, and other issues that may affect the end-users.
+  > [Logging and Monitoring](../articles/logging-and-monitoring.md) are important for detecting and identifying issues in the software environment. This helps to identify performance issues, system failures, and other issues that may affect the end-users.
 
 - Security
   > Security is critical to protect the software and data from unauthorized access or malicious attacks. This includes implementing secure coding practices, regularly reviewing and updating security protocols, and conducting penetration testing.

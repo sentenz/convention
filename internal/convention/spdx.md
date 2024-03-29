@@ -23,8 +23,8 @@ The [SPDX License List](https://spdx.org/licenses/) is an integral part of the S
 
 ## 2. References
 
-- Sentenz [licenses](../about/licenses.md) article.
-- Sentenz [license guide](../guideline/license-guide.md) article.
+- Sentenz [licenses](../articles/licenses.md) article.
+- Sentenz [license guide](../guides/license-guide.md) article.
 - SPDX [tools](https://spdx.dev/tools-community/) article.
 - GitHub [SPDX license list](https://github.com/spdx/license-list-XML) repository.
 - GitHub [SPDX license dataset](https://github.com/spdx/license-list-data) repository.

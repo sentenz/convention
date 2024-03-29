@@ -67,7 +67,7 @@ They are usually written in the same programming language as the source code fil
 
 Files used to build the project, including makefiles, build scripts, and build configuration files. Build files are typically used to automate the build process and ensure that the project is built consistently across different environments.
 
-> NOTE See [build systems](../about/build-sytems.md) for details.
+> NOTE See [build systems](../articles/build-sytems.md) for details.
 
 - `Makefile`
 - `CMakeLists.txt`
@@ -77,7 +77,7 @@ Files used to build the project, including makefiles, build scripts, and build c
 
 These files contain documentation for the project, including user manuals, API documentation, and other information about the project.
 
-> NOTE See [docs as code](../about/docs-as-code.md) and [static site generators](../about/static-site-generators.md) for details.
+> NOTE See [docs as code](../articles/docs-as-code.md) and [static site generators](../articles/static-site-generators.md) for details.
 
 Documentation files can be written in various formats:
 
@@ -127,7 +127,7 @@ Log files can be written in various formats:
 
 These files contain configuration settings for the project, such as environment variables, database connection strings, and other settings that are necessary for the project to run correctly.
 
-> NOTE See [data serialization formats](../about/data-serialization-formats.md) for details.
+> NOTE See [data serialization formats](../articles/data-serialization-formats.md) for details.
 
 Configuration files can be written in various formats:
 
@@ -1042,7 +1042,7 @@ Terminologies are used to describe the various components of a project layout an
 
 ## 5. References
 
-- Sentenz [build systems](../about/build-sytems.md) article.
-- Sentenz [docs as code](../about/docs-as-code.md) article.
-- Sentenz [static site generators](../about/static-site-generators.md) article.
-- Sentenz [data serialization formats](../about/data-serialization-formats.md) article.
+- Sentenz [build systems](../articles/build-sytems.md) article.
+- Sentenz [docs as code](../articles/docs-as-code.md) article.
+- Sentenz [static site generators](../articles/static-site-generators.md) article.
+- Sentenz [data serialization formats](../articles/data-serialization-formats.md) article.

@@ -371,5 +371,5 @@ Types of Comment Tags:
 
 ## 5. References
 
-- Sentenz [docs as code](../about/docs-as-code.md) article.
+- Sentenz [docs as code](../articles/docs-as-code.md) article.
 - Wikipedia [comment](https://en.m.wikipedia.org/wiki/Comment_(computer_programming)) article.

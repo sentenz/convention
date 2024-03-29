@@ -166,7 +166,7 @@ NOTE **Reviewers have discretion to reject your change outright for the sole rea
 - Draft Pull Request
   > Create a pull request draft and add a reviewer in the early stages of feature development.
 
-- Pull Request by [Feature Flags](../about/feature-toggles.md)
+- Pull Request by [Feature Flags](../about/feature-flags.md)
   > Add a feature to the base branch using feature flags.
 
 - Random Pull Request Reviews

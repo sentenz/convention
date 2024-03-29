@@ -16,7 +16,7 @@
 
 The actions to create a `version tag` and a `CHANGELOG.md` file based on the `semantic versioning` convention rely on the [commit messages](../guideline/commit-message-guide.md) following the `conventional commits` convention.
 
-An yaml file containing actions for [continuous release pipeline](../about/continuous-pipelines.md#6-continuous-release) is triggered from base branch.
+An yaml file containing actions for [continuous release](../about/continuous-pipelines.md#15-continuous-release) pipeline is triggered from base branch.
 
 ### 1.1. Release
 

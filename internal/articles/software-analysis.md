@@ -25,7 +25,7 @@ Software Analysis is the process of evaluating software systems structure, behav
 
 Code Analysis is a process of evaluating the quality and security of software source code. It involves examining the code for potential issues, including coding errors, performance problems, and security vulnerabilities.
 
-Software analysis can be performed at various stages of the software development life cycle (SDLC), including during requirements analysis, design, coding, testing, and maintenance. In modern DevSecOps environment, code analysis has galvanized the [shift left](../about/software-testing.md#40-shift-left-testing) paradigm.
+Software analysis can be performed at various stages of the software development life cycle (SDLC), including during requirements analysis, design, coding, testing, and maintenance. In modern DevSecOps environment, code analysis has galvanized the [shift left](../articles/software-testing.md#40-shift-left-testing) paradigm.
 
 #### 1.1.1. Requirements Analysis
 
@@ -505,4 +505,4 @@ Commonly used sanitizer tools for C/C++ are:
 
 ## 2. References
 
-- Sentenz [Application Security Testing (AST)](../about/software-testing.md#41-application-security-testing) article.
+- Sentenz [Application Security Testing (AST)](../articles/software-testing.md#41-application-security-testing) article.

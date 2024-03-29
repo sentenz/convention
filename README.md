@@ -2,8 +2,8 @@
 
 Conventions, general articles, and guidelines for complex software projects.
 
-[Software Development](internal/guideline/software-development-guide.md)
+[Software Development](internal/guides/software-development-guide.md)
 
-- [About](internal/about/README.md)
+- [About](internal/articles/README.md)
 - [Convention](internal/convention/README.md)
-- [Guideline](internal/guideline/README.md)
+- [Guideline](internal/guides/README.md)

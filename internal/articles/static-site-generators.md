@@ -249,4 +249,4 @@ Deployment is the process of publishing a website or web application to a web se
 
 ## 5. References
 
-- Sentenz [docs as code](../about/docs-as-code.md) article.
+- Sentenz [docs as code](../articles/docs-as-code.md) article.

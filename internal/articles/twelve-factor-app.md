@@ -59,7 +59,7 @@ Benefits to explicitly declaring and isolating dependencies:
 - Easier maintenance
   > By explicitly declaring dependencies, developers can more easily update or modify their applications over time, and can ensure that changes to dependencies do not impact the application's runtime environment.
 
-> NOTE See [package managers](../about/package-managers.md) for details.
+> NOTE See [package managers](../articles/package-managers.md) for details.
 
 ### 1.3. Config
 
@@ -135,7 +135,7 @@ Benefits of stages:
 - Maintainability
   > By separating the application code from the configuration and runtime environment, the application can be updated or modified and maintained without affecting the production environment.
 
-> NOTE See [continuous pipelines](../about/continuous-pipelines.md) for details.
+> NOTE See [continuous pipelines](../articles/continuous-pipelines.md) for details.
 
 ### 1.6. Processes
 
@@ -240,7 +240,7 @@ In practice, this means that developers should design their applications to gene
 
 By treating logs as event streams, developers can gain valuable insights into the behavior and performance of their applications, and can quickly identify and diagnose issues that may arise. Centralized logging also makes it easier to manage and maintain logs, and can provide a centralized source of truth for debugging and troubleshooting.
 
-> NOTE For more information see the article about [Logging and Monitoring](../about/logging-and-monitoring.md).
+> NOTE For more information see the article about [Logging and Monitoring](../articles/logging-and-monitoring.md).
 
 Benefits to treating logs as event streams:
 
@@ -300,9 +300,9 @@ Benefits to providing administrative processes as one-off processes:
 
 ## 2. References
 
-- Sentenz [package managers](../about/package-managers.md) article.
-- Sentenz [continuous pipelines](../about/continuous-pipelines.md) article.
-- Sentenz [logging and monitoring](../about/logging-and-monitoring.md) article.
+- Sentenz [package managers](../articles/package-managers.md) article.
+- Sentenz [continuous pipelines](../articles/continuous-pipelines.md) article.
+- Sentenz [logging and monitoring](../articles/logging-and-monitoring.md) article.
 - Google [twelve-factor app](https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en) article.
 - IBM [twelve plus factors](https://www.ibm.com/cloud/blog/12-plus-factors-for-containerized-ui-microservices) article.
 - IBM [seven missing factors](https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications) article.

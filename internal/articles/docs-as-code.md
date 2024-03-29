@@ -229,7 +229,7 @@ Example:
 
 ### 1.3. Static Site Generators
 
-[Static Site Generators (SSGs)](../about/static-site-generators.md) are tools that use markup languages to generate static websites. SSG allow teams to write documentation using markup languages and generate a static website that can be hosted on web servers.
+[Static Site Generators (SSGs)](../articles/static-site-generators.md) are tools that use markup languages to generate static websites. SSG allow teams to write documentation using markup languages and generate a static website that can be hosted on web servers.
 
 SSG work process:
 
@@ -331,5 +331,5 @@ By understanding these key terminology related to Docs as Code, teams can better
 
 ## 5. References
 
-- Sentenz [static site generators](../about/static-site-generators.md) article.
-- Sentenz [comment](../about/comment.md) article.
+- Sentenz [static site generators](../articles/static-site-generators.md) article.
+- Sentenz [comment](../articles/comment.md) article.

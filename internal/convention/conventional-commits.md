@@ -200,7 +200,7 @@ The terms are fundamental to understanding and working with Conventional Commits
 
 ## 5. References
 
-- Sentnez [commit message guide](../guideline/commit-message-guide.md) article.
+- Sentnez [commit message guide](../guides/commit-message-guide.md) article.
 - Sentnez [semantic versioning](../convention/semantic-versioning.md) article.
 - Sentnez [changelog](../convention/changelog.md) article.
 - Github [conventional commits](https://github.com/conventional-commits/conventionalcommits.org) repository.

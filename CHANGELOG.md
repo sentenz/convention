@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/sentenz/guide/compare/v1.26.0...v2.0.0) (2024-03-29)
+
+
+### Code Refactoring
+
+* rename repository and internal directory structure ([#308](https://github.com/sentenz/guide/issues/308)) ([22d16b1](https://github.com/sentenz/guide/commit/22d16b1a1f79bdc49cf45c34d36f181751ac5491)), closes [#307](https://github.com/sentenz/guide/issues/307)
+
+
+### BREAKING CHANGES
+
+* impacts the URL of GitHub Pages site bz renaming the repository.
+
 # [1.26.0](https://github.com/sentenz/guide/compare/v1.25.0...v1.26.0) (2023-09-01)
 
 

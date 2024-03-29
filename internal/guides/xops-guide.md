@@ -1,6 +1,6 @@
 # XOps Guide
 
-[XOps](../about/xops.md) is designed to run on-premises or in a private cloud that meets specific requirements. It is built to run enterprise-wide, globally distributed, and interconnected, especially in analytic environments. It is a combination of traditional business applications, such as data and analytics management, with modern technologies such as:
+[XOps](../articles/xops.md) is designed to run on-premises or in a private cloud that meets specific requirements. It is built to run enterprise-wide, globally distributed, and interconnected, especially in analytic environments. It is a combination of traditional business applications, such as data and analytics management, with modern technologies such as:
 
 - [1. GitOps](#1-gitops)
 - [2. DevOps](#2-devops)
@@ -12,7 +12,7 @@
 
 ## 1. GitOps
 
-[GitOps](../about/xops.md#2-gitops) is a DevOps methodology that leverages the Git version control system as a single source of truth for declarative infrastructure and application code.
+[GitOps](../articles/xops.md#2-gitops) is a DevOps methodology that leverages the Git version control system as a single source of truth for declarative infrastructure and application code.
 
 The GitOps process can be divided into several stages or categories, including:
 
@@ -24,8 +24,8 @@ The GitOps process can be divided into several stages or categories, including:
   >
   > This stage includes the categories:
   >
-  > - [Merging Strategies](../about/merging-strategies.md)
-  > - [Branching Strategies](../about/branching-strategies.md)
+  > - [Merging Strategies](../articles/merging-strategies.md)
+  > - [Branching Strategies](../articles/branching-strategies.md)
   > - [Conventional Commits](../convention/conventional-commits.md)
   > - [Semantic Versioning](../convention/semantic-versioning.md)
   > - [Changelog](../convention/changelog.md)
@@ -38,7 +38,7 @@ The GitOps process can be divided into several stages or categories, including:
 
 ## 2. DevOps
 
-[DevOps](../about/xops.md#1-devops) is a software development practice that combines software development and information technology operations to streamline the software delivery process. It aims to increase collaboration and communication between development and operations teams, automate the software delivery pipeline, and promote a culture of continuous improvement and innovation. DevOps is based on the principles of Agile development and focuses on delivering high-quality software quickly, efficiently, and at a low cost. Key practices include continuous integration and deployment, automation, testing, and monitoring. DevOps helps organizations to respond faster to changing customer demands, improve software quality and reliability, and increase operational efficiency.
+[DevOps](../articles/xops.md#1-devops) is a software development practice that combines software development and information technology operations to streamline the software delivery process. It aims to increase collaboration and communication between development and operations teams, automate the software delivery pipeline, and promote a culture of continuous improvement and innovation. DevOps is based on the principles of Agile development and focuses on delivering high-quality software quickly, efficiently, and at a low cost. Key practices include continuous integration and deployment, automation, testing, and monitoring. DevOps helps organizations to respond faster to changing customer demands, improve software quality and reliability, and increase operational efficiency.
 
 The DevOps process can be divided into several stages or categories, including:
 
@@ -61,14 +61,14 @@ The DevOps process can be divided into several stages or categories, including:
   > Operate stage involves maintaining the software in the production environment, ensuring it is functional, and providing support to end-users. The operate stage involves monitoring the software to detect and resolve any issues that may arise, applying security patches and updates, and performing regular maintenance tasks to maintain the software's performance.
 
 - Monitoring
-  > [Monitoring](../about/logging-and-monitoring.md#12-monitoring) stage involves monitoring the software's performance and usage, and collecting data for analysis and reporting. Monitoring is an ongoing process and involves using a variety of tools and techniques to ensure that the software is performing as expected and meeting the needs of the target audience.
+  > [Monitoring](../articles/logging-and-monitoring.md#12-monitoring) stage involves monitoring the software's performance and usage, and collecting data for analysis and reporting. Monitoring is an ongoing process and involves using a variety of tools and techniques to ensure that the software is performing as expected and meeting the needs of the target audience.
 
 - Feedback
   > Feedback stage involves gathering feedback from users and stakeholders, and using that feedback to drive continuous improvement in the software development process. Feedback is an ongoing process that involves gathering information from users and stakeholders, analyzing the data, and making changes to the software development process based on that data.
 
 ## 3. DevSecOps
 
-[DevSecOps](../about/xops.md#3-devsecops) is a methodology that emphasizes the integration of security practices into the DevOps process, enabling organizations to build secure software that meets the needs of their target audience.
+[DevSecOps](../articles/xops.md#3-devsecops) is a methodology that emphasizes the integration of security practices into the DevOps process, enabling organizations to build secure software that meets the needs of their target audience.
 
 The DevSecOps process can be divided into several stages or categories, including:
 
@@ -79,10 +79,10 @@ The DevSecOps process can be divided into several stages or categories, includin
   > Teams develop the infrastructure and application code using secure coding practices. Development may involve creating secure coding standards, performing threat modeling, and conducting security testing in a local development environment.
 
 - Test
-  > Teams perform security testing using [Application Security Testing (AST)](../about/software-testing.md#41-application-security-testing) methodology on the application code and infrastructure to identify and mitigate vulnerabilities. Testing may involve automated security testing tools, manual penetration testing, and code reviews to ensure that the code is secure and meets the security requirements.
+  > Teams perform security testing using [Application Security Testing (AST)](../articles/software-testing.md#41-application-security-testing) methodology on the application code and infrastructure to identify and mitigate vulnerabilities. Testing may involve automated security testing tools, manual penetration testing, and code reviews to ensure that the code is secure and meets the security requirements.
 
 - Monitor
-  > Teams monitor the application and infrastructure in the production environment, using [Dynamic Application Security Testing (DAST)](../about/software-testing.md#412-dynamic-application-security-testing) methodology. Monitoring involves collecting and analyzing data about the performance of the application and infrastructure, identifying security incidents and attacks on an application, and resolving them to improve system security and availability.
+  > Teams monitor the application and infrastructure in the production environment, using [Dynamic Application Security Testing (DAST)](../articles/software-testing.md#412-dynamic-application-security-testing) methodology. Monitoring involves collecting and analyzing data about the performance of the application and infrastructure, identifying security incidents and attacks on an application, and resolving them to improve system security and availability.
 
 - Respond
   > Teams respond to security incidents in a timely and effective manner. This may involve creating incident response plans, conducting root cause analysis, and performing remediation actions to mitigate the impact of a security incident.
@@ -118,7 +118,7 @@ To ensure that secrets are managed securely, a secrets management system can be 
 
 ### 3.2. Identity and Access Management
 
-[Identity and Access Management (IAM)](../about/identity-and-access-management.md) is an important aspect of DevSecOps. IAM involves managing and controlling user access to systems, applications, and data. IAM is critical to ensuring the security of an organization's IT infrastructure and data.
+[Identity and Access Management (IAM)](../articles/identity-and-access-management.md) is an important aspect of DevSecOps. IAM involves managing and controlling user access to systems, applications, and data. IAM is critical to ensuring the security of an organization's IT infrastructure and data.
 
 Integrating IAM into the DevSecOps process, teams can ensure that user access is managed and controlled effectively. This helps to reduce the risk of security incidents and ensure compliance with industry regulations.
 

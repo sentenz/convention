@@ -77,7 +77,7 @@ Git-based platforms provide features such as Gerrit `Change`, GitHub `Pull Reque
 
 ### 2.1. [Description](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
-Follow the [merge commit message](../guideline/commit-message-guide.md#2-merge-commit-message) guide to create a PR description.
+Follow the [merge commit message](../guides/commit-message-guide.md#2-merge-commit-message) guide to create a PR description.
 
 Read the examples below to get a sense of bad and good PR descriptions. In summary:
 
@@ -166,7 +166,7 @@ NOTE **Reviewers have discretion to reject your change outright for the sole rea
 - Draft Pull Request
   > Create a pull request draft and add a reviewer in the early stages of feature development.
 
-- Pull Request by [Feature Flags](../about/feature-flags.md)
+- Pull Request by [Feature Flags](../articles/feature-flags.md)
   > Add a feature to the base branch using feature flags.
 
 - Random Pull Request Reviews

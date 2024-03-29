@@ -1,13 +1,13 @@
 # Branching Strategies Guide
 
-[Branching strategies](../about/branching-strategies.md) defines how a team uses branching to achieve a level of concurrent development.
+[Branching strategies](../articles/branching-strategies.md) defines how a team uses branching to achieve a level of concurrent development.
 
 - [1. Git Flow](#1-git-flow)
 - [2. Scaled Trunk-Based Development](#2-scaled-trunk-based-development)
 
 ## 1. Git Flow
 
-[Git Flow](../about/branching-strategies.md#git-flow) is a lightweight, branch-based workflow.
+[Git Flow](../articles/branching-strategies.md#git-flow) is a lightweight, branch-based workflow.
 
 The repository contains two base branches with an infinite lifetime:
 
@@ -48,7 +48,7 @@ The strategy contains the following rules:
 
 ## 2. Scaled Trunk-Based Development
 
-[Scaled Trunk-Based Development](../about/branching-strategies.md#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
+[Scaled Trunk-Based Development](../articles/branching-strategies.md#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
 
 The repository contains one base branch with an infinite lifetime:
 

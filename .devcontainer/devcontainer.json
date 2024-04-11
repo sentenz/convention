@@ -1,14 +1,31 @@
 {
-  "name": "Ubuntu",
-  "build": {
-    "dockerfile": "../build/container/devcontainer.dockerfile",
-    "context": ".."
+  "name": "Base",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:debian-12",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "false",
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000",
+      "upgradePackages": "true"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": "false"
+    }
   },
-  "settings": {},
-  "features": {},
-  "extensions": [],
-  "onCreateCommand": "apt update && apt install -y make",
-  "postCreateCommand": "make setup-devcontainer",
+  "customizations": {
+    "vscode": {
+      "extensions": []
+    }
+  },
+  "runArgs": [
+    "--name",
+    "devcontainer-convention",
+    "-v",
+    "devcontainer-convention-data:/app/data"
+  ],
   "forwardPorts": [],
-  "remoteUser": "root"
+  "postAttachCommand": "",
+  "remoteUser": "vscode"
 }

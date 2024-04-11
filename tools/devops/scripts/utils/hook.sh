@@ -26,7 +26,7 @@ Noting that contributions to base branches are not compliant with the branching 
 Contributing to a base branch can only be made via pull requests (PR). Create a support branch
 from and merge back to a base branch.
 
-See https://sentenz.github.io/guide/internal/guideline/branching-strategies-guide.html
+See https://sentenz.github.io/convention/internal/guideline/branching-strategies-guide.html
 ___________________________________________________________________________________________________
 END
 
@@ -74,7 +74,7 @@ The naming rule is: [support-branch]/[issue-id]-[short-description].
 
 Example: feature/158-enforce-policy
 
-See https://sentenz.github.io/guide/internal/guideline/branching-strategies-guide.html
+See https://sentenz.github.io/convention/internal/guideline/branching-strategies-guide.html
 ___________________________________________________________________________________________________
 END
 
@@ -106,7 +106,7 @@ Static Code Analysis
 
 Enforce coding standards and static analysis through linting and code style checks.
 
-See https://sentenz.github.io/https://sentenz.github.io/guide/internal/about/software-analysis.html
+See https://sentenz.github.io/https://sentenz.github.io/convention/internal/about/software-analysis.html
 ___________________________________________________________________________________________________
 END
   fi
@@ -146,7 +146,7 @@ A commit message that is compliant with Conventional Commits consists of the for
 
   <type>(<scope>): <short summary>
 
-See https://sentenz.github.io/guide/internal/guideline/commit-message-guide.html
+See https://sentenz.github.io/convention/internal/guideline/commit-message-guide.html
 ___________________________________________________________________________________________________
 END
   fi
@@ -201,7 +201,7 @@ Enforce to create the support branches from the base branches.
 Branch "${local_branch}" is created from "${parant_branch}".
 Though, support branches should be created from a base branch, e.g. "${base_branches[@]}".
 
-See https://sentenz.github.io/guide/internal/guideline/branching-strategies-guide.html
+See https://sentenz.github.io/convention/internal/guideline/branching-strategies-guide.html
 ___________________________________________________________________________________________________
 END
 

@@ -1,3 +1,5 @@
+external-sources=true
+
 # Don't suggest using -n in [ $var ].
 #disable=SC2244
 

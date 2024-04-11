@@ -1,2 +1,4 @@
 [core]
-hooksPath = githooks
+	hooksPath = githooks
+[safe]
+	directory = *

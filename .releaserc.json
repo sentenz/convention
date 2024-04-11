@@ -3,16 +3,29 @@
     "main"
   ],
   "plugins": [
-    "@semantic-release/changelog",
-    "@semantic-release/release-notes-generator",
-    "@semantic-release/git",
     "@semantic-release/github",
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits"
+      }
+    ],
     [
       "@semantic-release/commit-analyzer",
       {
-        "verifyRelease": [
-          "semantic-commitlint"
-        ]
+        "preset": "conventionalcommits"
+      }
+    ],
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogTitle": "# Changelog"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "message": "chore(release): ${nextRelease.version} [skip ci]"
       }
     ],
     [

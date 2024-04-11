@@ -1,49 +1,43 @@
 {
   "window.title": "${rootName}",
+  "files.encoding": "utf8",
   "files.eol": "\n",
-  "files.watcherExclude": {
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/node_modules/**": true,
-    "**/bazel-out/**": true,
-    "**/dist/**": true,
-    "**/aio/src/generated/**": true
-  },
-  "search.exclude": {
-    "**/node_modules": true,
-    "**/vendor": true,
-    "**/bower_components": true,
-    "**/bazel-out": true,
-    "**/dist": true,
-    "**/aio/src/generated": true,
-    ".history": true
-  },
-  "editor.renderWhitespace": "all",
-  "editor.suggest.showFolders": true,
-  "editor.formatOnSave": true,
   "editor.defaultFormatter": null,
-  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.suggest.showFolders": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.stickyScroll.enabled": true,
-  "git.ignoreLimitWarning": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.renderWhitespace": "all",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.stickyScroll.enabled": true,
   "conventionalCommits.gitmoji": false,
-  "shellformat.useEditorConfig": true,
   "[markdown]": {
     "editor.formatOnSave": true,
-    "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.detectIndentation": true,
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "vscode.markdown-language-features"
   },
   "markdown.extension.toc.levels": "2..6",
+  "[shell]": {
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[yaml]": {
     "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.formatOnSave": false,
-    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
     "editor.insertSpaces": true,
+    "editor.tabSize": 2,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[jsonc]": {
@@ -64,9 +58,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "go.gotoSymbol.includeGoroot": true,
-  "go.gotoSymbol.includeImports": true,
-  "go.autocompleteUnimportedPackages": true,
   "go.coverOnSingleTest": true,
   "go.lintOnSave": "package",
   "go.lintTool": "golangci-lint",

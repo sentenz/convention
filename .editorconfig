@@ -1,6 +1,3 @@
-# https://editorconfig.org/
-
-# top-level .editorconfig file
 root = true
 
 [**/node_modules/*]
@@ -10,13 +7,10 @@ ignore = true
 ignore = true
 
 [*]
-indent_style = space
-indent_size = 2
-max_line_length = 100
-end_of_line = lf
 charset = utf-8
-trim_trailing_whitespace = true
+end_of_line = lf
 insert_final_newline = true
+trim_trailing_whitespace = true
 
 [*.go]
 indent_style = tab
@@ -25,14 +19,25 @@ indent_size = 2
 [*.sh]
 indent_style = space
 indent_size = 2
-keep_padding = false
-switch_case_indent = true
-space_redirects = true
+max_line_length = 100
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+never_split = false        # like -ns
+function_next_line = false # like -fn
+keep_padding = false       # like -kp
+space_redirects = false    # like -sr
+switch_case_indent = true  # like -ci
+binary_next_line = false   # like -bn
 
-[*.{yml,yaml,json}]
+[*.{yml,yaml}]
 indent_style = space
 indent_size = 2
 insert_final_newline = true
+
+[*.json]
+indent_style = space
+indent_size = 2
 
 [*.md]
 indent_style = space

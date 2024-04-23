@@ -28,7 +28,7 @@ readonly -A NPM_PACKAGES=(
   ["@semantic-release/commit-analyzer"]="9.0.2"
   ["@semantic-release/release-notes-generator"]="10.0.3"
   ["@semantic-release/github"]="8.0.7"
-  ["semantic-release-ado"]="1.4.0"
+  # ["semantic-release-ado"]="1.4.0"
   # ["@semantic-release/npm"]="latest"
 )
 

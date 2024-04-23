@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
 ---
 name: Continuous-Release
 on:
@@ -9,13 +10,10 @@ jobs:
     name: continuous-release
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout Codebase
-        uses: actions/checkout@v3
-      - name: Setup Release
-        run: |
-          make setup-continuous-release
-      - name: Run Release
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          make run-continuous-release
+          make workflow-release

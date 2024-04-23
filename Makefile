@@ -10,18 +10,16 @@ endif
 SHELL := /bin/bash
 SHELL_COMMAND = source
 SHELL_FILE_CLI = $(@D)/internal/cli.sh
-# SPDX-License-Identifier: Apache-2.0
 
-ifneq (,$(wildcard .env))
-	include .env
-	export
-endif
+# Define Targets
 
-# Define Variables
+default: help
 
-SHELL := /bin/bash
-SHELL_COMMAND = source
-SHELL_FILE_CLI = $(@D)/internal/cli.sh
+help:
+	@awk 'BEGIN {printf "TASK\n\tA centralized collection of commands and operations used in this project.\n\n"}'
+	@awk 'BEGIN {printf "USAGE\n\tmake $(shell tput -Txterm setaf 6)[target]$(shell tput -Txterm sgr0)\n\n"}' $(MAKEFILE_LIST)
+	@awk '/^##/{c=substr($$0,3);next}c&&/^[[:alpha:]][[:alnum:]_-]+:/{print "$(shell tput -Txterm setaf 6)\t" substr($$1,1,index($$1,":")) "$(shell tput -Txterm sgr0)",c}1{c=0}' $(MAKEFILE_LIST) | column -s: -t
+.PHONY: help
 
 ## Setup the development environment
 setup:
@@ -30,7 +28,7 @@ setup:
 
 ## Setup dependencies and tools for the devops service
 setup-devops:
- 	cd tools/devops/scripts && chmod +x setup.sh && ./setup.sh
+	cd tools/devops/scripts && chmod +x setup.sh && ./setup.sh
 .PHONY: setup-devops
 
 ## Teardown dependencies and tools for the devops service

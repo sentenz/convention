@@ -98,9 +98,9 @@ setup-release:
 .PHONY: setup-release
 
 ## Perform the release analysis
-run-release:
+release:
 	npx semantic-release
-.PHONY: run-release
+.PHONY: release
 
 ## Workflow of the release process
 workflow-release:

@@ -1,21 +1,18 @@
+# SPDX-License-Identifier: Apache-2.0
+---
 name: Pages
-
 on:
   push:
     branches:
-      - $default-branch
-
+      - main
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 defaults:
   run:
     shell: bash

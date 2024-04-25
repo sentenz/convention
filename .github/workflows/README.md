@@ -4,8 +4,8 @@ The `/.gitlab` directory contains GitLab configuration files and pipelines.
 
 1. Files and Folders
 
-    - `testing.yml`
-      > A pipeline configuration file to manages various aspects of the `Software Testing` process.
+    - `conventional-commits.yml`
+      > A pipeline configuration file using GitHub Action to enforce PR title matches the `conventional commits` specification.
 
     - `semantic-release.yml`
       > A pipeline configuration file to streamline continuous `Semantic Release` versioning tasks. The tasks in the release pipeline are triggered by the `base` branches, and creates a version `tag` and a `CHANGELOG.md` file.

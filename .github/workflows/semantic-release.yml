@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: Apache-2.0
 ---
-name: Release
+name: Semantic-Release
 on:
   push:
     branches:
       - main
 jobs:
-  release:
-    name: release
+  semantic-release:
+    name: semantic-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

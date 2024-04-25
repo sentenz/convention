@@ -237,26 +237,26 @@ fs_configure_permissions_ownership() {
   shift 1
   while [ "$#" -gt 0 ]; do
     case "$1" in
-      -f | --file-mode)
-        shift
-        file_mode="${1:?missing mode for files}"
-        ;;
-      -d | --dir-mode)
-        shift
-        dir_mode="${1:?missing mode for directories}"
-        ;;
-      -u | --user)
-        shift
-        user="${1:?missing user}"
-        ;;
-      -g | --group)
-        shift
-        group="${1:?missing group}"
-        ;;
-      *)
-        echo "Invalid command line flag $1" >&2
-        return "${STATUS_ERROR}"
-        ;;
+    -f | --file-mode)
+      shift
+      file_mode="${1:?missing mode for files}"
+      ;;
+    -d | --dir-mode)
+      shift
+      dir_mode="${1:?missing mode for directories}"
+      ;;
+    -u | --user)
+      shift
+      user="${1:?missing user}"
+      ;;
+    -g | --group)
+      shift
+      group="${1:?missing group}"
+      ;;
+    *)
+      echo "Invalid command line flag $1" >&2
+      return "${STATUS_ERROR}"
+      ;;
     esac
     shift
   done

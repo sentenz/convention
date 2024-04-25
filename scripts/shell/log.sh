@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+# SPDX-License-Identifier: Apache-2.0
+#
 # Library for logging actions.
 
 # A color init string consists of one or more of the following numeric codes:
@@ -55,9 +57,9 @@ readonly DATE
 # Arguments:
 #   $1 - Message to log
 # Returns:
-#   Name
+#   $? - Message
 #########################
-log_print() {
+function log_print() {
   printf "%b\\n" "${*}" >&2
 }
 
@@ -66,9 +68,9 @@ log_print() {
 # Arguments:
 #   $1 - Message to log
 # Returns:
-#   Name
+#   $? - Message
 #########################
-log_info() {
+function log_info() {
   log_print "${DATE}\t ${INTENS_BLUE}info ${RESET}\t" "${*}"
 }
 
@@ -77,9 +79,9 @@ log_info() {
 # Arguments:
 #   $1 - Message to log
 # Returns:
-#   Name
+#   $? - Message
 #########################
-log_skip() {
+function log_skip() {
   log_print "${DATE}\t ${INTENS_WHITE}skipped ${RESET}\t" "${*}"
 }
 
@@ -88,9 +90,9 @@ log_skip() {
 # Arguments:
 #   $1 - Message to log
 # Returns:
-#   Name
+#   $? - Message
 #########################
-log_pass() {
+function log_pass() {
   log_print "${DATE}\t ${INTENS_GREEN}passed ${RESET}\t" "${*}"
 }
 
@@ -99,9 +101,9 @@ log_pass() {
 # Arguments:
 #   $1 - Message to log
 # Returns:
-#   Name
+#   $? - Message
 #########################
-log_warn() {
+function log_warn() {
   log_print "${DATE}\t ${INTENS_YELLOW}warning ${RESET}\t" "${*}"
 }
 
@@ -110,9 +112,9 @@ log_warn() {
 # Arguments:
 #   $1 - Message to log
 # Returns:
-#   Name
+#   $? - Message
 #########################
-log_error() {
+function log_error() {
   log_print "${DATE}\t ${INTENS_RED}failed ${RESET}\t" "${*}"
 }
 
@@ -125,7 +127,7 @@ log_error() {
 # Returns:
 #   None
 #########################
-log_message() {
+function log_message() {
   local task="${1:?task is missing}"
   local package="${2:?package is missing}"
   local status="${3:?status is missing}"

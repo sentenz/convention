@@ -1,17 +1,19 @@
 #!/bin/bash
 #
-# Perform dependency setup for continuous release pipeline.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Setup of the Software Release environment.
 
 # -x: print a trace (debug)
 # -u: treat unset variables
 # -o pipefail: return value of a pipeline
 set -uo pipefail
 
-# Include libraries
+# Include Scripts
 
-. ./../scripts/utils/util.sh
+source ./../scripts/shell/pkg.sh
 
-# Constant variables
+# Constant Variables
 
 readonly -A NPM_PACKAGES=(
   ["semantic-release"]="23.0.2"
@@ -25,31 +27,21 @@ readonly -A NPM_PACKAGES=(
   ["@semantic-release/github"]="10.0.2"
 )
 
-# Internal functions
+# Internal Functions
 
-setup_release() {
+function setup_release() {
   local -i retval=0
-  local -i result=0
 
-  # HACK(AK) I don't know how to pass key value pairs to function
-  # util_install_npm_packages "${NPM_PACKAGES[@]}"
-  # ((result |= $?))
-  for package in "${!NPM_PACKAGES[@]}"; do
-
-    util_install_npm "${package}" "${NPM_PACKAGES[$package]}"
-    ((result = $?))
-    ((retval |= "${result}"))
-
-    log_message "setup" "${package} : ${NPM_PACKAGES[$package]}" "${result}"
-  done
-
-  util_cleanup_npm
+  pkg_npm_install_list NPM_PACKAGES
   ((retval |= $?))
 
-  return "${result}"
+  pkg_npm_clean
+  ((retval |= $?))
+
+  return "${retval}"
 }
 
-# Control flow logic
+# Control Flow Logic
 
 setup_release
 exit "${?}"

@@ -26,14 +26,14 @@
 # -o pipefail: return value of a pipeline
 set -uo pipefail
 
-# Include libraries
+# Include Scripts
 
-. ./scripts/utils/log.sh
-. ./scripts/utils/fs.sh
-. ./scripts/utils/git.sh
-. ./scripts/utils/hook.sh
+source ./scripts/shell/log.sh
+source ./scripts/shell/fs.sh
+source ./scripts/shell/git.sh
+source ./scripts/shell/hook.sh
 
-# Constant variables
+# Constant Variables
 
 REMOTE_BRANCHE="${1}"
 readonly REMOTE_BRANCHE
@@ -44,16 +44,16 @@ LOG_FILE="$(git_get_root_dir)/logs/githooks/pre-push.log"
 readonly LOG_FILE
 LOCAL_BRANCH="$(git_get_local_branch)"
 readonly LOCAL_BRANCH
-readonly -a BASE_BRANCHES=(
+readonly -A BASE_BRANCHES=(
   main
 )
-readonly -a SUPPORT_BRANCHES=(
+readonly -A SUPPORT_BRANCHES=(
   feature
   release
   fix
 )
 
-# Internal functions
+# Internal Functions
 
 run_pre_push() {
   local -i result=0
@@ -81,7 +81,7 @@ run_pre_push() {
   return "${result}"
 }
 
-# Control flow logic
+# Control Flow Logic
 
 run_pre_push
 exit "${?}"

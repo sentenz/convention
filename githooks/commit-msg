@@ -18,14 +18,14 @@
 # -o pipefail: return value of a pipeline
 set -uo pipefail
 
-# Include libraries
+# Include Scripts
 
-. ./scripts/utils/log.sh
-. ./scripts/utils/fs.sh
-. ./scripts/utils/git.sh
-. ./scripts/utils/hook.sh
+source ./scripts/shell/log.sh
+source ./scripts/shell/fs.sh
+source ./scripts/shell/git.sh
+source ./scripts/shell/hook.sh
 
-# Constant variables
+# Constant Variables
 
 COMMIT_MESSAGE_FILE="${1}"
 readonly COMMIT_MESSAGE_FILE
@@ -33,7 +33,7 @@ readonly COMMIT_MESSAGE_FILE
 LOG_FILE="$(git_get_root_dir)/logs/githooks/commit-msg.log"
 readonly LOG_FILE
 
-# Internal functions
+# Internal Functions
 
 run_commit_msg() {
   local -i result=0
@@ -53,7 +53,7 @@ run_commit_msg() {
   return "${result}"
 }
 
-# Control flow logic
+# Control Flow Logic
 
 run_commit_msg
 exit "${?}"

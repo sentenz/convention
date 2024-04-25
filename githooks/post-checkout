@@ -18,14 +18,14 @@
 # -o pipefail: return value of a pipeline
 set -uo pipefail
 
-# Include libraries
+# Include Scripts
 
-. ./scripts/utils/log.sh
-. ./scripts/utils/fs.sh
-. ./scripts/utils/git.sh
-. ./scripts/utils/hook.sh
+source ./scripts/shell/log.sh
+source ./scripts/shell/fs.sh
+source ./scripts/shell/git.sh
+source ./scripts/shell/hook.sh
 
-# Constant variables
+# Constant Variables
 
 PREVIOUS_HEAD="${1}"
 readonly PREVIOUS_HEAD
@@ -38,11 +38,11 @@ LOG_FILE="$(git_get_root_dir)/logs/githooks/post-checkout.log"
 readonly LOG_FILE
 LOCAL_BRANCH="$(git_get_local_branch)"
 readonly LOCAL_BRANCH
-readonly -a BASE_BRANCHES=(
+readonly -A BASE_BRANCHES=(
   main
 )
 
-# Internal functions
+# Internal Functions
 
 run_post_checkout() {
   local -i result=0
@@ -62,7 +62,7 @@ run_post_checkout() {
   return "${result}"
 }
 
-# Control flow logic
+# Control Flow Logic
 
 run_post_checkout
 exit "${?}"

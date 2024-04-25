@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-# Call the setup scripts.
+# Perform the setup scripts.
 
 # -x: print a trace (debug)
 # -u: treat unset variables
@@ -11,11 +11,11 @@ set -uo pipefail
 
 # Constant Variables
 
-readonly -a SCRIPTS=(
-  setup_release.sh
+readonly -A SCRIPTS=(
+  setup_linter.sh
 )
 
-# Control Flow Logic
+# Internal Functions
 
 function setup() {
   local -i retval=0
@@ -30,6 +30,8 @@ function setup() {
 
   return "${retval}"
 }
+
+# Control Flow Logic
 
 setup
 exit "${?}"

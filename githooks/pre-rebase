@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # The "pre-rebase" hook is run just before "git rebase" starts doing its job, and can prevent the
-# command from running by exiting with non-zero status. 
+# command from running by exiting with non-zero status.
 #
 # Details:
 # Perform to prevent topic branches that are already merged to 'next' branch from getting rebased,
@@ -19,29 +19,27 @@
 # -o pipefail: return value of a pipeline
 set -uo pipefail
 
-# Include libraries
+# Include Scripts
 
-. ./scripts/utils/log.sh
-. ./scripts/utils/fs.sh
-. ./scripts/utils/git.sh
-. ./scripts/utils/hook.sh
+source ./scripts/shell/log.sh
+source ./scripts/shell/fs.sh
+source ./scripts/shell/git.sh
+source ./scripts/shell/hook.sh
 
 publish=next
 basebranch="$1"
 
-if test "$#" = 2
-then
+if test "$#" = 2; then
 	topic="refs/heads/$2"
 else
-	topic=`git symbolic-ref HEAD` ||
-	exit 0 ;# we do not interrupt rebasing detached HEAD
+	topic=$(git symbolic-ref HEAD) ||
+		exit 0 # we do not interrupt rebasing detached HEAD
 fi
 
 case "$topic" in
-refs/heads/??/*)
-	;;
+refs/heads/??/*) ;;
 *)
-	exit 0 ;# we do not interrupt others.
+	exit 0 # we do not interrupt others.
 	;;
 esac
 
@@ -55,28 +53,25 @@ git show-ref -q "$topic" || {
 }
 
 # Is topic fully merged to master?
-not_in_master=`git rev-list --pretty=oneline ^master "$topic"`
-if test -z "$not_in_master"
-then
+not_in_master=$(git rev-list --pretty=oneline ^master "$topic")
+if test -z "$not_in_master"; then
 	echo >&2 "$topic is fully merged to master; better remove it."
-	exit 1 ;# we could allow it, but there is no point.
+	exit 1 # we could allow it, but there is no point.
 fi
 
 # Is topic ever merged to next?  If so you should not be rebasing it.
-only_next_1=`git rev-list ^master "^$topic" ${publish} | sort`
-only_next_2=`git rev-list ^master           ${publish} | sort`
-if test "$only_next_1" = "$only_next_2"
-then
-	not_in_topic=`git rev-list "^$topic" master`
-	if test -z "$not_in_topic"
-	then
+only_next_1=$(git rev-list ^master "^$topic" ${publish} | sort)
+only_next_2=$(git rev-list ^master ${publish} | sort)
+if test "$only_next_1" = "$only_next_2"; then
+	not_in_topic=$(git rev-list "^$topic" master)
+	if test -z "$not_in_topic"; then
 		echo >&2 "$topic is already up to date with master"
-		exit 1 ;# we could allow it, but there is no point.
+		exit 1 # we could allow it, but there is no point.
 	else
 		exit 0
 	fi
 else
-	not_in_next=`git rev-list --pretty=oneline ^${publish} "$topic"`
+	not_in_next=$(git rev-list --pretty=oneline ^${publish} "$topic")
 	@PERL_PATH@ -e '
 		my $topic = $ARGV[0];
 		my $msg = "* $topic has commits already merged to public branch:\n";

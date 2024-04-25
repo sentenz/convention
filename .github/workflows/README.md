@@ -1,21 +1,22 @@
-# `/workflows`
+# `/.gitlab`
 
-- continuous-security.yml
-  > An yaml file containing actions for continuous security pipeline, triggered by pull request (PR) events.
-  >
-  > The actions in the continuous security pipeline, enforce [security testing](https://sentenz.github.io/convention/articles/xops.html#4-devsecops) .
+The `/.gitlab` directory contains GitLab configuration files and pipelines.
 
-- continuous-integration.yml
-  > An yaml file containing actions for continuous integration pipeline, triggered upon the completion of another pipeline.
-  >
-  > The actions in the continuous integration pipeline, performs [code analysis](https://sentenz.github.io/convention/articles/software-analysis.html) to the `changed` files of a support repository.
+1. Files and Folders
 
-- continuous-testing.yml
-  > An yaml file containing actions for continuous testing pipeline, triggered upon the completion of another pipeline.
-  >
-  > The actions in the continuous testing pipeline, performs [software testing](https://sentenz.github.io/convention/articles/software-testing.html) tasks such as `build` and `unit tests`.
+    - `conventional-commits.yml`
+      > A pipeline configuration file using GitHub Action to enforce PR title matches the `conventional commits` specification.
 
-- continuous-release.yml
-  > An yaml file containing actions for continuous release pipeline, triggered from base branch.
-  >
-  > The actions in the continuous release pipeline, creates a `version tag` and a `CHANGELOG` file based on [commit messages](https://sentenz.github.io/convention/guides/commit-message-guide.html).
+    - `semantic-release.yml`
+      > A pipeline configuration file to streamline continuous `Semantic Release` versioning tasks. The tasks in the release pipeline are triggered by the `base` branches, and creates a version `tag` and a `CHANGELOG.md` file.
+      >
+      > - `Commit`:
+      > Adhere to and enforce to `conventional commits` convention for commit messages.
+      >
+      > - `Versioning`:
+      > Adhere to `semantic versioning` convention based on the commit messages in `conventional commits` format.
+      >
+      > - `Changelog`:
+      > Adhere to `keeping a changelog` convention for tracking changes in releases.
+      >
+      > NOTE GitHub authentication configuration is **required** and can be set via environment variables. Create a fine-grained personal access token (PAT) `GH_TOKEN` or `GITHUB_TOKEN` in `Settings / Developer Settings` with the `repository permissions` read and write access to `code`, `issues`, and `pull requests`.

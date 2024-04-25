@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: Apache-2.0
+---
+name: Semantic-Release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  semantic-release:
+    name: semantic-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: make workflow-release

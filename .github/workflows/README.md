@@ -5,7 +5,13 @@ The `/.gitlab` directory contains GitLab configuration files and pipelines.
 1. Files and Folders
 
     - `conventional-commits.yml`
-      > A pipeline configuration file using GitHub Action to enforce PR title matches the `conventional commits` specification.
+      > A pipeline configuration file using [GitHub Action](https://github.com/amannn/action-semantic-pull-request) to enforce PR title matches the `conventional commits` specification.
+
+    - `labeler.yml`
+      > A pipeline configuration file using [GitHub Action](https://github.com/actions/labeler) to automatically apply labels to issues and pull requests based on the title and body of the issue or pull request.
+
+    - `secret-scanning.yml`
+      > A pipeline configuration file using [GitHub Action](https://github.com/marketplace/actions/trufflehog-oss) to scan the repository for secrets and credentials.
 
     - `semantic-release.yml`
       > A pipeline configuration file to streamline continuous `Semantic Release` versioning tasks. The tasks in the release pipeline are triggered by the `base` branches, and creates a version `tag` and a `CHANGELOG.md` file.

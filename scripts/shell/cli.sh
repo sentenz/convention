@@ -556,6 +556,17 @@ function cli_semantic_release() {
 }
 
 ########################
+# Project documentation with Markdown.
+# Arguments:
+#   None
+# Returns:
+#   $? - Result
+#########################
+function cli_mkdocs() {
+  mkdocs build
+}
+
+########################
 # LCOV is an extension of GCOV, a GNU tool which provides information about code coverage.
 # Arguments:
 #   $1 - executable

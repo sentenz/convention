@@ -41,8 +41,24 @@ release:
 	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_semantic_release
 .PHONY: release
 
+## Setup of the SSG Pages environment
+setup-pages:
+	cd $(@D)/scripts && chmod +x setup_pages.sh && ./setup_pages.sh
+.PHONY: setup-pages
+
+## Perform the SSG Pages build
+pages:
+	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_mkdocs
+.PHONY: pages
+
 ## Workflow of the Software Release process
 workflow-release:
 	$(MAKE) setup-release
 	$(MAKE) release
-.PHONY: pipeline-release
+.PHONY: workflow-release
+
+## Workflow of the SSG Pages process
+workflow-pages:
+	$(MAKE) setup-pages
+	$(MAKE) pages
+.PHONY: workflow-pages

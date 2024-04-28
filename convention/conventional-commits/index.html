@@ -1,0 +1,1010 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/convention/conventional-commits/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Conventional Commits - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conventional-commits" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Conventional Commits
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Types
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/convention/conventional-commits.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/convention/conventional-commits.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="conventional-commits">Conventional Commits<a class="headerlink" href="#conventional-commits" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> is a commit message convention that provides a standardized and structured format for commit messages in software development projects. It aims to make commit messages more readable, informative, and useful for both humans and automated tools.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-structure">1.1. Structure</a></li>
+<li><a href="#12-types">1.2. Types</a></li>
+<li><a href="#2-principles">2. Principles</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+<li><a href="#5-references">5. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>Conventional Commits provide a consistent and informative commit message format, making it easier for developers, reviewers, and automated tools to understand the purpose and impact of each commit in a project.</p>
+<p>Conventional Commits help with automated tools like release notes generators, <a href="../changelog/">changelogs</a>, and <a href="../semantic-versioning/">semantic versioning</a> systems. By following this convention, teams can create more structured commit histories, making it easier to understand the changes made to the codebase over time.</p>
+<blockquote>
+<p>NOTE Conventional Commits is a convention and not a strict requirement. Its adoption and enforcement depend on the development team and the project's guidelines.</p>
+</blockquote>
+<h3 id="11-structure">1.1. Structure<a class="headerlink" href="#11-structure" title="Permanent link">&para;</a></h3>
+<p>The structure of a Conventional Commit follows a specific format to provide a standardized and consistent way of writing commit messages. A Conventional Commit message consists of the <code>header</code>, the <code>body</code>, and the <code>footer</code>.</p>
+<p>Structure of Conventional Commits:</p>
+<ol>
+<li>
+<p>Header</p>
+<p>The header is the first line of the commit message and contains essential information about the commit. It has the following format:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+</span></code></pre></div>
+<ul>
+<li>
+<p><code>&lt;type&gt;</code></p>
+<blockquote>
+<p>Indicates the type of the commit, such as a new feature (<code>feat</code>), bug fix (<code>fix</code>), documentation update (<code>docs</code>), etc.</p>
+</blockquote>
+</li>
+<li>
+<p><code>&lt;scope&gt;</code> (optional)</p>
+<blockquote>
+<p>Denotes the scope or module of the project that the commit affects. It can be a specific component, file, or functionality. The scope is enclosed in parentheses.</p>
+</blockquote>
+</li>
+<li>
+<p><code>&lt;subject&gt;</code></p>
+<blockquote>
+<p>Briefly describes the commit's purpose in a concise and imperative manner (e.g., <code>add authentication module</code>, <code>fix validation bug</code>).</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Body</p>
+<p>The body of the commit message provides additional information about the commit. It is optional but highly recommended, especially for complex changes. The body should be wrapped at 72 characters and provides more details about the motivation behind the change, any related issues, or any other relevant contextual information.</p>
+</li>
+<li>
+<p>Footer</p>
+<p>The footer section is also optional and is used for providing any additional information related to the commit. Some common uses of the footer include referencing issues or tasks, documenting breaking changes, listing co-authored-by details, or including links to external resources.</p>
+</li>
+</ol>
+<p>Example of Conventional Commits:</p>
+<p>Example of a complete Conventional Commit message with all three parts:</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>feat(user): add password reset functionality
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">-</span><span class="w"> </span>Implement the password reset feature according to user requirements.
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">-</span><span class="w"> </span>Add an API endpoint for initiating password reset.
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">-</span><span class="w"> </span>Include email notification to the user with reset instructions.
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Closes <span class="ni">#123</span>
+</span></code></pre></div>
+<p>In the example:</p>
+<ul>
+<li>The header indicates that it is a new feature (<code>feat</code>) related to the user module (<code>user</code>).</li>
+<li>The body provides a bulleted list describing the implementation details.</li>
+<li>The footer references the issue number <code>#123</code> that this commit resolves or relates to.</li>
+</ul>
+<h3 id="12-types">1.2. Types<a class="headerlink" href="#12-types" title="Permanent link">&para;</a></h3>
+<p>Conventional Commits categorize commits into different types to provide more context and make it easier to understand the nature of the changes. While the conventional commit types can vary slightly depending on the project and team preferences.</p>
+<blockquote>
+<p>NOTE The convention also allows for additional commit types and scopes specific to the project's needs.</p>
+</blockquote>
+<p>Types of Conventional Commits:</p>
+<ol>
+<li>
+<p><code>feat</code></p>
+<p>Used for commits that introduce new features or functionalities to the project. It indicates the addition of significant user-visible changes.</p>
+</li>
+<li>
+<p><code>fix</code></p>
+<p>Commits categorized as <code>fix</code> address bug fixes or resolve issues in the codebase. They indicate corrections to existing features or functionality.</p>
+</li>
+<li>
+<p><code>docs</code></p>
+<p>Documentation plays a vital role in software projects. The <code>docs</code> category is used for commits that update or add documentation, including readme files, API documentation, or user guides.</p>
+</li>
+<li>
+<p><code>style</code></p>
+<p>The <code>style</code> category is used for commits that focus on code style changes, such as formatting, indentation, or whitespace modifications. These commits do not affect the functionality of the code but improve its readability and maintainability.</p>
+</li>
+<li>
+<p><code>refactor</code></p>
+<p>Commits categorized as <code>refactor</code> involve making changes to the codebase that neither fix a bug nor add a new feature. Refactoring aims to improve code structure, organization, or efficiency without changing external behavior.</p>
+</li>
+<li>
+<p><code>test</code></p>
+<p>Used for changes that add or modify test cases, test frameworks, or other related testing infrastructure.</p>
+</li>
+<li>
+<p><code>chore</code></p>
+<p>Typically used for routine or miscellaneous tasks related to the project, such as code reformatting, updating dependencies, or making general project maintenance.</p>
+</li>
+<li>
+<p><code>build</code></p>
+<p>Used when a commit affects the build system or external dependencies. It includes changes to build scripts, configurations, or tools used in the project.</p>
+</li>
+<li>
+<p><code>ci</code></p>
+<p>Stands for <code>continuous integration</code>. This type is used for changes to the project's continuous integration or deployment configurations, scripts, or infrastructure.</p>
+</li>
+<li>
+<p><code>perf</code></p>
+<p>Short for <code>performance</code>, this type is used when a commit improves the performance of the code or optimizes certain functionalities.</p>
+</li>
+</ol>
+<h2 id="2-principles">2. Principles<a class="headerlink" href="#2-principles" title="Permanent link">&para;</a></h2>
+<p>While Conventional Commits provide a specific structure and format for commit messages, there are some underlying principles and benefits associated with their adoption. By adhering to these principles, Conventional Commits foster clarity, collaboration, and maintainability in software development projects. They promote better communication and documentation practices, simplify versioning and release processes, and improve overall code quality and project management.</p>
+<ul>
+<li>
+<p>Readability and Understandability</p>
+<blockquote>
+<p>Conventional Commits aim to make commit messages more readable and understandable for humans. By following a standardized format and including clear and concise information, it becomes easier for developers, reviewers, and other stakeholders to grasp the purpose and impact of each commit.</p>
+</blockquote>
+</li>
+<li>
+<p>Semantic Versioning</p>
+<blockquote>
+<p>Conventional Commits align with semantic versioning principles. By categorizing commits into types such as <code>feat</code> (new feature), <code>fix</code> (bug fix), or <code>chore</code> (maintenance), it becomes possible to automate the generation of release notes and determine the appropriate version numbers based on the types of changes introduced.</p>
+</blockquote>
+</li>
+<li>
+<p>Changelog Generation</p>
+<blockquote>
+<p>Conventional Commits enable automated changelog generation. The structured commit messages provide the necessary information to generate changelogs, which summarize the changes between different versions of the software. This helps users and stakeholders easily track and understand the evolution of the project.</p>
+</blockquote>
+</li>
+<li>
+<p>Collaboration and Code Review</p>
+<blockquote>
+<p>Consistent commit message formats improve collaboration within development teams. Clear commit messages enhance code review processes, allowing reviewers to understand the intent and impact of changes more efficiently. It helps maintain a clean commit history and makes it easier to trace back changes when needed.</p>
+</blockquote>
+</li>
+<li>
+<p>Documentation and Communication</p>
+<blockquote>
+<p>Conventional Commits contribute to better documentation and communication practices. By providing meaningful commit messages, projects can establish a historical record of changes, including the reasoning behind each change. This documentation serves as a valuable resource for future developers, maintainers, and users who need to understand the evolution of the codebase.</p>
+</blockquote>
+</li>
+<li>
+<p>Tooling and Automation</p>
+<blockquote>
+<p>Conventional Commits facilitate the development of tooling and automation around commit messages. Various tools, such as release note generators, semantic versioning plugins, and commit message linters, can leverage the structured commit format to automate tasks and extract useful information from commit messages.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>The effective implementation of Conventional Commits in a project, improves code quality, leads to better collaboration and streamlined release processes.</p>
+<ul>
+<li>
+<p>Consistency</p>
+<blockquote>
+<p>Consistency is key to deriving the maximum benefit from Conventional Commits. Ensure that all developers in a project follow the convention consistently to maintain a unified commit history and facilitate automated tooling.</p>
+</blockquote>
+</li>
+<li>
+<p>Clear and Concise Messages</p>
+<blockquote>
+<p>Write commit messages that are clear, concise, and describe the purpose of the change. Use imperative verbs in the subject line and provide additional details in the body when necessary.</p>
+</blockquote>
+</li>
+<li>
+<p>Scope Appropriately</p>
+<blockquote>
+<p>Use the optional scope element in the header to indicate the specific module, component, or area of the project that the commit affects. Keep scopes meaningful and relevant to provide more context to readers.</p>
+</blockquote>
+</li>
+<li>
+<p>Separate Concerns</p>
+<blockquote>
+<p>Keep commits focused on a single concern or change. If a commit involves multiple unrelated changes, consider splitting them into separate commits to maintain clarity and facilitate easier review.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Body and Footer When Needed</p>
+<blockquote>
+<p>Provide additional information in the body section when the commit requires more context or explanation. Use the footer to reference related issues, document breaking changes, or include other relevant details.</p>
+</blockquote>
+</li>
+<li>
+<p>Follow Semantic Versioning</p>
+<blockquote>
+<p>Consider the impact of the commit and choose the appropriate commit type (<code>feat</code>, <code>fix</code>, etc.) according to semantic versioning guidelines. This helps automate versioning and release processes.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Tooling and Automation</p>
+<blockquote>
+<p>Leverage tools and plugins that support Conventional Commits. These tools can automate the generation of release notes, changelogs, and enforce commit message formats. They can also help ensure consistent adherence to the convention across the team.</p>
+</blockquote>
+</li>
+<li>
+<p>Integrate with Workflows</p>
+<blockquote>
+<p>Integrate Conventional Commits into the development workflows and processes. For example, as a requirement for pull requests or code reviews, or incorporate it into the continuous integration/continuous delivery (CI/CD) pipeline.</p>
+</blockquote>
+</li>
+<li>
+<p>Educate and Communicate</p>
+<blockquote>
+<p>Educate the development team about Conventional Commits and its benefits. Encourage open discussions and provide guidance on how to write effective commit messages. Clear communication and understanding within the team lead to better adoption and collaboration.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>The terms are fundamental to understanding and working with Conventional Commits. By using this terminology consistently, developers can effectively communicate and document the changes made to the codebase in a structured and standardized manner.</p>
+<ul>
+<li>
+<p>Commit</p>
+<blockquote>
+<p>In version control systems like Git, a commit represents a snapshot of the changes made to the codebase at a particular point in time. It includes a commit message describing the changes.</p>
+</blockquote>
+</li>
+<li>
+<p>Commit Message</p>
+<blockquote>
+<p>A commit message is a textual description of the changes introduced in a commit. In the context of Conventional Commits, the commit message follows a specific format and structure to provide standardized and meaningful information about the commit.</p>
+</blockquote>
+</li>
+<li>
+<p>Header</p>
+<blockquote>
+<p>The header is the first line of a commit message and contains the essential information about the commit, including the type, scope, and subject of the changes. It follows the format <code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Type</p>
+<blockquote>
+<p>The type represents the category or nature of the changes made in a commit. Common types include <code>feat</code> (new feature), <code>fix</code> (bug fix), <code>docs</code> (documentation update), <code>style</code> (code style changes), <code>refactor</code> (code refactoring), <code>test</code> (adding or modifying tests), and <code>chore</code> (maintenance tasks or non-functional changes).</p>
+</blockquote>
+</li>
+<li>
+<p>Scope</p>
+<blockquote>
+<p>The scope (optional) provides additional context about the portion of the codebase that the commit affects. It can be a specific component, module, file, or functionality. The scope is enclosed in parentheses and helps narrow down the scope of the changes.</p>
+</blockquote>
+</li>
+<li>
+<p>Subject</p>
+<blockquote>
+<p>The subject is a brief and concise description of the commit's purpose or the main change introduced. It should be written in an imperative form, starting with a verb. For example, <code>add authentication module</code> or <code>fix validation bug</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Body</p>
+<blockquote>
+<p>The body (optional) is the section of the commit message that provides additional information and details about the changes made in the commit. It can include a more extensive description, motivations, references to related issues, or any other relevant contextual information.</p>
+</blockquote>
+</li>
+<li>
+<p>Footer</p>
+<blockquote>
+<p>The footer (optional) is the section of the commit message that appears after an empty line following the body. It can include supplementary information such as references to related issues or tasks, breaking changes, co-authored-by details, or links to external resources.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="5-references">5. References<a class="headerlink" href="#5-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sentnez <a href="../../guides/commit-message-guide/">commit message guide</a> article.</li>
+<li>Sentnez <a href="../semantic-versioning/">semantic versioning</a> article.</li>
+<li>Sentnez <a href="../changelog/">changelog</a> article.</li>
+<li>Github <a href="https://github.com/conventional-commits/conventionalcommits.org">conventional commits</a> repository.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

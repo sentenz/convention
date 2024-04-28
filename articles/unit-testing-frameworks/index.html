@@ -1,0 +1,1024 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/unit-testing-frameworks/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Unit-Testing Frameworks - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unit-testing-frameworks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Unit-Testing Frameworks
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-unit-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Unit Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Unit Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-googletest" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. GoogleTest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-boosttest" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Boost.Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-catch2" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Catch2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-doctest" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Doctest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-pytest" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. pytest
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. go
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-code-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Code Coverage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Code Coverage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-gcov" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. gcov
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. go
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-profiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Profiling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Profiling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-gprof" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. gprof
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. go
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/unit-testing-frameworks.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/unit-testing-frameworks.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="unit-testing-frameworks">Unit-Testing Frameworks<a class="headerlink" href="#unit-testing-frameworks" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#1-unit-testing">1. Unit Testing</a></li>
+<li><a href="#11-googletest">1.1. GoogleTest</a></li>
+<li><a href="#12-boosttest">1.2. Boost.Test</a></li>
+<li><a href="#13-catch2">1.3. Catch2</a></li>
+<li><a href="#14-doctest">1.4. Doctest</a></li>
+<li><a href="#15-pytest">1.5. pytest</a></li>
+<li><a href="#16-go">1.6. go</a></li>
+<li><a href="#2-code-coverage">2. Code Coverage</a></li>
+<li><a href="#21-gcov">2.1. gcov</a></li>
+<li><a href="#22-go">2.2. go</a></li>
+<li><a href="#3-profiling">3. Profiling</a></li>
+<li><a href="#31-gprof">3.1. gprof</a></li>
+<li><a href="#32-go">3.2. go</a></li>
+<li><a href="#4-references">4. References</a></li>
+</ul>
+<h2 id="1-unit-testing">1. Unit Testing<a class="headerlink" href="#1-unit-testing" title="Permanent link">&para;</a></h2>
+<p><a href="../software-testing/#unit-testing">Unit testing</a> aims to check individual units of the source code separately. A unit is the smallest part of code that can be tested in isolation.</p>
+<p>Benefits of unit testing:</p>
+<ul>
+<li>
+<p>Modularize code</p>
+<blockquote>
+<p>As code's testability depends on its design, unit tests facilitate breaking it into specialized test pieces.</p>
+</blockquote>
+</li>
+<li>
+<p>Avoid regressions</p>
+<blockquote>
+<p>A suite of unit tests can run it iteratively to ensure that everything <a href="../software-testing/#regression-testing">keeps working correctly</a> every time you add new functionality or introduce changes.</p>
+</blockquote>
+</li>
+<li>
+<p>Document code</p>
+<blockquote>
+<p>Running, debugging, or even just reading tests can give a lot of information about how the original code works, <a href="../software-testing/">software testing</a> can be used as implicit documentation.</p>
+</blockquote>
+</li>
+</ul>
+<p>Best practices for unit testing:</p>
+<ul>
+<li>Creating tests for all publicly exposed functions, including class constructors and operators.</li>
+<li>Covering all code paths and checking both trivial and edge cases, including those with incorrect input data (see negative testing).</li>
+<li>Assuring that each test works independently and doesn't prevent other tests from execution.</li>
+<li>Organizing tests in a way that the order in which you run them doesn't affect the results.</li>
+</ul>
+<p>A single unit test is a method that checks some specific functionality and has clear pass/fail criteria. The generalized structure of a single test looks like this:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Test (TestGroupName, TestName)   {
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    1 - setup block
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    2 - running the under-test functionality
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    3 - checking the results (assertions block)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>}
+</span></code></pre></div>
+<h3 id="11-googletest">1.1. GoogleTest<a class="headerlink" href="#11-googletest" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mock</th>
+<th>Fixture</th>
+<th>Fuzzing</th>
+<th>Code Coverage</th>
+<th>Build System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>FuzzTest</td>
+<td>gcov</td>
+<td>CMake / Bazel</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/google/googletest">GoogleTest</a> is Google Testing and Mocking Framework, it includes a rich set of fatal and non-fatal assertions, provides instruments for creating fixtures and test groups, gives informative messages, and exports the results in XML.</p>
+<p>To learn more about Google Test, explore the <a href="https://github.com/google/googletest/blob/main/docs/samples.md">samples</a> in the framework's repository. Also, take a look at <a href="https://github.com/google/googletest/blob/main/docs/advanced.md#advanced-googletest-topics">Advanced options</a> for details of other noticeable Google Test features such as <a href="https://github.com/google/googletest/blob/main/docs/advanced.md#value-parameterized-tests">value-parametrized tests</a> and <a href="https://github.com/google/googletest/blob/main/docs/advanced.md#type-parameterized-tests">type-parameterized tests</a>.</p>
+<p>Tools for GoogleTest:</p>
+<ul>
+<li><a href="https://github.com/google/fuzztest">FuzzTest</a><blockquote>
+<p>FuzzTest is a C++ testing framework for writing and executing fuzz tests, which are property-based tests.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="12-boosttest">1.2. Boost.Test<a class="headerlink" href="#12-boosttest" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mock</th>
+<th>Fixture</th>
+<th style="text-align: center;">Fuzzing</th>
+<th>Code Coverage</th>
+<th>Build System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FakeIt</td>
+<td>Built-in</td>
+<td style="text-align: center;">—</td>
+<td>gcov</td>
+<td>CMake</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.boost.org/doc/libs/1_71_0/libs/test/doc/html/index.html">Boost.Test</a> unit testing frameworks for C++. Boost unit testing framework (Boost.Test) is a part of the Boost library. It is a fully-functional and scalable framework, with wide range of assertion macros, XML output, and other features.</p>
+<p>Boost.Test doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as <a href="https://github.com/dascandy/hippomocks">Hippomocks</a>, <a href="https://github.com/eranpeer/FakeIt">FakeIt</a>, or <a href="https://github.com/rollbear/trompeloeil">Trompeloeil</a>.</p>
+<h3 id="13-catch2">1.3. Catch2<a class="headerlink" href="#13-catch2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Mock</th>
+<th>Fixture</th>
+<th style="text-align: center;">Fuzzing</th>
+<th>Code Coverage</th>
+<th>Build System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">FakeIt</td>
+<td>Built-in</td>
+<td style="text-align: center;">—</td>
+<td>gcov</td>
+<td>CMake</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/catchorg/Catch2">Catch2</a> unit testing frameworks for C++. It's a header-only testing system: to create tests with Catch2, download and include only one header file, <code>catch.hpp</code>. The framework's name stands for <code>C++ Automated Test Cases in Headers (version two)</code>.</p>
+<p>Catch2 doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as <a href="https://github.com/dascandy/hippomocks">Hippomocks</a>, <a href="https://github.com/eranpeer/FakeIt">FakeIt</a>, or <a href="https://github.com/rollbear/trompeloeil">Trompeloeil</a>.</p>
+<h3 id="14-doctest">1.4. Doctest<a class="headerlink" href="#14-doctest" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mock</th>
+<th>Fixture</th>
+<th style="text-align: center;">Fuzzing</th>
+<th>Code Coverage</th>
+<th>Build System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FakeIt</td>
+<td>Built-in</td>
+<td style="text-align: center;">—</td>
+<td>gcov</td>
+<td>CMake</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/doctest/doctest">Doctest</a> unit testing frameworks for C++. Doctest is a single-header framework with self-registering tests. Doctest was designed after Catch and shares some parts of the Catch's code.</p>
+<p>Doctest doesn't provide mocking functionality. However, combine it with standalone mocking frameworks such as <a href="https://github.com/dascandy/hippomocks">Hippomocks</a>, <a href="https://github.com/eranpeer/FakeIt">FakeIt</a>, or <a href="https://github.com/rollbear/trompeloeil">Trompeloeil</a>.</p>
+<h3 id="15-pytest">1.5. pytest<a class="headerlink" href="#15-pytest" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mock</th>
+<th>Fixture</th>
+<th>Fuzzing</th>
+<th>Code Coverage</th>
+<th style="text-align: center;">Build System</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pytest-mock</td>
+<td>pytest fixtures</td>
+<td>atheris fuzzing</td>
+<td>pytest-cov</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://github.com/pytest-dev/pytest/">pytest</a> unit testing frameworks for Python. The pytest framework allows to write small, readable tests, and can be scaled to support complex functional tests for applications and libraries.</p>
+<h3 id="16-go">1.6. go<a class="headerlink" href="#16-go" title="Permanent link">&para;</a></h3>
+<h2 id="2-code-coverage">2. Code Coverage<a class="headerlink" href="#2-code-coverage" title="Permanent link">&para;</a></h2>
+<p>In computer science, <a href="../software-testing/#code-coverage">test coverage</a> is a measure (in percent) of the degree to which the source code of a program is executed when a particular test suite is run.</p>
+<h3 id="21-gcov">2.1. gcov<a class="headerlink" href="#21-gcov" title="Permanent link">&para;</a></h3>
+<p><a href="https://en.wikipedia.org/wiki/Gcov">Gcov</a> is a source code coverage analysis and statement-by-statement profiling tool. Gcov generates exact counts of the number of times each statement in a program is executed and annotates source code to add instrumentation. Gcov comes as a standard utility with the GNU Compiler Collection (GCC) suite. The gcov utility gives information on how often a program executes segments of code. It produces a copy of the source file, annotated with execution frequencies.</p>
+<p>When passing the coverage flags manually, one of the following options can be used, depending on which compiler and coverage tools is preferred:</p>
+<ul>
+<li>
+<p>GCC</p>
+<blockquote>
+<p><code>-fprofile-arcs</code> <code>-ftest-coverage</code> or <code>--coverage</code></p>
+</blockquote>
+</li>
+<li>
+<p>Clang/Clang-cl</p>
+<blockquote>
+<ul>
+<li>Use the same flags as for GCC to get the gcov-style coverage collected with <a href="https://llvm.org/docs/CommandGuide/llvm-cov.html#llvm-cov-gcov">llvm-cov gcov</a>.</li>
+<li>Use <code>-fprofile-instr-generate</code> <code>-fcoverage-mapping</code> to invoke the Clang’s instrumentation-based profiling which uses a pair of the <code>llvm-profdata merge</code> and <code>llvm-cov</code> export commands.</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>CMake</p>
+<blockquote>
+<p>Provide the flags by setting the <code>CMAKE_CXX_FLAGS</code> variable (<code>CMAKE_C_FLAGS</code> for C projects) or using other alternatives like the <code>add_compile_options</code> command. On linker errors while building the project with gcov compiler flags, try passing the same flags to the linker through <code>add_link_options</code> or <code>set(CMAKE_EXE_LINKER_FLAGS "")</code>.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="22-go">2.2. go<a class="headerlink" href="#22-go" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>go<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-race<span class="w"> </span>-coverprofile<span class="o">=</span>coverage.out<span class="w"> </span>-covermode<span class="o">=</span>atomic<span class="w"> </span>./...
+</span></code></pre></div>
+<h2 id="3-profiling">3. Profiling<a class="headerlink" href="#3-profiling" title="Permanent link">&para;</a></h2>
+<h3 id="31-gprof">3.1. gprof<a class="headerlink" href="#31-gprof" title="Permanent link">&para;</a></h3>
+<h3 id="32-go">3.2. go<a class="headerlink" href="#32-go" title="Permanent link">&para;</a></h3>
+<h2 id="4-references">4. References<a class="headerlink" href="#4-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>JetBrains <a href="https://www.jetbrains.com/help/clion/unit-testing-tutorial.html#0">unit testing</a> article.</li>
+<li>JetBrains <a href="https://www.jetbrains.com/help/clion/code-coverage-clion.html#0">code coverage</a> article.</li>
+<li>Codecov <a href="https://about.codecov.io/">about</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1293 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/asymptotic-notation/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Asymptotic Notation - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#asymptotic-notation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Asymptotic Notation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-types-of-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Types of Notation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Types of Notation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-big-o-notation-o" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Big O Notation (O)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-big-omega-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Big Omega Notation (Ω)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-big-theta-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Big Theta Notation (θ)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-little-o-notation-o" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Little o Notation (o)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-little-omega-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Little omega Notation (ω)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-types-of-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Types of Complexity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Types of Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-time-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Time Complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-space-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Space Complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-communication-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Communication Complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-circuit-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. Circuit Complexity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-kolmogorov-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. Kolmogorov Complexity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-types-of-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Types of Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Types of Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-time-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Time Complexity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1. Time Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#311-constant-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.1. Constant Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#312-logarithmic-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.2. Logarithmic Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#313-linear-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.3. Linear Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#314-linearithmic-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.4. Linearithmic Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#315-quadratic-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.5. Quadratic Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#316-cubic-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.6. Cubic Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#317-exponential-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.7. Exponential Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#318-factorial-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.8. Factorial Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#319-polynomial-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.9. Polynomial Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3110-sublinear-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.10. Sublinear Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3111-pseudo-polynomial-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.11. Pseudo-polynomial Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3112-exponential-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1.12. Exponential Time
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-space-complexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Space Complexity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2. Space Complexity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321-constant-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.1. Constant Space
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322-linear-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2. Linear Space
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323-quadratic-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.3. Quadratic Space
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324-exponential-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.4. Exponential Space
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-complexity-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Complexity Classification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Complexity Classification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/asymptotic-notation.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/asymptotic-notation.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="asymptotic-notation">Asymptotic Notation<a class="headerlink" href="#asymptotic-notation" title="Permanent link">&para;</a></h1>
+<p>Asymptotic notation is a mathematical concept used to describe the behavior of a function as the input size approaches infinity. It is commonly used in computer science and programming to analyze and compare the efficiency of different algorithms.</p>
+<ul>
+<li><a href="#1-types-of-notation">1. Types of Notation</a></li>
+<li><a href="#11-big-o-notation-o">1.1. Big O Notation (O)</a></li>
+<li><a href="#12-big-omega-notation-ω">1.2. Big Omega Notation (Ω)</a></li>
+<li><a href="#13-big-theta-notation-θ">1.3. Big Theta Notation (θ)</a></li>
+<li><a href="#14-little-o-notation-o">1.4. Little o Notation (o)</a></li>
+<li><a href="#15-little-omega-notation-ω">1.5. Little omega Notation (ω)</a></li>
+<li><a href="#2-types-of-complexity">2. Types of Complexity</a></li>
+<li><a href="#21-time-complexity">2.1. Time Complexity</a></li>
+<li><a href="#22-space-complexity">2.2. Space Complexity</a></li>
+<li><a href="#23-communication-complexity">2.3. Communication Complexity</a></li>
+<li><a href="#24-circuit-complexity">2.4. Circuit Complexity</a></li>
+<li><a href="#25-kolmogorov-complexity">2.5. Kolmogorov Complexity</a></li>
+<li><a href="#3-types-of-classes">3. Types of Classes</a></li>
+<li><a href="#31-time-complexity">3.1. Time Complexity</a><ul>
+<li><a href="#311-constant-time">3.1.1. Constant Time</a></li>
+<li><a href="#312-logarithmic-time">3.1.2. Logarithmic Time</a></li>
+<li><a href="#313-linear-time">3.1.3. Linear Time</a></li>
+<li><a href="#314-linearithmic-time">3.1.4. Linearithmic Time</a></li>
+<li><a href="#315-quadratic-time">3.1.5. Quadratic Time</a></li>
+<li><a href="#316-cubic-time">3.1.6. Cubic Time</a></li>
+<li><a href="#317-exponential-time">3.1.7. Exponential Time</a></li>
+<li><a href="#318-factorial-time">3.1.8. Factorial Time</a></li>
+<li><a href="#319-polynomial-time">3.1.9. Polynomial Time</a></li>
+<li><a href="#3110-sublinear-time">3.1.10. Sublinear Time</a></li>
+<li><a href="#3111-pseudo-polynomial-time">3.1.11. Pseudo-polynomial Time</a></li>
+<li><a href="#3112-exponential-time">3.1.12. Exponential Time</a></li>
+</ul>
+</li>
+<li><a href="#32-space-complexity">3.2. Space Complexity</a><ul>
+<li><a href="#321-constant-space">3.2.1. Constant Space</a></li>
+<li><a href="#322-linear-space">3.2.2. Linear Space</a></li>
+<li><a href="#323-quadratic-space">3.2.3. Quadratic Space</a></li>
+<li><a href="#324-exponential-space">3.2.4. Exponential Space</a></li>
+</ul>
+</li>
+<li><a href="#5-complexity-classification">5. Complexity Classification</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+<li><a href="#6-references">6. References</a></li>
+</ul>
+<h2 id="1-types-of-notation">1. Types of Notation<a class="headerlink" href="#1-types-of-notation" title="Permanent link">&para;</a></h2>
+<p>Asymptotic notation are used in computer science to analyze the time and space complexity of algorithms.</p>
+<h3 id="11-big-o-notation-o">1.1. Big O Notation (O)<a class="headerlink" href="#11-big-o-notation-o" title="Permanent link">&para;</a></h3>
+<p>Big O notation (O) represents the upper bound of an algorithm's running time. It gives an idea of how quickly the algorithm will grow in relation to the size of the input.</p>
+<p>For example, an algorithm with O(n) time complexity will have a linear growth in relation to the input size.</p>
+<h3 id="12-big-omega-notation">1.2. Big Omega Notation (Ω)<a class="headerlink" href="#12-big-omega-notation" title="Permanent link">&para;</a></h3>
+<p>Big Omega notation (Ω) represents the lower bound of an algorithm's running time. It gives an idea of how quickly the algorithm will perform at its best in relation to the size of the input.</p>
+<p>For example, an algorithm with Ω(n) time complexity will have a linear growth at its best.</p>
+<h3 id="13-big-theta-notation">1.3. Big Theta Notation (θ)<a class="headerlink" href="#13-big-theta-notation" title="Permanent link">&para;</a></h3>
+<p>Big Theta notation (θ) represents the tight bound of an algorithm's running time. It gives an idea of how quickly the algorithm will grow in relation to the size of the input, with both the upper and lower bounds taken into account.</p>
+<p>For example, an algorithm with θ(n) time complexity will have a linear growth at its best and worst.</p>
+<h3 id="14-little-o-notation-o">1.4. Little o Notation (o)<a class="headerlink" href="#14-little-o-notation-o" title="Permanent link">&para;</a></h3>
+<p>Little o notation (o) represents the upper bound of an algorithm's growth rate, but it is a stricter condition than big O notation. It is used to describe algorithms that grow slower than another algorithm.</p>
+<p>For example, an algorithm with o(n^2) growth rate will grow slower than an algorithm with O(n^2) growth rate.</p>
+<h3 id="15-little-omega-notation">1.5. Little omega Notation (ω)<a class="headerlink" href="#15-little-omega-notation" title="Permanent link">&para;</a></h3>
+<p>Little omega notation (ω) represents the lower bound of an algorithm's growth rate, but it is a stricter condition than omega notation. It is used to describe algorithms that grow faster than another algorithm.</p>
+<p>For example, an algorithm with ω(n^2) growth rate will grow faster than an algorithm with Ω(n^2) growth rate.</p>
+<h2 id="2-types-of-complexity">2. Types of Complexity<a class="headerlink" href="#2-types-of-complexity" title="Permanent link">&para;</a></h2>
+<p>In computer science, there are several types of complexity that are used to analyze the performance and efficiency of algorithms. The different types of complexity are important for understanding the performance and behavior of different types of algorithms and computational systems, and they are often used in conjunction with one another to provide a more complete picture of the efficiency and complexity of a particular computational task.</p>
+<h3 id="21-time-complexity">2.1. Time Complexity<a class="headerlink" href="#21-time-complexity" title="Permanent link">&para;</a></h3>
+<p>Time complexity refers to the amount of time an algorithm takes to complete as a function of the size of its input. Time complexity is usually expressed using big-O notation, which provides an upper bound on the growth rate of the algorithm's runtime as the input size grows.</p>
+<h3 id="22-space-complexity">2.2. Space Complexity<a class="headerlink" href="#22-space-complexity" title="Permanent link">&para;</a></h3>
+<p>Space complexity refers to the amount of memory an algorithm requires to run as a function of the size of its input. Space complexity is also expressed using big-O notation, which provides an upper bound on the growth rate of the algorithm's memory usage as the input size grows.</p>
+<h3 id="23-communication-complexity">2.3. Communication Complexity<a class="headerlink" href="#23-communication-complexity" title="Permanent link">&para;</a></h3>
+<p>Communication complexity: This refers to the amount of information that must be transmitted between different computational agents in a distributed computing system. Communication complexity is often used to analyze the performance of parallel algorithms that must coordinate their efforts across different processors or nodes.</p>
+<h3 id="24-circuit-complexity">2.4. Circuit Complexity<a class="headerlink" href="#24-circuit-complexity" title="Permanent link">&para;</a></h3>
+<p>Circuit complexity refers to the amount of resources, such as gates or wires, required to implement a particular computational function using a digital circuit. Circuit complexity is often used in the design and analysis of hardware systems, such as computer processors or memory chips.</p>
+<h3 id="25-kolmogorov-complexity">2.5. Kolmogorov Complexity<a class="headerlink" href="#25-kolmogorov-complexity" title="Permanent link">&para;</a></h3>
+<p>Kolmogorov complexity refers to the length of the shortest possible program that can generate a particular string of data. Kolmogorov complexity is a measure of the amount of information contained in a string, and it is often used in the study of information theory and computational complexity.</p>
+<h2 id="3-types-of-classes">3. Types of Classes<a class="headerlink" href="#3-types-of-classes" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>NOTE The specific values of k, M, and n can have a significant impact on the actual running time of an algorithm, even within the same complexity class. Additionally, other factors such as memory usage, cache efficiency, and parallelization can all influence the performance of an algorithm in practice. Asymptotic notation is a useful tool for analyzing and comparing algorithms, but it should always be used in conjunction with empirical testing and analysis to fully understand an algorithm's performance.</p>
+</blockquote>
+<h3 id="31-time-complexity">3.1. Time Complexity<a class="headerlink" href="#31-time-complexity" title="Permanent link">&para;</a></h3>
+<h4 id="311-constant-time">3.1.1. Constant Time<a class="headerlink" href="#311-constant-time" title="Permanent link">&para;</a></h4>
+<p>O(1), Ω(1), θ(1)</p>
+<p>Algorithms with constant time complexity have a fixed running time that does not depend on the size of the input. They are the most efficient algorithms in terms of time complexity and are typically used for simple operations, such as assigning a value to a variable, accessing an array element, or performing basic arithmetic operations.</p>
+<p>Examples: Assigning a value to a variable, accessing an array element, performing basic arithmetic operations.</p>
+<h4 id="312-logarithmic-time">3.1.2. Logarithmic Time<a class="headerlink" href="#312-logarithmic-time" title="Permanent link">&para;</a></h4>
+<p>O(log n), Ω(log n), θ(log n)</p>
+<p>Algorithms with logarithmic time complexity divide the input into smaller and smaller pieces until the target is found. They are typically used for search or divide-and-conquer operations, where the input is sorted or can be easily split into smaller pieces.</p>
+<p>Examples: Binary search, quicksort, mergesort.</p>
+<h4 id="313-linear-time">3.1.3. Linear Time<a class="headerlink" href="#313-linear-time" title="Permanent link">&para;</a></h4>
+<p>O(n), Ω(n), θ(n)</p>
+<p>Algorithms with linear time complexity have a running time that is directly proportional to the size of the input. They are typically used for operations that involve iterating through the entire input, such as searching, filtering, or counting.</p>
+<p>Examples: Linear search, selection sort, counting sort.</p>
+<h4 id="314-linearithmic-time">3.1.4. Linearithmic Time<a class="headerlink" href="#314-linearithmic-time" title="Permanent link">&para;</a></h4>
+<p>O(n log n), Ω(n log n), θ(n log n)</p>
+<p>Algorithms with linearithmic time (or log-linear time) complexity have a running time that is a product of a linear and logarithmic function of the input size. They are typically used for sorting operations that involve dividing the input into smaller and smaller pieces and then merging them back together.</p>
+<p>Examples: Heapsort, quicksort, mergesort.</p>
+<h4 id="315-quadratic-time">3.1.5. Quadratic Time<a class="headerlink" href="#315-quadratic-time" title="Permanent link">&para;</a></h4>
+<p>O(n^2), Ω(n^2), θ(n^2)</p>
+<p>Algorithms with quadratic time complexity have a running time that is directly proportional to the square of the input size. They are typically used for operations that involve comparing or processing every pair of elements in the input, such as nested loops.</p>
+<p>Examples: Bubble sort, selection sort, insertion sort.</p>
+<h4 id="316-cubic-time">3.1.6. Cubic Time<a class="headerlink" href="#316-cubic-time" title="Permanent link">&para;</a></h4>
+<p>O(n^3), Ω(n^3), θ(n^3)</p>
+<p>Algorithms with cubic time complexity have a running time that is directly proportional to the cube of the input size. They are typically used for operations that involve comparing or processing every triplet of elements in the input, such as nested loops.</p>
+<p>Examples: Matrix multiplication using the naive algorithm.</p>
+<h4 id="317-exponential-time">3.1.7. Exponential Time<a class="headerlink" href="#317-exponential-time" title="Permanent link">&para;</a></h4>
+<p>O(2^n), Ω(2^n), θ(2^n)</p>
+<p>Algorithms with exponential time complexity have a running time that grows exponentially with the input size. They are typically used for operations that involve generating or enumerating all possible combinations or permutations of the input.</p>
+<p>Examples: Brute-force search, exhaustive search, traveling salesman problem using dynamic programming.</p>
+<h4 id="318-factorial-time">3.1.8. Factorial Time<a class="headerlink" href="#318-factorial-time" title="Permanent link">&para;</a></h4>
+<p>O(n!), Ω(n!), θ(n!)</p>
+<p>Factorial time complexity is a class that is used to describe algorithms that have a running time that is proportional to the factorial of the input size. Algorithms with factorial time complexity are typically used for problems that involve generating or counting all possible permutations or combinations of the input. An algorithm with a factorial time complexity is considered extremely inefficient and generally impractical for large inputs.</p>
+<p>Examples: Brute-force search, traveling salesman problem, permutation generation.</p>
+<h4 id="319-polynomial-time">3.1.9. Polynomial Time<a class="headerlink" href="#319-polynomial-time" title="Permanent link">&para;</a></h4>
+<p>O(n^k), Ω(n^k), θ(n^k), where k is a constant. This includes linear time (k=1), quadratic time (k=2), and cubic time (k=3), among others.</p>
+<p>Algorithms with polynomial time complexity have a running time that grows as a polynomial function of the input size. They are generally considered to be efficient and practical for solving a wide range of problems, as their running time increases at a manageable rate with increasing input size. Many commonly used algorithms fall under this category, including sorting, searching, and graph algorithms.</p>
+<p>Examples: Bubble sort, Dijkstra's algorithm, polynomial regression.</p>
+<h4 id="3110-sublinear-time">3.1.10. Sublinear Time<a class="headerlink" href="#3110-sublinear-time" title="Permanent link">&para;</a></h4>
+<p>O(log log n), Ω(log log n), θ(log log n)</p>
+<p>Algorithms with factorial time complexity have a running time that grows factorially with the input size. They are typically used for operations that involve generating or enumerating all possible permutations of the input.</p>
+<p>Examples: Brute-force search, exhaustive search, traveling salesman problem using dynamic programming with memoization.</p>
+<h4 id="3111-pseudo-polynomial-time">3.1.11. Pseudo-polynomial Time<a class="headerlink" href="#3111-pseudo-polynomial-time" title="Permanent link">&para;</a></h4>
+<p>O(nM), where M is a number that is not necessarily polynomial in the size of the input n. This is used to describe algorithms that are efficient when the input data is restricted in some way, such as when M is much smaller than n.</p>
+<p>Algorithms with pseudo-polynomial time complexity have a runtime that is a function of both the input size and the numerical value of the input. These algorithms are typically used for problems that involve integer values or counting, and their runtime can depend on the maximum value of the input, rather than just its size.</p>
+<p>Examples: Knapsack problem, subset sum problem, coin change problem.</p>
+<h4 id="3112-exponential-time">3.1.12. Exponential Time<a class="headerlink" href="#3112-exponential-time" title="Permanent link">&para;</a></h4>
+<p>O(k^n), where k is a constant greater than 1.</p>
+<p>Algorithms with exponential time complexity have a runtime that grows exponentially with the input size. These algorithms are typically considered <code>inefficient</code> for large inputs and are generally only used for small instances of a problem.</p>
+<p>Examples: Brute-force search, traveling salesman problem, subset generation.</p>
+<h3 id="32-space-complexity">3.2. Space Complexity<a class="headerlink" href="#32-space-complexity" title="Permanent link">&para;</a></h3>
+<p>Space complexity refers to the amount of memory required by an algorithm to solve a problem, and can depend on factors such as the size of the input, the data structures used, and the number of variables or objects created during the algorithm's execution.</p>
+<h4 id="321-constant-space">3.2.1. Constant Space<a class="headerlink" href="#321-constant-space" title="Permanent link">&para;</a></h4>
+<p>O(1), Ω(1), θ(1)</p>
+<p>Algorithms with constant space complexity use a fixed amount of memory that does not depend on the size of the input. They are typically used for simple operations that do not require additional storage beyond the input and a small number of variables.</p>
+<p>Examples: Assigning a value to a variable, accessing an array element, performing basic arithmetic operations.</p>
+<h4 id="322-linear-space">3.2.2. Linear Space<a class="headerlink" href="#322-linear-space" title="Permanent link">&para;</a></h4>
+<p>O(n), Ω(n), θ(n)</p>
+<p>Algorithms with linear space complexity use a memory allocation that is directly proportional to the size of the input. They are typically used for operations that require additional data structures to be created in order to solve the problem.</p>
+<p>Examples: Building a hash table, constructing a binary tree, merging sorted arrays.</p>
+<h4 id="323-quadratic-space">3.2.3. Quadratic Space<a class="headerlink" href="#323-quadratic-space" title="Permanent link">&para;</a></h4>
+<p>O(n^2), Ω(n^2), θ(n^2)</p>
+<p>Algorithms with quadratic space complexity use a memory allocation that is directly proportional to the square of the input size. They are typically used for operations that require additional data structures that depend on pairs of elements in the input.</p>
+<p>Examples: Matrix multiplication, bubble sort, selection sort (when implemented with a two-dimensional array).</p>
+<h4 id="324-exponential-space">3.2.4. Exponential Space<a class="headerlink" href="#324-exponential-space" title="Permanent link">&para;</a></h4>
+<p>O(2^n), Ω(2^n), θ(2^n)</p>
+<p>Algorithms with exponential space complexity use a memory allocation that grows exponentially with the input size. They are typically used for operations that require storing or generating all possible combinations or permutations of the input. This space complexity class is commonly associated with problems that are known to be <code>intractable</code> in the sense that no algorithm can solve them in polynomial time, such as the subset sum problem or the knapsack problem.</p>
+<p>Examples: Generating all subsets of a set, computing the Fibonacci sequence using recursive memoization.</p>
+<h2 id="5-complexity-classification">5. Complexity Classification<a class="headerlink" href="#5-complexity-classification" title="Permanent link">&para;</a></h2>
+<p>Complexity classes are commonly used to describe the performance of algorithms or problems. These classes include:</p>
+<ul>
+<li>
+<p>P</p>
+<blockquote>
+<p>The P (Polynomial Time) class of problems that can be solved in polynomial time using a deterministic algorithm.</p>
+</blockquote>
+</li>
+<li>
+<p>NP</p>
+<blockquote>
+<p>The NP (Nondeterministic Polynomial Time) class of problems for which a solution can be verified in polynomial time, but not necessarily found in polynomial time.</p>
+</blockquote>
+</li>
+<li>
+<p>NP-hard</p>
+<blockquote>
+<p>The NP-hard (Nondeterministic Polynomial Time Hard) class of problems that are at least as hard as the hardest problems in NP. These problems do not necessarily have polynomial-time solutions.</p>
+</blockquote>
+</li>
+<li>
+<p>NP-complete</p>
+<blockquote>
+<p>The NP-complete (Nondeterministic Polynomial Time Complete) class of problems that are both in NP and NP-hard. These problems are some of the most difficult computational problems known.</p>
+</blockquote>
+</li>
+<li>
+<p>EXPTIME</p>
+<blockquote>
+<p>The EXPTIME (Exponential Time) class of problems that can be solved in exponential time.</p>
+</blockquote>
+</li>
+<li>
+<p>PSPACE</p>
+<blockquote>
+<p>The PSPACE (Polynomial Space) class of problems that can be solved using polynomial space.</p>
+</blockquote>
+</li>
+<li>
+<p>EXPSPACE</p>
+<blockquote>
+<p>The EXPSPACE (Exponential Space) class of problems that can be solved using exponential space.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>NOTE PSPACE and EXPSPACE are space complexity classes, while the others are time complexity classes. Additionally, NP, NP-hard, and NP-complete are related to the concept of nondeterminism, while P, EXPTIME, PSPACE, and EXPSPACE are related to deterministic algorithms.</p>
+</blockquote>
+<h3 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://www.bigocheatsheet.com/">performance</a> (runtime) of an algorithm depends on the size of the input n or the number of operations is required for each input item.</p>
+<p>The algorithms can be classified as best-to-worst performance (Time Complexity).</p>
+<ul>
+<li>
+<p>Best</p>
+<blockquote>
+<ul>
+<li>Constant Time: O(1)</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>Good</p>
+<blockquote>
+<ul>
+<li>Logarithmic Time: O(log n)</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>Fair:</p>
+<blockquote>
+<ul>
+<li>Linear Time: O(n)</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>Bad</p>
+<blockquote>
+<ul>
+<li>Linearithmic Time: O(n log n)</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>Worst</p>
+<blockquote>
+<ul>
+<li>Quadratic Time: O(n^2)</li>
+<li>Exponential Time: O(2^n)</li>
+<li>Factorial Time: O(n!)</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Big O notation (O)</p>
+<blockquote>
+<p>A function <code>f(n)</code> is said to be <code>O(g(n))</code> if there exist constants <code>c</code> and <code>n0</code> such that <code>|f(n)| &lt;= c|g(n)|</code> for all <code>n &gt;= n0</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Omega notation (Ω)</p>
+<blockquote>
+<p>A function <code>f(n)</code> is said to be <code>Ω(g(n))</code> if there exist constants <code>c</code> and <code>n0</code> such that <code>|f(n)| &gt;= c|g(n)|</code> for all <code>n &gt;= n0</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Theta notation (Θ)</p>
+<blockquote>
+<p>A function <code>f(n)</code> is said to be <code>Θ(g(n))</code> if it is both <code>O(g(n))</code> and <code>Ω(g(n))</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Little o notation (o)</p>
+<blockquote>
+<p>A function <code>f(n)</code> is said to be <code>o(g(n))</code> if for any constant <code>ε &gt; 0</code>, there exists a constant <code>n0</code> such that <code>|f(n)| &lt; ε|g(n)|</code> for all <code>n &gt;= n0</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Little omega notation (ω)</p>
+<blockquote>
+<p>A function <code>f(n)</code> is said to be <code>ω(g(n))</code> if for any constant <code>ε &gt; 0</code>, there exists a constant <code>n0</code> such that <code>|f(n)| &gt; ε|g(n)|</code> for all <code>n &gt;= n0</code>.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="6-references">6. References<a class="headerlink" href="#6-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>GeeksForGeeks <a href="https://www.geeksforgeeks.org/analysis-of-algorithms-set-3asymptotic-notations/amp/">asymptotic notations</a> article.</li>
+<li>GeeksForGeeks <a href="https://www.geeksforgeeks.org/analysis-algorithms-big-o-analysis/">analysis of algorithms</a> article.</li>
+<li>GitHub <a href="https://github.com/SvenWoltmann/o-notation-and-time-complexity">o-notation</a> repository.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

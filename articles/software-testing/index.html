@@ -1,0 +1,2850 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/software-testing/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Software Testing - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#software-testing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Software Testing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-testing-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Testing Patterns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Testing Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-arrange-act-assert" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Arrange, Act, Assert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-given-when-then" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Given-When-Then
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-table-driven-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. Table-Driven Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-testing-techniques-and-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Testing Techniques and Practices
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2. Testing Techniques and Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-test-driven-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1. Test-Driven Development
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-behavior-driven-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.2. Behavior-Driven Development
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-acceptance-test-driven-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.3. Acceptance Test-Driven Development
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-test-double" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4. Test Double
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2.4. Test Double">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1241-mock" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4.1. Mock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1242-fake" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4.2. Fake
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1243-stub" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4.3. Stub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1244-spy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4.4. Spy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125-test-fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.5. Test Fixtures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#126-code-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.6. Code Coverage
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-testing-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Testing Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3. Testing Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-functional-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1. Functional Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.1. Functional Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1311-shift-left-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.1. Shift-Left Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1312-system-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.2. System Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1313-integration-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.3. Integration Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1314-unit-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.4. Unit Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1315-fuzz-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.5. Fuzz Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1316-regression-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.6. Regression Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1317-end-to-end-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.7. End-to-End Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1318-acceptance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.8. Acceptance Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.1.8. Acceptance Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13181-user-acceptance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.8.1. User Acceptance Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13182-operational-acceptance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.8.2. Operational Acceptance Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1319-alpha-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.9. Alpha Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13110-beta-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.10. Beta Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13111-usability-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.11. Usability Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13112-cross-browser-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.12. Cross-Browser Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13113-compatibility-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.13. Compatibility Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13114-accessibility-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.14. Accessibility Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13115-sanity-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.15. Sanity Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13116-smoke-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.16. Smoke Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13117-exploratory-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.17. Exploratory Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13118-black-box-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.18. Black Box Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13119-white-box-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.19. White Box Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13120-gray-box-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.20. Gray Box Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13121-ab-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.21. A/B Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13122-monkey-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1.22. Monkey Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-non-functional-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2. Non-Functional Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.2. Non-Functional Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1321-security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.1. Security Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.2.1. Security Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13211-penetration-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.1.1. Penetration Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13212-vulnerability-scanning" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.1.2. Vulnerability Scanning
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1322-performance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.2. Performance Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.2.2. Performance Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13221-load-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.2.1. Load Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13222-stress-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.2.2. Stress Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13223-endurance-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.2.3. Endurance Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13224-spike-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.2.4. Spike Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13225-volume-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.2.5. Volume Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13226-scalability-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.2.6. Scalability Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13227-capacity-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.2.7. Capacity Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1323-application-security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.3. Application Security Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.2.3. Application Security Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13231-static-application-security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.3.1. Static Application Security Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13232-dynamic-application-security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.3.2. Dynamic Application Security Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13233-interactive-application-security-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2.3.3. Interactive Application Security Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/software-testing.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/software-testing.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="software-testing">Software Testing<a class="headerlink" href="#software-testing" title="Permanent link">&para;</a></h1>
+<p>Software testing is the process of evaluating a software application or system to identify any defects or issues. The purpose of software testing is to ensure that the software meets its intended requirements, is functional, reliable, and operates as expected.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-testing-patterns">1.1. Testing Patterns</a><ul>
+<li><a href="#111-arrange-act-assert">1.1.1. Arrange, Act, Assert</a></li>
+<li><a href="#112-given-when-then">1.1.2. Given-When-Then</a></li>
+<li><a href="#113-table-driven-testing">1.1.3. Table-Driven Testing</a></li>
+</ul>
+</li>
+<li><a href="#12-testing-techniques-and-practices">1.2. Testing Techniques and Practices</a><ul>
+<li><a href="#121-test-driven-development">1.2.1. Test-Driven Development</a></li>
+<li><a href="#122-behavior-driven-development">1.2.2. Behavior-Driven Development</a></li>
+<li><a href="#123-acceptance-test-driven-development">1.2.3. Acceptance Test-Driven Development</a></li>
+<li><a href="#124-test-double">1.2.4. Test Double</a></li>
+<li><a href="#1241-mock">1.2.4.1. Mock</a></li>
+<li><a href="#1242-fake">1.2.4.2. Fake</a></li>
+<li><a href="#1243-stub">1.2.4.3. Stub</a></li>
+<li><a href="#1244-spy">1.2.4.4. Spy</a></li>
+<li><a href="#125-test-fixtures">1.2.5. Test Fixtures</a></li>
+<li><a href="#126-code-coverage">1.2.6. Code Coverage</a></li>
+</ul>
+</li>
+<li><a href="#13-testing-types">1.3. Testing Types</a><ul>
+<li><a href="#131-functional-testing">1.3.1. Functional Testing</a></li>
+<li><a href="#1311-shift-left-testing">1.3.1.1. Shift-Left Testing</a></li>
+<li><a href="#1312-system-testing">1.3.1.2. System Testing</a></li>
+<li><a href="#1313-integration-testing">1.3.1.3. Integration Testing</a></li>
+<li><a href="#1314-unit-testing">1.3.1.4. Unit Testing</a></li>
+<li><a href="#1315-fuzz-testing">1.3.1.5. Fuzz Testing</a></li>
+<li><a href="#1316-regression-testing">1.3.1.6. Regression Testing</a></li>
+<li><a href="#1317-end-to-end-testing">1.3.1.7. End-to-End Testing</a></li>
+<li><a href="#1318-acceptance-testing">1.3.1.8. Acceptance Testing</a><ul>
+<li><a href="#13181-user-acceptance-testing">1.3.1.8.1. User Acceptance Testing</a></li>
+<li><a href="#13182-operational-acceptance-testing">1.3.1.8.2. Operational Acceptance Testing</a></li>
+</ul>
+</li>
+<li><a href="#1319-alpha-testing">1.3.1.9. Alpha Testing</a></li>
+<li><a href="#13110-beta-testing">1.3.1.10. Beta Testing</a></li>
+<li><a href="#13111-usability-testing">1.3.1.11. Usability Testing</a></li>
+<li><a href="#13112-cross-browser-testing">1.3.1.12. Cross-Browser Testing</a></li>
+<li><a href="#13113-compatibility-testing">1.3.1.13. Compatibility Testing</a></li>
+<li><a href="#13114-accessibility-testing">1.3.1.14. Accessibility Testing</a></li>
+<li><a href="#13115-sanity-testing">1.3.1.15. Sanity Testing</a></li>
+<li><a href="#13116-smoke-testing">1.3.1.16. Smoke Testing</a></li>
+<li><a href="#13117-exploratory-testing">1.3.1.17. Exploratory Testing</a></li>
+<li><a href="#13118-black-box-testing">1.3.1.18. Black Box Testing</a></li>
+<li><a href="#13119-white-box-testing">1.3.1.19. White Box Testing</a></li>
+<li><a href="#13120-gray-box-testing">1.3.1.20. Gray Box Testing</a></li>
+<li><a href="#13121-ab-testing">1.3.1.21. A/B Testing</a></li>
+<li><a href="#13122-monkey-testing">1.3.1.22. Monkey Testing</a></li>
+<li><a href="#132-non-functional-testing">1.3.2. Non-Functional Testing</a></li>
+<li><a href="#1321-security-testing">1.3.2.1. Security Testing</a><ul>
+<li><a href="#13211-penetration-testing">1.3.2.1.1. Penetration Testing</a></li>
+<li><a href="#13212-vulnerability-scanning">1.3.2.1.2. Vulnerability Scanning</a></li>
+</ul>
+</li>
+<li><a href="#1322-performance-testing">1.3.2.2. Performance Testing</a><ul>
+<li><a href="#13221-load-testing">1.3.2.2.1. Load Testing</a></li>
+<li><a href="#13222-stress-testing">1.3.2.2.2. Stress Testing</a></li>
+<li><a href="#13223-endurance-testing">1.3.2.2.3. Endurance Testing</a></li>
+<li><a href="#13224-spike-testing">1.3.2.2.4. Spike Testing</a></li>
+<li><a href="#13225-volume-testing">1.3.2.2.5. Volume Testing</a></li>
+<li><a href="#13226-scalability-testing">1.3.2.2.6. Scalability Testing</a></li>
+<li><a href="#13227-capacity-testing">1.3.2.2.7. Capacity Testing</a></li>
+</ul>
+</li>
+<li><a href="#1323-application-security-testing">1.3.2.3. Application Security Testing</a><ul>
+<li><a href="#13231-static-application-security-testing">1.3.2.3.1. Static Application Security Testing</a></li>
+<li><a href="#13232-dynamic-application-security-testing">1.3.2.3.2. Dynamic Application Security Testing</a></li>
+<li><a href="#13233-interactive-application-security-testing">1.3.2.3.3. Interactive Application Security Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>There are different types of software testing, including manual testing and automated testing. Manual testing involves executing test cases manually and observing the results. Automated testing involves the use of tools and scripts to automate the testing process.</p>
+<p>Process of Software Testing:</p>
+<ul>
+<li>
+<p>Planning</p>
+<blockquote>
+<p>This phase involves defining the scope and objectives of testing, identifying the testing approach and techniques to be used, and determining the required resources and timelines.</p>
+</blockquote>
+</li>
+<li>
+<p>Designing</p>
+<blockquote>
+<p>In this phase, test cases and test scenarios are developed based on the requirements and specifications of the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Execution</p>
+<blockquote>
+<p>During this phase, the developed test cases are executed to verify the functionality of the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Reporting</p>
+<blockquote>
+<p>The results of the testing are recorded and reported to stakeholders, including defects or issues found and recommendations for improvements.</p>
+</blockquote>
+</li>
+<li>
+<p>Retesting</p>
+<blockquote>
+<p>If defects are identified, the software is retested to verify that the issues have been resolved.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="11-testing-patterns">1.1. Testing Patterns<a class="headerlink" href="#11-testing-patterns" title="Permanent link">&para;</a></h3>
+<p>Testing patterns are reusable techniques to common testing problems that can be used to improve the effectiveness of software testing. They allow to organize and structure test code in a way that is maintainable, scalable, and extensible.</p>
+<h4 id="111-arrange-act-assert">1.1.1. Arrange, Act, Assert<a class="headerlink" href="#111-arrange-act-assert" title="Permanent link">&para;</a></h4>
+<p>Arrange, Act, Assert (AAA) is a software testing pattern that provides a structured and organized way to write unit tests. It helps make the tests more readable, maintainable, and easy to understand.</p>
+<p>Feature of AAA:</p>
+<ul>
+<li>
+<p>Arrange</p>
+<blockquote>
+<p>Setup the test environment by creating the necessary objects, initializing variables, and providing input data required for the test. This step ensures that the unit under test (the code being tested) has the appropriate conditions to execute the test scenario correctly.</p>
+</blockquote>
+</li>
+<li>
+<p>Act</p>
+<blockquote>
+<p>Involves executing the specific method or functionality of the unit to test. This typically involves calling a method or performing some action on the unit under test using the provided input data from the <code>Arrange</code> phase.</p>
+</blockquote>
+</li>
+<li>
+<p>Assert</p>
+<blockquote>
+<p>Verify the outcome of the test. Check whether the actual result of the action taken in the <code>Act</code> phase matches the expected result that you defined during the <code>Arrange</code> phase. If the outcome is as expected, the test passes, otherwise, it fails, indicating a potential problem in the code.</p>
+</blockquote>
+</li>
+</ul>
+<p>Example of AAA:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">test_add_numbers</span><span class="p">():</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="c1"># Arrange</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">num1</span> <span class="o">=</span> <span class="mi">5</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">num2</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="c1"># Act</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">result</span> <span class="o">=</span> <span class="n">add_numbers</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span> <span class="n">num2</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="c1"># Assert</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">15</span><span class="p">,</span> <span class="s2">&quot;Addition of two numbers failed.&quot;</span>
+</span></code></pre></div>
+<h4 id="112-given-when-then">1.1.2. Given-When-Then<a class="headerlink" href="#112-given-when-then" title="Permanent link">&para;</a></h4>
+<p>Given-When-Then (GWT) is a software testing pattern used for structuring and writing test scenarios, particularly in behavior-driven development (BDD) and acceptance test-driven development (ATDD). GWT provides a more human-readable and expressive format for describing test cases and their expected behavior.</p>
+<p>Features of GWT:</p>
+<ul>
+<li>
+<p>Given</p>
+<blockquote>
+<p>The <code>Given</code> section sets up the initial context or the preconditions for the test scenario. It describes the state of the system or the environment before the action being tested occurs. This typically includes creating objects, initializing variables, and any necessary setup steps.</p>
+</blockquote>
+</li>
+<li>
+<p>When</p>
+<blockquote>
+<p>The <code>When</code> section represents the action or event that triggers the behavior being tested. It is the specific operation or method call that you want to verify for correctness.</p>
+</blockquote>
+</li>
+<li>
+<p>Then</p>
+<blockquote>
+<p>The <code>Then</code> section defines the expected outcome or behavior of the system after the action in the <code>When</code> section has been performed. It includes assertions or expectations to check whether the actual result matches the expected result.</p>
+</blockquote>
+</li>
+</ul>
+<p>Example of GWT:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">test_login_with_valid_credentials</span><span class="p">():</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="c1"># Given</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;password&quot;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="c1"># When</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">response</span> <span class="o">=</span> <span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="c1"># Then</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">assert</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Login successful&quot;</span>
+</span></code></pre></div>
+<h4 id="113-table-driven-testing">1.1.3. Table-Driven Testing<a class="headerlink" href="#113-table-driven-testing" title="Permanent link">&para;</a></h4>
+<p>Table-Driven Testing is a software testing technique in which test cases are organized in a tabular format, often using a spreadsheet or a list of input-output pairs. It is particularly useful for multiple similar test cases that can be represented in a systematic and concise manner. This approach is commonly used for testing functions or methods that take a set of input values and produce corresponding output values.</p>
+<p>Table-Driven Testing separates the test case logic from the test code, making it easier to add, modify or remove test cases without changing the test implementation. It promotes maintainability and reduces duplication of test code.</p>
+<blockquote>
+<p>NOTE It's essential to strike a balance between using <code>Table-Driven Testing</code> and other testing techniques. While it works well for certain scenarios, not all test cases may fit neatly into a table format. Combining <code>Table-Driven Testing</code> with other testing patterns like <code>Given-When-Then</code> or <code>AAA</code> can provide a comprehensive and flexible testing strategy.</p>
+</blockquote>
+<p>Feature of Table-Driven Testing:</p>
+<ul>
+<li>
+<p>Consitency</p>
+<blockquote>
+<p>Concise and readable representation of test cases and  test coverage.</p>
+</blockquote>
+</li>
+<li>
+<p>Maintenability</p>
+<blockquote>
+<p>Easy to add or modify test cases without affecting the test implementation.</p>
+</blockquote>
+</li>
+<li>
+<p>Clarity</p>
+<blockquote>
+<p>Simplifies the process of generating test data for a wide range of scenarios.</p>
+</blockquote>
+</li>
+</ul>
+<p>Example of Table-Driven Testing:</p>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">TestPercent</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nx">t</span><span class="p">.</span><span class="nx">Parallel</span><span class="p">()</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="kd">type</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nx">percent</span><span class="w"> </span><span class="kt">float64</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nx">value</span><span class="w">   </span><span class="kt">float64</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="kd">type</span><span class="w"> </span><span class="nx">want</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nx">value</span><span class="w"> </span><span class="kt">float64</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nx">err</span><span class="w">   </span><span class="kt">error</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="nx">tests</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="nx">name</span><span class="w"> </span><span class="kt">string</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="nx">in</span><span class="w">   </span><span class="nx">in</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="nx">want</span><span class="w"> </span><span class="nx">want</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span><span class="p">}{</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">      </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;valid positive input&quot;</span><span class="p">,</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">      </span><span class="nx">in</span><span class="p">:</span><span class="w"> </span><span class="nx">in</span><span class="p">{</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="nx">percent</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">        </span><span class="nx">value</span><span class="p">:</span><span class="w">   </span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">      </span><span class="nx">want</span><span class="p">:</span><span class="w"> </span><span class="nx">want</span><span class="p">{</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">        </span><span class="nx">value</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">        </span><span class="nx">err</span><span class="p">:</span><span class="w">   </span><span class="kc">nil</span><span class="p">,</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">      </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;valid nagative input&quot;</span><span class="p">,</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">      </span><span class="nx">in</span><span class="p">:</span><span class="w"> </span><span class="nx">in</span><span class="p">{</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">        </span><span class="nx">percent</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">        </span><span class="nx">value</span><span class="p">:</span><span class="w">   </span><span class="o">-</span><span class="mi">200</span><span class="p">,</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">      </span><span class="nx">want</span><span class="p">:</span><span class="w"> </span><span class="nx">want</span><span class="p">{</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">        </span><span class="nx">value</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">        </span><span class="nx">err</span><span class="p">:</span><span class="w">   </span><span class="kc">nil</span><span class="p">,</span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">      </span><span class="nx">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;invalid percentage&quot;</span><span class="p">,</span>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">      </span><span class="nx">in</span><span class="p">:</span><span class="w"> </span><span class="nx">in</span><span class="p">{</span>
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">        </span><span class="nx">percent</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">        </span><span class="nx">value</span><span class="p">:</span><span class="w">   </span><span class="mi">100</span><span class="p">,</span>
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="w">      </span><span class="nx">want</span><span class="p">:</span><span class="w"> </span><span class="nx">want</span><span class="p">{</span>
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="w">        </span><span class="nx">value</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="w">        </span><span class="nx">err</span><span class="p">:</span><span class="w">   </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="nx">out</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="k">range</span><span class="p">),</span>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="w">      </span><span class="p">},</span>
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">tt</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">range</span><span class="w"> </span><span class="nx">tests</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="w">    </span><span class="nx">t</span><span class="p">.</span><span class="nx">Run</span><span class="p">(</span><span class="nx">tt</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="o">*</span><span class="nx">testing</span><span class="p">.</span><span class="nx">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a><span class="w">      </span><span class="nx">got</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">percent</span><span class="p">.</span><span class="nx">Percent</span><span class="p">(</span><span class="nx">tt</span><span class="p">.</span><span class="nx">in</span><span class="p">.</span><span class="nx">percent</span><span class="p">,</span><span class="w"> </span><span class="nx">tt</span><span class="p">.</span><span class="nx">in</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">!</span><span class="nx">errors</span><span class="p">.</span><span class="nx">Is</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">tt</span><span class="p">.</span><span class="nx">want</span><span class="p">.</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a><span class="w">        </span><span class="nx">t</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;Percent() error = %v, want err %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">,</span><span class="w"> </span><span class="nx">tt</span><span class="p">.</span><span class="nx">want</span><span class="p">.</span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">!</span><span class="nx">cmp</span><span class="p">.</span><span class="nx">Equal</span><span class="p">(</span><span class="nx">got</span><span class="p">,</span><span class="w"> </span><span class="nx">tt</span><span class="p">.</span><span class="nx">want</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="w">        </span><span class="nx">t</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;Percent(%+v) = %v, want %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">tt</span><span class="p">.</span><span class="nx">in</span><span class="p">,</span><span class="w"> </span><span class="nx">got</span><span class="p">,</span><span class="w"> </span><span class="nx">tt</span><span class="p">.</span><span class="nx">want</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span>
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a><span class="w">      </span><span class="p">}</span>
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="w">    </span><span class="p">})</span>
+</span><span id="__span-2-64"><a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-65"><a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="p">}</span>
+</span></code></pre></div>
+<blockquote>
+<p>NOTE The <code>cmp</code> package is designed for testing, rather than production use. As such, it may panic when it suspects that a comparison is performed incorrectly to provide instruction to users on how to improve the test to be less brittle. Given cmp’s propensity towards panicking, it makes it unsuitable for code that is used in production as a spurious panic may be fatal.</p>
+</blockquote>
+<h3 id="12-testing-techniques-and-practices">1.2. Testing Techniques and Practices<a class="headerlink" href="#12-testing-techniques-and-practices" title="Permanent link">&para;</a></h3>
+<h4 id="121-test-driven-development">1.2.1. Test-Driven Development<a class="headerlink" href="#121-test-driven-development" title="Permanent link">&para;</a></h4>
+<p>Test-Driven Development (TDD) is a software development process in which test cases are written before any code is written. The idea behind TDD is to ensure that code is thoroughly tested and meets requirements before it is implemented, reducing the likelihood of defects and improving the overall quality of the software.</p>
+<p>Concept of TDD:</p>
+<ul>
+<li>
+<p>Write a test</p>
+<blockquote>
+<p>The developer writes a test case for the functionality they want to implement, with the expectation that the test will fail because the code has not yet been written.</p>
+</blockquote>
+</li>
+<li>
+<p>Write the code</p>
+<blockquote>
+<p>The developer writes the code to make the test pass. This is typically done in small, incremental steps, with each step building on the previous one.</p>
+</blockquote>
+</li>
+<li>
+<p>Run the test</p>
+<blockquote>
+<p>The developer runs the test to ensure that it passes.</p>
+</blockquote>
+</li>
+<li>
+<p>Refactor the code</p>
+<blockquote>
+<p>Once the test passes, the developer can refactor the code as needed to improve its design, readability, or performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Repeat</p>
+<blockquote>
+<p>The process is repeated for each new functionality or feature that is added to the software.</p>
+</blockquote>
+</li>
+</ul>
+<p>Benefits of TDD:</p>
+<ul>
+<li>
+<p>Improved code quality</p>
+<blockquote>
+<p>Because tests are written before the code, TDD helps ensure that the code meets requirements and is thoroughly tested.</p>
+</blockquote>
+</li>
+<li>
+<p>Faster feedback loop</p>
+<blockquote>
+<p>TDD provides fast feedback on the quality of the code, allowing developers to quickly identify and fix issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Reduced time and cost</p>
+<blockquote>
+<p>By catching defects early in the development process, TDD can reduce the time and cost of fixing defects later on.</p>
+</blockquote>
+</li>
+<li>
+<p>Encourages better design</p>
+<blockquote>
+<p>TDD encourages developers to write code that is modular, testable, and maintainable, leading to better overall software design.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="122-behavior-driven-development">1.2.2. Behavior-Driven Development<a class="headerlink" href="#122-behavior-driven-development" title="Permanent link">&para;</a></h4>
+<p>Behavior-Driven Development (BDD) is a software development approach that focuses on defining the behavior of a system through the use of concrete examples expressed in natural language. It is a collaborative process that involves developers, testers, and business stakeholders working together to ensure that the system is being developed to meet the needs of its users.</p>
+<p>Key concepts of BDD:</p>
+<ul>
+<li>
+<p>User Stories</p>
+<blockquote>
+<p>BDD starts with user stories, which are written in a specific format that describes the expected behavior of the system from the user's perspective.</p>
+</blockquote>
+</li>
+<li>
+<p>Examples</p>
+<blockquote>
+<p>Examples are used to illustrate the behavior of the system, and they are written in natural language using a framework like Gherkin.</p>
+</blockquote>
+</li>
+<li>
+<p>Scenarios</p>
+<blockquote>
+<p>Scenarios are the specific tests that are derived from the user stories and examples. They are used to ensure that the system is behaving as expected.</p>
+</blockquote>
+</li>
+<li>
+<p>Automation</p>
+<blockquote>
+<p>BDD encourages the use of automation to ensure that the scenarios are executed consistently and efficiently.</p>
+</blockquote>
+</li>
+<li>
+<p>Collaboration</p>
+<blockquote>
+<p>BDD is a collaborative process that involves developers, testers, and business stakeholders working together to ensure that the system is being developed to meet the needs of its users.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="123-acceptance-test-driven-development">1.2.3. Acceptance Test-Driven Development<a class="headerlink" href="#123-acceptance-test-driven-development" title="Permanent link">&para;</a></h4>
+<p>Acceptance Test-Driven Development (ATDD) is a software development approach that aims to ensure that the software meets the customer's requirements and expectations by defining, automating, and executing acceptance tests early in the development cycle.</p>
+<p>ATDD is an extension of Test-Driven Development (TDD) and is focused on defining and automating acceptance tests before implementing the code. The goal of ATDD is to ensure that the software satisfies the customer's acceptance criteria and to prevent defects by catching them early in the development cycle.</p>
+<p>Concept of ATDD:</p>
+<ul>
+<li>
+<p>Collaborate with stakeholders</p>
+<blockquote>
+<p>The development team collaborates with the customer or product owner to define the acceptance criteria for the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Define acceptance tests</p>
+<blockquote>
+<p>The team defines acceptance tests based on the acceptance criteria, using a behavior-driven development (BDD) approach.</p>
+</blockquote>
+</li>
+<li>
+<p>Automate acceptance tests</p>
+<blockquote>
+<p>The team automates the acceptance tests using a testing framework, such as Selenium or Cucumber.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement code</p>
+<blockquote>
+<p>The team implements the code to meet the acceptance criteria and passes the automated acceptance tests.</p>
+</blockquote>
+</li>
+<li>
+<p>Repeat</p>
+<blockquote>
+<p>The team repeats this process for each new requirement or change in requirements.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="124-test-double">1.2.4. Test Double<a class="headerlink" href="#124-test-double" title="Permanent link">&para;</a></h4>
+<p>Test Double is a concept from software testing and is used in the context of writing unit tests. It refers to a type of test-specific object that is used to replace a real component or collaborator within a test scenario. The purpose of using Test Doubles is to isolate the unit being tested from its dependencies or collaborators, ensuring that the test evaluates only the behavior of the unit itself.</p>
+<p>By replacing real dependencies with Test Doubles, developers can simulate the behavior of those dependencies and create controlled testing environments. This allows for focused unit testing without the need to involve external systems or actual implementations.</p>
+<h5 id="1241-mock">1.2.4.1. Mock<a class="headerlink" href="#1241-mock" title="Permanent link">&para;</a></h5>
+<p>A mock is a Test Double that simulates the behavior of a real object and allows testers to set specific expectations and verify interactions with the unit under test.</p>
+<p>Mocks can be used to simulate the behavior of external dependencies, such as a database or a web service, during testing, without actually executing any real logic. Mocks can be programmed to expect certain interactions with the dependencies, such as method calls or data requests, and can raise an error if those interactions do not occur as expected. This allows developers to ensure that their code is properly interacting with its dependencies, and can help catch errors or issues early in the development process.</p>
+<h5 id="1242-fake">1.2.4.2. Fake<a class="headerlink" href="#1242-fake" title="Permanent link">&para;</a></h5>
+<p>A fake is a simplified implementation of a real object, often used when the real implementation is too complex or time-consuming for testing.</p>
+<h5 id="1243-stub">1.2.4.3. Stub<a class="headerlink" href="#1243-stub" title="Permanent link">&para;</a></h5>
+<p>A stub is a simplified version of a real object that provides predefined responses to method calls. Stubs are used to return specific values to test certain scenarios.</p>
+<h5 id="1244-spy">1.2.4.4. Spy<a class="headerlink" href="#1244-spy" title="Permanent link">&para;</a></h5>
+<p>A spy is a type of Test Double that records the interactions between the unit under test and its collaborators. It allows testers to observe the behavior of the unit more closely.</p>
+<h4 id="125-test-fixtures">1.2.5. Test Fixtures<a class="headerlink" href="#125-test-fixtures" title="Permanent link">&para;</a></h4>
+<p>Test fixtures are a collection of setup tasks, data, and environment configuration that are used to prepare the system under test for testing. They are used in automated testing to ensure that the system under test is in a consistent and known state before executing each test.</p>
+<p>Test Fixtures can include:</p>
+<ul>
+<li>
+<p>Setup and Teardown scripts</p>
+<blockquote>
+<p>These scripts are used to prepare the system under test for testing and to clean up after testing is complete.</p>
+</blockquote>
+</li>
+<li>
+<p>Test data</p>
+<blockquote>
+<p>Test data is used to populate the system under test with data that will be used in the test.</p>
+</blockquote>
+</li>
+<li>
+<p>Test environment configuration</p>
+<blockquote>
+<p>The test environment configuration is used to set up the environment in which the test will run, such as configuring the database, server, or other systems that the system under test interacts with.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="126-code-coverage">1.2.6. Code Coverage<a class="headerlink" href="#126-code-coverage" title="Permanent link">&para;</a></h4>
+<p>Code coverage is a measure of how much of the source code of a software application is executed during testing. It is used to determine the effectiveness of testing and to identify any gaps in the test cases. Code coverage is usually expressed as a percentage of the total lines of code in the application.</p>
+<p>Code coverage tools can be used to generate reports that show the percentage of code that was covered during testing, as well as highlighting any untested code.</p>
+<p>Types of Code Coverage:</p>
+<ul>
+<li>
+<p>Statement Coverage</p>
+<blockquote>
+<p>This measures the percentage of statements in the source code that are executed during testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Branch Coverage</p>
+<blockquote>
+<p>This measures the percentage of decision points (such as if/else statements) that are executed during testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Function Coverage</p>
+<blockquote>
+<p>This measures the percentage of functions in the source code that are executed during testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Condition Coverage</p>
+<blockquote>
+<p>This measures the percentage of Boolean expressions (such as <code>if x &gt; 0</code>) that are executed during testing.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="13-testing-types">1.3. Testing Types<a class="headerlink" href="#13-testing-types" title="Permanent link">&para;</a></h3>
+<h4 id="131-functional-testing">1.3.1. Functional Testing<a class="headerlink" href="#131-functional-testing" title="Permanent link">&para;</a></h4>
+<p>Functional testing is a type of software testing that evaluates the individual components or modules of a system to ensure that they are working as expected and that they meet the specified requirements. The purpose of functional testing is to ensure that the application behaves as expected and meets the specified requirements.</p>
+<p>Functional testing can be performed:</p>
+<ul>
+<li>
+<p>Unit Testing</p>
+<blockquote>
+<p>This involves testing individual units of code to ensure that they are working correctly and that they meet the specified requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Integration Testing</p>
+<blockquote>
+<p>This involves testing the integration points between different components of the system to ensure that they are communicating correctly and functioning as expected.</p>
+</blockquote>
+</li>
+<li>
+<p>Regression Testing</p>
+<blockquote>
+<p>This involves testing the system after a change or update has been made to ensure that existing functionality has not been affected.</p>
+</blockquote>
+</li>
+<li>
+<p>User Acceptance Testing</p>
+<blockquote>
+<p>This involves testing the system with a group of end-users or customers to ensure that it meets their needs and that it is easy to use.</p>
+</blockquote>
+</li>
+<li>
+<p>Boundary Value Analysis</p>
+<blockquote>
+<p>This involves testing the system with values that are at the boundaries of the specified requirements to ensure that it is handling these values correctly.</p>
+</blockquote>
+</li>
+<li>
+<p>Equivalence Partitioning</p>
+<blockquote>
+<p>This involves dividing the input data into different equivalence classes and testing the system with representative values from each class to ensure that it is handling the input data correctly.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="1311-shift-left-testing">1.3.1.1. Shift-Left Testing<a class="headerlink" href="#1311-shift-left-testing" title="Permanent link">&para;</a></h5>
+<p>Shift-left testing is an approach to software testing where testing activities are moved earlier in the software development life cycle. This approach emphasizes the importance of identifying and addressing defects as early as possible in the development process, rather than waiting until later stages such as system or acceptance testing.</p>
+<p>In a traditional software development model, testing is typically performed after the development phase, once the code has been completed. However, in a shift-left testing model, testing activities such as unit testing, integration testing, and functional testing are performed much earlier in the development process, often alongside the coding process.</p>
+<p>By moving testing activities earlier in the development process, shift-left testing aims to identify and fix defects earlier, before they become more difficult and expensive to fix. This can ultimately result in higher-quality software that is delivered more quickly and at a lower cost.</p>
+<p>Shift-left testing can be achieved through the use of automation tools and techniques such as continuous integration and continuous testing. By automating testing activities and integrating them into the development process, developers can identify and address defects in real time, as they are introduced into the code. This can help ensure that defects are caught early, before they can have a negative impact on the software or the user experience.</p>
+<p>Shift-left testing can also help to promote a culture of quality within development teams, by emphasizing the importance of testing and quality assurance throughout the entire software development life cycle.</p>
+<h5 id="1312-system-testing">1.3.1.2. System Testing<a class="headerlink" href="#1312-system-testing" title="Permanent link">&para;</a></h5>
+<p>System testing is a type of software testing that is performed on a complete and integrated system to evaluate its compliance with the specified requirements. The objective of system testing is to ensure that the system meets the functional and non-functional requirements and works as expected in a real-world environment.</p>
+<p>Benefits of System Testing:</p>
+<ul>
+<li>
+<p>Scope</p>
+<blockquote>
+<p>System testing covers the entire system and its components, including hardware, software, and networks.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Environment</p>
+<blockquote>
+<p>System testing is typically performed in a test environment that is similar to the production environment to ensure that the system performs as expected in a real-world environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Types</p>
+<blockquote>
+<p>System testing can involve a variety of testing types, including functional testing, performance testing, security testing, usability testing, and others, depending on the system requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Cases</p>
+<blockquote>
+<p>System testing requires a comprehensive set of test cases that cover all the system requirements and use cases.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Execution</p>
+<blockquote>
+<p>System testing involves executing the test cases and analyzing the results to identify defects and issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Defect Management</p>
+<blockquote>
+<p>System testing requires effective defect management to track, prioritize, and resolve the defects and issues identified during testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Acceptance Criteria</p>
+<blockquote>
+<p>System testing includes establishing acceptance criteria to determine when the system is ready for release to production.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="1313-integration-testing">1.3.1.3. Integration Testing<a class="headerlink" href="#1313-integration-testing" title="Permanent link">&para;</a></h5>
+<p>Integration testing is a type of software testing that verifies the interactions between different software components or modules to ensure that they function correctly as a group. The purpose of integration testing is to detect and resolve any issues or defects that arise due to the interactions between the components.</p>
+<p>During integration testing, test cases are designed to test the interactions between different modules and their interfaces. The test cases should be designed to identify any errors or issues that may arise from these interactions, such as data transfer errors, incorrect function calls, and other types of interface errors.</p>
+<p>Integration testing can be performed:</p>
+<ul>
+<li>
+<p>Top-Down Integration Testing</p>
+<blockquote>
+<p>This approach tests the high-level modules first, and then gradually adds lower-level modules and sub-modules for testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Bottom-Up Integration Testing</p>
+<blockquote>
+<p>This approach tests the lower-level modules first, and then gradually adds higher-level modules for testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Big Bang Integration Testing</p>
+<blockquote>
+<p>This approach tests all the modules of an application together as a whole.</p>
+</blockquote>
+</li>
+<li>
+<p>Sandwich Integration Testing</p>
+<blockquote>
+<p>This approach combines the top-down and bottom-up integration testing approaches.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="1314-unit-testing">1.3.1.4. Unit Testing<a class="headerlink" href="#1314-unit-testing" title="Permanent link">&para;</a></h5>
+<p>Unit testing is a software testing technique where individual units or components of a software application are tested in isolation from the rest of the system to ensure that they meet the specified requirements and function as expected. The objective of unit testing is to detect and isolate defects early in the development cycle, before the code is integrated with other components or systems.</p>
+<p>Unit testing can be performed:</p>
+<ul>
+<li>
+<p>Test-driven development (TDD)</p>
+<blockquote>
+<p>This involves writing the tests for the code before actually writing the code itself. The tests are used as a reference for writing the code and to ensure that the code meets the expected requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>White-box testing</p>
+<blockquote>
+<p>This involves testing the internal structures of the software, such as the code and the algorithms used, to ensure that they are functioning correctly.</p>
+</blockquote>
+</li>
+<li>
+<p>Black-box testing</p>
+<blockquote>
+<p>This involves testing the external behavior of the software, without looking at its internal structures, to ensure that it is functioning correctly as per the requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Code coverage analysis</p>
+<blockquote>
+<p>This involves measuring the extent to which the code has been tested, by analyzing the number of lines of code that have been executed during testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Mutation testing</p>
+<blockquote>
+<p>This involves introducing artificial faults or mutations into the code, to ensure that the tests are able to detect and report such faults.</p>
+</blockquote>
+</li>
+</ul>
+<p>Benefits of Unit Testing:</p>
+<ul>
+<li>
+<p>Scope</p>
+<blockquote>
+<p>Unit testing focuses on testing individual units or components of the software application, such as functions, classes, or methods.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Environment</p>
+<blockquote>
+<p>Unit testing is typically performed in a development environment that simulates the production environment, but with the necessary tools and frameworks to support unit testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Types</p>
+<blockquote>
+<p>Unit testing can involve a variety of testing types, such as functional testing, boundary testing, and exception testing, depending on the nature of the unit being tested.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Frameworks</p>
+<blockquote>
+<p>Unit testing requires a test framework, such as GTest, JUnit, NUnit, or pytest, to define test cases, execute tests, and report results.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Cases</p>
+<blockquote>
+<p>Unit testing requires a comprehensive set of test cases that cover all the possible scenarios and outcomes for the unit being tested.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Execution</p>
+<blockquote>
+<p>Unit testing involves executing the test cases and analyzing the results to identify defects and issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Automation</p>
+<blockquote>
+<p>Unit testing can be automated using continuous pipeline tools such as Jenkins or Travis CI to improve efficiency and reliability.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="1315-fuzz-testing">1.3.1.5. Fuzz Testing<a class="headerlink" href="#1315-fuzz-testing" title="Permanent link">&para;</a></h5>
+<p>Fuzz testing, also known as fuzzing, is a type of software testing that involves feeding invalid, unexpected, or random data inputs to a software program to detect vulnerabilities, crashes, and other errors.</p>
+<p>Fuzz testing can be performed manually or with the use of automated tools, which generate and feed random inputs to the software under test. The goal of fuzz testing is to uncover vulnerabilities and edge cases that might not be discovered through traditional testing methods, such as unit testing and integration testing.</p>
+<p>Benefits of Fuzz Testing:</p>
+<ul>
+<li>
+<p>Comprehensive coverage</p>
+<blockquote>
+<p>Fuzz testing can provide comprehensive test coverage, as it can explore a wide range of potential input combinations that might be difficult to test manually.</p>
+</blockquote>
+</li>
+<li>
+<p>Detection of edge cases</p>
+<blockquote>
+<p>Fuzz testing can help to detect edge cases and unexpected input combinations that might cause the software to crash or behave unpredictably.</p>
+</blockquote>
+</li>
+<li>
+<p>Early detection of vulnerabilities</p>
+<blockquote>
+<p>Fuzz testing can help to identify vulnerabilities early in the software development life cycle, which can save time and money in the long run.</p>
+</blockquote>
+</li>
+<li>
+<p>Automation</p>
+<blockquote>
+<p>Fuzz testing can be automated, which can save time and effort compared to manual testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>Fuzz testing can be scaled up to test large and complex software systems, making it suitable for testing enterprise-grade applications.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="1316-regression-testing">1.3.1.6. Regression Testing<a class="headerlink" href="#1316-regression-testing" title="Permanent link">&para;</a></h5>
+<p>Regression testing is a type of software testing that verifies that changes or modifications made to the software application do not impact the existing functionality of the application. It involves re-testing the application after a change has been made to ensure that the application still performs as expected and that new changes do not introduce any new bugs or issues.</p>
+<p>Regression testing is important to ensure that the quality of the software application is maintained throughout the development lifecycle. It is typically performed after a change has been made to the application, such as a bug fix, new feature implementation, or software upgrade.</p>
+<h5 id="1317-end-to-end-testing">1.3.1.7. End-to-End Testing<a class="headerlink" href="#1317-end-to-end-testing" title="Permanent link">&para;</a></h5>
+<p>End-to-End testing is a type of software testing that involves testing the entire software application from start to finish, simulating a real-world scenario. The purpose of end-to-end testing is to ensure that all components of the application are working together correctly and that the application meets its intended requirements.</p>
+<p>End-to-End testing can be performed:</p>
+<ul>
+<li>
+<p>Scenario Testing</p>
+<blockquote>
+<p>This involves testing the system under different scenarios and user workflows to ensure that all components are working together as expected.</p>
+</blockquote>
+</li>
+<li>
+<p>Integration Testing</p>
+<blockquote>
+<p>This involves testing the integration points between different components of the system to ensure that they are communicating correctly and functioning as expected.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Validation</p>
+<blockquote>
+<p>This involves validating the data that flows through the system to ensure that it is being processed correctly and accurately.</p>
+</blockquote>
+</li>
+<li>
+<p>User Interface Testing</p>
+<blockquote>
+<p>This involves testing the user interface of the system to ensure that it is easy to use and that all functions and features are working correctly.</p>
+</blockquote>
+</li>
+<li>
+<p>Performance Testing</p>
+<blockquote>
+<p>This involves testing the performance of the system under different load and stress conditions to ensure that it can handle the expected level of user traffic.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Testing</p>
+<blockquote>
+<p>This involves testing the security of the system to ensure that it is protected against potential threats or attacks.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="1318-acceptance-testing">1.3.1.8. Acceptance Testing<a class="headerlink" href="#1318-acceptance-testing" title="Permanent link">&para;</a></h5>
+<p>Acceptance Testing is a type of software testing that is conducted to determine whether the software meets the specified requirements and is acceptable for delivery to the end-users or stakeholders. The primary objective of acceptance testing is to ensure that the software fulfills the business requirements and functions as expected in the real-world environment.</p>
+<h6 id="13181-user-acceptance-testing">1.3.1.8.1. User Acceptance Testing<a class="headerlink" href="#13181-user-acceptance-testing" title="Permanent link">&para;</a></h6>
+<p>User Acceptance Testing (UAT) is a type of acceptance testing that is performed by the end-users or customers of the software application. The purpose of UAT is to determine whether the software meets the needs and requirements of the end-users and is ready for release.</p>
+<p>UAT typically involves creating a set of test cases that cover the functional and non-functional requirements of the software. These test cases are designed to simulate real-world scenarios and usage patterns to ensure that the software meets the needs of the end-users or customers.</p>
+<p>UAT is usually performed in a controlled environment, such as a test lab or staging environment, and is often supervised by a dedicated testing team or a representative from the software development team. The testing team or representative provides guidance and support to the end-users or customers during the testing process, ensuring that they understand how to perform the tests and how to report any issues or defects that they encounter.</p>
+<h6 id="13182-operational-acceptance-testing">1.3.1.8.2. Operational Acceptance Testing<a class="headerlink" href="#13182-operational-acceptance-testing" title="Permanent link">&para;</a></h6>
+<p>Operational Acceptance Testing (OAT) evaluates whether the software is ready to be deployed and operated in the production environment. It focuses on verifying that all non-functional aspects, such as installation, configuration, and maintenance procedures, are well-documented and successfully executed.</p>
+<h5 id="1319-alpha-testing">1.3.1.9. Alpha Testing<a class="headerlink" href="#1319-alpha-testing" title="Permanent link">&para;</a></h5>
+<p>Alpha testing is a type of software testing that is performed by the development team or a group of testers in a lab environment before the software is released to the general public. The purpose of alpha testing is to identify any major issues or bugs that may still exist in the software and to ensure that it is stable enough to move on to the next stage of testing.</p>
+<p>Key characteristics of alpha testing:</p>
+<ul>
+<li>
+<p>Limited audience</p>
+<blockquote>
+<p>Alpha testing is typically conducted with a limited group of testers, who are either members of the development team or selected testers.</p>
+</blockquote>
+</li>
+<li>
+<p>Controlled environment</p>
+<blockquote>
+<p>Alpha testing is conducted in a controlled environment, such as a lab or a staging environment, where the testers can closely monitor the software and report any issues that arise.</p>
+</blockquote>
+</li>
+<li>
+<p>Early stage testing</p>
+<blockquote>
+<p>Alpha testing is one of the earliest stages of testing and is usually performed after the initial development of the software is complete.</p>
+</blockquote>
+</li>
+<li>
+<p>Functional testing</p>
+<blockquote>
+<p>Alpha testing focuses on functional testing, which means that the testers are mainly looking for any major issues or bugs that may still exist in the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Collaborative approach</p>
+<blockquote>
+<p>Alpha testing involves a collaborative approach, with the testers working closely with the development team to ensure that any issues are quickly identified and resolved.</p>
+</blockquote>
+</li>
+<li>
+<p>Not public-facing</p>
+<blockquote>
+<p>Alpha testing is not public-facing, which means that the software is not yet available to the general public and is only being tested internally by the development team or a selected group of testers.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="13110-beta-testing">1.3.1.10. Beta Testing<a class="headerlink" href="#13110-beta-testing" title="Permanent link">&para;</a></h5>
+<p>Beta testing is a type of software testing that involves releasing a pre-release version of the software, known as a beta version, to a limited group of external users or customers. The purpose of beta testing is to get feedback from real users on the usability, functionality, and overall quality of the software before it is released to the general public.</p>
+<p>Different types of beta testing include open beta testing, closed beta testing, and hybrid beta testing, each with their own approach to releasing the beta version of the software to external users.</p>
+<p>Key characteristics of beta testing:</p>
+<ul>
+<li>
+<p>Limited release</p>
+<blockquote>
+<p>Beta testing is typically conducted on a limited scale, with the beta version of the software only being released to a small group of external users or customers.</p>
+</blockquote>
+</li>
+<li>
+<p>Real-world testing</p>
+<blockquote>
+<p>Beta testing provides an opportunity for real-world testing of the software in a live environment, with real users testing the software in their own settings and use cases.</p>
+</blockquote>
+</li>
+<li>
+<p>Feedback collection</p>
+<blockquote>
+<p>The goal of beta testing is to gather feedback from users on the usability, functionality, and overall quality of the software. This feedback is used to identify and fix issues and improve the user experience before the final release.</p>
+</blockquote>
+</li>
+<li>
+<p>Time-bound</p>
+<blockquote>
+<p>Beta testing is usually time-bound, with a specific duration for the testing period. This allows for efficient collection of feedback and timely implementation of fixes before the final release.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="13111-usability-testing">1.3.1.11. Usability Testing<a class="headerlink" href="#13111-usability-testing" title="Permanent link">&para;</a></h5>
+<p>Usability testing is a type of testing that focuses on evaluating how user-friendly and intuitive the software or application is for its intended users. The goal of usability testing is to identify any usability issues and areas of improvement in the user interface (UI) and user experience (UX).</p>
+<p>Usability testing involves recruiting a group of representative users who match the target audience of the software. The testers are given a set of tasks to perform using the software or application, and their interactions with the software are observed and recorded. The testers are asked to provide feedback on the ease of use, clarity of instructions, and overall satisfaction with the software.</p>
+<p>Usability testing can be performed at different stages of the software development lifecycle, including during the design phase, after the development phase, and during the post-production phase. The feedback collected during usability testing is used to make design changes and improvements to the software.</p>
+<h5 id="13112-cross-browser-testing">1.3.1.12. Cross-Browser Testing<a class="headerlink" href="#13112-cross-browser-testing" title="Permanent link">&para;</a></h5>
+<p>Cross-browser testing is a type of software testing that focuses on verifying the compatibility and functionality of a web application or website across different web browsers and their versions. The purpose of cross-browser testing is to ensure that the web application works consistently and without any errors across different browsers and platforms, and that users have a consistent experience irrespective of the browser or device they are using.</p>
+<p>During cross-browser testing, a variety of browsers are used, including Google Chrome, Mozilla Firefox, Safari, Microsoft Edge, and Internet Explorer. The web application or website is tested in different versions of each browser to ensure that it works well with older and newer versions of the browsers. The testing includes verifying that the UI elements, layouts, and features of the web application are consistent across different browsers.</p>
+<h5 id="13113-compatibility-testing">1.3.1.13. Compatibility Testing<a class="headerlink" href="#13113-compatibility-testing" title="Permanent link">&para;</a></h5>
+<p>Compatibility testing is a type of software testing that focuses on verifying whether an application or system works as expected across different environments, platforms, and devices. The purpose of compatibility testing is to ensure that the application is compatible with various hardware, software, and network configurations and to identify any compatibility issues that may affect the performance or functionality of the application.</p>
+<p>Compatibility testing includes testing the application or system on different operating systems, hardware configurations, web browsers, mobile devices, and network environments. The testing process involves verifying that the application works seamlessly across different combinations of these environments and that it is not affected by factors such as screen resolution, memory, processor speed, or network bandwidth.</p>
+<h5 id="13114-accessibility-testing">1.3.1.14. Accessibility Testing<a class="headerlink" href="#13114-accessibility-testing" title="Permanent link">&para;</a></h5>
+<p>Accessibility testing is a type of software testing that is performed to ensure that an application or system can be easily used by people with disabilities. The goal of accessibility testing is to ensure that the software is compliant with accessibility standards and guidelines, such as the Web Content Accessibility Guidelines (WCAG) issued by the World Wide Web Consortium (W3C).</p>
+<p>Accessibility testing can be performed:</p>
+<ul>
+<li>
+<p>Keyboard-only navigation testing</p>
+<blockquote>
+<p>This involves testing the application using only the keyboard to ensure that all functionality can be accessed without the use of a mouse.</p>
+</blockquote>
+</li>
+<li>
+<p>Screen reader testing</p>
+<blockquote>
+<p>This involves testing the application with a screen reader to ensure that all content and functionality is accessible to users who are blind or have low vision.</p>
+</blockquote>
+</li>
+<li>
+<p>Color contrast testing</p>
+<blockquote>
+<p>This involves testing the application to ensure that there is sufficient contrast between text and background colors for users with low vision.</p>
+</blockquote>
+</li>
+<li>
+<p>Focus testing</p>
+<blockquote>
+<p>This involves testing the application to ensure that keyboard focus is properly indicated and that users can easily navigate between elements using the keyboard.</p>
+</blockquote>
+</li>
+<li>
+<p>ARIA attribute testing</p>
+<blockquote>
+<p>This involves testing the application to ensure that it is properly utilizing Accessible Rich Internet Applications (ARIA) attributes to provide additional context and functionality for users with disabilities.</p>
+</blockquote>
+</li>
+<li>
+<p>Usability testing with users with disabilities</p>
+<blockquote>
+<p>This involves testing the application with users who have disabilities to gather feedback on its accessibility and usability.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="13115-sanity-testing">1.3.1.15. Sanity Testing<a class="headerlink" href="#13115-sanity-testing" title="Permanent link">&para;</a></h5>
+<p>Sanity testing, also known as quick checking or subset testing, is a type of software testing that is performed to ensure that the application or system is stable and functional enough for further testing. The purpose of sanity testing is to quickly evaluate whether the software is working as expected and whether there are any major defects or issues that need to be addressed before proceeding with more comprehensive testing.</p>
+<p>Sanity testing is typically performed after a major change or update to the software or after a series of tests have been run on the software. The process involves executing a set of basic and critical test cases that cover the core functionality of the application. These test cases are designed to identify any major issues or defects that might prevent further testing from being carried out.</p>
+<h5 id="13116-smoke-testing">1.3.1.16. Smoke Testing<a class="headerlink" href="#13116-smoke-testing" title="Permanent link">&para;</a></h5>
+<p>Smoke testing, also known as build verification testing, is a type of software testing that is used to ensure that the basic and critical functionalities of an application or system are working as expected after a new build or release. The purpose of smoke testing is to verify that the application is stable and functional enough to proceed with further testing.</p>
+<p>Smoke testing is usually performed after a new build or release of software is created. The process involves executing a series of pre-defined test cases that cover the most important and critical features of the application. These test cases are designed to identify any major issues or defects that might prevent further testing from being carried out.</p>
+<h5 id="13117-exploratory-testing">1.3.1.17. Exploratory Testing<a class="headerlink" href="#13117-exploratory-testing" title="Permanent link">&para;</a></h5>
+<p>Exploratory testing is a type of software testing that involves simultaneous test design, execution, and learning. In other words, the tester explores the software product in an unstructured way, experimenting with different inputs, outputs, and configurations, to uncover potential issues and gain a deeper understanding of the software's behavior and capabilities.</p>
+<p>Key characteristics of exploratory testing:</p>
+<ul>
+<li>
+<p>Creativity and intuition</p>
+<blockquote>
+<p>Exploratory testing requires creativity and intuition on the part of the tester, who must be able to identify potential issues and devise new tests on the fly.</p>
+</blockquote>
+</li>
+<li>
+<p>Ad-hoc testing</p>
+<blockquote>
+<p>Exploratory testing is an ad-hoc approach to testing, meaning that there is no predefined test plan or test case.</p>
+</blockquote>
+</li>
+<li>
+<p>Test design and execution</p>
+<blockquote>
+<p>In exploratory testing, test design and execution are performed simultaneously, with the tester creating and executing tests as they explore the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Learning and discovery</p>
+<blockquote>
+<p>Exploratory testing is focused on learning and discovery, with the tester seeking to uncover potential issues and gain a deeper understanding of the software's behavior and capabilities.</p>
+</blockquote>
+</li>
+<li>
+<p>Documentation</p>
+<blockquote>
+<p>Although exploratory testing is an ad-hoc approach, it is still important to document the tests that are performed and any issues that are uncovered, in order to aid in future testing and development efforts.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="13118-black-box-testing">1.3.1.18. Black Box Testing<a class="headerlink" href="#13118-black-box-testing" title="Permanent link">&para;</a></h5>
+<p>Black box testing is a type of software testing where the tester does not have access to the internal workings of the system or application being tested. In black box testing, the tester focuses solely on the inputs and outputs of the system, without any knowledge of the underlying code, algorithms, or architecture.</p>
+<p>Key characteristics of black box testing:</p>
+<ul>
+<li>
+<p>No knowledge of internal code</p>
+<blockquote>
+<p>The tester has no knowledge of the internal workings of the software being tested. They only know what the software is supposed to do and how it should behave.</p>
+</blockquote>
+</li>
+<li>
+<p>Emphasis on requirements and specifications</p>
+<blockquote>
+<p>Black box testing is focused on ensuring that the software meets the specified requirements and adheres to the stated specifications.</p>
+</blockquote>
+</li>
+<li>
+<p>Inputs and outputs</p>
+<blockquote>
+<p>The tester focuses on the inputs to the software and the corresponding outputs, verifying that the outputs are correct for the given inputs.</p>
+</blockquote>
+</li>
+<li>
+<p>Multiple test scenarios</p>
+<blockquote>
+<p>Black box testing involves testing the software with multiple test scenarios, including normal and abnormal inputs and usage patterns.</p>
+</blockquote>
+</li>
+<li>
+<p>Verification of functionality</p>
+<blockquote>
+<p>Black box testing is focused on verifying the functionality of the software, including its ability to handle errors and exceptions.</p>
+</blockquote>
+</li>
+<li>
+<p>User-centric approach</p>
+<blockquote>
+<p>Black box testing is focused on ensuring that the software meets the needs and expectations of the end user, without any bias towards the internal workings of the software.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="13119-white-box-testing">1.3.1.19. White Box Testing<a class="headerlink" href="#13119-white-box-testing" title="Permanent link">&para;</a></h5>
+<p>White Box Testing is a type of software testing that involves examining the internal workings of a software application to ensure that it is functioning as intended. Unlike black box testing, which only evaluates the application's external behavior, white box testing involves examining the application's source code, architecture, and design to ensure that it meets the necessary quality standards.</p>
+<p>Key characteristics of white box testing:</p>
+<ul>
+<li>
+<p>Code-based testing</p>
+<blockquote>
+<p>White box testing is code-based, meaning that the tester has access to the application's source code and can examine it for potential issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Knowledge of the system</p>
+<blockquote>
+<p>White box testing requires a deep understanding of the system architecture and design, as well as the programming languages and technologies used to build the application.</p>
+</blockquote>
+</li>
+<li>
+<p>Techniques and methods</p>
+<blockquote>
+<p>White box testing uses a variety of techniques and methods to evaluate the software, including unit testing, integration testing, and code reviews.</p>
+</blockquote>
+</li>
+<li>
+<p>Focus on code coverage</p>
+<blockquote>
+<p>White box testing is often focused on achieving a high level of code coverage, meaning that all parts of the application's source code are tested to ensure that they are functioning correctly.</p>
+</blockquote>
+</li>
+<li>
+<p>Debugging and troubleshooting</p>
+<blockquote>
+<p>White box testing is often used for debugging and troubleshooting, as it allows testers to identify and isolate potential issues at the code level.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="13120-gray-box-testing">1.3.1.20. Gray Box Testing<a class="headerlink" href="#13120-gray-box-testing" title="Permanent link">&para;</a></h5>
+<p>Gray box testing is a type of software testing that combines elements of both black box and white box testing. In gray box testing, the tester has partial knowledge of the internal workings of the system or application being tested, but does not have full access to the source code or underlying architecture.</p>
+<p>Key characteristics of gray box testing:</p>
+<ul>
+<li>
+<p>Partial knowledge</p>
+<blockquote>
+<p>The tester has some knowledge of the internal workings of the system, such as the design and architecture, but not complete knowledge of the code.</p>
+</blockquote>
+</li>
+<li>
+<p>Test design and execution</p>
+<blockquote>
+<p>Gray box testing involves both test design and execution, with the tester using their partial knowledge to create more effective tests.</p>
+</blockquote>
+</li>
+<li>
+<p>Combination of techniques</p>
+<blockquote>
+<p>Gray box testing combines techniques from both black box and white box testing, leveraging the advantages of each to create a more comprehensive testing approach.</p>
+</blockquote>
+</li>
+<li>
+<p>Focused testing</p>
+<blockquote>
+<p>Gray box testing is typically more focused than black box testing, as the tester has some knowledge of the internal workings of the system and can target specific areas for testing.</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="13121-ab-testing">1.3.1.21. A/B Testing<a class="headerlink" href="#13121-ab-testing" title="Permanent link">&para;</a></h5>
+<p>A/B testing is a type of testing that involves comparing two different versions of a product or service to determine which one performs better in terms of user engagement or other key metrics. In A/B testing, a group of users is randomly assigned to one of two groups, with each group being presented with a different version of the product or service. The performance of each version is then measured and compared to determine which one is more effective.</p>
+<p>Key characteristics of A/B testing:</p>
+<ul>
+<li>
+<p>Randomization</p>
+<blockquote>
+<p>A/B testing requires randomization to ensure that the results are not biased by factors such as user demographics or behavior.</p>
+</blockquote>
+</li>
+<li>
+<p>Control and treatment groups</p>
+<blockquote>
+<p>A/B testing involves the use of control and treatment groups, with one group being presented with the current version of the product or service (control) and the other group being presented with a modified version (treatment).</p>
+</blockquote>
+</li>
+<li>
+<p>Key metrics</p>
+<blockquote>
+<p>A/B testing is focused on measuring key metrics such as click-through rates, conversion rates, or engagement rates to determine which version of the product or service is more effective.</p>
+</blockquote>
+</li>
+<li>
+<p>Statistical significance</p>
+<blockquote>
+<p>A/B testing requires statistical significance to ensure that the differences between the two versions are not due to chance.</p>
+</blockquote>
+</li>
+</ul>
+<p>Iterative testing</p>
+<blockquote>
+<p>A/B testing is often conducted iteratively, with multiple rounds of testing and refinement to improve the performance of the product or service over time.</p>
+</blockquote>
+<h5 id="13122-monkey-testing">1.3.1.22. Monkey Testing<a class="headerlink" href="#13122-monkey-testing" title="Permanent link">&para;</a></h5>
+<p>Monkey testing is a type of software testing that involves randomly generating inputs and feeding them to an application, with the goal of causing it to crash or produce unexpected behavior.</p>
+<p>The term <code>monkey</code> refers to the idea that the inputs are generated randomly, like a monkey typing on a keyboard.</p>
+<p>Key characteristics of monkey testing:</p>
+<ul>
+<li>
+<p>Randomness</p>
+<blockquote>
+<p>Monkey testing is random in nature, with inputs generated without any specific test plan or test case.</p>
+</blockquote>
+</li>
+<li>
+<p>Automated</p>
+<blockquote>
+<p>Monkey testing is typically automated, with software tools generating the inputs and monitoring the application for crashes or errors.</p>
+</blockquote>
+</li>
+<li>
+<p>Exploratory</p>
+<blockquote>
+<p>Monkey testing is exploratory, with the goal of uncovering potential issues or weaknesses in the application.</p>
+</blockquote>
+</li>
+<li>
+<p>Chaos Engineering</p>
+<blockquote>
+<p>Monkey testing is sometimes considered a form of chaos engineering, which involves intentionally injecting failures into a system to test its resiliency and ability to recover.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="132-non-functional-testing">1.3.2. Non-Functional Testing<a class="headerlink" href="#132-non-functional-testing" title="Permanent link">&para;</a></h4>
+<p>Non-functional testing is a type of software testing that focuses on testing the non-functional aspects of the software application, such as performance, scalability, reliability, usability, and security. The purpose of non-functional testing is to ensure that the system or application meets the non-functional requirements and performance goals specified in the project requirements.</p>
+<h5 id="1321-security-testing">1.3.2.1. Security Testing<a class="headerlink" href="#1321-security-testing" title="Permanent link">&para;</a></h5>
+<p>Security testing is a type of software testing that is focused on evaluating the security of an application or system. The goal of security testing is to identify any vulnerabilities or weaknesses in the system and to determine whether the system is protected against potential attacks or threats.</p>
+<h6 id="13211-penetration-testing">1.3.2.1.1. Penetration Testing<a class="headerlink" href="#13211-penetration-testing" title="Permanent link">&para;</a></h6>
+<p>This involves simulating a real-world attack on the system to identify any vulnerabilities or weaknesses that could be exploited by attackers.</p>
+<h6 id="13212-vulnerability-scanning">1.3.2.1.2. Vulnerability Scanning<a class="headerlink" href="#13212-vulnerability-scanning" title="Permanent link">&para;</a></h6>
+<p>Identifying potential vulnerabilities within the software. This involves using automated tools and manual techniques to scan the software for known vulnerabilities and weaknesses. It helps in identifying common security issues such as outdated software, misconfigurations, and insecure coding practices.</p>
+<h5 id="1322-performance-testing">1.3.2.2. Performance Testing<a class="headerlink" href="#1322-performance-testing" title="Permanent link">&para;</a></h5>
+<p>Performance testing is a type of non-functional testing that is focused on evaluating how well a system or application performs under a specific workload or user load. The goal of performance testing is to identify any performance-related issues or bottlenecks in the system and to determine whether the system can handle the expected user load.</p>
+<h6 id="13221-load-testing">1.3.2.2.1. Load Testing<a class="headerlink" href="#13221-load-testing" title="Permanent link">&para;</a></h6>
+<p>Load testing is a type of software testing that evaluates the system's ability to handle a specific load or volume of users, requests, or transactions. The goal of load testing is to identify performance bottlenecks and other issues related to system scalability and stability under high load conditions.</p>
+<h6 id="13222-stress-testing">1.3.2.2.2. Stress Testing<a class="headerlink" href="#13222-stress-testing" title="Permanent link">&para;</a></h6>
+<p>This involves testing the system beyond its normal operational capacity to determine its breaking point or to identify potential failure points.</p>
+<h6 id="13223-endurance-testing">1.3.2.2.3. Endurance Testing<a class="headerlink" href="#13223-endurance-testing" title="Permanent link">&para;</a></h6>
+<p>This involves testing the system under a sustained workload to evaluate its ability to handle the load over an extended period.</p>
+<h6 id="13224-spike-testing">1.3.2.2.4. Spike Testing<a class="headerlink" href="#13224-spike-testing" title="Permanent link">&para;</a></h6>
+<p>This involves testing the system's ability to handle sudden and large increases in user traffic.</p>
+<h6 id="13225-volume-testing">1.3.2.2.5. Volume Testing<a class="headerlink" href="#13225-volume-testing" title="Permanent link">&para;</a></h6>
+<p>This involves testing the system's ability to handle large volumes of data.</p>
+<h6 id="13226-scalability-testing">1.3.2.2.6. Scalability Testing<a class="headerlink" href="#13226-scalability-testing" title="Permanent link">&para;</a></h6>
+<p>This involves testing the system's ability to scale up or down to handle changing user loads or resource demands.</p>
+<h6 id="13227-capacity-testing">1.3.2.2.7. Capacity Testing<a class="headerlink" href="#13227-capacity-testing" title="Permanent link">&para;</a></h6>
+<p>This involves testing the system's ability to handle a specific number of users or transactions within a defined period.</p>
+<h5 id="1323-application-security-testing">1.3.2.3. Application Security Testing<a class="headerlink" href="#1323-application-security-testing" title="Permanent link">&para;</a></h5>
+<p>Application security testing is a type of software testing that focuses on identifying and addressing security vulnerabilities and weaknesses in an application. The goal of application security testing is to ensure that an application is secure from potential attacks and threats, such as data breaches, unauthorized access, or theft.</p>
+<h6 id="13231-static-application-security-testing">1.3.2.3.1. Static Application Security Testing<a class="headerlink" href="#13231-static-application-security-testing" title="Permanent link">&para;</a></h6>
+<p>Static Application Security Testing (SAST) is a type of application security testing that analyzes the source code of an application to detect security vulnerabilities and coding errors. SAST tools scan the application's source code or compiled binary code to identify potential security flaws, such as SQL injection, cross-site scripting (XSS), buffer overflows, and other types of vulnerabilities.</p>
+<p>Features of SAST:</p>
+<ul>
+<li>
+<p>Code Analysis</p>
+<blockquote>
+<p>SAST tools analyze the source code of an application to identify security vulnerabilities and coding errors.</p>
+</blockquote>
+</li>
+<li>
+<p>Early Detection</p>
+<blockquote>
+<p>SAST testing can detect security flaws early in the development process, before the application is deployed to production.</p>
+</blockquote>
+</li>
+<li>
+<p>Customizable Rules</p>
+<blockquote>
+<p>SAST tools allow users to customize the rules and policies used to detect security flaws, based on their specific requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Integration</p>
+<blockquote>
+<p>SAST tools can be integrated into the software development life cycle (SDLC) to automate security testing and ensure that security vulnerabilities are identified and addressed during development.</p>
+</blockquote>
+</li>
+<li>
+<p>False Positives</p>
+<blockquote>
+<p>SAST tools can generate false positives, which are security issues reported by the tool that are not actually vulnerabilities.</p>
+</blockquote>
+</li>
+</ul>
+<h6 id="13232-dynamic-application-security-testing">1.3.2.3.2. Dynamic Application Security Testing<a class="headerlink" href="#13232-dynamic-application-security-testing" title="Permanent link">&para;</a></h6>
+<p>Dynamic Application Security Testing (DAST) is a type of application security testing that evaluates the security of an application in its running state. Unlike Static Application Security Testing (SAST), which analyzes the application's source code for vulnerabilities, DAST simulates attacks on the running application and identifies potential vulnerabilities in its runtime behavior.</p>
+<p>DAST tools typically use automated scanners to simulate various types of attacks, such as injection attacks, cross-site scripting (XSS) attacks, and SQL injection attacks. The tools send malicious input to the application, monitor its behavior, and report any vulnerabilities detected.</p>
+<p>Features of DAST:</p>
+<ul>
+<li>
+<p>Scanning</p>
+<blockquote>
+<p>DAST tools scan the application for vulnerabilities while it is running.</p>
+</blockquote>
+</li>
+<li>
+<p>Black-box testing</p>
+<blockquote>
+<p>DAST is a black-box testing technique because it does not require access to the application's source code or internal workings.</p>
+</blockquote>
+</li>
+<li>
+<p>Automated testing</p>
+<blockquote>
+<p>DAST tools use automated scanners to identify potential vulnerabilities.</p>
+</blockquote>
+</li>
+<li>
+<p>Real-world simulation</p>
+<blockquote>
+<p>DAST simulates real-world attack scenarios to identify potential vulnerabilities in the application's runtime behavior.</p>
+</blockquote>
+</li>
+<li>
+<p>External testing</p>
+<blockquote>
+<p>DAST is typically performed by external security testers, rather than by the development team.</p>
+</blockquote>
+</li>
+</ul>
+<p>Popular DAST tools include OWASP ZAP, Burp Suite, and Acunetix.</p>
+<h6 id="13233-interactive-application-security-testing">1.3.2.3.3. Interactive Application Security Testing<a class="headerlink" href="#13233-interactive-application-security-testing" title="Permanent link">&para;</a></h6>
+<p>Interactive Application Security Testing (IAST) is a type of application security testing that combines aspects of both SAST and DAST. Unlike SAST and DAST, IAST provides real-time feedback on security vulnerabilities while the application is running, allowing for faster identification and remediation of security issues.</p>
+<p>IAST works by inserting sensors or agents into the application code, which monitor the application's behavior and identify potential security vulnerabilities. These sensors can detect vulnerabilities such as SQL injection, cross-site scripting, and buffer overflows, among others.</p>
+<p>Features of IAST:</p>
+<ul>
+<li>
+<p>Real-time feedback</p>
+<blockquote>
+<p>IAST provides real-time feedback on security vulnerabilities, allowing developers to quickly identify and remediate issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Accurate results</p>
+<blockquote>
+<p>Since IAST monitors the application's behavior while it is running, it can provide more accurate results than SAST or DAST alone.</p>
+</blockquote>
+</li>
+<li>
+<p>Minimal false positives</p>
+<blockquote>
+<p>IAST can provide more targeted results, resulting in fewer false positives than other types of testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Integration with development tools</p>
+<blockquote>
+<p>IAST can integrate with development tools, such as IDEs and build servers, to provide developers with easy access to security feedback.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<p>By following these fundamental principles of software testing, testers can design and execute their testing activities more effectively, identify defects early, and improve the quality of the software application.</p>
+<ul>
+<li>
+<p>Early Testing</p>
+<blockquote>
+<p>Finding and fixing defects early in the software development lifecycle is less costly and time-consuming than identifying and fixing them later. Therefore, testing should be started as early as possible in the development process.</p>
+</blockquote>
+</li>
+<li>
+<p>Exhaustiveness</p>
+<blockquote>
+<p>It is practically impossible to test all possible scenarios and combinations of inputs and conditions. Therefore, testers must focus on prioritizing their testing efforts based on the risks and impact of defects.</p>
+</blockquote>
+</li>
+<li>
+<p>Independence</p>
+<blockquote>
+<p>Tests should be independent of each other, meaning that changes or failures in one test should not affect the results of other tests.</p>
+</blockquote>
+</li>
+<li>
+<p>Repeatability</p>
+<blockquote>
+<p>Tests should be repeatable, meaning that the same test cases should produce the same results every time they are executed.</p>
+</blockquote>
+</li>
+<li>
+<p>Automation</p>
+<blockquote>
+<p>Testing should be automated to the extent possible, in order to improve the efficiency and accuracy of the testing process.</p>
+</blockquote>
+</li>
+<li>
+<p>Defect Tracking</p>
+<blockquote>
+<p>A process should be in place to track and manage defects, ensuring that they are identified, documented, and resolved in a timely manner.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Improvement</p>
+<blockquote>
+<p>The testing process should be continually reviewed and improved, with the goal of increasing its efficiency and effectiveness over time.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk-based Approach</p>
+<blockquote>
+<p>Tests should be prioritized based on the level of risk associated with the software, with the most critical or high-risk areas being tested first.</p>
+</blockquote>
+</li>
+<li>
+<p>Early Feedback</p>
+<blockquote>
+<p>Feedback should be provided as early as possible, so that the development team can address any issues or defects in a timely manner.</p>
+</blockquote>
+</li>
+<li>
+<p>Involvement of Stakeholders</p>
+<blockquote>
+<p>All stakeholders, including developers, testers, customers, and end users, should be involved in the testing process, in order to ensure that the software meets the needs and expectations of all stakeholders.</p>
+</blockquote>
+</li>
+<li>
+<p>Verifiability</p>
+<blockquote>
+<p>The results of testing should be verifiable, meaning that they can be easily reproduced and validated.</p>
+</blockquote>
+</li>
+<li>
+<p>Traceability</p>
+<blockquote>
+<p>The relationship between tests and requirements should be traceable, allowing test results to be easily linked to specific requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Accuracy</p>
+<blockquote>
+<p>Tests should be accurate and consistent, ensuring that they produce reliable and repeatable results.</p>
+</blockquote>
+</li>
+<li>
+<p>Maintainability</p>
+<blockquote>
+<p>Tests should be easy to maintain and update, allowing for changes in the software to be easily incorporated into the testing process.</p>
+</blockquote>
+</li>
+<li>
+<p>Reusability</p>
+<blockquote>
+<p>Tests should be reusable, allowing for the same tests to be executed for multiple releases or versions of the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Cost-effectiveness</p>
+<blockquote>
+<p>The testing process should be cost-effective, balancing the cost of testing against the potential costs associated with defects or failures in the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Efficiency</p>
+<blockquote>
+<p>The testing process should be efficient, maximizing the number of tests that can be executed in a given time frame.</p>
+</blockquote>
+</li>
+<li>
+<p>Adaptability</p>
+<blockquote>
+<p>The testing process should be adaptable, allowing for changes in the software or testing environment to be easily incorporated into the testing process.Collaboration
+The testing process should be a collaborative effort, involving the contributions of multiple stakeholders, including developers, testers, and end users.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Learning</p>
+<blockquote>
+<p>The testing process should be an opportunity for continuous learning and improvement, allowing for lessons learned to be incorporated into future testing efforts.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>By following these best practices in software testing, testers can improve the quality of the software application, identify defects early, and reduce the cost and time of testing.</p>
+<ul>
+<li>
+<p>Develop a comprehensive test plan</p>
+<blockquote>
+<p>A comprehensive test plan should be developed and documented, outlining the objectives, scope, and approach of the testing process.</p>
+</blockquote>
+</li>
+<li>
+<p>Define clear and measurable goals</p>
+<blockquote>
+<p>Clear and measurable goals should be established for the testing process, such as identifying and resolving a specific number of defects within a given time frame.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement automated testing</p>
+<blockquote>
+<p>Automated testing should be implemented to the extent possible, in order to improve the efficiency and accuracy of the testing process.</p>
+</blockquote>
+</li>
+<li>
+<p>Use version control for test cases</p>
+<blockquote>
+<p>Test cases should be managed using version control, allowing for changes in the software or testing environment to be easily incorporated into the testing process.</p>
+</blockquote>
+</li>
+<li>
+<p>Prioritize high-risk areas</p>
+<blockquote>
+<p>High-risk areas of the software should be prioritized for testing, ensuring that the most critical or high-risk areas are tested first.</p>
+</blockquote>
+</li>
+<li>
+<p>Involve end users in testing</p>
+<blockquote>
+<p>End users should be involved in the testing process, allowing for their perspectives and feedback to be incorporated into the testing process.</p>
+</blockquote>
+</li>
+<li>
+<p>Perform regular code reviews</p>
+<blockquote>
+<p>Regular code reviews should be performed, in order to identify and resolve issues early in the development process.</p>
+</blockquote>
+</li>
+<li>
+<p>Use test data management tools</p>
+<blockquote>
+<p>Test data management tools should be used to manage and organize test data, ensuring that the testing process is efficient and repeatable.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement continuous testing</p>
+<blockquote>
+<p>Continuous testing should be implemented, allowing for the testing process to be integrated into the development process and executed automatically on a regular basis.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor and evaluate test results</p>
+<blockquote>
+<p>Test results should be monitored and evaluated, in order to identify areas for improvement and make changes to the testing process as needed.</p>
+</blockquote>
+</li>
+<li>
+<p>Adhere to industry standards and guidelines</p>
+<blockquote>
+<p>Industry standards and guidelines should be followed, ensuring that the testing process is consistent and follows best practices.</p>
+</blockquote>
+</li>
+<li>
+<p>Integrate security testing into the testing process</p>
+<blockquote>
+<p>Security testing should be integrated into the testing process, in order to identify and resolve security vulnerabilities.</p>
+</blockquote>
+</li>
+<li>
+<p>Establish clear communication channels</p>
+<blockquote>
+<p>Clear communication channels should be established between all stakeholders involved in the testing process, including developers, testers, and end users.</p>
+</blockquote>
+</li>
+<li>
+<p>Invest in training and development</p>
+<blockquote>
+<p>Investment in training and development should be made, in order to ensure that testers have the necessary skills and knowledge to effectively perform their tasks.</p>
+</blockquote>
+</li>
+<li>
+<p>Use test management tools</p>
+<blockquote>
+<p>Test management tools should be used to manage and track the testing process, including test cases, test plans, and test results.</p>
+</blockquote>
+</li>
+<li>
+<p>Perform exploratory testing</p>
+<blockquote>
+<p>Exploratory testing should be performed, in order to identify potential issues or areas for improvement that may not be easily detected through automated testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Involve stakeholders in the testing process</p>
+<blockquote>
+<p>Stakeholders should be involved in the testing process, including business stakeholders, project managers, and product owners.</p>
+</blockquote>
+</li>
+<li>
+<p>Encourage collaboration and teamwork</p>
+<blockquote>
+<p>Collaboration and teamwork should be encouraged, allowing for the testing process to be a collaborative effort between all stakeholders.</p>
+</blockquote>
+</li>
+<li>
+<p>Perform regular retrospectives</p>
+<blockquote>
+<p>Regular retrospectives should be performed, in order to evaluate the testing process and identify areas for improvement.</p>
+</blockquote>
+</li>
+<li>
+<p>Stay Up-to-Date</p>
+<blockquote>
+<p>Stay up-to-date with emerging technologies and trends, in order to continuously improve the testing process and keep up with the changing landscape of software development.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Test Suite</p>
+<blockquote>
+<p>A collection of test cases that are executed together as part of a testing cycle.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Case</p>
+<blockquote>
+<p>A set of steps and conditions designed to test a specific functionality, feature, scenario or aspect of a software application.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Plan</p>
+<blockquote>
+<p>A detailed document that outlines the testing process, including the scope, objectives, approach and resources required for the testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Harness</p>
+<blockquote>
+<p>A test harness is a set of tools and resources used to execute test cases and analyze the results.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Data</p>
+<blockquote>
+<p>Test data is the input used in testing, including the data used to set up test cases and the data used to verify the results.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Environment</p>
+<blockquote>
+<p>A the environment in which testing is performed, including the hardware, software, and other resources needed to execute the testing process.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Driver</p>
+<blockquote>
+<p>A program or tool used to execute test cases and analyze the results.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Results</p>
+<blockquote>
+<p>The outputs of the testing process, including pass/fail results, performance metrics, and other relevant data.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Metrics</p>
+<blockquote>
+<p>Test metrics are measures used to evaluate the quality and effectiveness of the testing process, including defect density, test case coverage, and test case execution time.</p>
+</blockquote>
+</li>
+<li>
+<p>Debugging</p>
+<blockquote>
+<p>Debugging is the process of identifying and fixing defects in a software application.</p>
+</blockquote>
+</li>
+<li>
+<p>Defect</p>
+<blockquote>
+<p>An issue or problem found during testing that affects the functionality, usability, or performance of the software application.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Execution</p>
+<blockquote>
+<p>The process of running test cases and recording the results.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Automation</p>
+<blockquote>
+<p>The process of using software tools and scripts to automate the execution of test cases.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Report</p>
+<blockquote>
+<p>A document that summarizes the testing activities and results and provides an evaluation of the software application's quality.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Strategy</p>
+<blockquote>
+<p>A document that outlines the overall approach, objectives, and scope of testing activities for a project.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

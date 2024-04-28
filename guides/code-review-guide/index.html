@@ -1,0 +1,1078 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/guides/code-review-guide/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Code Review Guide - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#code-review-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Code Review Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Code Review
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Code Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-look-for" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Look For
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Principles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-speed" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Speed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-pull-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Pull Request
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Pull Request">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-size" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-reviewer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Reviewer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-code-owners" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Code Owners
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/guides/code-review-guide.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/guides/code-review-guide.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="code-review-guide">Code Review Guide<a class="headerlink" href="#code-review-guide" title="Permanent link">&para;</a></h1>
+<p>The code review guide contains suggestions on how to conduct code reviews effectively.</p>
+<ul>
+<li><a href="#1-code-review">1. Code Review</a></li>
+<li><a href="#11-look-for">1.1. Look For</a></li>
+<li><a href="#12-principles">1.2. Principles</a></li>
+<li><a href="#13-speed">1.3. Speed</a></li>
+<li><a href="#2-pull-request">2. Pull Request</a></li>
+<li><a href="#21-description">2.1. Description</a></li>
+<li><a href="#22-size">2.2. Size</a></li>
+<li><a href="#23-reviewer">2.3. Reviewer</a></li>
+<li><a href="#3-code-owners">3. Code Owners</a></li>
+<li><a href="#4-references">4. References</a></li>
+</ul>
+<p>This guide is inspired by:</p>
+<ul>
+<li>Google <a href="https://google.github.io/eng-practices/review/">code review</a> guide.</li>
+<li>SAP <a href="https://github.com/SAP/styleguides/releases/download/latest/abap-code-review-guide.pdf">code review</a> guide.</li>
+</ul>
+<h2 id="1-code-review">1. Code Review<a class="headerlink" href="#1-code-review" title="Permanent link">&para;</a></h2>
+<p>The primary purpose of code review is to ensure that the overall code health of the codebase is improving over time.  Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions on complex topics such as data protection, privacy, security, concurrency, accessibility, internationalization, etc.</p>
+<h3 id="11-look-for">1.1. <a href="https://google.github.io/eng-practices/review/reviewer/looking-for.html">Look For</a><a class="headerlink" href="#11-look-for" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Design</p>
+<blockquote>
+<p>Is the code well-designed for appropriate system?</p>
+</blockquote>
+</li>
+<li>
+<p>Functionality</p>
+<blockquote>
+<p>Does the code behave as the author likely intended? Is the way the code behaves good for its users?</p>
+</blockquote>
+</li>
+<li>
+<p>Complexity</p>
+<blockquote>
+<p>Could the code be made simpler? Would another developer be able to easily understand and use this code when they come across it in the future? A particular type of complexity is over-engineering, where developers have made the code more generic than it needs to be, or added functionality that isn’t presently needed by the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Tests</p>
+<blockquote>
+<p>Does the code have correct and well-designed automated tests? Make sure that the tests in the PR are correct, sensible, and useful. Tests do not test themselves, and we rarely write tests for our tests. A human must ensure that tests are valid.</p>
+</blockquote>
+</li>
+<li>
+<p>Naming</p>
+<blockquote>
+<p>Did the developer choose clear names for variables, classes, methods, etc.?</p>
+</blockquote>
+</li>
+<li>
+<p>Comments</p>
+<blockquote>
+<p>Are the comments clear and useful? Usually comments are useful when they explain why some code exists, like the reasoning behind a decision, and should not be explaining what some code is doing. However, regular expressions and complex algorithms often benefit greatly from comments that explain what they’re doing.</p>
+</blockquote>
+</li>
+<li>
+<p>Style</p>
+<blockquote>
+<p>Does the code follow our <a href="http://google.github.io/styleguide/">style guides</a>? Prefix comments with <code>NIT</code> (nitpicking), if some style point isn’t in the style guide and would improve the code but isn’t mandatory.</p>
+</blockquote>
+</li>
+<li>
+<p>Consistency</p>
+<blockquote>
+<p>The <a href="http://google.github.io/styleguide/">style guides</a> is the absolute authority: if something is required by the style guide, the PR should follow the guidelines. Bias towards following the style guide unless the local inconsistency would be too confusing.</p>
+</blockquote>
+</li>
+<li>
+<p>Documentation</p>
+<blockquote>
+<p>Did the developer also update relevant documentation? If documentation is missing, ask for it.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="12-principles">1.2. <a href="https://google.github.io/eng-practices/review/reviewer/standard.html#principles">Principles</a><a class="headerlink" href="#12-principles" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><strong>In general, reviewers should favor approving a PR once it is in a state where it definitely improves the overall code health of the system being worked on, even if the PR isn't perfect.</strong></p>
+</li>
+<li>
+<p>Technical facts and data overrule opinions and personal preferences.</p>
+</li>
+<li>
+<p>On matters of style, the <a href="http://google.github.io/styleguide/">style guide</a> is the absolute authority. Any purely style point (whitespace, etc.) that is not in the style guide is a matter of personal preference. The style should be consistent with what is there. If there is no previous style, accept the author's.</p>
+</li>
+<li>
+<p><strong>Aspects of software design are almost never a pure style issue or just a personal preference.</strong> They are based on underlying principles and should be weighed on those principles, not simply by personal opinion. Sometimes there are a few valid options. If the author can demonstrate (either through data or based on solid engineering principles) that several approaches are equally valid, then the reviewer should accept the preference of the author. Otherwise the choice is dictated by standard principles of software design.</p>
+</li>
+<li>
+<p>If no other rule applies, then the reviewer may ask the author to be consistent with what is in the current codebase, as long as that doesn't worsen the overall code health of the system.</p>
+</li>
+</ul>
+<h3 id="13-speed">1.3. <a href="https://google.github.io/eng-practices/review/reviewer/speed.html">Speed</a><a class="headerlink" href="#13-speed" title="Permanent link">&para;</a></h3>
+<p><strong>Optimize for the speed at which a team of developers can produce a product.</strong></p>
+<p>Unless the reviewer is in the middle of a focused task, a code review should be performed shortly after the request is received. A business day is the maximum amount of time required to respond to a code review request (i.e., first thing the next morning).</p>
+<p>If the reviewer is in the middle of a focused task, such as writing code, do not interrupt the task to perform a code review. Research has shown that it can take a long time for a developer to get back into a smooth flow of development after being interrupted. So interrupting the task while coding is actually more expensive to the team than making another developer wait a bit for a code review. Instead, wait for a break in the task before responding to a request for review. This could be when a current coding task is completed, after lunch, returning from a meeting, coming back from the breakroom, etc.</p>
+<h2 id="2-pull-request">2. Pull Request<a class="headerlink" href="#2-pull-request" title="Permanent link">&para;</a></h2>
+<p>Git-based platforms provide features such as Gerrit <code>Change</code>, GitHub <code>Pull Request (PR)</code> and Google <code>Changelist (CL)</code> that support the submission of changes to version control.</p>
+<h3 id="21-description">2.1. <a href="https://google.github.io/eng-practices/review/developer/cl-descriptions.html">Description</a><a class="headerlink" href="#21-description" title="Permanent link">&para;</a></h3>
+<p>Follow the <a href="../commit-message-guide/#2-merge-commit-message">merge commit message</a> guide to create a PR description.</p>
+<p>Read the examples below to get a sense of bad and good PR descriptions. In summary:</p>
+<ul>
+<li>The first line should be short, focused, and stand alone, and the PR description body should include informative details that help reviewers and future code searchers understand each PR’s effect.</li>
+<li>
+<p>Review the description before submitting the PR.</p>
+</li>
+<li>
+<p>Examples of bad descriptions.</p>
+<p>Descriptions like <code>fix bug</code> are an inadequate PR description. What bug? What did the author to fix it? Other similarly bad descriptions, that don't provide enough useful information:</p>
+<ul>
+<li>fix: fix build</li>
+<li>fix: add patch</li>
+<li>refactor: moving code from A to B</li>
+<li>feat: phase 1</li>
+<li>feat: add convenience functions</li>
+<li>refactor: kill weird URLs</li>
+</ul>
+</li>
+<li>
+<p>Examples of good descriptions.</p>
+</li>
+<li>
+<p>Description of a functionality change:
+      &gt; perf(rpc): remove size limit on RPC server message freelist (<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/1123" title="GitHub Issue: squidfunk/mkdocs-material #1123">#1123</a>)
+      &gt;
+      &gt; Servers like FizzBuzz have very large messages and would benefit from reuse. Make the freelist larger, and add a goroutine that frees the freelist entries slowly over time, so that idle servers eventually release all freelist entries.
+      &gt;
+      &gt; Closes <a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/5813" title="GitHub Issue: squidfunk/mkdocs-material #5813">#5813</a></p>
+<p>The first few words describe what the PR actually does. The rest of the description talks about the problem being solved, why this is a good solution, and a bit more information about the specific implementation.</p>
+</li>
+<li>
+<p>Description of a code refactoring:
+      &gt; refactor: construct a Task with a TimeKeeper to use its TimeStr and Now methods (<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/1123" title="GitHub Issue: squidfunk/mkdocs-material #1123">#1123</a>)
+      &gt;
+      &gt; Add a Now method to Task, so the borglet() getter method can be removed (which was only used by OOMCandidate to call borglet’s Now method). This replaces the methods on Borglet that delegate to a TimeKeeper.
+      &gt;
+      &gt; Allowing Tasks to supply Now is a step toward eliminating the dependency on Borglet. Eventually, collaborators that depend on getting Now from the Task should be changed to use a TimeKeeper directly, but this has been an accommodation to refactoring in small steps.
+      &gt;
+      &gt; Continuing the long-range goal of refactoring the Borglet Hierarchy.
+      &gt;
+      &gt; Closes <a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/2134" title="GitHub Issue: squidfunk/mkdocs-material #2134">#2134</a>
+      &gt; Related <a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/5813" title="GitHub Issue: squidfunk/mkdocs-material #5813">#5813</a></p>
+<p>The first line describes what the PR does and how this is a change from the past. The rest of the description talks about the specific implementation, the context of the PR, that the solution isn’t ideal, and possible future direction. It also explains why this change is being made.</p>
+</li>
+<li>
+<p>Description of a new feature:
+      &gt; feat: create a Python3 build rule for <code>status.py</code> (<a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/1123" title="GitHub Issue: squidfunk/mkdocs-material #1123">#1123</a>)
+      &gt;
+      &gt; This allows consumers who are already using this as in Python3 to depend on a rule that is next to the original status build rule instead of somewhere in their own tree. It encourages new consumers to use Python3 if they can, instead of Python2, and significantly simplifies some automated build file refactoring tools being worked on currently.
+      &gt;
+      &gt; Closes <a class="magiclink magiclink-github magiclink-issue" href="https://github.com/squidfunk/mkdocs-material/issues/5813" title="GitHub Issue: squidfunk/mkdocs-material #5813">#5813</a></p>
+<p>The first sentence describes what’s actually being done. The rest of the description explains why the change is being made and gives the reviewer a lot of context.</p>
+</li>
+</ul>
+<h3 id="22-size">2.2. <a href="https://google.github.io/eng-practices/review/developer/small-cls.html">Size</a><a class="headerlink" href="#22-size" title="Permanent link">&para;</a></h3>
+<p>In general, the right size for a PR is <strong>one self-contained change</strong>.</p>
+<p>Small PRs are:</p>
+<ul>
+<li>
+<p>Reviewed more quickly.</p>
+<blockquote>
+<p>It's easier for a reviewer to find five minutes several times to review small PRs than to set aside a 30 minute block to review one large PR.</p>
+</blockquote>
+</li>
+<li>
+<p>Reviewed more thoroughly.</p>
+<blockquote>
+<p>With large changes, reviewers and authors tend to get frustrated by large volumes of detailed commentary shifting back and forth—sometimes to the point where important points get missed or dropped.</p>
+</blockquote>
+</li>
+<li>
+<p>Less likely to introduce bugs.</p>
+<blockquote>
+<p>Since you're making fewer changes, it's easier for you and your reviewer to reason effectively about the impact of the PR and see if a bug has been introduced.</p>
+</blockquote>
+</li>
+<li>
+<p>Less wasted work if they are rejected.</p>
+<blockquote>
+<p>If you write a huge PR and then your reviewer says that the overall direction is wrong, you've wasted a lot of work.</p>
+</blockquote>
+</li>
+<li>
+<p>Easier to merge.</p>
+<blockquote>
+<p>Working on a large PR takes a long time, so you will have lots of conflicts when you merge, and you will have to merge frequently.</p>
+</blockquote>
+</li>
+<li>
+<p>Easier to design well.</p>
+<blockquote>
+<p>It's a lot easier to polish the design and code health of a small change than it is to refine all the details of a large change.</p>
+</blockquote>
+</li>
+<li>
+<p>Less blocking on reviews.</p>
+<blockquote>
+<p>Sending self-contained portions of your overall change allows you to continue coding while you wait for your current PR in review.</p>
+</blockquote>
+</li>
+<li>
+<p>Simpler to roll back.</p>
+<blockquote>
+<p>A large PR will more likely touch files that get updated between the initial PR submission and a rollback PR, complicating the rollback (the intermediate PRs will probably need to be rolled back too).</p>
+</blockquote>
+</li>
+</ul>
+<p>NOTE <strong>Reviewers have discretion to reject your change outright for the sole reason of it being too large.</strong> Usually they will request to split it into a series of smaller changes. It's easier to just write small PRs in the first place.</p>
+<h3 id="23-reviewer">2.3. Reviewer<a class="headerlink" href="#23-reviewer" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Draft Pull Request</p>
+<blockquote>
+<p>Create a pull request draft and add a reviewer in the early stages of feature development.</p>
+</blockquote>
+</li>
+<li>
+<p>Pull Request by <a href="../../articles/feature-flags/">Feature Flags</a></p>
+<blockquote>
+<p>Add a feature to the base branch using feature flags.</p>
+</blockquote>
+</li>
+<li>
+<p>Random Pull Request Reviews</p>
+<blockquote>
+<p>Add a reviewer at random. This creates an optimal distribution for the exchange of knowledge, experience and opinions.</p>
+</blockquote>
+</li>
+<li>
+<p>Code Owners</p>
+<blockquote>
+<p>A advanced concepts to select reviewers. Use a CODEOWNERS file to define individuals or teams that are responsible for code in a repository.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-code-owners">3. Code Owners<a class="headerlink" href="#3-code-owners" title="Permanent link">&para;</a></h2>
+<p>Define individuals as <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners">code owners</a> or teams that are responsible for code in a repository. People with admin or owner permissions can set up a CODEOWNERS file in a repository.</p>
+<p>Code owners are automatically requested for review when someone opens a pull request that modifies code that they own. Code owners are not automatically requested to review draft pull requests. When you mark a draft pull request as ready for review, code owners are automatically notified. If you convert a pull request to a draft, people who are already subscribed to notifications are not automatically unsubscribed.</p>
+<p>When someone with admin or owner permissions has enabled required reviews, they also can optionally require approval from a code owner before the author can merge a pull request in the repository. Repository owners can add branch protection rules to ensure that changed code is reviewed by the owners of the changed files.</p>
+<p>To use a CODEOWNERS file, create a new file called CODEOWNERS in the <code>root</code>, <code>docs/</code>, or <code>.github/</code> directory of the repository, in the base branch of the pull request. CODEOWNERS files must be under 3 MB in size. If any line in your CODEOWNERS file contains invalid syntax, that line will be skipped. When you navigate to the CODEOWNERS file in your repository on GitHub.com, you can see any errors highlighted.</p>
+<p>Example of a CODEOWNERS file:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># This is a comment.
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a># Each line is a file pattern followed by one or more owners.
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a># These owners will be the default owners for everything in
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a># the repo. Unless a later match takes precedence,
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># @global-owner1 and @global-owner2 will be requested for
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a># review when someone opens a pull request.
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>*       @global-owner1 @global-owner2
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a># Order is important; the last matching pattern takes the most
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a># precedence. When someone opens a pull request that only
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a># modifies JS files, only @js-owner and not the global
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a># owner(s) will be requested for a review.
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>*.js    @js-owner
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a># You can also use email addresses if you prefer. They&#39;ll be
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a># used to look up users just like we do for commit author
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a># emails.
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>*.go docs@example.com
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a># Teams can be specified as code owners as well. Teams should
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a># be identified in the format @org/team-name. Teams must have
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a># explicit write access to the repository. In this example,
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a># the octocats team in the octo-org organization owns all .txt files.
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>*.txt @octo-org/octocats
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a># In this example, @doctocat owns any files in the build/logs
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a># directory at the root of the repository and any of its
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a># subdirectories.
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>/build/logs/ @doctocat
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a># The `docs/*` pattern will match files like
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a># `docs/getting-started.md` but not further nested files like
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a># `docs/build-app/troubleshooting.md`.
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>docs/*  docs@example.com
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a># In this example, @octocat owns any file in an apps directory
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a># anywhere in your repository.
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>apps/ @octocat
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a># In this example, @doctocat owns any file in the `/docs`
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a># directory in the root of your repository and any of its
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a># subdirectories.
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>/docs/ @doctocat
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a># In this example, any change inside the `/scripts` directory
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a># will require approval from @doctocat or @octocat.
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>/scripts/ @doctocat @octocat
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a># In this example, @octocat owns any file in the `/apps`
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a># directory in the root of your repository except for the `/apps/github`
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a># subdirectory, as its owners are left empty.
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a>/apps/ @octocat
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>/apps/github
+</span></code></pre></div>
+<p>There are some syntax rules for gitignore files that do not work in CODEOWNERS files:</p>
+<ul>
+<li>Escaping a pattern starting with <code>#</code> using <code>\</code> so it is treated as a pattern and not a comment</li>
+<li>Using <code>!</code> to negate a pattern</li>
+<li>Using <code>[ ]</code> to define a character range</li>
+</ul>
+<h2 id="4-references">4. References<a class="headerlink" href="#4-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Google <a href="https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=343&amp;zoom=100,0,380">code review</a> book.</li>
+<li>Google <a href="https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=510&amp;zoom=100,0,264">culture of review</a> book.</li>
+<li>Google <a href="https://sback.it/publications/icse2018seip.pdf">modern code review</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

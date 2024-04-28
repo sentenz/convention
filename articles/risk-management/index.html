@@ -1,0 +1,1230 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/risk-management/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Risk Management - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#risk-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Risk Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Risks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Standards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Frameworks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/risk-management.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/risk-management.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="risk-management">Risk Management<a class="headerlink" href="#risk-management" title="Permanent link">&para;</a></h1>
+<p>Risk management involves identifying, assessing, and mitigating potential risks that could impact the success of a software project. It includes steps like risk identification, analysis, prioritization, and implementing strategies to minimize or address those risks. Effective risk management helps ensure the project stays on track and delivers the desired outcomes.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-risks">1.1. Risks</a></li>
+<li><a href="#12-standards">1.2. Standards</a></li>
+<li><a href="#13-frameworks">1.3. Frameworks</a></li>
+<li><a href="#14-tools">1.4. Tools</a></li>
+<li><a href="#2-principles">2. Principles</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-risks">1.1. Risks<a class="headerlink" href="#11-risks" title="Permanent link">&para;</a></h3>
+<p>Risks requires specific strategies and actions to effectively manage and mitigate potential risks throughout the software development lifecycle.</p>
+<ol>
+<li>
+<p>Project Risks</p>
+<p>Risks related to project planning, scheduling, resource allocation, and budgeting.</p>
+</li>
+<li>
+<p>Technical Risks</p>
+<p>Risks associated with the technical aspects of the software, such as technology selection, architecture, performance, and integration.</p>
+</li>
+<li>
+<p>Requirement Risks</p>
+<p>Risks arising from incomplete or changing requirements, leading to scope creep or unclear expectations.</p>
+</li>
+<li>
+<p>Resource Risks</p>
+<p>Risks related to the availability and skill levels of the development team, as well as external dependencies.</p>
+</li>
+<li>
+<p>Schedule Risks</p>
+<p>Risks that could cause delays in the project timeline, such as unexpected obstacles or dependencies.</p>
+</li>
+<li>
+<p>Budget Risks</p>
+<p>Risks related to cost overruns, budget constraints, or unanticipated expenses.</p>
+</li>
+<li>
+<p>Quality Risks</p>
+<p>Risks that may affect the quality of the software, including defects, testing issues, and inadequate user experience.</p>
+</li>
+<li>
+<p>Communication Risks</p>
+<p>Risks stemming from miscommunication or lack of collaboration among team members, stakeholders, or users.</p>
+</li>
+<li>
+<p>Market Risks</p>
+<p>Risks linked to changes in market conditions, user needs, or competitor actions that could impact the software's relevance and success.</p>
+</li>
+<li>
+<p>Legal and Compliance Risks</p>
+<p>Risks associated with intellectual property, licensing, data privacy, and regulatory compliance.</p>
+</li>
+<li>
+<p>Security Risks</p>
+<p>Risks related to vulnerabilities, data breaches, and cyber threats that could compromise the security of the software and its users.</p>
+</li>
+<li>
+<p>Change Management Risks</p>
+<p>Risks associated with managing changes in the software, such as updates, upgrades, or migrations.</p>
+</li>
+</ol>
+<h3 id="12-standards">1.2. Standards<a class="headerlink" href="#12-standards" title="Permanent link">&para;</a></h3>
+<p>Standards offer valuable guidance and best practices for identifying, assessing, treating, and monitoring risks across various domains and industries. The choice of standard may depend on the specific industry, context, and scope of risk management needed for a particular project or organization.</p>
+<ol>
+<li>
+<p>ISO 31000</p>
+<p>Provides principles and guidelines for effective risk management practices that can be applied to any type of organization and industry.</p>
+</li>
+<li>
+<p>ISO/IEC 27001</p>
+<p>Focuses on information security management and includes risk assessment and management as integral components.</p>
+</li>
+<li>
+<p>ISO 22301</p>
+<p>Specifically addresses business continuity management and helps organizations prepare for and respond to disruptive events.</p>
+</li>
+<li>
+<p>ISO 15288</p>
+<p>Focuses on systems and software engineering life cycle processes, including risk management.</p>
+</li>
+<li>
+<p>ISO 14971</p>
+<p>Specifically for medical devices, this standard provides guidance on risk management in the development and use of medical devices.</p>
+</li>
+<li>
+<p>NIST SP 800-30</p>
+<p>A guide from the National Institute of Standards and Technology (NIST) that provides risk assessment guidance, particularly in the context of information technology.</p>
+</li>
+<li>
+<p>ISO 19600</p>
+<p>Focuses on compliance management systems, which can include risk management related to legal and regulatory compliance.</p>
+</li>
+<li>
+<p>ISO 20000</p>
+<p>Addresses service management, including risks related to the management and delivery of IT services.</p>
+</li>
+<li>
+<p>IEC 62443</p>
+<p>Specifically designed for the security of industrial automation and control systems, it provides guidelines and best practices for cybersecurity and risk management in industrial environments.</p>
+</li>
+</ol>
+<h3 id="13-frameworks">1.3. Frameworks<a class="headerlink" href="#13-frameworks" title="Permanent link">&para;</a></h3>
+<p>Frameworks provide structured approaches to identifying, assessing, mitigating, and monitoring risks, helping organizations make informed decisions to manage uncertainties effectively. The choice of framework depends on the specific needs, goals, and industry context of the organization.</p>
+<ol>
+<li>
+<p>COSO ERM Framework</p>
+<p>The Committee of Sponsoring Organizations of the Treadway Commission's Enterprise Risk Management framework provides a comprehensive approach to managing risks across an organization.</p>
+</li>
+<li>
+<p>ISO 31000</p>
+<p>While it is primarily a standard, ISO 31000 also provides a framework for risk management practices that can be adapted to various industries and contexts.</p>
+</li>
+<li>
+<p>PMI Risk Management Framework</p>
+<p>From the Project Management Institute, this framework outlines processes for identifying, assessing, responding to, and monitoring risks in projects.</p>
+</li>
+<li>
+<p>FAIR (Factor Analysis of Information Risk)</p>
+<p>A quantitative risk assessment framework that helps organizations analyze and prioritize information security risks.</p>
+</li>
+<li>
+<p>CRAMM (CCTA Risk Analysis and Management Method)</p>
+<p>A risk assessment and management methodology specifically designed for information technology and security.</p>
+</li>
+<li>
+<p>M_o_R (Management of Risk)</p>
+<p>A framework developed by AXELOS for risk management in projects, programs, and portfolios.</p>
+</li>
+<li>
+<p>Octave (Operationally Critical Threat, Asset, and Vulnerability Evaluation)</p>
+<p>A framework focused on information security risk assessment and management.</p>
+</li>
+<li>
+<p>FRAP (Facilitated Risk Analysis Process)</p>
+<p>A simple and structured framework that facilitates group-based risk assessment discussions.</p>
+</li>
+<li>
+<p>ITIL (Information Technology Infrastructure Library)</p>
+<p>While primarily a framework for IT service management, ITIL also includes guidance on managing risks related to IT services.</p>
+</li>
+<li>
+<p>IRAM (Information Risk Assessment Methodology)</p>
+<p>A framework designed to assess and manage information security risks in organizations.</p>
+</li>
+</ol>
+<h3 id="14-tools">1.4. Tools<a class="headerlink" href="#14-tools" title="Permanent link">&para;</a></h3>
+<p>Tools help streamline the risk management process, making it easier to identify, assess, mitigate, and monitor risks throughout the software development lifecycle. The choice of tool depends on factors such as the organization's needs, preferences, and the complexity of the software project.</p>
+<ol>
+<li>
+<p>Jira</p>
+<p>A popular project management and issue tracking tool that can be customized to manage and track software risks and mitigation efforts.</p>
+</li>
+<li>
+<p>Trello</p>
+<p>A visual collaboration tool that can be used to create risk boards and track risk-related tasks and actions.</p>
+</li>
+<li>
+<p>RiskWatch</p>
+<p>A platform that offers risk assessment and management solutions for various industries, including software development.</p>
+</li>
+<li>
+<p>RiskyProject</p>
+<p>Software specifically designed for risk management, providing tools for risk analysis, assessment, and mitigation.</p>
+</li>
+<li>
+<p>Microsoft Project</p>
+<p>A project management software that can be used for planning and managing software development projects, including risk management.</p>
+</li>
+<li>
+<p>Risk Register</p>
+<p>Excel or Google Sheets templates can be customized to create and maintain a risk register to document and track risks, their impacts, and mitigation strategies.</p>
+</li>
+<li>
+<p>Risk Assessment Tools</p>
+<p>Various specialized software tools provide quantitative risk assessment capabilities, such as Monte Carlo simulations.</p>
+</li>
+<li>
+<p>Lucidchart</p>
+<p>A diagramming tool that can be used to create visual representations of risks, their relationships, and mitigation strategies.</p>
+</li>
+<li>
+<p>Risk Management Software</p>
+<p>Dedicated risk management software solutions that offer features like risk identification, assessment, analysis, reporting, and collaboration.</p>
+</li>
+<li>
+<p>Confluence</p>
+<p>A collaboration and documentation tool that can be used to create and maintain risk-related documentation and share information among team members.</p>
+</li>
+</ol>
+<h2 id="2-principles">2. Principles<a class="headerlink" href="#2-principles" title="Permanent link">&para;</a></h2>
+<p>The principles of risk management, as outlined in ISO 31000, provide a foundation for effective and systematic risk management practices. These principles guide organizations in managing risks in a structured and consistent manner.</p>
+<p>By following these principles, organizations can establish a robust and adaptable risk management approach that helps them identify, assess, mitigate, and monitor risks effectively, leading to better decision-making and achievement of objectives.</p>
+<ul>
+<li>
+<p>Integration into Organizational Processes</p>
+<blockquote>
+<p>Risk management should be integrated into an organization's overall governance, management, and decision-making processes.</p>
+</blockquote>
+</li>
+<li>
+<p>Structured and Comprehensive Approach</p>
+<blockquote>
+<p>Adopt a structured and comprehensive approach to risk management that addresses risks across the organization.</p>
+</blockquote>
+</li>
+<li>
+<p>Customization</p>
+<blockquote>
+<p>Tailor the risk management process to the organization's external and internal context, objectives, and needs.</p>
+</blockquote>
+</li>
+<li>
+<p>Inclusive Process</p>
+<blockquote>
+<p>Involve stakeholders at all levels in the risk management process to ensure a diversity of perspectives and expertise.</p>
+</blockquote>
+</li>
+<li>
+<p>Dynamic and Iterative</p>
+<blockquote>
+<p>Risk management should be an ongoing and iterative process that adapts to changing circumstances and information.</p>
+</blockquote>
+</li>
+<li>
+<p>Transparent and Informed Decisions</p>
+<blockquote>
+<p>Ensure that decisions are based on the best available information and are transparent and well-informed.</p>
+</blockquote>
+</li>
+<li>
+<p>Balanced Decision-Making</p>
+<blockquote>
+<p>Consider the potential benefits, costs, and uncertainties when making risk-informed decisions.</p>
+</blockquote>
+</li>
+<li>
+<p>Continual Improvement</p>
+<blockquote>
+<p>Regularly review and improve the risk management framework and processes to enhance effectiveness.</p>
+</blockquote>
+</li>
+<li>
+<p>Clear Communication</p>
+<blockquote>
+<p>Communicate risks, risk management activities, and decisions to relevant stakeholders in a clear and timely manner.</p>
+</blockquote>
+</li>
+<li>
+<p>Human and Cultural Factors</p>
+<blockquote>
+<p>Consider human behavior, attitudes, and the organization's culture when managing risks.</p>
+</blockquote>
+</li>
+<li>
+<p>Legal and Ethical Framework</p>
+<blockquote>
+<p>Ensure risk management practices adhere to applicable legal and ethical standards.</p>
+</blockquote>
+</li>
+<li>
+<p>Review and Evaluation</p>
+<blockquote>
+<p>Conduct regular reviews and evaluations of the risk management process to assess its performance and make improvements.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>By following these best practices, organizations can create a proactive and structured approach to risk management, leading to better decision-making, reduced negative impacts, and improved overall performance.</p>
+<ul>
+<li>
+<p>Risk Identification</p>
+<blockquote>
+<p>Thoroughly identify and document potential risks that could impact the project, process, or organization.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Assessment</p>
+<blockquote>
+<p>Evaluate each identified risk's likelihood and potential impact to prioritize and focus on the most critical ones.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Mitigation Planning</p>
+<blockquote>
+<p>Develop strategies and action plans to reduce, avoid, or transfer identified risks. Assign responsibilities and timelines for implementation.</p>
+</blockquote>
+</li>
+<li>
+<p>Regular Monitoring</p>
+<blockquote>
+<p>Continuously monitor and track identified risks to ensure that mitigation measures are effective and risks are under control.</p>
+</blockquote>
+</li>
+<li>
+<p>Clear Communication</p>
+<blockquote>
+<p>Maintain open and transparent communication with stakeholders regarding risks, their potential impacts, and the progress of mitigation efforts.</p>
+</blockquote>
+</li>
+<li>
+<p>Cross-functional Involvement</p>
+<blockquote>
+<p>Involve individuals from various disciplines and departments to gain diverse perspectives and expertise in risk management.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Tolerance</p>
+<blockquote>
+<p>Define and communicate the organization's risk tolerance levels to guide decision-making and risk response strategies.</p>
+</blockquote>
+</li>
+<li>
+<p>Scenario Planning</p>
+<blockquote>
+<p>Develop scenarios to understand potential outcomes of different risk situations and plan appropriate responses.</p>
+</blockquote>
+</li>
+<li>
+<p>Regular Review</p>
+<blockquote>
+<p>Periodically review and update risk assessments and mitigation plans to reflect changing circumstances and new information.</p>
+</blockquote>
+</li>
+<li>
+<p>Lessons Learned</p>
+<blockquote>
+<p>Analyze past projects or incidents to identify lessons learned and apply those insights to current and future risk management efforts.</p>
+</blockquote>
+</li>
+<li>
+<p>Data-Driven Approach</p>
+<blockquote>
+<p>Use data and analytics to inform risk assessments, track trends, and make informed decisions.</p>
+</blockquote>
+</li>
+<li>
+<p>Continual Improvement</p>
+<blockquote>
+<p>Continuously refine risk management processes based on experience, feedback, and changing organizational needs.</p>
+</blockquote>
+</li>
+<li>
+<p>Documentation</p>
+<blockquote>
+<p>Maintain comprehensive documentation of risk assessments, mitigation plans, decisions, and outcomes.</p>
+</blockquote>
+</li>
+<li>
+<p>Training and Awareness</p>
+<blockquote>
+<p>Provide training and raise awareness among employees about risk management concepts and practices.</p>
+</blockquote>
+</li>
+<li>
+<p>Crisis Management Plan</p>
+<blockquote>
+<p>Develop a clear and effective crisis management plan to handle severe risks that may escalate into crises.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>Terms provide a foundation for understanding and discussing risk management concepts and practices across different industries and contexts.</p>
+<ul>
+<li>
+<p>Risk</p>
+<blockquote>
+<p>The effect of uncertainty on objectives, often characterized by potential events or situations that may have positive or negative impacts.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Management</p>
+<blockquote>
+<p>The process of identifying, assessing, prioritizing, and mitigating risks to achieve objectives and make informed decisions.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Assessment</p>
+<blockquote>
+<p>The process of evaluating the likelihood and potential impact of identified risks.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Analysis</p>
+<blockquote>
+<p>The detailed examination of risks to understand their causes, consequences, and potential outcomes.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Mitigation</p>
+<blockquote>
+<p>The process of taking actions to reduce the probability or impact of a risk.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Response</p>
+<blockquote>
+<p>The strategy or plan put in place to address a specific risk, which may involve avoiding, accepting, transferring, or mitigating the risk.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Tolerance</p>
+<blockquote>
+<p>The level of risk an organization is willing to accept to achieve its objectives.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Appetite</p>
+<blockquote>
+<p>The amount of risk an organization is willing to take on to achieve its goals and objectives.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Register</p>
+<blockquote>
+<p>A comprehensive list of identified risks, including their descriptions, likelihood, potential impact, and mitigation strategies.</p>
+</blockquote>
+</li>
+<li>
+<p>Scenario Analysis</p>
+<blockquote>
+<p>Exploring different potential outcomes and their implications based on various risk scenarios.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Control</p>
+<blockquote>
+<p>Measures and actions implemented to manage and minimize the impact of risks.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Communication</p>
+<blockquote>
+<p>The process of sharing information about risks, their potential impacts, and mitigation efforts with stakeholders.</p>
+</blockquote>
+</li>
+<li>
+<p>Residual Risk</p>
+<blockquote>
+<p>The level of risk that remains after mitigation efforts have been applied.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Owner</p>
+<blockquote>
+<p>The individual or entity responsible for the management and mitigation of a specific risk.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Indicator</p>
+<blockquote>
+<p>A measurable or observable factor that provides insight into the potential presence or magnitude of a risk.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Response Plan</p>
+<blockquote>
+<p>A documented strategy outlining how a specific risk will be managed, including actions, responsibilities, and timelines.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Matrix</p>
+<blockquote>
+<p>A visual tool used to assess and prioritize risks based on their likelihood and potential impact.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Assessment Framework</p>
+<blockquote>
+<p>A structured approach for conducting risk assessments, often involving guidelines, processes, and tools.</p>
+</blockquote>
+</li>
+<li>
+<p>Contingency Plan</p>
+<blockquote>
+<p>A plan outlining steps to be taken if a specific risk or event occurs, aimed at minimizing negative impacts.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Transfer</p>
+<blockquote>
+<p>The process of shifting the financial burden of a risk to another party, such as through insurance or contracts.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

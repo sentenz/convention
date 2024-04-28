@@ -1,0 +1,1271 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/guides/software-development-guide/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Software Development Guide - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#software-development-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Software Development Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-software-development-life-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Software Development Life Cycle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Software Development Life Cycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-discover" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Discover
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Plan
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. Code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-build-test-and-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.4. Build, Test and Release
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.5. Deploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-operate" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.6. Operate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-observe" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.7. Observe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.8. Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-key-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Key Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2. Key Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-agile" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1. Agile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-xops" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.2. XOps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-continuous-pipelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.3. Continuous Pipelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-software-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4. Software Architecture
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/guides/software-development-guide.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/guides/software-development-guide.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="software-development-guide">Software Development Guide<a class="headerlink" href="#software-development-guide" title="Permanent link">&para;</a></h1>
+<p>Software development refers to the design, documentation, programming, testing, and maintenance of a software deliverable. The combination of these steps are used to create a workflow pipeline, a sequence of stages that when followed produce high-quality software deliverables. This pipeline is known as the Software Development Life Cycle (SDLC).</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-software-development-life-cycle">1.1. Software Development Life Cycle</a><ul>
+<li><a href="#111-discover">1.1.1. Discover</a></li>
+<li><a href="#112-plan">1.1.2. Plan</a></li>
+<li><a href="#113-code">1.1.3. Code</a></li>
+<li><a href="#114-build-test-and-release">1.1.4. Build, Test and Release</a></li>
+<li><a href="#115-deploy">1.1.5. Deploy</a></li>
+<li><a href="#116-operate">1.1.6. Operate</a></li>
+<li><a href="#117-observe">1.1.7. Observe</a></li>
+<li><a href="#118-security">1.1.8. Security</a></li>
+</ul>
+</li>
+<li><a href="#12-key-features">1.2. Key Features</a><ul>
+<li><a href="#121-agile">1.2.1. Agile</a></li>
+<li><a href="#122-xops">1.2.2. XOps</a></li>
+<li><a href="#123-continuous-pipelines">1.2.3. Continuous Pipelines</a></li>
+<li><a href="#124-software-architecture">1.2.4. Software Architecture</a></li>
+</ul>
+</li>
+<li><a href="#2-references">2. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-software-development-life-cycle">1.1. Software Development Life Cycle<a class="headerlink" href="#11-software-development-life-cycle" title="Permanent link">&para;</a></h3>
+<p>The Software Development Life Cycle (SDLC) is a systematic approach to software development that consists of various phases and activities. Each phase has specific goals and deliverables, and it provides a structured framework for managing and controlling the software development process.</p>
+<h4 id="111-discover">1.1.1. Discover<a class="headerlink" href="#111-discover" title="Permanent link">&para;</a></h4>
+<p>Projects are envisioned, designed, and prioritized.</p>
+<p>Features of Discover:</p>
+<ol>
+<li>
+<p><a href="../../articles/software-design-principles/#13-process-principles">Process Principles</a></p>
+<ul>
+<li>
+<p><a href="../../articles/software-design-principles/#133-agile">Agile</a></p>
+</li>
+<li>
+<p><a href="../../articles/software-design-principles/#136-scrum">Scrum</a>
+    &gt; Scrum is an Agile framework for managing and delivering complex projects. It provides a flexible and iterative approach to software development that focuses on delivering value to customers through regular product increments. Scrum promotes collaboration, transparency, and adaptability, allowing teams to respond quickly to changing requirements and market dynamics.</p>
+</li>
+<li>
+<p><a href="../../articles/software-design-principles/#137-extreme-programming">Extreme Programming</a>
+    &gt; Extreme Programming (XP) is an agile methodology that focuses on producing high-quality software through iterative and incremental development. It emphasizes collaboration, customer involvement, and continuous feedback.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/software-analysis/">Software Analysis</a></p>
+<ul>
+<li><a href="../../articles/software-analysis/#111-requirements-analysis">Requirements Analysis</a><blockquote>
+<p>Requirements analysis sets the foundation for the development process, guiding subsequent phases such as design, implementation, and testing. Conducting requirements analysis reduces the risk of scope creep, improves software quality, and delivers a product that meets stakeholder expectations.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/architecture-decision-records/">Architecture Decision Records</a></p>
+<p>Architecture Decision Records (ADR) captures the key options available, the main requirements that drive a decision, and the design decisions themselves.</p>
+</li>
+</ol>
+<h4 id="112-plan">1.1.2. Plan<a class="headerlink" href="#112-plan" title="Permanent link">&para;</a></h4>
+<p>Stakeholders are identified, budgets set, and infrastructure requisitioned. Design documents from the concept phase are broken down into actionable tasks.</p>
+<p>Features of Plan:</p>
+<ol>
+<li>
+<p>Software Architecture Description</p>
+<p>A software architecture description provides an overview and detailed documentation of the architecture of a software system. It describes the structure, components, relationships, and behavior of the software system, enabling developers, architects, and stakeholders to understand and communicate the design decisions and principles underlying the system.</p>
+</li>
+<li>
+<p><a href="../../articles/software-development-environment/">Software Development Environment</a></p>
+<ul>
+<li><a href="../../articles/software-development-environment/#11-development-environment">Development Environment</a><blockquote>
+<p>This environment is used for developing, testing and debugging software applications. It provides the necessary resources for developers to write code and create new features.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Dependency Manager</p>
+<p>Dependency managers automate the process of acquiring, installing and managing the dependencies of a software project. They ensure that the necessary dependencies are available and compatible with each other, eliminating the need to manually download, configure and track external libraries, frameworks, modules or packages.</p>
+</li>
+<li>
+<p>Build System</p>
+<p>A build system is a software tool or framework that automates the process of compiling source code into executable software or other target artifacts. It helps manage the dependencies, configurations, and tasks required to build a software project.</p>
+</li>
+<li>
+<p><a href="../../articles/project-layout/">Project Layout</a></p>
+<p>Project layout refers to the arrangement of files, folders, and other resources within a project. A well-designed project layout can improve the organization, readability, and maintainability of the project's codebase.</p>
+</li>
+<li>
+<p>Software Architectural Patterns</p>
+<ul>
+<li>Component-Driven Development (CDD)<blockquote>
+<p>Component-Driven Development (CDD) is an approach to software development that emphasizes the construction of applications by composing modular, reusable components. It focuses on building and integrating self-contained, loosely coupled components as the primary building blocks of an application.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/branching-strategies/">Branching Strategies</a></p>
+<p>Branching strategies are used in software development team to manage concurrent work and organize code changes within a version control system. They define how developers collaborate on different features, bug fixes, and releases while maintaining stability and minimizing conflicts.</p>
+</li>
+<li>
+<p>Merging Strategies</p>
+<p>Merging strategies are used in a version control system to combine changes into a single cohesive version.</p>
+</li>
+</ol>
+<h4 id="113-code">1.1.3. Code<a class="headerlink" href="#113-code" title="Permanent link">&para;</a></h4>
+<p>Development teams work to build production-ready software that meets requirements and feedback.</p>
+<p>Features of Code:</p>
+<ol>
+<li>
+<p>Coding</p>
+<ul>
+<li>
+<p><a href="../../articles/comment/">Comment</a></p>
+<blockquote>
+<p>Comment styles and tags are used to providing code context and documentation, and annotate code with additional information for improving code quality and maintainability.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/app-resources/">App Resources</a></p>
+<blockquote>
+<p>App resources refer to the various assets and components utilized by an application, such as images, icons, sounds, videos, and other media files, as well as configuration files, database connections, external API endpoints, and managing static strings and magic numbers.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../articles/feature-toggles.md">Feature Toggles</a></p>
+<blockquote>
+<p>Feature toggles are a software development technique that enables developers to turn on and off certain features or functionality of an application or service.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/software-design-principles/">Software Design Principals</a></p>
+<blockquote>
+<p>Software design patterns are general reusable solutions to common software design problems that have been proven effective over time. Design patterns provide a way to organize and structure software code in a way that is easily maintainable, scalable, and extensible.</p>
+</blockquote>
+</li>
+<li>
+<p>Software Design Patterns</p>
+<blockquote>
+<p>Software design patterns are general reusable solutions to common software design problems that have been proven effective over time. Design patterns provide a way to organize and structure software code in a way that is easily maintainable, scalable, and extensible.</p>
+</blockquote>
+</li>
+<li>
+<p>Software Architectural Patterns</p>
+<blockquote>
+<p>Software architectural patterns are high-level design templates or solutions that provide a structured approach for organizing and designing software systems. Architectural patterns offer proven solutions to recurring design problems and help architects and developers build scalable, maintainable, and robust software applications.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/software-testing/">Software Testing</a></p>
+<ul>
+<li>
+<p><a href="../../articles/software-testing/#121-test-driven-development">Test-Driven Development</a></p>
+<blockquote>
+<p>Test-Driven Development (TDD) is a software development approach that emphasizes writing automated tests before writing the actual code. TDD is based on the idea that writing tests first can lead to better code quality, better design, and improved overall software development processes.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/software-testing/#11-testing-patterns">Testing Patterns</a></p>
+<blockquote>
+<p>Testing patterns are reusable techniques to common testing problems that can be used to improve the effectiveness of software testing. They allow to organize and structure test code in a way that is maintainable, scalable, and extensible.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/software-testing/#1314-unit-testing">Unit Testing</a></p>
+<blockquote>
+<p>Unit testing focuses on testing individual components of the software, such as classes or functions, to ensure that they work as expected. This type of testing is performed during the development phase and is an important part of the software development process.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/software-testing/#1315-fuzz-testing">Fuzz Testing</a></p>
+<blockquote>
+<p>Fuzz testing is a type of testing that involves sending random or malformed inputs to the software in an attempt to find defects. It helps identify any security or reliability issues that may occur in the software, and helps ensure that the software is robust and resilient.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/software-testing/#124-test-double">Test Double</a></p>
+<blockquote>
+<p>Test Double is a concept from software testing and is used in the context of writing unit tests. It refers to a type of test-specific object that is used to replace a real component or collaborator within a test scenario. The purpose of using Test Doubles is to isolate the unit being tested from its dependencies or collaborators, ensuring that the test evaluates only the behavior of the unit itself.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/everything-as-code/">Everything as Code (XaC)</a></p>
+<p>Everything as Code (XaC) is a software development philosophy that treats infrastructure as code.</p>
+<ul>
+<li><a href="../../articles/everything-as-code/#11-infrastructure-as-code">Infrastructure-as-Code (IaC)</a></li>
+</ul>
+<p>Infrastructure-as-Code (IaC) involves managing and provisioning infrastructure resources (e.g. virtual machines, networks, storage) through code, rather than using manual processes to configure devices or systems.</p>
+<ul>
+<li>
+<p><a href="../../articles/everything-as-code/#12-configuration-as-code">Configuration-as-Code (CaC)</a></p>
+<blockquote>
+<p>In Configuration-as-Code (CaC) application and system configurations are represented as code, treating application config resources as versioned artifacts to manage and deploy consistent configurations across different environments.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/everything-as-code/#13-documentation-as-code">Documentation-as-Code (DaC)</a></p>
+<blockquote>
+<p>Documentation-as-Code (DaC) involves writing documentation as code, allowing teams to manage documentation in version-controlled repositories and automate documentation generation.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/software-analysis/">Software Analysis</a></p>
+<ul>
+<li>
+<p><a href="../../articles/software-analysis/#112-static-analysis">Static Analysis</a></p>
+<blockquote>
+<p>Static analysis is a software analysis technique that examines software artifacts, such as source code, design documents, or models, without executing the program. It analyzes the structure, syntax, and semantics of the code to identify potential issues, vulnerabilities, and quality concerns. Static analysis helps detect defects, improve code quality, and ensure adherence to coding standards.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/software-analysis/#113-dynamic-analysis">Dynamic Analysis</a></p>
+<blockquote>
+<p>Dynamic analysis is a software analysis technique that involves observing and analyzing the behavior of a software system during its execution. It helps uncover defects, validate functionality, memory leaks, assess performance, and understand system behavior under different conditions.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../convention/conventional-commits/">Conventional Commits</a></p>
+<p>Conventional Commits is a commit message convention that provides a standardized and structured format for commit messages in software development projects. It aims to make commit messages more readable, informative, and useful for both humans and automated tools.</p>
+</li>
+<li>
+<p><a href="../../articles/technical-dept/">Technical Dept</a></p>
+<p>Technical debt refers to the accumulated consequences of shortcuts, suboptimal solutions, and compromises made during the development process of software. Technical debt can lead to increased complexity, reduced maintainability, decreased productivity, and higher costs in the future.</p>
+</li>
+</ol>
+<h4 id="114-build-test-and-release">1.1.4. Build, Test and Release<a class="headerlink" href="#114-build-test-and-release" title="Permanent link">&para;</a></h4>
+<p>A reliable system is resilient to failures and meets its documented service level objectives, which may also include security guarantees. CI/CD pipelines ensure an efficient developer experience.</p>
+<p>Features of Build:</p>
+<ol>
+<li>
+<p><a href="../../articles/continuous-pipelines/">Continuous Pipelines</a></p>
+<ul>
+<li>
+<p><a href="../../articles/continuous-pipelines/#12-continuous-integration">Continuous Integration</a></p>
+<blockquote>
+<p>Continuous Integration (CI) refers to the practice of automating the process of integrating code changes from multiple developers into a single version control repository. This process typically involves building and testing the code changes as soon as they are committed to the repository, and providing feedback to developers on the quality and stability of their changes. The goal of CI is to catch issues early in the development process and promote collaboration among team members.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/continuous-pipelines/#15-continuous-build">Continuous Build</a></p>
+<blockquote>
+<p>Continuous Build refers to the practice of automatically building and compiling software applications and systems, whenever changes are committed to the source code repository. This can involve automating the process of building, compiling, and packaging software, and can help organizations to ensure that software is always up-to-date and ready for deployment. Continuous Build helps to speed up the software development process, reduce errors and inconsistencies, and improve the overall efficiency of software development and deployment.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<p>Features of Test:</p>
+<ol>
+<li>
+<p><a href="../../articles/continuous-pipelines/">Continuous Pipelines</a></p>
+<ul>
+<li><a href="../../articles/continuous-pipelines/#16-continuous-testing">Continuous Testing</a><blockquote>
+<p>Continuous Testing refers to the practice of automating the process of testing code changes throughout the software development lifecycle. This process typically involves the use of test automation tools and scripts that run automatically as code changes are committed, built, and deployed. Continuous Testing helps to ensure that code changes are thoroughly tested and validated before they are released to production, reducing the risk of defects and improving the overall quality of the software.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<p>Features of Release:</p>
+<ol>
+<li>
+<p><a href="../code-review-guide/">Code Review</a></p>
+<p>Code review is used to ensure the overall health of the codebase over time. Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions. Collaborative code review and pull requests that plug into the code review process.</p>
+</li>
+<li>
+<p><a href="../../convention/semantic-versioning/">Semantic Versioning</a></p>
+<p>Semantic Versioning (SemVer) is a versioning scheme for software that aims to convey meaning about the underlying code changes and their impact on compatibility.</p>
+</li>
+<li>
+<p><a href="../../convention/changelog/">Changlog</a></p>
+<p>A changelog is a document or file that tracks and records the changes, updates, and additions made to a software project over time. It serves as a historical record of the project's evolution and provides a summary of the modifications introduced in each version or release.</p>
+</li>
+<li>
+<p><a href="../../articles/continuous-pipelines/">Continuous Pipelines</a></p>
+<ul>
+<li>Continuous Release<blockquote>
+<p>Continuous Release refers to the practice of automating the process of releasing software applications and systems. This can involve automating the process of packaging, deploying, and configuring software, and can help organizations to ensure that software is always up-to-date and ready for deployment. Continuous Release helps to speed up the software development process, reduce errors and inconsistencies, and improve the overall efficiency of software development and deployment.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="115-deploy">1.1.5. Deploy<a class="headerlink" href="#115-deploy" title="Permanent link">&para;</a></h4>
+<p>After the code is approved and merged, it's time to deliver it.</p>
+<p>Features of Deploy:</p>
+<ol>
+<li>
+<p><a href="../../articles/deployment-strategies/">Deployment Strategies</a></p>
+<p>Deployment strategies define  how a running instance of an application should be deployed, modified, or updated.</p>
+</li>
+<li>
+<p><a href="../../articles/software-development-environment/">Software Development Environment</a></p>
+<ul>
+<li><a href="../../articles/software-development-environment/#16-production-environment">Production Environment</a><blockquote>
+<p>The production environment is the live environment where software applications are deployed and made available to the end-users. This environment is monitored closely to ensure the software is functioning correctly and meeting the performance and availability requirements of the business.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/software-analysis/">Software Analysis</a></p>
+<ul>
+<li>
+<p><a href="../../articles/software-analysis/#12-software-composition-analysis">Software Composition Analysis</a></p>
+</li>
+<li>
+<p><a href="../../articles/software-analysis/#124-bill-of-materials-bom">Bill of Materials (BOM)</a>
+    &gt; A Bill of Materials (BOM) is a comprehensive list or inventory of all the materials, components, parts, and sub-assemblies required to manufacture or build a product. It provides detailed information about each item, including its name, quantity, description, and sometimes additional attributes such as part numbers or suppliers. BOMs are commonly used in various industries, including manufacturing, engineering, construction, and software development.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Patch Management</p>
+<p>Patch management refers to the process of planning, testing, deploying, and monitoring updates (or patches) to software applications, operating systems, and other IT systems. Effective patch management helps keep systems secure by addressing vulnerabilities and fixing bugs. It's crucial to regularly update software to protect against cyberattacks and ensure optimal performance.</p>
+</li>
+<li>
+<p><a href="../../articles/continuous-pipelines/">Continuous Pipelines</a></p>
+<ul>
+<li><a href="../../articles/continuous-pipelines/#14-continuous-deployment">Continuous Deployment</a><blockquote>
+<p>Continuous Release refers to the practice of automating the process of releasing software applications and systems. This can involve automating the process of packaging, deploying, and configuring software, and can help organizations to ensure that software is always up-to-date and ready for deployment. Continuous Release helps to speed up the software development process, reduce errors and inconsistencies, and improve the overall efficiency of software development and deployment.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="116-operate">1.1.6. Operate<a class="headerlink" href="#116-operate" title="Permanent link">&para;</a></h4>
+<p>Support and maintenance are required of active software projects to reduce down times.</p>
+<p>Features of Operate:</p>
+<ol>
+<li>
+<p>Issue Management</p>
+<p>Issue management refers to the process of identifying, addressing, and resolving problems or concerns that arise within an organization or project. It involves a systematic approach to effectively handle issues and minimize their impact on operations and outcomes. Issue management is crucial in maintaining the functioning of businesses, projects, and teams.</p>
+</li>
+</ol>
+<h4 id="117-observe">1.1.7. Observe<a class="headerlink" href="#117-observe" title="Permanent link">&para;</a></h4>
+<p>Incident management is when Development and Operations respond to unplanned events and restore services using reliable methods for prioritizing incidents and getting to resolution fast.</p>
+<p>Features of Observe:</p>
+<ol>
+<li>
+<p><a href="../../articles/incident-management/">Incident Management</a></p>
+<p>Incident management is the process of identifying, analyzing, and resolving incidents that occur in a software system. An incident is any event that disrupts or degrades the normal operation of the system, such as a system outage, a performance degradation, or a security breach.</p>
+</li>
+<li>
+<p><a href="../../articles/logging-and-monitoring/">Logging and Monitoring</a></p>
+<p>Logging and monitoring are essential components of modern software systems and infrastructure. They play a crucial role in ensuring the reliability, performance, and security of applications and services.</p>
+</li>
+<li>
+<p><a href="../../articles/software-metric/">Software Metric</a></p>
+<p>Software metric are measurements used to assess various aspects of the software development process, project, or product. They help teams track progress, identify bottlenecks, make informed decisions, and improve overall efficiency and quality.</p>
+<ul>
+<li><a href="../../articles/dora/">DORA</a><blockquote>
+<p>The DORA (DevOps Research and Assessment) metrics are a set of key performance indicators (KPIs) developed by the DevOps Research and Assessment organization. These metrics are designed to assess the performance of software delivery teams and provide insights into the effectiveness of DevOps practices.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="118-security">1.1.8. Security<a class="headerlink" href="#118-security" title="Permanent link">&para;</a></h4>
+<p>Security should be included throughout the Software Development Life Cycle (SDLC) in order to minimize vulnerabilities in software code.</p>
+<ol>
+<li>
+<p><a href="../../articles/cryptography/">Cryptography</a></p>
+<p>Cryptography is the practice of securing communication from third-party interference, where third-party is anyone who is not authorized to access the communication. Cryptography uses mathematical algorithms to convert the original message, known as plaintext, into an unreadable format called ciphertext.</p>
+<ul>
+<li><a href="../../articles/cryptography/#131-password-hashing-algorithms">Password Hashing Algorithms</a><blockquote>
+<p>Password hashing algorithms are a specific type of hash function that are designed to store and verify passwords securely. Passwords are often the first line of defense in protecting user accounts and sensitive information, so it is important to store them securely.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/risk-management/">Risk Management</a></p>
+<p>Risk management involves identifying, assessing, and mitigating potential risks that could impact the success of a software project. It includes steps like risk identification, analysis, prioritization, and implementing strategies to minimize or address those risks. Effective risk management helps ensure the project stays on track and delivers the desired outcomes.</p>
+<ul>
+<li>
+<p>ISO 31000</p>
+<blockquote>
+<p>Provides principles and guidelines for effective risk management practices that can be applied to any type of organization and industry.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../convention/iec-62443/">IEC 62443</a></p>
+<blockquote>
+<p>IEC 62443 is a series of international standards developed by the International Electrotechnical Commission (IEC) that provides a framework for implementing cybersecurity in industrial automation and control systems (IACS). The series comprises of several parts, each of which addresses a specific aspect of IACS cybersecurity.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/identity-and-access-management/">Identity and Access Management (IAM)</a></p>
+<p>Identity and Access Management (IAM) is primarily concerned with the authentication and authorization of the user in the network, i.e. with establishing the identity of the user and the associated access rights that the user has in the network, applications and systems.</p>
+</li>
+<li>
+<p><a href="../../articles/software-analysis/">Software Analysis</a></p>
+<ul>
+<li>
+<p><a href="../../articles/software-analysis/#114-security-analysis">Security Analysis</a></p>
+<blockquote>
+<p>Security analysis is a software analysis technique focused on assessing the security posture of a software system. It involves identifying vulnerabilities, weaknesses, and potential risks in the software design, implementation, configuration, and deployment. The objective of security analysis is to uncover security flaws and recommend mitigations to protect the system against unauthorized access, data breaches, and malicious attacks.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="../../articles/software-analysis/#12-software-composition-analysis">Software Composition Analysis</a></p>
+<blockquote>
+<p>Software Composition Analysis (SCA) is a software analysis technique that focuses on identifying, analyzing and managing the composition of third-party and open-source software components used in a software system.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="../../articles/continuous-pipelines/">Continuous Pipelines</a></p>
+<ul>
+<li><a href="../../articles/continuous-pipelines/#111-continuous-security">Continuous Security</a><blockquote>
+<p>Continuous Security refers to the practice of integrating security into the software development lifecycle, and continuously monitoring and verifying the security of applications and systems. This can involve automated security testing, security scans, and regular security audits, and helps organizations to identify and remediate security vulnerabilities before they can be exploited.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="12-key-features">1.2. Key Features<a class="headerlink" href="#12-key-features" title="Permanent link">&para;</a></h3>
+<p>Key features of effective software development.</p>
+<h4 id="121-agile">1.2.1. Agile<a class="headerlink" href="#121-agile" title="Permanent link">&para;</a></h4>
+<p><a href="../articles/agile.md">Agile</a> is an iterative approach to project management and software development that helps teams deliver value to their customers faster and with fewer headaches. Agile methodologies empower teams to be inherently flexible, well-organized, and capable of responding to change.</p>
+<h4 id="122-xops">1.2.2. XOps<a class="headerlink" href="#122-xops" title="Permanent link">&para;</a></h4>
+<p><a href="../../articles/xops/">XOps</a> is a set of principles and practices, tools, and a cultural philosophy that automate and integrate the processes of software development. XOps, an umbrella term used for a combination of IT tech like DevOps, DevSecOps, AIOps, MLOps, GitOps, and BizDevOps. XOps supposedly helps to shorten a system development cycles and provides continuous delivery with high software quality. It focuses team empowerment, cross-team communication and collaboration, and technology automation.</p>
+<h4 id="123-continuous-pipelines">1.2.3. Continuous Pipelines<a class="headerlink" href="#123-continuous-pipelines" title="Permanent link">&para;</a></h4>
+<p><a href="../../articles/continuous-pipelines/">Continuous Pipelines</a> describes the key stages in an automated software development and deployment flow. This flow typically includes design, coding, validation, testing, integration, delivery and phased deployment activities orchestrated as a release workflow before operation in a target/production environment.</p>
+<h4 id="124-software-architecture">1.2.4. Software Architecture<a class="headerlink" href="#124-software-architecture" title="Permanent link">&para;</a></h4>
+<p>Software Architectural Patterns are high-level design templates or solutions that provide a structured approach for organizing and designing software systems. Architectural patterns offer proven solutions to recurring design problems and help architects and developers build scalable, maintainable, and robust software applications.</p>
+<h2 id="2-references">2. References<a class="headerlink" href="#2-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Atlassian <a href="https://www.atlassian.com/software-development">software development</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1611 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/logging-and-monitoring/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Logging and Monitoring - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#logging-and-monitoring" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Logging and Monitoring
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Logging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Logging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-log-entries" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Log Entries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-log-sources" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Log Sources
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-log-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. Log Levels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-log-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.4. Log Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Monitoring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2. Monitoring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1. Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-alerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.2. Alerting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.3. Dashboards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-proactive-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4. Proactive Analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/logging-and-monitoring.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/logging-and-monitoring.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="logging-and-monitoring">Logging and Monitoring<a class="headerlink" href="#logging-and-monitoring" title="Permanent link">&para;</a></h1>
+<p>Logging and monitoring are essential components of modern software systems and infrastructure. They play a crucial role in ensuring the reliability, performance, and security of applications and services.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-logging">1.1. Logging</a><ul>
+<li><a href="#111-log-entries">1.1.1. Log Entries</a></li>
+<li><a href="#112-log-sources">1.1.2. Log Sources</a></li>
+<li><a href="#113-log-levels">1.1.3. Log Levels</a></li>
+<li><a href="#114-log-management">1.1.4. Log Management</a></li>
+</ul>
+</li>
+<li><a href="#12-monitoring">1.2. Monitoring</a><ul>
+<li><a href="#121-metrics">1.2.1. Metrics</a></li>
+<li><a href="#122-alerting">1.2.2. Alerting</a></li>
+<li><a href="#123-dashboards">1.2.3. Dashboards</a></li>
+<li><a href="#124-proactive-analysis">1.2.4. Proactive Analysis</a></li>
+</ul>
+</li>
+<li><a href="#2-principles">2. Principles</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+<li><a href="#5-references">5. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>Effective logging and monitoring practices are crucial for system observability, troubleshooting, and maintaining service levels. They enable organizations to identify and resolve issues quickly, optimize system performance, and ensure the health and reliability of their software systems.</p>
+<h3 id="11-logging">1.1. Logging<a class="headerlink" href="#11-logging" title="Permanent link">&para;</a></h3>
+<p>Logging involves the process of recording events, activities, or messages generated by a system or application. These logs serve as a historical record that can be used for troubleshooting, auditing, and analysis.</p>
+<h4 id="111-log-entries">1.1.1. Log Entries<a class="headerlink" href="#111-log-entries" title="Permanent link">&para;</a></h4>
+<p>Log entries (log events or log records) are individual, structured messages in a log file that capture specific events or activities that occur within a system, application, or infrastructure component. Log entries provide a detailed record of these events, often including relevant information such as timestamps, log levels, source details, and message content.</p>
+<p>Log entries are crucial for monitoring system behavior, troubleshooting issues, and gaining insights into the health and performance of a system. Analyzing log entries collectively helps identify patterns, detect anomalies, track user actions, understand system flow, and identify areas for improvement or optimization.</p>
+<p>Features of Log Entries:</p>
+<ol>
+<li>
+<p>Timestamp</p>
+<p>Each log entry includes a timestamp that indicates the date and time when the event occurred. The timestamp helps in understanding the sequence of events and is valuable for troubleshooting and analysis.</p>
+</li>
+<li>
+<p>Log Level</p>
+<p>Log entries typically have a log level associated with them, indicating the severity or importance of the logged event. Common log levels include <code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>, and <code>CRITICAL</code>. Log levels help filter and prioritize log entries based on their significance.</p>
+</li>
+<li>
+<p>Source or Origin</p>
+<p>Log entries include information about the source or origin of the event. This can be the name or identifier of the application, system, or component that generated the log entry. Source information is helpful in identifying the specific part of the system where an event occurred.</p>
+</li>
+<li>
+<p>Message Content</p>
+<p>The message content of a log entry contains the details or description of the event or activity. It may include relevant information such as error messages, status updates, diagnostic information, user actions, or other contextual data. The message content provides important insights into the event and aids in troubleshooting and analysis.</p>
+</li>
+<li>
+<p>Contextual Information</p>
+<p>Log entries often include additional contextual information that helps understand the circumstances surrounding the event. This can include data like request parameters, user IDs, session IDs, transaction IDs, IP addresses, or any other relevant information that provides context and aids in root cause analysis.</p>
+</li>
+<li>
+<p>Log Format</p>
+<p>Log entries follow a specific format that defines the structure and content of each entry. The format may vary depending on the logging framework or library used and can include placeholders or variables that get replaced with actual values at runtime.</p>
+</li>
+<li>
+<p>Log Storage</p>
+<p>Log entries are stored in log files or log databases for future reference and analysis. The log storage system collects and organizes log entries based on criteria such as time, source, log level, or other relevant attributes. The storage system should be designed to efficiently handle the volume of log data and support easy retrieval and searching.</p>
+</li>
+</ol>
+<p>Example of Log Entries:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application Server</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Successfully processed request for user ID 12345.</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nt">Context: Request URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/api/v1/users/12345</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">IP Address</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.100</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">User-Agent</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36</span>
+</span></code></pre></div>
+<p>In the example, the log entry provides the following details:</p>
+<ul>
+<li>
+<p>Timestamp</p>
+<blockquote>
+<p>The event occurred on June 6, 2023, at 14:30:45.</p>
+</blockquote>
+</li>
+<li>
+<p>Log Level</p>
+<blockquote>
+<p>The log entry has an INFO level, indicating that it represents an informational event.</p>
+</blockquote>
+</li>
+<li>
+<p>Source</p>
+<blockquote>
+<p>The log entry originated from an Application Server.</p>
+</blockquote>
+</li>
+<li>
+<p>Message</p>
+<blockquote>
+<p>The log entry states that a request for user ID 12345 was successfully processed.</p>
+</blockquote>
+</li>
+<li>
+<p>Context</p>
+<blockquote>
+<p>Additional contextual information is provided, including the Request URL (<code>/api/v1/users/12345</code>), the IP address of the client (<code>192.168.0.100</code>), and the User-Agent string of the client's browser.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="112-log-sources">1.1.2. Log Sources<a class="headerlink" href="#112-log-sources" title="Permanent link">&para;</a></h4>
+<p>Log sources refer to the systems, applications, or infrastructure components that generate log entries. These sources produce logs as a means of capturing and recording events, activities, errors, and other relevant information. Each source may have its own logging mechanism and format.</p>
+<p>Managing and analyzing logs from diverse sources is important for maintaining system health, detecting issues, troubleshooting problems, and gaining insights into the behavior of complex systems.</p>
+<p>Common Log Sources:</p>
+<ol>
+<li>
+<p>Application Logs</p>
+<p>Applications generate logs to record events and activities within their codebase. Application logs can capture information about user actions, errors, warnings, performance metrics, API requests and responses, database interactions, and more.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Online Marketplace Application</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User with ID 12345 added item &quot;iPhone X&quot; to the shopping cart.</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">Context: Session ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ABCD1234</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">IP Address</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.100</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Server Logs</p>
+<p>Servers, such as web servers or application servers, produce logs that document various aspects of their operation. Server logs can include details about incoming requests, response codes, server errors, resource consumption, security events, and access control information.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Apache Web Server</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GET /products/12345 HTTP/1.1 200 OK</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">Context: Client IP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.100</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">User-Agent</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Network Device Logs</p>
+<p>Network devices, including routers, switches, firewalls, and load balancers, generate logs that provide insights into network traffic, connectivity issues, security events, and device performance. Network device logs are crucial for monitoring and troubleshooting network infrastructure.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CRITICAL</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Firewall</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Blocked incoming connection attempt from IP address 123.456.789.123 to port 22 (SSH).</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nt">Context: Protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Destination Port</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">22</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Source IP</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123.456.789.123</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Operating System Logs</p>
+<p>Operating systems generate logs that track system-level events and activities. These logs can include information about system startup and shutdown, hardware failures, driver issues, security events, resource utilization, and process-level activities.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WARNING</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linux Server</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disk space utilization exceeded 90% on /var partition.</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nt">Context: Filesystem</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Utilization</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">92%</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Database Logs</p>
+<p>Databases produce logs that record transactions, queries, errors, and other database-related events. Database logs are critical for tracking database performance, identifying slow queries, diagnosing issues, and ensuring data integrity.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MySQL Database</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nt">Message: Executed query</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SELECT * FROM users WHERE user_id = 12345</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nt">Context: Execution Time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.215 seconds</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Rows Returned</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Security Logs</p>
+<p>Security logs, including logs from intrusion detection systems (IDS), intrusion prevention systems (IPS), firewalls, and security information and event management (SIEM) systems, capture security-related events and alerts. These logs help monitor potential security breaches, identify malicious activities, and investigate incidents.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CRITICAL</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Intrusion Detection System (IDS)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Detected a possible SQL injection attempt on web application.</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nt">Context: Source IP</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123.456.789.123</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Target URL</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/products/12345?name=&#39; OR &#39;1&#39;=&#39;1</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Application Performance Monitoring (APM) Logs</p>
+<p>APM tools generate logs that focus on application performance metrics and monitoring. APM logs provide detailed insights into application behavior, transaction traces, response times, code-level performance, and resource utilization.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">APM Tool</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nt">Message: Transaction completed successfully. Transaction ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ABC123DEF</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nt">Context: Response Time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123 ms</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">CPU Utilization</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30%</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Memory Utilization</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">512 MB</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Cloud Service Logs</p>
+<p>Cloud service providers offer logs specific to their platforms and services. These logs can include information about virtual machines, container instances, cloud storage, serverless functions, and other cloud-based resources. Cloud service logs are essential for monitoring, auditing, and troubleshooting applications hosted in the cloud.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AWS Lambda Function</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nt">Message: Function execution completed. Request ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1234567890</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nt">Context: Duration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">250 ms</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Memory Allocated</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128 MB</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Infrastructure Logs</p>
+<p>Infrastructure components like load balancers, caching servers, messaging systems, and container orchestrators generate logs that help monitor and manage the underlying infrastructure. These logs provide insights into resource allocation, scaling events, service discovery, container lifecycle, and more.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Kubernetes Cluster</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Scaled up application deployment &quot;web-app&quot; replicas.</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nt">Context: Namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Replica Count</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>Middleware and Framework Logs</p>
+<p>Middleware software, such as message queues, caching systems, and application frameworks, generate logs specific to their functionality. These logs capture information about middleware operations, event processing, message queues, cache hits/misses, and framework-level events.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ERROR</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RabbitMQ Message Queue</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Message lost from queue &quot;orders&quot; for processing.</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nt">Context: ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3454353</span>
+</span></code></pre></div>
+</li>
+</ol>
+<h4 id="113-log-levels">1.1.3. Log Levels<a class="headerlink" href="#113-log-levels" title="Permanent link">&para;</a></h4>
+<p>Log levels are used to classify the severity or importance of log entries. They provide a standardized way to categorize log messages based on their significance, allowing developers and system administrators to filter and prioritize logs during analysis and troubleshooting.</p>
+<p>The specific log levels and their interpretation may vary across logging frameworks, libraries, or programming languages. It's important to define and adhere to a consistent log level strategy within an application or system to ensure logs are appropriately classified, enabling effective log analysis and troubleshooting.</p>
+<p>Common Log Levels:</p>
+<blockquote>
+<p>NOTE Listed in increasing order of severity.</p>
+</blockquote>
+<ol>
+<li>
+<p>DEBUG</p>
+<p>The DEBUG log level is used for detailed debugging information. It provides granular information about the application's internal operations, variable values, and execution paths. DEBUG-level logs are typically used during development and are not intended for production environments.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Online Marketplace Application</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calculate the shopping cart of the user with ID 12345.</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nt">Context: Function</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculatePrice()</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Product ID</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12345</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>INFO</p>
+<p>The INFO log level represents informational messages that indicate the normal operation of an application. INFO-level logs provide important status updates, such as successful operations, major milestones, or significant events. They help track the overall flow and progress of the application.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">INFO</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Online Marketplace Application</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User logged in successfully.</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nt">Context: User ID</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">98765</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">IP Address</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.0.100</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>WARNING</p>
+<p>The WARNING log level indicates potentially harmful or unexpected events that may cause issues but do not necessarily result in errors. These logs highlight abnormal or non-critical conditions that require attention. Examples include deprecated features, configuration issues, or potential performance bottlenecks.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">WARNING</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Online Marketplace Application</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deprecated feature is being used.</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nt">Context: Deprecated Method</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculatePrice()</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Upgraded Method</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">getPrice()</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>ERROR</p>
+<p>The ERROR log level signifies errors or exceptions that occur during the execution of an application. These logs represent problems that prevent the application from functioning correctly or as expected. Error-level logs are important for troubleshooting and identifying issues that need immediate attention.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ERROR</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MySQL Database</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Database connection failed. Unable to establish a connection to the database server.</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nt">Context: Database URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jdbc:mysql://localhost:3306/mydb</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Retry Attempts</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>CRITICAL</p>
+<p>The CRITICAL log level indicates severe errors or failures that result in application instability or significant loss of functionality. These logs represent critical issues that require immediate intervention to prevent system crashes, data corruption, or major disruptions. CRITICAL-level logs often trigger alerts or notifications for urgent action.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CRITICAL</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Linux Server</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Insufficient disk space.</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="nt">Context: Disk Space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10%</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Partition</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/logs</span>
+</span></code></pre></div>
+</li>
+<li>
+<p>FATAL</p>
+<p>The FATAL log level represents the most severe and unrecoverable errors. It indicates situations where the application cannot continue its normal execution and must terminate abruptly. FATAL-level logs are typically used in exceptional cases where the application's core functionality is compromised, leading to system failures.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nt">Timestamp</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2023-06-06 14:30:45</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nt">Log Level</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FATAL</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nt">Source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Online Marketplace Application</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nt">Message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Application encountered an unrecoverable error. Terminating execution.</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nt">Context: Error Code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">         </span><span class="l l-Scalar l-Scalar-Plain">Error Message</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Internal Server Error</span>
+</span></code></pre></div>
+</li>
+</ol>
+<h4 id="114-log-management">1.1.4. Log Management<a class="headerlink" href="#114-log-management" title="Permanent link">&para;</a></h4>
+<p>Log management refers to the process of collecting, storing, analyzing, and acting upon log data generated by various systems and applications within an organization. It involves implementing strategies, tools, and best practices to effectively manage and utilize log information for operational insights, troubleshooting, compliance, and security purposes.</p>
+<p>Effective log management provides organizations with valuable insights into their systems, helps in identifying and resolving issues, enables proactive monitoring, enhances security incident response, and supports compliance requirements. It is an essential component of a comprehensive IT infrastructure management strategy.</p>
+<p>Centralized log management solutions, such as Elasticsearch, Splunk, or ELK stack (Elasticsearch, Logstash, and Kibana), are commonly used to aggregate and process logs from multiple sources.</p>
+<p>Features of Log Management:</p>
+<ol>
+<li>
+<p>Log Collection</p>
+<p>Log collection involves gathering log data from different sources, such as applications, servers, network devices, databases, and security systems. This can be achieved through various methods, including log file ingestion, log streaming, log agent-based collection, or leveraging centralized log management solutions.</p>
+<p>An organization utilizes log collection agents installed on servers and applications to collect log data. These agents send logs to a centralized log management system.</p>
+</li>
+<li>
+<p>Log Storage</p>
+<p>Log storage is the process of storing log data in a centralized repository or distributed storage systems. Log storage should be designed to handle large volumes of logs efficiently and securely. It may involve using technologies like log databases, log file systems, or cloud-based storage solutions.</p>
+</li>
+<li>
+<p>Log Retention</p>
+<p>Log retention defines the duration for which log data is stored. Retention periods may vary based on legal requirements, compliance regulations, business needs, or security considerations. Organizations should establish log retention policies to ensure they retain logs for an appropriate duration.</p>
+</li>
+<li>
+<p>Log Analysis</p>
+<p>Log analysis involves parsing, searching, and analyzing log data to gain insights into system behavior, performance, security incidents, and operational issues. It may include real-time log monitoring, log aggregation, log correlation, and applying various analysis techniques to identify patterns, anomalies, or trends.</p>
+<p>The log management system performs real-time log analysis, using tools like Splunk or ELK (Elasticsearch, Logstash, Kibana). It parses and indexes log data, allowing for advanced searching, filtering, and correlation of logs across multiple sources.</p>
+</li>
+<li>
+<p>Log Visualization</p>
+<p>Log visualization helps in presenting log data in a more understandable and interactive format. Visualization tools can create charts, graphs, dashboards, and reports that provide a visual representation of log data, aiding in easier interpretation, monitoring, and analysis.</p>
+<p>The log management system generates interactive dashboards and visualizations using Kibana or Grafana. These visualizations provide insights into system performance, error rates, and security events, enabling easy monitoring and analysis.</p>
+</li>
+<li>
+<p>Log Alerting</p>
+<p>Log alerting allows organizations to set up notifications or alerts based on specific log events or conditions. It enables timely notifications of critical events, errors, security breaches, or abnormal behavior. Log alerting helps in proactive monitoring and immediate response to critical incidents.</p>
+</li>
+<li>
+<p>Log Compliance and Audit</p>
+<p>Log management plays a crucial role in meeting compliance requirements and facilitating audits. Logs can be used to demonstrate adherence to regulatory standards, track user activities, maintain data integrity, and provide evidence in case of security incidents or legal investigations.</p>
+<p>The log management system ensures compliance with industry regulations such as <code>PCI-DSS</code> or <code>HIPAA</code> by collecting and retaining logs in a tamper-evident manner. Logs are available for audits and can be easily searched and retrieved when required.</p>
+</li>
+<li>
+<p>Log Security</p>
+<p>Log data itself is sensitive and needs to be protected. Implementing log security measures, such as log encryption, access controls, and secure transmission protocols, helps ensure the confidentiality, integrity, and availability of log data.</p>
+</li>
+<li>
+<p>Log Archiving</p>
+<p>Log archiving involves moving older or less frequently accessed log data to long-term storage or offline backups. Archiving helps optimize storage resources and enables retrieval of historical log data when required for compliance, forensic analysis, or trend analysis.</p>
+</li>
+<li>
+<p>Log Governance</p>
+<p>Log governance encompasses defining policies, standards, and processes for log management within an organization. It includes roles and responsibilities, log management guidelines, and procedures for log collection, retention, analysis, and access control.</p>
+</li>
+</ol>
+<h3 id="12-monitoring">1.2. Monitoring<a class="headerlink" href="#12-monitoring" title="Permanent link">&para;</a></h3>
+<p>Monitoring involves the continuous observation and measurement of various aspects of a system's performance, availability, and health. It provides real-time insights into the system's behavior and helps detect issues and anomalies.</p>
+<h4 id="121-metrics">1.2.1. Metrics<a class="headerlink" href="#121-metrics" title="Permanent link">&para;</a></h4>
+<p>Metrics are quantitative measurements used to track and analyze the performance, behavior, and health of systems, applications, or processes. They provide valuable insights into various aspects of a system's operation and help monitor key indicators to understand its overall state. Metrics help organizations to optimize their operations, troubleshoot issues, and drive continuous improvement.</p>
+<p>Features of Metrics:</p>
+<ol>
+<li>
+<p>Types of Metrics</p>
+<p>Metrics can be broadly classified into several categories:</p>
+<ul>
+<li>
+<p>System Metrics</p>
+<blockquote>
+<p>These metrics provide information about the underlying hardware and infrastructure, such as CPU usage, memory consumption, disk I/O, and network traffic.</p>
+</blockquote>
+</li>
+<li>
+<p>Application Metrics</p>
+<blockquote>
+<p>These metrics focus on the behavior and performance of the application itself. Examples include response time, throughput, error rates, and resource utilization.</p>
+</blockquote>
+</li>
+<li>
+<p>Business Metrics</p>
+<blockquote>
+<p>Business metrics measure the impact of the system or application on business goals and objectives. They can include conversion rates, revenue, customer satisfaction scores, or any other metric directly tied to business performance.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Metric Collection</p>
+<p>Metrics are collected through instrumentation, which involves adding code or using specialized tools to capture and record relevant data points. This data is typically aggregated over time intervals and stored in a time-series database or monitoring system.</p>
+</li>
+<li>
+<p>Metric Visualization</p>
+<p>Metrics are often visualized using charts, graphs, dashboards, or other visual representations. Visualization tools like Grafana or Kibana help present the collected metrics in an easily understandable format, enabling users to monitor trends, identify anomalies, and make informed decisions.</p>
+</li>
+<li>
+<p>Metric Analysis</p>
+<p>Metrics can be analyzed to gain insights into system behavior and performance. Analysis techniques may involve identifying patterns, comparing historical data, setting thresholds for alerting, and detecting correlations between different metrics.</p>
+</li>
+<li>
+<p>Alerting</p>
+<p>Metrics can trigger alerts based on predefined thresholds or conditions. Alerting mechanisms notify system administrators or other stakeholders when a metric value exceeds or falls below a certain threshold, indicating a potential issue or abnormal behavior.</p>
+</li>
+<li>
+<p>Metric Retention</p>
+<p>Metrics are typically stored and retained for a defined period, allowing historical analysis and trend identification. Retention policies determine how long metrics are retained, considering factors such as storage capacity, compliance requirements, and analysis needs.</p>
+</li>
+<li>
+<p>Metric Exporting</p>
+<p>Metrics can be exported to external systems or tools for further analysis, long-term storage, or integration with other monitoring platforms. Common export formats include Prometheus exposition format, JSON, or CSV.</p>
+</li>
+<li>
+<p>Metric Standardization</p>
+<p>Establishing consistent metric naming conventions, units, and formats across systems and applications improves interoperability and simplifies metric analysis and visualization.</p>
+</li>
+<li>
+<p>Metric Aggregation</p>
+<p>Metrics are often aggregated to provide higher-level summaries or composite metrics. Aggregation techniques include averaging, summing, min/max values, percentiles, or other statistical calculations.</p>
+</li>
+<li>
+<p>Metric-driven Decision Making</p>
+<p>Metrics play a crucial role in data-driven decision making. By analyzing metrics, organizations can identify performance bottlenecks, optimize resource allocation, detect anomalies, and make informed decisions to improve system efficiency, user experience, and overall business outcomes.</p>
+</li>
+</ol>
+<h4 id="122-alerting">1.2.2. Alerting<a class="headerlink" href="#122-alerting" title="Permanent link">&para;</a></h4>
+<p>Alerting is a crucial component of monitoring systems and plays a vital role in notifying system administrators or other stakeholders about potential issues or abnormal conditions that require attention. It helps ensure timely response and remediation actions, minimizing downtime and maintaining the health and availability of systems.</p>
+<p>Alerting enables proactive monitoring and quick response to abnormal conditions, helping organizations identify and address issues promptly. By configuring effective alert rules, defining appropriate notification channels, and establishing escalation policies, organizations can maintain system availability, minimize downtime, and provide efficient incident response.</p>
+<p>Features of Alerting:</p>
+<ol>
+<li>
+<p>Alert Rules</p>
+<p>Alert rules define the conditions or thresholds that trigger an alert. These rules are based on specific metrics, events, or log entries. For example, an alert rule could be defined to trigger when CPU usage exceeds 90% for a sustained period.</p>
+</li>
+<li>
+<p>Alert Conditions</p>
+<p>Alert conditions specify the criteria for triggering an alert. They can involve comparisons, aggregations, or complex conditions based on multiple metrics or events. For example, an alert condition may be triggered when the average response time exceeds a certain threshold and the number of errors exceeds a specified limit.</p>
+</li>
+<li>
+<p>Notification Channels</p>
+<p>Notification channels determine how alerts are delivered to the intended recipients. Common notification channels include email, SMS, instant messaging platforms, or integrations with incident management tools like PagerDuty or Slack. Multiple channels can be configured to ensure alerts reach the right people through their preferred communication channels.</p>
+</li>
+<li>
+<p>Severity Levels</p>
+<p>Alerts often have different severity levels assigned to them, indicating the urgency or impact of the issue. Severity levels help prioritize alerts and determine the appropriate response time. For example, a critical severity level may require an immediate response, while a low severity level may allow for a delayed response.</p>
+<p>Common Severity Levels:</p>
+<ul>
+<li>
+<p>Critical</p>
+<blockquote>
+<p>Represents the highest level of severity. Critical issues indicate a complete system failure, major service outage, or a critical security breach that requires immediate attention. The impact is severe, resulting in significant disruption or loss of functionality.</p>
+</blockquote>
+</li>
+<li>
+<p>High</p>
+<blockquote>
+<p>Indicates a major issue that has a significant impact on the system or service. High severity issues may cause service degradation, affect multiple users, or result in a loss of critical functionality. Urgent action is required to mitigate the impact.</p>
+</blockquote>
+</li>
+<li>
+<p>Medium</p>
+<blockquote>
+<p>Denotes an issue that has a moderate impact on the system or service. Medium severity issues may cause some disruption or affect a limited number of users. While they are not as critical as high severity issues, they still require attention and timely resolution.</p>
+</blockquote>
+</li>
+<li>
+<p>Low</p>
+<blockquote>
+<p>Represents a minor issue with a minimal impact on the system or service. Low severity issues may be cosmetic, have limited functionality impact, or affect only a few users. They can be addressed during regular maintenance cycles or addressed at a lower priority.</p>
+</blockquote>
+</li>
+<li>
+<p>Informational</p>
+<blockquote>
+<p>This level is used for informational messages, notifications, or events that do not require immediate action. They provide additional context or non-urgent updates and are not considered as issues or incidents.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Escalation Policies</p>
+<p>Escalation policies define a sequence of actions or steps to be followed when an alert is triggered. This can involve escalating the alert to different individuals or teams based on predefined rules or time-based escalations. Escalation policies ensure that alerts are not overlooked and that the appropriate parties are notified in a timely manner.</p>
+</li>
+<li>
+<p>Alert Suppression</p>
+<p>Alert suppression allows for the temporary suppression of alerts during planned maintenance activities or known periods of high load or instability. This helps prevent unnecessary noise and alert fatigue when certain conditions are expected and can be safely ignored.</p>
+</li>
+<li>
+<p>Alert Deduplication</p>
+<p>Alert deduplication ensures that only unique and actionable alerts are delivered, even if multiple instances of the same issue occur within a short period. This prevents overwhelming recipients with duplicate alerts and focuses on the underlying root cause.</p>
+</li>
+<li>
+<p>Alert History and Tracking</p>
+<p>A system should maintain a history of triggered alerts, including relevant details such as timestamps, alert rules, and the actions taken. This history allows for post-incident analysis, troubleshooting, and tracking of the alert lifecycle.</p>
+</li>
+<li>
+<p>Integration with Monitoring Systems</p>
+<p>Alerting is typically integrated with monitoring systems or tools that collect and analyze metrics, logs, or events. These systems continuously evaluate data against defined alert rules and trigger notifications when conditions are met.</p>
+</li>
+<li>
+<p>Testing and Maintenance</p>
+<p>Regular testing and maintenance of alerting systems are essential to ensure they are functioning correctly. This involves verifying alerting configurations, reviewing escalation policies, and performing periodic tests to validate that alerts are being triggered and delivered as expected.</p>
+</li>
+</ol>
+<h4 id="123-dashboards">1.2.3. Dashboards<a class="headerlink" href="#123-dashboards" title="Permanent link">&para;</a></h4>
+<p>Dashboards are powerful tools for data visualization and analysis, enabling users to monitor and understand system performance, track metrics, and make informed decisions. By presenting data in a visually appealing and accessible format, dashboards facilitate effective communication and enable stakeholders to stay informed about the health and status of systems or applications, and track key performance indicators (KPIs).</p>
+<p>Features of Dashboards:</p>
+<ol>
+<li>
+<p>Data Visualization</p>
+<p>Dashboards use charts, graphs, tables, and other visual elements to present data in a visually appealing and informative manner. Common visualizations include line charts, bar charts, pie charts, gauges, heatmaps, and tables.</p>
+</li>
+<li>
+<p>Customization</p>
+<p>Dashboards can be customized based on the specific needs of users or organizations. Users can choose which metrics or data points to display, how they are organized, and the visualizations used. Customization options often include resizing, rearranging, and adding or removing elements.</p>
+</li>
+<li>
+<p>Real-time or Historical Data</p>
+<p>Dashboards can display real-time data, continuously updating metrics and indicators as new data is received. They can also show historical data, allowing users to analyze trends and patterns over time.</p>
+</li>
+<li>
+<p>Aggregated and Drill-down Views</p>
+<p>Dashboards can provide both high-level aggregated views and drill-down capabilities for more detailed analysis. Users can start with an overview of the system or application and then drill down into specific metrics or components to gain deeper insights.</p>
+</li>
+<li>
+<p>Multiple Data Sources</p>
+<p>Dashboards can pull data from various sources, including monitoring systems, databases, APIs, log files, and external services. This allows for comprehensive monitoring and analysis by consolidating data from different sources into a single view.</p>
+</li>
+<li>
+<p>Alerts and Notifications</p>
+<p>Dashboards often include alerting capabilities, displaying alerts or notifications when predefined thresholds or conditions are met. This helps users quickly identify and respond to critical events or anomalies.</p>
+</li>
+<li>
+<p>Dashboard Sharing and Collaboration</p>
+<p>Dashboards can be shared with team members or stakeholders, enabling collaboration and facilitating a common understanding of system performance and metrics. Sharing options may include exporting or embedding dashboards in other platforms or granting access to specific users or user groups.</p>
+</li>
+<li>
+<p>Mobile and Responsive Design</p>
+<p>Dashboards are often designed to be mobile-friendly and responsive, allowing users to access and view them on different devices such as smartphones or tablets. Responsive design ensures optimal viewing and usability across various screen sizes.</p>
+</li>
+<li>
+<p>Data Driven Decision Making</p>
+<p>Dashboards empower users to make data-driven decisions by providing real-time or historical insights into the performance, trends, and anomalies of systems or applications. They help identify issues, track key performance indicators, and optimize operations.</p>
+</li>
+<li>
+<p>Continuous Improvement</p>
+<p>Dashboards can be iteratively improved based on user feedback, changing requirements, or evolving business needs. Regular evaluation and refinement ensure that dashboards remain relevant, effective, and aligned with organizational goals.</p>
+</li>
+</ol>
+<h4 id="124-proactive-analysis">1.2.4. Proactive Analysis<a class="headerlink" href="#124-proactive-analysis" title="Permanent link">&para;</a></h4>
+<p>Proactive analysis is an approach to data analysis that focuses on identifying potential issues or opportunities before they manifest or become apparent. It involves leveraging data, metrics, and analytics to gain insights, detect patterns, and make predictions about future events or outcomes. Proactive analysis aims to prevent problems, optimize processes, and drive proactive decision-making.</p>
+<p>Proactive analysis empowers organizations to be ahead of the curve by leveraging data and analytics to identify and address potential issues or opportunities. By moving from reactive to proactive decision-making, organizations can gain a competitive edge, optimize operations, and drive continuous improvement.</p>
+<p>Features of Proactive Analysis:</p>
+<ol>
+<li>
+<p>Data Collection</p>
+<p>Proactive analysis starts with collecting relevant data from various sources, including monitoring systems, logs, databases, user interactions, or external data feeds. The data may include metrics, events, logs, user behavior, or other relevant information.</p>
+</li>
+<li>
+<p>Data Exploration</p>
+<p>Exploring and understanding the data is an important step in proactive analysis. This involves examining the data for patterns, trends, correlations, or anomalies that may provide insights or indicate potential issues or opportunities.</p>
+</li>
+<li>
+<p>Data Modeling</p>
+<p>Proactive analysis often involves creating models or algorithms to analyze the data. This can include statistical models, machine learning algorithms, predictive models, or anomaly detection algorithms. The models are trained or calibrated using historical data and then applied to new or real-time data for analysis.</p>
+</li>
+<li>
+<p>Pattern Detection</p>
+<p>Proactive analysis aims to identify patterns or trends in the data that can provide insights into potential issues or opportunities. By detecting patterns early, organizations can take proactive measures to address emerging issues or capitalize on emerging trends.</p>
+</li>
+<li>
+<p>Predictive Analytics</p>
+<p>Predictive analytics is a key component of proactive analysis. It involves using historical data and statistical techniques to make predictions or forecasts about future events or outcomes. Predictive analytics can help anticipate system failures, customer behavior, market trends, or other relevant factors.</p>
+</li>
+<li>
+<p>Alerts and Notifications</p>
+<p>Proactive analysis can generate alerts or notifications when specific conditions or thresholds are met. These alerts can be based on predictive models, anomaly detection, or predefined rules. By receiving timely alerts, stakeholders can take proactive actions to mitigate risks or leverage opportunities.</p>
+</li>
+<li>
+<p>Root Cause Analysis</p>
+<p>When an issue occurs, proactive analysis can help identify the root causes by analyzing historical data, patterns, or correlations. By understanding the underlying causes, organizations can address the root issues and prevent similar problems from recurring in the future.</p>
+</li>
+<li>
+<p>Continuous Monitoring and Improvement</p>
+<p>Proactive analysis is an ongoing process that requires continuous monitoring, evaluation, and refinement. As new data becomes available and systems evolve, proactive analysis should be adapted and updated to stay effective and relevant.</p>
+</li>
+<li>
+<p>Collaboration and Action</p>
+<p>Proactive analysis involves collaboration between different stakeholders, including data analysts, domain experts, and decision-makers. Insights and findings from proactive analysis should be communicated and translated into actionable steps to drive proactive decision-making and optimization.</p>
+</li>
+<li>
+<p>Business Impact</p>
+<p>The ultimate goal of proactive analysis is to drive positive business impact. By anticipating issues, optimizing processes, and capitalizing on opportunities, organizations can improve efficiency, reduce costs, enhance customer satisfaction, and achieve better business outcomes.</p>
+</li>
+</ol>
+<h2 id="2-principles">2. Principles<a class="headerlink" href="#2-principles" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>NOTE Logging and monitoring are not one-time tasks but ongoing processes. Regularly review and update your logging and monitoring strategies to align with evolving business needs, technology changes, and security requirements.</p>
+</blockquote>
+<ul>
+<li>
+<p>Collect Relevant Data</p>
+<blockquote>
+<p>Focus on collecting and logging relevant and meaningful data. Determine the key events, activities, metrics, and logs that provide valuable insights into the system's behavior, performance, and security. Avoid logging excessive or irrelevant data that can clutter the logs and make analysis more challenging.</p>
+</blockquote>
+</li>
+<li>
+<p>Consistent Logging Standards</p>
+<blockquote>
+<p>Establish consistent logging standards and guidelines across your applications and systems. Define a common log format, including the structure, message content, and log levels. Consistency in logging makes it easier to aggregate and analyze logs from different sources.</p>
+</blockquote>
+</li>
+<li>
+<p>Centralized Logging</p>
+<blockquote>
+<p>Implement a centralized log management system to aggregate logs from various sources into a centralized repository. Centralized logging simplifies log storage, searchability, and analysis. It also enables cross-system correlation and provides a holistic view of the entire infrastructure.</p>
+</blockquote>
+</li>
+<li>
+<p>Real-time Monitoring</p>
+<blockquote>
+<p>Implement real-time monitoring to detect issues and anomalies promptly. Monitor key metrics and set up alerts or notifications when predefined thresholds are breached. Real-time monitoring enables proactive identification and resolution of issues, minimizing their impact on system performance and availability.</p>
+</blockquote>
+</li>
+<li>
+<p>Logging for Auditing and Compliance</p>
+<blockquote>
+<p>Ensure that your logging practices align with auditing and compliance requirements specific to your industry or organization. Log critical security events, access attempts, and other activities that need to be audited. Consider data privacy regulations and the appropriate levels of log anonymization or encryption.</p>
+</blockquote>
+</li>
+<li>
+<p>Automation and Integration</p>
+<blockquote>
+<p>Leverage automation and integrations to streamline logging and monitoring processes. Use tools and frameworks that allow for seamless integration with your applications, systems, and infrastructure components. Automate log collection, aggregation, and analysis to reduce manual effort and increase efficiency.</p>
+</blockquote>
+</li>
+<li>
+<p>Regular Log Analysis</p>
+<blockquote>
+<p>Perform regular log analysis to gain insights into system behavior, identify trends, and detect anomalies or issues. Analyze logs for patterns, errors, warning signs, or security breaches. Log analysis helps in troubleshooting, capacity planning, performance optimization, and identifying areas for improvement.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Improvement</p>
+<blockquote>
+<p>Continuously evaluate and improve your logging and monitoring practices. Review the effectiveness of your logs, metrics, and monitoring strategies. Incorporate feedback from incident responses and learn from past experiences to refine your logging and monitoring approach.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>Best practices to establish robust logging and monitoring practices that enable efficient troubleshooting, system optimization, and proactive issue detection and resolution.</p>
+<ul>
+<li>
+<p>Define Clear Objectives</p>
+<blockquote>
+<p>Clearly define the objectives and goals of your logging and monitoring strategy. Identify the key metrics, events, and logs that are crucial for your system's performance, availability, and security. Align your logging and monitoring practices with your overall business objectives.</p>
+</blockquote>
+</li>
+<li>
+<p>Start with a Logging Framework</p>
+<blockquote>
+<p>Utilize a logging framework or library specific to your programming language or platform. These frameworks provide standardized logging capabilities, such as log levels, structured log entries, and integration with logging systems. Examples include Log4j for Java, Serilog for .NET, or Winston for Node.js.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Descriptive Log Messages</p>
+<blockquote>
+<p>Write clear and descriptive log messages that provide valuable context and information. Include relevant details such as timestamps, error codes, request identifiers, and user context. This helps in troubleshooting and understanding the flow of events.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Log Levels Appropriately</p>
+<blockquote>
+<p>Utilize different log levels (e.g., <code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>, <code>CRITICAL</code>) effectively based on the severity and importance of the logged events. Avoid excessive logging at lower levels that may impact system performance and storage.</p>
+</blockquote>
+</li>
+<li>
+<p>Log Errors and Exceptions</p>
+<blockquote>
+<p>Log errors, exceptions, and stack traces when they occur. Include relevant error details, error messages, and stack trace information. These logs are invaluable for troubleshooting and identifying the root causes of issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Include Request and Response Information</p>
+<blockquote>
+<p>In web-based applications, log relevant information about incoming requests and outgoing responses. Include details like request headers, URL, request parameters, response codes, and response times. This helps in tracking and analyzing user interactions.</p>
+</blockquote>
+</li>
+<li>
+<p>Consider Log Rotation and Retention</p>
+<blockquote>
+<p>Define log rotation and retention policies to manage log storage effectively. Implement mechanisms to limit log file sizes and archive or delete old logs based on predefined criteria. This ensures that logs are available when needed while optimizing storage usage.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor Key Performance Metrics</p>
+<blockquote>
+<p>Identify and monitor critical performance metrics specific to your application or system. This may include CPU usage, memory consumption, response times, error rates, and throughput. Set appropriate thresholds and alerts to proactively identify performance issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Establish Effective Alerting</p>
+<blockquote>
+<p>Configure alerting mechanisms to notify the relevant teams or individuals when predefined conditions or thresholds are breached. Ensure that alerts are actionable, concise, and provide sufficient information to initiate timely investigation and remediation.</p>
+</blockquote>
+</li>
+<li>
+<p>Regularly Review and Analyze Logs</p>
+<blockquote>
+<p>Allocate time to regularly review and analyze logs for patterns, trends, and anomalies. This can help identify system issues, security breaches, performance bottlenecks, or areas for improvement. Use log analysis tools and techniques to streamline the process.</p>
+</blockquote>
+</li>
+<li>
+<p>Secure Log Transmission and Storage</p>
+<blockquote>
+<p>Ensure that log data is transmitted and stored securely. Encrypt log data during transmission and consider encryption at rest. Follow security best practices to protect log data from unauthorized access or tampering.</p>
+</blockquote>
+</li>
+<li>
+<p>Collaborate and Share Insights</p>
+<blockquote>
+<p>Foster collaboration between development, operations, and security teams. Share insights and findings from log analysis to facilitate a better understanding of the system's behavior, identify areas for improvement, and drive continuous improvement efforts.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>Understanding terms related to logging and monitoring help to navigate and effectively utilize logging and monitoring practices.</p>
+<ul>
+<li>
+<p>Log</p>
+<blockquote>
+<p>A log is a record of events or activities generated by a system, application, or infrastructure component. Logs capture information such as timestamps, log levels, source details, and message content.</p>
+</blockquote>
+</li>
+<li>
+<p>Log Entry</p>
+<blockquote>
+<p>A log entry represents a single event or activity recorded in a log. It typically includes relevant information such as a timestamp, severity level, log message, and additional context.</p>
+</blockquote>
+</li>
+<li>
+<p>Log Level</p>
+<blockquote>
+<p>Log levels indicate the severity or importance of a log entry. Common log levels include <code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>, and <code>CRITICAL</code>. Developers can adjust the log level to control the verbosity of logs.</p>
+</blockquote>
+</li>
+<li>
+<p>Log Source</p>
+<blockquote>
+<p>A log source refers to the system, application, or component that generates logs. Examples include application logs, server logs, network device logs, database logs, and security logs.</p>
+</blockquote>
+</li>
+<li>
+<p>Log Management</p>
+<blockquote>
+<p>Log management involves the collection, storage, analysis, and retrieval of logs. It encompasses practices and tools used to aggregate logs from various sources, store them in a central repository, and facilitate efficient searching, filtering, and analysis of log data.</p>
+</blockquote>
+</li>
+<li>
+<p>Centralized Logging</p>
+<blockquote>
+<p>Centralized logging is the practice of aggregating logs from multiple sources into a central repository or log management system. It allows for easy log storage, analysis, and correlation, providing a unified view of log data across an infrastructure.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitoring</p>
+<blockquote>
+<p>Monitoring involves the continuous observation and measurement of system behavior, performance, and health. It typically involves collecting and analyzing metrics and generating alerts or notifications based on predefined thresholds or conditions.</p>
+</blockquote>
+</li>
+<li>
+<p>Metrics</p>
+<blockquote>
+<p>Metrics are numerical measurements that represent various aspects of system performance, behavior, or resource utilization. Examples of metrics include CPU usage, memory consumption, response times, error rates, throughput, and network latency.</p>
+</blockquote>
+</li>
+<li>
+<p>Alerting</p>
+<blockquote>
+<p>Alerting is the process of generating notifications or alerts when certain predefined conditions or thresholds are breached. Alerts notify system administrators or DevOps teams, enabling them to respond promptly to issues or anomalies.</p>
+</blockquote>
+</li>
+<li>
+<p>Dashboard</p>
+<blockquote>
+<p>A dashboard is a visual representation of real-time and historical data, often presented in the form of graphs, charts, or other visual elements. Dashboards provide a concise overview of key metrics and help stakeholders gain insights into system behavior and performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Anomaly Detection</p>
+<blockquote>
+<p>Anomaly detection is the process of identifying abnormal behavior or patterns in system metrics or logs. It involves using statistical analysis or machine learning algorithms to detect deviations from normal patterns, which may indicate potential issues or security breaches.</p>
+</blockquote>
+</li>
+<li>
+<p>Performance Monitoring</p>
+<blockquote>
+<p>Performance monitoring focuses on measuring and analyzing metrics related to system performance, resource utilization, and response times. It helps identify performance bottlenecks, optimize system performance, and ensure efficient resource allocation.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="5-references">5. References<a class="headerlink" href="#5-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Github <a href="https://github.com/prometheus/prometheus">Prometheus</a> repository.</li>
+<li>Github <a href="https://github.com/grafana/grafana">Grafana</a> repository.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

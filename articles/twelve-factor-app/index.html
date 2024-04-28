@@ -1,0 +1,1193 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/twelve-factor-app/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Twelve-Factor App - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#twelve-factor-app" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Twelve-Factor App
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Codebase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-backing-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Backing Services
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-building-release-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Building, Release, Run
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Processes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-port-binding" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7. Port Binding
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-concurrency" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8. Concurrency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-disposability" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9. Disposability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-devprod-parity" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.10. Dev/Prod Parity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.11. Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-admin-processes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.12. Admin Processes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/twelve-factor-app.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/twelve-factor-app.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="twelve-factor-app">Twelve-Factor App<a class="headerlink" href="#twelve-factor-app" title="Permanent link">&para;</a></h1>
+<p>The <a href="https://12factor.net/">Twelve-Factor App</a> methodology is a software design and development methodology that outlines best practices for building scalable, maintainable, and cloud-native software applications. It provides a theoretical framework for designing and building software systems that can run and scale Software-as-a-Service (SaaS) applications in modern cloud environments.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-codebase">1.1. Codebase</a></li>
+<li><a href="#12-dependencies">1.2. Dependencies</a></li>
+<li><a href="#13-config">1.3. Config</a></li>
+<li><a href="#14-backing-services">1.4. Backing Services</a></li>
+<li><a href="#15-building-release-run">1.5. Building, Release, Run</a></li>
+<li><a href="#16-processes">1.6. Processes</a></li>
+<li><a href="#17-port-binding">1.7. Port Binding</a></li>
+<li><a href="#18-concurrency">1.8. Concurrency</a></li>
+<li><a href="#19-disposability">1.9. Disposability</a></li>
+<li><a href="#110-devprod-parity">1.10. Dev/Prod Parity</a></li>
+<li><a href="#111-logs">1.11. Logs</a></li>
+<li><a href="#112-admin-processes">1.12. Admin Processes</a></li>
+<li><a href="#2-references">2. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>The Twelve-Factor App principles are technology-agnostic, meaning that they can be applied with any programming language, framework, or infrastructure.</p>
+<h3 id="11-codebase">1.1. Codebase<a class="headerlink" href="#11-codebase" title="Permanent link">&para;</a></h3>
+<p>The <code>Codebase</code> principle states that each application should have a single, version-controlled codebase that is used to deploy the application across all environments.</p>
+<p>In practice, this means that developers should use a version control system, such as Git or SVN, to manage the source code for their application. The codebase should include all of the application's code, dependencies, and configuration files, and should be used to deploy the application across all environments, from development to production.</p>
+<p>By using a single, version-controlled codebase, developers can more easily manage and maintain their applications, and can ensure that all changes to the application are tracked and versioned. This can also help to ensure that all environments are consistent, and can reduce the risk of issues that may arise from differences between environments.</p>
+<p>Benefits to using a single, version-controlled codebase:</p>
+<ul>
+<li>
+<p>Improved collaboration</p>
+<blockquote>
+<p>By using a version control system, developers can more easily collaborate on the application's codebase, and can track changes and revisions over time.</p>
+</blockquote>
+</li>
+<li>
+<p>Better versioning</p>
+<blockquote>
+<p>By versioning the application's codebase, developers can more easily manage and maintain different versions of the application, and can ensure that all changes are tracked and versioned.</p>
+</blockquote>
+</li>
+<li>
+<p>Easier deployment</p>
+<blockquote>
+<p>By using a single, version-controlled codebase, developers can more easily deploy the application across different environments, and can ensure that all environments are consistent and up-to-date.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="12-dependencies">1.2. Dependencies<a class="headerlink" href="#12-dependencies" title="Permanent link">&para;</a></h3>
+<p>The <code>Dependencies</code> principle states that applications should explicitly declare and isolate their dependencies. In a modern software application, dependencies can include libraries, frameworks, and other third-party software components that your application relies on to function properly.</p>
+<p>In practice, this means that developers should define their application's dependencies in a manifest or configuration file, such as a <code>package.json</code> file in Node.js or a <code>requirements.txt</code> file in Python. Dependencies should be declared explicitly, including the version numbers of each dependency, and should be isolated from the application's runtime environment. This can be achieved using tools such as virtual environments, Docker containers, or other containerization technologies.</p>
+<p>By explicitly declaring and isolating dependencies, developers can ensure that their applications are consistent across all environments, and can avoid potential issues that may arise from differences in dependencies or dependency versions. This can also help to ensure that the application can be easily deployed and scaled across different environments, and can be easily updated or modified over time.</p>
+<p>Benefits to explicitly declaring and isolating dependencies:</p>
+<ul>
+<li>
+<p>Improved consistency</p>
+<blockquote>
+<p>By explicitly declaring and isolating dependencies, developers can ensure that their applications are consistent across all environments, and can avoid potential issues that may arise from differences in dependencies or dependency versions.</p>
+</blockquote>
+</li>
+<li>
+<p>Better scalability</p>
+<blockquote>
+<p>By isolating dependencies from the application's runtime environment, developers can more easily deploy and scale their applications across different environments, and can ensure that the application remains consistent and reliable.</p>
+</blockquote>
+</li>
+<li>
+<p>Easier maintenance</p>
+<blockquote>
+<p>By explicitly declaring dependencies, developers can more easily update or modify their applications over time, and can ensure that changes to dependencies do not impact the application's runtime environment.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>NOTE See <a href="../package-managers/">package managers</a> for details.</p>
+</blockquote>
+<h3 id="13-config">1.3. Config<a class="headerlink" href="#13-config" title="Permanent link">&para;</a></h3>
+<p>The <code>Config</code> principle states that an application's configuration should be stored in environment variables, and should be separate from the application code.</p>
+<p>In practice, this means that developers should store any configuration information that may change between environments, such as database credentials or API keys, in environment variables rather than hard-coding them into the application code. This can be achieved using a configuration management tool, such as Puppet or Chef, or by using a platform-as-a-service (PaaS) provider, such as Heroku, that provides built-in support for environment variables.</p>
+<p>By storing configuration information in environment variables, developers can more easily manage and maintain their applications, and can ensure that the same application code can be used across different environments, without needing to modify the code for each environment. This can also help to ensure that sensitive information, such as passwords or API keys, are not hard-coded into the application code, and are instead stored securely in environment variables.</p>
+<p>Benefits to storing configuration information as environment variables:</p>
+<ul>
+<li>
+<p>Better portability</p>
+<blockquote>
+<p>By storing configuration information in environment variables, developers can more easily deploy their applications across different environments, without needing to modify the application code for each environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Improved security</p>
+<blockquote>
+<p>By storing sensitive configuration information in environment variables, rather than hard-coding them into the application code, developers can improve the security of their applications and reduce the risk of security breaches. Further,  it is possible to restrict access to this information and ensure that it is not accidentally committed to source control or otherwise exposed.</p>
+</blockquote>
+</li>
+<li>
+<p>Higher scalability</p>
+<blockquote>
+<p>By separating configuration information from the application code, it is possible to scale the application horizontally by running multiple instances of the same codebase with different configuration settings.</p>
+</blockquote>
+</li>
+<li>
+<p>Easier maintenance</p>
+<blockquote>
+<p>By storing configuration information in environment variables, developers can more easily update or modify the application configuration over time, without needing to modify the application code.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>NOTE Avoid storing sensitive information such as secrets and credentials in environment variables, as any process running on the same machine can access them and they can be accidentally exposed through logs or debugging messages. Instead use a secure secret manager such as Hashicorp <a href="https://github.com/hashicorp/vault">Vault</a> or <a href="https://github.com/dapr/dapr">Dapr</a> to store sensitive information. However, in cases where environment variables are used, it is recommended to avoid global variables and instead use an <a href="https://github.com/motdotla/dotenv">.env</a> file to store configuration information. The .env file should be kept secure and not accessible to unauthorized users.</p>
+</blockquote>
+<h3 id="14-backing-services">1.4. Backing Services<a class="headerlink" href="#14-backing-services" title="Permanent link">&para;</a></h3>
+<p>The <code>Backing Services</code> principle states that any external resources that the application depends on, such as databases, message queues, or caching systems, should be treated as attached resources, and accessed via a well-defined API.</p>
+<p>In practice, this means that applications should not depend on specific instances of backing services, but rather should be designed to work with a variety of different providers, and to use service discovery and configuration management tools to locate and connect to the appropriate services.</p>
+<p>By treating backing services as attached resources, and accessing them via a well-defined API, applications can be more easily scaled, deployed, and updated, since the dependencies on the underlying services are managed separately from the application code.</p>
+<p>Benefits to treating backing services as attached resources:</p>
+<ul>
+<li>
+<p>Portability</p>
+<blockquote>
+<p>By treating backing services as attached resources, applications can be easily moved between different environments or cloud providers, since the services can be easily swapped out or reconfigured.</p>
+</blockquote>
+</li>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>By abstracting away the underlying implementation details of the backing services, applications can be more easily scaled horizontally by running multiple instances of the same codebase with different backing services.</p>
+</blockquote>
+</li>
+<li>
+<p>Maintainability</p>
+<blockquote>
+<p>By decoupling the application code from the underlying services, it becomes easier to update or replace the services without impacting the application code.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="15-building-release-run">1.5. Building, Release, Run<a class="headerlink" href="#15-building-release-run" title="Permanent link">&para;</a></h3>
+<p>The <code>Building, Release, Run</code> principle states that an application should be built, released, and run as discrete stages, with each stage having a distinct responsibility. It is a process-oriented approach that emphasizes the separation of concerns between the development, deployment, and operation of the application.</p>
+<p>In practice, this means that the development process should be broken down into three stages:</p>
+<ul>
+<li>
+<p>Build</p>
+<blockquote>
+<p>This stage involves compiling the application code and any required dependencies, and creating a build artifact that can be deployed to different environments. The output of this stage is a deployable artifact, such as a executable, library, Docker container or ZIP file.</p>
+</blockquote>
+</li>
+<li>
+<p>Release</p>
+<blockquote>
+<p>This stage involves taking the build artifact and combining it with the configuration information needed for the specific environment. This creates a release artifact which is specific version to the environment in which the application will run. The release should be immutable, meaning that it should not be changed once it has been created.</p>
+</blockquote>
+</li>
+<li>
+<p>Run</p>
+<blockquote>
+<p>This stage involves running the application in the environment for which it was released, using the specific release artifact created in the previous stage. The release artifact is deployed to a production environment and started as a process. This process should be stateless and should not rely on any shared resources.</p>
+</blockquote>
+</li>
+</ul>
+<p>By breaking down the development process into these discrete stages, developers can more easily manage and maintain their applications, and can ensure that each stage has a distinct responsibility. This can also help to ensure that the application is easily deployable and scalable across different environments, and that changes can be made to the application without affecting the runtime environment.</p>
+<p>Benefits of stages:</p>
+<ul>
+<li>
+<p>Consistency</p>
+<blockquote>
+<p>By breaking down the development process into discrete stages, developers can ensure that each stage has a distinct responsibility, which can improve the consistency and reliability of the application across different environments.</p>
+</blockquote>
+</li>
+<li>
+<p>Portability</p>
+<blockquote>
+<p>By separating the application code from the configuration and runtime environment, the application can be deployed to multiple environments without modification.</p>
+</blockquote>
+</li>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>By separating the application runtime from the application code, the application can be scaled horizontally by running multiple instances of the application in parallel.</p>
+</blockquote>
+</li>
+<li>
+<p>Maintainability</p>
+<blockquote>
+<p>By separating the application code from the configuration and runtime environment, the application can be updated or modified and maintained without affecting the production environment.</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>NOTE See <a href="../continuous-pipelines/">continuous pipelines</a> for details.</p>
+</blockquote>
+<h3 id="16-processes">1.6. Processes<a class="headerlink" href="#16-processes" title="Permanent link">&para;</a></h3>
+<p>The <code>Processes</code> principle states that applications should be designed as stateless processes, which do not maintain any application state in memory.</p>
+<p>In practice, this means that applications should avoid storing session state, caches, or any other kind of stateful data in memory. Instead, applications should store all stateful data in external services, such as databases or caching systems, and use stateless processes to access this data via well-defined APIs.</p>
+<p>By designing applications as stateless processes, developers can make them more easily scalable, deployable, and fault-tolerant. Stateless processes can be scaled horizontally by running multiple instances of the same codebase, and can be deployed and updated independently of each other. Since each process does not maintain any application state in memory, it can be easily replaced or restarted without affecting the overall application state.</p>
+<p>Benefits to designing applications as stateless processes:</p>
+<ul>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>By designing applications as stateless processes, it becomes easier to scale the application horizontally by running multiple instances of the same codebase.</p>
+</blockquote>
+</li>
+<li>
+<p>Resilience</p>
+<blockquote>
+<p>Since stateless processes do not maintain any application state in memory, they can be easily replaced or restarted without affecting the overall application state, making the application more resilient to failures.</p>
+</blockquote>
+</li>
+<li>
+<p>Maintainability</p>
+<blockquote>
+<p>By separating application state from the application logic, it becomes easier to maintain and update the application over time, without risking data corruption or inconsistencies.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="17-port-binding">1.7. Port Binding<a class="headerlink" href="#17-port-binding" title="Permanent link">&para;</a></h3>
+<p>The <code>Port Binding</code> principle states that applications should be self-contained and should not rely on the availability of any external dependencies to run.</p>
+<p>In practice, this means that applications should listen on a designated port and bind to it when started. The application should not assume anything about the host environment, such as the availability of a specific port or network interface, but should instead use environment variables or configuration files to specify the port number and other network settings.</p>
+<p>By adhering to the Port Binding principle, applications can be more easily deployed and scaled across different environments, since the application code does not rely on any external dependencies or assumptions about the host environment.</p>
+<p>Benefits of Port Binding:</p>
+<ul>
+<li>
+<p>Portability</p>
+<blockquote>
+<p>By using environment variables or configuration files to specify network settings, applications can be easily deployed to different environments without modification.</p>
+</blockquote>
+</li>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>By binding to a designated port and listening for incoming requests, applications can be more easily scaled horizontally by running multiple instances of the same codebase on different ports or hosts.</p>
+</blockquote>
+</li>
+<li>
+<p>Robustness</p>
+<blockquote>
+<p>By using a designated port and adhering to a well-defined protocol, applications can be more easily monitored, debugged, and tested, since the network interface is clearly specified and documented.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="18-concurrency">1.8. Concurrency<a class="headerlink" href="#18-concurrency" title="Permanent link">&para;</a></h3>
+<p>The <code>Concurrency</code> principle states that applications should be designed to take advantage of concurrency and parallelism in order to maximize resource utilization and responsiveness.</p>
+<p>In practice, this means that applications should be designed to handle multiple requests and processes concurrently, rather than relying on a single thread or process to handle all incoming requests. This can be achieved through the use of asynchronous programming models, such as event-driven architectures or reactive programming, or by using techniques such as thread pooling and load balancing to distribute requests across multiple threads or processes.</p>
+<p>By designing applications to take advantage of concurrency, developers can improve the performance, scalability, and responsiveness of their applications, especially in high-traffic or high-load scenarios. Concurrency allows multiple requests to be processed simultaneously, reducing latency and increasing throughput.</p>
+<p>Benefits to designing applications to take advantage of concurrency:</p>
+<ul>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>By handling multiple requests concurrently, applications can more easily scale horizontally by running multiple instances of the same codebase on different hosts or clusters.</p>
+</blockquote>
+</li>
+<li>
+<p>Responsiveness</p>
+<blockquote>
+<p>By processing requests asynchronously, applications can provide more responsive user experiences, since users do not have to wait for long-running operations to complete before receiving a response.</p>
+</blockquote>
+</li>
+<li>
+<p>Resource utilization</p>
+<blockquote>
+<p>By maximizing resource utilization through concurrency, applications can more efficiently use available resources, reducing costs and increasing efficiency.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="19-disposability">1.9. Disposability<a class="headerlink" href="#19-disposability" title="Permanent link">&para;</a></h3>
+<p>The <code>Disposability</code> principle states that applications should be designed to be easily disposable and replaceable, and should be able to start up and shut down quickly without causing any data loss or corruption.</p>
+<p>In practice, this means that applications should be designed to handle graceful shutdowns and restarts, and should be able to recover quickly from crashes or other failures. Applications should not rely on long-lived processes or in-memory state, but should instead use external storage systems, such as databases or file systems, to store application data.</p>
+<p>By designing applications to be disposable, developers can ensure that their applications can be easily updated, scaled, and replaced without causing any disruptions to the user experience or data integrity. Disposable applications are also more fault-tolerant, since they can recover quickly from crashes or other failures without losing data or requiring manual intervention.</p>
+<p>Benefits to designing applications to be disposable:</p>
+<ul>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>Disposable applications can be easily scaled horizontally by running multiple instances of the same codebase, allowing for more efficient resource utilization and improved performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Resilience</p>
+<blockquote>
+<p>Disposable applications are more resilient to failures, since they can quickly recover from crashes or other failures without losing data or requiring manual intervention.</p>
+</blockquote>
+</li>
+<li>
+<p>Maintainability</p>
+<blockquote>
+<p>By separating application logic from application state, disposable applications are easier to maintain and update over time, without risking data corruption or inconsistencies.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="110-devprod-parity">1.10. Dev/Prod Parity<a class="headerlink" href="#110-devprod-parity" title="Permanent link">&para;</a></h3>
+<p>The <code>Dev/Prod Parity</code> principle states that the development, testing, and production environments should be as similar as possible in order to minimize differences and avoid issues that may arise from environment-specific configuration or dependencies.</p>
+<p>In practice, this means that developers should strive to use the same tools, libraries, and configurations in all environments, and should avoid making changes to the production environment that are not tested and approved in the development and testing environments. This can be achieved through the use of automated build and deployment processes, version control, and configuration management tools.</p>
+<p>By ensuring that the development, testing, and production environments are as similar as possible, developers can reduce the risk of issues arising from environment-specific differences, such as incompatible dependencies, configuration mismatches, or differences in hardware or software. This can help to minimize the time and effort required to deploy and maintain applications, and can improve the overall quality and reliability of the application.</p>
+<p>Benefits to ensuring dev/prod parity:</p>
+<ul>
+<li>
+<p>Reduced risk</p>
+<blockquote>
+<p>By minimizing environment-specific differences, developers can reduce the risk of issues arising from incompatibilities or mismatches.</p>
+</blockquote>
+</li>
+<li>
+<p>Improved quality</p>
+<blockquote>
+<p>By ensuring that changes are tested and approved in the development and testing environments before being deployed to production, developers can improve the quality and reliability of the application.</p>
+</blockquote>
+</li>
+<li>
+<p>Faster deployments</p>
+<blockquote>
+<p>By using automated build and deployment processes, developers can reduce the time and effort required to deploy and maintain applications, allowing for faster and more frequent deployments.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="111-logs">1.11. Logs<a class="headerlink" href="#111-logs" title="Permanent link">&para;</a></h3>
+<p>The <code>Logs</code> principle states that applications should treat logs as event streams, and should generate logs in a standardized format that can be easily aggregated and analyzed.</p>
+<p>In practice, this means that developers should design their applications to generate logs in a standardized format, such as JSON or syslog, and should use logging frameworks and libraries that support structured logging. Logs should be generated for all significant events, such as requests, errors, and warnings, and should be sent to a centralized logging service, such as Splunk, Logstash or Elasticsearch, where they can be aggregated, analyzed, and searched.</p>
+<p>By treating logs as event streams, developers can gain valuable insights into the behavior and performance of their applications, and can quickly identify and diagnose issues that may arise. Centralized logging also makes it easier to manage and maintain logs, and can provide a centralized source of truth for debugging and troubleshooting.</p>
+<blockquote>
+<p>NOTE For more information see the article about <a href="../logging-and-monitoring/">Logging and Monitoring</a>.</p>
+</blockquote>
+<p>Benefits to treating logs as event streams:</p>
+<ul>
+<li>
+<p>Improved troubleshooting</p>
+<blockquote>
+<p>By generating logs for all significant events, developers can quickly identify and diagnose issues that may arise, reducing the time and effort required for troubleshooting.</p>
+</blockquote>
+</li>
+<li>
+<p>Better performance monitoring</p>
+<blockquote>
+<p>By analyzing log data, developers can gain insights into the behavior and performance of their applications, and can identify bottlenecks or other issues that may be impacting performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Easier maintenance</p>
+<blockquote>
+<p>By centralizing logs in a single location, developers can more easily manage and maintain logs, and can ensure that all logs are retained for the appropriate length of time.</p>
+</blockquote>
+</li>
+</ul>
+<p>Example of conform Logs principle:</p>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="s">&quot;os&quot;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="s">&quot;github.com/rs/zerolog&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="s">&quot;github.com/rs/zerolog/log&quot;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="c1">// Set up the logger to output JSON format</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">log</span><span class="p">.</span><span class="nx">Output</span><span class="p">(</span><span class="nx">zerolog</span><span class="p">.</span><span class="nx">ConsoleWriter</span><span class="p">{</span><span class="nx">Out</span><span class="p">:</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">Stderr</span><span class="p">})</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="c1">// Set the logging level to debug</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">    </span><span class="nx">zerolog</span><span class="p">.</span><span class="nx">SetGlobalLevel</span><span class="p">(</span><span class="nx">zerolog</span><span class="p">.</span><span class="nx">DebugLevel</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="c1">// Log some events</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Debug</span><span class="p">().</span><span class="nx">Msg</span><span class="p">(</span><span class="s">&quot;This is a debug message&quot;</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Info</span><span class="p">().</span><span class="nx">Msg</span><span class="p">(</span><span class="s">&quot;This is an info message&quot;</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Warn</span><span class="p">().</span><span class="nx">Msg</span><span class="p">(</span><span class="s">&quot;This is a warning message&quot;</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Error</span><span class="p">().</span><span class="nx">Msg</span><span class="p">(</span><span class="s">&quot;This is an error message&quot;</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="112-admin-processes">1.12. Admin Processes<a class="headerlink" href="#112-admin-processes" title="Permanent link">&para;</a></h3>
+<p>The <code>Admin Processes</code> principle states that applications should provide administrative processes as one-off processes that can be run independently of the application's main processes.</p>
+<p>In practice, this means that developers should design their applications to provide a set of administrative processes that can be used to perform tasks such as database migrations, backups, and other maintenance tasks. These administrative processes should be run independently of the application's main processes, and should be designed to run in a single execution environment, rather than being part of the application's ongoing runtime.</p>
+<p>By providing administrative processes as one-off processes, developers can more easily manage and maintain their applications, and can avoid potential issues that may arise from running administrative tasks as part of the application's ongoing runtime. This can also help to ensure that administrative tasks are performed in a consistent and repeatable manner, regardless of the underlying environment.</p>
+<p>Benefits to providing administrative processes as one-off processes:</p>
+<ul>
+<li>
+<p>Improved reliability</p>
+<blockquote>
+<p>By running administrative tasks as one-off processes, developers can reduce the risk of issues that may arise from running administrative tasks as part of the application's ongoing runtime.</p>
+</blockquote>
+</li>
+<li>
+<p>Better manageability</p>
+<blockquote>
+<p>By providing administrative processes as one-off processes, developers can more easily manage and maintain their applications, and can ensure that administrative tasks are performed in a consistent and repeatable manner.</p>
+</blockquote>
+</li>
+<li>
+<p>Easier scaling</p>
+<blockquote>
+<p>By separating administrative tasks from the application's main processes, developers can more easily scale their applications and ensure that administrative tasks do not impact the performance or reliability of the application's main processes.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-references">2. References<a class="headerlink" href="#2-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sentenz <a href="../package-managers/">package managers</a> article.</li>
+<li>Sentenz <a href="../continuous-pipelines/">continuous pipelines</a> article.</li>
+<li>Sentenz <a href="../logging-and-monitoring/">logging and monitoring</a> article.</li>
+<li>Google <a href="https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en">twelve-factor app</a> article.</li>
+<li>IBM <a href="https://www.ibm.com/cloud/blog/12-plus-factors-for-containerized-ui-microservices">twelve plus factors</a> article.</li>
+<li>IBM <a href="https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications">seven missing factors</a> article.</li>
+<li>Github <a href="https://github.com/heroku/12factor">twelve-factor app</a> repository.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

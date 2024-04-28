@@ -1,0 +1,1143 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/incident-management/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Incident Management - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#incident-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Incident Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-severitypriority-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Severity/Priority Levels
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-incident-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Incident Types
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-technical-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Technical Categories
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-service-categories" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Service Categories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/incident-management.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/incident-management.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="incident-management">Incident Management<a class="headerlink" href="#incident-management" title="Permanent link">&para;</a></h1>
+<p>Incident management is a systematic approach to handling and resolving incidents or disruptions that occur within an organization's systems, services, or operations. It involves a set of processes, policies, and procedures designed to detect, respond to, mitigate, and recover from incidents effectively. Incident management aims to minimize the impact of incidents on business operations and ensure the swift restoration of normal service levels.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-severitypriority-levels">1.1. Severity/Priority Levels</a></li>
+<li><a href="#12-incident-types">1.2. Incident Types</a></li>
+<li><a href="#13-technical-categories">1.3. Technical Categories</a></li>
+<li><a href="#14-service-categories">1.4. Service Categories</a></li>
+<li><a href="#2-principles">2. Principles</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>Incident management, incidents are often categorized based on their impact, urgency, or the nature of the issue. Categorizing incidents helps prioritize their resolution and allocate appropriate resources.</p>
+<h3 id="11-severitypriority-levels">1.1. Severity/Priority Levels<a class="headerlink" href="#11-severitypriority-levels" title="Permanent link">&para;</a></h3>
+<p>Severity and priority are commonly used terms in incident management to classify and prioritize incidents based on their impact and urgency.</p>
+<p>The severity and priority levels assigned to incidents help incident management teams prioritize their efforts, allocate appropriate resources, and ensure that critical incidents receive immediate attention. These classifications are often defined in an organization's incident management processes and may be adjusted based on specific business requirements and service level agreements (SLAs).</p>
+<p>Types of Levels:</p>
+<ol>
+<li>
+<p>Severity Levels</p>
+<p>Severity refers to the impact and seriousness of an incident on business operations or services. It helps assess the potential harm or disruption caused by the incident.</p>
+<p>Levels of Severity:</p>
+<ul>
+<li>
+<p>High/Critical</p>
+<blockquote>
+<p>Incidents with severe impact that result in a complete loss of service, significant financial loss, or pose a significant risk to safety, security, or compliance. These incidents require immediate attention and the highest priority for resolution.</p>
+</blockquote>
+</li>
+<li>
+<p>Medium/Moderate</p>
+<blockquote>
+<p>Incidents with a moderate impact that affect a specific functionality or service, but do not completely disrupt business operations. These incidents require prompt attention and resolution to prevent further escalation or significant impact.</p>
+</blockquote>
+</li>
+<li>
+<p>Low/Minor</p>
+<blockquote>
+<p>Incidents with a minor impact that cause minimal disruption or affect non-critical functionality. These incidents may be more tolerable or have workarounds available, allowing them to be addressed with lower priority compared to higher-severity incidents.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Priority Levels</p>
+<p>Priority refers to the urgency or order in which incidents should be resolved. It helps determine the sequence of incident handling based on business needs, service level agreements (SLAs), and available resources.</p>
+<p>Levels of Priority:</p>
+<ul>
+<li>
+<p>P1 (Priority 1)</p>
+<blockquote>
+<p>Incidents classified as P1 have the highest priority and require immediate attention and resolution. They typically involve critical business services, systems, or operations that are completely unavailable or severely impacted.</p>
+</blockquote>
+</li>
+<li>
+<p>P2 (Priority 2)</p>
+<blockquote>
+<p>Incidents classified as P2 have a high priority and need to be addressed promptly. While they may not have the same level of immediate impact as P1 incidents, they still affect critical services or functions and can cause significant disruption if left unresolved.</p>
+</blockquote>
+</li>
+<li>
+<p>P3 (Priority 3)</p>
+<blockquote>
+<p>Incidents classified as P3 have a medium priority and should be addressed within a reasonable timeframe. They generally impact non-critical services or functions and have a moderate impact on business operations.</p>
+</blockquote>
+</li>
+<li>
+<p>P4 (Priority 4)</p>
+<blockquote>
+<p>Incidents classified as P4 have the lowest priority and can be resolved within a longer timeframe. These incidents typically involve minor issues, non-essential services, or non-critical functionalities.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="12-incident-types">1.2. Incident Types<a class="headerlink" href="#12-incident-types" title="Permanent link">&para;</a></h3>
+<p>Incident types refer to different categories or classifications of incidents based on their nature or specific problem types.</p>
+<p>Types of Incident:</p>
+<ol>
+<li>
+<p>Performance Degradation</p>
+<p>Performance degradation incidents involve situations where systems, applications, or services experience a decrease in performance or responsiveness. This could be due to high resource utilization, network congestion, software bugs, or other factors affecting performance.</p>
+</li>
+<li>
+<p>Service Outage</p>
+<p>Service outage incidents occur when a system, application, or service becomes completely unavailable. It could be due to hardware failures, software crashes, network outages, or denial-of-service (DoS) attacks.</p>
+</li>
+<li>
+<p>Security Breach</p>
+<p>Security incidents involve unauthorized access, data breaches, malware infections, or other cybersecurity-related events. These incidents require immediate attention to prevent further damage, protect sensitive information, and mitigate potential risks.</p>
+</li>
+<li>
+<p>Data Loss or Corruption</p>
+<p>Incidents in the loss, deletion, or corruption of important data. It could be accidental, such as human error or hardware failures, or intentional, such as cyberattacks or malicious actions.</p>
+</li>
+<li>
+<p>User Access Issues</p>
+<p>User access incidents encompass problems related to user authentication, authorization, or permissions. Examples include forgotten passwords, account lockouts, access requests, or configuration errors that prevent users from accessing the required resources.</p>
+</li>
+<li>
+<p>Application Errors</p>
+<p>Application errors or failures within specific applications lol could be a software bug, an unhandled exception, or a crash that causes the application to behave unexpectedly or become unusable.</p>
+</li>
+<li>
+<p>Configuration Issues</p>
+<p>Configuration issues pertain to misconfigurations that impact system functionality, security, or performance. It could involve incorrect network configurations, misconfigured access controls, or improper system settings.</p>
+</li>
+<li>
+<p>Communication Disruptions</p>
+<p>These incidents involve issues with communication channels or connectivity. It could be disruptions in network connectivity, telecommunication failures, email delivery problems, or other issues that affect communication and collaboration.</p>
+</li>
+<li>
+<p>Hardware Failures</p>
+<p>Incidents related to hardware failures encompass problems with servers, storage devices, networking equipment, or other physical infrastructure components. Hardware failures can lead to service disruptions or complete outages.</p>
+</li>
+<li>
+<p>Software Updates and Patches</p>
+<p>Incidents arising from software updates or patch deployments include issues like compatibility problems, installation failures, or unexpected behavior after applying updates.</p>
+</li>
+</ol>
+<h3 id="13-technical-categories">1.3. Technical Categories<a class="headerlink" href="#13-technical-categories" title="Permanent link">&para;</a></h3>
+<p>Technical categories are used to classify incidents based on the technical aspect or area affected. Technical categories help incident management teams and support personnel quickly identify the domain or expertise required to resolve the incidents efficiently. Proper categorization ensures that incidents are routed to the appropriate teams or individuals for prompt and effective resolution.</p>
+<p>Types of Technical Categories:</p>
+<ol>
+<li>
+<p>Network</p>
+<p>Incidents related to network connectivity, network devices (routers, switches), or network protocols. Examples include network outages, slow network performance, or configuration issues impacting network connectivity.</p>
+</li>
+<li>
+<p>Hardware</p>
+<p>Incidents involving hardware failures or issues with physical infrastructure components. This can include servers, storage devices, network equipment, or other hardware failures.</p>
+</li>
+<li>
+<p>Software</p>
+<p>Incidents related to software applications, operating systems, or software integrations. Examples include application crashes, software errors, or compatibility issues.</p>
+</li>
+<li>
+<p>Database</p>
+<p>Incidents involving databases, such as data corruption, performance issues, or database connectivity problems. Examples include slow database queries, database server crashes, or data integrity issues.</p>
+</li>
+<li>
+<p>Security</p>
+<p>Incidents related to security breaches, unauthorized access, malware infections, or other security-related events. It includes incidents such as hacking attempts, data breaches, denial-of-service (DoS) attacks, or security vulnerabilities.</p>
+</li>
+<li>
+<p>Applications</p>
+<p>Incidents specific to a particular application or software system. This could include custom-developed applications, third-party software, or software modules. Examples include application-specific errors, functionality issues, or configuration problems.</p>
+</li>
+<li>
+<p>Infrastructure</p>
+<p>Incidents related to the broader IT infrastructure beyond hardware and network components. This can include power supply, cooling systems, physical facilities, or environmental factors. Examples include power outages, HVAC failures, or physical damage to infrastructure.</p>
+</li>
+<li>
+<p>Telecommunications</p>
+<p>Incidents involving telecommunication services or devices, such as phone systems, mobile networks, or voice over IP (VoIP) services. Examples include call quality issues, dropped calls, or telecommunication service disruptions.</p>
+</li>
+<li>
+<p>Cloud</p>
+<p>Incidents related to cloud-based services or infrastructure, such as cloud service providers, cloud storage, virtual machines, or cloud-based applications. Examples include issues with cloud connectivity, performance degradation in cloud services, or misconfigured cloud resources.</p>
+</li>
+<li>
+<p>Desktop/End-User</p>
+<p>Incidents related to end-user desktops or workstations, such as software installation issues, hardware malfunctions, user profile problems, or issues with peripherals.</p>
+</li>
+</ol>
+<h3 id="14-service-categories">1.4. Service Categories<a class="headerlink" href="#14-service-categories" title="Permanent link">&para;</a></h3>
+<p>Service categories are used to classify incidents based on the affected service or business function. Categorizing incidents by service helps in understanding the impact on specific areas of the organization and enables efficient incident management.</p>
+<p>Types of Service Categories:</p>
+<ol>
+<li>
+<p>Email Service</p>
+<p>Incidents related to email services, such as issues with sending or receiving emails, email delivery delays, mailbox access problems, or spam-related issues.</p>
+</li>
+<li>
+<p>Website or Web Application</p>
+<p>Incidents that affect websites or web applications. This can include website outages, broken links, slow page load times, functionality errors, or issues with form submissions.</p>
+</li>
+<li>
+<p>Customer Support</p>
+<p>Incidents related to customer support systems or processes. It could involve problems with customer support ticketing systems, live chat tools, call center applications, or issues with accessing customer information.</p>
+</li>
+<li>
+<p>Payment Processing</p>
+<p>Incidents that impact payment processing systems or payment gateways. This can include transaction failures, issues with payment methods, payment gateway errors, or discrepancies in payment records.</p>
+</li>
+<li>
+<p>Inventory Management</p>
+<p>Incidents related to inventory management systems or processes. It could involve issues with stock levels, inventory synchronization problems, or errors in tracking and managing inventory.</p>
+</li>
+<li>
+<p>Collaboration Platform</p>
+<p>Incidents that affect collaboration platforms or tools used for teamwork and communication within an organization. This can include problems with document sharing, project management systems, video conferencing tools, or issues with accessing shared resources.</p>
+</li>
+<li>
+<p>Human Resources</p>
+<p>Incidents related to human resources systems or processes. It could involve problems with employee onboarding, leave management, payroll systems, or issues with accessing HR-related information.</p>
+</li>
+<li>
+<p>Customer Relationship Management (CRM)</p>
+<p>Incidents related to customer relationship management systems or processes. This can include issues with managing customer data, customer profiles, sales pipelines, or problems with CRM integrations.</p>
+</li>
+<li>
+<p>Enterprise Resource Planning (ERP)</p>
+<p>Incidents that impact enterprise resource planning systems used for managing business processes, such as finance, procurement, or supply chain management. This can include issues with order processing, invoicing, reporting, or problems with ERP system modules.</p>
+</li>
+<li>
+<p>Telecommunication Services</p>
+<p>Incidents related to telecommunication services within the organization, such as phone systems, mobile services, or video conferencing solutions. This can include issues with call quality, dropped calls, telecommunication service disruptions, or problems with telecommunication devices.</p>
+</li>
+<li>
+<p>IT Infrastructure</p>
+<p>Incidents related to general IT infrastructure components and services that support the organization's operations. This can include issues with servers, networks, data centers, backups, or problems with IT service delivery.</p>
+</li>
+</ol>
+<h2 id="2-principles">2. Principles<a class="headerlink" href="#2-principles" title="Permanent link">&para;</a></h2>
+<p>The principles of incident management guide the effective handling and resolution of incidents. These principles provide a framework for incident response and help organizations minimize the impact of incidents.</p>
+<ul>
+<li>
+<p>Preparedness</p>
+<blockquote>
+<p>Being prepared is crucial for effective incident management. This involves having well-defined incident management processes, procedures, and documentation in place before incidents occur. It includes creating incident response plans, establishing communication channels, and ensuring that incident management teams are trained and equipped to handle incidents promptly.</p>
+</blockquote>
+</li>
+<li>
+<p>Proactive Monitoring</p>
+<blockquote>
+<p>Implementing proactive monitoring systems and tools allows organizations to detect and identify incidents early. By continuously monitoring systems, networks, and applications, organizations can identify potential issues, performance degradations, or anomalies that may lead to incidents. Proactive monitoring helps in swift incident detection and faster response times.</p>
+</blockquote>
+</li>
+<li>
+<p>Rapid Response</p>
+<blockquote>
+<p>Timely response is essential in incident management. When an incident occurs, it's crucial to initiate the incident response process promptly. This includes acknowledging the incident, notifying the appropriate stakeholders, and activating the incident management team. Rapid response helps prevent the incident from escalating and minimizes the impact on business operations.</p>
+</blockquote>
+</li>
+<li>
+<p>Clear Communication</p>
+<blockquote>
+<p>Effective communication is vital during incident management. Establishing clear and open communication channels among incident management teams, stakeholders, and affected parties is crucial. Regular and timely updates should be provided to keep stakeholders informed about the incident's status, progress, and expected resolution timeline.</p>
+</blockquote>
+</li>
+<li>
+<p>Escalation and Collaboration</p>
+<blockquote>
+<p>Knowing when to escalate an incident and involve additional resources or higher-level support is important. If an incident exceeds the capabilities of the initial responders, it should be escalated to the appropriate teams or individuals with the necessary expertise. Collaboration between different teams and departments ensures a coordinated effort to resolve incidents efficiently.</p>
+</blockquote>
+</li>
+<li>
+<p>Prioritization</p>
+<blockquote>
+<p>Incidents should be prioritized based on their impact and urgency. Assigning severity or priority levels helps in determining the order in which incidents should be handled. High-impact or critical incidents that have a severe impact on business operations or services should receive immediate attention and higher priority for resolution.</p>
+</blockquote>
+</li>
+<li>
+<p>Root Cause Analysis</p>
+<blockquote>
+<p>Conducting a thorough root cause analysis is essential to identify the underlying cause of an incident. Once the incident is resolved, a detailed investigation should be carried out to determine why the incident occurred and to implement preventive measures. Understanding the root cause helps in preventing similar incidents from recurring in the future.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Improvement</p>
+<blockquote>
+<p>Incident management is an iterative process, and organizations should strive for continuous improvement. Regularly reviewing and analyzing incident management practices, identifying areas for improvement, and implementing corrective actions leads to more efficient incident handling and better overall incident management capabilities.</p>
+</blockquote>
+</li>
+<li>
+<p>Documentation and Knowledge Management</p>
+<blockquote>
+<p>Proper documentation of incidents, including their resolution steps, findings, and lessons learned, is crucial. This documentation serves as a valuable knowledge base for future reference, helps in training new team members, and supports continuous improvement efforts. Incident management systems or knowledge management platforms can be utilized to store and share incident-related information.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>Best practices of incident management encompass a set of proven approaches and strategies that organizations can follow to optimize their incident response and resolution processes.</p>
+<ul>
+<li>
+<p>Establish Clearly Defined Processes</p>
+<blockquote>
+<p>Develop well-defined incident management processes and procedures tailored to the organization's needs. These processes should outline the steps to be followed from incident identification and logging to resolution and post-incident analysis. Having standardized processes ensures consistency and efficiency in handling incidents.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement an Incident Management System</p>
+<blockquote>
+<p>Utilize a dedicated incident management system or IT service management (ITSM) tool to facilitate incident tracking, documentation, and collaboration among incident management teams. Such systems provide centralized incident repositories, communication channels, and reporting capabilities to streamline the incident management process.</p>
+</blockquote>
+</li>
+<li>
+<p>Adopt an Incident Classification and Prioritization Framework</p>
+<blockquote>
+<p>Define a clear incident classification and prioritization framework that aligns with the organization's objectives and service level agreements (SLAs). This helps prioritize incidents based on their impact, urgency, and business criticality, ensuring that the most critical incidents receive prompt attention and resources.</p>
+</blockquote>
+</li>
+<li>
+<p>Enable Effective Communication</p>
+<blockquote>
+<p>Establish clear communication channels for incident reporting, updates, and coordination. This includes maintaining contact lists, establishing incident communication groups or channels, and defining escalation paths. Timely and transparent communication ensures that stakeholders are informed throughout the incident lifecycle.</p>
+</blockquote>
+</li>
+<li>
+<p>Form Cross-Functional Incident Response Teams</p>
+<blockquote>
+<p>Create incident response teams comprising individuals from different functional areas to ensure diverse expertise and perspectives during incident resolution. These teams should consist of representatives from IT, operations, security, communications, and other relevant departments, enabling effective collaboration and quicker incident resolution.</p>
+</blockquote>
+</li>
+<li>
+<p>Conduct Regular Training and Drills</p>
+<blockquote>
+<p>Provide ongoing training and conduct incident response drills and simulations to familiarize incident management teams with the processes, tools, and procedures. This helps improve response times, decision-making, and coordination during real incidents.</p>
+</blockquote>
+</li>
+<li>
+<p>Establish Service Level Agreements (SLAs)</p>
+<blockquote>
+<p>Define SLAs with stakeholders, outlining the response and resolution timeframes for different incident priority levels. SLAs set clear expectations and accountability for incident management teams and help prioritize incidents based on their impact and urgency.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Continuous Monitoring and Alerting</p>
+<blockquote>
+<p>Deploy proactive monitoring systems to detect incidents early and set up automated alerts for critical system thresholds or abnormal behaviors. This enables proactive incident management by identifying potential issues before they escalate into significant disruptions.</p>
+</blockquote>
+</li>
+<li>
+<p>Conduct Post-Incident Reviews and Analysis</p>
+<blockquote>
+<p>Perform thorough post-incident reviews, also known as post-mortems, to analyze incidents and identify areas for improvement. These reviews help uncover root causes, identify process gaps, and implement preventive measures to avoid similar incidents in the future.</p>
+</blockquote>
+</li>
+<li>
+<p>Foster a Culture of Continuous Improvement</p>
+<blockquote>
+<p>Encourage a culture of continuous improvement by regularly reviewing incident management practices, incorporating feedback from incident stakeholders, and implementing lessons learned. This ensures that incident management processes evolve and mature over time.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>Terminologies form the foundation of incident management processes and are used to communicate, prioritize, and address incidents effectively within an organization.</p>
+<ul>
+<li>
+<p>Incident</p>
+<blockquote>
+<p>An incident refers to any unplanned interruption or disruption in normal operations, services, or processes. It could be an event, error, failure, or deviation from expected results that requires attention and resolution.</p>
+</blockquote>
+</li>
+<li>
+<p>Service Level Agreement (SLA)</p>
+<blockquote>
+<p>An SLA is a formal agreement or contract between an organization and its customers or stakeholders. It outlines the agreed-upon levels of service, including response times, resolution times, and performance metrics, for incidents and service requests.</p>
+</blockquote>
+</li>
+<li>
+<p>Severity</p>
+<blockquote>
+<p>Severity represents the impact or seriousness of an incident on business operations. It is used to prioritize incidents based on their impact, usually classified into levels such as high, medium, or low.</p>
+</blockquote>
+</li>
+<li>
+<p>Priority</p>
+<blockquote>
+<p>Priority denotes the urgency or order in which incidents should be resolved. It helps determine the sequence of incident handling based on their impact, urgency, and business criticality. Priorities are typically categorized as P1, P2, P3, etc., with P1 being the highest priority.</p>
+</blockquote>
+</li>
+<li>
+<p>Incident Management</p>
+<blockquote>
+<p>Incident management refers to the overall process of identifying, categorizing, prioritizing, resolving, and documenting incidents in an organized and efficient manner. It involves a set of procedures, tools, and resources to manage and mitigate the impact of incidents on business operations.</p>
+</blockquote>
+</li>
+<li>
+<p>Incident Response</p>
+<blockquote>
+<p>Incident response involves the immediate actions taken upon the identification of an incident. It includes acknowledging the incident, notifying the appropriate stakeholders, initiating the incident management process, and assigning resources for incident resolution.</p>
+</blockquote>
+</li>
+<li>
+<p>Incident Owner</p>
+<blockquote>
+<p>The incident owner is the person or team responsible for managing and coordinating the resolution of a specific incident. The incident owner ensures that the incident is properly handled, assigns appropriate resources, and communicates with stakeholders throughout the incident lifecycle.</p>
+</blockquote>
+</li>
+<li>
+<p>Escalation</p>
+<blockquote>
+<p>Escalation refers to the process of increasing the level of support or involving higher-level resources when an incident cannot be resolved within the agreed-upon timeframe or by the initial responders. Escalation ensures that incidents receive the necessary attention and expertise for timely resolution.</p>
+</blockquote>
+</li>
+<li>
+<p>Root Cause Analysis (RCA)</p>
+<blockquote>
+<p>Root cause analysis is a systematic process of investigating and identifying the underlying cause or causes of an incident. It aims to determine the fundamental reason behind the incident occurrence to implement corrective actions and prevent similar incidents in the future.</p>
+</blockquote>
+</li>
+<li>
+<p>Post-Incident Analysis</p>
+<blockquote>
+<p>Post-incident analysis, also known as post-mortem or retrospective, is the examination and evaluation of an incident after its resolution. It involves reviewing the incident response process, analyzing the root cause, identifying lessons learned, and making improvements to prevent recurrence.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

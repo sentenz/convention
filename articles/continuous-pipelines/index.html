@@ -1,0 +1,965 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/continuous-pipelines/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Continuous Pipelines - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#continuous-pipelines" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Continuous Pipelines
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-continuous-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Continuous Verification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-continuous-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Continuous Integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-continuous-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Continuous Delivery
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-continuous-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Continuous Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-continuous-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Continuous Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-continuous-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Continuous Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-continuous-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7. Continuous Feedback
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-continuous-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8. Continuous Monitoring
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-continuous-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9. Continuous Optimization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-continuous-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.10. Continuous Compliance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-continuous-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.11. Continuous Security
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-continuous-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.12. Continuous Documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-continuous-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.13. Continuous Training
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/continuous-pipelines.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/continuous-pipelines.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="continuous-pipelines">Continuous Pipelines<a class="headerlink" href="#continuous-pipelines" title="Permanent link">&para;</a></h1>
+<p>Continuous Pipelines refer to the process of automating the software development workflow from code creation to deployment. This process involves multiple stages such as code integration, build, testing, and deployment to production. The pipeline runs continuously, ensuring that every change made to the code is automatically built, tested, and deployed, providing quick feedback to the development team and enabling faster delivery of new features to customers. By automating this process, organizations can improve efficiency, reduce errors, and increase the speed of delivering software updates.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-continuous-verification">1.1. Continuous Verification</a></li>
+<li><a href="#12-continuous-integration">1.2. Continuous Integration</a></li>
+<li><a href="#13-continuous-delivery">1.3. Continuous Delivery</a></li>
+<li><a href="#14-continuous-deployment">1.4. Continuous Deployment</a></li>
+<li><a href="#15-continuous-build">1.5. Continuous Build</a></li>
+<li><a href="#16-continuous-testing">1.6. Continuous Testing</a></li>
+<li><a href="#17-continuous-feedback">1.7. Continuous Feedback</a></li>
+<li><a href="#18-continuous-monitoring">1.8. Continuous Monitoring</a></li>
+<li><a href="#19-continuous-optimization">1.9. Continuous Optimization</a></li>
+<li><a href="#110-continuous-compliance">1.10. Continuous Compliance</a></li>
+<li><a href="#111-continuous-security">1.11. Continuous Security</a></li>
+<li><a href="#112-continuous-documentation">1.12. Continuous Documentation</a></li>
+<li><a href="#113-continuous-training">1.13. Continuous Training</a></li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-references">4. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-continuous-verification">1.1. Continuous Verification<a class="headerlink" href="#11-continuous-verification" title="Permanent link">&para;</a></h3>
+<p>Continuous Verification refers to the practice of continuously verifying the quality and functionality of software applications and systems. This can involve automating the process of testing and validating code changes, and can help organizations to catch and fix bugs and other issues before they are deployed to production. Continuous Verification helps to ensure that software is of high quality and reliable, and can improve the overall stability and user experience of applications.</p>
+<h3 id="12-continuous-integration">1.2. Continuous Integration<a class="headerlink" href="#12-continuous-integration" title="Permanent link">&para;</a></h3>
+<p>Continuous Integration (CI) refers to the practice of automating the process of integrating code changes from multiple developers into a single version control repository. This process typically involves building and testing the code changes as soon as they are committed to the repository, and providing feedback to developers on the quality and stability of their changes. The goal of CI is to catch issues early in the development process and promote collaboration among team members.</p>
+<h3 id="13-continuous-delivery">1.3. Continuous Delivery<a class="headerlink" href="#13-continuous-delivery" title="Permanent link">&para;</a></h3>
+<p>Continuous Delivery (CD) is a set of practices and techniques that aim to automate the process of delivering code changes from the development environment to production. This process typically involves testing and verifying code changes at multiple stages, such as build, test, and deployment, before they are released to production. CD helps to ensure that code changes are deployed quickly, with minimal manual intervention, and with confidence in their quality and stability.</p>
+<h3 id="14-continuous-deployment">1.4. Continuous Deployment<a class="headerlink" href="#14-continuous-deployment" title="Permanent link">&para;</a></h3>
+<p>Continuous Continuous Deployment (CD) is an extension of Continuous Delivery that automates the deployment of code changes to production as soon as they pass all necessary tests and approvals. This practice is typically used in organizations that have high levels of automation and a strong focus on rapid and frequent delivery of code changes.</p>
+<h3 id="15-continuous-build">1.5. Continuous Build<a class="headerlink" href="#15-continuous-build" title="Permanent link">&para;</a></h3>
+<p>Continuous Build refers to the practice of automatically building and compiling software applications and systems, whenever changes are committed to the source code repository. This can involve automating the process of building, compiling, and packaging software, and can help organizations to ensure that software is always up-to-date and ready for deployment. Continuous Build helps to speed up the software development process, reduce errors and inconsistencies, and improve the overall efficiency of software development and deployment.</p>
+<h3 id="16-continuous-testing">1.6. Continuous Testing<a class="headerlink" href="#16-continuous-testing" title="Permanent link">&para;</a></h3>
+<p>Continuous Testing refers to the practice of automating the process of testing code changes throughout the software development lifecycle. This process typically involves the use of test automation tools and scripts that run automatically as code changes are committed, built, and deployed. Continuous Testing helps to ensure that code changes are thoroughly tested and validated before they are released to production, reducing the risk of defects and improving the overall quality of the software.</p>
+<h3 id="17-continuous-feedback">1.7. Continuous Feedback<a class="headerlink" href="#17-continuous-feedback" title="Permanent link">&para;</a></h3>
+<p>Continuous Feedback refers to the practice of providing real-time feedback to developers on the quality and performance of their code changes. This can include feedback from automated testing tools, performance metrics, and user feedback, among other sources. The goal of Continuous Feedback is to provide developers with quick and actionable insights into the quality and stability of their code changes, and to promote continuous improvement in the software development process.</p>
+<h3 id="18-continuous-monitoring">1.8. Continuous Monitoring<a class="headerlink" href="#18-continuous-monitoring" title="Permanent link">&para;</a></h3>
+<p>Continuous Monitoring refers to the practice of monitoring the performance and stability of software applications in production, and proactively addressing any issues that may arise. This process typically involves collecting and analyzing performance and log data, as well as monitoring system health and availability. Continuous Monitoring helps to ensure that software applications are performing optimally in production, and helps to minimize downtime and resolve issues quickly.</p>
+<h3 id="19-continuous-optimization">1.9. Continuous Optimization<a class="headerlink" href="#19-continuous-optimization" title="Permanent link">&para;</a></h3>
+<p>Continuous Optimization refers to the practice of continuously improving and refining the Continuous Pipeline to increase efficiency, reduce errors, and improve the speed of delivery. This can involve changes to the pipeline itself, as well as improvements to the underlying infrastructure and tools, and can involve a combination of technical and organizational changes. The goal of Continuous Optimization is to improve the overall effectiveness and efficiency of the software development process, and to support the delivery of high-quality software to customers.</p>
+<h3 id="110-continuous-compliance">1.10. Continuous Compliance<a class="headerlink" href="#110-continuous-compliance" title="Permanent link">&para;</a></h3>
+<p>Continuous Compliance refers to the practice of ensuring that software applications and systems comply with relevant regulations and standards throughout their lifecycle. This can involve automating the process of verifying compliance with data privacy, security, and other regulatory requirements, and can help organizations to reduce the risk of non-compliance and penalties.</p>
+<h3 id="111-continuous-security">1.11. Continuous Security<a class="headerlink" href="#111-continuous-security" title="Permanent link">&para;</a></h3>
+<p>Continuous Security refers to the practice of integrating security into the software development lifecycle, and continuously monitoring and verifying the security of applications and systems. This can involve automated security testing, security scans, and regular security audits, and helps organizations to identify and remediate security vulnerabilities before they can be exploited.</p>
+<h3 id="112-continuous-documentation">1.12. Continuous Documentation<a class="headerlink" href="#112-continuous-documentation" title="Permanent link">&para;</a></h3>
+<p>Continuous Documentation refers to the practice of maintaining up-to-date and accurate documentation of software applications and systems, and ensuring that documentation is automatically updated as code changes are committed and deployed. This helps to ensure that developers and other stakeholders have access to the most current and accurate information about the software, and can help to reduce errors and improve collaboration.</p>
+<h3 id="113-continuous-training">1.13. Continuous Training<a class="headerlink" href="#113-continuous-training" title="Permanent link">&para;</a></h3>
+<p>Continuous Training refers to the practice of providing ongoing training and development opportunities for developers, DevOps teams, and other stakeholders involved in the software development process. This can include training on new technologies, tools, and methodologies, as well as opportunities for hands-on experience and collaboration. Continuous Training helps organizations to build a skilled and knowledgeable workforce, and to continuously improve the software development process.</p>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<p>Principles provide a theoretical foundation for the design and implementation of effective Continuous Pipelines, to continuously improve the quality and efficiency of the software development and deployment efforts.</p>
+<ul>
+<li>
+<p>Automation</p>
+<blockquote>
+<p>Automation is a key principle of Continuous Pipelines, and involves automating as many steps in the software development and deployment process as possible. By automating tasks like building, testing, and deploying software, organizations can reduce the risk of errors, save time, and improve the overall efficiency of the software development process.</p>
+</blockquote>
+</li>
+<li>
+<p>Feedback</p>
+<blockquote>
+<p>Feedback is another key principle of Continuous Pipelines, and involves providing continuous feedback to developers and other stakeholders throughout the software development and deployment process. By providing rapid feedback on code changes, test results, and other metrics, organizations can help developers to identify and address issues quickly, and continuously improve the quality of the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Collaboration</p>
+<blockquote>
+<p>Collaboration is also a key principle of Continuous Pipelines, and involves fostering a culture of collaboration and communication among developers, DevOps teams, and other stakeholders involved in the software development process. By working together and sharing knowledge and expertise, teams can improve the quality and efficiency of the software development process.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Improvement</p>
+<blockquote>
+<p>Continuous Improvement is a key principle of Continuous Pipelines, and involves continuously analyzing and improving the software development and deployment process. By regularly reviewing metrics, identifying areas for improvement, and implementing changes, organizations can continuously improve the quality and efficiency of their software development efforts.</p>
+</blockquote>
+</li>
+<li>
+<p>Standardization</p>
+<blockquote>
+<p>Standardization is another key principle of Continuous Pipelines, and involves establishing and following standardized processes and procedures for software development and deployment. By standardizing processes and procedures, organizations can reduce the risk of errors, improve efficiency, and ensure that software is developed and deployed in a consistent and controlled manner.</p>
+</blockquote>
+</li>
+<li>
+<p>Flexibility</p>
+<blockquote>
+<p>Flexibility is also a key principle of Continuous Pipelines, and involves designing software development and deployment processes that are flexible and adaptable to changing requirements and conditions. By designing processes that can be easily modified and adapted, organizations can respond quickly to changes in the software development environment and continuously improve the quality and efficiency of their software development efforts.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>Best practices to build and maintain a successful Continuous Pipeline that enables to develop and deploy high-quality software applications and systems efficiently and effectively.</p>
+<ul>
+<li>
+<p>Maintain a culture of collaboration</p>
+<blockquote>
+<p>Continuous Pipelines rely on collaboration between developers, operations teams, and other stakeholders. Organizations should cultivate a culture of collaboration by establishing open channels of communication, encouraging cross-functional teamwork, and promoting knowledge sharing and learning.</p>
+</blockquote>
+</li>
+<li>
+<p>Automate everything</p>
+<blockquote>
+<p>Automation is a key driver of efficiency and reliability in Continuous Pipelines. Organizations should strive to automate as many aspects of the software development and deployment process as possible, including testing, building, and deployment, in order to reduce manual effort, increase consistency, and improve quality.</p>
+</blockquote>
+</li>
+<li>
+<p>Focus on testing</p>
+<blockquote>
+<p>Testing is a critical aspect of Continuous Pipelines. Organizations should adopt a testing strategy that emphasizes early and frequent testing, including unit testing, integration testing, and end-to-end testing, to ensure that software is thoroughly tested and validated throughout the development process.</p>
+</blockquote>
+</li>
+<li>
+<p>Maintain visibility and traceability</p>
+<blockquote>
+<p>Continuous Pipelines generate a large volume of data and information. Organizations should maintain visibility into the entire pipeline, including all changes and updates, and establish traceability between changes and the corresponding tests and deployments.</p>
+</blockquote>
+</li>
+<li>
+<p>Practice continuous improvement</p>
+<blockquote>
+<p>Continuous Pipelines are built on the principle of continuous improvement. Organizations should constantly assess and evaluate the pipeline, seeking opportunities for improvement in areas such as speed, quality, and efficiency, and implement changes to address identified issues and optimize the pipeline.</p>
+</blockquote>
+</li>
+<li>
+<p>Embrace a DevOps mindset</p>
+<blockquote>
+<p>Continuous Pipelines require a DevOps mindset, which emphasizes collaboration, automation, and continuous improvement. Organizations should encourage DevOps practices such as cross-functional teams, shared responsibility, and continuous learning, to create a culture of collaboration and innovation.</p>
+</blockquote>
+</li>
+<li>
+<p>Invest in tools and infrastructure</p>
+<blockquote>
+<p>Continuous Pipelines require robust tools and infrastructure to support automation, testing, and deployment. Organizations should invest in high-quality tools and infrastructure, and ensure that they are properly integrated and configured to support the entire pipeline.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-references">4. References<a class="headerlink" href="#4-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>GitLab <a href="https://about.gitlab.com/topics/ci-cd/">CI/CD</a> article.</li>
+<li>Atlassian <a href="https://www.atlassian.com/continuous-delivery/continuous-integration">CI</a> article.</li>
+<li>Atlassian <a href="https://www.atlassian.com/continuous-delivery">CD</a> article.</li>
+<li>Microsoft <a href="https://azure.microsoft.com/en/overview/continuous-delivery-vs-continuous-deployment/">CD vs CD</a> article.</li>
+<li>GitHub <a href="https://resources.github.com/ci-cd/">CI/CD</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

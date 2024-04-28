@@ -1,0 +1,1705 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/cryptography/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Cryptography - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cryptography" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cryptography
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-symmetric-cryptography" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Symmetric Cryptography
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-asymmetric-cryptography" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Asymmetric Cryptography
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-hash-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Hash Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3. Hash Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-password-hashing-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1. Password Hashing Algorithms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-steganography" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Steganography
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-cryptanalysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Cryptanalysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-cryptographic-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Cryptographic Protocols
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-homomorphic-encryption" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7. Homomorphic Encryption
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-zero-knowledge-proofs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8. Zero-Knowledge Proofs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-cryptographic-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9. Cryptographic Tokens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-key-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.10. Key Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#111-cryptographic-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.11. Cryptographic Hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-digital-signatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.12. Digital Signatures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-key-exchange" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.13. Key Exchange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-public-key-infrastructure" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.14. Public Key Infrastructure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-random-number-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.15. Random Number Generation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-side-channel-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.16. Side-Channel Attacks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-multi-party-computation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.17. Multi-Party Computation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-obfuscation" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.18. Obfuscation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#119-one-time-pad" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.19. One-Time Pad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#120-perfect-forward-secrecy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.20. Perfect Forward Secrecy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#121-blockchain-technology" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.21. Blockchain Technology
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-quantum-cryptography" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.22. Quantum Cryptography
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-post-quantum-cryptography" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.23. Post-Quantum Cryptography
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/cryptography.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/cryptography.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="cryptography">Cryptography<a class="headerlink" href="#cryptography" title="Permanent link">&para;</a></h1>
+<p>Cryptography is the practice of securing communication from third-party interference, where third-party is anyone who is not authorized to access the communication. Cryptography uses mathematical algorithms to convert the original message, known as plaintext, into an unreadable format called ciphertext.</p>
+<p>The ciphertext can only be read by someone who possesses the key used to encrypt the message, and this key is kept secret by the authorized parties. Cryptography is used for various purposes, such as confidentiality, integrity, authentication, and non-repudiation.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-symmetric-cryptography">1.1. Symmetric Cryptography</a></li>
+<li><a href="#12-asymmetric-cryptography">1.2. Asymmetric Cryptography</a></li>
+<li><a href="#13-hash-functions">1.3. Hash Functions</a><ul>
+<li><a href="#131-password-hashing-algorithms">1.3.1. Password Hashing Algorithms</a></li>
+</ul>
+</li>
+<li><a href="#14-steganography">1.4. Steganography</a></li>
+<li><a href="#15-cryptanalysis">1.5. Cryptanalysis</a></li>
+<li><a href="#16-cryptographic-protocols">1.6. Cryptographic Protocols</a></li>
+<li><a href="#17-homomorphic-encryption">1.7. Homomorphic Encryption</a></li>
+<li><a href="#18-zero-knowledge-proofs">1.8. Zero-Knowledge Proofs</a></li>
+<li><a href="#19-cryptographic-tokens">1.9. Cryptographic Tokens</a></li>
+<li><a href="#110-key-management">1.10. Key Management</a></li>
+<li><a href="#111-cryptographic-hardware">1.11. Cryptographic Hardware</a></li>
+<li><a href="#112-digital-signatures">1.12. Digital Signatures</a></li>
+<li><a href="#113-key-exchange">1.13. Key Exchange</a></li>
+<li><a href="#114-public-key-infrastructure">1.14. Public Key Infrastructure</a></li>
+<li><a href="#115-random-number-generation">1.15. Random Number Generation</a></li>
+<li><a href="#116-side-channel-attacks">1.16. Side-Channel Attacks</a></li>
+<li><a href="#117-multi-party-computation">1.17. Multi-Party Computation</a></li>
+<li><a href="#118-obfuscation">1.18. Obfuscation</a></li>
+<li><a href="#119-one-time-pad">1.19. One-Time Pad</a></li>
+<li><a href="#120-perfect-forward-secrecy">1.20. Perfect Forward Secrecy</a></li>
+<li><a href="#121-blockchain-technology">1.21. Blockchain Technology</a></li>
+<li><a href="#122-quantum-cryptography">1.22. Quantum Cryptography</a></li>
+<li><a href="#123-post-quantum-cryptography">1.23. Post-Quantum Cryptography</a></li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>Cryptography encompasses a wide range of techniques and protocols that are used to secure communication and data storage in various applications. Cryptography is a constantly evolving field, and new techniques and protocols are being developed to meet the ever-increasing demand for digital security and privacy.</p>
+<h3 id="11-symmetric-cryptography">1.1. Symmetric Cryptography<a class="headerlink" href="#11-symmetric-cryptography" title="Permanent link">&para;</a></h3>
+<p>Symmetric cryptography, also known as Secret Key Cryptography, uses the same key for both encryption and decryption. The key is kept secret between the sender and receiver, and the encryption process is fast and efficient.</p>
+<p>In symmetric cryptography, the plaintext is transformed into ciphertext using an algorithm that applies the secret key to the plaintext. The same secret key is then used to decrypt the ciphertext back into plaintext.</p>
+<p>The challenge is to securely share the key between the sender and receiver, which can be difficult to manage in large-scale systems.</p>
+<p>Common symmetric cryptography algorithms:</p>
+<ul>
+<li>
+<p>Data Encryption Standard (DES)</p>
+<blockquote>
+<p>An older block cipher that uses a 56-bit key.</p>
+<p>NOTE Considered insecure and should not be used.</p>
+</blockquote>
+</li>
+<li>
+<p>Advanced Encryption Standard (AES)</p>
+<blockquote>
+<p>A widely-used block cipher that supports key sizes of 128, 192, or 256 bits.</p>
+</blockquote>
+</li>
+<li>
+<p>Triple DES (3DES)</p>
+<blockquote>
+<p>A block cipher that applies DES three times to each block of plaintext, using two or three keys.</p>
+</blockquote>
+</li>
+<li>
+<p>Blowfish</p>
+<blockquote>
+<p>A block cipher that supports key sizes of up to 448 bits and is designed to be computationally efficient.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="12-asymmetric-cryptography">1.2. Asymmetric Cryptography<a class="headerlink" href="#12-asymmetric-cryptography" title="Permanent link">&para;</a></h3>
+<p>Asymmetric cryptography, also known as public key cryptography, uses two different keys for encryption and decryption. The public key is used for encryption, and the private key is used for decryption. The private key is kept secret by the owner, while the public key can be shared publicly. This allows for secure communication between two parties without the need for a shared secret key.</p>
+<p>The disadvantage of asymmetric cryptography is its computational complexity, but is more secure, as the private key is never shared.</p>
+<p>Common asymmetric cryptography algorithms:</p>
+<ul>
+<li>
+<p>RSA (Rivest, Shamir, and Adleman)</p>
+<blockquote>
+<p>A widely-used algorithm that is based on the difficulty of factoring large prime numbers.</p>
+</blockquote>
+</li>
+<li>
+<p>Elliptic Curve Cryptography (ECC)</p>
+<blockquote>
+<p>A newer algorithm that is based on the mathematics of elliptic curves and is designed to be more efficient than RSA.</p>
+</blockquote>
+</li>
+<li>
+<p>Diffie-Hellman</p>
+<blockquote>
+<p>A key exchange algorithm that allows two parties to securely share a secret key over an insecure channel.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="13-hash-functions">1.3. Hash Functions<a class="headerlink" href="#13-hash-functions" title="Permanent link">&para;</a></h3>
+<p>Hash functions are used to generate a unique fixed-size output value, called a hash, from any input data of arbitrary size, which is usually a string of digits and letters. Hash functions are commonly used in cryptography for message authentication, digital signatures, password storage, and data integrity verification. Some popular hash functions include <code>Secure Hash Algorithm (SHA)</code> and <code>Message Digest (MD)</code>.</p>
+<p>Commonly used hash functions include MD5, SHA-1, SHA-256, and SHA-3. However, MD5 and SHA-1 are considered insecure and should not be used for cryptographic purposes. SHA-256 and SHA-3 are currently the most widely used hash functions.</p>
+<p>Family of hash functions:</p>
+<ul>
+<li>
+<p>MD</p>
+<blockquote>
+<p>An older family of hash functions developed by Ron Rivest. Includes several members, such as <code>MD2</code>, <code>MD4</code>, and <code>MD5</code>.</p>
+<p>NOTE Considered insecure and should not be used.</p>
+</blockquote>
+</li>
+<li>
+<p>SHA-1</p>
+<blockquote>
+<p>SHA-1 is a cryptographic hash function that produces a 160-bit hash value. It was designed by the National Security Agency (NSA) and published by the National Institute of Standards and Technology (NIST) in 1995. <code>SHA-1</code> is the only members of the SHA-1 family.</p>
+<p>NOTE Considered insecure and should not be used.</p>
+</blockquote>
+</li>
+<li>
+<p>SHA-2</p>
+<blockquote>
+<p>A family of hash functions developed by the National Security Agency (NSA). Includes several members, such as <code>SHA-224</code>, <code>SHA-256</code>, <code>SHA-384</code>, <code>SHA-512</code>, <code>SHA-512/224</code> and <code>SHA-512/256</code>. Widely used for digital signatures, message authentication, and password storage. Provides a high level of security and is considered to be resistant to attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>SHA-3</p>
+<blockquote>
+<p>A family of hash functions developed as an alternative to SHA-2. Includes several members, such as <code>SHA3-224</code>, <code>SHA3-256</code>, <code>SHA3-384</code>, and <code>SHA3-512</code>. Designed to be more secure and resistant to attacks than SHA-2.</p>
+</blockquote>
+</li>
+<li>
+<p>BLAKE</p>
+<blockquote>
+<p>A family of hash functions designed by Jean-Philippe Aumasson and others. Includes several members, such as <code>BLAKE2b</code> and <code>BLAKE2s</code>. Known for their high performance and security.</p>
+</blockquote>
+</li>
+<li>
+<p>Keccak</p>
+<blockquote>
+<p>A family of hash functions developed by Guido Bertoni, Joan Daemen, and Gilles Van Assche. Includes several members, such as <code>Keccak-256</code> and <code>Keccak-512</code>. Chosen as the winner of the NIST hash function competition and is now the basis for SHA-3.</p>
+</blockquote>
+</li>
+<li>
+<p>Whirlpool</p>
+<blockquote>
+<p>A family of hash functions developed by Vincent Rijmen and Paulo Barreto. Includes <code>Whirlpool-0</code> and <code>Whirlpool-T</code>. Not widely used, but considered secure.</p>
+</blockquote>
+</li>
+<li>
+<p>Skein</p>
+<blockquote>
+<p>A family of hash functions developed by Bruce Schneier, Niels Ferguson, Stefan Lucks, Doug Whiting, Mihir Bellare, Tadayoshi Kohno, and Jon Callas. Includes several members, such as <code>Skein-256</code> and <code>Skein-512</code>. Known for their high performance and security.</p>
+</blockquote>
+</li>
+</ul>
+<p>Features of hash functions:</p>
+<ul>
+<li>
+<p>Deterministic</p>
+<blockquote>
+<p>Given the same input, a hash function always produces the same output.</p>
+</blockquote>
+</li>
+<li>
+<p>Fixed Output Size</p>
+<blockquote>
+<p>The output of a hash function is always of a fixed size, regardless of the input size.</p>
+</blockquote>
+</li>
+<li>
+<p>One-Way</p>
+<blockquote>
+<p>It should be computationally infeasible to determine the input message from the hash value.</p>
+</blockquote>
+</li>
+<li>
+<p>Collision Resistance</p>
+<blockquote>
+<p>It should be computationally infeasible to find two input messages that produce the same hash value.</p>
+</blockquote>
+</li>
+<li>
+<p>Uniformity</p>
+<blockquote>
+<p>A small change in the input message should produce a significant change in the hash value.</p>
+</blockquote>
+</li>
+<li>
+<p>Non-Reversibility</p>
+<blockquote>
+<p>It should be computationally infeasible to determine the input message from the hash value.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="131-password-hashing-algorithms">1.3.1. Password Hashing Algorithms<a class="headerlink" href="#131-password-hashing-algorithms" title="Permanent link">&para;</a></h4>
+<p>Password hashing algorithms are a specific type of hash function that are designed to store and verify passwords securely. Passwords are often the first line of defense in protecting user accounts and sensitive information, so it is important to store them securely.</p>
+<p>Password hashing algorithms are designed to be slow and computationally intensive, making them more difficult to crack through brute-force attacks. It is important to choose a strong password hash function and to use a unique salt for each user's password to ensure maximum security. The purpose of password hashing is to protect user passwords in case a database containing the password hashes is compromised.</p>
+<p>Common password hashing algorithms:</p>
+<ul>
+<li>
+<p>PBKDF2</p>
+<blockquote>
+<p>PBKDF2 (Password-Based Key Derivation Function 2) is a key derivation function that is used to securely hash passwords. It is based on a hash function, such as SHA-1 or SHA-256, and uses a salt value and an iteration count to produce a derived key from a password. While PBKDF2 is considered secure, it is not as memory-hard as newer algorithms like Bcrypt, Scrypt, and Argon2.</p>
+</blockquote>
+</li>
+<li>
+<p>Bcrypt</p>
+<blockquote>
+<p>Bcrypt is a password hashing algorithm that is designed to be slow and computationally expensive. Bcrypt is resistant to brute-force attacks and dictionary attacks, and is considered a secure choice for password hashing.</p>
+</blockquote>
+</li>
+<li>
+<p>Scrypt</p>
+<blockquote>
+<p>Scrypt is password hashing algorithm that is designed to be memory-hard. It uses a large amount of memory to make it more difficult to implement parallel attacks, and is resistant to attacks using ASICs or GPUs. Scrypt is considered more secure than bcrypt, but is also slower and more memory-intensive.</p>
+</blockquote>
+</li>
+<li>
+<p>Argon2</p>
+<blockquote>
+<p>Argon2 is a password hashing algorithm that was selected as the winner of the Password Hashing Competition in 2015. It is designed to be both memory-hard and CPU-hard, and is considered to be the most secure password hashing algorithm currently available.</p>
+</blockquote>
+</li>
+</ul>
+<p>Features of password hashing algorithms:</p>
+<ul>
+<li>
+<p>Salt</p>
+<blockquote>
+<p>Password hashing algorithms use a salt, which is a random value added to the password before hashing. This helps prevent attackers from using precomputed hash values, such as rainbow tables, to quickly crack passwords.</p>
+</blockquote>
+</li>
+<li>
+<p>Slow</p>
+<blockquote>
+<p>Password hashing algorithms are intentionally slow to make brute-force attacks more difficult. This slows down attackers who try to guess passwords by hashing them repeatedly until they find a match.</p>
+</blockquote>
+</li>
+<li>
+<p>Strong</p>
+<blockquote>
+<p>Blowfish, SHA-256 or SHA-3 are commonly used for password storage, since MD5 and SHA-1 are considered insecure.</p>
+</blockquote>
+</li>
+<li>
+<p>Non-Reversible</p>
+<blockquote>
+<p>Password hashing algorithms are non-reversible, meaning that it is computationally infeasible to determine the password from the hash value. This helps ensure that even if an attacker gains access to the password hash values, they cannot easily determine the passwords themselves.</p>
+</blockquote>
+</li>
+<li>
+<p>Unique</p>
+<blockquote>
+<p>Password hashing algorithms generate unique hash values for each password. This helps ensure that even if two users have the same password, their hash values will be different, making it more difficult for an attacker to attack multiple accounts at once.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="14-steganography">1.4. Steganography<a class="headerlink" href="#14-steganography" title="Permanent link">&para;</a></h3>
+<p>Steganography is the practice of hiding a message within another message or image. Unlike cryptography, which only secures the message, steganography hides the message from the observer. The hidden message is often referred to as the payload. Steganography is often used in conjunction with cryptography to provide additional security.</p>
+<h3 id="15-cryptanalysis">1.5. Cryptanalysis<a class="headerlink" href="#15-cryptanalysis" title="Permanent link">&para;</a></h3>
+<p>Cryptanalysis is the study of methods to break cryptographic systems. Cryptanalysts use various techniques such as mathematical analysis, brute force attacks, and side-channel attacks to break cryptographic algorithms. Cryptanalysis is an essential aspect of cryptography, as it helps to identify weaknesses in cryptographic systems and improve their security.</p>
+<h3 id="16-cryptographic-protocols">1.6. Cryptographic Protocols<a class="headerlink" href="#16-cryptographic-protocols" title="Permanent link">&para;</a></h3>
+<p>Cryptographic protocols are sets of rules and procedures that govern the secure exchange of information between parties. Cryptographic protocols are used in a wide range of applications, including secure communication, authentication, key exchange, and digital signatures.</p>
+<p>The design and implementation of these protocols can be complex, and there have been instances where vulnerabilities in protocols have been discovered and exploited by attackers. It is important to use trusted and well-vetted protocols, and to regularly update and patch systems to address any known vulnerabilities.</p>
+<p>Common cryptographic protocols:</p>
+<ul>
+<li>
+<p>Secure Sockets Layer (SSL)/Transport Layer Security (TLS)</p>
+<blockquote>
+<p>These protocols are used to secure communication between clients and servers. They provide encryption and authentication to ensure that the information being transmitted is protected from eavesdropping and tampering.</p>
+</blockquote>
+</li>
+<li>
+<p>Internet Protocol Security (IPsec)</p>
+<blockquote>
+<p>This protocol is used to secure communication between network devices, such as routers and switches. It provides authentication and encryption to ensure that the information being transmitted is protected from attacks such as spoofing and man-in-the-middle attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Kerberos</p>
+<blockquote>
+<p>This protocol is used for authentication in a network environment. It provides a secure way for users to authenticate to network services and systems without transmitting passwords in plain text.</p>
+</blockquote>
+</li>
+<li>
+<p>Pretty Good Privacy (PGP)</p>
+<blockquote>
+<p>This protocol is used for secure email communication. It provides encryption and digital signatures to ensure that emails are protected from eavesdropping and tampering.</p>
+</blockquote>
+</li>
+<li>
+<p>Secure Multipurpose Internet Mail Extensions (S/MIME)</p>
+<blockquote>
+<p>This protocol is also used for secure email communication. It provides encryption and digital signatures to ensure that emails are protected from eavesdropping and tampering, and also provides a way to verify the identity of the sender.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="17-homomorphic-encryption">1.7. Homomorphic Encryption<a class="headerlink" href="#17-homomorphic-encryption" title="Permanent link">&para;</a></h3>
+<p>Homomorphic encryption is a type of encryption that allows computations to be performed on ciphertexts without decrypting them. This means that data can be processed and analyzed while still being encrypted, preserving its confidentiality. Homomorphic encryption has the potential to transform the way data is processed and analyzed, as it allows sensitive data to be analyzed without the need to expose it.</p>
+<h3 id="18-zero-knowledge-proofs">1.8. Zero-Knowledge Proofs<a class="headerlink" href="#18-zero-knowledge-proofs" title="Permanent link">&para;</a></h3>
+<p>Zero-knowledge proofs are a type of protocol that allows one party to prove to another that they know a particular secret without revealing any information about that secret. Zero-knowledge proofs are used in various applications, such as authentication, identification, and access control.</p>
+<h3 id="19-cryptographic-tokens">1.9. Cryptographic Tokens<a class="headerlink" href="#19-cryptographic-tokens" title="Permanent link">&para;</a></h3>
+<p>Cryptographic tokens are physical devices that store cryptographic keys and are used for authentication and access control. Cryptographic tokens are often used in two-factor authentication systems and are considered to be more secure than traditional password-based systems.</p>
+<h3 id="110-key-management">1.10. Key Management<a class="headerlink" href="#110-key-management" title="Permanent link">&para;</a></h3>
+<p>Key management is the process of generating, storing, and distributing cryptographic keys used in cryptographic systems. Key management is essential for maintaining the security of cryptographic systems, as a compromised key can compromise the entire system.</p>
+<p>Categories of key management:</p>
+<ul>
+<li>
+<p>Key Generation</p>
+<blockquote>
+<p>This involves creating cryptographic keys using a secure random number generator. The keys should be of sufficient length and complexity to resist attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Key Distribution</p>
+<blockquote>
+<p>This involves securely transferring cryptographic keys from the key generator to the users who need them. This may involve using secure channels or protocols, such as Transport Layer Security (TLS), to ensure the confidentiality and integrity of the keys during transit.</p>
+</blockquote>
+</li>
+<li>
+<p>Key Storage</p>
+<blockquote>
+<p>This involves storing cryptographic keys securely to prevent unauthorized access. Keys should be stored in a tamper-proof hardware security module (HSM) or a secure software key store. The keys should be protected with strong access controls, such as multi-factor authentication.</p>
+</blockquote>
+</li>
+<li>
+<p>Key Usage</p>
+<blockquote>
+<p>This involves using cryptographic keys securely in cryptographic operations, such as encryption, decryption, and digital signatures. The keys should be used only for their intended purpose and should be protected from misuse or unauthorized access.</p>
+</blockquote>
+</li>
+<li>
+<p>Key Revocation</p>
+<blockquote>
+<p>This involves revoking cryptographic keys that are no longer needed or that may have been compromised. Keys should be revoked as soon as possible to prevent their use in future attacks. Revocation should be done securely to ensure that the revoked keys cannot be used again.</p>
+</blockquote>
+</li>
+<li>
+<p>Key Recovery</p>
+<blockquote>
+<p>This involves recovering cryptographic keys in case they are lost or damaged. This may involve using backup keys or key recovery agents to recreate the lost keys.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="111-cryptographic-hardware">1.11. Cryptographic Hardware<a class="headerlink" href="#111-cryptographic-hardware" title="Permanent link">&para;</a></h3>
+<p>Cryptographic hardware refers to specialized hardware devices designed to perform cryptographic operations. Cryptographic hardware is often used in high-security applications where software-based solutions may not provide adequate security.</p>
+<h3 id="112-digital-signatures">1.12. Digital Signatures<a class="headerlink" href="#112-digital-signatures" title="Permanent link">&para;</a></h3>
+<p>Digital signatures are used to provide authentication, integrity, and non-repudiation to electronic documents and messages. A digital signature is generated using a private key and can be verified using the corresponding public key. Digital signatures are widely used in e-commerce, online contracts, and electronic voting systems.</p>
+<h3 id="113-key-exchange">1.13. Key Exchange<a class="headerlink" href="#113-key-exchange" title="Permanent link">&para;</a></h3>
+<p>Key exchange is the process of securely sharing cryptographic keys between two or more parties. Key exchange protocols ensure that the keys are shared only between the intended parties and are not intercepted by attackers. Key exchange protocols are an essential component of many cryptographic systems, such as SSL/TLS and IPSec.</p>
+<p>Protocols for key exchange:</p>
+<ul>
+<li>
+<p>Diffie-Hellman Key Exchange</p>
+<blockquote>
+<p>This is a popular key exchange protocol that allows two parties to establish a shared secret key over an insecure communication channel.</p>
+</blockquote>
+</li>
+<li>
+<p>Elliptic Curve Diffie-Hellman (ECDH)</p>
+<blockquote>
+<p>This is a variant of the Diffie-Hellman Key Exchange that uses elliptic curves to generate the shared secret key.</p>
+</blockquote>
+</li>
+<li>
+<p>RSA Key Exchange</p>
+<blockquote>
+<p>This is a key exchange protocol based on the RSA encryption algorithm.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="114-public-key-infrastructure">1.14. Public Key Infrastructure<a class="headerlink" href="#114-public-key-infrastructure" title="Permanent link">&para;</a></h3>
+<p>Public Key Infrastructure (PKI) is a set of technologies, protocols, and services used to manage digital certificates and public-private key pairs. PKI is used to enable secure communication and authentication over a network or the internet.</p>
+<p>PKI functions:</p>
+<ul>
+<li>
+<p>Certificate authority (CA)</p>
+<blockquote>
+<p>A trusted third-party organization that issues digital certificates to verify the identity of users, devices, or services. The CA uses its private key to sign the digital certificate, which contains the public key of the certificate holder.</p>
+</blockquote>
+</li>
+<li>
+<p>Registration authority (RA)</p>
+<blockquote>
+<p>An entity that verifies the identity of the certificate holder before issuing a digital certificate on behalf of the CA.</p>
+</blockquote>
+</li>
+<li>
+<p>Certificate management</p>
+<blockquote>
+<p>The process of issuing, renewing, revoking, and managing digital certificates.</p>
+</blockquote>
+</li>
+<li>
+<p>Certificate revocation</p>
+<blockquote>
+<p>The process of invalidating a digital certificate before its expiration date, usually due to a compromise of the private key or other security concerns.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="115-random-number-generation">1.15. Random Number Generation<a class="headerlink" href="#115-random-number-generation" title="Permanent link">&para;</a></h3>
+<p>Random number generation is a crucial component of cryptography, used in various applications such as key generation, encryption, and digital signature schemes. A random number generator must be unpredictable and produce a statistically random sequence of numbers. A compromised or faulty random number generator can lead to vulnerabilities in cryptographic systems that can be exploited by attackers.</p>
+<p>Types of random number generators:</p>
+<ul>
+<li>
+<p>Pseudo-Random Number Generators (PRNGs)</p>
+<blockquote>
+<p>These are algorithms that generate a sequence of numbers that appear to be random but are actually generated using a deterministic process. PRNGs use a <code>seed</code> value as the starting point to generate the sequence of numbers. While PRNGs are not truly random, they are used widely in various applications, such as simulations and games, where the sequence of numbers generated only needs to be unpredictable and not truly random.</p>
+</blockquote>
+</li>
+<li>
+<p>True Random Number Generators (TRNGs)</p>
+<blockquote>
+<p>These generate a sequence of numbers that are truly random and unpredictable. TRNGs use physical sources of randomness, such as atmospheric noise, thermal noise, or radioactive decay, to generate random numbers. TRNGs are typically slower and more complex than PRNGs, but they provide a higher level of security.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="116-side-channel-attacks">1.16. Side-Channel Attacks<a class="headerlink" href="#116-side-channel-attacks" title="Permanent link">&para;</a></h3>
+<p>Side-channel attacks are a type of cryptanalytic attack that exploits weaknesses in the physical implementation of cryptographic systems, such as power consumption, electromagnetic radiation, or sound. Side-channel attacks can be used to extract cryptographic keys or other sensitive information from a system. Side-channel attacks are often used in combination with other cryptanalytic techniques to break cryptographic systems.</p>
+<h3 id="117-multi-party-computation">1.17. Multi-Party Computation<a class="headerlink" href="#117-multi-party-computation" title="Permanent link">&para;</a></h3>
+<p>Multi-party computation is a type of secure computation that allows multiple parties to jointly compute a function on their private inputs without revealing their inputs to each other. Multi-party computation is used in various applications, such as secure auctions, collaborative data analysis, and private data sharing.</p>
+<h3 id="118-obfuscation">1.18. Obfuscation<a class="headerlink" href="#118-obfuscation" title="Permanent link">&para;</a></h3>
+<p>Obfuscation is a technique used to hide the meaning of code or data without affecting its functionality. Obfuscation is often used in software protection to make it difficult for attackers to reverse engineer code or steal intellectual property.</p>
+<h3 id="119-one-time-pad">1.19. One-Time Pad<a class="headerlink" href="#119-one-time-pad" title="Permanent link">&para;</a></h3>
+<p>The one-time pad is a cryptographic technique that uses a random key of the same length as the message to encrypt and decrypt the message. The one-time pad is theoretically unbreakable if the key is kept secret and used only once, but it is impractical for most applications due to the large size of the key.</p>
+<h3 id="120-perfect-forward-secrecy">1.20. Perfect Forward Secrecy<a class="headerlink" href="#120-perfect-forward-secrecy" title="Permanent link">&para;</a></h3>
+<p>Perfect forward secrecy is a property of cryptographic systems that ensures that past communication cannot be compromised even if the secret key is compromised in the future. Perfect forward secrecy is achieved by generating a new key for each communication session, ensuring that compromise of one key does not compromise past or future communications.</p>
+<h3 id="121-blockchain-technology">1.21. Blockchain Technology<a class="headerlink" href="#121-blockchain-technology" title="Permanent link">&para;</a></h3>
+<p>Blockchain technology is a distributed ledger technology that uses cryptography to secure transactions and data. Blockchain technology is used in various applications, such as cryptocurrencies, supply chain management, and digital identity management. Blockchain technology relies heavily on cryptographic techniques, such as digital signatures, hash functions, and symmetric and asymmetric encryption.</p>
+<h3 id="122-quantum-cryptography">1.22. Quantum Cryptography<a class="headerlink" href="#122-quantum-cryptography" title="Permanent link">&para;</a></h3>
+<p>Quantum cryptography uses principles of quantum mechanics to ensure secure communication between two parties. It is based on the fact that any attempt to measure a quantum system disturbs the system, and this disturbance can be detected by the communicating parties. Quantum cryptography is still in the experimental stage and is not yet widely used.</p>
+<h3 id="123-post-quantum-cryptography">1.23. Post-Quantum Cryptography<a class="headerlink" href="#123-post-quantum-cryptography" title="Permanent link">&para;</a></h3>
+<p>Post-quantum cryptography is a type of cryptography that is designed to be resistant against attacks from quantum computers. Quantum computers have the potential to break many of the current cryptographic algorithms, making post-quantum cryptography an area of active research. Some popular post-quantum cryptography algorithms include lattice-based cryptography and code-based cryptography.</p>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<p>Cryptography is based on several fundamental principles that form the basis of modern cryptographic systems.  Principles form the foundation of modern cryptographic systems and are essential for ensuring the security and privacy of our digital lives.</p>
+<ul>
+<li>
+<p>Confidentiality</p>
+<blockquote>
+<p>Confidentiality is the principle of keeping data or information hidden from unauthorized access. Confidentiality is achieved through encryption, which scrambles the original data so that it can only be read by those with the proper decryption key.</p>
+</blockquote>
+</li>
+<li>
+<p>Integrity</p>
+<blockquote>
+<p>Integrity is the principle of ensuring that data or information is not tampered with or altered in any way during transmission or storage. Integrity is achieved through message authentication, which uses cryptographic hash functions to ensure that the message has not been altered.</p>
+</blockquote>
+</li>
+<li>
+<p>Authenticity</p>
+<blockquote>
+<p>Authenticity is the principle of ensuring that the identity of the sender or recipient of a message is verified. Authenticity is achieved through digital signatures, which use public key cryptography to sign a message and verify the identity of the sender.</p>
+</blockquote>
+</li>
+<li>
+<p>Non-Repudiation</p>
+<blockquote>
+<p>Non-repudiation is the principle of ensuring that the sender of a message cannot deny having sent it. Non-repudiation is achieved through digital signatures, which provide evidence of the origin of a message and the identity of the sender.</p>
+</blockquote>
+</li>
+<li>
+<p>Key Management</p>
+<blockquote>
+<p>Key management is the process of generating, storing, and distributing cryptographic keys used in cryptographic systems. Key management is essential for maintaining the security of cryptographic systems, as a compromised key can compromise the entire system.</p>
+</blockquote>
+</li>
+<li>
+<p>Complexity</p>
+<blockquote>
+<p>Complexity is the principle of making cryptographic algorithms difficult to break. Cryptographic algorithms should be designed in such a way that they require significant computing power and time to break, even with the most advanced technology.</p>
+</blockquote>
+</li>
+<li>
+<p>Availability</p>
+<blockquote>
+<p>Availability is the principle of ensuring that the cryptographic system is available and accessible to authorized users when needed. Availability is achieved through system design, redundancy, and backup procedures.</p>
+</blockquote>
+</li>
+<li>
+<p>Kerckhoffs' Principle</p>
+<blockquote>
+<p>Kerckhoffs' Principle is a fundamental principle of modern cryptography that states that a cryptographic system should be secure even if the attacker knows everything about the system, except for the secret key. This principle emphasizes the importance of strong and secure key management.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>Best practices ensure the security of cryptographic systems and protect against potential threats and attacks.</p>
+<ul>
+<li>
+<p>Use Strong and Up-to-Date Algorithms</p>
+<blockquote>
+<p>Use cryptographic algorithms that are strong and up-to-date. Avoid using deprecated algorithms that are known to be vulnerable to attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Keep Cryptographic Systems Up-to-Date</p>
+<blockquote>
+<p>Keep cryptographic systems up-to-date with the latest software updates, patches, and security fixes. This can help protect against known vulnerabilities and ensure that the system is secure against new and emerging threats.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Strong Keys</p>
+<blockquote>
+<p>Use strong and complex keys for encryption and decryption. The keys should be long enough to make brute-force attacks unfeasible.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Key Management Best Practices</p>
+<blockquote>
+<p>Implement key management best practices, including key generation, storage, distribution, and revocation. Keys should be generated securely and distributed only to authorized personnel.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Access Control</p>
+<blockquote>
+<p>Implement access control mechanisms to restrict access to cryptographic systems to authorized personnel only. Access should be granted based on the principle of least privilege.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Secure Channels for Key Exchange</p>
+<blockquote>
+<p>Use secure channels for key exchange to prevent interception and man-in-the-middle attacks. Secure channels can include public key infrastructure, secure socket layer (SSL), and virtual private networks (VPN).</p>
+</blockquote>
+</li>
+<li>
+<p>Implement End-to-End Encryption</p>
+<blockquote>
+<p>Implement end-to-end encryption to ensure that data is encrypted throughout the communication process, from the sender to the receiver. End-to-end encryption can prevent interception and man-in-the-middle attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Digital Signatures for Authentication</p>
+<blockquote>
+<p>Use digital signatures to authenticate digital documents and messages. Digital signatures provide evidence of the identity of the signer and ensure that the document has not been altered.</p>
+</blockquote>
+</li>
+<li>
+<p>Protect Against Side-Channel Attacks</p>
+<blockquote>
+<p>Protect against side-channel attacks, which exploit physical characteristics of the system to obtain information about the keys used in the system. Side-channel attacks can include power analysis, electromagnetic analysis, and acoustic analysis.</p>
+</blockquote>
+</li>
+<li>
+<p>Perform Regular Security Audits</p>
+<blockquote>
+<p>Perform regular security audits to identify potential vulnerabilities and weaknesses in cryptographic systems. Audits can include penetration testing, vulnerability scanning, and code review.</p>
+</blockquote>
+</li>
+<li>
+<p>Document and Enforce Security Policies</p>
+<blockquote>
+<p>Document and enforce security policies that specify the roles and responsibilities of personnel with access to cryptographic systems. Security policies should include procedures for key management, access control, and incident response.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Random Number Generators</p>
+<blockquote>
+<p>Use high-quality random number generators to generate cryptographic keys and other random values. Pseudo-random number generators can be vulnerable to predictability attacks if the underlying algorithm is weak or if the seed is predictable.</p>
+</blockquote>
+</li>
+<li>
+<p>Protect Against Key Compromise</p>
+<blockquote>
+<p>Protect against key compromise by storing keys securely and minimizing the number of copies of keys in circulation. Keys should be encrypted and stored on secure hardware, such as hardware security modules (HSMs).</p>
+</blockquote>
+</li>
+<li>
+<p>Use Strong Passwords</p>
+<blockquote>
+<p>Use strong passwords to protect cryptographic systems and prevent unauthorized access. Passwords should be long, complex, and unique to each user.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor System Activity</p>
+<blockquote>
+<p>Monitor system activity to detect potential security breaches and anomalies. System logs can be used to track user activity, detect unauthorized access attempts, and identify potential vulnerabilities.</p>
+</blockquote>
+</li>
+<li>
+<p>Plan for Incident Response</p>
+<blockquote>
+<p>Plan for incident response by developing procedures for detecting, investigating, and responding to security incidents. Incident response plans should include procedures for notifying affected parties, preserving evidence, and restoring systems to a secure state.</p>
+</blockquote>
+</li>
+<li>
+<p>Perf Perform risk assessments to identify potential threats and vulnerabilities to cryptographic systems. Risk assessments can help identify areas of weakness and guide the development of security policies and procedures.</p>
+</li>
+<li>
+<p>Use Multiple Layers of Protection</p>
+<blockquote>
+<p>Use multiple layers of protection, including encryption, access control, and intrusion detection systems. By using multiple layers of protection, you can reduce the likelihood of a successful attack and mitigate the impact of a security breach.</p>
+</blockquote>
+</li>
+<li>
+<p>Follow Industry Standards and Best Practices</p>
+<blockquote>
+<p>Follow industry standards and best practices for cryptographic systems. Standards bodies such as the National Institute of Standards and Technology (NIST) provide guidelines and recommendations for cryptographic algorithms and key management.</p>
+</blockquote>
+</li>
+<li>
+<p>Limit Exposure of Sensitive Information</p>
+<blockquote>
+<p>Limit the exposure of sensitive information by implementing data classification and access control policies. Sensitive information should be encrypted and access should be restricted to authorized personnel only.</p>
+</blockquote>
+</li>
+<li>
+<p>Test and Verify</p>
+<blockquote>
+<p>Test and verify the security of cryptographic systems through penetration testing, vulnerability scanning, and code review. Testing can help identify potential vulnerabilities and weaknesses in the system and guide the development of security policies and procedures.</p>
+</blockquote>
+</li>
+<li>
+<p>Plan for Disaster Recovery</p>
+<blockquote>
+<p>Plan for disaster recovery by implementing backup and recovery procedures for cryptographic systems. Backup copies of cryptographic keys and other sensitive data should be stored in secure locations and regularly tested to ensure that they can be restored in the event of a disaster.</p>
+</blockquote>
+</li>
+<li>
+<p>Train Personnel</p>
+<blockquote>
+<p>Train personnel on the proper use of cryptographic systems, including key management, access control, and incident response procedures. Personnel should also be trained on common threats and vulnerabilities, and how to detect and respond to security incidents.</p>
+</blockquote>
+</li>
+<li>
+<p>Stay Informed</p>
+<blockquote>
+<p>Stay informed about new and emerging threats to cryptographic systems and keep up-to-date with the latest trends and developments in cryptography. This can help to stay ahead of potential threats and adapt security policies and procedures accordingly.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Cryptography</p>
+<blockquote>
+<p>The practice of secure communication in the presence of third parties.</p>
+</blockquote>
+</li>
+<li>
+<p>Encryption</p>
+<blockquote>
+<p>The process of converting plaintext into ciphertext to make it unreadable to unauthorized parties.</p>
+</blockquote>
+</li>
+<li>
+<p>Decryption</p>
+<blockquote>
+<p>The process of converting ciphertext back into plaintext using a decryption key.</p>
+</blockquote>
+</li>
+<li>
+<p>Cryptosystem</p>
+<blockquote>
+<p>A system used for encryption and decryption of messages.</p>
+</blockquote>
+</li>
+<li>
+<p>Key</p>
+<blockquote>
+<p>A secret value used to encrypt or decrypt a message.</p>
+</blockquote>
+</li>
+<li>
+<p>Symmetric Key Cryptography</p>
+<blockquote>
+<p>A type of cryptography where the same key is used for encryption and decryption.</p>
+</blockquote>
+</li>
+<li>
+<p>Asymmetric Key Cryptography</p>
+<blockquote>
+<p>A type of cryptography where different keys are used for encryption and decryption.</p>
+</blockquote>
+</li>
+<li>
+<p>Public Key Cryptography</p>
+<blockquote>
+<p>A type of asymmetric cryptography where a public key is used for encryption and a private key is used for decryption.</p>
+</blockquote>
+</li>
+<li>
+<p>Private Key Cryptography</p>
+<blockquote>
+<p>A type of asymmetric cryptography where a private key is used for encryption and a public key is used for decryption.</p>
+</blockquote>
+</li>
+<li>
+<p>Hash Function</p>
+<blockquote>
+<p>A mathematical function that converts an input into a fixed-size output called a hash value.</p>
+</blockquote>
+</li>
+<li>
+<p>Digital Signature</p>
+<blockquote>
+<p>A cryptographic technique used to ensure the authenticity, integrity, and non-repudiation of digital messages or documents.</p>
+</blockquote>
+</li>
+<li>
+<p>Certificate</p>
+<blockquote>
+<p>A digital document that contains information about the identity of a person or organization and their public key.</p>
+</blockquote>
+</li>
+<li>
+<p>SSL/TLS</p>
+<blockquote>
+<p>Secure Sockets Layer/Transport Layer Security, a protocol used for secure communication over the internet.</p>
+</blockquote>
+</li>
+<li>
+<p>Key Exchange</p>
+<blockquote>
+<p>The process of securely exchanging keys between two parties over an insecure channel.</p>
+</blockquote>
+</li>
+<li>
+<p>Brute Force Attack</p>
+<blockquote>
+<p>A type of attack where an attacker tries all possible combinations of keys until the correct key is found.</p>
+</blockquote>
+</li>
+<li>
+<p>Man-in-the-Middle Attack</p>
+<blockquote>
+<p>An attack where an attacker intercepts communication between two parties and can eavesdrop, modify, or manipulate the messages.</p>
+</blockquote>
+</li>
+<li>
+<p>Side-Channel Attack</p>
+<blockquote>
+<p>An attack where an attacker exploits weaknesses in the physical implementation of a cryptosystem, such as measuring power consumption or electromagnetic radiation.</p>
+</blockquote>
+</li>
+<li>
+<p>Digital Certificate</p>
+<blockquote>
+<p>A digital document that contains information about the identity of a person, organization, or device, and their public key. Digital certificates are used for authentication and secure communication over the internet.</p>
+</blockquote>
+</li>
+<li>
+<p>Cryptanalysis</p>
+<blockquote>
+<p>The study of cryptographic systems with the goal of breaking them or finding weaknesses that can be exploited.</p>
+</blockquote>
+</li>
+<li>
+<p>One-time Pad</p>
+<blockquote>
+<p>A type of encryption where a random key is used only once to encrypt a message. The one-time pad is considered unbreakable if used correctly.</p>
+</blockquote>
+</li>
+<li>
+<p>Key Management</p>
+<blockquote>
+<p>The process of generating, storing, distributing, and revoking cryptographic keys.</p>
+</blockquote>
+</li>
+<li>
+<p>Message Authentication Code (MAC)</p>
+<blockquote>
+<p>A short piece of information that is used to verify the authenticity and integrity of a message.</p>
+</blockquote>
+</li>
+<li>
+<p>Nonce</p>
+<blockquote>
+<p>A random number used only once in a cryptographic protocol to prevent replay attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Salting</p>
+<blockquote>
+<p>The process of adding a random value to data before hashing it, to prevent attacks such as rainbow table attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Rainbow Tables</p>
+<blockquote>
+<p>A type of precomputed hash table used in cryptography to crack password hashes.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

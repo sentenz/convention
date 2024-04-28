@@ -1,0 +1,1506 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/technical-dept/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Technical Dept - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#technical-dept" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Technical Dept
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-debt-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Debt Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Debt Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-design-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Design Debt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-code-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Code Debt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-test-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. Test Debt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-documentation-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.4. Documentation Debt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-infrastructure-debt" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.5. Infrastructure Debt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-debt-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Debt Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-debt-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Debt Impact
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/technical-dept.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/technical-dept.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="technical-dept">Technical Dept<a class="headerlink" href="#technical-dept" title="Permanent link">&para;</a></h1>
+<p>Technical debt refers to the accumulated consequences of shortcuts, suboptimal solutions, and compromises made during the development process of software. Technical debt can lead to increased complexity, reduced maintainability, decreased productivity, and higher costs in the future.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-debt-types">1.1. Debt Types</a><ul>
+<li><a href="#111-design-debt">1.1.1. Design Debt</a></li>
+<li><a href="#112-code-debt">1.1.2. Code Debt</a></li>
+<li><a href="#113-test-debt">1.1.3. Test Debt</a></li>
+<li><a href="#114-documentation-debt">1.1.4. Documentation Debt</a></li>
+<li><a href="#115-infrastructure-debt">1.1.5. Infrastructure Debt</a></li>
+</ul>
+</li>
+<li><a href="#12-debt-metrics">1.2. Debt Metrics</a></li>
+<li><a href="#13-debt-impact">1.3. Debt Impact</a></li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+<li><a href="#5-references">5. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-debt-types">1.1. Debt Types<a class="headerlink" href="#11-debt-types" title="Permanent link">&para;</a></h3>
+<p>Technical debt can arise from various factors, including time constraints, lack of resources, inadequate planning, evolving requirements, and pressure to deliver quickly. It may result from deferred refactoring, incomplete documentation, poor design choices, duplicated code, outdated libraries, or the accumulation of bugs and issues.</p>
+<h4 id="111-design-debt">1.1.1. Design Debt<a class="headerlink" href="#111-design-debt" title="Permanent link">&para;</a></h4>
+<p>Design debt refers to the consequences of making design decisions that prioritize short-term gains or expedience over long-term maintainability and scalability. It occurs when design flaws, trade-offs, or compromises are made during the software development process, resulting in a system that becomes increasingly difficult to extend, modify, or maintain.</p>
+<p>Actively addressing design debt, software projects enhance maintainability, extensibility, and scalability, reducing</p>
+<p>Types of Design Debt:</p>
+<ol>
+<li>
+<p>Poor Modularization and Coupling</p>
+<p>Design debt can accumulate when modules or components are tightly coupled or have unclear boundaries. This makes it challenging to understand and modify individual parts of the system without impacting others. Tight coupling hinders code reuse, increases the risk of unintended consequences, and makes it difficult to isolate and fix bugs.</p>
+</li>
+<li>
+<p>Violation of Design Principles</p>
+<p>Design debt arises when design principles such as SOLID are not followed. Violations of these principles can lead to code that is difficult to understand, modify, or test.</p>
+</li>
+<li>
+<p>Lack of Abstraction and Modularity</p>
+<p>When design fails to properly abstract concepts and encapsulate functionality, design debt is incurred. Lack of abstraction and modularity can lead to code duplication, increased complexity, and difficulties in making changes or introducing new features.</p>
+</li>
+<li>
+<p>Inefficient Data Structures or Algorithms</p>
+<p>Design debt can occur when inefficient data structures or algorithms are chosen, resulting in performance issues or scalability limitations. Inadequate design choices may hinder the system's ability to handle larger datasets, increasing response times or resource usage.</p>
+</li>
+<li>
+<p>Inadequate Error Handling and Fault Tolerance</p>
+<p>When error handling and fault tolerance mechanisms are not adequately considered during the design phase, design debt is accumulated. Insufficient error handling can lead to unexpected system failures, data corruption, or compromised security.</p>
+</li>
+<li>
+<p>Inconsistent or Incomplete APIs</p>
+<p>Design debt can arise when APIs are inconsistent, poorly documented, or lack clear and intuitive interfaces. Inconsistent APIs make it difficult for developers to understand and use the system correctly, leading to errors, decreased productivity, and increased learning curves.</p>
+</li>
+</ol>
+<p>Handling of Design Debt:</p>
+<ol>
+<li>
+<p>Refactoring</p>
+<p>Allocate time and resources for refactoring efforts to improve the system's design. Refactoring involves restructuring code and design to improve modularity, reduce coupling, and enhance code quality without changing its external behavior.</p>
+</li>
+<li>
+<p>Design Principles</p>
+<p>Emphasize the importance of adhering to design principles such as SOLID, DRY , and KISS. Educate developers about these principles and encourage their application during the design and development process.</p>
+</li>
+<li>
+<p>Design Patterns and Architectural Patterns</p>
+<p>Promote the use of design patterns and architectural patterns that encourage modularity, extensibility, and scalability. Applying well-established patterns and architectural patterns can help mitigate design debt and improve system maintainability.</p>
+</li>
+<li>
+<p>Design Reviews</p>
+<p>Conduct regular design reviews to identify potential design debt and gather feedback from experienced developers or architects. Design reviews can help catch design flaws early and ensure alignment with best practices.</p>
+</li>
+<li>
+<p>Documentation and Knowledge Sharing</p>
+<p>Document design decisions, architectural diagrams, and rationale to facilitate knowledge sharing and ensure a common understanding among the development team. Clear and up-to-date documentation helps new team members understand the system's design and make informed modifications.</p>
+</li>
+<li>
+<p>Continuous Improvement</p>
+<p>Foster a culture of continuous improvement, where design debt is actively recognized, prioritized, and addressed. Encourage developers to identify and communicate design debt issues, and provide the necessary resources and support to tackle them effectively.</p>
+</li>
+</ol>
+<p>Example of Design Debt in Python:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Example of poorly written code with unclear variable names and lack of comments</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">a</span> <span class="o">=</span> <span class="n">z</span> <span class="o">*</span> <span class="mi">2</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="k">return</span> <span class="s2">&quot;High&quot;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="k">return</span> <span class="s2">&quot;Low&quot;</span>
+</span></code></pre></div>
+<p>The code snippet represents code debt, specifically poorly written code. It lacks clear variable names and meaningful comments, making it difficult to understand the purpose and functionality of the code. Poorly written code can lead to maintenance challenges, bugs, and reduced code readability.</p>
+<h4 id="112-code-debt">1.1.2. Code Debt<a class="headerlink" href="#112-code-debt" title="Permanent link">&para;</a></h4>
+<p>Code debt refers to the accumulation of suboptimal or inefficient code that compromises the quality, maintainability, and extensibility of a software project. It arises when shortcuts, quick fixes, or trade-offs are made during the development process, often to meet tight deadlines or deliver new features quickly. Code debt can result in increased complexity, decreased productivity, higher maintenance costs, and difficulties in introducing future enhancements or modifications.</p>
+<p>Actively addressing code debt and prioritizing code quality, software projects can improve maintainability, reduce bugs and regressions, enhance developer productivity, and reduce the cost of future development efforts.</p>
+<p>Types of Code Debt:</p>
+<ol>
+<li>
+<p>Poor Code Structure and Organization</p>
+<p>Code debt can accumulate when code lacks proper organization, modularization, or adherence to coding standards. This can make it difficult to understand, maintain, and extend the codebase over time.</p>
+</li>
+<li>
+<p>Code Duplication</p>
+<p>Repetition of code blocks or functions within the codebase indicates code debt. Duplicated code increases the chances of bugs, requires redundant maintenance, and can result in inconsistencies when changes need to be made.</p>
+</li>
+<li>
+<p>Insufficient or Inconsistent Error Handling</p>
+<p>Neglecting proper error handling can lead to code debt. This includes not handling exceptions or errors adequately, not providing meaningful error messages, or having inconsistent error-handling practices across the codebase.</p>
+</li>
+<li>
+<p>Lack of Code Comments and Documentation</p>
+<p>Inadequate or missing code comments and documentation contribute to code debt. Well-documented code helps other developers understand the purpose, usage, and intricacies of the code. Lack of documentation can slow down onboarding, increase the learning curve, and impede code maintenance.</p>
+</li>
+<li>
+<p>Complex and Unmaintainable Code</p>
+<p>Code that is overly complex, convoluted, or difficult to understand is a sign of code debt. Complex code can be challenging to debug, modify, and test, leading to longer development cycles and increased risks of introducing new bugs.</p>
+</li>
+<li>
+<p>Inefficient Algorithms or Data Structures</p>
+<p>Code debt can arise from using inefficient algorithms or data structures. This can result in suboptimal performance, scalability issues, and limitations in handling larger datasets or increased user loads.</p>
+</li>
+</ol>
+<p>Handling of Code Debt:</p>
+<ol>
+<li>
+<p>Refactoring</p>
+<p>Allocate time for refactoring code to improve its structure, readability, and maintainability. Refactoring involves restructuring code without changing its external behavior, removing duplication, and applying better design patterns.</p>
+</li>
+<li>
+<p>Code Reviews</p>
+<p>Encourage regular code reviews to identify code debt issues and provide constructive feedback to improve code quality. Code reviews help catch issues early, ensure adherence to coding standards, and facilitate knowledge sharing among team members.</p>
+</li>
+<li>
+<p>Automated Testing</p>
+<p>Invest in automated testing to detect and prevent code debt. Test-driven development (TDD) practices can help ensure that code is thoroughly tested and validated, reducing the likelihood of introducing new issues during development.</p>
+</li>
+<li>
+<p>Coding Standards and Guidelines</p>
+<p>Establish coding standards and guidelines to promote consistent coding practices. Consistency in coding style, naming conventions, and code structure helps make the codebase more readable, maintainable, and less prone to errors.</p>
+</li>
+<li>
+<p>Documentation</p>
+<p>Maintain up-to-date and comprehensive documentation to facilitate code understanding and knowledge sharing. Documenting code functionality, usage, and important considerations helps new team members quickly grasp the codebase and promotes efficient collaboration.</p>
+</li>
+<li>
+<p>Continuous Pipelines</p>
+<p>Implement CI/CD practices to automate the build, test, and deployment processes. CI/CD pipelines enforce quality checks and ensure that code debt is not introduced during the integration and deployment stages.</p>
+</li>
+</ol>
+<p>Example of Code Debt in Java:</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Example of code with poor modularity and tightly coupled components</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Customer</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Order</span><span class="w"> </span><span class="n">order</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">placeOrder</span><span class="p">(</span><span class="n">Product</span><span class="w"> </span><span class="n">product</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="c1">// Code for placing the order</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">calculateTotalPrice</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="c1">// Code for calculating the total price using order details</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendConfirmationEmail</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="c1">// Code for sending the confirmation email to the customer</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="c1">// Other methods...</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The code snippet illustrates design debt, specifically a lack of modularity. The <code>Customer</code> class is responsible for various tasks such as placing an order, calculating the total price, and sending a confirmation email. This lack of separation of concerns and tight coupling between different responsibilities can result in code that is harder to maintain, understand, and extend.</p>
+<h4 id="113-test-debt">1.1.3. Test Debt<a class="headerlink" href="#113-test-debt" title="Permanent link">&para;</a></h4>
+<p>Test debt refers to the accumulation of issues and shortcomings in the testing process of a software project. It occurs when proper testing practices are neglected or compromised, leading to inadequate test coverage, unreliable test results, and delayed bug detection. Test debt can have significant implications on software quality, product stability, and the efficiency of the development process.</p>
+<p>Types of Test Debt:</p>
+<ol>
+<li>
+<p>Insufficient Test Coverage</p>
+<p>Test debt can accumulate when the test coverage is incomplete or inadequate. This means that certain parts of the code or specific scenarios are not adequately tested, increasing the risk of undetected bugs and regressions.</p>
+</li>
+<li>
+<p>Lack of Automated Tests</p>
+<p>Manual testing is time-consuming, error-prone, and difficult to scale. If automated testing is not prioritized or implemented, test debt can accrue. Manual testing cannot match the speed, accuracy, and repeatability of automated tests, leading to longer testing cycles and reduced efficiency.</p>
+</li>
+<li>
+<p>Ineffective Test Suites</p>
+<p>Test suites that are poorly designed, maintainable, or organized can contribute to test debt. This includes tests that are flaky, unreliable, or difficult to debug, making it harder to identify and isolate issues when they arise.</p>
+</li>
+<li>
+<p>Limited Performance and Load Testing</p>
+<p>Neglecting performance and load testing can result in performance-related issues going unnoticed until they impact the end users. Inadequate performance testing may lead to scalability problems, bottlenecks, or unexpected resource consumption.</p>
+</li>
+<li>
+<p>Lack of Integration and End-to-End Testing</p>
+<p>If integration testing and end-to-end testing are not properly performed, test debt can accumulate. This can result in undetected issues arising from the interaction between different components or subsystems of the software.</p>
+</li>
+<li>
+<p>Incomplete Test Documentation</p>
+<p>Poorly documented test cases and test plans can hinder collaboration and knowledge sharing among team members. Lack of clear documentation makes it difficult to understand test coverage, reproduce test scenarios, and track the progress of testing efforts.</p>
+</li>
+</ol>
+<p>Handling of Test Debts:</p>
+<ol>
+<li>
+<p>Test-Driven Development (TDD)</p>
+<p>Adopt TDD practices to ensure that tests are written before the code is implemented. This helps in building a comprehensive test suite and ensures that tests are an integral part of the development process.</p>
+</li>
+<li>
+<p>Test Automation</p>
+<p>Prioritize the automation of tests to improve test efficiency, reduce manual effort, and enhance test coverage. Automated tests enable quick feedback loops, facilitate regression testing, and increase the overall reliability of the testing process.</p>
+</li>
+<li>
+<p>Continuous Integration and Continuous Testing</p>
+<p>Implement continuous integration (CI) and continuous testing practices to ensure that tests are executed consistently and frequently as part of the development pipeline. This helps identify issues early and ensures a quick feedback loop for developers.</p>
+</li>
+<li>
+<p>Improve Test Coverage</p>
+<p>Analyze the codebase to identify areas of low test coverage and prioritize efforts to improve coverage. Focus on critical functionalities, high-risk areas, and scenarios that are prone to errors or regressions.</p>
+</li>
+<li>
+<p>Enhance Test Suites</p>
+<p>Regularly review and refactor test suites to improve maintainability, reliability, and readability. Eliminate flaky tests, update outdated test cases, and ensure proper test data management.</p>
+</li>
+<li>
+<p>Performance and Load Testing</p>
+<p>Incorporate performance and load testing into the testing process to identify performance bottlenecks, scalability issues, and other performance-related problems. Simulate real-world usage scenarios to validate the software's behavior under various load conditions.</p>
+</li>
+<li>
+<p>Document Test Cases and Plans</p>
+<p>Maintain up-to-date and well-documented test cases, test plans, and test reports. Clear documentation helps in understanding the test coverage, reproducing test scenarios, and tracking the progress of testing efforts.</p>
+</li>
+</ol>
+<p>Example of Test Debt in Go:</p>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Inadequate testing</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">func</span><span class="w"> </span><span class="nx">divide</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">b</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The code snippet demonstrates lacks proper testing. The <code>divide</code> function performs integer division but does not handle the case of dividing by zero. Without adequate tests to cover different scenarios, such as division by zero or handling edge cases, the code may produce unexpected results or panic at runtime.</p>
+<h4 id="114-documentation-debt">1.1.4. Documentation Debt<a class="headerlink" href="#114-documentation-debt" title="Permanent link">&para;</a></h4>
+<p>Documentation debt is the technical debt that arises from not documenting the code, architecture, or system design. It results from choosing to prioritize functionality over documentation or neglecting to update documentation as the software changes. Documentation debt can have negative impacts on the project's maintainability, usability, and collaboration among team members.</p>
+<p>Actively addressing documentation debt and maintaining high-quality documentation, software projects can improve usability, reduce support requests, enhance collaboration among team members, and facilitate a smoother onboarding process for new developers or users.</p>
+<p>Types of Documentation Debt:</p>
+<ol>
+<li>
+<p>Outdated Documentation</p>
+<p>When documentation is not regularly updated, it becomes outdated and loses its relevance. Outdated documentation can mislead developers, users, or other stakeholders, leading to confusion, wasted effort, and potential errors.</p>
+</li>
+<li>
+<p>Incomplete or Inaccurate Documentation</p>
+<p>Documentation debt can arise when important information is missing or incomplete. Inadequate documentation makes it difficult for developers or users to understand the software's features, functionality, or intended usage. Inaccurate documentation can lead to incorrect implementation or usage of the software.</p>
+</li>
+<li>
+<p>Lack of Tutorials or Examples</p>
+<p>Insufficient tutorials or examples can hinder developers' ability to learn and utilize the software effectively. Well-documented examples and tutorials provide practical guidance and demonstrate how to use the software in real-world scenarios.</p>
+</li>
+<li>
+<p>Poorly Organized Documentation</p>
+<p>Documentation that is disorganized, difficult to navigate, or lacks a clear structure can contribute to documentation debt. If finding relevant information or understanding the documentation's structure becomes challenging, developers may avoid using the documentation, leading to a loss of valuable insights and guidance.</p>
+</li>
+<li>
+<p>Inconsistent or Incoherent Documentation</p>
+<p>Documentation debt can arise from inconsistencies in terminology, style, or formatting across different sections or documents. Incoherent documentation makes it harder for users or developers to understand and follow the information provided.</p>
+</li>
+<li>
+<p>Lack of Maintenance Documentation</p>
+<p>When maintenance-related information, such as troubleshooting guides, release notes, or upgrade instructions, is not properly documented, documentation debt can accumulate. This can lead to difficulties in maintaining or upgrading the software and result in longer resolution times for issues.</p>
+</li>
+</ol>
+<p>Handling of Documentation Debt:</p>
+<ol>
+<li>
+<p>Establish Documentation Standards</p>
+<p>Define documentation standards, guidelines, and templates to ensure consistency and clarity across all documentation. This includes formatting, terminology, structure, and style guidelines.</p>
+</li>
+<li>
+<p>Regularly Update and Review Documentation</p>
+<p>Allocate time and resources to review and update documentation regularly. Set up a process to ensure that outdated or inaccurate information is corrected, and new features or changes are documented promptly.</p>
+</li>
+<li>
+<p>Provide Clear and Comprehensive Examples</p>
+<p>Develop clear and comprehensive examples and use cases to illustrate the software's functionality and best practices. These examples should cover common scenarios and provide guidance on how to use different features effectively.</p>
+</li>
+<li>
+<p>Improve Documentation Structure and Navigation</p>
+<p>Organize documentation in a logical structure, with clear headings, subheadings, and a table of contents. Implement a search functionality or index to enable easy navigation and searching within the documentation.</p>
+</li>
+<li>
+<p>Document Maintenance and Troubleshooting</p>
+<p>Ensure that documentation includes maintenance-related information, troubleshooting guides, release notes, and upgrade instructions. This helps users and developers handle common issues, understand changes, and perform necessary maintenance tasks.</p>
+</li>
+<li>
+<p>Gather Feedback</p>
+<p>Actively seek feedback from users, developers, or other stakeholders to identify areas for improvement in documentation. Incorporate feedback to address any gaps or issues and continually enhance the documentation quality.</p>
+</li>
+</ol>
+<p>Example of Documentation Debt in Python:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Example of code with insufficient documentation</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">def</span> <span class="nf">calculate_factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="sd">    Function to calculate the factorial of a given number.</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="sd">    - n: The number for which factorial needs to be calculated.</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="sd">    Returns:</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="sd">    - The factorial of the given number.</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="k">return</span> <span class="n">result</span>
+</span></code></pre></div>
+<p>The code snippet represents documentation debt, specifically insufficient documentation. While the code itself calculates the factorial of a number, the lack of detailed explanations and descriptions within the code comments makes it challenging for other developers to understand the purpose and usage of the function. Insufficient documentation can hinder collaboration, maintenance, and knowledge sharing among team members.</p>
+<h4 id="115-infrastructure-debt">1.1.5. Infrastructure Debt<a class="headerlink" href="#115-infrastructure-debt" title="Permanent link">&para;</a></h4>
+<p>Infrastructure debt refers to the accumulation of issues and shortcomings in the underlying infrastructure and technical foundations of a software system. It occurs when the infrastructure is not properly maintained, lacks necessary upgrades, or does not scale to meet the growing demands of the application. Infrastructure debt can have significant implications on system stability, performance, security, and the ability to support future growth.</p>
+<p>Addressing infrastructure debt involves proactively investing in regular infrastructure maintenance, upgrades, and modernization efforts. It requires monitoring the technology stack, staying up to date with the latest releases and security patches, implementing automation, and adopting best practices for infrastructure management. By actively managing infrastructure debt, organizations can ensure a stable, scalable, and secure environment for their software systems.</p>
+<p>Actively addressing infrastructure debt and investing in the maintenance, scalability, and resilience of the underlying infrastructure, software projects can enhance system stability, performance, and security while enabling future growth and expansion.</p>
+<p>Types of Infrastructure Debt:</p>
+<ol>
+<li>
+<p>Outdated Hardware or Operating Systems</p>
+<p>Using outdated or aging hardware components can result in slower performance, limited processing power, and increased risk of hardware failures. Outdated operating systems may lack security patches or support for newer software components.</p>
+</li>
+<li>
+<p>Unsupported Software Versions</p>
+<p>Running software components on outdated or unsupported versions can lead to security vulnerabilities and compatibility issues. Infrastructure debt can accumulate when operating systems, web servers, databases, or other software components are not regularly updated. It is crucial to apply patches, security updates, and upgrades to ensure a secure and stable infrastructure.</p>
+</li>
+<li>
+<p>Inefficient Network Configuration</p>
+<p>Poor network design or configuration can result in bottlenecks, latency, or unreliable connectivity. Infrastructure debt can accumulate if network equipment, such as switches or routers, is not properly configured or if network capacity is not scaled to meet the system's demands. Optimizing network infrastructure can improve performance, reduce downtime, and enhance user experience.</p>
+</li>
+<li>
+<p>Inadequate Data Storage and Management</p>
+<p>Insufficient or outdated database systems can lead to performance issues, data integrity problems, and difficulty in scaling. Infrastructure debt may arise from using outdated database versions, inefficient query patterns, or lack of proper indexing. Upgrading to newer database versions, optimizing queries, and implementing efficient data storage strategies can help address this debt.</p>
+</li>
+<li>
+<p>Manual and Error-Prone Deployment Processes</p>
+<p>Infrastructure debt can accumulate when deployment processes are manual, error-prone, or lack automation. Relying on manual steps, inconsistent configurations, or manual environment setup can lead to deployment failures, longer release cycles, and increased risk of errors. Investing in automated deployment tools, configuration management systems, and infrastructure-as-code practices can help reduce this debt.</p>
+</li>
+<li>
+<p>Inadequate Monitoring and Alerting</p>
+<p>Neglecting proper monitoring and alerting mechanisms can lead to undetected issues, longer resolution times, and reduced system reliability. Infrastructure debt can accumulate if monitoring tools are not implemented or if alerting systems are not configured to notify appropriate stakeholders in case of failures or performance degradation. Establishing robust monitoring and alerting practices ensures timely identification and resolution of issues.</p>
+</li>
+<li>
+<p>Lack of Disaster Recovery and Backup Mechanisms</p>
+<p>If adequate disaster recovery and backup mechanisms are not in place, infrastructure debt can accumulate. Insufficient backup strategies increase the risk of data loss and system downtime in the event of failures or disasters.</p>
+</li>
+</ol>
+<p>Handling of Infrastructure Debt:</p>
+<ol>
+<li>
+<p>Regular Infrastructure Upgrades</p>
+<p>Establish a plan for regular infrastructure upgrades, including hardware, operating systems, and other critical components. Keep track of vendor updates, security patches, and performance improvements to ensure the infrastructure remains up-to-date.</p>
+</li>
+<li>
+<p>Scalability Planning and Architecture</p>
+<p>Design the infrastructure with scalability in mind. Evaluate the anticipated growth and implement appropriate scalability mechanisms, such as load balancing, horizontal scaling, or cloud-based infrastructure services.</p>
+</li>
+<li>
+<p>Monitoring and Alerting Systems</p>
+<p>Implement robust monitoring and alerting systems to proactively detect and respond to infrastructure issues. Set up alerts for critical metrics, establish performance baselines, and implement automated notifications to enable timely resolution of problems.</p>
+</li>
+<li>
+<p>Automation and Infrastructure as Code (IaC)</p>
+<p>Embrace infrastructure automation and Infrastructure as Code practices to ensure consistent and repeatable infrastructure provisioning, configuration, and management. Automation reduces the risk of manual errors, improves consistency, and enables version control of infrastructure configurations.</p>
+</li>
+<li>
+<p>Disaster Recovery and Backup Strategies</p>
+<p>Develop and implement comprehensive disaster recovery and backup strategies. Regularly test the recovery mechanisms to ensure data integrity and system availability in the event of failures or disasters.</p>
+</li>
+<li>
+<p>Configuration Management Tools</p>
+<p>Adopt configuration management tools to automate and standardize infrastructure configuration and provisioning. These tools help enforce consistency, enable efficient change management, and simplify the deployment of infrastructure updates.</p>
+</li>
+<li>
+<p>Performance Optimization</p>
+<p>Continually monitor and optimize the infrastructure's performance. Identify potential bottlenecks, tune configurations, and leverage caching or optimization techniques to maximize resource utilization and improve overall system performance.</p>
+</li>
+</ol>
+<p>Example of Infrastructure Debt in Ruby:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Example of code using outdated or deprecated libraries</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;sinatra&#39;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">require</span><span class="w"> </span><span class="s1">&#39;mysql&#39;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># Code using the old MySQL library, which is no longer supported</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">Mysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;database&#39;</span><span class="p">)</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">get</span><span class="w"> </span><span class="s1">&#39;/&#39;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="c1"># Code for handling requests</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">end</span>
+</span></code></pre></div>
+<p>The code snippet exemplifies infrastructure debt, specifically using outdated or unsupported technology. The code imports the deprecated MySQL library, which may no longer receive updates or support. Relying on outdated technologies can introduce security vulnerabilities, compatibility issues, and difficulty in integrating with modern systems. It is essential to keep the technology stack up to date to leverage improvements and avoid potential risks.</p>
+<h3 id="12-debt-metrics">1.2. Debt Metrics<a class="headerlink" href="#12-debt-metrics" title="Permanent link">&para;</a></h3>
+<p>Keeping dashboards with code health metrics. These can range from dashboards that show test coverage or the number of <code>TODO</code> tags, to more sophisticated dashboards including metrics like cyclomatic complexity or maintainability index.</p>
+<ul>
+<li>
+<p>Bugs</p>
+<blockquote>
+<p>Software developers should count and track their bugs. This includes both fixed and unfixed bugs. Noting the unfixed bugs allows development teams to focus on them and fix them during their agile iterations. Noting the fixed bugs helps teams measure how effective their tech debt management process is. Bugs on a weekly or monthly basis indicates a quality decline of the codebase.</p>
+</blockquote>
+</li>
+<li>
+<p>Code Quality</p>
+<blockquote>
+<p>Code complexity can really damage the development team and the organization as a whole. Code complexity metrics are Cyclomatic complexity, maintainability index, Class coupling, Lines of code, Depth of Inheritance. The lower each of these measures, the better. These metrics also helps organisations know exactly which code to rework or refactor in order to reduce complexity and improve the backend side of the software.</p>
+</blockquote>
+</li>
+<li>
+<p>Code Cohesion</p>
+<blockquote>
+<p>A high code cohesion usually means that the code is more maintainable, reusable, and robust. It also minimises the amount of people who need to get involved in the code, which can greatly reduce complexity and decrease the chances of bit rot. High cohesion is when you have a class that does a well defined job.</p>
+</blockquote>
+</li>
+<li>
+<p>Code Coverage</p>
+<blockquote>
+<p>A declining percentage in code coverage percentage and code coverage per feature is a signal for a growing tech debt.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Pipelines</p>
+<blockquote>
+<p>An increasing number of failed continuous pipelines is a strong indicator for instability in the codebase. This can be related to design and code debt.</p>
+</blockquote>
+</li>
+<li>
+<p>Feature Throughput</p>
+<blockquote>
+<p>Days it takes to push a new feature to the main branch. It’s a supporting metric that can indicate growing tech debt. Not each feature has the same size, but if you see a decline over multiple weeks, it’s time to intervene.</p>
+</blockquote>
+</li>
+<li>
+<p>Issues with Non-functional Requirements</p>
+<blockquote>
+<p>Measuring metrics such as application performance, UX (increasingly difficult to use), or loss of compatibility are solid indicators for increased technical debt.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="13-debt-impact">1.3. Debt Impact<a class="headerlink" href="#13-debt-impact" title="Permanent link">&para;</a></h3>
+<p>Technical debt can have significant impacts on software development projects and the businesses that rely on them. Effective management of technical debt is critical to minimizing these impacts and ensuring that software development projects remain on track, on budget, and deliver value to customers.</p>
+<ul>
+<li>
+<p>Increased development time and costs</p>
+<blockquote>
+<p>Technical debt can increase the time and costs associated with software development projects because developers may need to spend additional time refactoring code, resolving issues, and addressing technical debt items.</p>
+</blockquote>
+</li>
+<li>
+<p>Reduced Code Quality</p>
+<blockquote>
+<p>Technical debt can result in reduced code quality, making the codebase more difficult to understand, read, and maintain. This can lead to increased bugs, lower productivity, and decreased developer morale.</p>
+</blockquote>
+</li>
+<li>
+<p>Increased Maintenance Expenses</p>
+<blockquote>
+<p>Technical debt can result in increased maintenance expenses because the codebase may be more difficult to modify, extend, or test. This can increase the time and costs associated with fixing bugs and implementing new features.</p>
+</blockquote>
+</li>
+<li>
+<p>Decreased System Performance</p>
+<blockquote>
+<p>Technical debt can negatively impact system performance because suboptimal code may be less efficient and consume more system resources. This can result in slower system performance and decreased user satisfaction.</p>
+</blockquote>
+</li>
+<li>
+<p>Decreased Innovation</p>
+<blockquote>
+<p>Technical debt can limit innovation because developers may be forced to spend more time addressing technical debt items instead of working on new features and functionality.</p>
+</blockquote>
+</li>
+<li>
+<p>Increased Business Risk</p>
+<blockquote>
+<p>Technical debt can increase business risk because it can result in system downtime, security vulnerabilities, and decreased customer satisfaction. These risks can have significant financial and reputational impacts on businesses.</p>
+</blockquote>
+</li>
+</ul>
+<p>Technical debt can have a significant impact on developer psychology, affecting their motivation, job satisfaction, and overall well-being. Effective management of technical debt is critical for ensuring that developers can perform their job effectively and maintain a healthy work-life balance.</p>
+<ul>
+<li>
+<p>Frustration and Demotivation</p>
+<blockquote>
+<p>Dealing with technical debt can be frustrating and demotivating for developers. Technical debt can make it difficult to achieve project goals, lead to increased rework and debugging, and result in a lack of progress. This can lead to frustration and demotivation among developers, making it difficult for them to stay engaged and productive.</p>
+</blockquote>
+</li>
+<li>
+<p>Burnout</p>
+<blockquote>
+<p>Technical debt can contribute to developer burnout, a state of emotional, physical, and mental exhaustion caused by prolonged stress and overwork. Developers may feel overwhelmed and unsupported when dealing with technical debt, leading to burnout and a decrease in overall job satisfaction.</p>
+</blockquote>
+</li>
+<li>
+<p>Imposter Syndrome</p>
+<blockquote>
+<p>Developers may experience imposter syndrome, a feeling of inadequacy and self-doubt, when dealing with technical debt. Technical debt can make developers feel like they are not doing their job effectively, leading to a lack of confidence and feelings of inadequacy.</p>
+</blockquote>
+</li>
+<li>
+<p>Quality of Work</p>
+<blockquote>
+<p>Technical debt can impact the quality of work produced by developers. When technical debt is not properly managed, developers may be forced to take shortcuts and make compromises in the quality of their work, leading to a decrease in code quality and technical debt accumulation over time.</p>
+</blockquote>
+</li>
+<li>
+<p>Team Dynamics</p>
+<blockquote>
+<p>Technical debt can also impact team dynamics, causing tension and conflict among team members. When technical debt is not properly managed, it can result in finger-pointing and blame-shifting, leading to a breakdown in communication and collaboration.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<p>Managing technical debt is essential for ensuring that software remains maintainable, scalable, and efficient over time. Effective management of technical debt requires identifying technical debt items, prioritizing them, and allocating resources for their management. It also involves tracking technical debt levels, communicating technical debt management efforts to stakeholders, and proactively managing technical debt to prevent it from accumulating.</p>
+<ul>
+<li>
+<p>Recognize Technical Debt</p>
+<blockquote>
+<p>Technical debt must be recognized as a natural and inevitable part of software development. It is a result of making trade-offs between short-term and long-term goals, and it can occur at different stages of the software development life cycle. Recognizing technical debt helps teams to prioritize and address it more effectively.</p>
+</blockquote>
+</li>
+<li>
+<p>Manage Technical Debt Proactively</p>
+<blockquote>
+<p>Technical debt should be managed proactively to prevent it from accumulating and causing problems. This requires teams to identify and address technical debt items as early as possible, allocate resources for technical debt management, and continuously monitor and track technical debt levels.</p>
+</blockquote>
+</li>
+<li>
+<p>Understand the Cost of Technical Debt</p>
+<blockquote>
+<p>Technical debt has a cost that goes beyond the initial effort of developing software. The cost of technical debt can include increased development and maintenance costs, decreased agility and flexibility, and decreased customer satisfaction. Understanding the cost of technical debt helps teams to prioritize and justify technical debt management efforts.</p>
+</blockquote>
+</li>
+<li>
+<p>Prioritize Technical Debt</p>
+<blockquote>
+<p>Technical debt items should be prioritized based on their impact on the system and the cost of addressing them. Prioritization helps teams to focus on the most critical technical debt items and make informed decisions about technical debt management.</p>
+</blockquote>
+</li>
+<li>
+<p>Collaborate Across Teams</p>
+<blockquote>
+<p>Technical debt management is a collaborative effort that requires coordination across different teams and stakeholders. Collaboration helps teams to identify technical debt items more effectively, share knowledge and expertise, and align technical debt management efforts with business goals.</p>
+</blockquote>
+</li>
+<li>
+<p>Adopt Best Practices</p>
+<blockquote>
+<p>Technical debt can be reduced by adopting best practices for software development. Best practices include following coding standards, using modern technologies and tools, conducting code reviews, and investing in testing and automation.</p>
+</blockquote>
+</li>
+<li>
+<p>Balance Short-Term and Long-Term Goals</p>
+<blockquote>
+<p>Technical debt management requires a balance between short-term and long-term goals. While addressing technical debt may require additional effort and resources in the short term, it can lead to improved software quality, increased agility, and reduced costs in the long term.</p>
+</blockquote>
+</li>
+<li>
+<p>Prioritization</p>
+<blockquote>
+<p>Prioritizing technical debt items is critical for effective management. Technical debt items should be prioritized based on their impact on the system and the cost of addressing them. Prioritization helps teams to focus on the most critical technical debt items and make informed decisions about technical debt management.</p>
+</blockquote>
+</li>
+<li>
+<p>Communication</p>
+<blockquote>
+<p>Communication is critical for effective technical debt management. Technical debt management efforts should be communicated clearly to all stakeholders. Communication helps to build awareness of technical debt management, foster a culture of collaboration and continuous improvement, and align technical debt management efforts with business goals.</p>
+</blockquote>
+</li>
+<li>
+<p>Technical Debt Reduction Plan</p>
+<blockquote>
+<p>A technical debt reduction plan should be developed to identify technical debt items, prioritize them, and track progress in addressing them. The plan should be updated regularly to reflect changes in the system and to ensure that technical debt is being managed effectively.</p>
+</blockquote>
+</li>
+<li>
+<p>Training and Education</p>
+<blockquote>
+<p>Training and education can help to reduce technical debt by improving the skills and knowledge of developers. Training and education should be provided regularly to ensure that developers are aware of best practices and can apply them effectively.</p>
+</blockquote>
+</li>
+<li>
+<p>Proactive Management</p>
+<blockquote>
+<p>Proactive management is critical for effective technical debt management. Technical debt should be managed proactively to prevent it from accumulating and causing problems. This requires teams to identify and address technical debt items as early as possible, allocate resources for technical debt management, and continuously monitor and track technical debt levels.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>Managing technical debt requires a proactive and continuous effort from the software development team.</p>
+<ul>
+<li>
+<p>Refactoring</p>
+<blockquote>
+<p>Refactoring is the process of improving the code's design without changing its behavior. Regular refactoring can help to reduce technical debt by improving the code's readability, maintainability, and performance. Refactoring should be performed regularly as part of the development process to ensure that technical debt does not accumulate.</p>
+</blockquote>
+</li>
+<li>
+<p>Code Review</p>
+<blockquote>
+<p>Code review is a practice where developers review each other's code to identify issues, suggest improvements, and ensure that the code follows best practices. Code review can help to identify technical debt items and prevent them from being introduced into the codebase. Code review should be performed regularly as part of the development process.</p>
+</blockquote>
+</li>
+<li>
+<p>Automated Testing</p>
+<blockquote>
+<p>Automated testing can help to  reduce technical debt by catching bugs and regressions early in the development process. Automated tests should be written for critical parts of the system and should be run regularly to ensure that the system behaves as expected.</p>
+</blockquote>
+</li>
+<li>
+<p>Documentation</p>
+<blockquote>
+<p>Documentation can help to reduce technical debt by making the code easier to understand and maintain. Documentation should be created for the system's architecture, design, and code, and should be kept up-to-date as the system evolves.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Pipelines</p>
+<blockquote>
+<p>Continuous pipelines, such as continuous integration and deployment (CI/CD) can help to reduce technical debt by ensuring that changes are tested and deployed quickly and consistently. Continuous pipelines should be used to automate testing, building, and deploying the system, reducing the risk of errors and regressions.</p>
+</blockquote>
+</li>
+<li>
+<p>Version Control</p>
+<blockquote>
+<p>Version control systems can help to reduce technical debt by tracking changes to the codebase and making it easy to revert changes if necessary. Version control should be used to manage the codebase and to collaborate effectively with other developers.</p>
+</blockquote>
+</li>
+<li>
+<p>Agile Development</p>
+<blockquote>
+<p>Agile development methodologies can help to reduce technical debt by encouraging collaboration, continuous improvement, and rapid feedback. Agile development should be used to ensure that technical debt is managed effectively throughout the development process.</p>
+</blockquote>
+</li>
+<li>
+<p>Technical Debt Tracking</p>
+<blockquote>
+<p>Technical debt should be tracked regularly to ensure that it is being managed effectively. Technical debt tracking should include identifying technical debt items, prioritizing them, and tracking progress in addressing them.</p>
+</blockquote>
+</li>
+<li>
+<p>Metrics and Monitoring</p>
+<blockquote>
+<p>Metrics and monitoring can help to identify technical debt items and track progress in addressing them. Metrics such as code quality, test coverage, and technical debt levels should be monitored regularly to ensure that technical debt is being managed effectively.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>By following the principles and best practices, and understanding the terminology associated with technical debt, software development teams can effectively manage technical debt and ensure that their codebase remains maintainable, scalable, and efficient over time.</p>
+<ul>
+<li>
+<p>Technical Debt</p>
+<blockquote>
+<p>Technical debt is a metaphor for the accumulated cost of additional work that arises when developers choose to take shortcuts or make trade-offs that result in less-than-optimal code quality.</p>
+</blockquote>
+</li>
+<li>
+<p>Technical Debt Interest</p>
+<blockquote>
+<p>Interest refers to the additional costs incurred over time due to technical debt. Like financial debt, technical debt incurs "interest" in the form of additional development costs, maintenance expenses, and other indirect costs.</p>
+</blockquote>
+</li>
+<li>
+<p>Technical Debt Interest Rate</p>
+<blockquote>
+<p>The technical debt interest rate is the rate at which technical debt incurs additional costs over time. The technical debt interest rate can be used to estimate the long-term costs of technical debt and to prioritize technical debt management efforts.</p>
+</blockquote>
+</li>
+<li>
+<p>Code Smell</p>
+<blockquote>
+<p>Code smells are indications that there may be technical debt in the codebase. Code smells are often subtle and can be difficult to detect, but they can indicate larger problems with the code's design, readability, or maintainability.</p>
+</blockquote>
+</li>
+<li>
+<p>Refactoring</p>
+<blockquote>
+<p>Refactoring is the process of improving the code's design without changing its behavior. Refactoring can help to reduce technical debt by improving the code's readability, maintainability, and performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Clean Code</p>
+<blockquote>
+<p>Clean code refers to code that is easy to understand, read, and maintain. Clean code is free of code smells, follows best practices, and is well-organized and structured.</p>
+</blockquote>
+</li>
+<li>
+<p>Legacy Code</p>
+<blockquote>
+<p>Legacy code refers to code that is no longer actively developed or maintained. Legacy code is often difficult to modify, extend, or test, and can pose a significant technical debt challenge for development teams.</p>
+</blockquote>
+</li>
+<li>
+<p>Technical Debt Ratio</p>
+<blockquote>
+<p>The technical debt ratio is a metric that indicates the amount of technical debt in the codebase relative to the code's overall quality. The technical debt ratio is typically expressed as a percentage and can be used to track technical debt over time.</p>
+</blockquote>
+</li>
+<li>
+<p>Technical Debt Backlog</p>
+<blockquote>
+<p>The technical debt backlog is a list of technical debt items that need to be addressed in the codebase. The technical debt backlog is typically prioritized based on the impact of the technical debt item on the system and the cost of addressing it.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="5-references">5. References<a class="headerlink" href="#5-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Google <a href="https://static.googleusercontent.com/media/sre.google/de//static/pdf/building_secure_and_reliable_systems.pdf#page=297&amp;zoom=100,0,450">technical debt</a> book.</li>
+<li>Stepsize <a href="https://www.stepsize.com/blog/complete-guide-to-technical-debt">technical debt</a> article.</li>
+<li>Stepsize <a href="https://www.stepsize.com/blog/3-best-tactics-to-prevent-technical-debt">tactics to prevent technical debt</a> article.</li>
+<li>Stepsize <a href="https://www.stepsize.com/blog/tools-to-track-and-manage-technical-debt">tools to track technical debt</a> article.</li>
+<li>Stepsize <a href="https://www.stepsize.com/report">technical debt report 2021</a> article.</li>
+<li>Martin Fowler <a href="https://martinfowler.com/bliki/TechnicalDebtQuadrant.html">technical debt quadrant</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1050 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/guides/xops-guide/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>XOps Guide - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xops-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              XOps Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-gitops" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. GitOps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. DevOps
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-devsecops" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. DevSecOps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. DevSecOps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Secrets Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-identity-and-access-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Identity and Access Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-signing-contributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Signing Contributions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-signing-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4. Signing Containers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/guides/xops-guide.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/guides/xops-guide.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="xops-guide">XOps Guide<a class="headerlink" href="#xops-guide" title="Permanent link">&para;</a></h1>
+<p><a href="../../articles/xops/">XOps</a> is designed to run on-premises or in a private cloud that meets specific requirements. It is built to run enterprise-wide, globally distributed, and interconnected, especially in analytic environments. It is a combination of traditional business applications, such as data and analytics management, with modern technologies such as:</p>
+<ul>
+<li><a href="#1-gitops">1. GitOps</a></li>
+<li><a href="#2-devops">2. DevOps</a></li>
+<li><a href="#3-devsecops">3. DevSecOps</a></li>
+<li><a href="#31-secrets-management">3.1. Secrets Management</a></li>
+<li><a href="#32-identity-and-access-management">3.2. Identity and Access Management</a></li>
+<li><a href="#33-signing-contributions">3.3. Signing Contributions</a></li>
+<li><a href="#34-signing-containers">3.4. Signing Containers</a></li>
+</ul>
+<h2 id="1-gitops">1. GitOps<a class="headerlink" href="#1-gitops" title="Permanent link">&para;</a></h2>
+<p><a href="../../articles/xops/#2-gitops">GitOps</a> is a DevOps methodology that leverages the Git version control system as a single source of truth for declarative infrastructure and application code.</p>
+<p>The GitOps process can be divided into several stages or categories, including:</p>
+<ul>
+<li>
+<p>Review</p>
+<blockquote>
+<p>Teams review and approve code changes and infrastructure updates through <code>Pull Requests</code>. Code review is ensuring that the code meets the quality standards and requirements. Review may involve automated tests and peer reviews to ensure that the code is efficient, reliable, and secure.</p>
+</blockquote>
+</li>
+<li>
+<p>Merge</p>
+<blockquote>
+<p>Teams merge approved changes to the base branch of the Git repository, triggering an automated deployment pipeline. Merging is ensuring that the code changes are integrated and tested before deployment. The deployment pipeline may include automated testing, building, and packaging the code for deployment.</p>
+<p>This stage includes the categories:</p>
+<ul>
+<li><a href="../../articles/merging-strategies/">Merging Strategies</a></li>
+<li><a href="../../articles/branching-strategies/">Branching Strategies</a></li>
+<li><a href="../../convention/conventional-commits/">Conventional Commits</a></li>
+<li><a href="../../convention/semantic-versioning/">Semantic Versioning</a></li>
+<li><a href="../../convention/changelog/">Changelog</a></li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>Auditing Complaince</p>
+<blockquote>
+<p>Software vendors conduct software compliance audits to verify adherence to the contracts and license terms they have concluded.</p>
+</blockquote>
+</li>
+<li>
+<p>Rollback</p>
+<blockquote>
+<p>Teams have the option to roll back changes when an issue is detected in the production environment. Rollback involves reverting to a previous version of the infrastructure or application code, providing a quick solution to any issues that may arise.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-devops">2. DevOps<a class="headerlink" href="#2-devops" title="Permanent link">&para;</a></h2>
+<p><a href="../../articles/xops/#1-devops">DevOps</a> is a software development practice that combines software development and information technology operations to streamline the software delivery process. It aims to increase collaboration and communication between development and operations teams, automate the software delivery pipeline, and promote a culture of continuous improvement and innovation. DevOps is based on the principles of Agile development and focuses on delivering high-quality software quickly, efficiently, and at a low cost. Key practices include continuous integration and deployment, automation, testing, and monitoring. DevOps helps organizations to respond faster to changing customer demands, improve software quality and reliability, and increase operational efficiency.</p>
+<p>The DevOps process can be divided into several stages or categories, including:</p>
+<ul>
+<li>
+<p>Plan</p>
+<blockquote>
+<p>Plan stage involves defining the goals, objectives, and scope of the software development project. The planning stage involves defining the requirements, identifying the target audience, and determining the most appropriate delivery methods.</p>
+</blockquote>
+</li>
+<li>
+<p>Code</p>
+<blockquote>
+<p>Code stage involves writing the code for the software, typically using Agile development methodologies. Code development involves implementing the requirements and ensuring that the code meets the quality standards and requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Build</p>
+<blockquote>
+<p>Build stage involves compiling and packaging the code into a deployable artifact, such as a binary or a Docker container. This stage also involves performing automated testing to ensure that the code meets the quality standards and requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Release</p>
+<blockquote>
+<p>Release stage involves deploying the code to production and making it available to users. The release stage involves performing quality assurance checks, setting up monitoring and logging systems, and preparing the infrastructure for deployment.</p>
+</blockquote>
+</li>
+<li>
+<p>Deployment</p>
+<blockquote>
+<p>Deployment stage involves installing and configuring the software on the target environment, typically using automation tools such as Puppet or Ansible. This stage involves configuring the software to work in the target environment, setting up security measures, and ensuring that the software meets the requirements of the target audience.</p>
+</blockquote>
+</li>
+<li>
+<p>Operate</p>
+<blockquote>
+<p>Operate stage involves maintaining the software in the production environment, ensuring it is functional, and providing support to end-users. The operate stage involves monitoring the software to detect and resolve any issues that may arise, applying security patches and updates, and performing regular maintenance tasks to maintain the software's performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitoring</p>
+<blockquote>
+<p><a href="../../articles/logging-and-monitoring/#12-monitoring">Monitoring</a> stage involves monitoring the software's performance and usage, and collecting data for analysis and reporting. Monitoring is an ongoing process and involves using a variety of tools and techniques to ensure that the software is performing as expected and meeting the needs of the target audience.</p>
+</blockquote>
+</li>
+<li>
+<p>Feedback</p>
+<blockquote>
+<p>Feedback stage involves gathering feedback from users and stakeholders, and using that feedback to drive continuous improvement in the software development process. Feedback is an ongoing process that involves gathering information from users and stakeholders, analyzing the data, and making changes to the software development process based on that data.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-devsecops">3. DevSecOps<a class="headerlink" href="#3-devsecops" title="Permanent link">&para;</a></h2>
+<p><a href="../../articles/xops/#3-devsecops">DevSecOps</a> is a methodology that emphasizes the integration of security practices into the DevOps process, enabling organizations to build secure software that meets the needs of their target audience.</p>
+<p>The DevSecOps process can be divided into several stages or categories, including:</p>
+<ul>
+<li>
+<p>Plan</p>
+<blockquote>
+<p>Teams define the security requirements, identifying the target audience, and determining the most appropriate delivery methods. Planning may involve defining the security controls, identifying vulnerabilities, and creating a risk management plan.</p>
+</blockquote>
+</li>
+<li>
+<p>Develop</p>
+<blockquote>
+<p>Teams develop the infrastructure and application code using secure coding practices. Development may involve creating secure coding standards, performing threat modeling, and conducting security testing in a local development environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Test</p>
+<blockquote>
+<p>Teams perform security testing using <a href="../../articles/software-testing/#41-application-security-testing">Application Security Testing (AST)</a> methodology on the application code and infrastructure to identify and mitigate vulnerabilities. Testing may involve automated security testing tools, manual penetration testing, and code reviews to ensure that the code is secure and meets the security requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor</p>
+<blockquote>
+<p>Teams monitor the application and infrastructure in the production environment, using <a href="../../articles/software-testing/#412-dynamic-application-security-testing">Dynamic Application Security Testing (DAST)</a> methodology. Monitoring involves collecting and analyzing data about the performance of the application and infrastructure, identifying security incidents and attacks on an application, and resolving them to improve system security and availability.</p>
+</blockquote>
+</li>
+<li>
+<p>Respond</p>
+<blockquote>
+<p>Teams respond to security incidents in a timely and effective manner. This may involve creating incident response plans, conducting root cause analysis, and performing remediation actions to mitigate the impact of a security incident.</p>
+</blockquote>
+</li>
+<li>
+<p>Govern</p>
+<blockquote>
+<p>Teams establish governance policies and procedures to ensure that security is embedded throughout the software development lifecycle. Governance may involve creating security standards and policies, establishing security training programs, and conducting security audits to ensure that the security controls are effective and meet compliance requirements.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="31-secrets-management">3.1. Secrets Management<a class="headerlink" href="#31-secrets-management" title="Permanent link">&para;</a></h3>
+<p>Secrets Management is an important aspect of DevSecOps, and it can be integrated into various stages of the DevSecOps process. Secrets refer to sensitive information such as passwords, API keys, certificates, and other credentials that are used to authenticate and authorize access to systems, databases, and other resources.</p>
+<p>Integrating secrets management into the DevSecOps process, teams can ensure that secrets are managed securely throughout the software development lifecycle. This helps to reduce the risk of security incidents and ensure compliance with industry regulations.</p>
+<p>To ensure that secrets are managed securely, a secrets management system can be integrated into the development process. This can involve the following stages:</p>
+<ul>
+<li>
+<p>Plan</p>
+<blockquote>
+<p>During the planning stage, security requirements should include the management of secrets. Teams should identify the types of secrets that will be used in the application and determine how they will be stored and managed.</p>
+</blockquote>
+</li>
+<li>
+<p>Develop</p>
+<blockquote>
+<p>During the development stage, secrets should be managed using secure coding practices, such as encryption and key management. Secure coding standards should be established to ensure that secrets are not hardcoded into the application code.</p>
+</blockquote>
+</li>
+<li>
+<p>Test</p>
+<blockquote>
+<p>During the testing stage, security testing should be performed to ensure that secrets are being managed securely. Security testing tools can be used to identify vulnerabilities in the secrets management system.</p>
+</blockquote>
+</li>
+<li>
+<p>Deploy</p>
+<blockquote>
+<p>During the deployment stage, secrets should be deployed securely using automated tools. A secure secrets management system should be used to ensure that secrets are not exposed during deployment.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor</p>
+<blockquote>
+<p>During the monitoring stage, teams should continuously monitor the secrets management system to identify any security incidents. Teams should analyze the data collected to identify and respond to any security incidents promptly.</p>
+</blockquote>
+</li>
+<li>
+<p>Respond</p>
+<blockquote>
+<p>During the response stage, teams should have an incident response plan in place to respond to security incidents that may affect the secrets management system. Remediation actions should be taken to mitigate the impact of any security incidents.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="32-identity-and-access-management">3.2. Identity and Access Management<a class="headerlink" href="#32-identity-and-access-management" title="Permanent link">&para;</a></h3>
+<p><a href="../../articles/identity-and-access-management/">Identity and Access Management (IAM)</a> is an important aspect of DevSecOps. IAM involves managing and controlling user access to systems, applications, and data. IAM is critical to ensuring the security of an organization's IT infrastructure and data.</p>
+<p>Integrating IAM into the DevSecOps process, teams can ensure that user access is managed and controlled effectively. This helps to reduce the risk of security incidents and ensure compliance with industry regulations.</p>
+<p>IAM can be integrated into various stages of the DevSecOps process. This can involve the following stages:</p>
+<ul>
+<li>
+<p>Plan</p>
+<blockquote>
+<p>During the planning stage, teams should identify the types of users who will be accessing the application and determine the access controls that will be implemented. This includes identifying the roles and permissions of users and defining the access policies that will be used to control user access.</p>
+</blockquote>
+</li>
+<li>
+<p>Develop</p>
+<blockquote>
+<p>During the development stage, teams should implement secure coding practices that support IAM. This includes implementing user authentication and authorization controls, such as two-factor authentication and role-based access control (RBAC).</p>
+</blockquote>
+</li>
+<li>
+<p>Test</p>
+<blockquote>
+<p>During the testing stage, teams should perform security testing to ensure that the IAM controls are working as expected. This includes testing the user authentication and authorization controls to ensure that they are not vulnerable to attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Deploy</p>
+<blockquote>
+<p>During the deployment stage, IAM controls should be deployed using automated tools. This includes deploying IAM policies, permissions, and access controls to the target environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor</p>
+<blockquote>
+<p>During the monitoring stage, teams should continuously monitor the IAM controls to identify any security incidents. Teams should analyze the data collected to identify and respond to any security incidents promptly.</p>
+</blockquote>
+</li>
+<li>
+<p>Respond</p>
+<blockquote>
+<p>During the response stage, teams should have an incident response plan in place to respond to security incidents that may affect the IAM controls. Remediation actions should be taken to mitigate the impact of any security incidents.</p>
+</blockquote>
+</li>
+<li>
+<p>Govern</p>
+<blockquote>
+<p>During the governance stage, teams should establish policies and procedures to ensure that IAM controls are implemented consistently across the organization. This includes creating IAM standards and policies, establishing IAM training programs, and conducting IAM audits to ensure that the IAM controls are effective and meet compliance requirements.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="33-signing-contributions">3.3. Signing Contributions<a class="headerlink" href="#33-signing-contributions" title="Permanent link">&para;</a></h3>
+<p>Signing contributions is an important practice in DevSecOps and software development in general. It involves digitally signing the code changes made by developers to verify their identity and ensure the integrity of the code.</p>
+<p>Signing contributions is particularly important in open-source software development, where multiple developers contribute code to a project. By signing their contributions, developers can demonstrate that the code changes are legitimate and not tampered with.</p>
+<p>Integrating signing contributions into the DevSecOps process, teams can ensure that code changes are legitimate and secure. This helps to reduce the risk of security incidents and ensure the quality and integrity of the software being developed.</p>
+<p>Signing contributions can be integrated into the DevSecOps process:</p>
+<ul>
+<li>
+<p>Plan</p>
+<blockquote>
+<p>During the planning stage, teams should identify the signing process that will be used to sign code contributions. This may involve selecting a digital signature tool or developing a custom signing process that meets the organization's needs.</p>
+</blockquote>
+</li>
+<li>
+<p>Develop</p>
+<blockquote>
+<p>During the development stage, developers should be required to sign their code contributions using the selected signing process. This helps to verify the identity of the developer and ensure the integrity of the code changes.</p>
+</blockquote>
+</li>
+<li>
+<p>Test</p>
+<blockquote>
+<p>During the testing stage, teams should test the signing process to ensure that it is working as expected. This may involve testing the digital signature tool or custom signing process to ensure that the signed code changes can be verified.</p>
+</blockquote>
+</li>
+<li>
+<p>Deploy</p>
+<blockquote>
+<p>During the deployment stage, signed code changes should be deployed using automated tools. This helps to ensure that the signed code changes are not tampered with during deployment.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor</p>
+<blockquote>
+<p>During the monitoring stage, teams should continuously monitor the signed code changes to identify any security incidents. Teams should analyze the data collected to identify and respond to any security incidents promptly.</p>
+</blockquote>
+</li>
+<li>
+<p>Respond</p>
+<blockquote>
+<p>During the response stage, teams should have an incident response plan in place to respond to security incidents that may affect the signed code changes. Remediation actions should be taken to mitigate the impact of any security incidents.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="34-signing-containers">3.4. Signing Containers<a class="headerlink" href="#34-signing-containers" title="Permanent link">&para;</a></h3>
+<p>Signing containers is an important aspect of DevSecOps. Containers are used to package applications and dependencies in a portable format that can be deployed across different environments. However, since containers can be easily tampered with, it is essential to sign containers to ensure their integrity and authenticity.</p>
+<p>Integrating container signing into the DevSecOps process, teams can ensure that their container images are authentic, tamper-proof, and free from vulnerabilities. This helps to reduce the risk of security incidents and ensure compliance with industry regulations.</p>
+<p>Signing containers can be integrated into the DevSecOps process:</p>
+<ul>
+<li>
+<p>Plan</p>
+<blockquote>
+<p>During the planning stage, teams should identify the types of containers that will be signed. Teams should also identify the tools and processes that will be used to sign the containers.</p>
+</blockquote>
+</li>
+<li>
+<p>Develop</p>
+<blockquote>
+<p>During the development stage, teams should implement signing into their container images. This includes using digital signatures to ensure that the container image is coming from a trusted source, and implementing checksums to detect unauthorized changes.</p>
+</blockquote>
+</li>
+<li>
+<p>Test</p>
+<blockquote>
+<p>During the testing stage, teams should perform security testing to ensure that the signed container images are working as expected. This includes testing the integrity of the signed container images to ensure that they are not vulnerable to attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Deploy</p>
+<blockquote>
+<p>During the deployment stage, signed container images should be deployed using automated tools. This includes deploying signed containers to the target environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor</p>
+<blockquote>
+<p>During the monitoring stage, teams should continuously monitor the signed container images to identify any security incidents. Teams should analyze the data collected to identify and respond to any security incidents promptly.</p>
+</blockquote>
+</li>
+<li>
+<p>Respond</p>
+<blockquote>
+<p>During the response stage, teams should have an incident response plan in place to respond to security incidents that may affect the signed container images. Remediation actions should be taken to mitigate the impact of any security incidents.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

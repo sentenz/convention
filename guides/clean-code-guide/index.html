@@ -1,0 +1,1221 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/guides/clean-code-guide/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Clean Code Guide - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#clean-code-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Clean Code Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#clean-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clean Code
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clean Code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#design-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Design Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dry" class="md-nav__link">
+    <span class="md-ellipsis">
+      DRY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kiss" class="md-nav__link">
+    <span class="md-ellipsis">
+      KISS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yagni" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAGNI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solid" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOLID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#four-rules-of-simple-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Four Rules of Simple Design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elegant-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elegant Objects
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#featured-articles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Featured Articles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tutorials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tutorials
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Videos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code Examples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Hub
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blogs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blogs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#books" class="md-nav__link">
+    <span class="md-ellipsis">
+      Books
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Summary
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      General rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#design-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Design rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#understandability-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understandability tips
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#names-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Names rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#functions-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comments-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comments rules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-code-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Source code structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objects-and-data-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objects and data structures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-smells" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code smells
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/guides/clean-code-guide.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/guides/clean-code-guide.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="clean-code-guide">Clean Code Guide<a class="headerlink" href="#clean-code-guide" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#clean-code">Clean Code</a></li>
+<li><a href="#design-principles">Design Principles</a><ul>
+<li><a href="#dry">DRY</a></li>
+<li><a href="#kiss">KISS</a></li>
+<li><a href="#yagni">YAGNI</a></li>
+<li><a href="#solid">SOLID</a></li>
+<li><a href="#four-rules-of-simple-design">Four Rules of Simple Design</a></li>
+<li><a href="#elegant-objects">Elegant Objects</a></li>
+</ul>
+</li>
+<li><a href="#featured-articles">Featured Articles</a></li>
+<li><a href="#tutorials">Tutorials</a></li>
+<li><a href="#videos">Videos</a></li>
+<li><a href="#code-examples">Code Examples</a></li>
+<li><a href="#git-hub">Git Hub</a></li>
+<li><a href="#blogs">Blogs</a></li>
+<li><a href="#books">Books</a></li>
+<li><a href="#other">Other</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#general-rules">General rules</a></li>
+<li><a href="#design-rules">Design rules</a></li>
+<li><a href="#understandability-tips">Understandability tips</a></li>
+<li><a href="#names-rules">Names rules</a></li>
+<li><a href="#functions-rules">Functions rules</a></li>
+<li><a href="#comments-rules">Comments rules</a></li>
+<li><a href="#source-code-structure">Source code structure</a></li>
+<li><a href="#objects-and-data-structures">Objects and data structures</a></li>
+<li><a href="#tests">Tests</a></li>
+<li><a href="#code-smells">Code smells</a></li>
+</ul>
+<h2 id="clean-code">Clean Code<a class="headerlink" href="#clean-code" title="Permanent link">&para;</a></h2>
+<p>Inspired by <a href="https://github.com/kkisiele/awesome-clean-code">Awesome Clean Code</a>.</p>
+<h3 id="design-principles">Design Principles<a class="headerlink" href="#design-principles" title="Permanent link">&para;</a></h3>
+<p>The code follows these principles</p>
+<h4 id="dry">DRY<a class="headerlink" href="#dry" title="Permanent link">&para;</a></h4>
+<p>DRY (Don't Repeat Yourself)</p>
+<h4 id="kiss">KISS<a class="headerlink" href="#kiss" title="Permanent link">&para;</a></h4>
+<p>KISS (Keep It Short and Simple)</p>
+<h4 id="yagni">YAGNI<a class="headerlink" href="#yagni" title="Permanent link">&para;</a></h4>
+<p>YAGNI (You Ain't Gonna Need It)</p>
+<h4 id="solid">SOLID<a class="headerlink" href="#solid" title="Permanent link">&para;</a></h4>
+<p>(SRP, OCP, LSP, ISP, DIP)</p>
+<p>Acronym coined by Robert C. Martin (Uncle Bob) to describe the following five principles:</p>
+<ol>
+<li><a href="https://docs.google.com/open?id=0ByOwmqah_nuGNHEtcU5OekdDMkk">The Single Responsibility Principle</a> A class should have only one reason to change.</li>
+<li><a href="http://docs.google.com/a/cleancoder.com/viewer?a=v&amp;pid=explorer&amp;chrome=true&amp;srcid=0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1&amp;hl=en">The Open Closed Principle</a> Software entities should be open for extension, but closed for modification.</li>
+<li><a href="https://drive.google.com/file/d/0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh/view">The Liskov Substitution Principle</a> Derived classes must be substitutable for their base classes.</li>
+<li><a href="https://drive.google.com/file/d/0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi/view">The Interface Segregation Principle</a> Make fine grained interfaces that are client specific.</li>
+<li><a href="https://drive.google.com/file/d/0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz/view">The Dependency Inversion Principle</a> Depend on abstractions, not on concretions.</li>
+</ol>
+<p>A local copy of <a href="https://github.com/kkisiele/awesome-clean-code/raw/master/principles_and_patterns.pdf">"Design Principles and Design Patterns"</a> by Robert C. Marin from <em>objectmentor.com</em> website.
+More about this principles with examples can be found <a href="https://lostechies.com/wp-content/uploads/2011/03/pablos_solid_ebook.pdf">here</a></p>
+<h4 id="four-rules-of-simple-design">Four Rules of Simple Design<a class="headerlink" href="#four-rules-of-simple-design" title="Permanent link">&para;</a></h4>
+<p>Inspired by <a href="https://martinfowler.com/bliki/BeckDesignRules.html">Kent Beck's Four Rules of Simple Design</a>
+A design which:</p>
+<ol>
+<li>Passes all tests.</li>
+<li>Reveals intention.</li>
+<li>No duplication.</li>
+<li>Fewest elements.</li>
+</ol>
+<h4 id="elegant-objects">Elegant Objects<a class="headerlink" href="#elegant-objects" title="Permanent link">&para;</a></h4>
+<p>Inspired by <a href="http://www.elegantobjects.org">Elegant Objects</a></p>
+<ol>
+<li>No null.</li>
+<li>No code in constructors.</li>
+<li>No getters and setters.</li>
+<li>No mutable objects.</li>
+<li>No static methods, not even private ones.</li>
+<li>No instanceof, type casting, or reflection.</li>
+<li>No public methods without <a class="magiclink magiclink-github magiclink-mention" href="https://github.com/Override" title="GitHub User: Override">@Override</a>.</li>
+<li>No statements in test methods except assertThat.</li>
+<li>No implementation inheritance.</li>
+</ol>
+<h3 id="featured-articles">Featured Articles<a class="headerlink" href="#featured-articles" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://michaelfeathers.silvrback.com/when-it-s-okay-for-a-method-to-do-nothing">When A Method Can Do Nothing</a></li>
+<li><a href="https://martinfowler.com/bliki/TellDontAsk.html">Tell Don't Ask</a></li>
+<li><a href="https://michaelfeathers.silvrback.com/converting-queries-to-commands">Converting Queries to Commands</a></li>
+<li><a href="https://www.bennadel.com/resources/uploads/2012/ObjectCalisthenics.pdf">Object Calisthenics</a></li>
+<li><a href="http://www.amihaiemil.com/2017/08/12/how-interfaces-are-refactoring-our-code.html">How Interfaces Are Refactoring Our Code</a></li>
+<li><a href="http://blog.thecodewhisperer.com/permalink/your-constructors-are-completely-irrational">Your Constructors are Completely Irrational</a></li>
+<li><a href="http://objology.blogspot.com/2011/09/one-of-best-bits-of-programming-advice.html">Class naming</a></li>
+<li><a href="http://matteo.vaccari.name/blog/archives/743">Names objects after things, not actions!</a></li>
+<li><a href="http://misko.hevery.com/2009/01/04/interfacing-with-hard-to-test-third-party-code/">Interfacing with hard-to-test third-party code</a></li>
+<li><a href="http://misko.hevery.com/2008/07/08/how-to-think-about-the-new-operator/">How to Think About the "new" Operator with Respect to Unit Testing</a></li>
+<li><a href="https://www.martinfowler.com/ieeeSoftware/repetition.pdf">Avoiding Repetition</a></li>
+<li><a href="https://www.artima.com/lejava/articles/designprinciplesP.html">Design Principles from Design Patterns - A Conversation with Erich Gamma</a></li>
+<li><a href="https://blog.iterate.no/2012/06/20/programming-like-kent-beck/">Programming Like Kent Beck</a></li>
+<li><a href="https://www.yegor256.com/2014/11/07/how-immutability-helps.html">How Immutability Helps</a></li>
+<li><a href="https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html">Clean Architecture</a></li>
+<li><a href="https://blog.octo.com/en/hexagonal-architecture-three-principles-and-an-implementation-example/">Hexagonal Architecture: three principles and an implementation example</a></li>
+<li><a href="http://domainlanguage.com/wp-content/uploads/2016/04/GettingStartedWithDDDWhenSurroundedByLegacySystemsV1.pdf">Getting Started With DDD When Surrounded By Legacy Systems</a></li>
+</ul>
+<h3 id="tutorials">Tutorials<a class="headerlink" href="#tutorials" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://martinfowler.com/articles/refactoring-video-store-js">Refactoring a JavaScript video store</a></p>
+</li>
+<li>
+<p><a href="http://butunclebob.com/ArticleS.UncleBob.TheBowlingGameKata">Bowling Game Kata</a></p>
+</li>
+<li><a href="https://blog.pragmatists.com/refactoring-from-anemic-model-to-ddd-880d3dd3d45f">Refactoring from anemic model to DDD</a></li>
+<li><a href="http://misko.hevery.com/code-reviewers-guide">Writing Testable Code</a></li>
+<li><a href="http://www2.cpttm.org.mo/cyberlab/softdev/ESAD/">Essential Skills for Agile Development</a></li>
+<li><a href="https://buildplease.com/pages/fpc-1/">First Pop Coffee Company</a></li>
+<li><a href="https://codurance.com/2011/07/16/testing-legacy-hard-wired-dependencies/">Testing legacy by Sandro Mancuso</a>, <a href="https://codurance.com/2011/07/18/testing-legacy-hard-wired-dependencies_17/">part 2</a>, and <a href="https://www.youtube.com/watch?v=_NnElPO5BU0">video</a></li>
+<li><a href="https://www.youtube.com/watch?v=jwJnd9ycs6Q">Live Refactoring Towards Solid Code</a></li>
+<li><a href="https://www.youtube.com/watch?v=zyM2Ep28ED8">Introducing the Gilded Rose kata and writing test cases using Approval Tests by Emily Bache</a>, <a href="https://www.youtube.com/watch?v=OJmg9aMxPDI">part 2</a> and <a href="https://www.youtube.com/watch?v=NADVhSjeyJA">part 3</a></li>
+<li><a href="https://vaadin.com/learn/tutorials/ddd">Domain Driven Design Crash Course</a></li>
+<li><a href="https://developer.ibm.com/series/reactive-in-practice/">Reactive in practice: A complete guide to event-driven systems development in Java</a></li>
+<li><a href="https://www.petrikainulainen.net/writing-clean-tests/">Writing Clean Tests</a></li>
+</ul>
+<h3 id="videos">Videos<a class="headerlink" href="#videos" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://www.youtube.com/watch?v=aAb7hSCtvGw">How To Design A Good API and Why it Matters by Joshua Bloch</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=4F72VULWFvc">Inheritance, Polymorphism, &amp; Testing</a></p>
+</li>
+<li><a href="https://www.youtube.com/watch?v=RlfLCWKxHJ0">Don't Look For Things!</a></li>
+<li><a href="https://www.youtube.com/watch?v=WpP4rIhh5e4">Don't Create Objects That End With -ER</a></li>
+<li><a href="https://www.infoq.com/presentations/8-lines-code-refactoring">8 Lines of Code by Greg Young</a> Accompanied <a href="https://github.com/kkisiele/awesome-clean-code/raw/master/GregYoung_8LinesOfCode.pdf">slides</a></li>
+<li><a href="https://vimeo.com/17151526">19 &frac12; Things to Make You a Better Object Oriented Programmer</a> Nice <a href="http://www.simpletechture.nl/blog/2011/objectoriented/">summary</a></li>
+<li><a href="https://vimeo.com/113707214">Railway oriented programming: Error handling in functional languages</a></li>
+<li><a href="https://www.youtube.com/watch?v=7StN-vNjRSw">Yves Reynhout - Trench Talk: Evolving a Model</a></li>
+<li><a href="https://www.youtube.com/watch?v=ZsHMHukIlJY">Seven Ineffective Coding Habits of Many Programmers by Kevlin Henney</a></li>
+<li><a href="https://www.youtube.com/watch?v=Ej0sss6cq14">Java Optional - The Mother of All Bikesheds by Stuart Marks</a></li>
+</ul>
+<h3 id="code-examples">Code Examples<a class="headerlink" href="#code-examples" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/kkisiele/codekata">Code Katas</a></p>
+</li>
+<li>
+<p><a href="https://github.com/jakubnabrdalik/hentai">hentai</a></p>
+</li>
+<li><a href="https://github.com/sf105/goos-code">Source code for the book, "Growing Object-Oriented Software, Guided by Tests"</a></li>
+<li><a href="https://github.com/jcabi/jcabi-email">jcabi-email</a></li>
+<li><a href="https://github.com/kkisiele/loganalyzer">Assignment done for some interview</a></li>
+</ul>
+<h3 id="git-hub">Git Hub<a class="headerlink" href="#git-hub" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/npryce">Nat Pryce</a></p>
+</li>
+<li>
+<p><a href="https://github.com/sf105">Steve Freeman</a></p>
+</li>
+<li><a href="https://github.com/xpmatteo">Matteo Vaccari</a></li>
+</ul>
+<h3 id="blogs">Blogs<a class="headerlink" href="#blogs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://martinfowler.com/bliki">Martin Fowler</a></p>
+</li>
+<li>
+<p><a href="https://michaelfeathers.silvrback.com">Michael Feathers</a></p>
+</li>
+<li><a href="https://blog.cleancoder.com">Robert C. Martin (Uncle Bob)</a></li>
+<li><a href="http://www.yegor256.com">Yegor Bugayenko</a></li>
+<li><a href="http://blog.code-cop.org">Code Cop</a></li>
+<li><a href="http://blog.thecodewhisperer.com">The Code Whisperer</a></li>
+<li><a href="http://blog.jbrains.ca">jbrains.ca</a></li>
+<li><a href="http://www.natpryce.com">Nat Pryce</a></li>
+<li><a href="http://www.m3p.co.uk/blog">Steve Freeman</a></li>
+<li><a href="http://misko.hevery.com">Miško Hevery</a></li>
+<li><a href="http://matteo.vaccari.name/blog">Matteo Vaccari</a></li>
+<li><a href="http://www.carlopescio.com">Carlo Pescio</a></li>
+<li><a href="http://jeffreypalermo.com">Jeffrey Palermo</a></li>
+<li><a href="https://www.kenneth-truyers.net">Kenneth Truyers</a></li>
+<li><a href="http://forcomprehension.com/blog/">Vaughn Vernon</a></li>
+<li><a href="https://codurance.com/publications/">Codurance</a></li>
+<li><a href="https://www.amihaiemil.com">Mihai</a></li>
+<li><a href="https://enterprisecraftsmanship.com">Enterprise Craftsmanship</a></li>
+<li><a href="https://blog.iterate.no">The Iterate Blog</a></li>
+<li><a href="https://theholyjava.wordpress.com">The Holy Java</a></li>
+</ul>
+<h3 id="books">Books<a class="headerlink" href="#books" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://www.amazon.com/Refactoring-Improving-Existing-Addison-Wesley-Technology-ebook/dp/B007WTFWJ6">Refactoring: Improving the Design of Existing Code by Martin Fowler</a> errata for the book can be found <a href="https://martinfowler.com/refactoringErrata.html">here</a></p>
+</li>
+<li>
+<p><a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship-ebook/dp/B001GSTOAM">Clean Code by Robert C. Martin</a></p>
+</li>
+<li><a href="https://www.amazon.com/Design-Patterns-Object-Oriented-Addison-Wesley-Professional-ebook/dp/B000SEIBB8">Design Patterns: Elements of Reusable Object-Oriented Software</a></li>
+<li><a href="https://www.amazon.com/gp/product/1519166915/">Elegant Objects by Yegor Bugayenko</a></li>
+<li><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests-dp-0321503627/dp/0321503627/">Growing Object-Oriented Software, Guided by Tests</a></li>
+</ul>
+<h3 id="other">Other<a class="headerlink" href="#other" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="http://codekata.com">Code Katas</a></li>
+</ul>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>Inspired by <a href="https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29">Summary of 'Clean code'</a>.</p>
+<p>Code is clean if it can be understood easily – by everyone on the team. Clean code can be read and enhanced by a developer other than its original author. With understandability comes readability, changeability, extensibility and maintainability.</p>
+<h3 id="general-rules">General rules<a class="headerlink" href="#general-rules" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Follow standard conventions.</li>
+<li>Keep it simple stupid. Simpler is always better. Reduce complexity as much as possible.</li>
+<li>Boy scout rule. Leave the campground cleaner than you found it.</li>
+<li>Always find root cause. Always look for the root cause of a problem.</li>
+</ol>
+<h3 id="design-rules">Design rules<a class="headerlink" href="#design-rules" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Keep configurable data at high levels.</li>
+<li>Prefer polymorphism to if/else or switch/case.</li>
+<li>Separate multi-threading code.</li>
+<li>Prevent over-configurability.</li>
+<li>Use dependency injection.</li>
+<li>Follow Law of Demeter. A class should know only its direct dependencies.</li>
+</ol>
+<h3 id="understandability-tips">Understandability tips<a class="headerlink" href="#understandability-tips" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Be consistent. If you do something a certain way, do all similar things in the same way.</li>
+<li>Use explanatory variables.</li>
+<li>Encapsulate boundary conditions. Boundary conditions are hard to keep track of. Put the processing for them in one place.</li>
+<li>Prefer dedicated value objects to primitive type.</li>
+<li>Avoid logical dependency. Don't write methods which works correctly depending on something else in the same class.</li>
+<li>Avoid negative conditionals.</li>
+</ol>
+<h3 id="names-rules">Names rules<a class="headerlink" href="#names-rules" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Choose descriptive and unambiguous names.</li>
+<li>Make meaningful distinction.</li>
+<li>Use pronounceable names.</li>
+<li>Use searchable names.</li>
+<li>Replace magic numbers with named constants.</li>
+<li>Avoid encodings. Don't append prefixes or type information.</li>
+</ol>
+<h3 id="functions-rules">Functions rules<a class="headerlink" href="#functions-rules" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Small.</li>
+<li>Do one thing.</li>
+<li>Use descriptive names.</li>
+<li>Prefer fewer arguments.</li>
+<li>Have no side effects.</li>
+<li>Don't use flag arguments. Split method into several independent methods that can be called from the client without the flag.</li>
+</ol>
+<h3 id="comments-rules">Comments rules<a class="headerlink" href="#comments-rules" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Always try to explain yourself in code.</li>
+<li>Don't be redundant.</li>
+<li>Don't add obvious noise.</li>
+<li>Don't use closing brace comments.</li>
+<li>Don't comment out code. Just remove.</li>
+<li>Use as explanation of intent.</li>
+<li>Use as clarification of code.</li>
+<li>Use as warning of consequences.</li>
+</ol>
+<h3 id="source-code-structure">Source code structure<a class="headerlink" href="#source-code-structure" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Separate concepts vertically.</li>
+<li>Related code should appear vertically dense.</li>
+<li>Declare variables close to their usage.</li>
+<li>Dependent functions should be close.</li>
+<li>Similar functions should be close.</li>
+<li>Place functions in the downward direction.</li>
+<li>Keep lines short.</li>
+<li>Don't use horizontal alignment.</li>
+<li>Use white space to associate related things and disassociate weakly related.</li>
+<li>Don't break indentation.</li>
+</ol>
+<h3 id="objects-and-data-structures">Objects and data structures<a class="headerlink" href="#objects-and-data-structures" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Hide internal structure.</li>
+<li>Prefer data structures.</li>
+<li>Avoid hybrids structures (half object and half data).</li>
+<li>Should be small.</li>
+<li>Do one thing.</li>
+<li>Small number of instance variables.</li>
+<li>Base class should know nothing about their derivatives.</li>
+<li>Better to have many functions than to pass some code into a function to select a behavior.</li>
+<li>Prefer non-static methods to static methods.</li>
+</ol>
+<h3 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h3>
+<ol>
+<li>One assert per test.</li>
+<li>Readable.</li>
+<li>Fast.</li>
+<li>Independent.</li>
+<li>Repeatable.</li>
+</ol>
+<h3 id="code-smells">Code smells<a class="headerlink" href="#code-smells" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Rigidity. The software is difficult to change. A small change causes a cascade of subsequent changes.</li>
+<li>Fragility. The software breaks in many places due to a single change.</li>
+<li>Immobility. You cannot reuse parts of the code in other projects because of involved risks and high effort.</li>
+<li>Needless Complexity.</li>
+<li>Needless Repetition.</li>
+<li>Opacity. The code is hard to understand.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

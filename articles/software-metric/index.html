@@ -1,0 +1,1059 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/software-metric/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Software Metric - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#software-metric" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Software Metric
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Metrics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-primary-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Primary Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-meta-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Meta-Metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Standards
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-frameworks" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Frameworks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Tools
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/software-metric.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/software-metric.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="software-metric">Software Metric<a class="headerlink" href="#software-metric" title="Permanent link">&para;</a></h1>
+<p>Software metric are measurements used to assess various aspects of the software development process, project, or product. They help teams track progress, identify bottlenecks, make informed decisions, and improve overall efficiency and quality.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-metrics">1.1. Metrics</a><ul>
+<li><a href="#111-primary-metrics">1.1.1. Primary Metrics</a></li>
+<li><a href="#112-meta-metrics">1.1.2. Meta-Metrics</a></li>
+</ul>
+</li>
+<li><a href="#12-standards">1.2. Standards</a></li>
+<li><a href="#13-frameworks">1.3. Frameworks</a></li>
+<li><a href="#14-tools">1.4. Tools</a></li>
+<li><a href="#2-references">2. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-metrics">1.1. Metrics<a class="headerlink" href="#11-metrics" title="Permanent link">&para;</a></h3>
+<h4 id="111-primary-metrics">1.1.1. Primary Metrics<a class="headerlink" href="#111-primary-metrics" title="Permanent link">&para;</a></h4>
+<p>Primary metrics are the core measurements used to assess specific aspects of the software development process, project, or product. These metrics directly relate to the goals and objectives of the software development effort and provide insights into the performance, progress, and quality of the development activities.</p>
+<p>Primary metrics provide valuable insights into the effectiveness of the software development process and its alignment with business goals. They help teams make data-driven decisions, identify areas for improvement, and track progress over time.</p>
+<ol>
+<li>
+<p>Cycle Time</p>
+<p>The time taken to complete a unit of work, like a user story or a feature, from start to finish.</p>
+</li>
+<li>
+<p>Lead Time</p>
+<p>The time taken from the initiation of work to its completion, often measured in days or weeks.</p>
+</li>
+<li>
+<p>Velocity</p>
+<p>A measure of a team's output or productivity, typically used in Agile methodologies like Scrum, calculated based on the number of story points completed in a sprint.</p>
+</li>
+<li>
+<p>Defect Density</p>
+<p>The number of defects or issues found in the software per unit of code (e.g., per 1000 lines of code).</p>
+</li>
+<li>
+<p>Code Churn</p>
+<p>The rate of code changes or additions, which can indicate the stability of the codebase.</p>
+</li>
+<li>
+<p>Code Review Turnaround Time</p>
+<p>The time it takes to review and approve/reject code changes submitted by team members.</p>
+</li>
+<li>
+<p>Test Coverage</p>
+<p>The percentage of the codebase covered by automated tests.</p>
+</li>
+<li>
+<p>Bugs Open/Closed</p>
+<p>The number of open and closed bugs over time, helping to assess the health of the project.</p>
+</li>
+<li>
+<p>Release Frequency</p>
+<p>How often new releases or updates are deployed to production.</p>
+</li>
+<li>
+<p>Customer Satisfaction</p>
+<p>Feedback from users or stakeholders about the quality and functionality of the software.</p>
+</li>
+<li>
+<p>Effort Variance</p>
+<p>A comparison of the estimated effort versus the actual effort spent on a task or project.</p>
+</li>
+<li>
+<p>Code Complexity</p>
+<p>Measures like cyclomatic complexity that assess the complexity of the codebase, potentially indicating areas that need refactoring.</p>
+</li>
+<li>
+<p>Build Success Rate</p>
+<p>The percentage of successful builds compared to total attempts.</p>
+</li>
+<li>
+<p>Cycle Time</p>
+<p>The time taken to complete a unit of work, such as a user story, task, or feature. It helps measure the efficiency of the development process.</p>
+</li>
+<li>
+<p>Lead Time</p>
+<p>The time taken for a code change to move from the initiation of work (e.g., coding) to its deployment in production. It provides insights into the speed of delivery.</p>
+</li>
+<li>
+<p>Velocity</p>
+<p>A metric used in Agile methodologies like Scrum to measure the rate at which a team completes work during a specific time frame, often a sprint.</p>
+</li>
+<li>
+<p>Defect Density</p>
+<p>The number of defects or issues found in the software per unit of code, typically per lines of code (LOC) or function points.</p>
+</li>
+<li>
+<p>Code Coverage</p>
+<p>The percentage of code that is exercised by automated tests, indicating the extent to which the codebase is tested.</p>
+</li>
+<li>
+<p>Deployment Frequency</p>
+<p>How often new releases or updates are deployed to production, indicating the organization's ability to deliver changes.</p>
+</li>
+<li>
+<p>Change Failure Rate</p>
+<p>The percentage of code changes that result in defects or issues after deployment, reflecting the stability of the release process.</p>
+</li>
+<li>
+<p>Time to Restore Service</p>
+<p>The time taken to restore normal service after an incident or outage, measuring the efficiency of incident response.</p>
+</li>
+<li>
+<p>Customer Satisfaction</p>
+<p>Feedback from users or stakeholders about the quality and functionality of the software.</p>
+</li>
+<li>
+<p>Technical Debt</p>
+<p>An estimation of the effort required to address accumulated technical issues or shortcuts in the codebase.</p>
+</li>
+<li>
+<p>Code Churn</p>
+<p>The rate of code changes or additions, indicating the level of activity in the codebase.</p>
+</li>
+<li>
+<p>Code Review Turnaround Time</p>
+<p>The time taken to review and approve/reject code changes submitted by team members.</p>
+</li>
+</ol>
+<h4 id="112-meta-metrics">1.1.2. Meta-Metrics<a class="headerlink" href="#112-meta-metrics" title="Permanent link">&para;</a></h4>
+<p>Meta-metrics, also known as <code>metrics about metrics</code>, focus on the measurement process itself. They assess the quality, accuracy, and effectiveness of the primary metrics being collected. Meta-metrics help ensure that the measurement process is reliable, consistent, and provides meaningful insights.</p>
+<p>By monitoring and optimizing meta-metrics, organizations can ensure the accuracy, reliability, and usefulness of their primary metrics, leading to more informed decision-making and effective process improvement.</p>
+<ol>
+<li>
+<p>Data Completeness</p>
+<p>Measures the extent to which all required data points are being captured accurately and consistently. Incomplete data can lead to inaccurate analysis and conclusions.</p>
+</li>
+<li>
+<p>Data Accuracy</p>
+<p>Assesses the correctness and reliability of the data being collected. Incorrect data can result in misleading insights and decisions.</p>
+</li>
+<li>
+<p>Data Timeliness</p>
+<p>Measures how quickly data is collected and entered into the measurement system. Timely data is crucial for real-time analysis and decision-making.</p>
+</li>
+<li>
+<p>Metric Relevance</p>
+<p>Evaluates whether the chosen metrics align with the goals and objectives of the measurement process. Irrelevant metrics can waste resources and lead to incorrect conclusions.</p>
+</li>
+<li>
+<p>Metric Validity</p>
+<p>Determines whether the selected metrics accurately measure what they are intended to measure. Valid metrics provide meaningful insights.</p>
+</li>
+<li>
+<p>Metric Reliability</p>
+<p>Reflects the consistency and stability of metric measurements over time. Unreliable metrics can lead to uncertainty and lack of trust.</p>
+</li>
+<li>
+<p>Metric Sensitivity</p>
+<p>Indicates how well a metric captures variations and changes in the process being measured. Metrics should be sensitive enough to detect meaningful differences.</p>
+</li>
+<li>
+<p>Metric Precision</p>
+<p>Measures the level of detail and accuracy in metric measurements. Precise metrics provide more accurate and refined insights.</p>
+</li>
+<li>
+<p>Metric Interpretability</p>
+<p>Assesses how easily metric results can be understood and interpreted by stakeholders. Complex metrics can hinder effective communication.</p>
+</li>
+<li>
+<p>Metric Bias</p>
+<p>Checks for any systematic errors or distortions in metric measurements. Bias can lead to skewed perceptions of performance.</p>
+</li>
+<li>
+<p>Metric Stability</p>
+<p>Examines the consistency of metric measurements across different contexts and environments. Stable metrics are reliable under varying conditions.</p>
+</li>
+<li>
+<p>Metric Overhead</p>
+<p>Measures the effort, time, and resources required to collect and analyze metric data. Excessive overhead can discourage the use of metrics.</p>
+</li>
+<li>
+<p>Metric Correlation</p>
+<p>Analyzes the relationships between different metrics to identify dependencies and interactions that might affect interpretations.</p>
+</li>
+</ol>
+<h3 id="12-standards">1.2. Standards<a class="headerlink" href="#12-standards" title="Permanent link">&para;</a></h3>
+<p>Standards and guidelines provide recommendations for Software metric. These standards help organizations establish consistent and effective practices for measuring and improving software development processes.</p>
+<ol>
+<li>
+<p>ISO/IEC 15939 (Software Measurement Process)</p>
+<p>This international standard provides guidance on establishing a measurement process for software development and maintenance. It covers measurement framework, planning, implementation, and analysis.</p>
+</li>
+<li>
+<p>ISO/IEC 25010 (Systems and Software Quality Requirements and Evaluation - SQuaRE)</p>
+<p>Part of the SQuaRE series, this standard defines a comprehensive set of quality characteristics and sub-characteristics for software products. It offers guidance on assessing and measuring software quality.</p>
+</li>
+<li>
+<p>CMMI (Capability Maturity Model Integration)</p>
+<p>While not exclusively focused on metrics, CMMI provides a framework for process improvement in various domains, including software development. It includes guidance on measurement and analysis practices.</p>
+</li>
+<li>
+<p>ISO/IEC TR 90006 (Guidance on the Application of ISO 9001:2015 to IT Service Management and Software Engineering)</p>
+<p>This technical report provides guidance on adapting ISO 9001 quality management principles to software engineering processes, including measurement and metrics.</p>
+</li>
+<li>
+<p>ISO/IEC TR 20000-7 (Guidance on the Integration and Correlation of ISO/IEC 20000-1:2018 and ISO/IEC 12207:2017)</p>
+<p>This technical report provides guidance on integrating service management and software engineering processes, which may involve metrics alignment.</p>
+</li>
+<li>
+<p>IEEE Standard 1061 (Software Metrics)</p>
+<p>This IEEE standard provides definitions and guidelines for various software metrics, helping organizations establish consistent measurement practices.</p>
+</li>
+<li>
+<p>SEI (Software Engineering Institute) Metrics Program</p>
+<p>The SEI offers guidance on software measurement and metrics through various resources, including books, articles, and training.</p>
+</li>
+</ol>
+<h3 id="13-frameworks">1.3. Frameworks<a class="headerlink" href="#13-frameworks" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>NOTE When choosing a framework, consider the organization's goals, methodologies, and specific needs. Remember that metrics should be chosen thoughtfully, aligned with objectives, and not used in isolation. Also, be cautious about potential unintended consequences, such as optimizing for metrics at the expense of overall quality or customer satisfaction.</p>
+</blockquote>
+<ol>
+<li>
+<p>Goal-Question-Metric (GQM) Framework</p>
+<p>GQM is a goal-oriented approach that helps define goals, questions, and corresponding metrics. It ensures that metrics are aligned with specific objectives and provide meaningful insights.</p>
+</li>
+<li>
+<p>Key Performance Indicators (KPIs)</p>
+<p>KPIs are specific metrics that organizations use to measure progress towards strategic goals. They focus on critical success factors and are often used at higher levels of decision-making.</p>
+</li>
+<li>
+<p>Software Engineering Institute (SEI) CMMI</p>
+<p>The Capability Maturity Model Integration provides a structured framework for process improvement across various domains, including software development. It includes performance measurement and metrics as a key component.</p>
+</li>
+<li>
+<p>ISO/IEC 25010 (SQuaRE)</p>
+<p>This standard defines a comprehensive set of software quality attributes and their sub-characteristics. It provides a structured approach for measuring software quality and performance.</p>
+</li>
+<li>
+<p>Agile Metrics Frameworks</p>
+<p>Agile methodologies have their own set of metrics frameworks, such as SAFe (Scaled Agile Framework) metrics and Disciplined Agile Delivery (DAD) metrics, which are tailored to the Agile development context.</p>
+</li>
+<li>
+<p>Balanced Scorecard (BSC)</p>
+<p>While not specific to software development, BSC is a strategic performance management framework that helps organizations track and manage their overall performance using a balanced set of financial and non-financial metrics.</p>
+</li>
+<li>
+<p>Lean Software Development Metrics</p>
+<p>Inspired by Lean principles, this framework focuses on minimizing waste, improving flow, and delivering value. Metrics like cycle time, lead time, and work in progress (WIP) are commonly used in this context.</p>
+</li>
+<li>
+<p>DORA</p>
+<p>The DevOps Research and Assessment (DORA) framework emphasizes Four Key Metrics of DevOps related to deployment frequency, lead time, change failure rate, and time to restore service. It's geared towards improving software delivery and operations.</p>
+<blockquote>
+<p>NOTE See <a href="../dora/">DORA</a> for details.</p>
+</blockquote>
+</li>
+<li>
+<p>SPACE</p>
+<p>The SPACE framework is a set of metrics that measure the capabilities of software development teams. The SPACE framework divides the capabilities of software development teams into five categories: satisfaction and well-being, performance, activity, collaboration and communication, and efficiency and flow.</p>
+</li>
+</ol>
+<h3 id="14-tools">1.4. Tools<a class="headerlink" href="#14-tools" title="Permanent link">&para;</a></h3>
+<p>Tools offer a range of capabilities, from tracking code quality and deployment metrics to monitoring application performance and user experience.</p>
+<ol>
+<li>
+<p>Jira</p>
+<p>A widely used project management and issue tracking tool that offers customizable dashboards and reporting features to track various metrics.</p>
+</li>
+<li>
+<p>GitLab</p>
+<p>A platform that provides version control, CI/CD pipelines, and issue tracking, along with built-in metrics and analytics for software development processes.</p>
+</li>
+<li>
+<p>GitHub</p>
+<p>Similar to GitLab, GitHub offers version control and issue tracking, with additional integrations and extensions for tracking Software metric.</p>
+</li>
+<li>
+<p>Azure DevOps (formerly Visual Studio Team Services)</p>
+<p>A set of development tools that includes version control, CI/CD pipelines, and work tracking with built-in reporting and analytics.</p>
+</li>
+<li>
+<p>Jenkins</p>
+<p>An open-source automation server that can be configured to generate various metrics related to build and deployment processes.</p>
+</li>
+<li>
+<p>SonarQube</p>
+<p>A tool for continuous code quality inspection, providing metrics on code smells, bugs, vulnerabilities, and code coverage.</p>
+</li>
+<li>
+<p>New Relic</p>
+<p>A monitoring and observability platform that offers insights into application performance, user experience, and infrastructure metrics.</p>
+</li>
+<li>
+<p>Prometheus</p>
+<p>An open-source monitoring and alerting toolkit that specializes in collecting and displaying metrics from applications and systems.</p>
+</li>
+<li>
+<p>Grafana</p>
+<p>A popular open-source dashboard and visualization platform that can integrate with various data sources, including metrics from software development processes.</p>
+</li>
+<li>
+<p>Opsgenie</p>
+<p>A tool for incident management and alerting that can help measure metrics related to incident response times and resolution.</p>
+</li>
+<li>
+<p>Datadog</p>
+<p>A monitoring and analytics platform that provides insights into application performance, infrastructure metrics, and logs.</p>
+</li>
+<li>
+<p>Trello</p>
+<p>A visual project management tool that can be customized to track various development metrics using boards and cards.</p>
+</li>
+</ol>
+<h2 id="2-references">2. References<a class="headerlink" href="#2-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Wikipedia <a href="https://en.wikipedia.org/wiki/Software_metric">software metric</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

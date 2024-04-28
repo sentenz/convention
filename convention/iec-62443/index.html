@@ -1,0 +1,1488 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/convention/iec-62443/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>IEC 62443 - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iec-62443" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              IEC 62443
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-iec-62443-1-general-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. IEC 62443-1 General Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. IEC 62443-1 General Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-iec-62443-1-1-terminology-concepts-and-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. IEC 62443-1-1 Terminology, concepts and models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-iec-62443-1-2-master-glossary-of-terms-and-abbreviations" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. IEC 62443-1-2 Master glossary of terms and abbreviations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-iec-62443-1-3-system-security-compliance-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. IEC 62443-1-3 System security compliance metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-iec-62443-1-4-iacs-security-lifecycle-and-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.4. IEC 62443-1-4 IACS security lifecycle and use-case
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-iec-62443-2-policies-and-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. IEC 62443-2 Policies and Procedures
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2. IEC 62443-2 Policies and Procedures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-iec-62443-2-1-security-program-requirements-for-iacs-asset-owners" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1. IEC 62443-2-1 Security program requirements for IACS asset owners
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-iec-62443-2-2-iacs-security-program-ratings" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.2. IEC 62443-2-2 IACS Security Program Ratings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-iec-tr-62443-2-3-patch-management-in-the-iacs-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.3. IEC TR 62443-2-3 Patch management in the IACS environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-iec-62443-2-4-security-program-requirements-for-iacs-service-providers" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4. IEC 62443-2-4 Security program requirements for IACS service providers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-iec-62443-3-system-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. IEC 62443-3 System Security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3. IEC 62443-3 System Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-iec-tr-62443-3-1-security-technologies-for-iacs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1. IEC TR 62443-3-1 Security technologies for IACS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-iec-62443-3-2-security-risk-assessment-for-system-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2. IEC 62443-3-2 Security risk assessment for system design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-iec-62443-3-3-system-security-requirements-and-security-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.3. IEC 62443-3-3 System security requirements and security levels
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-iec-62443-4-component-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. IEC 62443-4 Component Security
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4. IEC 62443-4 Component Security">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-iec-62443-4-1-secure-product-development-lifecycle-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.1. IEC 62443-4-1 Secure product development lifecycle requirements
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-iec-62443-4-2-technical-security-requirements-for-iacs-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.2. IEC 62443-4-2 Technical security requirements for IACS components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/convention/iec-62443.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/convention/iec-62443.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="iec-62443">IEC 62443<a class="headerlink" href="#iec-62443" title="Permanent link">&para;</a></h1>
+<p>IEC 62443 is a series of international standards developed by the International Electrotechnical Commission (IEC) that provides a framework for implementing cybersecurity in industrial automation and control systems (IACS). The series comprises of several parts, each of which addresses a specific aspect of IACS cybersecurity.</p>
+<p>The standards are designed to provide a systematic approach to IACS security, addressing the entire lifecycle of the system from concept to retirement. This includes defining security requirements, designing secure systems, implementing security controls, and continuously monitoring and improving the security posture of the system.</p>
+<p>IEC 62443 provides a comprehensive approach to IACS cybersecurity that takes into account the unique requirements and challenges of these systems. The standards are designed to be flexible and scalable, allowing organizations to tailor their approach to their specific needs and risk profile.</p>
+<p>The IEC 62443 series is widely recognized as a leading standard for IACS cybersecurity and is used by organizations around the world to help secure their critical infrastructure.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-iec-62443-1-general-concepts">1.1. IEC 62443-1 General Concepts</a><ul>
+<li><a href="#111-iec-62443-1-1-terminology-concepts-and-models">1.1.1. IEC 62443-1-1 Terminology, concepts and models</a></li>
+<li><a href="#112-iec-62443-1-2-master-glossary-of-terms-and-abbreviations">1.1.2. IEC 62443-1-2 Master glossary of terms and abbreviations</a></li>
+<li><a href="#113-iec-62443-1-3-system-security-compliance-metrics">1.1.3. IEC 62443-1-3 System security compliance metrics</a></li>
+<li><a href="#114-iec-62443-1-4-iacs-security-lifecycle-and-use-case">1.1.4. IEC 62443-1-4 IACS security lifecycle and use-case</a></li>
+</ul>
+</li>
+<li><a href="#12-iec-62443-2-policies-and-procedures">1.2. IEC 62443-2 Policies and Procedures</a><ul>
+<li><a href="#121-iec-62443-2-1-security-program-requirements-for-iacs-asset-owners">1.2.1. IEC 62443-2-1 Security program requirements for IACS asset owners</a></li>
+<li><a href="#122-iec-62443-2-2-iacs-security-program-ratings">1.2.2. IEC 62443-2-2 IACS Security Program Ratings</a></li>
+<li><a href="#123-iec-tr-62443-2-3-patch-management-in-the-iacs-environment">1.2.3. IEC TR 62443-2-3 Patch management in the IACS environment</a></li>
+<li><a href="#124-iec-62443-2-4-security-program-requirements-for-iacs-service-providers">1.2.4. IEC 62443-2-4 Security program requirements for IACS service providers</a></li>
+</ul>
+</li>
+<li><a href="#13-iec-62443-3-system-security">1.3. IEC 62443-3 System Security</a><ul>
+<li><a href="#131-iec-tr-62443-3-1-security-technologies-for-iacs">1.3.1. IEC TR 62443-3-1 Security technologies for IACS</a></li>
+<li><a href="#132-iec-62443-3-2-security-risk-assessment-for-system-design">1.3.2. IEC 62443-3-2 Security risk assessment for system design</a></li>
+<li><a href="#133-iec-62443-3-3-system-security-requirements-and-security-levels">1.3.3. IEC 62443-3-3 System security requirements and security levels</a></li>
+</ul>
+</li>
+<li><a href="#14-iec-62443-4-component-security">1.4. IEC 62443-4 Component Security</a><ul>
+<li><a href="#141-iec-62443-4-1-secure-product-development-lifecycle-requirements">1.4.1. IEC 62443-4-1 Secure product development lifecycle requirements</a></li>
+<li><a href="#142-iec-62443-4-2-technical-security-requirements-for-iacs-components">1.4.2. IEC 62443-4-2 Technical security requirements for IACS components</a></li>
+</ul>
+</li>
+<li><a href="#2-terminology">2. Terminology</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>The IEC 62443 series of standards is organized into four main categories, each of which addresses a different aspect of IACS security.</p>
+<h3 id="11-iec-62443-1-general-concepts">1.1. IEC 62443-1 General Concepts<a class="headerlink" href="#11-iec-62443-1-general-concepts" title="Permanent link">&para;</a></h3>
+<p>The standard provides an introduction to the IEC 62443 series and describes the general concepts and terminology used in IACS security.</p>
+<h4 id="111-iec-62443-1-1-terminology-concepts-and-models">1.1.1. IEC 62443-1-1 Terminology, concepts and models<a class="headerlink" href="#111-iec-62443-1-1-terminology-concepts-and-models" title="Permanent link">&para;</a></h4>
+<p>The IEC 62443-1-1 standard provides a common language and conceptual framework for IACS security. It defines terms and concepts used throughout the series and provides a model for understanding the components and interactions of IACS.</p>
+<p>Key terms defined in IEC 62443-1-1:</p>
+<ul>
+<li>
+<p>Cybersecurity</p>
+<blockquote>
+<p>The prevention of damage to, protection of, and restoration of systems, networks, and information</p>
+</blockquote>
+</li>
+<li>
+<p>Risk</p>
+<blockquote>
+<p>The potential for loss, damage or destruction of an asset as a result of a threat exploiting a vulnerability.</p>
+</blockquote>
+</li>
+<li>
+<p>Asset</p>
+<blockquote>
+<p>A resource or component of an organization that has value and requires protection.</p>
+</blockquote>
+</li>
+<li>
+<p>Threat</p>
+<blockquote>
+<p>A potential cause of an unwanted incident that may result in harm to a system or organization.</p>
+</blockquote>
+</li>
+<li>
+<p>Vulnerability</p>
+<blockquote>
+<p>A weakness of an asset or group of assets that can be exploited by one or more threats.</p>
+</blockquote>
+</li>
+<li>
+<p>Control</p>
+<blockquote>
+<p>A measure that reduces the risk of an unwanted incident by preventing, detecting or correcting it.</p>
+</blockquote>
+</li>
+<li>
+<p>Security management system (SMS)</p>
+<blockquote>
+<p>A systematic approach to managing security risks associated with IACS.</p>
+</blockquote>
+</li>
+<li>
+<p>Security policy</p>
+<blockquote>
+<p>A document that communicates an organization's approach to managing security risks associated with IACS.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="112-iec-62443-1-2-master-glossary-of-terms-and-abbreviations">1.1.2. IEC 62443-1-2 Master glossary of terms and abbreviations<a class="headerlink" href="#112-iec-62443-1-2-master-glossary-of-terms-and-abbreviations" title="Permanent link">&para;</a></h4>
+<p>The standard includes a master glossary of terms and abbreviations to provide a common language and understanding of key concepts and terminology that are commonly used in the IEC 62443 series of standards.</p>
+<h4 id="113-iec-62443-1-3-system-security-compliance-metrics">1.1.3. IEC 62443-1-3 System security compliance metrics<a class="headerlink" href="#113-iec-62443-1-3-system-security-compliance-metrics" title="Permanent link">&para;</a></h4>
+<p>IEC 62443-1-3 provides a systematic approach to defining and measuring system security compliance metrics for IACS. This can help organizations ensure that their IACS meet the necessary security requirements and provide a high level of protection against cyber threats.</p>
+<p>The standard defines several key concepts related to system security compliance metrics, including:</p>
+<ul>
+<li>
+<p>Security level (SL)</p>
+<blockquote>
+<p>A measure of the degree of protection provided by a security control or set of controls.</p>
+</blockquote>
+</li>
+<li>
+<p>Security assurance level (SAL)</p>
+<blockquote>
+<p>A measure of the confidence that a security control or set of controls will perform its intended function in a given environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Security capability level (SCL)</p>
+<blockquote>
+<p>A measure of the degree to which a security control or set of controls can meet the security requirements of a given environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Security compliance level (SCL)</p>
+<blockquote>
+<p>A measure of the degree to which a system meets the security requirements specified in a security policy or standard.</p>
+</blockquote>
+</li>
+</ul>
+<p>IEC 62443-1-3 provides a framework for defining and measuring system security compliance metrics based on these concepts. The framework includes four key steps:</p>
+<ul>
+<li>
+<p>Define security requirements</p>
+<blockquote>
+<p>The first step is to define the security requirements for the system based on the security policy or standard. This includes defining the SLs for each security control and the overall system.</p>
+</blockquote>
+</li>
+<li>
+<p>Assess security capability</p>
+<blockquote>
+<p>The next step is to assess the security capability of the system by evaluating the effectiveness of each security control in meeting its SL.</p>
+</blockquote>
+</li>
+<li>
+<p>Evaluate security assurance</p>
+<blockquote>
+<p>The third step is to evaluate the security assurance of the system by assessing the confidence that each security control will perform its intended function in the given environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Measure compliance</p>
+<blockquote>
+<p>The final step is to measure the security compliance of the system by comparing the security capability and security assurance levels to the security requirements.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="114-iec-62443-1-4-iacs-security-lifecycle-and-use-case">1.1.4. IEC 62443-1-4 IACS security lifecycle and use-case<a class="headerlink" href="#114-iec-62443-1-4-iacs-security-lifecycle-and-use-case" title="Permanent link">&para;</a></h4>
+<p>IEC 62443-1-4 provides a comprehensive framework for the security lifecycle and use-case of IACS, which can help organizations ensure that their systems are designed, implemented, and operated in a secure manner that meets their specific security requirements and objectives.</p>
+<p>The standard defines a security lifecycle model for IACS that includes six phases:</p>
+<ul>
+<li>
+<p>Initiation</p>
+<blockquote>
+<p>In this phase, the need for security is identified, and the scope and objectives of the security program are defined.</p>
+</blockquote>
+</li>
+<li>
+<p>Requirements and risk assessment</p>
+<blockquote>
+<p>In this phase, the security requirements for the IACS are identified, and a risk assessment is conducted to identify potential threats and vulnerabilities.</p>
+</blockquote>
+</li>
+<li>
+<p>Design and implementation</p>
+<blockquote>
+<p>In this phase, the security controls and countermeasures are designed and implemented to mitigate the identified risks.</p>
+</blockquote>
+</li>
+<li>
+<p>Verification</p>
+<blockquote>
+<p>In this phase, the effectiveness of the security controls is verified through testing, evaluation, and auditing.</p>
+</blockquote>
+</li>
+<li>
+<p>Operation and maintenance</p>
+<blockquote>
+<p>In this phase, the IACS is operated and maintained in accordance with the security requirements and the security controls are monitored and updated as necessary.</p>
+</blockquote>
+</li>
+<li>
+<p>Decommissioning</p>
+<blockquote>
+<p>In this phase, the IACS is decommissioned and the security controls are removed or transferred to another system.</p>
+</blockquote>
+</li>
+</ul>
+<p>The standard also provides guidelines for the use-case of IACS security. A use-case is a description of how the system will be used to meet a specific set of objectives or requirements. The use-case should consider the specific security requirements and the potential threats and vulnerabilities of the system.</p>
+<p>The use-case guidelines include the following steps:</p>
+<ol>
+<li>
+<p>Identify the system components and their roles in the use-case.</p>
+</li>
+<li>
+<p>Identify the security requirements and objectives for the use-case.</p>
+</li>
+<li>
+<p>Identify the potential threats and vulnerabilities that could impact the use-case.</p>
+</li>
+<li>
+<p>Design and implement security controls and countermeasures to mitigate the identified risks.</p>
+</li>
+<li>
+<p>Verify the effectiveness of the security controls through testing and evaluation.</p>
+</li>
+<li>
+<p>Operate and maintain the system in accordance with the security requirements and the use-case.</p>
+</li>
+</ol>
+<h3 id="12-iec-62443-2-policies-and-procedures">1.2. IEC 62443-2 Policies and Procedures<a class="headerlink" href="#12-iec-62443-2-policies-and-procedures" title="Permanent link">&para;</a></h3>
+<p>The standard describes the requirements for establishing, implementing, maintaining, and continually improving an IACS SMS.</p>
+<h4 id="121-iec-62443-2-1-security-program-requirements-for-iacs-asset-owners">1.2.1. IEC 62443-2-1 Security program requirements for IACS asset owners<a class="headerlink" href="#121-iec-62443-2-1-security-program-requirements-for-iacs-asset-owners" title="Permanent link">&para;</a></h4>
+<p>IEC 62443-2-1 provides a framework of requirements and guidelines for implementing a Security Management System (SMS) for Industrial Automation and Control Systems (IACS) for asset owners. The SMS framework helps asset owners to establish, maintain, and continually improve their security programs in a structured and efficient manner.</p>
+<p>Compliance with IEC 62443-2-1 help asset owners to identify and mitigate security risks in their IACS environments and to establish a culture of security awareness and continuous improvement. The standard provides a comprehensive set of security program requirements that include:</p>
+<ul>
+<li>
+<p>Governance and Organization</p>
+<blockquote>
+<p>Establishing and maintaining security governance and organizational structure, roles, and responsibilities for IACS security.</p>
+</blockquote>
+</li>
+<li>
+<p>Asset Management</p>
+<blockquote>
+<p>Managing the inventory of IACS components, understanding the associated risks and vulnerabilities, and defining asset criticality.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk Assessment</p>
+<blockquote>
+<p>Conducting risk assessments of IACS components to identify and prioritize security risks and define appropriate mitigation measures.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Requirements</p>
+<blockquote>
+<p>Establishing and implementing security requirements for IACS components based on risk assessments and security goals.</p>
+</blockquote>
+</li>
+<li>
+<p>Secure Development</p>
+<blockquote>
+<p>Ensuring that IACS components are designed, developed, and tested in accordance with security requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Operations</p>
+<blockquote>
+<p>Defining and implementing security policies, procedures, and controls for secure operations and maintenance of IACS components.</p>
+</blockquote>
+</li>
+<li>
+<p>Incident and Vulnerability Management</p>
+<blockquote>
+<p>Establishing processes for identifying, reporting, assessing, and responding to security incidents and vulnerabilities in IACS components.</p>
+</blockquote>
+</li>
+<li>
+<p>Continual Improvement</p>
+<blockquote>
+<p>Establishing processes for continual improvement of the security program and for measuring and monitoring the effectiveness of security controls.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="122-iec-62443-2-2-iacs-security-program-ratings">1.2.2. IEC 62443-2-2 IACS Security Program Ratings<a class="headerlink" href="#122-iec-62443-2-2-iacs-security-program-ratings" title="Permanent link">&para;</a></h4>
+<p>IEC 62443-2-2 provides guidance on how to rate and evaluate the effectiveness of an Industrial Automation and Control Systems (IACS) security program. The standard provides a framework for developing security program ratings that can be used to compare different security programs and to identify areas for improvement.</p>
+<p>The security program ratings are based on a set of security program requirements and guidelines defined in IEC 62443-2-1. These requirements cover all aspects of the security program, including governance and organization, risk assessment, security requirements, secure development, security operations, incident and vulnerability management, and continual improvement.</p>
+<p>The security program ratings framework can be used by organizations to evaluate their own security programs, or to compare their security programs with those of other organizations. The ratings can also be used by regulators and other stakeholders to evaluate the security posture of critical infrastructure sectors and to identify areas for improvement.</p>
+<p>The security program ratings framework defines four levels of security program maturity:</p>
+<ul>
+<li>
+<p>Baseline</p>
+<blockquote>
+<p>This level indicates that the security program meets the minimum requirements defined in IEC 62443-2-1, but there are areas for improvement.</p>
+</blockquote>
+</li>
+<li>
+<p>Managed</p>
+<blockquote>
+<p>At this level, the security program is managed and monitored, and there are processes in place for measuring and reporting on security program effectiveness.</p>
+</blockquote>
+</li>
+<li>
+<p>Established</p>
+<blockquote>
+<p>This level indicates that the security program is well-established and integrated into the organization's culture and operations. There are mature processes in place for managing security risks, responding to incidents and vulnerabilities, and continually improving the security program.</p>
+</blockquote>
+</li>
+<li>
+<p>Robust</p>
+<blockquote>
+<p>At this level, the security program is considered best-in-class and has achieved a high level of maturity. The organization has a proactive and strategic approach to managing security risks and has demonstrated a commitment to continual improvement.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="123-iec-tr-62443-2-3-patch-management-in-the-iacs-environment">1.2.3. IEC TR 62443-2-3 Patch management in the IACS environment<a class="headerlink" href="#123-iec-tr-62443-2-3-patch-management-in-the-iacs-environment" title="Permanent link">&para;</a></h4>
+<p>IEC TR 62443-2-3 is a Technical Report that provides guidance for patch management in Industrial Automation and Control Systems (IACS) environments. Patch management is an essential process to address vulnerabilities in IACS software and firmware that can be exploited by attackers to compromise the security of IACS.</p>
+<p>The Technical Report covers the following aspects of patch management:</p>
+<ul>
+<li>
+<p>Patch Management Process</p>
+<blockquote>
+<p>Describes the patch management process, which includes identification of patchable assets, vulnerability assessment, patch prioritization, testing, deployment, and validation.</p>
+</blockquote>
+</li>
+<li>
+<p>Patch Management Roles and Responsibilities</p>
+<blockquote>
+<p>Defines the roles and responsibilities of various stakeholders involved in patch management, including asset owners, vendors, system integrators, and service providers.</p>
+</blockquote>
+</li>
+<li>
+<p>Patch Management Best Practices</p>
+<blockquote>
+<p>Provides best practices for effective patch management, such as maintaining an up-to-date inventory of assets, establishing a patch management policy, testing patches before deployment, and validating the effectiveness of patches.</p>
+</blockquote>
+</li>
+<li>
+<p>Patch Management Tools</p>
+<blockquote>
+<p>Describes the tools and technologies that can be used for patch management, such as vulnerability scanners, patch management software, and configuration management databases.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="124-iec-62443-2-4-security-program-requirements-for-iacs-service-providers">1.2.4. IEC 62443-2-4 Security program requirements for IACS service providers<a class="headerlink" href="#124-iec-62443-2-4-security-program-requirements-for-iacs-service-providers" title="Permanent link">&para;</a></h4>
+<p>IEC 62443-2-4 provides security program requirements for IACS service providers, which are entities that provide services related to the design, development, implementation, and maintenance of IACS. The standard recognizes that service providers play a critical role in the security of IACS, as they are responsible for ensuring that their services meet the security requirements of their customers and the IACS industry.</p>
+<p>The standard defines security program requirements for IACS service providers in the following areas:</p>
+<ul>
+<li>
+<p>Management Commitment</p>
+<blockquote>
+<p>Demonstrating management's commitment to information security and establishing a security program that addresses the unique needs of IACS service providers.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Management System</p>
+<blockquote>
+<p>Developing and implementing a security management system (SMS) that includes policies, procedures, and controls for managing security risks and ensuring the confidentiality, integrity, and availability of information.</p>
+</blockquote>
+</li>
+<li>
+<p>Personnel Security</p>
+<blockquote>
+<p>Ensuring that personnel are qualified, trustworthy, and trained to perform their roles and responsibilities in a secure manner.</p>
+</blockquote>
+</li>
+<li>
+<p>Physical Security</p>
+<blockquote>
+<p>Protecting the physical environment of IACS service providers, including facilities, equipment, and assets, against unauthorized access, theft, and damage.</p>
+</blockquote>
+</li>
+<li>
+<p>Communications and Operations Management</p>
+<blockquote>
+<p>Establishing and maintaining secure communications and operations management practices to ensure the secure delivery of services and the protection of IACS information.</p>
+</blockquote>
+</li>
+<li>
+<p>Access Control</p>
+<blockquote>
+<p>Implementing access control measures to ensure that only authorized personnel and entities have access to IACS information and resources.</p>
+</blockquote>
+</li>
+<li>
+<p>System Development and Maintenance</p>
+<blockquote>
+<p>Developing and maintaining secure IACS systems, including processes for testing, validation, and patch management.</p>
+</blockquote>
+</li>
+<li>
+<p>Incident Management</p>
+<blockquote>
+<p>Establishing an incident management program that includes processes for detecting, responding to, and recovering from security incidents.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="13-iec-62443-3-system-security">1.3. IEC 62443-3 System Security<a class="headerlink" href="#13-iec-62443-3-system-security" title="Permanent link">&para;</a></h3>
+<p>The standard provides guidance on defining the security requirements for an IACS and establishing security levels based on the criticality of the assets being protected.</p>
+<h4 id="131-iec-tr-62443-3-1-security-technologies-for-iacs">1.3.1. IEC TR 62443-3-1 Security technologies for IACS<a class="headerlink" href="#131-iec-tr-62443-3-1-security-technologies-for-iacs" title="Permanent link">&para;</a></h4>
+<p>IEC TR 62443-3-1 is a technical report that provides an overview of the security technologies that can be used to protect IACS from cyber attacks. The standard is designed to help organizations select and implement appropriate security technologies to protect their IACS environments.</p>
+<p>The standard covers a wide range of security technologies, including:</p>
+<ul>
+<li>
+<p>Access control</p>
+<blockquote>
+<p>The standard provides guidance on access control technologies such as authentication, authorization, and access control lists (ACLs).</p>
+</blockquote>
+</li>
+<li>
+<p>Network security</p>
+<blockquote>
+<p>The standard provides guidance on network security technologies such as firewalls, intrusion detection and prevention systems (IDPS), and virtual private networks (VPNs).</p>
+</blockquote>
+</li>
+<li>
+<p>Data security</p>
+<blockquote>
+<p>The standard provides guidance on data security technologies such as encryption, data loss prevention (DLP), and digital signatures.</p>
+</blockquote>
+</li>
+<li>
+<p>Application security</p>
+<blockquote>
+<p>The standard provides guidance on application security technologies such as secure coding practices, application firewalls, and web application firewalls.</p>
+</blockquote>
+</li>
+<li>
+<p>Physical security</p>
+<blockquote>
+<p>The standard provides guidance on physical security technologies such as surveillance systems, access control systems, and security alarms.</p>
+</blockquote>
+</li>
+<li>
+<p>Communication security</p>
+<blockquote>
+<p>The standard provides guidance on communication security technologies such as secure protocols, secure email, and secure instant messaging.</p>
+</blockquote>
+</li>
+<li>
+<p>Cloud security</p>
+<blockquote>
+<p>The standard provides guidance on cloud security technologies such as encryption, virtualization, and access control.</p>
+</blockquote>
+</li>
+<li>
+<p>Industrial control system security</p>
+<blockquote>
+<p>The standard provides guidance on ICS-specific security technologies such as secure remote access, secure firmware updates, and secure protocol gateways.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="132-iec-62443-3-2-security-risk-assessment-for-system-design">1.3.2. IEC 62443-3-2 Security risk assessment for system design<a class="headerlink" href="#132-iec-62443-3-2-security-risk-assessment-for-system-design" title="Permanent link">&para;</a></h4>
+<p>The standard defines security requirements as the set of security objectives and measures necessary to ensure the protection of IACS assets, including people, information, and physical assets. The security requirements are derived from the security risk assessment and should be based on the principles of confidentiality, integrity, and availability including identifying potential threats, vulnerabilities, and consequences.</p>
+<p>The standard also defines security levels as a set of security requirements that must be met to ensure a certain level of security for IACS assets. The security levels are used to provide a common language and framework for describing the security requirements and to enable the comparison of different security solutions. The security requirements cover a range of areas, including access control, data integrity, network security, physical security, and security management.</p>
+<p>There are four security levels defined in the standard, with level 4 being the highest level of security:</p>
+<ul>
+<li>
+<p>Security Level 1</p>
+<blockquote>
+<p>Basic Security
+This level is appropriate for systems where the impact of a security breach is low, and the likelihood of a breach is also low. The security requirements at this level focus on basic measures such as password policies, user authentication, and basic network segmentation.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Level 2</p>
+<blockquote>
+<p>Enhanced Security
+This level is appropriate for systems where the impact of a security breach is moderate, and the likelihood of a breach is also moderate. The security requirements at this level include more advanced measures such as secure communication protocols, intrusion detection systems, and more robust access control mechanisms.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Level 3</p>
+<blockquote>
+<p>High Security
+This level is appropriate for systems where the impact of a security breach is high, and the likelihood of a breach is also high. The security requirements at this level include more advanced measures such as encryption, advanced intrusion detection and prevention systems, and more comprehensive network segmentation.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Level 4</p>
+<blockquote>
+<p>Very High Security
+This level is appropriate for systems where the impact of a security breach is extremely high, and the likelihood of a breach is also extremely high. The security requirements at this level include the most advanced measures such as physically isolated networks, highly secure access control mechanisms, and advanced threat intelligence systems.</p>
+</blockquote>
+</li>
+</ul>
+<p>The standard recommends that the security requirements and security levels be documented in a security specification for the IACS. The security specification should include a description of the security objectives, the security requirements for each security level, and the procedures for verifying compliance with the security requirements.</p>
+<h4 id="133-iec-62443-3-3-system-security-requirements-and-security-levels">1.3.3. IEC 62443-3-3 System security requirements and security levels<a class="headerlink" href="#133-iec-62443-3-3-system-security-requirements-and-security-levels" title="Permanent link">&para;</a></h4>
+<p>IEC 62443-3-3 provides a comprehensive framework for defining and implementing appropriate security requirements and security levels based on IEC 62443-3-2 for IACS systems. The standard is designed to help organizations define and implement appropriate security requirements and security levels for their IACS environments.</p>
+<p>The standard defines security levels as a way to measure the security robustness of an IACS system. Security levels are assigned based on the level of protection needed for the system based on its criticality, the consequences of a security breach, and the potential impact on safety, production, and the environment.</p>
+<p>The standard provides guidance on defining security requirements for IACS systems based on their security level. The security requirements are divided into categories, including access control, communications security, system integrity, data confidentiality, and data integrity. The requirements for each category vary depending on the security level assigned to the system.</p>
+<p>IEC 62443-3-3 also provides guidance on the process of selecting and implementing security measures to meet the defined security requirements. The standard recommends a risk-based approach to security, where risks are identified, assessed, and mitigated through the selection and implementation of appropriate security measures.</p>
+<h3 id="14-iec-62443-4-component-security">1.4. IEC 62443-4 Component Security<a class="headerlink" href="#14-iec-62443-4-component-security" title="Permanent link">&para;</a></h3>
+<p>The standard provides guidance on incorporating security into the product development lifecycle of IACS components, including hardware, software, and firmware.</p>
+<h4 id="141-iec-62443-4-1-secure-product-development-lifecycle-requirements">1.4.1. IEC 62443-4-1 Secure product development lifecycle requirements<a class="headerlink" href="#141-iec-62443-4-1-secure-product-development-lifecycle-requirements" title="Permanent link">&para;</a></h4>
+<p>IEC 62443-4-1 provides a set of requirements for developing and implementing a secure SDL for IACS products. By following these requirements, organizations can ensure that their products are designed and implemented with security in mind, reducing the likelihood of security vulnerabilities being introduced into the product. The standard is designed to help organizations develop and implement a secure SDL for their IACS products.</p>
+<p>The standard provides a set of requirements that should be considered when developing and implementing a secure SDL for IACS products. These requirements include:</p>
+<ul>
+<li>
+<p>Security management</p>
+<blockquote>
+<p>The standard requires that the SDL should be integrated with the organization's overall security management system (SMS) and that the SDL should be aligned with the organization's security policies and procedures.</p>
+</blockquote>
+</li>
+<li>
+<p>Secure design</p>
+<blockquote>
+<p>The standard provides guidance on designing products with security in mind, including threat modeling, risk assessment, and security requirements definition.</p>
+</blockquote>
+</li>
+<li>
+<p>Secure coding</p>
+<blockquote>
+<p>The standard provides guidance on writing secure code, including coding standards, code reviews, and testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Security testing</p>
+<blockquote>
+<p>The standard provides guidance on testing products for security vulnerabilities, including vulnerability scanning, penetration testing, and fuzz testing.</p>
+</blockquote>
+</li>
+<li>
+<p>Secure deployment</p>
+<blockquote>
+<p>The standard provides guidance on securely deploying products, including secure configuration, hardening, and deployment processes.</p>
+</blockquote>
+</li>
+<li>
+<p>Security maintenance</p>
+<blockquote>
+<p>The standard provides guidance on maintaining product security throughout its lifecycle, including patch management, vulnerability management, and incident response.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="142-iec-62443-4-2-technical-security-requirements-for-iacs-components">1.4.2. IEC 62443-4-2 Technical security requirements for IACS components<a class="headerlink" href="#142-iec-62443-4-2-technical-security-requirements-for-iacs-components" title="Permanent link">&para;</a></h4>
+<p>IEC 62443-4-2 provides a set of technical security requirements for IACS components, including network devices, controllers, and sensors. The standard is designed to help organizations ensure that their IACS components are developed and implemented with security in mind.</p>
+<p>The standard provides a set of technical security requirements that should be considered when developing and implementing IACS components. These requirements include:</p>
+<ul>
+<li>
+<p>Security capabilities</p>
+<blockquote>
+<p>The standard requires that IACS components should have security capabilities that are appropriate for the intended use of the component. This includes capabilities such as access control, secure communication, and secure storage.</p>
+</blockquote>
+</li>
+<li>
+<p>Secure communication</p>
+<blockquote>
+<p>The standard requires that IACS components should use secure communication protocols to protect against eavesdropping, tampering, and other attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Secure storage</p>
+<blockquote>
+<p>The standard requires that IACS components should use secure storage mechanisms to protect against unauthorized access and tampering.</p>
+</blockquote>
+</li>
+<li>
+<p>Access control</p>
+<blockquote>
+<p>The standard requires that IACS components should use access control mechanisms to ensure that only authorized users can access the component and its data.</p>
+</blockquote>
+</li>
+<li>
+<p>Security monitoring</p>
+<blockquote>
+<p>The standard requires that IACS components should have security monitoring capabilities to detect and respond to security incidents.</p>
+</blockquote>
+</li>
+<li>
+<p>Security updates</p>
+<blockquote>
+<p>The standard requires that IACS components should have the ability to receive security updates to address known vulnerabilities.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-terminology">2. Terminology<a class="headerlink" href="#2-terminology" title="Permanent link">&para;</a></h2>
+<p>IEC 62443 provides a comprehensive terminology to describe the different aspects of securing IACS.</p>
+<ul>
+<li>
+<p>Industrial automation and control systems (IACS)</p>
+<blockquote>
+<p>Systems that control and monitor industrial processes, such as manufacturing, energy production, and transportation.</p>
+</blockquote>
+</li>
+<li>
+<p>Cybersecurity</p>
+<blockquote>
+<p>The practice of protecting computer systems, networks, and data from unauthorized access, theft, damage, or other malicious actions.</p>
+</blockquote>
+</li>
+<li>
+<p>Threat</p>
+<blockquote>
+<p>A potential event or action that could harm a system or network.</p>
+</blockquote>
+</li>
+<li>
+<p>Vulnerability</p>
+<blockquote>
+<p>A weakness in a system or network that could be exploited by an attacker.</p>
+</blockquote>
+</li>
+<li>
+<p>Risk</p>
+<blockquote>
+<p>The likelihood and potential impact of a threat exploiting a vulnerability.</p>
+</blockquote>
+</li>
+<li>
+<p>Security management system (SMS)</p>
+<blockquote>
+<p>A comprehensive set of policies, procedures, and controls that are implemented to manage an organization's information security risks.</p>
+</blockquote>
+</li>
+<li>
+<p>Security level</p>
+<blockquote>
+<p>A measure of the effectiveness of a security control or set of controls in mitigating a risk.</p>
+</blockquote>
+</li>
+<li>
+<p>Security capability</p>
+<blockquote>
+<p>A set of security features or functions that are designed to address a specific security need.</p>
+</blockquote>
+</li>
+<li>
+<p>Security zone</p>
+<blockquote>
+<p>A logical grouping of assets or systems based on their security requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Conduit</p>
+<blockquote>
+<p>A pathway for data flow between security zones.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

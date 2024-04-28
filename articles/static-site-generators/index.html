@@ -1,0 +1,1221 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/static-site-generators/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Static Site Generators - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#static-site-generators" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Static Site Generators
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-ssg-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. SSG Types
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. SSG Types">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-file-based-ssgs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. File-based SSGs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-database-driven-ssgs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Database-driven SSGs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-hybrid-ssgs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. Hybrid SSGs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-headless-cms-based-ssgs" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.4. Headless CMS-based SSGs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-hosting-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Hosting Services
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Best Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ssg" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. SSG
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/static-site-generators.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/static-site-generators.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="static-site-generators">Static Site Generators<a class="headerlink" href="#static-site-generators" title="Permanent link">&para;</a></h1>
+<p>Static site generators (SSGs) are tools that generate static HTML, CSS, and JavaScript files from templates and content files.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-ssg-types">1.1. SSG Types</a><ul>
+<li><a href="#111-file-based-ssgs">1.1.1. File-based SSGs</a></li>
+<li><a href="#112-database-driven-ssgs">1.1.2. Database-driven SSGs</a></li>
+<li><a href="#113-hybrid-ssgs">1.1.3. Hybrid SSGs</a></li>
+<li><a href="#114-headless-cms-based-ssgs">1.1.4. Headless CMS-based SSGs</a></li>
+</ul>
+</li>
+<li><a href="#12-hosting-services">1.2. Hosting Services</a></li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#31-ssg">3.1. SSG</a></li>
+<li><a href="#32-deployment">3.2. Deployment</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+<li><a href="#5-references">5. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-ssg-types">1.1. SSG Types<a class="headerlink" href="#11-ssg-types" title="Permanent link">&para;</a></h3>
+<h4 id="111-file-based-ssgs">1.1.1. File-based SSGs<a class="headerlink" href="#111-file-based-ssgs" title="Permanent link">&para;</a></h4>
+<p>File-based SSGs are static site generators that use text files as the source of content and generate HTML files by processing these files using templates. The text files typically contain metadata and content written in a markup language like Markdown. The SSG processes the text files, applies the appropriate templates, and generates the static HTML files.</p>
+<p>File-based SSGs are suitable for small websites and blogs, where content is relatively simple and straightforward. They are easy to use, have a low learning curve, and are generally faster and more efficient than CMS-based solutions.</p>
+<p>File-based SSGs tools:</p>
+<ul>
+<li>
+<p>Jekyll</p>
+<blockquote>
+<p>A simple, blog-aware, static site generator that converts Markdown and other formats into HTML and is widely used for GitHub Pages sites.</p>
+</blockquote>
+</li>
+<li>
+<p>Hugo</p>
+<blockquote>
+<p>A fast and modern static site generator written in Go and can handle large websites with ease.</p>
+</blockquote>
+</li>
+<li>
+<p>Hexo</p>
+<blockquote>
+<p>A fast and simple static site generator that supports plugins and themes, and is often used for blogs.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="112-database-driven-ssgs">1.1.2. Database-driven SSGs<a class="headerlink" href="#112-database-driven-ssgs" title="Permanent link">&para;</a></h4>
+<p>Database-driven SSGs are static site generators that use a database to store content and generate HTML files by querying the database and processing the results using templates. These SSGs can handle large websites with complex content structures and are suitable for websites that require dynamic content.</p>
+<p>Database-driven SSGs offer several advantages over file-based SSGs, such as the ability to store complex data structures, handle large amounts of data, and support dynamic content. They can also provide faster build times and easier content management.</p>
+<p>Database-driven SSGs tools:</p>
+<ul>
+<li>
+<p>Gatsby</p>
+<blockquote>
+<p>A React-based static site generator that uses GraphQL to query data from various sources, such as Markdown, JSON, and APIs, and supports Progressive Web App (PWA) development.</p>
+</blockquote>
+</li>
+<li>
+<p>Next.js</p>
+<blockquote>
+<p>A popular React framework that can be used as a static site generator, and supports server-side rendering, dynamic routing, and API routes.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="113-hybrid-ssgs">1.1.3. Hybrid SSGs<a class="headerlink" href="#113-hybrid-ssgs" title="Permanent link">&para;</a></h4>
+<p>Hybrid SSGs are static site generators that combine features of file-based and database-driven SSGs. They use a database to store content and metadata, but also allow for custom templates and static files. These SSGs are suitable for websites that require more flexibility than a file-based SSG can provide, but don't need the full complexity of a database-driven SSG.</p>
+<p>Hybrid SSGs offer the benefits of both file-based and database-driven SSGs, such as simplicity, flexibility, and speed.</p>
+<p>Hybrid SSGs tools:</p>
+<ul>
+<li>
+<p>Eleventy</p>
+<blockquote>
+<p>A simple and flexible SSG that supports multiple templating languages and data sources, and can be used with or without a CMS.</p>
+</blockquote>
+</li>
+<li>
+<p>Middleman</p>
+<blockquote>
+<p>A Ruby-based SSG that supports a variety of data sources, templating languages, and asset management.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="114-headless-cms-based-ssgs">1.1.4. Headless CMS-based SSGs<a class="headerlink" href="#114-headless-cms-based-ssgs" title="Permanent link">&para;</a></h4>
+<p>Headless CMS-based SSGs are static site generators that use a headless CMS to manage content and generate static HTML files. A headless CMS is a content management system that provides an API to retrieve content, but doesn't provide any front-end or presentation layer. The SSG retrieves the content via the API, processes it using templates, and generates the static HTML files.</p>
+<p>Headless CMS-based SSGs offer several advantages, such as the ability to manage content more easily, support multiple channels, and provide a more robust content management system.</p>
+<p>Headless CMS-based SSGs tools:</p>
+<ul>
+<li>
+<p>Contentful</p>
+<blockquote>
+<p>A popular headless CMS that provides a content API and webhooks, and can be integrated with various front-end technologies.</p>
+</blockquote>
+</li>
+<li>
+<p>Sanity</p>
+<blockquote>
+<p>A flexible headless CMS that allows developers to define content models using a schema, and provides a real-time collaborative environment for content editors.</p>
+</blockquote>
+</li>
+<li>
+<p>Strapi</p>
+<blockquote>
+<p>A self-hosted headless CMS that provides an admin panel to manage content, and can be used with various front-end technologies.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="12-hosting-services">1.2. Hosting Services<a class="headerlink" href="#12-hosting-services" title="Permanent link">&para;</a></h3>
+<p>Static Site Generators (SSGs) generate static HTML, CSS, and JavaScript files, which can be hosted on any web server that supports serving static files.</p>
+<ul>
+<li>
+<p>GitHub Pages</p>
+<blockquote>
+<p>GitHub Pages is a free hosting service that allows to host static websites and web apps directly from your GitHub repositories. It supports several SSGs, including Jekyll, Hugo, and Gatsby.</p>
+</blockquote>
+</li>
+<li>
+<p>Netlify</p>
+<blockquote>
+<p>Netlify is a cloud hosting platform that provides a variety of features, including continuous deployment, custom domains, HTTPS, and serverless functions. It supports several SSGs, including Gatsby, Hugo, and Jekyll.</p>
+</blockquote>
+</li>
+<li>
+<p>Amazon S3</p>
+<blockquote>
+<p>Amazon S3 is a cloud storage service that can be used to host static websites. It provides features such as high availability, scalability, and low latency. To host a static site on S3, you need to configure your S3 bucket for static website hosting.</p>
+</blockquote>
+</li>
+<li>
+<p>Google Cloud Storage</p>
+<blockquote>
+<p>Google Cloud Storage is another cloud storage service that can be used to host static websites. It provides features such as global distribution, high availability, and scalability. To host a static site on Google Cloud Storage, you need to create a new bucket and configure it for static website hosting.</p>
+</blockquote>
+</li>
+<li>
+<p>Firebase Hosting</p>
+<blockquote>
+<p>Firebase Hosting is a fast and secure hosting service that supports static websites and web apps. It provides features such as automatic SSL, CDN, and custom domains. To host a static site on Firebase Hosting, you need to create a new Firebase project and deploy your site using the Firebase CLI.</p>
+</blockquote>
+</li>
+<li>
+<p>GitLab Pages</p>
+<blockquote>
+<p>GitLab Pages is a free hosting service that allows to host static websites and web apps directly from your GitLab repositories. It supports several SSGs, including Jekyll, Hugo, and Middleman.</p>
+</blockquote>
+</li>
+<li>
+<p>Surge</p>
+<blockquote>
+<p>Surge is a simple and affordable hosting service for static sites. It provides features such as custom domains, SSL, and command-line deployment. To host a static site on Surge, you need to install the Surge CLI and deploy your site using the surge command.</p>
+</blockquote>
+</li>
+<li>
+<p>Cloudflare Pages</p>
+<blockquote>
+<p>Cloudflare Pages is a modern hosting service that offers features such as automatic SSL, CDN, and custom domains. It supports several SSGs, including Hugo, Gatsby, and Next.js. Cloudflare Pages offers a generous free tier and scalable pricing based on usage.</p>
+</blockquote>
+</li>
+<li>
+<p>Vercel</p>
+<blockquote>
+<p>Vercel is a cloud hosting platform that provides features such as continuous deployment, custom domains, SSL, and serverless functions. It supports several SSGs, including Gatsby, Next.js, and Hugo. Vercel offers a generous free tier and scalable pricing based on usage.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Separation of content and presentation</p>
+<blockquote>
+<p>SSGs separate the content and presentation layers of a website or web application. Content is stored separately from the website's layout and design, allowing developers to focus on the website's structure and functionality without worrying about the content.</p>
+</blockquote>
+</li>
+<li>
+<p>Build Process</p>
+<blockquote>
+<p>SSGs use a build process to generate static files from templates and content sources. The build process involves parsing the content sources, applying the templates to the content, and generating static HTML, CSS, and JavaScript files. The resulting files can then be deployed to a web server or a hosting service.</p>
+</blockquote>
+</li>
+<li>
+<p>Templating</p>
+<blockquote>
+<p>SSGs use templating languages, such as Liquid, Handlebars, or Mustache, to generate the HTML files. Templating allows developers to reuse code and generate dynamic content, such as blog posts or product pages, from a single template.</p>
+</blockquote>
+</li>
+<li>
+<p>Version control</p>
+<blockquote>
+<p>SSGs work well with version control systems, such as Git, allowing developers to track changes to the website's code and content and collaborate with other developers.</p>
+</blockquote>
+</li>
+<li>
+<p>Flexibility</p>
+<blockquote>
+<p>SSGs are highly flexible and can be used for a wide range of websites and web applications, from simple blogs to complex e-commerce sites. SSGs can also be combined with other web development tools, such as CSS preprocessors or JavaScript frameworks, to enhance the website's functionality and design.</p>
+</blockquote>
+</li>
+<li>
+<p>Content Sources</p>
+<blockquote>
+<p>SSGs support various content sources, such as Markdown files, YAML files, JSON files, and databases. Content sources can be stored locally or remotely, and can be accessed using APIs or plugins.</p>
+</blockquote>
+</li>
+<li>
+<p>Plugins and Extensions</p>
+<blockquote>
+<p>SSGs support plugins and extensions that extend their functionality and allow developers to add custom features. Plugins can be used to integrate with third-party services, such as Google Analytics and Disqus, and add functionality, such as search and forms.</p>
+</blockquote>
+</li>
+<li>
+<p>Performance and Security</p>
+<blockquote>
+<p>SSGs generate static files that can be served directly from a web server or a CDN, which provides better performance and security than dynamic websites. SSGs also support HTTPS encryption and other security features to protect user data.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<h3 id="31-ssg">3.1. SSG<a class="headerlink" href="#31-ssg" title="Permanent link">&para;</a></h3>
+<p>Static Site Generators (SSGs) are a type of web development tool that generate static HTML, CSS, and JavaScript files for websites or web applications.</p>
+<ul>
+<li>
+<p>Choose the right SSG</p>
+<blockquote>
+<p>Different SSGs have different strengths and weaknesses. Consider the requirements of the website or web application and choose an SSG that best fits those requirements.</p>
+</blockquote>
+</li>
+<li>
+<p>Use a version control system</p>
+<blockquote>
+<p>Use a version control system like Git to track changes to your site's code and content. This allows to collaborate with others, roll back changes if necessary, and easily deploy updates.</p>
+</blockquote>
+</li>
+<li>
+<p>Use a local development environment</p>
+<blockquote>
+<p>Develop the website or web application locally using a development server. This allows developers to test changes and ensure the website is working as expected before deploying it to a live server.</p>
+</blockquote>
+</li>
+<li>
+<p>Optimize images and other assets</p>
+<blockquote>
+<p>Use tools, such as ImageOptim or TinyPNG, to optimize images and other assets before including them in the website. This reduces file size and improves load times.</p>
+</blockquote>
+</li>
+<li>
+<p>Use caching</p>
+<blockquote>
+<p>Use caching to reduce server load and improve website performance. Caching stores frequently accessed data, such as images or stylesheets, on the client's browser, reducing the need for server-side processing.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement responsive design</p>
+<blockquote>
+<p>Implement responsive design to ensure the website is accessible and usable on a wide range of devices and screen sizes.</p>
+</blockquote>
+</li>
+<li>
+<p>Use HTTPS</p>
+<blockquote>
+<p>Use HTTPS encryption to protect sensitive data, such as passwords or credit card information, transmitted between the client and server.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement SEO best practices</p>
+<blockquote>
+<p>Implement search engine optimization (SEO) best practices, such as using descriptive page titles and meta descriptions, to improve the website's visibility in search engine results.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor website analytics</p>
+<blockquote>
+<p>Monitor website analytics, such as page views and bounce rates, to track the website's performance and identify areas for improvement.</p>
+</blockquote>
+</li>
+<li>
+<p>Use a CSS preprocessor</p>
+<blockquote>
+<p>Use a CSS preprocessor like Sass or Less to write more efficient and organized CSS code. This allows to use variables, mixins, and other features to make your CSS code more modular and reusable.</p>
+</blockquote>
+</li>
+<li>
+<p>Use a task runner</p>
+<blockquote>
+<p>Use a task runner like Gulp or Grunt to automate repetitive tasks, such as minification and concatenation of CSS and JavaScript files, image optimization, and deployment.</p>
+</blockquote>
+</li>
+<li>
+<p>Use a CDN</p>
+<blockquote>
+<p>Use a content delivery network (CDN) to improve site performance and reduce server load. A CDN caches your site's files on servers located around the world, reducing the time it takes for users to access your site.</p>
+</blockquote>
+</li>
+<li>
+<p>Minifying files</p>
+<blockquote>
+<p>Minifying HTML, CSS, and JavaScript files can reduce file size and improve site performance.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="32-deployment">3.2. Deployment<a class="headerlink" href="#32-deployment" title="Permanent link">&para;</a></h3>
+<p>Deployment is the process of publishing a website or web application to a web server or hosting platform so that it can be accessed by users. In the case of Static Site Generators, deployment typically involves uploading pre-built HTML, CSS, and JavaScript files to a web server or CDN.</p>
+<ul>
+<li>
+<p>Build the site</p>
+<blockquote>
+<p>Use the SSG to generate a build of your static site by compiling templates, generating pages and assets, and optimizing files for performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Choose a hosting platform</p>
+<blockquote>
+<p>There are many hosting platforms available for static sites, including cloud storage providers, content delivery networks (CDNs), and specialized static site hosting services.</p>
+</blockquote>
+</li>
+<li>
+<p>Upload the files</p>
+<blockquote>
+<p>Once a hosting platform chosen, upload the generated files to the platform using a file transfer protocol (FTP) client or the hosting platform's web-based interface.</p>
+</blockquote>
+</li>
+<li>
+<p>Configure the domain</p>
+<blockquote>
+<p>If you are hosting the site on your own domain, you will need to configure your domain's DNS settings to point to the hosting platform's servers.</p>
+</blockquote>
+</li>
+<li>
+<p>Test the site</p>
+<blockquote>
+<p>Once the files have been uploaded and the domain has been configured, test the site to ensure that it is working correctly.</p>
+</blockquote>
+</li>
+<li>
+<p>Enable HTTPS</p>
+<blockquote>
+<p>HTTPS is important for security and SEO, so it is recommended that you enable HTTPS on your static site. Many hosting platforms provide a way to enable HTTPS automatically or with minimal configuration.</p>
+</blockquote>
+</li>
+<li>
+<p>Configure caching</p>
+<blockquote>
+<p>Caching can improve site performance by reducing the amount of data that needs to be downloaded by visitors' browsers. Many hosting platforms provide built-in caching options or integration with CDNs to improve site performance.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Template</p>
+<blockquote>
+<p>A template is a file that defines the layout and structure of a website or web application. Templates typically use a markup language, such as HTML or Markdown, and may include variables and logic for generating dynamic content.</p>
+</blockquote>
+</li>
+<li>
+<p>Static site</p>
+<blockquote>
+<p>A static site is a website that consists of pre-built HTML, CSS, and JavaScript files that are served directly from a web server, without the need for server-side processing or database queries.</p>
+</blockquote>
+</li>
+<li>
+<p>Content management system (CMS)</p>
+<blockquote>
+<p>A CMS is a software application that allows users to create, manage, and publish digital content, such as blog posts or product descriptions. In the context of SSGs, a headless CMS can be used to manage content separately from the website's layout and design.</p>
+</blockquote>
+</li>
+<li>
+<p>Front-end framework</p>
+<blockquote>
+<p>A front-end framework is a collection of pre-built HTML, CSS, and JavaScript components and tools that can be used to create responsive and dynamic web interfaces. Popular front-end frameworks include React, Vue.js, and Angular.</p>
+</blockquote>
+</li>
+<li>
+<p>Build process</p>
+<blockquote>
+<p>The build process refers to the process of generating static files from source code and content using an SSG. The build process typically involves compiling templates, generating pages and assets, and optimizing files for performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Plugin</p>
+<blockquote>
+<p>A plugin is a piece of software that can be added to an SSG to extend its functionality. Plugins can be used to add new features, optimize site performance, or automate tasks.</p>
+</blockquote>
+</li>
+<li>
+<p>Deployment</p>
+<blockquote>
+<p>Deployment refers to the process of uploading a website or web application to a web server or hosting platform so that it can be accessed by users. Deploying a static site typically involves uploading pre-built HTML, CSS, and JavaScript files to a web server or CDN.</p>
+</blockquote>
+</li>
+<li>
+<p>Front matter</p>
+<blockquote>
+<p>Front matter is metadata that is stored at the beginning of a Markdown file or other content file in an SSG. Front matter can include variables such as the title, author, or date of a blog post, which can be used to generate dynamic content.</p>
+</blockquote>
+</li>
+<li>
+<p>Server-side rendering (SSR)</p>
+<blockquote>
+<p>Server-side rendering is a process used in some web frameworks and platforms that generates HTML on the server before sending it to the client's browser. SSR can be used to improve site performance and SEO, but is not typically used in SSGs.</p>
+</blockquote>
+</li>
+<li>
+<p>CDN</p>
+<blockquote>
+<p>A content delivery network (CDN) is a network of servers located around the world that can be used to distribute content, such as images, CSS files, and JavaScript files, to users more quickly and efficiently. Using a CDN can improve site performance and reduce server load.</p>
+</blockquote>
+</li>
+<li>
+<p>Minification</p>
+<blockquote>
+<p>Minification is the process of removing unnecessary characters, such as whitespace and comments, from HTML, CSS, and JavaScript files. Minification can reduce file size and improve site performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Incremental build</p>
+<blockquote>
+<p>Incremental build is a feature available in some SSGs that allows for faster site rebuilds by only updating files that have changed since the last build, instead of rebuilding the entire site.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="5-references">5. References<a class="headerlink" href="#5-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sentenz <a href="../docs-as-code/">docs as code</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

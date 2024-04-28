@@ -1,0 +1,997 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/deployment-strategies/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Deployment Strategies - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deployment-strategies" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deployment Strategies
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-bluegreen-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Blue/Green Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-redblack-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Red/Black Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-rolling-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Rolling Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-canary-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Canary Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-ab-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. A/B Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-shadow-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Shadow Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-immutable-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7. Immutable Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-feature-toggle-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8. Feature Toggle Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-rollback-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9. Rollback Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#110-immutable-infrastructure-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.10. Immutable Infrastructure Deployment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/deployment-strategies.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/deployment-strategies.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="deployment-strategies">Deployment Strategies<a class="headerlink" href="#deployment-strategies" title="Permanent link">&para;</a></h1>
+<p>Deployment strategies are the various approaches or techniques used to deploy software applications or updates to production environments.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-bluegreen-deployment">1.1. Blue/Green Deployment</a></li>
+<li><a href="#12-redblack-deployment">1.2. Red/Black Deployment</a></li>
+<li><a href="#13-rolling-deployment">1.3. Rolling Deployment</a></li>
+<li><a href="#14-canary-deployment">1.4. Canary Deployment</a></li>
+<li><a href="#15-ab-testing">1.5. A/B Testing</a></li>
+<li><a href="#16-shadow-deployment">1.6. Shadow Deployment</a></li>
+<li><a href="#17-immutable-deployment">1.7. Immutable Deployment</a></li>
+<li><a href="#18-feature-toggle-deployment">1.8. Feature Toggle Deployment</a></li>
+<li><a href="#19-rollback-deployment">1.9. Rollback Deployment</a></li>
+<li><a href="#110-immutable-infrastructure-deployment">1.10. Immutable Infrastructure Deployment</a></li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+<li><a href="#5-references">5. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-bluegreen-deployment">1.1. Blue/Green Deployment<a class="headerlink" href="#11-bluegreen-deployment" title="Permanent link">&para;</a></h3>
+<p>In Blue/Green deployment strategy, two identical production environments (blue and green) are maintained. The new version of the application is deployed to the green environment, and the traffic is gradually shifted from the blue environment to the green environment. This approach ensures that the new version of the application is thoroughly tested before being made available to users. The theoretical basis for this deployment strategy is that it ensures high availability and reduces the risk of downtime.</p>
+<h3 id="12-redblack-deployment">1.2. Red/Black Deployment<a class="headerlink" href="#12-redblack-deployment" title="Permanent link">&para;</a></h3>
+<p>In Red/Black deployment strategy, two identical production environments (red and black) are maintained, with the current production environment being the red environment. The new version of the application is deployed to the black environment, and once it is tested and deemed stable, the traffic is switched to the black environment, making it the new production environment. This approach ensures that the new version of the application is thoroughly tested before being made available to users. The theoretical basis for this deployment strategy is that it ensures high availability and reduces the risk of downtime by enabling a smooth transition from the old to the new version.</p>
+<h3 id="13-rolling-deployment">1.3. Rolling Deployment<a class="headerlink" href="#13-rolling-deployment" title="Permanent link">&para;</a></h3>
+<p>In rolling deployment strategy, the new version of the application is gradually deployed to a subset of servers in the production environment, and the process continues until all servers have been updated. This approach ensures that the application is continuously available to users and that any issues that arise can be detected and resolved quickly. The theoretical basis for this deployment strategy is that it minimizes the risk of downtime and ensures that the application remains available even during the deployment process.</p>
+<h3 id="14-canary-deployment">1.4. Canary Deployment<a class="headerlink" href="#14-canary-deployment" title="Permanent link">&para;</a></h3>
+<p>In Canary deployment strategy, the new version of the application is deployed to a small subset of users or servers to test its functionality and performance before gradually rolling it out to the entire production environment. This approach ensures that any issues with the new version are detected and resolved before it is made available to all users. The theoretical basis for this deployment strategy is that it ensures high availability and reduces the risk of downtime.</p>
+<h3 id="15-ab-testing">1.5. A/B Testing<a class="headerlink" href="#15-ab-testing" title="Permanent link">&para;</a></h3>
+<p>In A/B Testing deployment strategy, two different versions of the application are deployed simultaneously to different subsets of users. This approach allows for the comparison of the two versions, making it possible to determine which version performs better. The theoretical basis for this deployment strategy is that it ensures high availability and enables continuous improvement of the application.</p>
+<h3 id="16-shadow-deployment">1.6. Shadow Deployment<a class="headerlink" href="#16-shadow-deployment" title="Permanent link">&para;</a></h3>
+<p>In Shadow deployment strategy, the new version of the application is deployed to a separate production environment, and a portion of the production traffic is routed to it. The results of the new deployment are then compared to the current production environment to ensure that the new version is performing as expected. The theoretical basis for this deployment strategy is that it ensures high availability and reduces the risk of downtime.</p>
+<h3 id="17-immutable-deployment">1.7. Immutable Deployment<a class="headerlink" href="#17-immutable-deployment" title="Permanent link">&para;</a></h3>
+<p>In Immutable deployment strategy, a new environment is created for each new version of the application instead of updating the existing environment. The new environment is created from a base image that includes the entire application stack. This approach helps to reduce the risk of issues arising from configuration changes or updates. The theoretical basis for this deployment strategy is that it ensures high availability and reduces the risk of downtime by isolating the new version of the application from the existing environment.</p>
+<h3 id="18-feature-toggle-deployment">1.8. Feature Toggle Deployment<a class="headerlink" href="#18-feature-toggle-deployment" title="Permanent link">&para;</a></h3>
+<p>In Feature deployment strategy, new features are deployed to production but kept disabled until they are tested and deemed stable. This approach allows for the gradual rollout of new features while minimizing the risk of issues. The theoretical basis for this deployment strategy is that it ensures high availability and reduces the risk of downtime by enabling developers to deploy new features without disrupting the production environment.</p>
+<h3 id="19-rollback-deployment">1.9. Rollback Deployment<a class="headerlink" href="#19-rollback-deployment" title="Permanent link">&para;</a></h3>
+<p>In Rollback deployment strategy, the new version of the application is deployed to the production environment, but in the event of any issues or failures, the deployment can be rolled back to the previous version. This approach ensures that the application remains available to users, even in the event of issues or failures. The theoretical basis for this deployment strategy is that it ensures high availability and reduces the risk of downtime by allowing for quick rollback to a previous version.</p>
+<h3 id="110-immutable-infrastructure-deployment">1.10. Immutable Infrastructure Deployment<a class="headerlink" href="#110-immutable-infrastructure-deployment" title="Permanent link">&para;</a></h3>
+<p>In Immutable Infrastructure deployment strategy, a new infrastructure is created for each new version of the application using code, making it easy to manage and deploy. This approach ensures that the infrastructure is consistent across all environments and reduces the risk of issues arising from manual configuration changes. The theoretical basis for this deployment strategy is that it ensures high availability and reduces the risk of downtime by ensuring that the infrastructure is reliable and consistent.</p>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<p>By adhering to these principles, deployment strategies can be designed and implemented to ensure high availability, reliability, and stability of the application while minimizing disruption and downtime for users.</p>
+<ul>
+<li>
+<p>Continuous Integration</p>
+<blockquote>
+<p>Continuous integration is the practice of frequently integrating code changes into a central repository and ensuring that automated tests are run to detect issues as early as possible. This principle ensures that issues are caught early in the development process, reducing the risk of problems occurring during deployment.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Delivery</p>
+<blockquote>
+<p>Continuous delivery is the practice of automating the deployment process so that code changes can be quickly and safely released to production. This principle ensures that deployments are quick and efficient, minimizing downtime and disruption to users.</p>
+</blockquote>
+</li>
+<li>
+<p>Automation</p>
+<blockquote>
+<p>Automation is the practice of using tools and processes to automate the deployment process. This principle ensures that deployments are consistent, repeatable, and reliable, reducing the risk of human error.</p>
+</blockquote>
+</li>
+<li>
+<p>Rollback Capability</p>
+<blockquote>
+<p>Rollback capability is the ability to quickly and easily revert to a previous version of the application in the event of issues or failures. This principle ensures that the application remains available to users even in the event of issues or failures.</p>
+</blockquote>
+</li>
+<li>
+<p>Testing</p>
+<blockquote>
+<p>Testing is the practice of running automated tests to ensure that the application is functioning correctly and that new code changes do not introduce issues. This principle ensures that the application is stable and reliable before being released to production.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitoring</p>
+<blockquote>
+<p>Monitoring is the practice of tracking the performance and health of the application in real-time. This principle ensures that issues can be quickly detected and addressed before they become serious problems.</p>
+</blockquote>
+</li>
+<li>
+<p>Incremental Changes</p>
+<blockquote>
+<p>Incremental changes is the practice of making small, incremental changes to the application rather than large, sweeping changes. This principle ensures that deployments are less disruptive and that issues are easier to isolate and troubleshoot.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>By following these best practices, deployment strategies can be designed and implemented to ensure that deployments are consistent, reliable, and efficient, while minimizing disruption and downtime for users.</p>
+<ul>
+<li>
+<p>Use Version Control System</p>
+<blockquote>
+<p>Use a version control system to manage code changes and ensure that all changes are properly tracked and documented.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Continuous Pipelines</p>
+<blockquote>
+<p>Use a continuous pipelines to manage the deployment process and ensure that all steps are properly coordinated and executed. Continuous integration (CI) and continuous deployment (CD) are two closely related practices that involve automating the testing, building, and deployment of code changes. By implementing CI/CD, you can ensure that code changes are tested and deployed quickly and reliably. Theoretical basis for this practice is that it ensures fast and efficient deployments with reduced risk of errors.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Automated Deployment Tools</p>
+<blockquote>
+<p>Automation is one of the key principles of effective deployment strategies. By using automated deployment tools, you can ensure that deployments are consistent, repeatable, and reliable. These tools can also help to reduce the risk of human error and speed up the deployment process. Theoretical basis for this practice is that it ensures efficient, accurate and reliable deployments.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Rollback Capability</p>
+<blockquote>
+<p>Rollback capability is the ability to quickly and easily revert to a previous version of the application in the event of issues or failures. By implementing rollback capability, you can ensure that the application remains available to users even in the event of issues or failures. Theoretical basis for this practice is that it enables quick and easy recovery from failures.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Feature Flags</p>
+<blockquote>
+<p>Feature flags are a mechanism for controlling the visibility of new features in the application. By using feature flags, you can gradually roll out new features to users, monitor their performance, and quickly revert to the previous version if necessary. Theoretical basis for this practice is that it enables gradual release of new features while minimizing risk.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Zero-Downtime Deployment</p>
+<blockquote>
+<p>Use blue/green or canary deployments to ensure that changes are gradually rolled out to users, minimizing the risk of downtime or issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor Performance and Health</p>
+<blockquote>
+<p>Monitoring the performance and health of the application in real-time is critical for detecting issues and addressing them before they become serious problems. By using monitoring tools, you can track key performance indicators (KPIs) and respond quickly to issues as they arise. Theoretical basis for this practice is that it enables proactive detection and resolution of issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Test the deployment process</p>
+<blockquote>
+<p>Test the deployment process itself to ensure that it is working as expected and that deployments are successful.</p>
+</blockquote>
+</li>
+<li>
+<p>Test Deployments in Staging Environment</p>
+<blockquote>
+<p>Before deploying changes to the production environment, it is recommended to test them in a staging environment that closely mimics the production environment. This allows you to identify any issues before deploying to production, reducing the risk of downtime or other issues. Theoretical basis for this practice is that it enables thorough testing of changes before they go live.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Configuration Management</p>
+<blockquote>
+<p>Use configuration management to manage the configuration of the application and ensure that change</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>Understanding and using this terminology, developers and operations teams can more effectively communicate and implement deployment strategies.</p>
+<ul>
+<li>
+<p>Deployment Pipeline</p>
+<blockquote>
+<p>A series of steps that code changes go through in order to be deployed to production. This pipeline typically includes steps such as building, testing, and deploying the code changes.</p>
+</blockquote>
+</li>
+<li>
+<p>Rollback</p>
+<blockquote>
+<p>The ability to quickly and easily revert to a previous version of the application in the event of issues or failures.</p>
+</blockquote>
+</li>
+<li>
+<p>Canary Analysis</p>
+<blockquote>
+<p>A technique for evaluating the performance and stability of a new version of the application by gradually increasing the percentage of users who are redirected to the new version while monitoring performance metrics and error rates.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration Management</p>
+<blockquote>
+<p>The practice of using tools and processes to manage the configuration of the application and infrastructure. This includes settings such as environment variables, database connections, and server configurations.</p>
+</blockquote>
+</li>
+<li>
+<p>Environment</p>
+<blockquote>
+<p>A set of servers, services, and infrastructure components that are used to host and run the application. Examples include development, testing, staging, and production environments.</p>
+</blockquote>
+</li>
+<li>
+<p>Zero-Downtime Deployment</p>
+<blockquote>
+<p>A deployment strategy where updates are made to the application without any interruption to user traffic. This is typically achieved using strategies such as blue/green or canary deployments.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="5-references">5. References<a class="headerlink" href="#5-references" title="Permanent link">&para;</a></h2>
+<p>Google <a href="https://cloud.google.com/architecture/application-deployment-and-testing-strategies">deployment strategies</a> article.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

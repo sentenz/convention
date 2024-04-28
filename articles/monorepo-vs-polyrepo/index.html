@@ -1,0 +1,1304 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/monorepo-vs-polyrepo/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Monorepo vs Polyrepo // TODO - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#monorepo-vs-polyrepo-todo" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Monorepo vs Polyrepo // TODO
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-monorepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is monorepo?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-is-polyrepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is polyrepo?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparisons
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-similarities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key similarities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key differences
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tooling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tooling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bazel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bazel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lerna" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lerna
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#octolinker" class="md-nav__link">
+    <span class="md-ellipsis">
+      OctoLinker
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monorepo-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monorepo scaling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monorepo scaling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monorepo-scaling-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monorepo scaling problem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monorepo-scaling-mitigations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monorepo scaling mitigations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monorepo-scaling-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monorepo scaling metrics
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proponents-of-monorepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proponents of monorepo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proponents of monorepo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-components-need-to-release-together-then-use-a-monorepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      If components need to release together, then use a monorepo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#if-components-need-to-share-common-code-then-use-a-monorepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      If components need to share common code, then use a monorepo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ive-found-monorepos-to-be-extremely-valuable-in-an-less-mature-high-churn-codebase" class="md-nav__link">
+    <span class="md-ellipsis">
+      I’ve found monorepos to be extremely valuable in an less-mature, high-churn codebase
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-common-mission" class="md-nav__link">
+    <span class="md-ellipsis">
+      A common mission
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proponents-of-polyrepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proponents of polyrepo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proponents of polyrepo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if-techs-biggest-names-use-a-monorepo-should-we-do-the-same" class="md-nav__link">
+    <span class="md-ellipsis">
+      If tech's biggest names use a monorepo, should we do the same?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coupling-between-unrelated-projects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Coupling between unrelated projects
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visible-organization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visible organization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opinions-about-splitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opinions about splitting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opinions about splitting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#splitting-one-repo-is-easier-than-combining-multiple-repos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splitting one repo is easier than combining multiple repos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#splitting-may-be-too-fine" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splitting may be too fine
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opinions-about-balances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opinions about balances
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opinions about balances">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#its-a-social-problem-in-how-you-manage-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      It's a social problem in how you manage boundaries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges-of-monorepo-and-polyrepo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges of monorepo and polyrepo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-premise-applications-or-desktop-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      On-premise applications or desktop applications
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opinions-about-alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opinions about alternatives
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opinions about alternatives">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#could-you-get-the-best-of-both-worlds-by-having-a-monorepo-of-submodules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Could you get the best of both worlds by having a monorepo of submodules?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hybrid-of-many-repos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hybrid of "many repos"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prediction-of-a-new-type-of-vcs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prediction of a new type of VCS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/monorepo-vs-polyrepo.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/monorepo-vs-polyrepo.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="monorepo-vs-polyrepo-todo">Monorepo vs Polyrepo // TODO<a class="headerlink" href="#monorepo-vs-polyrepo-todo" title="Permanent link">&para;</a></h1>
+<p>Monorepo means using one repository that contains many projects, and polyrepo means using a repository per project. This page discusses the similarities and differences, and has advice and opinions on both.</p>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#what-is-monorepo">What is monorepo?</a></li>
+<li><a href="#what-is-polyrepo">What is polyrepo?</a></li>
+<li><a href="#comparisons">Comparisons</a></li>
+<li><a href="#key-similarities">Key similarities</a></li>
+<li><a href="#key-differences">Key differences</a></li>
+<li><a href="#tooling">Tooling</a></li>
+<li><a href="#bazel">Bazel</a></li>
+<li><a href="#lerna">Lerna</a></li>
+<li><a href="#octolinker">OctoLinker</a></li>
+<li><a href="#monorepo-scaling">Monorepo scaling</a></li>
+<li><a href="#monorepo-scaling-problem">Monorepo scaling problem</a></li>
+<li><a href="#monorepo-scaling-mitigations">Monorepo scaling mitigations</a></li>
+<li><a href="#monorepo-scaling-metrics">Monorepo scaling metrics</a></li>
+<li><a href="#proponents-of-monorepo">Proponents of monorepo</a></li>
+<li><a href="#if-components-need-to-release-together-then-use-a-monorepo">If components need to release together, then use a monorepo</a></li>
+<li><a href="#if-components-need-to-share-common-code-then-use-a-monorepo">If components need to share common code, then use a monorepo</a></li>
+<li><a href="#ive-found-monorepos-to-be-extremely-valuable-in-an-less-mature-high-churn-codebase">I’ve found monorepos to be extremely valuable in an less-mature, high-churn codebase</a></li>
+<li><a href="#a-common-mission">A common mission</a></li>
+<li><a href="#proponents-of-polyrepo">Proponents of polyrepo</a></li>
+<li><a href="#if-techs-biggest-names-use-a-monorepo-should-we-do-the-same">If tech's biggest names use a monorepo, should we do the same?</a></li>
+<li><a href="#coupling-between-unrelated-projects">Coupling between unrelated projects</a></li>
+<li><a href="#visible-organization">Visible organization</a></li>
+<li><a href="#opinions-about-splitting">Opinions about splitting</a></li>
+<li><a href="#splitting-one-repo-is-easier-than-combining-multiple-repos">Splitting one repo is easier than combining multiple repos</a></li>
+<li><a href="#splitting-may-be-too-fine">Splitting may be too fine</a></li>
+<li><a href="#opinions-about-balances">Opinions about balances</a></li>
+<li><a href="#its-a-social-problem-in-how-you-manage-boundaries">It's a social problem in how you manage boundaries</a></li>
+<li><a href="#challenges-of-monorepo-and-polyrepo">Challenges of monorepo and polyrepo</a></li>
+<li><a href="#on-premise-applications-or-desktop-applications">On-premise applications or desktop applications</a></li>
+<li><a href="#opinions-about-alternatives">Opinions about alternatives</a></li>
+<li><a href="#could-you-get-the-best-of-both-worlds-by-having-a-monorepo-of-submodules">Could you get the best of both worlds by having a monorepo of submodules?</a></li>
+<li><a href="#hybrid-of-many-repos">Hybrid of "many repos"</a></li>
+<li><a href="#prediction-of-a-new-type-of-vcs">Prediction of a new type of VCS</a></li>
+</ul>
+<p>See:</p>
+<ul>
+<li><a href="https://github.com/joelparkerhenderson/source_code_management/scm_at_facebook.md">SCM at Facebook</a></li>
+<li><a href="https://github.com/joelparkerhenderson/source_code_management/scm_at_google.md">SCM at Google</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=2854146">Why Google stores billions of lines of code in a single repository (2016) (acm.org)</a></li>
+<li><a href="https://code.facebook.com/posts/218678814984400/scaling-mercurial-at-facebook/">Scaling Mercurial at Facebook</a></li>
+<li><a href="https://blog.digitalocean.com/cthulhu-organizing-go-code-in-a-scalable-repo/">Cthulhu: Organizing Go Code in a Scalable Repo</a></li>
+</ul>
+<p>Opinion posts:</p>
+<ul>
+<li><a href="https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b">Monorepos: Please don’t! - By Matt Klein</a></li>
+<li><a href="https://presumably.de/monorepos-and-the-fallacy-of-scale.html">Monorepos and the Fallacy of Scale - By Paulus Esterhazy</a></li>
+</ul>
+<p>Hacker News discussions:</p>
+<ul>
+<li><a href="https://news.ycombinator.com/item?id=18808909">Monorepos: Please don’t!</a></li>
+<li><a href="https://news.ycombinator.com/item?id=18855660">Monorepos and the Fallacy of Scale</a></li>
+</ul>
+<p>Credits:</p>
+<ul>
+<li>Opinions and comments on this page are thanks to many people on various discussion websites, such as Hacker News, and lightly edited for clarity.</li>
+<li>If you're the author of an opinion here, and would like to attribute it, or explain more, please let us know and we'll give you commit access.</li>
+</ul>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-monorepo">What is monorepo?<a class="headerlink" href="#what-is-monorepo" title="Permanent link">&para;</a></h3>
+<p>Monorepo is a nickname that means "using one repository for the source code management version control system".</p>
+<ul>
+<li>A monorepo architecture means using one repository, rather than multiple repositories.</li>
+<li>For example, a monorepo can use one repo that contains a directory for a web app project, a directory for a mobile app project, and a directory for a server app project.</li>
+<li>Monorepo is also known as one-repo or uni-repo.</li>
+</ul>
+<h3 id="what-is-polyrepo">What is polyrepo?<a class="headerlink" href="#what-is-polyrepo" title="Permanent link">&para;</a></h3>
+<p>Polyrepo is a nickname that means "using multiple repostories for the source code management version control system".</p>
+<ul>
+<li>A polyrepo architecture means using multiple repositories, rather than one repository.</li>
+<li>For example, a polyrepo can use a repo for a web app project, a repo for a mobile app project, and a repo for a server app project.</li>
+<li>Polyrepo is also known as many-repo or multi-repo.</li>
+</ul>
+<h2 id="comparisons">Comparisons<a class="headerlink" href="#comparisons" title="Permanent link">&para;</a></h2>
+<h3 id="key-similarities">Key similarities<a class="headerlink" href="#key-similarities" title="Permanent link">&para;</a></h3>
+<p>Key similarities between monorepo and polyrepo:</p>
+<ul>
+<li>Both architectures ultimately track the same source code files, and do it by using source code management (SCM) version control systems (VCS) such as git or mercurial.</li>
+<li>Both architectures are proven successful for projects of all sizes.</li>
+<li>Both architectures are straightforward to implement using any typical SCM VCS, up to a scaling limit.</li>
+</ul>
+<h3 id="key-differences">Key differences<a class="headerlink" href="#key-differences" title="Permanent link">&para;</a></h3>
+<p>Key differences between monorepo and polyrepo, summarized from many proponents, and intending to highlight typical differences between a typical monorepo and a typical polyrepo.</p>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Monorepo</th>
+      <th>Polyrepo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Contents</th>
+      <td>Typically a repo contains multiple projects, programming languages, packaging processes, etc.</td>
+      <td>Typically a repo contains one project, programming language, packaging process, etc.</td>
+    </tr>
+    <tr>
+      <th>Projects</th>
+      <td>Manages projects in one repository, together, holistically.</td>
+      <td>Manages projects in multiple repositories, separately, independently.</td>
+    </tr>
+    <tr>
+      <th>Workflows</th>
+      <td>Enables workflows in all projects simultaneously, all within the monorepo. </td>
+      <td>Enables workflows in each project one at a time, each in its own repo.</td>
+    </tr>
+    <tr>
+      <th>Changes</th>
+      <td>Ensures changes affect all the projects, can be tracked together, tested together, and released together.</td>
+      <td>Ensures changes affect only one project, can be tracked separately, tested separately, and released separately.</td>
+    </tr>
+    <tr>
+      <th>Collaboration</th>
+      <td>Encourages collaboration and code sharing within an organization. </td>
+      <td>Encourages collaboration and code sharing across organizations.</td>
+    </tr>
+    <tr>
+      <th>Testing</th>
+      <td>Good white box testing because all projects are testable together, and verifiable holistically.</td>
+      <td>Good black box testing because each project is testable separately, and verifiable independently.</td>
+    </tr>
+    <tr>
+      <th>Releases</th>
+      <td>Coordinated releases are inherent, yet must use a polygot of tooling.</td>
+      <td>Coordinated releases must be programmed, yet can use vanilla tooling.</td>
+    </tr>
+    <tr>
+      <th>State</th>
+      <td>The current state of everything is one commit in one repo.</td>
+      <td>The current state of everything is a commit per repo.</td>
+    </tr>
+    <tr>
+      <th>Coupling</th>
+      <td>Tight coupling of projects.</td>
+      <td>No coupling of projects.</td>
+    </tr>
+    <tr>
+      <th>Thinking</th>
+      <td>Encourages thinking about conjoins among projects.</td>
+      <td>Encourages thinking about contracts between projects.</td>
+    </tr>
+    <tr>
+      <th>Access</th>
+      <td><p>Access control defaults to all projects.<p>Some teams use tools for finer-grained access control.<p>Gitlab offers ownership control where you can say who owns what directories for things like approving merge requests that affect those directories. Google Piper has finer-grained access control. Phabricator offers herald rules that stop a merge from happening if a file has changed in a specific subdirrectory. Some teams use service owners, so when a change spans multiple services, they are all added automatically as blocking reviewers.</td>
+      </td>
+      <td><p>Access control defaults to per project.<p>Some teams use tools for broader-graned access control.<p>GitHub offers teams where you can say one team owns many projects and for things like approving requests that affect multiple repos.</td>
+    </tr>
+    <tr>
+      <th>Scaling</th>
+      <td>Scaling needs specialized tooling. It is currently not practical to use vanilla git with very large repos, or very large files, without any extra tooling. For monorepo scaling, teams invest in writing custom tooling and providing custom training.</td>
+      <td>Scaling needs specialized coordination. It is currently not practical to use vanilla git with many projects across many repos, where a team wants to coordinate code changes, testing, packaging, and releasing. For polyrepo scaling, teams invest in writing coordination scripts and careful cross-version compatibility.</td>
+    </tr>
+    <tr>
+      <th>Tooling</th>
+      <td>Google wrote the tool “bazel”, which tracks internal dependencies by using directed acyclic graphs.</td>
+      <td>Lyft wrote the tool “refactorator”, which automates making changes in multiple repos, including opening PRs, tracking status, etc.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="tooling">Tooling<a class="headerlink" href="#tooling" title="Permanent link">&para;</a></h2>
+<h3 id="bazel">Bazel<a class="headerlink" href="#bazel" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/bazelbuild/bazel">Bazel</a> is a fast, scalable, multi-language and extensible build system. Bazel only rebuilds what is necessary. With advanced local and distributed caching, optimized dependency analysis and parallel execution, you get fast and incremental builds.</p>
+<p>Bazel requires you to explicitly declare your dependencies for each 'target' you want to build. These dependencies can be within the same Bazel workspace, or imported at build time via say git - there's no need to have all the files directly in your repo.</p>
+<p>The nice thing is you can declare the commit id or file hash for the dependency you're importing to make sure you're getting what you expect, and keep Bazel's reproducibility properties.</p>
+<h3 id="lerna">Lerna<a class="headerlink" href="#lerna" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/lerna/lerna">Lerna</a> is a tool that optimizes the workflow around managing multi-package repositories with git and npm.</p>
+<h3 id="octolinker">OctoLinker<a class="headerlink" href="#octolinker" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/OctoLinker/OctoLinker">Octolinker</a> really helps when browsing a polyrepo on Github. You can just click the import [project] name and it will switch to the repo.</p>
+<h2 id="monorepo-scaling">Monorepo scaling<a class="headerlink" href="#monorepo-scaling" title="Permanent link">&para;</a></h2>
+<h3 id="monorepo-scaling-problem">Monorepo scaling problem<a class="headerlink" href="#monorepo-scaling-problem" title="Permanent link">&para;</a></h3>
+<p>Monorepo scaling becomes a problem when a typical developer can't work well with the code by using typical tools such as vanilla git.</p>
+<ul>
+<li>
+<p>Monorepo scaling eventually becomes impractical in terms of space: when a monorepo grows to have more data than fits on a developer's laptop, then the developer cannot fetch the monorepo, and it may be impractical to obtain to more storage space.</p>
+</li>
+<li>
+<p>Monorepo scaling eventually becomes impractical in terms of time: when a monorepo grows, then a complete file transfer takes more time, and in practice, there are other operations that also take more time, such as git pruning, git repacking.</p>
+</li>
+<li>
+<p>A monorepo may grow so large contain so many projects that it takes too much mental effort to work across projects, such as for searching, editing, and isolating changes.</p>
+</li>
+</ul>
+<h3 id="monorepo-scaling-mitigations">Monorepo scaling mitigations<a class="headerlink" href="#monorepo-scaling-mitigations" title="Permanent link">&para;</a></h3>
+<p>Monorepo scaling can be improved by:</p>
+<ul>
+<li>
+<p>Some type of virtual file system (VFS) that allows a portion of the code to be present locally. This might be accomplished via a proprietary VCS like Perforce which natively operates this way, or via Google’s “G3” internal tooling, or via Microsoft’s GVFS.</p>
+</li>
+<li>
+<p>Sophisticated source code indexing/searching/discovery capabilities as a service. This is because a typical developer is not going to have all the source code locallly, in a searchable state, using vanilla tooling.</p>
+</li>
+</ul>
+<h3 id="monorepo-scaling-metrics">Monorepo scaling metrics<a class="headerlink" href="#monorepo-scaling-metrics" title="Permanent link">&para;</a></h3>
+<p>Monorepo scaling seems to become an issue, in practice, at approximately these kinds of metrics:</p>
+<ul>
+<li>
+<p>10-100 developers writing code full time.</p>
+</li>
+<li>
+<p>10-100 projects in progress at the same time.</p>
+</li>
+<li>
+<p>10-100 packaging processes during the same time period, such as a daily release.</p>
+</li>
+<li>
+<p>1K-10K versioned dependencies, such as Node modules, Python packages, Ruby gems, etc.</p>
+</li>
+<li>
+<p>1M-10M lines of code</p>
+</li>
+</ul>
+<h2 id="proponents-of-monorepo">Proponents of monorepo<a class="headerlink" href="#proponents-of-monorepo" title="Permanent link">&para;</a></h2>
+<h3 id="if-components-need-to-release-together-then-use-a-monorepo">If components need to release together, then use a monorepo<a class="headerlink" href="#if-components-need-to-release-together-then-use-a-monorepo" title="Permanent link">&para;</a></h3>
+<p>If you think components might need to release together then they should go in the same repo, because you can in fact pretty easily manage projects with different release schedules from the same repo if you really need to.</p>
+<p>On the other hand if you've got a whole bunch of components in different repos which need to release together it suddenly becomes a real pain.</p>
+<h3 id="if-components-need-to-share-common-code-then-use-a-monorepo">If components need to share common code, then use a monorepo<a class="headerlink" href="#if-components-need-to-share-common-code-then-use-a-monorepo" title="Permanent link">&para;</a></h3>
+<p>If you have components that will never need to release together, then of course you can stick them in different repositories-- but if you do this and you want to share common code among the repositories, then you will need to manage that code with some sort of robust versioning system, and robust versioning systems are hard. Only do something like that when the value is high enough to justify the overhead. If you're in a startup, chances are very good that the value is not high enough.</p>
+<h3 id="ive-found-monorepos-to-be-extremely-valuable-in-an-less-mature-high-churn-codebase">I’ve found monorepos to be extremely valuable in an less-mature, high-churn codebase<a class="headerlink" href="#ive-found-monorepos-to-be-extremely-valuable-in-an-less-mature-high-churn-codebase" title="Permanent link">&para;</a></h3>
+<p>Need to change a function signature or interface? Cool, global find &amp; replace.</p>
+<p>At some point a monorepo outgrows its usefulness. The sheer amount of files in something that’s 10K+ LOC (not that large, I know) warrants breaking apart the codebase into packages.</p>
+<p>Still, I almost err on the side of monorepos because of the convenience that editors like vscode offer: autocomplete, auto-updating imports, etc.</p>
+<h3 id="a-common-mission">A common mission<a class="headerlink" href="#a-common-mission" title="Permanent link">&para;</a></h3>
+<p>I find it helpful to think of a company as a group of people engaged in a common mission. The company pursues its mission through multiple subprojects, and every decision taken and every code change introduced is a step towards its primary goal. The code base is a chunk of the company's institutional knowledge about its overarching goal and means to that end.</p>
+<p>Looking at it from this perspective, a monorepo can be seen as the most natural expression of the fact that all team members are engaged in a single, if multi-faceted, enterprise.</p>
+<h2 id="proponents-of-polyrepo">Proponents of polyrepo<a class="headerlink" href="#proponents-of-polyrepo" title="Permanent link">&para;</a></h2>
+<h3 id="if-techs-biggest-names-use-a-monorepo-should-we-do-the-same">If tech's biggest names use a monorepo, should we do the same?<a class="headerlink" href="#if-techs-biggest-names-use-a-monorepo-should-we-do-the-same" title="Permanent link">&para;</a></h3>
+<p>Some of tech’s biggest names use a monorepo, including Google, Facebook, Twitter, and others. Surely if these companies all use a monorepo, the benefits must be tremendous, and we should all do the same, right? Wrong!</p>
+<p>Why? Because, at scale, a monorepo must solve every problem that a polyrepo must solve, with the downside of encouraging tight coupling, and the additional herculean effort of tackling VCS scalability.</p>
+<p>Thus, in the medium to long term, a monorepo provides zero organizational benefits, while inevitably leaving some of an organization’s best engineers with a wicked case of PTSD (manifested via drooling and incoherent mumbling about git performance internals).</p>
+<h3 id="coupling-between-unrelated-projects">Coupling between unrelated projects<a class="headerlink" href="#coupling-between-unrelated-projects" title="Permanent link">&para;</a></h3>
+<p>I worry about the monorepo coupling between unrelated products. While I admit part of this probably comes from my more libertarian world view but I have seen something as basic as a server upgrade schedule that is tailored for one product severely hurt the development of another product, to the point of almost halting development for months. I can't imagine needing a new feature or a big fix from a dependency but to be stuck because the whole company isn't ready to upgrade.</p>
+<p>I've read of at least one less serious case of this from google with JUnit: "In 2007, Google tried to upgrade their JUnit from 3.8.x to 4.x and struggled as there was a subtle backward incompatibility in a small percentage of their usages of it. The change-set became very large, and struggled to keep up with the rate developers were adding tests."</p>
+<h3 id="visible-organization">Visible organization<a class="headerlink" href="#visible-organization" title="Permanent link">&para;</a></h3>
+<p>I argue that a visible organization of a codebase into repositories makes it easier to reuse code in the same way that interface/implementation splits do: it makes it clearer which parts felt domain-specific and which felt like reusable libraries.</p>
+<p>Being able to represent "not directly involved, but versioned together" and "separate enough to be versioned separately" is a very valuable distinction to have in your toolbox.</p>
+<p>Once your team is large enough that your developers are not all attending the same standup, then you should be working in multiple repositories. You need to have a release cycle with semVer etc. so that developers who aren't in close communication with you can understand the impact of changes to your code area. Since tags are repository-global, the repository should be the unit of versioning/releasing.</p>
+<h2 id="opinions-about-splitting">Opinions about splitting<a class="headerlink" href="#opinions-about-splitting" title="Permanent link">&para;</a></h2>
+<h3 id="splitting-one-repo-is-easier-than-combining-multiple-repos">Splitting one repo is easier than combining multiple repos<a class="headerlink" href="#splitting-one-repo-is-easier-than-combining-multiple-repos" title="Permanent link">&para;</a></h3>
+<p>You can split big repositories into smaller ones quite easily (in Git anyway). If you only need to do this once, then subtree will do the job, even retaining all your history if you want. As another way to split, you can duplicate the repo and pull trees out of each dupe in normal commits.</p>
+<p>But combining small repositories together into a bigger repo is a lot harder.</p>
+<p>So start out with a monorepo.</p>
+<p>Only split a monorepo into multiple smaller repositories when you're clear that it really makes sense.</p>
+<h3 id="splitting-may-be-too-fine">Splitting may be too fine<a class="headerlink" href="#splitting-may-be-too-fine" title="Permanent link">&para;</a></h3>
+<p>My problem with polyrepo is that often organizations end up splitting things too finely, and now I'm unable to make a single commit to introduce a feature because my changes have to live across several repositories.</p>
+<p>This makes code review more annoying because you have to tab back and forth to see all the context.</p>
+<p>This makes it worse to make changes to fundamental (internal) libraries used by every project. It's too much hassle to track down all the uses of a particular function, so I end up putting that change elsewhere, which means someone else will do it a little different in their corner of the world, which utterly confuses the first person who's unlucky enough to work in both code bases (at the same time, or after moving teams).</p>
+<h2 id="opinions-about-balances">Opinions about balances<a class="headerlink" href="#opinions-about-balances" title="Permanent link">&para;</a></h2>
+<h3 id="its-a-social-problem-in-how-you-manage-boundaries">It's a social problem in how you manage boundaries<a class="headerlink" href="#its-a-social-problem-in-how-you-manage-boundaries" title="Permanent link">&para;</a></h3>
+<p>Among many of the major monorepos, boundaries still exist, they just become far more opaque because no one has to track them. You find the weird gatekeepers in the dark that spring out only when you get late in your code review process because you touched "their" file and they got an automated notice from a hidden rules engine in your CI process you didn't even realize existed.</p>
+<p>In the polyrepo case those boundaries have to be made explicit (otherwise no one gets anything done) and those owners should be easily visible. You may not like the friction they sometimes bring to the table, but at least it won't be a surprise.</p>
+<h3 id="challenges-of-monorepo-and-polyrepo">Challenges of monorepo and polyrepo<a class="headerlink" href="#challenges-of-monorepo-and-polyrepo" title="Permanent link">&para;</a></h3>
+<p>My last 2 jobs have been working on developer productivity for 100+ developer organizations. One organization uses monorepo, one organization uses polyrepo.</p>
+<p>Neither really seems to result in less work, or a better experience. But I've found that your choice just dictates what type of problems you have to solve.</p>
+<p>Monorepo involves mostly challenges around scaling the organization in a single repo.</p>
+<p>Polyrepo involves mostly challenges with coordination.</p>
+<h3 id="on-premise-applications-or-desktop-applications">On-premise applications or desktop applications<a class="headerlink" href="#on-premise-applications-or-desktop-applications" title="Permanent link">&para;</a></h3>
+<p>If you're creating on-premise applications or desktop applications (things requiring long lived release branches), the discussion is totally different.</p>
+<p>I find that shipped software actually operates better in a normal, branched monorepo. You just branch the whole thing. The alternative is several repos and using a package manager, which minimizes merging in many branches, as you can just point the package manager at the updated module version, but brings its own hassles.</p>
+<p>I've worked on projects where there were 6-7 major branches active at the same time and several smaller ones, besides the master branch. Then you'd have to merge everywhere applicable, etc. This is a totally different approach from the Google monorepo approach of "master only", basically. And probably one of the main reasons why Golang is having a ton of difficulties in the outside world by not having a proper versioning story.</p>
+<p>Comment: Once you're shipping software off prem you need to patch it between major and minor releases.
+Typically one way to do that is to branch when you do a release to a branch namded for the release. Say 1.2. Then when issues pop up you fix it in the branch then see if it applies to the trunk or other branches after that.</p>
+<h2 id="opinions-about-alternatives">Opinions about alternatives<a class="headerlink" href="#opinions-about-alternatives" title="Permanent link">&para;</a></h2>
+<h3 id="could-you-get-the-best-of-both-worlds-by-having-a-monorepo-of-submodules">Could you get the best of both worlds by having a monorepo of submodules?<a class="headerlink" href="#could-you-get-the-best-of-both-worlds-by-having-a-monorepo-of-submodules" title="Permanent link">&para;</a></h3>
+<p>Code would live in separate repos, but references would be declared in the monorepo. Checkins and rollbacks to the monorepo would trigger CI.</p>
+<p>Answer: There's not much good to either world. You need fairly extensive tooling to make working with a repo of submodules comfortable at any scale. At large scale, that tooling can be simpler than the equivalent monorepo tooling, assuming that your individual repos remain "small" but also appropriately granular (not a given--organizing is hard, especially if you leave it to individual project teams). However, in the process of getting there, a monorepo requires no particular bespoke tooling at small or even medium scale (it's just "a repo"), and the performance intolerability pretty much scales smoothly from there. And those can be treated as technical problems if you don't want to approach social problems.</p>
+<p>Answer: We actually did this. When I started at Uber ATG one of our devs made a submodule called <code>uber_monorepo</code> that was linked from the root of our git repo. In our repo's <code>.buckconfig</code> file we had access to everything that the mobile developers at Uber had access to by prefixing our targets with <code>//uber_monorepo/</code>. We did however run into the standard dependency resolution issue when you have any loosely coupled dependency. Updating our submodule usually required a 1-2 day effort because we were out of sync for a month or two.</p>
+<h3 id="hybrid-of-many-repos">Hybrid of "many repos"<a class="headerlink" href="#hybrid-of-many-repos" title="Permanent link">&para;</a></h3>
+<p>We consider our org to be "many repos". We have several thousands. However, hundreds of them contain 5, 10, or 20+ packages/projects/services. It's funny because we'll talk about creating "monorepos" (plural) for certain part of our product, and it confuses people.</p>
+<p>There's a few thousand libraries, those obviously refer to each other.. Some have readme files and that's enough, some have full documentation "books", some have comments in the code and that's enough.</p>
+<p>We don't mandate a company wide development process, so each team and groups can choose their own process and how they track their stuff.</p>
+<p>We do have automation and tooling to keep track of things though.</p>
+<h3 id="prediction-of-a-new-type-of-vcs">Prediction of a new type of VCS<a class="headerlink" href="#prediction-of-a-new-type-of-vcs" title="Permanent link">&para;</a></h3>
+<p>What we all really want is a VCS where repos can be combined and separated easily, or where one repo can gain the benefits of a monorepo without the drawbacks of one.</p>
+<p>Prediction: just as DVCS killed off pre-DVCS practically overnight, the thing that will quickly kill off DVCS is a new type of VCS where you can trivially combine/separate repos and sections of repos as needed. You can assign, at the repo level, sub-repos to include in this one, get an atomic commit hash for the state of the whole thing, and where my VCS client doesn't need to actually download every linked repo, but where tools are available to act like I have.</p>
+<p>In a sense, we already have all of these features, in folders. You can combine and separate them, you can make a local folder mimic a folder on a remote system, and access its content without needing to download it all ahead of time. They just don't have any VCS features baked in. We've got {filesystems, network filesystems, and VCS}, and each of the three has some features the others would like.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

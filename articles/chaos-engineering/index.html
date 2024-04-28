@@ -1,0 +1,1034 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/chaos-engineering/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Chaos Engineering - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chaos-engineering" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chaos Engineering
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-chaos-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Chaos Levels
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Chaos Levels">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-application-level-chaos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Application Level Chaos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-infrastructure-level-chaos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Infrastructure Level Chaos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-network-level-chaos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. Network Level Chaos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-data-level-chaos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.4. Data Level Chaos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-peopleprocess-level-chaos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.5. People/Process Level Chaos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2. Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-chaos-monkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1. Chaos Monkey
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-azure-chaos-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.2. Azure Chaos Studio
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/chaos-engineering.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/chaos-engineering.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="chaos-engineering">Chaos Engineering<a class="headerlink" href="#chaos-engineering" title="Permanent link">&para;</a></h1>
+<p>Chaos engineering is a disciplined approach to building resilient and reliable software systems by intentionally introducing controlled chaos to uncover potential weaknesses and failures.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-chaos-levels">1.1. Chaos Levels</a><ul>
+<li><a href="#111-application-level-chaos">1.1.1. Application Level Chaos</a></li>
+<li><a href="#112-infrastructure-level-chaos">1.1.2. Infrastructure Level Chaos</a></li>
+<li><a href="#113-network-level-chaos">1.1.3. Network Level Chaos</a></li>
+<li><a href="#114-data-level-chaos">1.1.4. Data Level Chaos</a></li>
+<li><a href="#115-peopleprocess-level-chaos">1.1.5. People/Process Level Chaos</a></li>
+</ul>
+</li>
+<li><a href="#12-tools">1.2. Tools</a><ul>
+<li><a href="#121-chaos-monkey">1.2.1. Chaos Monkey</a></li>
+<li><a href="#122-azure-chaos-studio">1.2.2. Azure Chaos Studio</a></li>
+</ul>
+</li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+<li><a href="#5-references">5. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-chaos-levels">1.1. Chaos Levels<a class="headerlink" href="#11-chaos-levels" title="Permanent link">&para;</a></h3>
+<p>Chaos engineering approach provides a unique perspective on the system's behavior and can help identify different types of weaknesses or vulnerabilities. By combining different types of chaos engineering techniques, teams can gain a more comprehensive understanding of their system's resilience and build more reliable and resilient software systems.</p>
+<h4 id="111-application-level-chaos">1.1.1. Application Level Chaos<a class="headerlink" href="#111-application-level-chaos" title="Permanent link">&para;</a></h4>
+<p>Application Level Chaos involves injecting failure or disturbance at the application level of a software system to observe its behavior.</p>
+<p>This might involve intentionally introducing latency, errors, or timeouts in API requests or database queries to test how the application handles these situations.</p>
+<h4 id="112-infrastructure-level-chaos">1.1.2. Infrastructure Level Chaos<a class="headerlink" href="#112-infrastructure-level-chaos" title="Permanent link">&para;</a></h4>
+<p>Infrastructure Level Chaos involves injecting failure or disturbance at the infrastructure level of a software system to observe its behavior.</p>
+<p>This might include randomly shutting down servers, disconnecting network connections, or simulating hardware failures.</p>
+<h4 id="113-network-level-chaos">1.1.3. Network Level Chaos<a class="headerlink" href="#113-network-level-chaos" title="Permanent link">&para;</a></h4>
+<p>Network Level Chaos involves injecting failure or disturbance at the network level of a software system to observe its behavior.</p>
+<p>This might include throttling network traffic, introducing packet loss or delay, or simulating network outages and traffic spikes</p>
+<h4 id="114-data-level-chaos">1.1.4. Data Level Chaos<a class="headerlink" href="#114-data-level-chaos" title="Permanent link">&para;</a></h4>
+<p>Data Level Chaos involves injecting failure or disturbance at the data level of a software system to observe its behavior.</p>
+<p>This might include corrupting or deleting data, introducing data inconsistencies, or simulating data breaches.</p>
+<h4 id="115-peopleprocess-level-chaos">1.1.5. People/Process Level Chaos<a class="headerlink" href="#115-peopleprocess-level-chaos" title="Permanent link">&para;</a></h4>
+<p>People/Process Level Chaos involves injecting failure or disturbance at the people or process level of a software system to observe its behavior.</p>
+<p>This might include intentionally misconfiguring systems, simulating human error, or testing disaster recovery procedures.</p>
+<h3 id="12-tools">1.2. Tools<a class="headerlink" href="#12-tools" title="Permanent link">&para;</a></h3>
+<h4 id="121-chaos-monkey">1.2.1. Chaos Monkey<a class="headerlink" href="#121-chaos-monkey" title="Permanent link">&para;</a></h4>
+<p><a href="https://github.com/Netflix/chaosmonkey">Chaos Monkey</a> randomly terminates virtual machine instances and containers that run inside of your production environment. Exposing engineers to failures more frequently incentivizes them to build resilient services.</p>
+<h4 id="122-azure-chaos-studio">1.2.2. Azure Chaos Studio<a class="headerlink" href="#122-azure-chaos-studio" title="Permanent link">&para;</a></h4>
+<p><a href="https://azure.microsoft.com/en-us/products/chaos-studio/#overview">Azure Chaos Studio</a> is an experimentation platform for improving app resiliency.</p>
+<p>Improve application resilience with chaos testing by deliberately introducing faults that simulate real-world outages. Azure Chaos Studio Preview is a fully managed chaos engineering experimentation platform for accelerating discovery of hard-to-find problems, from late-stage development through production. Disrupt apps intentionally to identify gaps and plan mitigations before customers are impacted by a problem.</p>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<p>Chaos engineering is based on a set of principles that guide the design and execution of experiments to uncover potential system weaknesses.</p>
+<p>These principles provide a framework for conducting chaos engineering experiments in a systematic and structured.</p>
+<ul>
+<li>
+<p>Define a Hypothesis</p>
+<blockquote>
+<p>Chaos engineering begins with defining a hypothesis, which is a statement about how the system will behave under certain conditions. The hypothesis is based on an understanding of the system's architecture, design, and expected behavior. The hypothesis should be clear, specific, and testable.</p>
+</blockquote>
+</li>
+<li>
+<p>Minimize Blast Radius</p>
+<blockquote>
+<p>Chaos engineering experiments should be designed to minimize the impact on the overall system. This involves carefully selecting the scope of the experiment and ensuring that it can be safely and quickly rolled back if necessary. It is important to define the blast radius carefully to avoid causing widespread damage in the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Vary Real-World Events</p>
+<blockquote>
+<p>Chaos engineering involves varying real-world events to test the system's response. This might include introducing latency, errors, or other forms of disruption to see how the system behaves. The goal is to identify potential weaknesses or points of failure in the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Automate Experiments</p>
+<blockquote>
+<p>Chaos engineering experiments should be automated to ensure consistency and repeatability and to reduce the risk of human error. This involves creating scripts or other tools to introduce failures or disruptions and collect data about the system's behavior.</p>
+</blockquote>
+</li>
+<li>
+<p>Measure everything</p>
+<blockquote>
+<p>Chaos engineering experiments should collect and analyze data on system behavior, performance, and response to the failure or disturbance. This data should be used to validate or refute the hypothesis and identify potential weaknesses in the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Learn from Failures</p>
+<blockquote>
+<p>Chaos engineering is an iterative process that involves learning from failures and using that knowledge to improve the system. When a failure occurs, it should be analyzed to understand the root cause and determine how it can be prevented in the future.</p>
+</blockquote>
+</li>
+<li>
+<p>Share Results</p>
+<blockquote>
+<p>The results of chaos engineering experiments should be shared with the broader team to facilitate learning and improve the overall resilience of the system. This involves documenting the experiment design, results, and any insights or lessons learned.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>Best practices provide guidance for conducting effective chaos engineering experiments to gain meaningful insights into system resilience.</p>
+<ul>
+<li>
+<p>Start Small</p>
+<blockquote>
+<p>Begin with small, controlled experiments to build confidence in the process and validate the tools and techniques being used.</p>
+</blockquote>
+</li>
+<li>
+<p>Start with a Baseline</p>
+<blockquote>
+<p>Before conducting any chaos engineering experiments, it is important to establish a baseline for the system's normal behavior. This involves monitoring key metrics such as response time, throughput, and error rates under normal operating conditions. By establishing a baseline, you can more easily identify deviations from normal behavior during chaos engineering experiments.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Production-like Environments</p>
+<blockquote>
+<p>Chaos engineering experiments should be performed in production-like environments that replicate the complexities and dynamics of the real production environment.</p>
+</blockquote>
+</li>
+<li>
+<p>Involve Cross-Functional Teams</p>
+<blockquote>
+<p>Chaos engineering experiments should involve cross-functional teams that represent different areas of the organization, including development, operations, security, and business stakeholders. By involving a diverse group of stakeholders, you can ensure that chaos engineering experiments are aligned with the needs of the organization and that any issues that arise are addressed holistically.</p>
+</blockquote>
+</li>
+<li>
+<p>Focus on Business Outcomes</p>
+<blockquote>
+<p>When conducting chaos engineering experiments, it is important to focus on business outcomes rather than technical metrics. This means identifying key performance indicators (KPIs) that are important to the business, such as customer satisfaction, revenue, or user engagement. By focusing on business outcomes, you can ensure that your chaos engineering experiments are aligned with the overall goals of the organization.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Realistic Scenarios</p>
+<blockquote>
+<p>When designing chaos engineering experiments, it is important to use realistic scenarios that are relevant to the system and its users. This might involve simulating a surge in traffic, a database outage, or other types of failure scenarios. By using realistic scenarios, you can more accurately assess the system's resilience in real-world situations.</p>
+</blockquote>
+</li>
+<li>
+<p>Prioritize Experiment Scenarios</p>
+<blockquote>
+<p>Experiment scenarios should be prioritized based on the likelihood of occurrence and the potential impact on the system. This helps ensure that the most critical scenarios are tested first.</p>
+</blockquote>
+</li>
+<li>
+<p>Document and Share Results</p>
+<blockquote>
+<p>Documenting and sharing the results of chaos engineering experiments helps to build a culture of learning and improvement. This information can also be used to develop new tests and improve existing ones.</p>
+</blockquote>
+</li>
+<li>
+<p>Automate Where Possible</p>
+<blockquote>
+<p>Automation helps to ensure consistency and repeatability in experiments. This also allows for more frequent testing and reduces the likelihood of errors caused by manual intervention.</p>
+</blockquote>
+</li>
+<li>
+<p>Measure Success</p>
+<blockquote>
+<p>Measuring the success of chaos engineering experiments is important for assessing the effectiveness of the approach and identifying areas for improvement. Metrics such as system uptime, error rates, and response times can be used to evaluate the impact of experiments on the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuously Monitor and Iterate</p>
+<blockquote>
+<p>Chaos engineering is an iterative process that requires continuous monitoring and iteration. This means regularly monitoring the system's behavior and making adjustments to the chaos engineering experiments as necessary. By continuously monitoring and iterating, you can ensure that the system remains resilient over time.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>Terminologies provide a common language for discussing and conducting chaos engineering experiments. By understanding these terminologies, teams can more effectively communicate and collaborate on building resilient and reliable software systems.</p>
+<ul>
+<li>
+<p>Chaos Engineering</p>
+<blockquote>
+<p>A practice that involves intentionally introducing failures and disruptions into a system to test its resiliency and identify weaknesses.</p>
+</blockquote>
+</li>
+<li>
+<p>Hypothesis</p>
+<blockquote>
+<p>A statement about how a system will behave under certain conditions. A hypothesis is the starting point for a chaos engineering experiment.</p>
+</blockquote>
+</li>
+<li>
+<p>Blast Radius</p>
+<blockquote>
+<p>The scope of a chaos engineering experiment. This refers to the parts of the system that will be affected by the experiment and the potential impact of any failures.</p>
+</blockquote>
+</li>
+<li>
+<p>Game Days</p>
+<blockquote>
+<p>A type of chaos engineering experiment that involves simulating real-world events, such as a surge in traffic or a major outage, to test the system's response.</p>
+</blockquote>
+</li>
+<li>
+<p>Chaos Monkey</p>
+<blockquote>
+<p>An open-source tool developed by Netflix that randomly terminates instances in their production environment to test the resiliency of their system.</p>
+</blockquote>
+</li>
+<li>
+<p>Fault Injection</p>
+<blockquote>
+<p>A technique used in chaos engineering that involves intentionally introducing failures or errors into a system to test its response.</p>
+</blockquote>
+</li>
+<li>
+<p>Steady State</p>
+<blockquote>
+<p>The normal operating conditions of a system. Chaos engineering experiments are designed to test how the system responds to disruptions and failures while still maintaining a steady state.</p>
+</blockquote>
+</li>
+<li>
+<p>Rollback Plan</p>
+<blockquote>
+<p>A plan for quickly reverting the system to its previous state in case a chaos engineering experiment causes a significant impact on the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Resilience</p>
+<blockquote>
+<p>The ability of a system to withstand and recover from disruptions and failures.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="5-references">5. References<a class="headerlink" href="#5-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Microsoft <a href="https://learn.microsoft.com/en-us/azure/architecture/framework/resiliency/chaos-engineering">chaos engineering</a> article.</li>
+<li>GitHub <a href="https://github.com/chaos-eng/chaos-eng.github.io">chaos engineering principles</a> repository.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

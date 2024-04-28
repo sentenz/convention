@@ -1,0 +1,1513 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/configuration-management/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Configuration Management - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration-management" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Configuration Management
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Ansible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-puppet" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Puppet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-chef" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Chef
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-saltstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. SaltStack
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-terraform" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Terraform
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Kubernetes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/configuration-management.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/configuration-management.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="configuration-management">Configuration Management<a class="headerlink" href="#configuration-management" title="Permanent link">&para;</a></h1>
+<p>Configuration management is a set of processes and tools used to systematically manage and control the configuration of software, hardware, or any other IT infrastructure. It involves identifying and documenting the configuration item (CI), tracking changes made to these items, and ensuring that the system remains stable and consistent.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-ansible">1.1. Ansible</a></li>
+<li><a href="#12-puppet">1.2. Puppet</a></li>
+<li><a href="#13-chef">1.3. Chef</a></li>
+<li><a href="#14-saltstack">1.4. SaltStack</a></li>
+<li><a href="#15-terraform">1.5. Terraform</a></li>
+<li><a href="#16-kubernetes">1.6. Kubernetes</a></li>
+<li><a href="#2-principles">2. Principles</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-ansible">1.1. Ansible<a class="headerlink" href="#11-ansible" title="Permanent link">&para;</a></h3>
+<p>Ansible is an open-source automation tool used for configuration management, application deployment, and orchestration. Ansible uses a declarative language to define configurations and can work with a wide range of systems, making it a versatile choice. It simplifies the process of managing and controlling systems by providing a simple and human-readable language to define configurations, called YAML (Yet Another Markup Language).</p>
+<p>Ansible has a large and active community, providing continuous development, support, and a vast collection of community-contributed roles and playbooks. It can be used for managing configurations of various systems, including Linux, Windows, network devices, and cloud platforms.</p>
+<p>Features of Ansible:</p>
+<ol>
+<li>
+<p>Agentless architecture</p>
+<p>Ansible operates in an agentless manner, which means it doesn't require any software to be installed on the managed nodes. It communicates with the nodes using SSH or PowerShell, making it lightweight and easy to setup.</p>
+</li>
+<li>
+<p>Declarative language</p>
+<p>Ansible uses YAML syntax to define configurations, making it easy to understand and write. YAML allows to specify the desired state of a system rather than writing procedural steps, which simplifies configuration management.</p>
+</li>
+<li>
+<p>Playbooks</p>
+<p>Playbooks are Ansible's configuration files that describe the desired state of a system. Playbooks consist of tasks written in YAML, which Ansible executes on the managed nodes. Playbooks provide a way to automate complex configuration tasks and orchestrate multi-step processes.</p>
+</li>
+<li>
+<p>Inventory management</p>
+<p>Ansible uses an inventory file to define the managed nodes in the environment. The inventory file can be a simple text file or dynamically generated using external sources like cloud providers or scripts. It allows to group and categorize hosts, making it easy to target specific systems with configurations.</p>
+</li>
+<li>
+<p>Modules</p>
+<p>Ansible comes with a vast library of pre-built modules that cover a wide range of tasks, such as package management, file manipulation, user management, network configuration, and more. Modules are reusable, idempotent components that Ansible uses to perform actions on the managed nodes.</p>
+</li>
+<li>
+<p>Roles</p>
+<p>Roles are a way to organize and reuse playbooks and tasks. They provide a modular structure for configuration management, allows to separate different components or layers of the infrastructure into reusable units. Roles make it easier to share and collaborate on configurations.</p>
+</li>
+<li>
+<p>Idempotency</p>
+<p>Ansible promotes the concept of idempotency, which means that applying a configuration multiple times should have the same result as applying it once. This ensures that the system remains in the desired state regardless of how many times a playbook is executed.</p>
+</li>
+<li>
+<p>Extensibility</p>
+<p>Ansible is highly extensible and allows to create custom modules, plugins, and extensions to tailor it to specific needs. Integrate Ansible with other tools, such as source control systems, monitoring tools, and cloud platforms, to enhance its capabilities.</p>
+</li>
+</ol>
+<p>Example of Ansible:</p>
+<ol>
+<li>
+<p>Web Server</p>
+<p>Apache HTTP Server is a free and open-source web server that delivers web content as Web Pages through the internet.</p>
+<p>An Ansible playbook that installs a package and starts a service on a group of remote servers:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nn">---</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install and start Apache</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">web_servers</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Update package cache</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">      </span><span class="nt">apt</span><span class="p">:</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="nt">update_cache</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">      </span><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible_pkg_mgr == &#39;apt&#39;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install Apache package</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">package</span><span class="p">:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache2</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Start Apache service</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">      </span><span class="nt">service</span><span class="p">:</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache2</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">started</span>
+</span></code></pre></div>
+<p>In the Ansible playbook:</p>
+<ul>
+<li>The playbook is named "Install and start Apache."</li>
+<li>The playbook targets a group of remote servers defined in the Ansible inventory under the group name "web_servers."</li>
+<li>The <code>become: yes</code> directive enables privilege escalation, allowing the playbook to run with administrative privileges on the remote servers.</li>
+<li>The playbook consists of three tasks.</li>
+<li>The first task updates the package cache using the <code>apt</code> module (for systems that use APT package manager, like Ubuntu) to ensure the latest package information is available.</li>
+<li>The second task installs the Apache package using the <code>package</code> module. It specifies the package name as "apache2" and the state as "present" to ensure the package is installed.</li>
+<li>The third task starts the Apache service using the <code>service</code> module. It specifies the service name as "apache2" and the state as "started" to ensure the service is running.</li>
+</ul>
+<p>To execute this playbook, save it to a file (e.g., <code>apache.yml</code>) and run the following command:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ansible-playbook<span class="w"> </span>apache.yml
+</span></code></pre></div>
+<p>Ansible will connect to the remote servers defined in the "web_servers" group and execute the tasks defined in the playbook, installing Apache and starting the service.</p>
+<blockquote>
+<p>NOTE The example assumes a setup SSH connectivity and the necessary privileges on the remote servers to perform the tasks. Also, the package manager used in the example is specific to systems using APT. If a different package manager is used, modify the task accordingly.</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="12-puppet">1.2. Puppet<a class="headerlink" href="#12-puppet" title="Permanent link">&para;</a></h3>
+<p>Puppet is an open-source configuration management tool that focuses on automating the provisioning, configuration, and management of software and infrastructure. It provides a declarative language to define configurations and uses a client-server architecture for managing systems.</p>
+<blockquote>
+<p>NOTE Puppet need to have a Puppet server setup and the Puppet agent installed and configured on the target systems. The agent will periodically connect to the server to retrieve and apply the configurations. Additionally, the Puppet server and agent communication requires proper certificate management for security</p>
+</blockquote>
+<p>Features of Puppet:</p>
+<ol>
+<li>
+<p>Declarative Language</p>
+<p>Puppet uses a declarative language (Puppet DSL) to define the desired state of the systems. Instead of specifying procedural steps, declare what the system should look like, and Puppet handles the underlying actions to achieve that state. This approach simplifies configuration management and makes it easier to reason about system configurations.</p>
+</li>
+<li>
+<p>Resource Abstraction</p>
+<p>Puppet treats system components as "resources" that need to be managed. Resources can include packages, files, services, users, groups, and more. Puppet provides an extensive collection of built-in resource types that allow to manage various aspects of the infrastructure. Additionally, Puppet allows to create custom resource types to handle specific needs.</p>
+</li>
+<li>
+<p>Cross-Platform Support</p>
+<p>Puppet supports a wide range of operating systems and platforms, making it suitable for managing diverse infrastructures. Whether working with Linux, Windows, macOS, or various cloud platforms, Puppet provides a consistent approach to configuration management across different environments.</p>
+</li>
+<li>
+<p>Idempotency</p>
+<p>Puppet follows the principle of idempotency, ensuring that applying a configuration multiple times results in the same desired state. Puppet keeps track of the current state of resources and only applies changes that are necessary to bring the system to the desired state. This ensures that configurations are reliable, consistent, and minimizes unnecessary changes.</p>
+</li>
+<li>
+<p>Module Ecosystem</p>
+<p>Puppet has a rich ecosystem of modules that provide pre-built configurations for popular software applications, services, and infrastructure components. These modules, available through Puppet Forge, can be easily integrated into configurations, saving time and effort in setting up and managing various components of the infrastructure.</p>
+</li>
+<li>
+<p>Puppet Language Extensions</p>
+<p>Puppet offers a flexible and extensible language that allows to extend its capabilities. Write custom functions, facts, and types in Ruby or use Puppet's embedded Ruby (ERB) templating to create dynamic configurations. These language extensions provide the flexibility to adapt Puppet to specific requirements or integrate with external systems.</p>
+</li>
+<li>
+<p>Reporting and Auditing</p>
+<p>Puppet provides reporting and auditing features that enables to track and monitor changes made to infrastructure. It generates reports that show the status of resources, changes applied, and any errors or warnings encountered during configuration runs. These reports help in troubleshooting, compliance auditing, and maintaining a historical record of system configurations.</p>
+</li>
+<li>
+<p>Scalability and Orchestration</p>
+<p>Puppet can handle large-scale infrastructures with ease. It supports a client-server architecture where Puppet agents (clients) periodically connect to a Puppet master to retrieve configurations. This architecture allows for centralized management, distribution of configurations at scale, and coordination across a large number of systems.</p>
+</li>
+</ol>
+<p>Example of Puppet:</p>
+<ol>
+<li>
+<p>Web Server</p>
+<p>A Puppet manifest that installs and configures the Apache web server:</p>
+<div class="language-puppet highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="na">apache</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="k">package</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&#39;apache2&#39;</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="na">ensure</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">installed</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="k">service</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&#39;apache2&#39;</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="na">ensure</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">running</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="na">enable</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">true</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="na">require</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Package</span><span class="p">[</span><span class="s">&#39;apache2&#39;</span><span class="p">],</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="k">file</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&#39;/var/www/html/index.html&#39;</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="na">ensure</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">present</span><span class="p">,</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="na">content</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s">&#39;Hello, World!&#39;</span><span class="p">,</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="na">require</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">Package</span><span class="p">[</span><span class="s">&#39;apache2&#39;</span><span class="p">],</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">}</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">include</span><span class="w"> </span><span class="na">apache</span>
+</span></code></pre></div>
+<p>In this example:</p>
+<ul>
+<li>The Puppet manifest defines a class named "apache" that represents the Apache configuration.</li>
+<li>The <code>package</code> resource installs the Apache package (<code>apache2</code>) and ensures it is present on the system.</li>
+<li>The <code>service</code> resource ensures the Apache service is running and enabled to start on system boot. It depends on the <code>Package['apache2']</code> resource, so it will only execute if the package is successfully installed.</li>
+<li>The <code>file</code> resource creates an index.html file with the specified content (<code>Hello, World!</code>) at the given path (<code>/var/www/html/index.html</code>). It also depends on the <code>Package['apache2']</code> resource.</li>
+</ul>
+<p>Finally, the <code>include apache</code> statement includes the "apache" class in the manifest, which ensures that Puppet applies the configurations defined within it.</p>
+<p>To apply this Puppet manifest, save it to a file (e.g., <code>apache.pp</code>) and run the following command on the Puppet server:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>puppet<span class="w"> </span>apply<span class="w"> </span>apache.pp
+</span></code></pre></div>
+<p>Puppet will connect to the target systems (called Puppet agents) and apply the configurations defined in the manifest. It will install Apache, start the service, and create the index.html file with the specified content.</p>
+</li>
+</ol>
+<h3 id="13-chef">1.3. Chef<a class="headerlink" href="#13-chef" title="Permanent link">&para;</a></h3>
+<p>Chef is a powerful configuration management tool that automates the provisioning, configuration, and management of systems and infrastructure. It provides a flexible and scalable approach to infrastructure automation, allowing to define configurations as code and manage them consistently across multiple platforms.</p>
+<p>Features of Chef:</p>
+<ol>
+<li>
+<p>Infrastructure as Code</p>
+<p>Chef treats infrastructure configurations as code, using a domain-specific language called the Chef DSL (Ruby-based) or newer versions that support plain Ruby. This allows to define the infrastructure and configurations in a human-readable and version-controlled format, enabling easy collaboration, reproducibility, and scalability.</p>
+</li>
+<li>
+<p>Cookbooks and Recipes</p>
+<p>Chef organizes configurations into cookbooks, which are self-contained units of configurations. Cookbooks consist of recipes that define the desired state of specific components or services. Recipes specify the resources and actions required to achieve the desired state, such as installing packages, managing files, and configuring services.</p>
+</li>
+<li>
+<p>Resource Abstraction</p>
+<p>Chef uses a resource-based model to manage system components. Resources represent specific elements like packages, files, services, users, and more. Chef provides a large collection of built-in resources that can be used to manage various aspects of the infrastructure. Also create custom resources to handle specific requirements.</p>
+</li>
+<li>
+<p>Chef Server</p>
+<p>Chef uses a client-server architecture. The Chef server acts as a central repository for storing and distributing configurations, cookbooks, and other related data. The Chef client, running on managed nodes, connects to the Chef server to retrieve configurations and apply them. The server-client model allows for centralized management, version control, and scaling to large infrastructures.</p>
+</li>
+<li>
+<p>Chef Solo and Chef Zero</p>
+<p>In addition to the client-server model, Chef offers standalone modes called Chef Solo and Chef Zero. These modes allow to use Chef without a central server. Chef Solo runs configurations locally on individual nodes, while Chef Zero allows for a server-like experience without the need for a separate server.</p>
+</li>
+<li>
+<p>Community Cookbooks</p>
+<p>Chef has a vibrant community that contributes to a vast ecosystem of community cookbooks. These cookbooks provide pre-built configurations for popular software, services, and infrastructure components. Leveraging community cookbooks saves time and effort by reusing tested and proven configurations and enables to benefit from the collective knowledge of the Chef community.</p>
+</li>
+<li>
+<p>Testing and Continuous Delivery</p>
+<p>Chef supports testing frameworks like Test Kitchen, InSpec, and ChefSpec, which help ensure the correctness of configurations and validate desired states. These testing tools facilitate the adoption of continuous delivery practices by allowing to automate testing and validation as part of the deployment pipeline.</p>
+</li>
+<li>
+<p>Integrations and Extensibility</p>
+<p>Chef integrates with other tools and services in the ecosystem, such as version control systems (e.g., Git), cloud platforms (e.g., AWS, Azure), and monitoring systems. Chef can be extended through plugins, custom resources, and community-developed extensions to meet specific requirements or integrate with external systems.</p>
+</li>
+</ol>
+<p>Example of Chef:</p>
+<ol>
+<li>
+<p>Web Server</p>
+<p>A Chef recipe that installs and configures the Apache web server:</p>
+<div class="language-ruby highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">package</span><span class="w"> </span><span class="s1">&#39;apache2&#39;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="n">action</span><span class="w"> </span><span class="ss">:install</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">end</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">service</span><span class="w"> </span><span class="s1">&#39;apache2&#39;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="n">action</span><span class="w"> </span><span class="o">[</span><span class="ss">:enable</span><span class="p">,</span><span class="w"> </span><span class="ss">:start</span><span class="o">]</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">end</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">template</span><span class="w"> </span><span class="s1">&#39;/var/www/html/index.html&#39;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="n">source</span><span class="w"> </span><span class="s1">&#39;index.html.erb&#39;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="n">mode</span><span class="w"> </span><span class="s1">&#39;0644&#39;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">end</span>
+</span></code></pre></div>
+<p>In the example:</p>
+<ul>
+<li>The <code>package</code> resource installs the Apache package (<code>apache2</code>) using the default package manager of the underlying operating system.</li>
+<li>The <code>service</code> resource ensures that the Apache service is enabled and started.</li>
+<li>The <code>template</code> resource deploys a customized <code>index.html</code> file to the specified location (<code>/var/www/html/index.html</code>). It uses an ERB (Embedded Ruby) template (<code>index.html.erb</code>) to dynamically generate the content of the file.</li>
+</ul>
+<p>To apply this Chef recipe:</p>
+<ul>
+<li>Save the recipe to a file, such as <code>default.rb</code>.</li>
+<li>setup a Chef workstation with the Chef Development Kit (ChefDK) installed.</li>
+<li>setup a Chef server or use Chef Solo/Zero if the prefer a standalone mode.</li>
+<li>Upload the recipe to the Chef server or copy it to the target node if using Chef Solo/Zero.</li>
+<li>Run the Chef client on the target node to apply the configuration:</li>
+</ul>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>chef-client
+</span></code></pre></div>
+<p>Chef will converge the system to the desired state defined in the recipe by installing the Apache package, starting the Apache service, and deploying the customized index.html file.</p>
+<blockquote>
+<p>NOTE This example assumes a client-server setup with a Chef server. If Chef Solo or Chef Zero are used, run the <code>chef-client</code> command locally on the target node.</p>
+<p>Additionally, provide the <code>index.html.erb</code> template file, which could contain embedded Ruby code for dynamic content generation. The template could be stored in the <code>templates/default</code> directory relative to the recipe file.</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="14-saltstack">1.4. SaltStack<a class="headerlink" href="#14-saltstack" title="Permanent link">&para;</a></h3>
+<p>SaltStack (Salt) is an open-source infrastructure automation and configuration management tool. Salt follows a master-minion architecture, where a central Salt master manages and controls multiple Salt minions (managed nodes).</p>
+<p>SaltStack is a powerful tool for infrastructure automation, remote execution, and configuration management. It excels in managing large-scale, dynamic environments and enables rapid deployment and management of complex infrastructures using a Python-based configuration language.</p>
+<p>Features of SaltStack:</p>
+<ol>
+<li>
+<p>Remote Execution</p>
+<p>Salt allows for executing commands and running scripts on remote systems, providing powerful remote execution capabilities. It uses a secure communication protocol called ZeroMQ to efficiently communicate with minions and execute commands in parallel, enabling rapid and scalable operations across a large number of nodes.</p>
+</li>
+<li>
+<p>Configuration Management</p>
+<p>Salt provides robust configuration management features similar to other tools like Puppet and Chef. It allows to define and enforce the desired state of the infrastructure by managing configuration files, packages, services, users, and more. Salt states, written in YAML or Jinja, describe the desired state of resources and can be used to ensure consistency and repeatability in system configurations.</p>
+</li>
+<li>
+<p>Event-Driven Infrastructure Automation</p>
+<p>Salt operates on an event-driven model, where events and changes in the infrastructure trigger automated responses. This approach allows to define reactive policies and automate tasks based on specific events or conditions. It facilitates real-time monitoring, auto-remediation, and event-driven orchestration.</p>
+</li>
+<li>
+<p>Salt States and Formulas</p>
+<p>Salt states provide a way to define the desired state of resources in a declarative manner. States can be organized into reusable units called formulas, which encapsulate configurations for specific applications or components. Formulas can be shared and applied across multiple systems, promoting consistency and simplifying management.</p>
+</li>
+<li>
+<p>Orchestration</p>
+<p>Salt includes powerful orchestration capabilities that allows to define complex workflows and coordinate tasks across multiple systems. Orchestration in Salt can be used for provisioning, application deployment, and other multi-step processes. It provides granular control over the order of execution, parallelization, and error handling.</p>
+</li>
+<li>
+<p>Salt Cloud</p>
+<p>Salt Cloud is a module in SaltStack that enables cloud infrastructure management. It provides integrations with popular cloud platforms, allowing to manage and provision virtual machines and resources in public or private clouds. Salt Cloud automates the process of spinning up instances, managing networks, and configuring them using SaltStack.</p>
+</li>
+<li>
+<p>Salt Pillar</p>
+<p>Salt Pillar is a secure and encrypted data store used to store sensitive information such as passwords, private keys, and other secrets. It allows to securely share data between the Salt master and minions without exposing it in the state files or formulas. Salt Pillar supports various backends like YAML, JSON, and key-value stores.</p>
+</li>
+<li>
+<p>Extensibility</p>
+<p>Salt is highly extensible and provides various mechanisms for customization and integration with other tools and systems. It supports custom modules, execution modules, and states, allowing to extend its functionality and integrate with external systems. Additionally, Salt provides APIs and SDKs for programmatic access and integration with other automation workflows.</p>
+</li>
+</ol>
+<p>Example of SaltStack:</p>
+<ol>
+<li>
+<p>Web Server</p>
+<p>A SaltStack configuration for managing an Apache web server.</p>
+<ul>
+<li>Create a Salt state file for Apache:</li>
+</ul>
+<p>Create a file named <code>apache.sls</code> in the SaltStack states directory (e.g., <code>/srv/salt</code>):</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">apache</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">pkg.installed</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nt">/etc/apache2/sites-available/000-default.conf</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">file.managed</span><span class="p">:</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">salt://apache/files/000-default.conf</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jinja</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="nt">apache.service</span><span class="p">:</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">  </span><span class="nt">service.running</span><span class="p">:</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">require</span><span class="p">:</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pkg</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/apache2/sites-available/000-default.conf</span>
+</span></code></pre></div>
+<ul>
+<li>Create the Apache configuration file:</li>
+</ul>
+<p>Create a file named <code>000-default.conf</code> in the SaltStack files directory (e.g., <code>/srv/salt/apache/files</code>):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>&lt;VirtualHost *:80&gt;
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  ServerAdmin webmaster@localhost
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  DocumentRoot /var/www/html
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  ErrorLog ${APACHE_LOG_DIR}/error.log
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>  CustomLog ${APACHE_LOG_DIR}/access.log combined
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>&lt;/VirtualHost&gt;
+</span></code></pre></div>
+<ul>
+<li>Apply the SaltStack configuration:</li>
+</ul>
+<p>On the Salt master, run the following command to apply the configuration to the minions:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>salt<span class="w"> </span><span class="s1">&#39;minion1&#39;</span><span class="w"> </span>state.apply<span class="w"> </span>apache
+</span></code></pre></div>
+<p>Replace <code>'minion1'</code> with the identifier of the target minion.</p>
+<p>This configuration will perform the following actions:</p>
+<ul>
+<li>Install the Apache package on the minion using the <code>pkg.installed</code> state.</li>
+<li>Deploy the <code>000-default.conf</code> configuration file to the <code>/etc/apache2/sites-available/</code> directory on the minion using the <code>file.managed</code> state. The file will be templated using Jinja.</li>
+<li>Start and enable the Apache service on the minion using the <code>service.running</code> state. It requires the Apache package to be installed and the configuration file to be present.</li>
+</ul>
+<p>By applying this configuration, SaltStack will ensure that the Apache package is installed, the configuration file is properly deployed, and the Apache service is running on the target minion.</p>
+<blockquote>
+<p>NOTE Make sure to have a SaltStack infrastructure setup with a master and at least one minion before applying this configuration. Adjust the file paths and package names as per the operating system and Apache setup.</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="15-terraform">1.5. Terraform<a class="headerlink" href="#15-terraform" title="Permanent link">&para;</a></h3>
+<p>Terraform is an open-source infrastructure as code (IaC) tool for provisioning and managing cloud resources and infrastructure in a declarative manner. It allows to define and automate the creation, modification, and destruction of infrastructure components across various cloud providers and platforms.</p>
+<p>Features of Terraform:</p>
+<ol>
+<li>
+<p>Declarative Configuration</p>
+<p>Terraform uses a declarative language called HashiCorp Configuration Language (HCL) to define infrastructure configurations. HCL describes the desired state of the infrastructure rather than specifying the steps to achieve it. Terraform then determines the necessary actions to bring the infrastructure to the desired state.</p>
+</li>
+<li>
+<p>Multi-Cloud Support</p>
+<p>Terraform supports multiple cloud providers, including Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), and many others. It provides a consistent workflow and syntax, allowing to manage resources across different cloud environments using a unified approach.</p>
+</li>
+<li>
+<p>Infrastructure Graph</p>
+<p>Terraform creates a dependency graph of the defined resources and their relationships. This graph enables Terraform to determine the correct order of provisioning resources and efficiently manage the creation and deletion of resources. It also helps in visualizing and understanding the dependencies between infrastructure components.</p>
+</li>
+<li>
+<p>Resource Provisioning and Management</p>
+<p>Terraform supports a wide range of resource types offered by cloud providers, including virtual machines, networks, storage, load balancers, databases, and more. It allows to define and manage these resources, specify their attributes, and control their lifecycle, such as creating, modifying, and destroying resources as needed.</p>
+</li>
+<li>
+<p>Plan and Apply</p>
+<p>Terraform follows a two-step process</p>
+<p>planning and applying. During the planning phase, Terraform examines the configuration files and creates an execution plan that shows the proposed changes to the infrastructure. Review this plan before proceeding. In the apply phase, Terraform applies the changes and provisions or modifies the resources accordingly.</p>
+</li>
+<li>
+<p>State Management</p>
+<p>Terraform maintains a state file that tracks the current state of the infrastructure. This file records the resources created and their configurations. The state file is used to determine the delta between the desired state and the actual state and to perform operations like resource updates and deletions. Terraform supports remote backends for storing the state file securely and allows collaboration among team members.</p>
+</li>
+<li>
+<p>Infrastructure Collaboration</p>
+<p>Terraform supports collaboration by allowing multiple team members to work on the same infrastructure code. It provides mechanisms for remote state storage and locking, enabling safe concurrent modifications to the infrastructure configuration. This allows for team collaboration and version-controlled infrastructure changes.</p>
+</li>
+<li>
+<p>Modules and Reusability</p>
+<p>Terraform supports the use of modules, which are reusable units of infrastructure configurations. Modules can encapsulate a set of resources and their configurations, providing an abstraction layer for reuse across projects. Modules can be shared with others or published to the Terraform Registry, fostering a vibrant ecosystem of community-contributed modules.</p>
+</li>
+</ol>
+<p>Example of</p>
+<ol>
+<li>
+<p>AWS EC2</p>
+<p>A Terraform configuration that provisions an AWS EC2 instance.</p>
+<ul>
+<li>setup the Terraform configuration file:</li>
+</ul>
+<p>Create a file named <code>main.tf</code> with the following content:</p>
+<div class="language-hcl highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kr">provider</span><span class="w"> </span><span class="nv">&quot;aws&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="na">region</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;us-west-2&quot;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">}</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="kr">resource</span><span class="w"> </span><span class="nc">&quot;aws_instance&quot;</span><span class="w"> </span><span class="nv">&quot;example&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">  </span><span class="na">ami</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;ami-0c94855ba95c71c99&quot;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">  </span><span class="na">instance_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;t2.micro&quot;</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>In the example:</p>
+<ul>
+<li>The <code>provider</code> block specifies the AWS provider and sets the region to "us-west-2".</li>
+<li>
+<p>The <code>aws_instance</code> resource provisions an EC2 instance.</p>
+<ul>
+<li>The <code>ami</code> attribute specifies the Amazon Machine Image (AMI) ID.</li>
+<li>The <code>instance_type</code> attribute defines the EC2 instance type.</li>
+</ul>
+</li>
+<li>
+<p>Initialize and apply the Terraform configuration:</p>
+</li>
+</ul>
+<p>Open a terminal and navigate to the directory containing the <code>main.tf</code> file. Run the following commands:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>terraform<span class="w"> </span>init
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>terraform<span class="w"> </span>apply
+</span></code></pre></div>
+<p>The <code>terraform init</code> command initializes the Terraform working directory, downloading the necessary provider plugins.</p>
+<p>The <code>terraform apply</code> command applies the Terraform configuration, provisions the EC2 instance based on the defined resources, and prompts for confirmation. Enter "yes" to proceed.</p>
+<ul>
+<li>Verify the provisioned resources:</li>
+</ul>
+<p>Once the Terraform apply completes, it will display the provisioned resources. In this case, it will output the details of the provisioned EC2 instance.</p>
+<p>Also verify the resources in the AWS Management Console, specifically in the EC2 service, and find the newly created instance.</p>
+<ul>
+<li>Clean up the provisioned resources:</li>
+</ul>
+<p>To clean up the provisioned resources and avoid any unintended costs, run:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>terraform<span class="w"> </span>destroy
+</span></code></pre></div>
+<p>The <code>terraform destroy</code> command will prompt for confirmation before destroying the provisioned resources. Enter "yes" to proceed.</p>
+<blockquote>
+<p>NOTE Make sure to have AWS credentials configured on the system, either through environment variables or using the AWS CLI configuration (<code>aws configure</code>).</p>
+<p>Terraform allows to define more complex configurations with networking, load balancers, security groups, and other resources. Also parameterize the configuration using variables, use modules for reusability, and leverage various Terraform features to manage and orchestrate the infrastructure.</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="16-kubernetes">1.6. Kubernetes<a class="headerlink" href="#16-kubernetes" title="Permanent link">&para;</a></h3>
+<p>Kubernetes is an open-source container orchestration platform developed by Google that automates the deployment, scaling, and management of containerized applications. It provides a robust and scalable infrastructure for running and managing containers across multiple hosts, allowing organizations to build and manage highly available and resilient applications. It allows users to define and manage configurations using Kubernetes manifests (YAML files) and provides mechanisms for scaling, rolling updates, and automated deployments.</p>
+<blockquote>
+<p>NOTE Kubernetes has become the de facto standard for container orchestration and has widespread adoption in both cloud-native and on-premises environments. It enables organizations to achieve scalability, resilience, and flexibility in deploying and managing containerized applications.</p>
+</blockquote>
+<p>Features of Kubernetes:</p>
+<ol>
+<li>
+<p>Container Orchestration</p>
+<p>Kubernetes enables the management of containers at scale. It automates container deployment, scaling, and load balancing across multiple hosts, ensuring efficient utilization of resources and high availability of applications. Kubernetes abstracts away the underlying infrastructure details, allowing developers to focus on application logic rather than infrastructure management.</p>
+</li>
+<li>
+<p>Scalability and Elasticity</p>
+<p>Kubernetes allows applications to scale horizontally by adding or removing instances of containers based on demand. It supports auto-scaling based on CPU utilization or custom metrics. Kubernetes automatically manages the distribution of workloads and load balancing across the available resources.</p>
+</li>
+<li>
+<p>Service Discovery and Load Balancing</p>
+<p>Kubernetes provides service discovery and load balancing capabilities. It allows applications to discover and communicate with other services using DNS-based service names. Kubernetes also distributes incoming traffic to containers within a service through built-in load balancers.</p>
+</li>
+<li>
+<p>Self-Healing and Fault Tolerance</p>
+<p>Kubernetes automatically monitors the health of containers and services. If a container fails or becomes unresponsive, Kubernetes restarts it or replaces it with a new instance. It continuously monitors the application state and takes necessary actions to maintain desired application state and availability.</p>
+</li>
+<li>
+<p>Rolling Updates and Rollbacks</p>
+<p>Kubernetes supports rolling updates, enabling applications to be updated without any downtime. It gradually replaces older versions of containers with new versions, ensuring smooth transitions. If any issues occur during the update, Kubernetes supports rollbacks to the previous version of the application.</p>
+</li>
+<li>
+<p>Storage Orchestration</p>
+<p>Kubernetes provides storage orchestration capabilities, allowing applications to easily manage and mount persistent storage volumes. It supports different types of storage, such as local storage, network-attached storage (NAS), and cloud storage, and provides mechanisms for managing storage requirements for containers.</p>
+</li>
+<li>
+<p>Configuration and Secret Management</p>
+<p>Kubernetes enables the management of configuration and secret data for applications. It allows the external configuration to be decoupled from the container image and provides mechanisms to manage and update configurations without redeploying the entire application.</p>
+</li>
+<li>
+<p>Ecosystem and Extensibility</p>
+<p>Kubernetes has a rich ecosystem and a wide range of community-contributed extensions, plugins, and tools. It provides an extensible architecture, allowing integration with various cloud providers, logging and monitoring systems, and other DevOps tools. This extensibility makes Kubernetes adaptable to different use cases and allows for customization and integration with existing systems.</p>
+</li>
+</ol>
+<p>Example of Kubernetes:</p>
+<ol>
+<li>
+<p>Web Server</p>
+<ul>
+<li>A Kubernetes configuration (in YAML format) that deploys an Apache web server using a Deployment and a Service:</li>
+</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps/v1</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deployment</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache-deployment</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">  </span><span class="nt">template</span><span class="p">:</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="w">      </span><span class="nt">labels</span><span class="p">:</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="w">    </span><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="w">      </span><span class="nt">containers</span><span class="p">:</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache-container</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">httpd:latest</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">          </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span></code></pre></div>
+<p>In the example:</p>
+<ul>
+<li>The <code>Deployment</code> resource defines the desired state of the Apache web server deployment.<ul>
+<li><code>replicas: 3</code> specifies that we want three instances of the Apache web server.</li>
+<li><code>selector</code> defines the label selector to match the Pods controlled by this Deployment.</li>
+<li><code>template</code> defines the Pod template used to create the Pods.</li>
+<li><code>labels</code> specify the labels for the Pods created from this template.</li>
+<li><code>containers</code> define the container specifications.<ul>
+<li><code>name</code> sets the name of the container.</li>
+<li><code>image</code> specifies the Docker image to use (in this case, <code>httpd:latest</code>).</li>
+<li><code>ports</code> define the ports exposed by the container.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>To create the Apache deployment, apply the configuration using the <code>kubectl apply</code> command:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>apache.yaml
+</span></code></pre></div>
+<p>This will create the Apache Deployment and start the specified number of Pods.</p>
+<ul>
+<li>Expose the deployed Apache Pods using a Service:</li>
+</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nt">metadata</span><span class="p">:</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache-service</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nt">spec</span><span class="p">:</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apache</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">  </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
+</span></code></pre></div>
+<p>In the example:</p>
+<ul>
+<li>The <code>Service</code> resource defines a service to expose the Apache Pods.<ul>
+<li><code>selector</code> specifies the label selector to identify the Pods to be included in the service.</li>
+<li><code>ports</code> define the port configurations for the service.</li>
+<li><code>protocol</code> specifies the network protocol (TCP in this case).</li>
+<li><code>port</code> sets the port number on the service.</li>
+<li><code>targetPort</code> specifies the port number on the Pods.</li>
+<li><code>type: LoadBalancer</code> makes the service externally accessible using a cloud provider's load balancer (assuming the provider supports it).</li>
+</ul>
+</li>
+</ul>
+<p>To create the Apache service, apply the configuration using <code>kubectl apply</code>:</p>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>apache-service.yaml
+</span></code></pre></div>
+<p>This will create the service, which will expose the Apache Pods on port 80.</p>
+<p>Verify the deployment and service using <code>kubectl</code> commands like <code>kubectl get deployments</code>, <code>kubectl get pods</code>, and <code>kubectl get services</code>. The service will have an external IP assigned if the cloud provider supports load balancers.</p>
+<p>With this configuration, Kubernetes will ensure that the desired number of Apache Pods are running and provide load balancing for incoming traffic to the Apache service.</p>
+<blockquote>
+<p>NOTE Ensure that have a Kubernetes cluster setup and the <code>kubectl</code> command-line tool configured to communicate with the cluster before applying these configurations. Adjust the YAML files as needed to match the environment and requirements.</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="2-principles">2. Principles<a class="headerlink" href="#2-principles" title="Permanent link">&para;</a></h2>
+<p>Configuration management provide a foundation for effective and efficient management of configurations. By following these principles, organizations can establish effective configuration management practices that ensure consistency, reliability, and stability across their systems and environments.</p>
+<ul>
+<li>
+<p>Centralized Configuration Repository</p>
+<blockquote>
+<p>Establish a centralized repository or database to store configuration information. This repository serves as a single source of truth and enables easy access and management of configurations. It should support version control and allow for tracking changes over time.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration as Code</p>
+<blockquote>
+<p>Treat configurations as code artifacts and manage them using version control systems. This approach ensures that configurations are versioned, reviewed, and auditable. Storing configurations as code also enables automation, repeatability, and consistency across environments.</p>
+</blockquote>
+</li>
+<li>
+<p>Standardization</p>
+<blockquote>
+<p>Establish standards and best practices for configurations to ensure consistency and reduce complexity. Define naming conventions, configuration formats, and guidelines for documenting configurations. Standardization simplifies maintenance, troubleshooting, and collaboration across teams.</p>
+</blockquote>
+</li>
+<li>
+<p>Change Management</p>
+<blockquote>
+<p>Implement a change management process to govern configuration changes. Changes should be requested, reviewed, approved, and tracked through a defined workflow. This process ensures that modifications are documented, assessed for impacts, and applied in a controlled manner to minimize risks and maintain stability.</p>
+</blockquote>
+</li>
+<li>
+<p>Version Control and Auditing</p>
+<blockquote>
+<p>Apply version control practices to configurations, allowing for easy rollback, comparison, and auditing of changes. Version control systems track modifications, provide historical context, and support collaboration among team members. Regular auditing of configurations ensures compliance, identifies unauthorized changes, and facilitates troubleshooting.</p>
+</blockquote>
+</li>
+<li>
+<p>Automation</p>
+<blockquote>
+<p>Leverage automation tools and processes to manage and enforce configurations. Automation reduces manual effort, human errors, and variability in configurations. It allows for consistent and efficient deployment, provisioning, and enforcement of configurations across systems and environments.</p>
+</blockquote>
+</li>
+<li>
+<p>Testing and Validation</p>
+<blockquote>
+<p>Establish testing and validation procedures to ensure the correctness and integrity of configurations. Test configurations in isolated environments or staging environments before deploying to production. Use validation mechanisms, such as syntax checks, linting, and automated tests, to identify errors or inconsistencies in configurations.</p>
+</blockquote>
+</li>
+<li>
+<p>Change Tracking and Reporting</p>
+<blockquote>
+<p>Maintain a comprehensive record of configuration changes, including the who, what, and when of each change. Establish reporting mechanisms to track and analyze configuration data, including compliance status, drift, and inventory. Reporting enables visibility into the state of configurations, aids in compliance audits, and supports decision-making processes.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuous Improvement</p>
+<blockquote>
+<p>Embrace a culture of continuous improvement in configuration management. Regularly assess and refine processes, tools, and workflows. Incorporate feedback from users, stakeholders, and monitoring systems to identify areas for improvement. Adopt industry best practices and stay up to date with emerging technologies and standards in configuration management.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>By following these best practices, organizations can establish a solid foundation for effective configuration management, enabling consistency, reliability, and scalability in managing their systems and environments.</p>
+<ul>
+<li>
+<p>Define a Configuration Management Strategy</p>
+<blockquote>
+<p>Establish a clear strategy and roadmap for configuration management within the organization. Define goals, objectives, and desired outcomes. Identify the scope and boundaries of configuration management efforts, including the systems, environments, and teams involved. This strategy will guide the approach and ensure consistency across the organization.</p>
+</blockquote>
+</li>
+<li>
+<p>Establish a Configuration Management Plan</p>
+<blockquote>
+<p>Create a formal plan that outlines the processes, tools, and responsibilities for configuration management. Define roles and responsibilities for configuration management activities, such as change management, version control, and release management. The plan should address the entire lifecycle of configurations, from creation and maintenance to retirement.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Version Control Systems</p>
+<blockquote>
+<p>Store configurations in version control systems (VCS) to track changes, enable collaboration, and maintain an audit trail. Use branching and tagging strategies to manage different versions of configurations, allowing for easy rollback, comparison, and collaboration among team members. Regularly commit changes to the VCS and encourage a culture of code reviews and documentation.</p>
+</blockquote>
+</li>
+<li>
+<p>Document Configurations</p>
+<blockquote>
+<p>Document configurations comprehensively to ensure clarity, understanding, and ease of maintenance. Include details such as the purpose of configurations, dependencies, versions, and relationships with other systems or components. Keep configuration documentation up to date as changes are made, and make it easily accessible to relevant teams and stakeholders.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Change Management</p>
+<blockquote>
+<p>Establish a structured change management process to govern configuration changes. Implement a formal change request system that captures change details, approvals, and impact assessments. This process helps mitigate risks, ensure proper testing and validation, and maintain stability across environments. Regularly review and refine the change management process based on lessons learned.</p>
+</blockquote>
+</li>
+<li>
+<p>Automate Configuration Deployment</p>
+<blockquote>
+<p>Utilize automation tools and scripts to deploy configurations consistently and reliably. Automation reduces manual effort, eliminates human errors, and enables fast and repeatable deployment of configurations across systems and environments. Leverage tools like configuration management frameworks, infrastructure as code, and continuous integration/continuous deployment (CI/CD) pipelines to automate configuration deployment.</p>
+</blockquote>
+</li>
+<li>
+<p>Validate and Test Configurations</p>
+<blockquote>
+<p>Implement testing and validation procedures to verify the correctness and integrity of configurations. Use automated testing frameworks and tools to validate configurations against predefined criteria, including syntax, consistency, security, and compliance requirements. Regularly test configurations in staging or test environments before deploying them to production.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor and Track Configuration Changes</p>
+<blockquote>
+<p>Implement mechanisms to track and monitor configuration changes. Use configuration management tools or systems to capture and report on configuration drift, monitor compliance, and detect unauthorized changes. Leverage monitoring and alerting systems to proactively identify discrepancies or anomalies in configurations.</p>
+</blockquote>
+</li>
+<li>
+<p>Regularly Review and Audit Configurations</p>
+<blockquote>
+<p>Conduct regular reviews and audits of configurations to ensure compliance, security, and efficiency. Review configurations for accuracy, completeness, and adherence to established standards. Perform periodic audits to identify unauthorized changes, potential risks, and opportunities for improvement. Incorporate findings from reviews and audits into continuous improvement efforts.</p>
+</blockquote>
+</li>
+<li>
+<p>Foster Collaboration and Communication</p>
+<blockquote>
+<p>Encourage collaboration and communication among teams involved in configuration management. Establish channels for sharing knowledge, best practices, and lessons learned. Foster a culture of open communication, where team members can discuss and resolve configuration-related challenges and issues effectively.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>These terms provide a foundational understanding of the key concepts and terminology used in configuration management. Familiarity with these terms is essential for effective communication and implementation of configuration management practices.</p>
+<ul>
+<li>
+<p>Configuration Item (CI)</p>
+<blockquote>
+<p>A configuration item is a component or asset that is managed and tracked as part of the configuration management process. It can include hardware, software, documentation, network devices, or any other tangible or intangible item that contributes to the functioning of a system.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration Management Database (CMDB)</p>
+<blockquote>
+<p>A CMDB is a centralized repository that stores information about configuration items and their relationships. It serves as a comprehensive source of configuration data, allowing for tracking, analysis, and reporting on configurations, their versions, and dependencies.</p>
+</blockquote>
+</li>
+<li>
+<p>Baseline</p>
+<blockquote>
+<p>A baseline is a reference point or snapshot of a specific configuration that serves as a standard for comparison and change control. It represents a stable and approved configuration state that can be used for configuration audits, compliance checks, and as a starting point for new deployments.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration Control</p>
+<blockquote>
+<p>Configuration control is the process of managing changes to configurations in a controlled manner. It involves assessing the impact of changes, obtaining appropriate approvals, implementing changes, and ensuring documentation and tracking of changes for future reference.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration Item Relationship</p>
+<blockquote>
+<p>Configuration item relationships define the associations and dependencies between different configuration items. Relationships can include hierarchical relationships (parent-child), dependencies, associations, or other types of connections that describe how different items relate to each other.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration Management Plan</p>
+<blockquote>
+<p>A configuration management plan is a formal document that outlines the strategy, processes, tools, and responsibilities for configuration management within an organization. It serves as a guide for managing configurations and provides a framework for consistent and controlled configuration management practices.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration Management System (CMS)</p>
+<blockquote>
+<p>A configuration management system refers to the collection of tools, processes, and resources used to manage and control configurations. It includes CMDBs, version control systems, change management systems, and other tools and processes that support configuration management activities.</p>
+</blockquote>
+</li>
+<li>
+<p>Change Management</p>
+<blockquote>
+<p>Change management is a process for managing and controlling changes to configurations. It involves requesting, reviewing, approving, and implementing changes in a controlled manner to minimize risks, ensure proper testing, and maintain stability.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration Drift</p>
+<blockquote>
+<p>Configuration drift refers to the unintended changes or inconsistencies that occur between a desired or baseline configuration and the actual state of a system or component. It can result from unauthorized changes, manual interventions, or deviations from established standards, and it is important to monitor and rectify configuration drift to maintain consistency and compliance.</p>
+</blockquote>
+</li>
+<li>
+<p>Configuration Item Versioning</p>
+<blockquote>
+<p>Configuration item versioning involves managing and tracking different versions of configuration items over time. It allows for comparing and reverting to previous versions, tracking changes, and maintaining an audit trail of modifications made to configurations.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1167 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/abstraction-layer/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Abstraction Layer - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#abstraction-layer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Abstraction Layer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-application-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Application Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Application Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-presentation-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Presentation Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-business-logic-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Business Logic Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-data-access-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. Data Access Layer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-middleware-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Middleware Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2. Middleware Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-communication-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1. Communication Middleware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-integration-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.2. Integration Middleware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-security-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.3. Security Middleware
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-system-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. System Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3. System Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-hardware-abstraction-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1. Hardware Abstraction Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-operating-system-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2. Operating System Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-virtualization-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.3. Virtualization Layer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-general-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. General Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4. General Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-network-abstraction-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.1. Network Abstraction Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-database-abstraction-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.2. Database Abstraction Layer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/abstraction-layer.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/abstraction-layer.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="abstraction-layer">Abstraction Layer<a class="headerlink" href="#abstraction-layer" title="Permanent link">&para;</a></h1>
+<p>Abstraction layers refer to a concept that simplifies the complexity of software development by breaking down the different components of software into manageable, self-contained parts. Layers make software development efficient and effective by providing a standard interface for interacting with complex systems. It is a way to manage complexity and create a separation between the underlying implementation details and the functionality that is exposed to the user.</p>
+<p>Abstraction layers can be found in different types of software systems, such as operating systems, databases, programming languages, and web applications. Abstraction layers create maintainable and flexible software systems that are easier to understand, extend, and modify.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-application-layer">1.1. Application Layer</a><ul>
+<li><a href="#111-presentation-layer">1.1.1. Presentation Layer</a></li>
+<li><a href="#112-business-logic-layer">1.1.2. Business Logic Layer</a></li>
+<li><a href="#113-data-access-layer">1.1.3. Data Access Layer</a></li>
+</ul>
+</li>
+<li><a href="#12-middleware-layer">1.2. Middleware Layer</a><ul>
+<li><a href="#121-communication-middleware">1.2.1. Communication Middleware</a></li>
+<li><a href="#122-integration-middleware">1.2.2. Integration Middleware</a></li>
+<li><a href="#123-security-middleware">1.2.3. Security Middleware</a></li>
+</ul>
+</li>
+<li><a href="#13-system-layer">1.3. System Layer</a><ul>
+<li><a href="#131-hardware-abstraction-layer">1.3.1. Hardware Abstraction Layer</a></li>
+<li><a href="#132-operating-system-layer">1.3.2. Operating System Layer</a></li>
+<li><a href="#133-virtualization-layer">1.3.3. Virtualization Layer</a></li>
+</ul>
+</li>
+<li><a href="#14-general-layer">1.4. General Layer</a><ul>
+<li><a href="#141-network-abstraction-layer">1.4.1. Network Abstraction Layer</a></li>
+<li><a href="#142-database-abstraction-layer">1.4.2. Database Abstraction Layer</a></li>
+</ul>
+</li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>Abstraction layers provide a modular and reusable architecture for software development, allowing for better maintainability, scalability, and interoperability.</p>
+<p>Each layer of abstraction is designed to interact with the layer above or below it and provide a interface. This approach simplifies the software development process, improves code reusability, and enhances system performance by minimizing direct interaction.</p>
+<h3 id="11-application-layer">1.1. Application Layer<a class="headerlink" href="#11-application-layer" title="Permanent link">&para;</a></h3>
+<p>Application Layer is the topmost layer that is directly accessible by end-users, which consists of user interfaces, applications, and programs.</p>
+<h4 id="111-presentation-layer">1.1.1. Presentation Layer<a class="headerlink" href="#111-presentation-layer" title="Permanent link">&para;</a></h4>
+<p>Presentation Layer is responsible for presenting data to users, and allows users to interact with the software application.</p>
+<p>It abstracts the presentation-specific features, such as:</p>
+<ul>
+<li>User interface</li>
+<li>Data rendering and visualization</li>
+<li>Layout and formatting</li>
+<li>Interaction management</li>
+</ul>
+<h4 id="112-business-logic-layer">1.1.2. Business Logic Layer<a class="headerlink" href="#112-business-logic-layer" title="Permanent link">&para;</a></h4>
+<p>Business Logic Layer is responsible for implementing the business logic of the software application, and is often separated from the presentation and data access layers.</p>
+<p>It abstracts the application-specific features, such as:</p>
+<ul>
+<li>Rules and workflows</li>
+<li>Use cases and scenarios</li>
+<li>Business entities and objects</li>
+<li>Business process management</li>
+</ul>
+<h4 id="113-data-access-layer">1.1.3. Data Access Layer<a class="headerlink" href="#113-data-access-layer" title="Permanent link">&para;</a></h4>
+<p>Data Access Layer is responsible for accessing and manipulating data from the underlying data storage, and is often separated from the business logic and presentation layers.</p>
+<p>It abstracts the data storage-specific features, such as:</p>
+<ul>
+<li>Data storage and retrieval</li>
+<li>Query optimization</li>
+<li>Data mapping and transformation</li>
+<li>Transaction management</li>
+<li>Data validation</li>
+</ul>
+<h3 id="12-middleware-layer">1.2. Middleware Layer<a class="headerlink" href="#12-middleware-layer" title="Permanent link">&para;</a></h3>
+<p>Middleware Layer provides a bridge between the application layer and the operating system, which manages data transfer, network communication, and other essential functions.</p>
+<h4 id="121-communication-middleware">1.2.1. Communication Middleware<a class="headerlink" href="#121-communication-middleware" title="Permanent link">&para;</a></h4>
+<p>Communication Middleware provides an abstraction of the communication mechanisms between software components or services, and is responsible for enabling inter-process communication, message exchange, and remote procedure calls.</p>
+<p>It abstracts the communication-specific features, such as:</p>
+<ul>
+<li>Protocol adaptation</li>
+<li>Message exchange and routing</li>
+<li>Remote procedure calls</li>
+<li>Data transformation</li>
+</ul>
+<h4 id="122-integration-middleware">1.2.2. Integration Middleware<a class="headerlink" href="#122-integration-middleware" title="Permanent link">&para;</a></h4>
+<p>Integration Middleware provides an abstraction of the integration mechanisms between software systems or services, and is responsible for enabling data mapping, service discovery, and protocol conversion.</p>
+<p>It abstracts the integration-specific features, such as:</p>
+<ul>
+<li>Data mapping and transformation</li>
+<li>Transaction management</li>
+<li>Service discovery</li>
+<li>Protocol conversion</li>
+<li>Message exchange patterns</li>
+<li>Event-driven architecture</li>
+</ul>
+<h4 id="123-security-middleware">1.2.3. Security Middleware<a class="headerlink" href="#123-security-middleware" title="Permanent link">&para;</a></h4>
+<p>Security Middleware provides an abstraction of the security mechanisms and policies of the software, and is responsible for securing data and resources across the software application or system.</p>
+<p>It abstracts the security-specific features, such as:</p>
+<ul>
+<li>Authentication and authorization</li>
+<li>Encryption and decryption</li>
+<li>Access control</li>
+<li>Audit and logging</li>
+</ul>
+<h3 id="13-system-layer">1.3. System Layer<a class="headerlink" href="#13-system-layer" title="Permanent link">&para;</a></h3>
+<p>The System Layer is the lowest layer that interacts directly with the computer hardware, including the operating system, device drivers, and other system-level software.</p>
+<h4 id="131-hardware-abstraction-layer">1.3.1. Hardware Abstraction Layer<a class="headerlink" href="#131-hardware-abstraction-layer" title="Permanent link">&para;</a></h4>
+<p>Hardware Abstraction Layer (HAL) provides an abstraction of the hardware components and device drivers of the system, and is responsible for enabling software to interact with different types of hardware without being tied to specific hardware implementations or architectures.</p>
+<p>It abstracts the hardware-specific features, such as:</p>
+<ul>
+<li>I/O operations</li>
+<li>Interrupt handling</li>
+<li>Memory management</li>
+<li>Device drivers</li>
+</ul>
+<h4 id="132-operating-system-layer">1.3.2. Operating System Layer<a class="headerlink" href="#132-operating-system-layer" title="Permanent link">&para;</a></h4>
+<p>Operating System (OS) Layer provides an abstraction of the hardware resources and system services of the underlying operating system, and is responsible for managing system resources, scheduling processes, and providing system-level services.</p>
+<p>It abstracts the OS-specific features, such as:</p>
+<ul>
+<li>Process management</li>
+<li>Memory management</li>
+<li>File system management</li>
+<li>System services</li>
+</ul>
+<h4 id="133-virtualization-layer">1.3.3. Virtualization Layer<a class="headerlink" href="#133-virtualization-layer" title="Permanent link">&para;</a></h4>
+<p>Virtualization Layer provides an abstraction of the hardware resources and system services of the underlying virtualization technology, and is responsible for creating and managing virtual machines, virtual networks, and virtual storage.</p>
+<p>It abstracts the virtualization-specific features, such as:</p>
+<ul>
+<li>Hypervisor management</li>
+<li>Virtual machine creation</li>
+<li>Virtual machine migration</li>
+<li>Virtual storage management</li>
+<li>Virtual network management</li>
+</ul>
+<h3 id="14-general-layer">1.4. General Layer<a class="headerlink" href="#14-general-layer" title="Permanent link">&para;</a></h3>
+<h4 id="141-network-abstraction-layer">1.4.1. Network Abstraction Layer<a class="headerlink" href="#141-network-abstraction-layer" title="Permanent link">&para;</a></h4>
+<p>Network Abstraction Layer (NAL) provides an abstraction of the network and communication protocols, allowing software to communicate with various network devices and services.</p>
+<p>It abstracts the network-specific features, such as:</p>
+<ul>
+<li>Packet routing</li>
+<li>Addressing</li>
+<li>Socket management</li>
+</ul>
+<h4 id="142-database-abstraction-layer">1.4.2. Database Abstraction Layer<a class="headerlink" href="#142-database-abstraction-layer" title="Permanent link">&para;</a></h4>
+<p>Database Abstraction Layer (DBAL) provides an abstraction of the database management system, allowing software to interact with various types of databases without knowing the underlying database structures and SQL queries.</p>
+<p>It abstracts the database-specific features, such as:</p>
+<ul>
+<li>Schema management</li>
+<li>Query optimization</li>
+<li>Transaction management</li>
+</ul>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Separation of Concerns</p>
+<blockquote>
+<p>The Separation of Concerns principle states that abstraction layers should separate different concerns, such as presentation, business logic, and data access. This separation ensures that changes in one layer do not affect other layers. The goal of this principle is to reduce coupling between layers and increase the modularity and maintainability of the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Encapsulation</p>
+<blockquote>
+<p>The Encapsulation principle states that abstraction layers should encapsulate their internal logic and data structures, and expose only the necessary interfaces to other layers or components. This encapsulation ensures that the internal workings of the layer are hidden from the outside world, and that the layer can be modified or replaced without affecting the rest of the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Modularity</p>
+<blockquote>
+<p>The Modularity principle states that abstraction layers should be modular and reusable. Modularity ensures that the layer can be easily adapted and extended for different use cases or applications. Modularity also promotes code reuse and reduces development time and costs.</p>
+</blockquote>
+</li>
+<li>
+<p>Flexibility</p>
+<blockquote>
+<p>The Flexibility principle states that abstraction layers should be designed with flexibility and adaptability in mind. Flexibility ensures that the layer can handle different types of data, platforms, and technologies. This principle also promotes scalability and future-proofing of the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Standardization</p>
+<blockquote>
+<p>The Standardization principle states that abstraction layers should follow established standards and best practices for their domain. Standardization ensures interoperability, consistency, and reliability of the system. This principle also promotes reuse and reduces development costs.</p>
+</blockquote>
+</li>
+<li>
+<p>Performance</p>
+<blockquote>
+<p>The Performance principle states that abstraction layers should be designed to minimize performance overhead and avoid unnecessary processing or data transformation. Performance ensures that the layer does not introduce bottlenecks or slowdowns in the system. This principle also promotes scalability and responsiveness of the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Testability</p>
+<blockquote>
+<p>The Testability principle states that abstraction layers should be testable and verifiable. Testability ensures that the layer is correct, reliable, and consistent. This principle also promotes quality and reduces the risk of defects or failures in the system.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Follow a standard design pattern</p>
+<blockquote>
+<p>A standard design pattern, such as Model-View-Controller (MVC), can help developers structure their abstraction layers and ensure consistency across the system. Design patterns provide a proven solution to common design problems, and can help developers save time and reduce errors.</p>
+</blockquote>
+</li>
+<li>
+<p>Use dependency injection</p>
+<blockquote>
+<p>Dependency injection allows components to be loosely coupled and promotes modularity and flexibility. By injecting dependencies, rather than creating them directly, developers can ensure that components can be easily replaced or extended without affecting the rest of the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Provide clear and concise interfaces</p>
+<blockquote>
+<p>Abstraction layers should provide clear and concise interfaces that are easy to understand and use. Interfaces should be well-documented and follow established naming conventions, so that they can be easily integrated with other components or systems.</p>
+</blockquote>
+</li>
+<li>
+<p>Test early and often</p>
+<blockquote>
+<p>Testing are an integral part of the development process, and should be performed early and often. Developers should use automated testing tools to ensure that their abstraction layers are correct and reliable, and to catch defects and errors before they become critical issues.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Interface</p>
+<blockquote>
+<p>An interface is the set of methods or properties that a component or system exposes to other components or systems. An interface is an abstraction of the underlying implementation, and provides a standard way of communicating with the component or system.</p>
+</blockquote>
+</li>
+<li>
+<p>API</p>
+<blockquote>
+<p>An API (Application Programming Interface) is a set of interfaces and protocols that enable software components or systems to communicate with each other. An API can be used to access the functionality of another system or component, and can be implemented at various levels of abstraction.</p>
+</blockquote>
+</li>
+<li>
+<p>Library</p>
+<blockquote>
+<p>A library is a collection of pre-built software components that can be used to extend the functionality of a system. Libraries can be used to provide abstraction layers for common tasks or functionality, and can be used across different projects or applications.</p>
+</blockquote>
+</li>
+<li>
+<p>Framework</p>
+<blockquote>
+<p>A framework is a set of rules and conventions that guide the development of a system. A framework can provide abstraction layers for common tasks or functionality, and can be used to structure and organize the components of a system.</p>
+</blockquote>
+</li>
+<li>
+<p>Middleware</p>
+<blockquote>
+<p>Middleware is software that acts as a bridge between different software components or systems. Middleware can provide abstraction layers for different types of data or protocols, and can be used to enable interoperability and integration between different systems.</p>
+</blockquote>
+</li>
+<li>
+<p>Adapter</p>
+<blockquote>
+<p>An adapter is a software component that translates between two different interfaces or data formats. An adapter can be used to provide abstraction layers for different types of data or protocols, and can be used to enable interoperability and integration between different systems.</p>
+</blockquote>
+</li>
+<li>
+<p>Layer</p>
+<blockquote>
+<p>A layer is a modular component of a software system that provides a specific set of functionality or abstraction. Layers can be stacked on top of each other to provide a complete system, and can be used to separate different concerns or levels of abstraction.</p>
+</blockquote>
+</li>
+<li>
+<p>Abstraction</p>
+<blockquote>
+<p>Abstraction refers to the process of hiding complexity and providing a simplified view of a system or component. Abstraction can be used to provide a level of separation between different components or systems, and can help to manage complexity and reduce the risk of errors.</p>
+</blockquote>
+</li>
+<li>
+<p>Decoupling</p>
+<blockquote>
+<p>Decoupling refers to the process of separating different components or systems to reduce interdependencies and promote modularity. Decoupling can be achieved through the use of interfaces, adapters, and other abstraction layers, and can help to improve flexibility and maintainability.</p>
+</blockquote>
+</li>
+<li>
+<p>Cohesion</p>
+<blockquote>
+<p>Cohesion refers to the degree to which the elements of a module or component are related to each other. High cohesion can improve the maintainability and readability of the component, while low cohesion can make the component difficult to understand or modify.</p>
+</blockquote>
+</li>
+<li>
+<p>Inversion of Control</p>
+<blockquote>
+<p>Inversion of Control (IoC) refers to the practice of delegating control over the execution of a system or component to a framework or container. IoC can be used to provide abstraction layers for common tasks or functionality, and can help to reduce the complexity of the system.</p>
+</blockquote>
+</li>
+<li>
+<p>Service</p>
+<blockquote>
+<p>A service is a software component that provides a specific set of functionality or functionality. Services can be accessed through a well-defined interface or API, and can be used to provide abstraction layers for common tasks or functionality.</p>
+</blockquote>
+</li>
+<li>
+<p>Component</p>
+<blockquote>
+<p>A component is a modular unit of a software system that can be independently developed, deployed, and managed. Components can be combined to create a larger system, and can be used to provide abstraction layers for different concerns or levels of functionality.</p>
+</blockquote>
+</li>
+<li>
+<p>Coupling</p>
+<blockquote>
+<p>Coupling refers to the level of interdependence between different components or systems in a software system. High coupling can make the system difficult to modify or maintain, while low coupling can improve flexibility and modularity.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

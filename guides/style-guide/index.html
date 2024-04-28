@@ -1,0 +1,2039 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/guides/style-guide/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Style Guide - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#style-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Style Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-cc" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. C/C++
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. C/C++">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-build-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Build System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-package-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Package Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-software-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Software Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-compiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7. Compiler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8. Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9. Editor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Go
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Go">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Library
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2. Library">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1. UI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-software-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. Software Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6. Editor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-links" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7. Links
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Python
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2. Library
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-software-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4. Software Testing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5. Tool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6. Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#37-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7. Editor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-kotlin" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Kotlin
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Kotlin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-guides" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3. Guides
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4. Editor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-rust" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Rust
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Rust">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-software-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3. Software Testing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Shell
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Shell">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3. Editor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Git
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Git">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Markdown
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Markdown">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3. Editor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-cmake" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. CMake
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. CMake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1. Convention
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2. Code Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-editor" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3. Editor
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/guides/style-guide.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/guides/style-guide.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="style-guide">Style Guide<a class="headerlink" href="#style-guide" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#1-cc">1. C/C++</a></li>
+<li><a href="#11-convention">1.1. Convention</a></li>
+<li><a href="#12-library">1.2. Library</a></li>
+<li><a href="#13-code-analysis">1.3. Code Analysis</a></li>
+<li><a href="#14-build-system">1.4. Build System</a></li>
+<li><a href="#15-package-manager">1.5. Package Manager</a></li>
+<li><a href="#16-software-testing">1.6. Software Testing</a></li>
+<li><a href="#17-compiler">1.7. Compiler</a></li>
+<li><a href="#18-architecture">1.8. Architecture</a></li>
+<li><a href="#19-editor">1.9. Editor</a></li>
+<li><a href="#2-go">2. Go</a></li>
+<li><a href="#21-convention">2.1. Convention</a></li>
+<li><a href="#22-library">2.2. Library</a><ul>
+<li><a href="#221-ui">2.2.1. UI</a></li>
+</ul>
+</li>
+<li><a href="#23-code-analysis">2.3. Code Analysis</a></li>
+<li><a href="#24-software-testing">2.4. Software Testing</a></li>
+<li><a href="#25-architecture">2.5. Architecture</a></li>
+<li><a href="#26-editor">2.6. Editor</a></li>
+<li><a href="#27-links">2.7. Links</a></li>
+<li><a href="#3-python">3. Python</a></li>
+<li><a href="#31-convention">3.1. Convention</a></li>
+<li><a href="#32-library">3.2. Library</a></li>
+<li><a href="#33-code-analysis">3.3. Code Analysis</a></li>
+<li><a href="#34-software-testing">3.4. Software Testing</a></li>
+<li><a href="#35-tool">3.5. Tool</a></li>
+<li><a href="#36-architecture">3.6. Architecture</a></li>
+<li><a href="#37-editor">3.7. Editor</a></li>
+<li><a href="#4-kotlin">4. Kotlin</a></li>
+<li><a href="#41-convention">4.1. Convention</a></li>
+<li><a href="#42-code-analysis">4.2. Code Analysis</a></li>
+<li><a href="#43-guides">4.3. Guides</a></li>
+<li><a href="#44-editor">4.4. Editor</a></li>
+<li><a href="#5-rust">5. Rust</a></li>
+<li><a href="#51-convention">5.1. Convention</a></li>
+<li><a href="#52-code-analysis">5.2. Code Analysis</a></li>
+<li><a href="#53-software-testing">5.3. Software Testing</a></li>
+<li><a href="#6-shell">6. Shell</a></li>
+<li><a href="#61-convention">6.1. Convention</a></li>
+<li><a href="#62-code-analysis">6.2. Code Analysis</a></li>
+<li><a href="#63-editor">6.3. Editor</a></li>
+<li><a href="#7-git">7. Git</a></li>
+<li><a href="#71-convention">7.1. Convention</a></li>
+<li><a href="#72-code-analysis">7.2. Code Analysis</a></li>
+<li><a href="#8-markdown">8. Markdown</a></li>
+<li><a href="#81-convention">8.1. Convention</a></li>
+<li><a href="#82-code-analysis">8.2. Code Analysis</a></li>
+<li><a href="#83-editor">8.3. Editor</a></li>
+<li><a href="#9-cmake">9. CMake</a></li>
+<li><a href="#91-convention">9.1. Convention</a></li>
+<li><a href="#92-code-analysis">9.2. Code Analysis</a></li>
+<li><a href="#93-editor">9.3. Editor</a></li>
+</ul>
+<h2 id="1-cc">1. C/C++<a class="headerlink" href="#1-cc" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Documentation</th>
+<th>Build System</th>
+<th>Package Manager</th>
+<th>Software Testing</th>
+<th>Code Coverage</th>
+<th>Code Formatting</th>
+<th>Code Linting</th>
+<th>Cross-Compilation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11-convention">1.1. Convention<a class="headerlink" href="#11-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://sentenz.github.io/backup-service/repository/github/google/styleguide/cppguide.html">Google C++ Style Guide</a></li>
+<li><a href="https://github.com/isocpp/CppCoreGuidelines">C++ Core Guidelines</a></li>
+</ul>
+<h3 id="12-library">1.2. Library<a class="headerlink" href="#12-library" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/doxygen/doxygen">Doxygen</a> documentation package for C/C++ projects.</li>
+</ul>
+<h3 id="13-code-analysis">1.3. Code Analysis<a class="headerlink" href="#13-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Code Check</p>
+<ul>
+<li>
+<p><a href="https://clang.llvm.org/extra/clang-tidy/">clang-tidy</a> tool and <a href="https://clang.llvm.org/extra/clang-tidy/#id2">doc</a></p>
+<blockquote>
+<p>Configure <a href="https://github.com/googleapis/google-cloud-cpp/blob/main/.clang-tidy">.clang-tidy</a> in the project.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://pypi.org/project/cpplint/">Cpplint</a></p>
+<blockquote>
+<ul>
+<li>Detect style errors, see <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py">cpplint.py</a> tool.</li>
+<li>Configure <a href="https://github.com/google/conscrypt/blob/master/CPPLINT.cfg">CPPLINT.cfg</a> in the root project.</li>
+<li>False positives can be ignored by putting <code>// NOLINT</code> at the end of the line or <code>// NOLINTNEXTLINE</code> in the previous line.</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/rizsotto/scan-build">scan-build</a></p>
+<blockquote>
+<p>Tool for <a href="http://clang-analyzer.llvm.org/scan-build.html">clang-analyzer</a>.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/danmar/cppcheck">Cppcheck</a></p>
+<blockquote>
+<ul>
+<li>Configure <a href="https://github.com/open62541/open62541/blob/master/cppcheck-suppressions.txt">cppcheck-suppressions.txt</a> in the project.</li>
+<li>See <a href="http://cppcheck.sourceforge.net/manual.pdf">manual</a>.</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/facebook/infer">Infer</a></p>
+<blockquote>
+<p>A static analyzer for Java, C, C++, and Objective-C.</p>
+</blockquote>
+</li>
+</ul>
+<p>Code Format</p>
+<ul>
+<li><a href="https://clang.llvm.org/docs/ClangFormat.html">clang-format</a><blockquote>
+<p>Configure in the root project.</p>
+<ul>
+<li><a href="https://github.com/googleapis/google-cloud-cpp/blob/main/.clang-format">.clang-format</a></li>
+<li><a href="https://github.com/mozilla/gecko-dev/blob/master/.clang-format-ignore">.clang-format-ignore</a></li>
+<li>Use <a href="https://zed0.co.uk/clang-format-configurator/">clang-format-configurator</a> to modify a .clang-format file.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>Sanitizers</p>
+<ul>
+<li><a href="https://valgrind.org/">Valgrind</a></li>
+<li><a href="https://github.com/google/sanitizers">Google Sanitizers</a></li>
+</ul>
+<h3 id="14-build-system">1.4. Build System<a class="headerlink" href="#14-build-system" title="Permanent link">&para;</a></h3>
+<ul>
+<li>CMake</li>
+</ul>
+<h3 id="15-package-manager">1.5. Package Manager<a class="headerlink" href="#15-package-manager" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Conan</li>
+</ul>
+<h3 id="16-software-testing">1.6. Software Testing<a class="headerlink" href="#16-software-testing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/google/googletest">GoogleTest</a></p>
+<blockquote>
+<p>Unit-testing framework with testing with mocking and fixtures support.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/benchmark">Google Benchmark</a></p>
+<blockquote>
+<p>A microbenchmark support library.</p>
+<p>Documentation <a href="https://google.github.io/benchmark/">guide</a> for benchmark.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://gcc.gnu.org/onlinedocs/gcc/Gcov.html">gcov</a></p>
+<blockquote>
+<p>Test code coverage tool.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/oss-fuzz">OSS-Fuzz</a></p>
+<blockquote>
+<p>Ffuzzing technique for automated injections.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/fuzzbench">FuzzBench</a></p>
+<blockquote>
+<p>Fuzzer benchmarking as a service.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="17-compiler">1.7. Compiler<a class="headerlink" href="#17-compiler" title="Permanent link">&para;</a></h3>
+<p>See <a href="https://www.keil.com/support/man/docs/armclang_intro/default.htm">Compiler User Guides</a> for the complete option list.</p>
+<ol>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_mtw1469708501316.htm">Using Common Compiler Options</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_sir1472741527970.htm">Selecting source language options</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_fnb1472741490155.htm">Selecting optimization options</a> and <a href="https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html">Options That Control Optimization</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_oph1469708556921.htm">Writing Optimized Code</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_chr1385110934192.htm">Effect of the volatile keyword</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_hpz1474359444075.htm">Optimizing loops</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_kff1474359729131.htm">Inlining functions</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_hla1474359990839.htm">Stack use in C and C++</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_lfh1505904047779.htm">Embedded Software Development</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_clm1505906242639.htm">Default memory map</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_ldq1505906267474.htm">Run-time memory models</a></li>
+<li><a href="https://www.keil.com/support/man/docs/armclang_intro/armclang_intro_kqu1505906156419.htm">The vector table</a></li>
+<li>Code size optimization</li>
+<li><a href="https://interrupt.memfault.com/blog/best-and-worst-gcc-clang-compiler-flags#-ffunction-sections--fdata-sections----gc-sections">-ffunction-sections, -fdata-sections, &amp; --gc-sections</a></li>
+</ol>
+<h3 id="18-architecture">1.8. Architecture<a class="headerlink" href="#18-architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://api.csswg.org/bikeshed/?force=1&amp;url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs">Project Layout</a></li>
+</ul>
+<h3 id="19-editor">1.9. Editor<a class="headerlink" href="#19-editor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://code.visualstudio.com/download">Visual Studio Code</a></li>
+</ul>
+<h2 id="2-go">2. Go<a class="headerlink" href="#2-go" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Documentation</th>
+<th>Build System</th>
+<th>Package Manager</th>
+<th>Software Testing</th>
+<th>Code Coverage</th>
+<th>Code Formatting</th>
+<th>Code Linting</th>
+<th>Cross-Compilation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>Built-in</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-convention">2.1. Convention<a class="headerlink" href="#21-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://google.github.io/styleguide/go/">Google Go Style Guide</a></li>
+<li><a href="https://golang.org/doc/effective_go">Effective Go</a></li>
+<li><a href="https://github.com/golang/go/wiki/CodeReviewComments">Golang Code Review Comments</a></li>
+<li><a href="https://github.com/uber-go/guide/blob/master/style.md">Uber Go Style Guide</a></li>
+</ul>
+<h3 id="22-library">2.2. Library<a class="headerlink" href="#22-library" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/go-kit/kit">Go kit</a></p>
+<blockquote>
+<p>Standard library for microservices or elegant monoliths.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/go-gorm/gorm">GORM</a></p>
+<blockquote>
+<p>Object-Relational Mapping (ORM) library for query and manipulate databases.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/spf13/cobra">Cobra</a></p>
+<blockquote>
+<p>Library for CLI apps.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/urfave/cli">cli</a></p>
+<blockquote>
+<p>Library for CLI apps.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/sahilm/fuzzy">fuzzy</a></p>
+<blockquote>
+<p>Library that provides fuzzy string matching.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/samber/lo">lo</a></p>
+<blockquote>
+<p>Lodash for Go library.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/gonum/gonum">Gonum</a></p>
+<blockquote>
+<p>Set of packages designed to writing numerical and scientific algorithms.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/grpc/grpc-go">grpc-go</a></p>
+<blockquote>
+<p>Go language implementation of gRPC.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="221-ui">2.2.1. UI<a class="headerlink" href="#221-ui" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="https://github.com/go-echarts/go-echarts">go-echarts</a></li>
+<li><a href="https://github.com/wcharczuk/go-chart">go-chart</a></li>
+<li><a href="https://github.com/go-echarts/statsview">Statsview</a></li>
+<li><a href="https://github.com/gonum/plot">Gonum Plot</a></li>
+<li><a href="https://github.com/go-graphics/go-gui-projects">Go GUI Projects</a></li>
+</ul>
+<h3 id="23-code-analysis">2.3. Code Analysis<a class="headerlink" href="#23-code-analysis" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/golangci/golangci-lint">golangci-lint</a><blockquote>
+<p>Configure <a href="https://github.com/golangci/golangci-lint/blob/master/.golangci.yml">.golangci.yml</a> in the project.</p>
+</blockquote>
+</li>
+<li><a href="https://github.com/golangci/awesome-go-linters">Awesome Go Linters</a></li>
+</ul>
+<h3 id="24-software-testing">2.4. Software Testing<a class="headerlink" href="#24-software-testing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://pkg.go.dev/testing@go1.18">go test</a></p>
+<blockquote>
+<p>Package testing provides support for automated testing of Go packages.</p>
+<ul>
+<li>Support for <a href="https://pkg.go.dev/testing@go1.18#hdr-Benchmarks">Benchmarks</a>.</li>
+<li>Support for <a href="https://pkg.go.dev/testing@go1.18#hdr-Examples">Examples</a>.</li>
+<li>Support for <a href="https://pkg.go.dev/testing@go1.18#hdr-Fuzzing">Fuzzing</a> see <a href="https://go.dev/doc/fuzz/">docs</a>.</li>
+<li>Support for <a href="https://pkg.go.dev/testing@go1.18#hdr-Skipping">Skipping</a>.</li>
+<li>Support for <a href="https://pkg.go.dev/testing@go1.18#hdr-Main">Main</a>.</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/oss-fuzz">OSS-Fuzz</a></p>
+<blockquote>
+<p>Fuzzing technique for automated injections with a <a href="https://google.github.io/oss-fuzz/getting-started/new-project-guide/go-lang/">Go project support</a>.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/fuzzbench">FuzzBench</a></p>
+<blockquote>
+<p>Fuzzer benchmarking as a service.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="25-architecture">2.5. Architecture<a class="headerlink" href="#25-architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/golang-standards/project-layout">Project Layout</a></li>
+<li><a href="https://github.com/insidieux/inizio/tree/v1.1.1">Project Layout Generator</a></li>
+<li><a href="https://github.com/evrone/go-clean-template">Go Clean Template</a></li>
+</ul>
+<h3 id="26-editor">2.6. Editor<a class="headerlink" href="#26-editor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://code.visualstudio.com/download">Visual Studio Code</a></li>
+</ul>
+<h3 id="27-links">2.7. Links<a class="headerlink" href="#27-links" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://golang.org/doc/faq">FAQ</a></li>
+</ul>
+<h2 id="3-python">3. Python<a class="headerlink" href="#3-python" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Documentation</th>
+<th>Build System</th>
+<th>Package Manager</th>
+<th>Software Testing</th>
+<th>Code Coverage</th>
+<th>Code Formatting</th>
+<th>Code Linting</th>
+<th>Cross-Compilation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dependency</td>
+<td>Built-in</td>
+<td>Built-in</td>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+<td>Dependency</td>
+</tr>
+</tbody>
+</table>
+<h3 id="31-convention">3.1. Convention<a class="headerlink" href="#31-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://sentenz.github.io/backup-service/repository/github/google/styleguide/pyguide.html">Google Python Style Guide</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0008/">PEP8</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0257/">PEP257</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0484/">PEP484</a></li>
+</ul>
+<h3 id="32-library">3.2. Library<a class="headerlink" href="#32-library" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/pallets/click">Click</a></p>
+<blockquote>
+<p>Package for creating CLI apps.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/pandas-dev/pandas">Pandas</a></p>
+<blockquote>
+<p>Package that provides flexible and expressive data structures.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/joke2k/faker">Faker</a></p>
+<blockquote>
+<p>Package that generates fake data.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/sdispater/pendulum">Pendulum</a></p>
+<blockquote>
+<p>Package for datetimes.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/grpc/grpc/tree/master/src/python/grpcio">grpcio</a></p>
+<blockquote>
+<p>Python language implementation of gRPC.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/sphinx-doc/sphinx">Sphinx</a></p>
+<blockquote>
+<p>Documentation package for Python projects.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="33-code-analysis">3.3. Code Analysis<a class="headerlink" href="#33-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Code Check</p>
+<ul>
+<li>
+<p><a href="https://github.com/PyCQA/pylint">Pylint</a></p>
+<blockquote>
+<p>Static code analysis tool.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/PyCQA/flake8">Flake8</a></p>
+<blockquote>
+<p>Wrapper of tools to check code style and quality.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/PyCQA/bandit">Bandit</a></p>
+<blockquote>
+<p>Find security issues in code.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/klen/pylama">Pylama</a></p>
+<blockquote>
+<p>Code audit tool.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/python/mypy">MyPy</a></p>
+<blockquote>
+<p>Optional static typing.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/pytype">pytype</a></p>
+<blockquote>
+<p>A static type analyzer.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/facebook/pyre-check">Pyre</a></p>
+<blockquote>
+<p>Performant type-checking.</p>
+</blockquote>
+</li>
+</ul>
+<p>Code Format</p>
+<ul>
+<li>
+<p><a href="https://github.com/psf/black">Black</a></p>
+<blockquote>
+<p>Uncompromising code formatter.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/yapf">yapf</a></p>
+<blockquote>
+<p>Code formatter for PEP8 or Google style.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/hhatto/autopep8">autopep8</a></p>
+<blockquote>
+<p>Code formatter to conform to the PEP8 style guide.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/PyCQA/isort">isort</a></p>
+<blockquote>
+<p>Sort imports alphabetically.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/PyCQA/autoflake">autoflake</a></p>
+<blockquote>
+<p>Removes unused imports and unused variables.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="34-software-testing">3.4. Software Testing<a class="headerlink" href="#34-software-testing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/pytest-dev/pytest">pytest</a></p>
+<blockquote>
+<p>Unit-testing framework.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/pytest-dev/pytest-xdist">pytest-xdist</a></p>
+<blockquote>
+<p>pytest plugin for distributed testing and loop-on-failures testing modes.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://docs.pytest.org/en/6.2.x/fixture.html">pytest fixtures</a></p>
+<blockquote>
+<p>Fixtures initialize test functions.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/pytest-dev/pytest-mock">pytest-mock</a></p>
+<blockquote>
+<p>Supports mock test for pytest.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/pytest-dev/pytest-cov">pytest-cov</a></p>
+<blockquote>
+<p>Supports test code coverage for pytest.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/atheris">atheris fuzzing</a></p>
+<blockquote>
+<p>Fuzzing technique for automated injections.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/oss-fuzz">OSS-Fuzz</a></p>
+<blockquote>
+<p>Fuzzing technique for automated injections with a <a href="https://google.github.io/oss-fuzz/getting-started/new-project-guide/python-lang/">Python project support</a>.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/fuzzbench">FuzzBench</a></p>
+<blockquote>
+<p>Fuzzer benchmarking as a service.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="35-tool">3.5. Tool<a class="headerlink" href="#35-tool" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/pypa/virtualenv">virtualenv</a></p>
+<blockquote>
+<p>Tool for creating isolated virtual python environments.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/tox-dev/tox">tox</a></p>
+<blockquote>
+<p>Command line (CLI) driven CI frontend and development task automation tool.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="36-architecture">3.6. Architecture<a class="headerlink" href="#36-architecture" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/pyscaffold/pyscaffold">PyScaffold</a></p>
+<blockquote>
+<p>Python project generator.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/johnthagen/python-blueprint">python-blueprint</a></p>
+<blockquote>
+<p>Python project using best practices.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/rochacbruno/python-project-template">Python Project Template</a></p>
+</li>
+</ul>
+<h3 id="37-editor">3.7. Editor<a class="headerlink" href="#37-editor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://code.visualstudio.com/download">Visual Studio Code</a><blockquote>
+<p>Getting Started with <a href="https://code.visualstudio.com/docs/python/python-tutorial">Python</a> in VS Code.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-kotlin">4. Kotlin<a class="headerlink" href="#4-kotlin" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Documentation</th>
+<th>Build System</th>
+<th>Package Manager</th>
+<th>Software Testing</th>
+<th>Code Coverage</th>
+<th>Code Formatting</th>
+<th>Code Linting</th>
+<th>Cross-Compilation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="41-convention">4.1. Convention<a class="headerlink" href="#41-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://developer.android.com/kotlin/style-guide">Kotlin Style Guide</a></li>
+</ul>
+<h3 id="42-code-analysis">4.2. Code Analysis<a class="headerlink" href="#42-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Code Check</p>
+<ul>
+<li><a href="https://developer.android.com/studio/write/lint">Kotlin Lint</a><blockquote>
+<p><a href="https://developer.android.com/studio/write/lint#manuallyRunInspections">Manually run inspections</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="43-guides">4.3. Guides<a class="headerlink" href="#43-guides" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Learn Kotlin with <a href="https://kotlinlang.org/docs/reference/">Getting Started</a>.</li>
+</ul>
+<h3 id="44-editor">4.4. Editor<a class="headerlink" href="#44-editor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://developer.android.com/studio">Android Studio</a></li>
+</ul>
+<h2 id="5-rust">5. Rust<a class="headerlink" href="#5-rust" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Documentation</th>
+<th>Build System</th>
+<th>Package Manager</th>
+<th>Software Testing</th>
+<th>Code Coverage</th>
+<th>Code Formatting</th>
+<th>Code Linting</th>
+<th>Cross-Compilation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="51-convention">5.1. Convention<a class="headerlink" href="#51-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://example.com/">TODO</a></li>
+</ul>
+<h3 id="52-code-analysis">5.2. Code Analysis<a class="headerlink" href="#52-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Code Check</p>
+<ul>
+<li><a href="https://github.com/rust-lang/miri">Miri</a></li>
+</ul>
+<h3 id="53-software-testing">5.3. Software Testing<a class="headerlink" href="#53-software-testing" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/google/oss-fuzz">OSS-Fuzz</a></p>
+<blockquote>
+<p>Fuzzing technique for automated injections with a <a href="https://google.github.io/oss-fuzz/getting-started/new-project-guide/rust-lang/">Rust project support</a>.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/google/fuzzbench">FuzzBench</a></p>
+<blockquote>
+<p>Fuzzer benchmarking as a service.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="6-shell">6. Shell<a class="headerlink" href="#6-shell" title="Permanent link">&para;</a></h2>
+<h3 id="61-convention">6.1. Convention<a class="headerlink" href="#61-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://sentenz.github.io/backup-service/repository/github/google/styleguide/shellguide.html">Google Shell Style Guide</a><blockquote>
+<p><a href="https://docs.gitlab.com/ee/development/shell_scripting_guide/">Gitlab Shell Scripting Recommendation</a></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="62-code-analysis">6.2. Code Analysis<a class="headerlink" href="#62-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Code Check</p>
+<ul>
+<li><a href="https://github.com/koalaman/shellcheck">shellcheck</a><blockquote>
+<p>Configure <a href="https://github.com/koalaman/shellcheck/issues/725">.shellcheckrc</a> in the root project.</p>
+</blockquote>
+</li>
+</ul>
+<p>Code Format</p>
+<ul>
+<li><a href="https://github.com/mvdan/sh">shfmt</a></li>
+</ul>
+<h3 id="63-editor">6.3. Editor<a class="headerlink" href="#63-editor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://code.visualstudio.com/download">Visual Studio Code</a></li>
+</ul>
+<h2 id="7-git">7. Git<a class="headerlink" href="#7-git" title="Permanent link">&para;</a></h2>
+<h3 id="71-convention">7.1. Convention<a class="headerlink" href="#71-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a></li>
+<li><a href="https://semver.org/">Semantic Versioning</a></li>
+</ul>
+<h3 id="72-code-analysis">7.2. Code Analysis<a class="headerlink" href="#72-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Commit Check</p>
+<ul>
+<li>
+<p><a href="https://github.com/conventional-changelog/commitlint">commitlint</a></p>
+<blockquote>
+<p>Configure in the root project.</p>
+<ul>
+<li><a href="https://github.com/conventional-changelog/commitlint#config">.commitlintrc.js</a></li>
+<li><a href="https://remarkablemark.org/blog/2019/05/29/git-husky-commitlint/#test">git-husky-commitlint</a> in <code>commit-msg</code></li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/wagoid/commitlint-github-action">commitlint-github-action</a></p>
+<blockquote>
+<p>Commit check for CI</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="8-markdown">8. Markdown<a class="headerlink" href="#8-markdown" title="Permanent link">&para;</a></h2>
+<h3 id="81-convention">8.1. Convention<a class="headerlink" href="#81-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://google.github.io/styleguide/docguide/style.html">Google Markdown Style Guide</a></li>
+<li><a href="https://cirosantilli.com/markdown-style-guide/">Cirosantilli Markdown Style Guide</a></li>
+</ul>
+<h3 id="82-code-analysis">8.2. Code Analysis<a class="headerlink" href="#82-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Code Check</p>
+<ul>
+<li>
+<p><a href="https://github.com/markdownlint/markdownlint">markdownlint</a></p>
+<blockquote>
+<p>Description of all <a href="https://github.com/markdownlint/markdownlint/blob/master/docs/RULES.md">markdown rules</a>.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/DavidAnson/markdownlint">markdownlint</a></p>
+<blockquote>
+<p>Code check for NPM - A Node.js style checker and lint tool.</p>
+<p>Configure in the root project.</p>
+<ul>
+<li><a href="https://github.com/DavidAnson/markdownlint/blob/main/schema/.markdownlint.jsonc">.markdownlint.json</a></li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/DavidAnson/markdownlint">markdownlint-cli</a></p>
+<blockquote>
+<p>Code check for CLI - A Command Line Interface for MarkdownLint.</p>
+<p>Configure in the root project.</p>
+<ul>
+<li><a href="https://github.com/DavidAnson/markdownlint/blob/main/.markdownlint.json">.markdownlint.json</a></li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/actionshub/markdownlint">markdownlint</a></p>
+<blockquote>
+<p>Code check for CI - A Github Action tool.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/tcort/markdown-link-check">markdown-link-check</a></p>
+<blockquote>
+<p>Link check for markdown.</p>
+<p>Configure in the root project.</p>
+<ul>
+<li><a href="https://github.com/tcort/markdown-link-check#config-file-format">.markdown-link-check.json</a></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>Spell Check</p>
+<ul>
+<li>
+<p><a href="https://github.com/lukeapage/node-markdown-spellcheck">markdown-spellcheck</a></p>
+<blockquote>
+<p>Configure in the root project.</p>
+<ul>
+<li><a href="https://github.com/lukeapage/node-markdown-spellcheck/blob/master/.spelling">.spelling</a></li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><a href="https://github.com/get-alex/alex">alex</a> catch insensitive, inconsiderate writing.</p>
+<blockquote>
+<p>Configure in the root project.</p>
+<ul>
+<li><a href="https://github.com/get-alex/alex#configuration">.alexrc.yml</a></li>
+<li><a href="https://github.com/get-alex/alex/blob/main/.alexignore">.alexignore</a></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="83-editor">8.3. Editor<a class="headerlink" href="#83-editor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://code.visualstudio.com/download">Visual Studio Code</a></li>
+</ul>
+<h2 id="9-cmake">9. CMake<a class="headerlink" href="#9-cmake" title="Permanent link">&para;</a></h2>
+<h3 id="91-convention">9.1. Convention<a class="headerlink" href="#91-convention" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://community.kde.org/Policies/CMake_Coding_Style">KDE CMake Coding Style</a></li>
+<li><a href="https://cmake.org/cmake/help/latest/manual/cmake-developer.7.html#modules">CMake Developer</a></li>
+</ul>
+<h3 id="92-code-analysis">9.2. Code Analysis<a class="headerlink" href="#92-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Code Check</p>
+<ul>
+<li><a href="https://github.com/cmake-lint/cmake-lint">cmake-lint</a></li>
+</ul>
+<p>Code Format</p>
+<ul>
+<li><a href="https://github.com/cheshirekow/cmake_format">cmake_format</a><blockquote>
+<p>Configure in the root project.</p>
+<ul>
+<li><a href="https://cmake-format.readthedocs.io/en/latest/configuration.html">cmake-format</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=cheshirekow.cmake-format">VS Code Extension</a></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="93-editor">9.3. Editor<a class="headerlink" href="#93-editor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://code.visualstudio.com/download">Visual Studio Code</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

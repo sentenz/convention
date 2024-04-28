@@ -1,0 +1,2000 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/database/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Database - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#database" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Database
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Database
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Database">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-relational-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Relational Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-object-relational-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Object-Relational Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-nosql-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. NoSQL Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-columnar-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.4. Columnar Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-graph-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.5. Graph Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-time-series-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.6. Time-series Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-in-memory-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.7. In-Memory Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#118-cloud-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.8. Cloud Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#119-hybrid-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.9. Hybrid Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1110-distributed-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.10. Distributed Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1111-embedded-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.11. Embedded Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1112-xml-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.12. XML Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1113-key-value-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.13. Key-Value Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1114-document-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.14. Document Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1115-geospatial-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.15. Geospatial Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1116-edge-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.16. Edge Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1117-streaming-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.17. Streaming Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1118-machine-learning-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.18. Machine Learning Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1119-event-driven-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.19. Event-Driven Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1120-newsql-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.20. NewSQL Databases
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1121-multi-model-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.21. Multi-Model Databases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2. Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-dbms" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1. DBMS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.2. Transaction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-acid" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.3. ACID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-crud" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4. CRUD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125-htap" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.5. HTAP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#126-oltp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.6. OLTP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#127-olap" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.7. OLAP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#128-fdw" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.8. FDW
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#129-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.9. Streaming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1210-geospatial" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.10. Geospatial
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1211-time-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.11. Time Series
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1212-distributed-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.12. Distributed Tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1213-schema-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.13. Schema Design
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principle
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/database.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/database.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="database">Database<a class="headerlink" href="#database" title="Permanent link">&para;</a></h1>
+<p>A database is a collection of structured data that is organized and stored in a way that enables efficient retrieval and manipulation of the data. A database can be used to store and manage data for a variety of purposes, such as maintaining a record of transactions, storing customer information, or tracking inventory.</p>
+<p>Databases are typically managed by a database management system (DBMS), which provides a set of tools and interfaces for creating, modifying, and querying the data stored in the database. This can include a graphical user interface for managing the database, or a set of command-line tools and programming APIs for accessing and manipulating the data programmatically.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-database">1.1. Database</a><ul>
+<li><a href="#111-relational-databases">1.1.1. Relational Databases</a></li>
+<li><a href="#112-object-relational-databases">1.1.2. Object-Relational Databases</a></li>
+<li><a href="#113-nosql-databases">1.1.3. NoSQL Databases</a></li>
+<li><a href="#114-columnar-databases">1.1.4. Columnar Databases</a></li>
+<li><a href="#115-graph-databases">1.1.5. Graph Databases</a></li>
+<li><a href="#116-time-series-databases">1.1.6. Time-series Databases</a></li>
+<li><a href="#117-in-memory-databases">1.1.7. In-Memory Databases</a></li>
+<li><a href="#118-cloud-databases">1.1.8. Cloud Databases</a></li>
+<li><a href="#119-hybrid-databases">1.1.9. Hybrid Databases</a></li>
+<li><a href="#1110-distributed-databases">1.1.10. Distributed Databases</a></li>
+<li><a href="#1111-embedded-databases">1.1.11. Embedded Databases</a></li>
+<li><a href="#1112-xml-databases">1.1.12. XML Databases</a></li>
+<li><a href="#1113-key-value-databases">1.1.13. Key-Value Databases</a></li>
+<li><a href="#1114-document-databases">1.1.14. Document Databases</a></li>
+<li><a href="#1115-geospatial-databases">1.1.15. Geospatial Databases</a></li>
+<li><a href="#1116-edge-databases">1.1.16. Edge Databases</a></li>
+<li><a href="#1117-streaming-databases">1.1.17. Streaming Databases</a></li>
+<li><a href="#1118-machine-learning-databases">1.1.18. Machine Learning Databases</a></li>
+<li><a href="#1119-event-driven-databases">1.1.19. Event-Driven Databases</a></li>
+<li><a href="#1120-newsql-databases">1.1.20. NewSQL Databases</a></li>
+<li><a href="#1121-multi-model-databases">1.1.21. Multi-Model Databases</a></li>
+</ul>
+</li>
+<li><a href="#12-management">1.2. Management</a><ul>
+<li><a href="#121-dbms">1.2.1. DBMS</a></li>
+<li><a href="#122-transaction">1.2.2. Transaction</a></li>
+<li><a href="#123-acid">1.2.3. ACID</a></li>
+<li><a href="#124-crud">1.2.4. CRUD</a></li>
+<li><a href="#125-htap">1.2.5. HTAP</a></li>
+<li><a href="#126-oltp">1.2.6. OLTP</a></li>
+<li><a href="#127-olap">1.2.7. OLAP</a></li>
+<li><a href="#128-fdw">1.2.8. FDW</a></li>
+<li><a href="#129-streaming">1.2.9. Streaming</a></li>
+<li><a href="#1210-geospatial">1.2.10. Geospatial</a></li>
+<li><a href="#1211-time-series">1.2.11. Time Series</a></li>
+<li><a href="#1212-distributed-tables">1.2.12. Distributed Tables</a></li>
+<li><a href="#1213-schema-design">1.2.13. Schema Design</a></li>
+</ul>
+</li>
+<li><a href="#2-principle">2. Principle</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-database">1.1. Database<a class="headerlink" href="#11-database" title="Permanent link">&para;</a></h3>
+<h4 id="111-relational-databases">1.1.1. Relational Databases<a class="headerlink" href="#111-relational-databases" title="Permanent link">&para;</a></h4>
+<p>Relational databases store data in a structured format using tables and relationships. The data is organized into rows and columns, and relationships are established between tables using keys.</p>
+<p>DBMS tools: MySQL, Oracle Database, Microsoft SQL Server.</p>
+<h4 id="112-object-relational-databases">1.1.2. Object-Relational Databases<a class="headerlink" href="#112-object-relational-databases" title="Permanent link">&para;</a></h4>
+<p>Object-Relational databases combine the features of relational databases and object-oriented programming. They store data in tables as well as objects, allowing for more complex data structures and relationships.</p>
+<p>DBMS tools: PostgreSQL, Oracle Database.</p>
+<h4 id="113-nosql-databases">1.1.3. NoSQL Databases<a class="headerlink" href="#113-nosql-databases" title="Permanent link">&para;</a></h4>
+<p>NoSQL databases do not use a fixed schema, and instead store data in a variety of formats, such as key-value pairs, documents, or graph structures. They are designed for scalability and handling large amounts of unstructured data.</p>
+<p>DBMS tools: MongoDB, Cassandra, Amazon DynamoDB.</p>
+<h4 id="114-columnar-databases">1.1.4. Columnar Databases<a class="headerlink" href="#114-columnar-databases" title="Permanent link">&para;</a></h4>
+<p>Columnar databases store data in columns rather than rows, providing faster query performance for large datasets, improving data performance and scalability. They are typically used in data warehousing and analytics.</p>
+<p>DBMS tools: Apache Cassandra, Amazon Redshift, Google Bigtable.</p>
+<h4 id="115-graph-databases">1.1.5. Graph Databases<a class="headerlink" href="#115-graph-databases" title="Permanent link">&para;</a></h4>
+<p>Graph databases store data as nodes and relationships, providing efficient querying and navigation of complex relationships. They are commonly used in social network analysis, recommendation systems, and fraud detection.</p>
+<p>DBMS tools: Neo4j, Amazon Neptune, OrientDB.</p>
+<h4 id="116-time-series-databases">1.1.6. Time-series Databases<a class="headerlink" href="#116-time-series-databases" title="Permanent link">&para;</a></h4>
+<p>Time-series databases are specialized databases optimized for storing and retrieving time-stamped data. They are commonly used for monitoring and analyzing sensor data, financial data, and IoT data.</p>
+<p>DBMS tools: InfluxDB, TimescaleDB, OpenTSDB.</p>
+<h4 id="117-in-memory-databases">1.1.7. In-Memory Databases<a class="headerlink" href="#117-in-memory-databases" title="Permanent link">&para;</a></h4>
+<p>In-Memory databases store data in RAM, providing extremely fast query performance. They are used for real-time applications, such as gaming, financial trading, and telecommunications.</p>
+<p>DBMS tools: Redis, Apache Ignite, MemSQL.</p>
+<h4 id="118-cloud-databases">1.1.8. Cloud Databases<a class="headerlink" href="#118-cloud-databases" title="Permanent link">&para;</a></h4>
+<p>Cloud databases are databases that run on cloud computing platforms, such as Amazon Web Services, Microsoft Azure, or Google Cloud Platform. They provide scalable, on-demand access to databases, allowing for easy provisioning and management of resources.</p>
+<p>DBMS tools: Amazon RDS, Microsoft Azure SQL Database, Google Cloud SQL.</p>
+<h4 id="119-hybrid-databases">1.1.9. Hybrid Databases<a class="headerlink" href="#119-hybrid-databases" title="Permanent link">&para;</a></h4>
+<p>Hybrid databases are databases that combine the features of multiple database categories, allowing for a variety of data formats and structures. They are designed to handle the demands of modern applications, which often require a combination of structured and unstructured data.</p>
+<p>DBMS tools: Amazon DocumentDB, Microsoft Azure Cosmos DB, Google Cloud Firestore.</p>
+<h4 id="1110-distributed-databases">1.1.10. Distributed Databases<a class="headerlink" href="#1110-distributed-databases" title="Permanent link">&para;</a></h4>
+<p>Distributed databases are databases that are split across multiple servers, providing increased scalability and fault tolerance. They are commonly used for large-scale, data-intensive applications, such as e-commerce, online gaming, and scientific simulations.</p>
+<p>DBMS tools: Apache Cassandra, Amazon DynamoDB, Microsoft Azure Cosmos DB.</p>
+<h4 id="1111-embedded-databases">1.1.11. Embedded Databases<a class="headerlink" href="#1111-embedded-databases" title="Permanent link">&para;</a></h4>
+<p>Embedded databases are databases that run directly on an application, rather than on a separate server. They are typically used for small-scale, standalone applications, such as mobile devices or embedded systems.</p>
+<p>DBMS tools: SQLite, Berkeley DB, H2.</p>
+<h4 id="1112-xml-databases">1.1.12. XML Databases<a class="headerlink" href="#1112-xml-databases" title="Permanent link">&para;</a></h4>
+<p>XML databases store data in the XML format, providing a flexible and extensible data structure. They are commonly used for data exchange and web services, as well as for document management.</p>
+<p>DBMS tools: eXist-db, BaseX, Apache MarkLogic.</p>
+<h4 id="1113-key-value-databases">1.1.13. Key-Value Databases<a class="headerlink" href="#1113-key-value-databases" title="Permanent link">&para;</a></h4>
+<p>Key-value databases are databases that store data as key-value pairs, allowing for simple and efficient data storage and retrieval. They often support advanced key-value operations, such as key-value updates, key-value deletions, and key-value search, and they are often used in applications that require simple and efficient data storage and retrieval.</p>
+<p>DBMS tools: Amazon DynamoDB, Riak, Redis.</p>
+<h4 id="1114-document-databases">1.1.14. Document Databases<a class="headerlink" href="#1114-document-databases" title="Permanent link">&para;</a></h4>
+<p>Document databases are databases that store data as semi-structured or unstructured documents, allowing for the flexible storage and retrieval of data elements. They often support advanced document operations, such as document queries, document updates, and document indexing, and they are often used in applications that require the flexible storage and retrieval of semi-structured or unstructured data elements.</p>
+<p>DBMS tools: MongoDB, Amazon DocumentDB, Couchbase.</p>
+<h4 id="1115-geospatial-databases">1.1.15. Geospatial Databases<a class="headerlink" href="#1115-geospatial-databases" title="Permanent link">&para;</a></h4>
+<p>Geospatial databases are databases that are optimized for storing and retrieving geospatial data, such as locations, maps, and geographic information. They often support advanced geospatial operations, such as spatial indexing, geospatial queries, and geospatial analytics, and they are often used in applications that require geospatial data processing and analysis.</p>
+<p>DBMS tools: PostGIS, Oracle Spatial and Graph, MongoDB Geospatial.</p>
+<h4 id="1116-edge-databases">1.1.16. Edge Databases<a class="headerlink" href="#1116-edge-databases" title="Permanent link">&para;</a></h4>
+<p>Edge databases are databases that run on edge devices, such as IoT devices, and are designed for low-latency data processing and storage. They often support advanced edge operations, such as local data processing, data aggregation, and data synchronization, and they are often used in applications that require low-latency data processing and storage at the edge.</p>
+<p>DBMS tools: Amazon Greengrass, Microsoft Azure IoT Edge, Google Cloud IoT Edge.</p>
+<h4 id="1117-streaming-databases">1.1.17. Streaming Databases<a class="headerlink" href="#1117-streaming-databases" title="Permanent link">&para;</a></h4>
+<p>Streaming databases are databases that are designed for real-time data ingestion, processing, and analysis of large amounts of data. They often support advanced streaming operations, such as real-time data analysis, event processing, and data pipelines, and they are often used in applications that require real-time data processing and analysis.</p>
+<p>DBMS tools: Apache Kafka, Apache Flink, Amazon Kinesis.</p>
+<h4 id="1118-machine-learning-databases">1.1.18. Machine Learning Databases<a class="headerlink" href="#1118-machine-learning-databases" title="Permanent link">&para;</a></h4>
+<p>Machine learning databases are databases that provide built-in machine learning algorithms and support for data science workflows. They often support advanced machine learning operations, such as data preprocessing, model training, and model deployment, and they are often used in applications that require machine learning and data science capabilities.</p>
+<p>DBMS tools: Google BigQuery ML, Amazon SageMaker, Databricks.</p>
+<h4 id="1119-event-driven-databases">1.1.19. Event-Driven Databases<a class="headerlink" href="#1119-event-driven-databases" title="Permanent link">&para;</a></h4>
+<p>Event-driven databases are databases that support event-driven architectures and real-time data processing. They often support advanced event-processing operations, such as event streams, event sourcing, and event notifications, and they are often used in applications that require real-time data processing and event-driven architectures.</p>
+<p>DBMS tools: Apache Kafka, Apache Pulsar, Apache Flink.</p>
+<h4 id="1120-newsql-databases">1.1.20. NewSQL Databases<a class="headerlink" href="#1120-newsql-databases" title="Permanent link">&para;</a></h4>
+<p>NewSQL databases are databases that combine the scalability and performance of NoSQL databases with the transactional consistency and durability of relational databases. They often support advanced SQL operations, and they are often used in applications that require high performance and strong consistency guarantees.</p>
+<p>DBMS tools: Google Spanner, CockroachDB, NuoDB.</p>
+<h4 id="1121-multi-model-databases">1.1.21. Multi-Model Databases<a class="headerlink" href="#1121-multi-model-databases" title="Permanent link">&para;</a></h4>
+<p>Multi-model databases are databases that support multiple data models, such as relational, document-oriented, graph, and key-value. This allows for greater flexibility in data modeling and the ability to handle a variety of data structures in a single database. Multi-model databases are often used in applications that require the ability to store and retrieve different types of data in a unified way.</p>
+<p>DBMS tools: ArangoDB, Amazon DocumentDB, OrientDB.</p>
+<h3 id="12-management">1.2. Management<a class="headerlink" href="#12-management" title="Permanent link">&para;</a></h3>
+<p>Database Management involves organizing, storing, and maintaining data within a database system. It encompasses design principles, technologies, and methodologies to ensure data reliability, efficiency, and security. The tasks involved in database management include defining data elements, creating and maintaining the database schema, enforcing data integrity and security, optimizing performance, and implementing backup and recovery mechanisms.</p>
+<h4 id="121-dbms">1.2.1. DBMS<a class="headerlink" href="#121-dbms" title="Permanent link">&para;</a></h4>
+<p>A database management system (DBMS) is a software system that allows users to define, create, maintain, and control access to databases. A DBMS manages the organization, manipulation, storage, and retrieval of data, and provides an interface for interaction with the data.</p>
+<p>Key functions of a DBMS include:</p>
+<ul>
+<li>
+<p>Data Storage</p>
+<blockquote>
+<p>A DBMS provides a centralized repository for storing data, which can be organized into tables and other structures.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Retrieval</p>
+<blockquote>
+<p>A DBMS allows users to retrieve specific data from the database, either through queries or by browsing the data directly.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Manipulation</p>
+<blockquote>
+<p>A DBMS provides a set of tools for modifying and updating data in the database, including adding new records, deleting existing records, and modifying existing data.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Security</p>
+<blockquote>
+<p>A DBMS provides a variety of security features to protect the data in the database, including authentication, authorization, and access control.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Consistency</p>
+<blockquote>
+<p>A DBMS provides a set of features to ensure the consistency and reliability of the data in the database, including transaction management and data validation.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="122-transaction">1.2.2. Transaction<a class="headerlink" href="#122-transaction" title="Permanent link">&para;</a></h4>
+<p>A transaction in database systems refers to a unit of work that is executed within a database management system (DBMS). The primary objective of transactions is to maintain the consistency and integrity of data within a database, by ensuring that the database remains in a consistent state even in the face of failures or errors. Transactions achieve this objective by implementing the Atomicity, Consistency, Isolation, and Durability (ACID) properties, which guarantee that either all the operations within a transaction are completed successfully, or none of them are completed at all.</p>
+<h4 id="123-acid">1.2.3. ACID<a class="headerlink" href="#123-acid" title="Permanent link">&para;</a></h4>
+<p>ACID stands for Atomicity, Consistency, Isolation, and Durability. It is a set of properties that ensure the consistency and reliability of database transactions.</p>
+<p>ACID properties ensure that database transactions are reliable, consistent, and resistant to failures or data loss.</p>
+<ul>
+<li>
+<p>Atomicity</p>
+<blockquote>
+<p>Atomicity property ensures that a transaction is treated as a single unit of work, either completing fully or rolling back completely in the event of a failure. This ensures that the database remains in a consistent state, even if part of the transaction fails.</p>
+</blockquote>
+</li>
+<li>
+<p>Consistency</p>
+<blockquote>
+<p>Consistency property ensures that a transaction brings the database from one consistent state to another, without introducing any invalid data. This is typically achieved through the use of constraints and data validation.</p>
+</blockquote>
+</li>
+<li>
+<p>Isolation</p>
+<blockquote>
+<p>Isolation property ensures that concurrent transactions do not interfere with each other, and that each transaction is executed as if it were the only transaction taking place. This prevents data corruption and other issues that could arise from multiple transactions accessing the same data simultaneously.</p>
+</blockquote>
+</li>
+<li>
+<p>Durability</p>
+<blockquote>
+<p>Durability property ensures that once a transaction is committed, its effects are permanent and cannot be lost in the event of a failure. This is achieved through the use of transaction logs, backups, and other measures.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="124-crud">1.2.4. CRUD<a class="headerlink" href="#124-crud" title="Permanent link">&para;</a></h4>
+<p>CRUD stands for Create, Read, Update, and Delete. It is a set of basic operations that can be performed on a database, and is used to manage data in a database.</p>
+<p>The CRUD operations are the foundation of most database management systems, and are used to perform the basic functions of managing data in a database.</p>
+<ul>
+<li>
+<p>Create</p>
+<blockquote>
+<p>Create operation allows a user to add new data to a database. This can include creating new records, tables, or other structures in the database.</p>
+</blockquote>
+</li>
+<li>
+<p>Read</p>
+<blockquote>
+<p>Read operation allows a user to retrieve data from a database. This can include reading specific records, performing searches, or retrieving data for reporting purposes.</p>
+</blockquote>
+</li>
+<li>
+<p>Update</p>
+<blockquote>
+<p>Update operation allows a user to modify existing data in a database. This can include updating existing records, adding new fields to tables, or changing the structure of the database.</p>
+</blockquote>
+</li>
+<li>
+<p>Delete</p>
+<blockquote>
+<p>Delete operation allows a user to remove data from a database. This can include deleting individual records, tables, or other structures in the database.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="125-htap">1.2.5. HTAP<a class="headerlink" href="#125-htap" title="Permanent link">&para;</a></h4>
+<p>HTAP (Hybrid Transactional/Analytical Processing) is a term used to describe a database architecture that combines the characteristics of both transactional (OLTP) and analytical (OLAP) processing. HTAP databases are designed to handle both transactional and analytical workloads in real-time, providing a single source of truth for data that is both transactional and analytical.</p>
+<h4 id="126-oltp">1.2.6. OLTP<a class="headerlink" href="#126-oltp" title="Permanent link">&para;</a></h4>
+<p>OLTP (Online Transactional Processing) is a database design approach that focuses on optimizing transactional processing, such as inserting, updating, or deleting data. OLTP databases are designed to handle large numbers of concurrent transactions, and are optimized for high-speed and low latency.</p>
+<h4 id="127-olap">1.2.7. OLAP<a class="headerlink" href="#127-olap" title="Permanent link">&para;</a></h4>
+<p>OLAP (Online Analytical Processing) is a database design approach that focuses on optimizing analytical processing, such as complex queries and reporting. OLAP databases are designed to handle large amounts of data and complex calculations, and are optimized for high-performance data analysis.</p>
+<h4 id="128-fdw">1.2.8. FDW<a class="headerlink" href="#128-fdw" title="Permanent link">&para;</a></h4>
+<p>FDW (Foreign Data Wrapper) is a foreign data wrapper is a database component that enables data stored in external databases to be treated as if it were part of the local database. FDWs provide a convenient way to access data stored in different databases, and can be used to create a single virtual database from multiple sources.</p>
+<h4 id="129-streaming">1.2.9. Streaming<a class="headerlink" href="#129-streaming" title="Permanent link">&para;</a></h4>
+<p>Streaming refers to the process of continuously receiving and processing data in real-time. In database systems, streaming can be used to handle large amounts of data that are generated in real-time, such as IoT data or social media data.</p>
+<h4 id="1210-geospatial">1.2.10. Geospatial<a class="headerlink" href="#1210-geospatial" title="Permanent link">&para;</a></h4>
+<p>Geospatial databases are databases that are designed to store and manage geographic data, such as location-based data, maps, and satellite imagery. Geospatial databases are optimized for the storage and management of large amounts of data with geographic attributes, and are widely used in industries such as transportation, logistics, and real estate.</p>
+<h4 id="1211-time-series">1.2.11. Time Series<a class="headerlink" href="#1211-time-series" title="Permanent link">&para;</a></h4>
+<p>Time series databases are databases that are designed to store and manage time-based data, such as sensor data, stock prices, and weather data. Time series databases are optimized for the storage and management of large amounts of time-based data, and are widely used in industries such as finance, IoT, and weather forecasting.</p>
+<h4 id="1212-distributed-tables">1.2.12. Distributed Tables<a class="headerlink" href="#1212-distributed-tables" title="Permanent link">&para;</a></h4>
+<p>Distributed tables are tables in a database that are spread across multiple nodes in a distributed database system. Distributed tables provide a way to scale databases horizontally, allowing for the storage and management of large amounts of data across multiple nodes. This provides increased performance and scalability, as well as improved fault tolerance.</p>
+<h4 id="1213-schema-design">1.2.13. Schema Design<a class="headerlink" href="#1213-schema-design" title="Permanent link">&para;</a></h4>
+<p>Schema design is a critical component of database architecture and design, as it defines the structure of the data in a database. Schema design involves creating tables, columns, and relationships to represent the data requirements of an application. The schema defines the structure of the data and the relationships between the data elements, and it is used to ensure that the data is stored in a consistent and organized manner.</p>
+<h2 id="2-principle">2. Principle<a class="headerlink" href="#2-principle" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Atomicity</p>
+<blockquote>
+<p>The principle of atomicity ensures that a database transaction is either completed in its entirety or not completed at all, ensuring data consistency and integrity.</p>
+</blockquote>
+</li>
+<li>
+<p>Consistency</p>
+<blockquote>
+<p>The principle of consistency ensures that a database conforms to a set of rules or constraints, such as uniqueness, referential integrity, and domain integrity, ensuring data accuracy and reliability.</p>
+</blockquote>
+</li>
+<li>
+<p>Isolation</p>
+<blockquote>
+<p>The principle of isolation ensures that multiple database transactions are executed as if they were executing independently, ensuring data consistency and avoiding concurrent access conflicts.</p>
+</blockquote>
+</li>
+<li>
+<p>Durability</p>
+<blockquote>
+<p>The principle of durability ensures that once a database transaction is committed, its effects are permanent and will persist even in the event of a system failure, ensuring data reliability and availability.</p>
+</blockquote>
+</li>
+<li>
+<p>Normalization</p>
+<blockquote>
+<p>The principle of normalization is the process of organizing a database into a set of tables with well-defined relationships, reducing data redundancy and increasing data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Referential Integrity</p>
+<blockquote>
+<p>The principle of referential integrity is the requirement that every foreign key in a database must have a corresponding primary key in another table, ensuring data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Abstraction</p>
+<blockquote>
+<p>The principle of data abstraction is the process of hiding the implementation details of a database from the users, providing a higher-level view of the data and simplifying database access.</p>
+</blockquote>
+</li>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>The principle of scalability is the ability of a database to handle increasing amounts of data and users as the system grows, ensuring data reliability and availability.</p>
+</blockquote>
+</li>
+<li>
+<p>Performance</p>
+<blockquote>
+<p>The principle of performance is the ability of a database to efficiently retrieve and manipulate data, ensuring that database operations are executed quickly and effectively.</p>
+</blockquote>
+</li>
+<li>
+<p>Security</p>
+<blockquote>
+<p>The principle of security is the protection of database data from unauthorized access and manipulation, ensuring data privacy and confidentiality.</p>
+</blockquote>
+</li>
+<li>
+<p>Backup and Recovery</p>
+<blockquote>
+<p>The principle of backup and recovery is the process of creating and maintaining backups of database data, ensuring data availability and reliability in the event of a system failure or data loss.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Encryption</p>
+<blockquote>
+<p>The principle of data encryption is the process of converting sensitive data into an unreadable format, ensuring data privacy and confidentiality.</p>
+</blockquote>
+</li>
+<li>
+<p>ata Access Control</p>
+<blockquote>
+<p>The principle of data access control is the process of controlling access to database data based on user permissions, ensuring data security and confidentiality.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Modeling</p>
+<blockquote>
+<p>The principle of data modeling is the process of creating a conceptual representation of a database, ensuring data consistency and accuracy.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Integration</p>
+<blockquote>
+<p>The principle of data integration is the process of combining data from multiple sources into a single, unified view, ensuring data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Migration</p>
+<blockquote>
+<p>The principle of data migration is the process of transferring data from one database to another, ensuring data availability and reliability.</p>
+</blockquote>
+</li>
+<li>
+<p>Query Optimization</p>
+<blockquote>
+<p>The principle of query optimization is the process of improving the efficiency of database queries, ensuring fast and efficient data retrieval.</p>
+</blockquote>
+</li>
+<li>
+<p>Indexing</p>
+<blockquote>
+<p>The principle of indexing is the process of creating an index of data elements, allowing for fast and efficient data retrieval.</p>
+</blockquote>
+</li>
+<li>
+<p>Partitioning</p>
+<blockquote>
+<p>The principle of partitioning is the process of dividing a database into smaller, more manageable parts, improving database performance and scalability.</p>
+</blockquote>
+</li>
+<li>
+<p>Replication</p>
+<blockquote>
+<p>The principle of replication is the process of creating multiple copies of a database, ensuring data availability and reliability.</p>
+</blockquote>
+</li>
+<li>
+<p>Redundancy</p>
+<blockquote>
+<p>The principle of redundancy is the process of creating multiple backups of database data, ensuring data availability and reliability in the event of a system failure.</p>
+</blockquote>
+</li>
+<li>
+<p>Fault Tolerance</p>
+<blockquote>
+<p>The principle of fault tolerance is the ability of a database to continue functioning in the event of a system failure or error, ensuring data availability and reliability.</p>
+</blockquote>
+</li>
+<li>
+<p>High Availability</p>
+<blockquote>
+<p>The principle of high availability is the ability of a database to be accessible and operational at all times, ensuring data availability and reliability.</p>
+</blockquote>
+</li>
+<li>
+<p>Load Balancing</p>
+<blockquote>
+<p>The principle of load balancing is the process of distributing database workloads across multiple servers, improving database performance and scalability.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Warehousing</p>
+<blockquote>
+<p>The principle of data warehousing is the process of storing large amounts of data for analysis and reporting purposes, improving data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Marts</p>
+<blockquote>
+<p>The principle of data marts is the process of creating smaller, more focused data warehouses, improving data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Mining</p>
+<blockquote>
+<p>The principle of data mining is the process of discovering patterns and trends in large amounts of data, improving data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Business Intelligence</p>
+<blockquote>
+<p>The principle of business intelligence is the process of using data analysis and reporting to support business decision-making, improving data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Visualization</p>
+<blockquote>
+<p>The principle of data visualization is the process of presenting data in graphical and visual format, improving data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Big Data</p>
+<blockquote>
+<p>The principle of big data is the process of handling and analyzing large amounts of data, improving data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>NoSQL</p>
+<blockquote>
+<p>The principle of NoSQL is a type of database that does not use a fixed schema and allows for flexible data modeling, improving data scalability and performance.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Define Clear Objectives</p>
+<blockquote>
+<p>Determine the specific purpose and requirements of the database before starting the design process.</p>
+</blockquote>
+</li>
+<li>
+<p>Normalize Data</p>
+<blockquote>
+<p>Normalize the data to reduce redundancy and improve data accuracy and consistency.</p>
+</blockquote>
+</li>
+<li>
+<p>Choose the Right Database Technology</p>
+<blockquote>
+<p>Choose the database technology that best fits the requirements of the database, taking into consideration factors such as scalability, performance, and reliability.</p>
+</blockquote>
+</li>
+<li>
+<p>Design for Performance</p>
+<blockquote>
+<p>Design the database to optimize performance, taking into consideration factors such as indexing, query optimization, and caching.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Security Measures</p>
+<blockquote>
+<p>Implement security measures to protect sensitive data and prevent unauthorized access to the database.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor and Tune the Database</p>
+<blockquote>
+<p>Regularly monitor and tune the database to ensure optimal performance and prevent issues such as bottlenecks and deadlocks.</p>
+</blockquote>
+</li>
+<li>
+<p>Plan for Data Backup and Recovery</p>
+<blockquote>
+<p>Plan for data backup and recovery to ensure the availability and integrity of the database in case of disaster or other unexpected events.</p>
+</blockquote>
+</li>
+<li>
+<p>Document the Database</p>
+<blockquote>
+<p>Document the database design, schema, and data to help ensure accuracy and consistency over time.</p>
+</blockquote>
+</li>
+<li>
+<p>Consider Scalability</p>
+<blockquote>
+<p>Consider scalability when designing the database, ensuring that the database can easily be expanded to accommodate future growth.</p>
+</blockquote>
+</li>
+<li>
+<p>Continuously Evaluate and Improve</p>
+<blockquote>
+<p>Continuously evaluate and improve the database to ensure that it remains efficient and effective over time.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Access Controls</p>
+<blockquote>
+<p>Implement access controls to ensure that only authorized users can access the database and specific data.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Unique Identifiers</p>
+<blockquote>
+<p>Use unique identifiers, such as primary keys, to ensure that data is accurately referenced and linked.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Transactions</p>
+<blockquote>
+<p>Use transactions to ensure data integrity and consistency, even in the face of errors or unexpected events.</p>
+</blockquote>
+</li>
+<li>
+<p>Regularly Test and Verify Data</p>
+<blockquote>
+<p>Regularly test and verify data to ensure accuracy and completeness, and to identify and fix any issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Maintain Data History</p>
+<blockquote>
+<p>Maintain data history to track changes and provide a historical view of the data.</p>
+</blockquote>
+</li>
+<li>
+<p>Plan for Disaster Recovery</p>
+<blockquote>
+<p>Plan for disaster recovery to ensure that the database can quickly and easily be recovered in the event of a disaster.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Automated Tools</p>
+<blockquote>
+<p>Use automated tools, such as backups and monitoring software, to simplify and automate database management tasks.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Data Validation</p>
+<blockquote>
+<p>Implement data validation to ensure that data is entered correctly and meets specific criteria.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Standard Data Formats</p>
+<blockquote>
+<p>Use standard data formats, such as XML or JSON, to simplify data exchange and integration.</p>
+</blockquote>
+</li>
+<li>
+<p>Monitor Database Health</p>
+<blockquote>
+<p>Monitor the health of the database to identify and address performance or reliability issues.</p>
+</blockquote>
+</li>
+<li>
+<p>Encrypt Sensitive Data</p>
+<blockquote>
+<p>Encrypt sensitive data to protect it from unauthorized access and to ensure privacy.</p>
+</blockquote>
+</li>
+<li>
+<p>Document Data Sources</p>
+<blockquote>
+<p>Document data sources to help ensure data accuracy and consistency and to simplify data integration.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Triggers</p>
+<blockquote>
+<p>Use triggers to automate database actions and to ensure data consistency and accuracy.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Version Control</p>
+<blockquote>
+<p>Implement version control to track changes and ensure that multiple users can work on the database simultaneously.</p>
+</blockquote>
+</li>
+<li>
+<p>Plan for Data Archiving</p>
+<blockquote>
+<p>Plan for data archiving to help ensure data accuracy and consistency over time, and to reduce the size of the database.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Stored Procedures</p>
+<blockquote>
+<p>Use stored procedures to improve database performance and to simplify complex database operations.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Data Partitioning</p>
+<blockquote>
+<p>Implement data partitioning to improve database performance and scalability.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Data Warehousing</p>
+<blockquote>
+<p>Use data warehousing to improve data accuracy, consistency, and performance, especially for large amounts of data.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Automated Reporting</p>
+<blockquote>
+<p>Implement automated reporting to simplify the generation of reports and to improve data accuracy.</p>
+</blockquote>
+</li>
+<li>
+<p>Evaluate the Database Regularly</p>
+<blockquote>
+<p>Evaluate the database regularly to identify and address performance, reliability, and security issues, and to make improvements where necessary.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Materialized Views</p>
+<blockquote>
+<p>Use materialized views to improve database performance and to simplify complex database queries.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Data Replication</p>
+<blockquote>
+<p>Implement data replication to ensure high availability and to improve database performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Real-time Analytics</p>
+<blockquote>
+<p>Use real-time analytics to quickly analyze data and make decisions in real-time.</p>
+</blockquote>
+</li>
+<li>
+<p>Consider Multi-tenancy</p>
+<blockquote>
+<p>Consider multi-tenancy when designing the database, to ensure that multiple tenants can use the database simultaneously and securely.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Disaster Tolerance</p>
+<blockquote>
+<p>Implement disaster tolerance to ensure that the database remains available even in the face of a disaster.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Compression</p>
+<blockquote>
+<p>Use compression to reduce the size of the database and to improve database performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Data Sharding</p>
+<blockquote>
+<p>Implement data sharding to improve database performance and scalability, especially for large amounts of data.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Cloud Databases</p>
+<blockquote>
+<p>Use cloud databases to take advantage of the scalability, security, and reliability offered by cloud computing.</p>
+</blockquote>
+</li>
+<li>
+<p>Implement Auditing</p>
+<blockquote>
+<p>Implement auditing to track database activity, improve security, and comply with regulations.</p>
+</blockquote>
+</li>
+<li>
+<p>Optimize Queries</p>
+<blockquote>
+<p>Optimize queries to improve database performance and reduce response time.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Relational Database</p>
+<blockquote>
+<p>A type of database that organizes data into tables and uses relationships between the tables to store and retrieve data.</p>
+</blockquote>
+</li>
+<li>
+<p>Table</p>
+<blockquote>
+<p>A collection of related data organized into rows and columns in a relational database.</p>
+</blockquote>
+</li>
+<li>
+<p>Column</p>
+<blockquote>
+<p>A vertical data element in a table, representing a specific type of data.</p>
+</blockquote>
+</li>
+<li>
+<p>Row</p>
+<blockquote>
+<p>A horizontal data element in a table, representing a single instance of data.</p>
+</blockquote>
+</li>
+<li>
+<p>Primary Key</p>
+<blockquote>
+<p>A unique identifier for each row in a table, used to establish relationships between tables.</p>
+</blockquote>
+</li>
+<li>
+<p>Foreign Key</p>
+<blockquote>
+<p>A reference to a primary key in another table, used to establish relationships between tables.</p>
+</blockquote>
+</li>
+<li>
+<p>Index</p>
+<blockquote>
+<p>A data structure used to improve database performance by allowing for fast searching and retrieval of data.</p>
+</blockquote>
+</li>
+<li>
+<p>Query</p>
+<blockquote>
+<p>A request for data from a database, usually expressed in a database query language.</p>
+</blockquote>
+</li>
+<li>
+<p>Transaction</p>
+<blockquote>
+<p>A sequence of database operations that are treated as a single unit of work, either committed or rolled back.</p>
+</blockquote>
+</li>
+<li>
+<p>Stored Procedure</p>
+<blockquote>
+<p>A precompiled set of database operations that can be executed repeatedly.</p>
+</blockquote>
+</li>
+<li>
+<p>Trigger</p>
+<blockquote>
+<p>An event-driven procedure that is executed automatically when a specific database event occurs.</p>
+</blockquote>
+</li>
+<li>
+<p>View</p>
+<blockquote>
+<p>A virtual table that is derived from the data in one or more tables.</p>
+</blockquote>
+</li>
+<li>
+<p>Materialized View</p>
+<blockquote>
+<p>A pre-computed view of data, stored in a table for fast retrieval.</p>
+</blockquote>
+</li>
+<li>
+<p>Partition</p>
+<blockquote>
+<p>A division of a database table into smaller pieces for improved performance and scalability.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Warehousing</p>
+<blockquote>
+<p>The practice of storing data in a centralized repository for fast and efficient analysis.</p>
+</blockquote>
+</li>
+<li>
+<p>NoSQL</p>
+<blockquote>
+<p>A type of database that does not use the relational model and is optimized for handling large amounts of unstructured data.</p>
+</blockquote>
+</li>
+<li>
+<p>Object-Relational Database</p>
+<blockquote>
+<p>A type of database that combines the features of relational databases and object-oriented databases.</p>
+</blockquote>
+</li>
+<li>
+<p>Cloud Database</p>
+<blockquote>
+<p>A database hosted on a remote server and accessed through the internet, typically provided as a service by a cloud computing provider.</p>
+</blockquote>
+</li>
+<li>
+<p>Scalability</p>
+<blockquote>
+<p>The ability of a database to handle increasing amounts of data and traffic without impacting performance.</p>
+</blockquote>
+</li>
+<li>
+<p>Availability</p>
+<blockquote>
+<p>The ability of a database to remain accessible to users at all times, even during maintenance or failures.</p>
+</blockquote>
+</li>
+<li>
+<p>Replication</p>
+<blockquote>
+<p>The process of copying data from one database to another, typically used for backup and disaster recovery purposes.</p>
+</blockquote>
+</li>
+<li>
+<p>Sharding</p>
+<blockquote>
+<p>The process of dividing a database into multiple smaller databases, typically to improve performance and scalability.</p>
+</blockquote>
+</li>
+<li>
+<p>Backup</p>
+<blockquote>
+<p>A copy of a database used for recovery purposes in case the original database is lost or damaged.</p>
+</blockquote>
+</li>
+<li>
+<p>Recovery</p>
+<blockquote>
+<p>The process of restoring a database to a previous state after a failure or disaster.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Integrity</p>
+<blockquote>
+<p>The accuracy and consistency of data stored in a database, maintained through the use of constraints and transactions.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Security</p>
+<blockquote>
+<p>The measures taken to protect sensitive data stored in a database from unauthorized access, modification, or theft.</p>
+</blockquote>
+</li>
+<li>
+<p>ACID Properties</p>
+<blockquote>
+<p>A set of properties that ensure the consistency and reliability of database transactions, including Atomicity, Consistency, Isolation, and Durability.</p>
+</blockquote>
+</li>
+<li>
+<p>Denormalization</p>
+<blockquote>
+<p>The process of adding redundant data to a database to improve performance, typically used in data warehousing and NoSQL databases.</p>
+</blockquote>
+</li>
+<li>
+<p>Query Optimization</p>
+<blockquote>
+<p>The process of improving the performance of database queries by reducing the amount of data that must be processed.</p>
+</blockquote>
+</li>
+<li>
+<p>Normalization</p>
+<blockquote>
+<p>The process of organizing data into separate tables to eliminate redundant data and improve data integrity.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Modeling</p>
+<blockquote>
+<p>The process of creating a blueprint or representation of data and its relationships, used to design and build a database.</p>
+</blockquote>
+</li>
+<li>
+<p>ER Model</p>
+<blockquote>
+<p>An entity-relationship model, used in data modeling to represent the relationships between entities in a database.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Types</p>
+<blockquote>
+<p>The classification of data into specific types, such as text, numbers, or dates, used to define the structure of a database.</p>
+</blockquote>
+</li>
+<li>
+<p>Concurrency Control</p>
+<blockquote>
+<p>The management of access to a database by multiple users, ensuring data consistency and avoiding conflicts.</p>
+</blockquote>
+</li>
+<li>
+<p>Locking</p>
+<blockquote>
+<p>The process of preventing other users from accessing data while it is being updated or modified.</p>
+</blockquote>
+</li>
+<li>
+<p>Transactions Log</p>
+<blockquote>
+<p>A record of all database transactions, used for recovery purposes in case of a failure.</p>
+</blockquote>
+</li>
+<li>
+<p>Encryption</p>
+<blockquote>
+<p>The process of converting data into a secure format that can only be decrypted by authorized users.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Migration</p>
+<blockquote>
+<p>The process of moving data from one database to another, typically for the purpose of upgrading or changing systems.</p>
+</blockquote>
+</li>
+<li>
+<p>Performance Tuning</p>
+<blockquote>
+<p>The process of improving the performance of a database by optimizing its configuration, queries, and indexing.</p>
+</blockquote>
+</li>
+<li>
+<p>Data Dictionary</p>
+<blockquote>
+<p>A repository of metadata, including information about the structure, relationships, and constraints of data in a database.</p>
+</blockquote>
+</li>
+<li>
+<p>Indexing</p>
+<blockquote>
+<p>The process of creating a data structure that allows for faster and more efficient searches of data in a database.</p>
+</blockquote>
+</li>
+<li>
+<p>Foreign Key</p>
+<blockquote>
+<p>A field in a database table that refers to the primary key of another table, used to establish relationships between tables.</p>
+</blockquote>
+</li>
+<li>
+<p>Primary Key</p>
+<blockquote>
+<p>A unique identifier for each record in a database table, used to uniquely identify and access data.</p>
+</blockquote>
+</li>
+<li>
+<p>Normalization Forms</p>
+<blockquote>
+<p>The series of rules used to eliminate redundant data and improve data integrity, such as 1NF, 2NF, 3NF, and BCNF.</p>
+</blockquote>
+</li>
+<li>
+<p>Stored Procedures</p>
+<blockquote>
+<p>Pre-compiled sets of SQL statements that can be stored in a database and executed repeatedly.</p>
+</blockquote>
+</li>
+<li>
+<p>Triggers</p>
+<blockquote>
+<p>Automated actions that are triggered by specific events in a database, such as data changes or updates.</p>
+</blockquote>
+</li>
+<li>
+<p>Views</p>
+<blockquote>
+<p>A virtual table in a database that is created by querying data from one or more other tables.</p>
+</blockquote>
+</li>
+<li>
+<p>Query Language</p>
+<blockquote>
+<p>The language used to interact with and manipulate data in a database, such as SQL (Structured Query Language).</p>
+</blockquote>
+</li>
+<li>
+<p>Data Warehousing</p>
+<blockquote>
+<p>The process of storing and managing large amounts of data for analysis and reporting purposes.Data Mining: The process of discovering and extracting insights from large amounts of data.</p>
+</blockquote>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

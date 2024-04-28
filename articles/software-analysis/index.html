@@ -1,0 +1,1427 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/articles/software-analysis/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>Software Analysis - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#software-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Software Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-code-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Code Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1. Code Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-requirements-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.1. Requirements Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-static-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.2. Static Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-dynamic-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.3. Dynamic Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-security-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.4. Security Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-code-quality-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1.5. Code Quality Analysis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-software-composition-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Software Composition Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2. Software Composition Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-component-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1. Component Identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-vulnerability-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.2. Vulnerability Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-license-compliance-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.3. License Compliance Analysis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-bill-of-materials-bom" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.4. Bill of Materials (BOM)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Tools
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3. Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-linter" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1. Linter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-sanitizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2. Sanitizer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/articles/software-analysis.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/articles/software-analysis.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="software-analysis">Software Analysis<a class="headerlink" href="#software-analysis" title="Permanent link">&para;</a></h1>
+<p>Software Analysis is the process of evaluating software systems structure, behavior, and quality. The purpose of software analysis is to identify potential issues, risks, applications to identify potential risks, improve quality and reliability, and ensure compliance with organizational policies and industry regulations.</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-code-analysis">1.1. Code Analysis</a><ul>
+<li><a href="#111-requirements-analysis">1.1.1. Requirements Analysis</a></li>
+<li><a href="#112-static-analysis">1.1.2. Static Analysis</a></li>
+<li><a href="#113-dynamic-analysis">1.1.3. Dynamic Analysis</a></li>
+<li><a href="#114-security-analysis">1.1.4. Security Analysis</a></li>
+<li><a href="#115-code-quality-analysis">1.1.5. Code Quality Analysis</a></li>
+</ul>
+</li>
+<li><a href="#12-software-composition-analysis">1.2. Software Composition Analysis</a><ul>
+<li><a href="#121-component-identification">1.2.1. Component Identification</a></li>
+<li><a href="#122-vulnerability-analysis">1.2.2. Vulnerability Analysis</a></li>
+<li><a href="#123-license-compliance-analysis">1.2.3. License Compliance Analysis</a></li>
+<li><a href="#124-bill-of-materials-bom">1.2.4. Bill of Materials (BOM)</a></li>
+</ul>
+</li>
+<li><a href="#13-tools">1.3. Tools</a><ul>
+<li><a href="#131-linter">1.3.1. Linter</a></li>
+<li><a href="#132-sanitizer">1.3.2. Sanitizer</a></li>
+</ul>
+</li>
+<li><a href="#2-references">2. References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<h3 id="11-code-analysis">1.1. Code Analysis<a class="headerlink" href="#11-code-analysis" title="Permanent link">&para;</a></h3>
+<p>Code Analysis is a process of evaluating the quality and security of software source code. It involves examining the code for potential issues, including coding errors, performance problems, and security vulnerabilities.</p>
+<p>Software analysis can be performed at various stages of the software development life cycle (SDLC), including during requirements analysis, design, coding, testing, and maintenance. In modern DevSecOps environment, code analysis has galvanized the <a href="../software-testing/#40-shift-left-testing">shift left</a> paradigm.</p>
+<h4 id="111-requirements-analysis">1.1.1. Requirements Analysis<a class="headerlink" href="#111-requirements-analysis" title="Permanent link">&para;</a></h4>
+<p>Requirements analysis is a crucial phase in the software development life cycle (SDLC) that involves understanding, documenting, and validating the requirements of a software system. The goal is to elicit and analyze user needs and expectations to ensure that the resulting software meets those requirements effectively.</p>
+<p>Requirements analysis sets the foundation for the development process, guiding subsequent phases such as design, implementation, and testing. Conducting requirements analysis reduces the risk of scope creep, improves software quality, and delivers a product that meets stakeholder expectations.</p>
+<p>Features of Requirements Analysis:</p>
+<ol>
+<li>
+<p>Elicitation</p>
+<p>This involves gathering requirements from stakeholders, including end-users, customers, and other relevant parties.</p>
+<p>Techniques for Requirements Elicitation:</p>
+<blockquote>
+<p>NOTE Combination of techniques is often used to ensure comprehensive requirements elicitation. The choice of techniques should be tailored to the specific project and stakeholders involved, considering factors such as time constraints, project complexity, and availability of resources.</p>
+</blockquote>
+<ul>
+<li>
+<p>Interviews</p>
+<blockquote>
+<p>One-on-one or group interviews with stakeholders are conducted to gather their perspectives, insights, and requirements. It allows for in-depth discussions, clarifications, and follow-up questions to understand their needs and expectations.</p>
+</blockquote>
+</li>
+<li>
+<p>Questionnaires and Surveys</p>
+<blockquote>
+<p>Questionnaires and surveys are useful for collecting a large amount of information from a wide range of stakeholders. They can be distributed electronically or in print format and enable stakeholders to provide their requirements in a structured manner.</p>
+</blockquote>
+</li>
+<li>
+<p>Workshops and Focus Groups</p>
+<blockquote>
+<p>These interactive sessions involve bringing together multiple stakeholders to collaborate, brainstorm, and discuss requirements. Workshops foster open communication, knowledge sharing, and consensus building among participants.</p>
+</blockquote>
+</li>
+<li>
+<p>Observation</p>
+<blockquote>
+<p>Observing users in their natural work environment can provide valuable insights into their tasks, workflows, and pain points. This technique helps in understanding the context of use and identifying requirements that might not be explicitly expressed by stakeholders.</p>
+</blockquote>
+</li>
+<li>
+<p>Document Analysis</p>
+<blockquote>
+<p>Analyzing existing documentation such as user manuals, business process documents, and system specifications can provide insights into current requirements or serve as a starting point for requirements gathering.</p>
+</blockquote>
+</li>
+<li>
+<p>Use Cases and User Stories</p>
+<blockquote>
+<p>Use cases and user stories are narrative descriptions of system behavior from an end-user perspective. They help capture functional requirements by describing specific interactions and scenarios in which the software will be used.</p>
+</blockquote>
+</li>
+<li>
+<p>Ethnographic Studies</p>
+<blockquote>
+<p>Ethnographic studies involve immersing analysts in the environment where the software will be used, enabling them to understand the users' needs, behaviors, and cultural context. This technique is particularly useful for gathering requirements in complex or specialized domains.</p>
+</blockquote>
+</li>
+<li>
+<p>Brainstorming</p>
+<blockquote>
+<p>Brainstorming sessions encourage creative thinking and idea generation. Participants freely share their requirements, ideas, and suggestions, fostering a collaborative environment that can lead to innovative solutions.</p>
+</blockquote>
+</li>
+<li>
+<p>Protocols and JAD (Joint Application Development) Sessions</p>
+<blockquote>
+<p>These structured sessions involve intensive collaboration between stakeholders, end-users, and development teams to elicit requirements, resolve conflicts, and reach consensus in a facilitated environment.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Requirements Documentation</p>
+<p>Once the requirements are elicited, they need to be documented in a clear and structured manner. This typically involves creating artifacts such as requirement documents, use cases, user stories, and process models. The documentation should capture functional requirements (what the software should do) as well as non-functional requirements (performance, security, usability, etc.).</p>
+</li>
+<li>
+<p>Analysis and Prioritization</p>
+<p>The elicited requirements are then analyzed to identify any conflicts, inconsistencies, or missing information. It is important to ensure that the requirements are complete, consistent, and feasible.</p>
+<p>Techniques for Requirements Prioritization:</p>
+<ul>
+<li>MoSCoW Method</li>
+<li>Must-have
+    &gt; Requirements that are essential for the software system to be considered successful. They represent the core functionality or features that are crucial and must be implemented in the current version.</li>
+<li>Should-have
+    &gt; Requirements that important but not critical for the current release. They are desirable features that would enhance the system usability or value.</li>
+<li>Could-have
+    &gt; Requirements that are nice-to-have features that are desirable but not necessary for the current release. They provide additional functionality or benefits that can be considered if time and resources permit.</li>
+<li>
+<p>Won't-have (or Would-like-to-have)
+    &gt; Requirements that are explicitly agreed upon not to be included in the current release. They are typically deferred to future versions or not pursued at all due to resource constraints, time limitations, or other project constraints. Won't-have requirements are generally revisited and considered in subsequent releases or iterations.</p>
+</li>
+<li>
+<p>Kano Model</p>
+<blockquote>
+<p>The Kano model helps categorize requirements based on their impact on customer satisfaction. It classifies requirements into five categories: Must-be, One-dimensional, Attractive, Indifferent, and Reverse. Must-be requirements are basic expectations that must be met. One-dimensional requirements directly influence customer satisfaction. Attractive requirements are unexpected features that delight customers. Indifferent requirements have no significant impact, and Reverse requirements may have a negative impact if included.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Validation and Verification</p>
+<p>Requirements validation ensures that the documented requirements accurately reflect the stakeholders needs. Verification involves reviewing the requirements for clarity, correctness, and feasibility.</p>
+<p>Techniques for Requirements Validation and Verification:</p>
+<blockquote>
+<p>NOTE Combination of techniques to validate and verify software systems, ensuring that they meet the specified requirements, function correctly, and adhere to quality standards. The selection of techniques depends on the nature of the software, project constraints, and the specific objectives of the validation and verification activities.</p>
+</blockquote>
+<ul>
+<li>
+<p>Reviews and Inspections</p>
+<blockquote>
+<p>These techniques involve systematic examination of software artifacts, such as requirements documents, design specifications, source code, and test cases, to identify errors, inconsistencies, and quality issues. Reviews and inspections can be conducted by a team of stakeholders, developers, or independent reviewers.</p>
+</blockquote>
+</li>
+<li>
+<p>Walkthroughs</p>
+<blockquote>
+<p>In a walkthrough, the software artifacts are presented to stakeholders or subject matter experts who provide feedback and identify potential issues. It is a collaborative process where the presenter explains the software and receives input and suggestions for improvement.</p>
+</blockquote>
+</li>
+<li>
+<p>Prototyping</p>
+<blockquote>
+<p>Prototyping involves building a simplified or partial version of the software system to validate and refine the requirements. Users and stakeholders can interact with the prototype to provide feedback on its functionality, usability, and design, helping to refine and validate the requirements.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Requirements Traceability</p>
+<p>Establishing traceability links between requirements and other SDLC artifacts is important to track and manage changes. Traceability helps ensure that all requirements are addressed and provides a basis for impact analysis when changes occur.</p>
+</li>
+<li>
+<p>Communication and Collaboration</p>
+<p>Effective communication and collaboration with stakeholders, developers, and other team members are crucial throughout the requirements analysis process. Clear channels of communication should be established, and feedback loops should be implemented to gather continuous input and address concerns.</p>
+</li>
+</ol>
+<h4 id="112-static-analysis">1.1.2. Static Analysis<a class="headerlink" href="#112-static-analysis" title="Permanent link">&para;</a></h4>
+<p>Static analysis is a software analysis technique that examines software artifacts, such as source code, design documents, or models, without executing the program. It analyzes the structure, syntax, and semantics of the code to identify potential issues, vulnerabilities, and quality concerns. Static analysis helps detect defects, improve code quality, and ensure adherence to coding standards.</p>
+<p>Static analysis can be performed manually by developers or using specialized software tools. The tools apply a set of predefined rules and algorithms to analyze the code and generate reports highlighting potential issues.</p>
+<blockquote>
+<p>NOTE Static analysis has limitations and may generate false positives or miss certain types of issues. Static analysis should be used in conjunction with other testing and analysis techniques to achieve a comprehensive assessment of software quality.</p>
+</blockquote>
+<p>Features of Static Analysis:</p>
+<ol>
+<li>
+<p>Code Quality Analysis</p>
+<p>Static analysis tools can perform code quality checks to identify coding issues that might lead to bugs or make the code difficult to understand and maintain. This includes detecting coding violations, such as unused variables, dead code, inconsistent naming conventions, and potential memory leaks.</p>
+</li>
+<li>
+<p>Bug Detection</p>
+<p>Static analysis tools can identify common coding errors, such as null pointer dereferences, array out-of-bounds access, and resource leaks. By analyzing the code paths and performing data flow analysis, they can detect potential defects and help improve code reliability.</p>
+</li>
+<li>
+<p>Security Vulnerability Detection</p>
+<p>Static analysis is effective in identifying security vulnerabilities and weaknesses in the code that could be exploited by attackers. It can detect issues like SQL injection, cross-site scripting (XSS), buffer overflows, and insecure cryptographic practices. By analyzing the code for security flaws, static analysis helps developers address potential risks early in the development process.</p>
+</li>
+<li>
+<p>Performance Analysis</p>
+<p>Static analysis tools can analyze the code and provide insights into potential performance bottlenecks and inefficiencies. This includes identifying expensive function calls, unnecessary memory allocations, or loops that could be optimized. By optimizing the code based on static analysis findings, developers can improve the software's overall performance.</p>
+</li>
+<li>
+<p>Compliance and Standards Enforcement</p>
+<p>Static analysis can enforce coding standards and industry best practices by flagging violations during the analysis process. It helps ensure that the code adheres to specific coding guidelines, naming conventions, and other standards defined by the organization or industry.</p>
+</li>
+<li>
+<p>Documentation and Visualization</p>
+<p>Static analysis tools often provide documentation and visual representations of the code structure, dependencies, and relationships. This can assist developers in understanding complex codebases, identifying architectural issues, and facilitating code reviews.</p>
+</li>
+</ol>
+<h4 id="113-dynamic-analysis">1.1.3. Dynamic Analysis<a class="headerlink" href="#113-dynamic-analysis" title="Permanent link">&para;</a></h4>
+<p>Dynamic analysis is a software analysis technique that involves observing and analyzing the behavior of a software system during its execution. It helps uncover defects, validate functionality, memory leaks, assess performance, and understand system behavior under different conditions.</p>
+<p>Executing the software and analyzing its runtime characteristics complement software analysis techniques and assists in delivering robust, reliable, and high-performing software applications.</p>
+<p>Elemants of Dynamic Analysis:</p>
+<ol>
+<li>
+<p>Testing</p>
+<p>Dynamic analysis plays a crucial role in software testing. It involves designing and executing test cases to exercise the software system and observe its behavior. By comparing the actual results with expected outcomes, dynamic analysis helps identify bugs, logic errors, and functional issues. Various testing techniques, such as unit testing, integration testing, system testing, and acceptance testing, utilize dynamic analysis to validate the software against specified requirements.</p>
+</li>
+<li>
+<p>Debugging</p>
+<p>Dynamic analysis is instrumental in the debugging process, which involves identifying, analyzing, and fixing software defects. By observing the program's execution flow, variable values, and error conditions, dynamic analysis helps pinpoint the root causes of issues and provides insights for troubleshooting and resolving them.</p>
+</li>
+<li>
+<p>Performance Analysis</p>
+<p>Dynamic analysis techniques, such as profiling, are used to evaluate the performance characteristics of a software system. Profiling tools collect runtime data, such as method execution times, memory usage, and resource utilization, to identify performance bottlenecks, memory leaks, and inefficient algorithms. This information helps optimize the software for better efficiency and resource management.</p>
+</li>
+<li>
+<p>Code Coverage Analysis</p>
+<p>Dynamic analysis can determine the extent to which the code is exercised during testing. Code coverage analysis measures the percentage of code statements, branches, or paths that are executed during testing. It helps assess the thoroughness of testing and identifies areas of the code that have not been adequately tested, potentially indicating gaps in test coverage.</p>
+</li>
+<li>
+<p>Security Testing</p>
+<p>Dynamic analysis techniques are used to assess the security of software systems. This includes techniques like penetration testing, where the system is subjected to controlled attacks to identify vulnerabilities and potential security flaws. Dynamic analysis helps identify security weaknesses, such as input validation issues, privilege escalation, or access control vulnerabilities.</p>
+</li>
+<li>
+<p>Performance Profiling</p>
+<p>Dynamic analysis can profile the runtime behavior of a software system to identify performance bottlenecks, memory leaks, and inefficiencies. Profiling tools collect data on function execution times, method calls, memory usage, and I/O operations. This information helps developers optimize the software for improved performance.</p>
+</li>
+</ol>
+<h4 id="114-security-analysis">1.1.4. Security Analysis<a class="headerlink" href="#114-security-analysis" title="Permanent link">&para;</a></h4>
+<p>Security analysis is a software analysis technique focused on assessing the security posture of a software system. It involves identifying vulnerabilities, weaknesses, and potential risks in the software design, implementation, configuration, and deployment. The objective of security analysis is to uncover security flaws and recommend mitigations to protect the system against unauthorized access, data breaches, and malicious attacks.</p>
+<p>The findings from security analysis are used to prioritize and address identified vulnerabilities through security patches, code fixes, configuration changes, and the implementation of additional security controls. It is an ongoing process that should be performed regularly to ensure that the software system remains secure and resilient to evolving threats.</p>
+<p>Features of Security Analysis:</p>
+<ol>
+<li>
+<p>Threat Modeling</p>
+<p>Security analysis often starts with threat modeling, which involves identifying potential threats, attack vectors, and security risks to the software system. This helps in understanding the system's security requirements and designing appropriate security controls.</p>
+</li>
+<li>
+<p>Penetration Testing</p>
+<p>Penetration testing, also known as ethical hacking, involves simulating real-world attacks to assess the security vulnerabilities of the software system. Skilled security professionals attempt to exploit weaknesses and gain unauthorized access to the system. The findings are then used to improve security measures and address identified vulnerabilities.</p>
+</li>
+<li>
+<p>Vulnerability Assessment</p>
+<p>Vulnerability assessment involves scanning the software system for known security vulnerabilities and weaknesses. This includes using automated tools to identify common vulnerabilities, such as outdated software versions, misconfigurations, weak authentication mechanisms, or inadequate access controls.</p>
+</li>
+<li>
+<p>Code Review</p>
+<p>Security analysis often includes reviewing the source code of the software system to identify coding errors and security vulnerabilities. Manual or automated code review techniques can be employed to check for common coding mistakes, such as input validation issues, SQL injection, cross-site scripting (XSS), buffer overflows, or insecure cryptographic practices.</p>
+</li>
+<li>
+<p>Security Standards and Compliance</p>
+<p>Security analysis may involve evaluating the software system's compliance with security standards and regulations, such as the Payment Card Industry Data Security Standard (PCI DSS) or the General Data Protection Regulation (GDPR). This includes assessing the system's adherence to security best practices, privacy requirements, and industry-specific security guidelines.</p>
+</li>
+<li>
+<p>Secure Design and Architecture Review</p>
+<p>Security analysis may involve evaluating the design and architecture of the software system to identify potential security weaknesses. This includes analyzing the security controls, access control mechanisms, data protection measures, and overall resilience of the system against various attack vectors.</p>
+</li>
+<li>
+<p>Secure Configuration Assessment</p>
+<p>Security analysis may assess the security configuration of the software system and associated components. This includes reviewing configurations of databases, servers, firewalls, network devices, and other infrastructure components to ensure that they are appropriately configured and hardened against security threats.</p>
+</li>
+</ol>
+<h4 id="115-code-quality-analysis">1.1.5. Code Quality Analysis<a class="headerlink" href="#115-code-quality-analysis" title="Permanent link">&para;</a></h4>
+<p>Code quality analysis is a software analysis technique that focuses on evaluating the quality of the source code of a software system. It involves assessing various aspects of the code, such as its structure, readability, maintainability, adherence to coding standards, and potential for defects. The objective of code quality analysis is to identify coding issues, improve the quality of the codebase, and facilitate long-term maintainability and extensibility.</p>
+<p>Code quality analysis can be done manually through code reviews or using automated code analysis tools and linters. The tools scan the codebase, apply predefined rules and metrics, and generate reports highlighting areas of concern and improvement opportunities.</p>
+<p>Conducting code quality analysis identifies and addresses coding issues early in the development process, leading to better code quality, maintainability, and long-term software sustainability.</p>
+<ol>
+<li>
+<p>Coding Standards and Best Practices</p>
+<p>Code quality analysis often involves enforcing and assessing adherence to coding standards and best practices. Coding standards define guidelines for code formatting, naming conventions, indentation, comments, and other coding style aspects. Tools and analysis techniques are used to check if the code follows the prescribed coding standards, which helps improve code consistency and readability.</p>
+</li>
+<li>
+<p>Code Complexity</p>
+<p>Code quality analysis assesses the complexity of the code to identify areas that might be difficult to understand, test, or maintain. Code complexity metrics, such as cyclomatic complexity or nesting depth, provide quantitative measures of code complexity. High complexity can indicate a higher likelihood of bugs and decreased maintainability. By identifying complex code sections, developers can refactor or simplify them for better code quality.</p>
+</li>
+<li>
+<p>Code Smells and Anti-patterns</p>
+<p>Code quality analysis helps identify code smells, which are indicators of potential design or implementation issues. Code smells include duplicated code, long methods, excessive dependencies, and improper use of language features. Detecting code smells helps in refactoring the code to improve its readability, maintainability, and extensibility. It also helps avoid anti-patterns, which are common but ineffective or harmful coding practices.</p>
+</li>
+<li>
+<p>Unused Code and Dead Code</p>
+<p>Code quality analysis identifies unused code or dead code, which refers to code segments that are not executed or have no impact on the program's behavior. Removing unused or dead code helps reduce code clutter, improve performance, and enhance maintainability.</p>
+</li>
+<li>
+<p>Dependencies and Coupling</p>
+<p>Code quality analysis examines the dependencies and coupling between code modules. High coupling and excessive dependencies can lead to code fragility and difficulties in making changes or enhancements. By analyzing the code for tight coupling and excessive dependencies, developers can identify areas where code modularization or decoupling is required.</p>
+</li>
+<li>
+<p>Testability</p>
+<p>Code quality analysis considers the testability of the code, ensuring that it can be effectively and efficiently tested. It involves evaluating factors such as code modularity, separation of concerns, and the presence of clear interfaces and unit testability. Improving testability helps in achieving better test coverage and ease of test maintenance.</p>
+</li>
+<li>
+<p>Documentation and Comments</p>
+<p>Code quality analysis assesses the presence and quality of code documentation and comments. Well-documented code improves understandability and maintainability, especially for future developers or maintainers. It ensures that the code's purpose, functionality, and usage are clearly explained.</p>
+</li>
+</ol>
+<h3 id="12-software-composition-analysis">1.2. Software Composition Analysis<a class="headerlink" href="#12-software-composition-analysis" title="Permanent link">&para;</a></h3>
+<p><a href="https://snyk.io/series/open-source-security/software-composition-analysis-sca/">Software Composition Analysis (SCA)</a> is a software analysis technique that focuses on identifying, analyzing and managing the composition of third-party and open-source software components used in a software system.</p>
+<h4 id="121-component-identification">1.2.1. Component Identification<a class="headerlink" href="#121-component-identification" title="Permanent link">&para;</a></h4>
+<p>Component identification involves identifying and cataloging the third-party and open-source components used in a software system. This process helps in gaining an understanding of the software's composition, tracking dependencies, and assessing the potential risks associated with the components.</p>
+<p>Component identification captures relevant metadata about a component, such as version numbers, licenses, and any associated security vulnerabilities or patches. This information helps in subsequent steps of software composition analysis, such as vulnerability assessment and license compliance analysis.</p>
+<p>Features of Component Identification:</p>
+<ol>
+<li>
+<p>Build and Dependency Management Tools</p>
+<p>Use tools like Maven, Gradle, or npm (for JavaScript projects) to examine the dependency configuration files and retrieve a list of dependencies explicitly declared in the project.</p>
+</li>
+<li>
+<p>Package Managers</p>
+<p>If the software system uses a package manager, such as pip for Python, npm for JavaScript, or NuGet for .NET, inspect the package manifest files (e.g., requirements.txt, package.json, or .csproj) to obtain a list of installed dependencies.</p>
+</li>
+<li>
+<p>Software Bill of Materials (SBOM)</p>
+<p>In some cases, software vendors or providers may provide a Software Bill of Materials, which is a formal list of components used in the software system. This document can be obtained from the vendor or generated using specialized tools.</p>
+</li>
+<li>
+<p>Reverse Engineering</p>
+<p>If the source code or documentation is not readily available, reverse engineering techniques can be employed to identify components used in a software system. This involves decompiling binaries or inspecting runtime behavior to determine the components utilized.</p>
+</li>
+</ol>
+<h4 id="122-vulnerability-analysis">1.2.2. Vulnerability Analysis<a class="headerlink" href="#122-vulnerability-analysis" title="Permanent link">&para;</a></h4>
+<p>Vulnerability analysis is a crucial step in software composition analysis that involves assessing the security vulnerabilities present in the third-party and open-source components used in a software system. The goal is to identify and understand potential weaknesses or flaws in the components that may be exploited by attackers.</p>
+<p>Regular vulnerability analysis should be performed throughout the software development lifecycle to ensure that any new vulnerabilities or security issues are promptly addressed. Conducting vulnerability analysis mitigate the risks associated with the components used in their software systems and enhance the security posture.</p>
+<p>Features of Vulnerability Analysis:</p>
+<ol>
+<li>
+<p>Vulnerability Databases</p>
+<p>Access well-known vulnerability databases, such as the National Vulnerability Database (NVD), Common Vulnerabilities and Exposures (CVE), or vendor-specific databases. These databases contain information about known vulnerabilities, including their severity, impact, and affected versions.</p>
+</li>
+<li>
+<p>Component Mapping</p>
+<p>Match the identified components from the component identification step with the entries in the vulnerability databases. Determine if the components have any known vulnerabilities listed in the databases. Pay attention to the specific component versions and any associated patches or fixes provided by the component vendors.</p>
+</li>
+<li>
+<p>Vulnerability Scanning Tools</p>
+<p>Utilize vulnerability scanning tools or automated analysis tools specifically designed for identifying vulnerabilities in software components. These tools can examine the software system and its components, comparing them against known vulnerability databases to identify any matches.</p>
+</li>
+<li>
+<p>Security Bulletins and Advisories</p>
+<p>Monitor security bulletins and advisories released by component vendors or security organizations. These sources provide information about newly discovered vulnerabilities, patches, and recommended security practices. Stay updated on any security announcements related to the components used in the software system.</p>
+</li>
+<li>
+<p>Risk Prioritization</p>
+<p>Evaluate the severity and potential impact of identified vulnerabilities. Prioritize the vulnerabilities based on factors such as the level of access required, the likelihood of exploitation, and the potential impact on the confidentiality, integrity, or availability of the software system.</p>
+</li>
+<li>
+<p>Remediation and Mitigation</p>
+<p>Develop a plan to address the identified vulnerabilities. This may involve updating the components to the latest patched versions, applying recommended security configurations, or implementing additional security controls to mitigate the risks associated with the vulnerabilities.</p>
+</li>
+<li>
+<p><a href="#114-security-analysis">Security Analysis</a></p>
+<p>Security analysis techniques are used to identify vulnerabilities and weaknesses in software systems that could be exploited by attackers. This category includes techniques such as penetration testing, vulnerability scanning, code review for security flaws, and threat modeling.</p>
+</li>
+</ol>
+<h4 id="123-license-compliance-analysis">1.2.3. License Compliance Analysis<a class="headerlink" href="#123-license-compliance-analysis" title="Permanent link">&para;</a></h4>
+<p>License compliance analysis is an process in software analysis that focuses on ensuring compliance with the licenses of third-party and open-source components used in a software system. It involves evaluating the licenses associated with the components to ensure that their usage aligns with the terms and conditions specified by the license agreements.</p>
+<p>Conducting license compliance analysis ensures  legal obligations, maintain good relationships with the open-source community, and minimize the risks associated with license non-compliance.</p>
+<blockquote>
+<p>NOTE License compliance analysis is important to ensure legal and ethical usage of third-party and open-source components. Non-compliance with software licenses can result in legal issues, reputational damage, and complications in software distribution.</p>
+</blockquote>
+<p>Features of License Compliance Analysis:</p>
+<ol>
+<li>
+<p>License Identification</p>
+<p>Identify the licenses associated with each component used in the software system. This information can be obtained from the component's documentation, source code files, or the component's project website. Look for license files (e.g., LICENSE.txt) or license statements within the source code headers.</p>
+</li>
+<li>
+<p>License Classification</p>
+<p>Classify the licenses into different categories based on their terms and conditions. Common license categories include permissive licenses (e.g., MIT, BSD), copyleft licenses (e.g., GNU GPL), and reciprocal licenses (e.g., Apache License 2.0). Understand the obligations and restrictions imposed by each license category.</p>
+</li>
+<li>
+<p>License Compatibility Analysis</p>
+<p>Analyze the compatibility of different licenses used in the software system. Identify potential conflicts or incompatibilities that may arise due to the combination of different licenses. Some licenses have specific requirements when combined with other licenses, and it's important to ensure that the software system's licenses can be harmonized.</p>
+</li>
+<li>
+<p>License Obligations</p>
+<p>Review the specific obligations and requirements imposed by each license. This can include obligations to provide attribution, distribute source code modifications, or make certain disclosures. Ensure that the software system complies with these obligations and that the necessary actions are taken to fulfill them.</p>
+</li>
+<li>
+<p>License Restrictions</p>
+<p>Identify any restrictions or limitations imposed by the licenses. For example, some licenses may restrict the use of the software for commercial purposes, require the release of modifications under the same license, or impose restrictions on the distribution of the software. Ensure that the software system's usage aligns with these restrictions.</p>
+</li>
+<li>
+<p>License Compliance Tools</p>
+<p>Utilize automated tools or services designed to assist in license compliance analysis. These tools can scan the software codebase, identify the licenses used, and provide reports on license compliance status. They can help in identifying any potential non-compliance issues and simplifying the process of managing license obligations.</p>
+</li>
+<li>
+<p>Remediation and Mitigation</p>
+<p>Develop a plan to address any license compliance issues that are identified. This may involve obtaining necessary permissions or licenses, ensuring proper attribution and notices, or considering alternative components with more suitable licenses. Take appropriate actions to rectify any non-compliance and bring the software system into full license compliance.</p>
+</li>
+<li>
+<p>Ongoing Compliance Management</p>
+<p>Establish processes and practices to ensure ongoing license compliance. This includes maintaining an up-to-date inventory of component licenses, monitoring for changes or updates in license terms, and incorporating license compliance into software development and release workflows.</p>
+</li>
+</ol>
+<h4 id="124-bill-of-materials-bom">1.2.4. Bill of Materials (BOM)<a class="headerlink" href="#124-bill-of-materials-bom" title="Permanent link">&para;</a></h4>
+<p>A Bill of Materials (BOM) is a comprehensive list or inventory of all the materials, components, parts, and sub-assemblies required to manufacture or build a product. It provides detailed information about each item, including its name, quantity, description, and sometimes additional attributes such as part numbers or suppliers. BOMs are commonly used in various industries, including manufacturing, engineering, construction, and software development.</p>
+<p>BOMs enhances the ability of organizations to manage and reduce cyber risks throughout the software and hardware supply chain. It promotes transparency, collaboration, and effective risk mitigation in the context of software development, deployment, and operations.</p>
+<p>Types of BOM:</p>
+<ol>
+<li>
+<p>Software Bill of Materials (SBOM)</p>
+<p>An SBOM is a comprehensive inventory of the components and dependencies used in a software system. It includes information about the software components, their versions, licenses, and dependencies. SBOMs are crucial for managing security, licensing, and overall risk associated with software supply chain management.</p>
+</li>
+<li>
+<p>Software-as-a-Service Bill of Materials (SaaSBOM)</p>
+<p>An SaaSBOM is similar to an SBOM but specifically tailored for software-as-a-service (SaaS) offerings. It provides a detailed inventory of the components, services, and dependencies used in a SaaS solution. SaaSBOMs help customers understand the underlying components and potential risks associated with the SaaS service they are using.</p>
+</li>
+<li>
+<p>Hardware Bill of Materials (HBOM)</p>
+<p>An HBOM is a list of all the components, parts, and materials required to manufacture a hardware product. It includes information about the electronic components, mechanical parts, packaging materials, and other hardware elements needed for production. HBOMs are commonly used in the manufacturing and electronics industries.</p>
+</li>
+<li>
+<p>Operations Bill of Materials (OBOM)</p>
+<p>An OBOM is used in the context of operations management and supply chain management. It includes a list of materials, tools, equipment, and resources required to perform specific operational tasks or processes. OBOMs help in planning and managing the resources needed for efficient operations.</p>
+</li>
+</ol>
+<p>Standards of BOM:</p>
+<ol>
+<li>
+<p>OWASP CycloneDX</p>
+<p><a href="https://cyclonedx.org/">OWASP CycloneDX</a> emphasizes supply chain security and risk reduction. It provides advanced capabilities for creating BOMs that cover various aspects of the software stack, including software, SaaS, hardware, and operations.</p>
+<p>CycloneDX is designed to be extensible, allowing for the inclusion of additional metadata and information beyond the core BOM data. This flexibility enables organizations to customize and enhance the BOMs to meet their specific requirements.</p>
+<p>CycloneDX supports the generation of Vulnerability Disclosure Reports (VDR) and the exchange of Vulnerability Exploitability eXchange (VEX) information. These features enhance vulnerability management and facilitate timely remediation of security issues.</p>
+</li>
+<li>
+<p>SPDX</p>
+<p><a href="https://spdx.dev/">SPDX</a> focuses on providing a standardized format for describing software components and their licenses. It aims to facilitate license compliance and software asset management by providing a common language for sharing and exchanging software package data.</p>
+<p>SPDX places a strong emphasis on capturing license information for each software component. It includes standardized license identifiers, license text, and other related licensing details. SPDX also supports the declaration of license conflicts and exceptions.</p>
+<p>SPDX is widely adopted and supported by various tools and systems in the software development ecosystem. It enables easy integration with build systems, package managers, and software repositories, facilitating the automation of BOM generation and license compliance checks.</p>
+</li>
+</ol>
+<p>Benefits of BOM:</p>
+<ol>
+<li>
+<p>License Compliance</p>
+<p>The BOM helps in identifying the licenses associated with each component and ensuring compliance with their terms and conditions. It allows organizations to understand the licensing requirements, obligations, and restrictions of the software components they use.</p>
+</li>
+<li>
+<p>Vulnerability Management</p>
+<p>By maintaining an up-to-date BOM, organizations can track the versions of components and be aware of any known security vulnerabilities associated with them. This enables proactive vulnerability management and helps in mitigating risks.</p>
+</li>
+<li>
+<p>Change Management</p>
+<p>The BOM provides visibility into the dependencies between components, allowing organizations to assess the impact of changes and plan accordingly. It helps in managing version upgrades, patches, or replacements of components.</p>
+</li>
+<li>
+<p>Supply Chain Management</p>
+<p>BOMs are useful for managing relationships with component suppliers or vendors. They provide a centralized view of the components used and their associated suppliers, facilitating communication, support, and maintenance activities.</p>
+</li>
+</ol>
+<h3 id="13-tools">1.3. Tools<a class="headerlink" href="#13-tools" title="Permanent link">&para;</a></h3>
+<h4 id="131-linter">1.3.1. Linter<a class="headerlink" href="#131-linter" title="Permanent link">&para;</a></h4>
+<p>A linter is a software tool that analyzes source code to identify and flag potential programming errors, coding standards violations, and other types of quality issues.</p>
+<p>Commonly used linter tools are:</p>
+<ul>
+<li>
+<p>ESLint</p>
+<blockquote>
+<p>A popular JavaScript linter that supports various coding styles and helps enforce consistent coding practices.</p>
+</blockquote>
+</li>
+<li>
+<p>Pylint</p>
+<blockquote>
+<p>A linter for Python code, designed to identify common programming errors and improve code quality.</p>
+</blockquote>
+</li>
+<li>
+<p>RuboCop</p>
+<blockquote>
+<p>A linter for Ruby code that checks for coding style violations, security issues, and performance bottlenecks.</p>
+</blockquote>
+</li>
+<li>
+<p>Clang-Tidy</p>
+<blockquote>
+<p>A linter for C++ code that uses Clang and LLVM libraries to identify potential coding issues and improve code quality.</p>
+</blockquote>
+</li>
+<li>
+<p>JSHint</p>
+<blockquote>
+<p>A JavaScript linter that can be used in a variety of development environments, including web browsers and Node.js.</p>
+</blockquote>
+</li>
+<li>
+<p>golangci-lint</p>
+<blockquote>
+<p>A linter tool for Go code, used to detect and fix coding errors, enforce coding conventions, and improve code quality in Go projects.</p>
+</blockquote>
+</li>
+<li>
+<p>Flake8</p>
+<blockquote>
+<p>A Python linter that combines three existing linters into a single tool (PyFlakes, McCabe, and PEP 8).</p>
+</blockquote>
+</li>
+<li>
+<p>CSSLint</p>
+<blockquote>
+<p>A linter for CSS code that checks for coding style violations, security issues, and performance bottlenecks.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="132-sanitizer">1.3.2. Sanitizer<a class="headerlink" href="#132-sanitizer" title="Permanent link">&para;</a></h4>
+<p>A sanitizer is a software tool that is used to identify and remove or correct malicious or potentially dangerous content from data inputs, such as user-generated input in a web application.</p>
+<p>Commonly used sanitizer tools are:</p>
+<ul>
+<li>
+<p>HTMLPurifier</p>
+<blockquote>
+<p>A PHP library that removes malicious code from HTML input, including XSS attacks and other types of malicious content.</p>
+</blockquote>
+</li>
+<li>
+<p>OWASP Java Encoder</p>
+<blockquote>
+<p>A Java library that provides a comprehensive set of functions for encoding and escaping user input to prevent XSS attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Input Sanitizer</p>
+<blockquote>
+<p>A JavaScript library that provides a simple and flexible API for sanitizing user input to prevent XSS attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Anti-Samy</p>
+<blockquote>
+<p>An XML and XHTML sanitizer that removes malicious code from user input and ensures that the output is secure and well-formed.</p>
+</blockquote>
+</li>
+<li>
+<p>XSS-Sanitizer</p>
+<blockquote>
+<p>A Python library that provides a simple API for sanitizing user input to prevent XSS attacks.</p>
+</blockquote>
+</li>
+<li>
+<p>Ruby Sanitizer</p>
+<blockquote>
+<p>A Ruby library that provides a simple API for sanitizing user input, including functions for removing malicious code, encoding special characters, and removing dangerous attributes.</p>
+</blockquote>
+</li>
+<li>
+<p>sqlmap</p>
+<blockquote>
+<p>An open-source tool that automates the process of identifying and exploiting SQL injection vulnerabilities in web applications.</p>
+</blockquote>
+</li>
+</ul>
+<p>Sanitizers are tools that help identify  detect bugs such as buffer overflows or accesses, dangling pointer or different types of undefined behavior at runtime and prevent security vulnerabilities in C/C++ code.</p>
+<p>Commonly used sanitizer tools for C/C++ are:</p>
+<ul>
+<li>
+<p>Address Sanitizer (ASan)</p>
+<blockquote>
+<p>A tool that detects memory access errors, such as out-of-bounds memory accesses and use-after-free bugs, in C/C++ code.</p>
+</blockquote>
+</li>
+<li>
+<p>Undefined Behavior Sanitizer (UBSan)</p>
+<blockquote>
+<p>A tool that detects undefined behavior, such as signed integer overflow and division by zero, in C/C++ code.</p>
+</blockquote>
+</li>
+<li>
+<p>Thread Sanitizer (TSan)</p>
+<blockquote>
+<p>A tool that detects data races and other synchronization bugs in multithreaded C/C++ code.</p>
+</blockquote>
+</li>
+<li>
+<p>Memory Sanitizer (MSan)</p>
+<blockquote>
+<p>A tool that detects uninitialized memory reads in C/C++ code.</p>
+</blockquote>
+</li>
+<li>
+<p>Control Flow Integrity (CFI)</p>
+<blockquote>
+<p>A security mechanism that helps prevent code injection attacks by enforcing constraints on the flow of control in C/C++ code.</p>
+</blockquote>
+</li>
+<li>
+<p>Valgrind</p>
+<blockquote>
+<p>A dynamic analysis tool that can be used to detect memory leaks, buffer overflows, and other types of programming errors in C/C++ code.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-references">2. References<a class="headerlink" href="#2-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sentenz <a href="../software-testing/#41-application-security-testing">Application Security Testing (AST)</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

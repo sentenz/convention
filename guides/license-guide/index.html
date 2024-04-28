@@ -1,0 +1,1175 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/guides/license-guide/">
+      
+      
+        <link rel="prev" href="../../articles/feature-flags/">
+      
+      
+        <link rel="next" href="../versioning-guide/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>License Guide - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#license-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              License Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Classification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. License
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. License">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-external-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. External Use
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-internal-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Internal Use
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Classification
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. License
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. License">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-external-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. External Use
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-internal-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Internal Use
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Tools
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/guides/license-guide.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/guides/license-guide.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="license-guide">License Guide<a class="headerlink" href="#license-guide" title="Permanent link">&para;</a></h1>
+<p>The licenses are classified according to the <a href="https://opensource.google/documentation/reference/thirdparty/licenses">Google License Classification</a>. For a deeper understanding, please refer to the link.</p>
+<ul>
+<li><a href="#1-classification">1. Classification</a></li>
+<li><a href="#2-license">2. License</a></li>
+<li><a href="#21-external-use">2.1. External Use</a></li>
+<li><a href="#22-internal-use">2.2. Internal Use</a></li>
+<li><a href="#3-tools">3. Tools</a></li>
+<li><a href="#4-references">4. References</a></li>
+</ul>
+<h2 id="1-classification">1. Classification<a class="headerlink" href="#1-classification" title="Permanent link">&para;</a></h2>
+<p>Information on to comply with open source licenses for externally distributed software, what these licenses are, what categories they fall under, and how to handle them.</p>
+<ul>
+<li>
+<p><a href="https://opensource.google/documentation/reference/thirdparty/licenses#restricted">Restricted</a> licenses</p>
+<blockquote>
+<p>The <code>restricted</code> licenses. Licenses in this category require mandatory source distribution (including product source code) if a company ships a product that includes third-party code protected by such a license. Also, any use of source code under licenses of this type in a product will <strong>taint</strong> product source code with the restricted license. Third-party software made available under one of these licenses must not be part of company products that are delivered to outside customers. Such prohibited distribution methods include <code>client</code> (downloadable client software) and <code>embedded</code>.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://opensource.google/documentation/reference/thirdparty/licenses#reciprocal">Reciprocal</a> licenses</p>
+<blockquote>
+<p>The <code>reciprocal</code> licenses apply the same permissions and limitations set by the Restricted category of licenses, but with one important exception. The obligation to make source code available to recipients of software that depends on a Reciprocally licensed library only extends to the contents of the library itself, together with any additions to or modifications of that individual library. Unlike GPL and other Restricted licenses, the other components of the software depending on the Reciprocal library do not need to have their source released under the corresponding reciprocal license.</p>
+<p>The distribution of software that contains reciprocally licensed components triggers our obligation to make the corresponding source code of those components available to end users. Reciprocally licensed third-party source code must be made available by mirroring it to a repository. However, if there are compelling reasons not to mirror the internal modifications externally or share them upstream, then the reciprocally licensed package must not be used in software that is distributed outside of company.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://opensource.google/documentation/reference/thirdparty/licenses#notice">Notice</a> licenses</p>
+<blockquote>
+<p>The <code>notice</code> licenses contain few restrictions, allowing original or modified third-party software to be shipped in any product without endangering or encumbering product source code. All of the licenses in this category do, however, have an "original Copyright notice" or "advertising clause", wherein any external distributions must include the notice or clause specified in the license.</p>
+<p>For downloaded <code>client</code> products, the necessary notice files can be installed in a subdirectory of the product. For <code>embedded</code> products, that make use of <code>notice</code> licensed source code, the required notices must either be linked on an "about" page or possibly included in printed documentation. If the software at issue is a binary that is being sent to end-users devices, that users only interact with through a command line interface, then we would recommend setting up a flag that can be passed through the tool to make the console read out these notices (e.g. --notices). Alternatively, these notices can be concatenated into a THIRD_PARTY_NOTICES.txt file that is bundled with the software, as long as the software is being sent to a device that permits the end user to view the text of that file.</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://opensource.google/documentation/reference/thirdparty/licenses#permissive">Permissive</a> license</p>
+<blockquote>
+<p>The <code>permissive</code> license type can be used in (relatively rare) cases where third-party software is under a license (not "Public Domain" or "free for any use" like <code>unencumbered</code>) that is even more lenient than a <code>notice</code> license. Use the <code>permissive</code> license type when even a copyright notice is not required for license compliance. For example, this license type can be used when a third-party <code>cc_library()</code> rule only adds header files (licensed under, say, the GNU LGPL) to the include path for compilation, but no actual binary libraries or source files. (Yes, these cases exist, such as with header files that define interfaces to dynamically loaded libraries that are present in the operating system distribution itself.)</p>
+</blockquote>
+</li>
+<li>
+<p><a href="https://opensource.google/documentation/reference/thirdparty/licenses#unencumbered">Unencumbered</a> licenses</p>
+<blockquote>
+<p>In addition to the Public Domain and Authored code cases, actual licenses exist that generally declare that the code is "free for any use".</p>
+<p><code>Public domain and "Free For Any Use"</code></p>
+<p>NOTE Apply this label with caution. Public domain is a complex topic that requires legal analysis on a case by case basis.</p>
+<p>The 'unencumbered' licenses include those often referred to as "Public Domain" or "free for any use." These licenses have even fewer restrictions than licenses in the 'notice' category, but this licence type should be assigned to a third-party build rule with caution, because:</p>
+<ul>
+<li>It is non-trivial <a href="https://en.wikipedia.org/wiki/Public_domain_in_the_United_States#Computer_Software_Rental_Amendments_Act">to place software in the public domain</a>. While an explicit disclaimer of copyright protection is required, that is <a href="http://www.bitlaw.com/source/37cfr/201_26.html">not necessarily sufficient</a>.</li>
+<li>While <a href="http://en.wikipedia.org/wiki/Work_of_the_United_States_Government">works of the U.S. Government</a> are placed in the public domain, works created by contractors under government contracts may not be.</li>
+</ul>
+<p>Third-party software whose copyright notice explicitly states that the work has been placed in the "public domain" by the author or is "free for any use" will be assigned the 'unencumbered' license type. As discussed in the links above, this does not necessarily mean that the work is unprotected by copyright, but granting of a lenient license by the author can most likely be assumed.</p>
+<p><code>Company-Authored code</code></p>
+<p>Another instance where the 'unencumbered' license type is appropriate is company-authored code in a third-party package (such as tests added by company) that a company has not open sourced but that exists in the //third_party package with the third-party code. This is typically handled by the licenses= build directive parameter for the specific build rules in the //third_party package that are building the company-authored code (while the rest of the package has its license type set by the file-scoped licenses() directive).</p>
+<p>As noted at <a href="https://opensource.google/documentation/reference/thirdparty/documentation#google-owned-code">go/thirdparty/documentation#google-owned-code</a>, The LICENSE file for company-authored, not-yet-released code should only contain the following text: "company owned, no external contributions."</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-license">2. License<a class="headerlink" href="#2-license" title="Permanent link">&para;</a></h2>
+<p>Classification of licenses and assignment of severity levels.</p>
+<table>
+<thead>
+<tr>
+<th>Classification</th>
+<th>Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Forbidden</td>
+<td>CRITICAL</td>
+</tr>
+<tr>
+<td>Restricted</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>Reciprocal</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td>Notice</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Permissive</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Unencumbered</td>
+<td>LOW</td>
+</tr>
+<tr>
+<td>Unknown</td>
+<td>UNKNOWN</td>
+</tr>
+</tbody>
+</table>
+<p>Classification of known licenses based on Google <a href="https://github.com/google/licenseclassifier/blob/main/license_type.go">License Classifier</a>.</p>
+<h3 id="21-external-use">2.1. External Use<a class="headerlink" href="#21-external-use" title="Permanent link">&para;</a></h3>
+<p>Forbidden:</p>
+<ul>
+<li>AGPL-1.0</li>
+<li>AGPL-3.0</li>
+<li>CC-BY-NC-1.0</li>
+<li>CC-BY-NC-2.0</li>
+<li>CC-BY-NC-2.5</li>
+<li>CC-BY-NC-3.0</li>
+<li>CC-BY-NC-4.0</li>
+<li>CC-BY-NC-ND-1.0</li>
+<li>CC-BY-NC-ND-2.0</li>
+<li>CC-BY-NC-ND-2.5</li>
+<li>CC-BY-NC-ND-3.0</li>
+<li>CC-BY-NC-ND-4.0</li>
+<li>CC-BY-NC-SA-1.0</li>
+<li>CC-BY-NC-SA-2.0</li>
+<li>CC-BY-NC-SA-2.5</li>
+<li>CC-BY-NC-SA-3.0</li>
+<li>CC-BY-NC-SA-4.0</li>
+<li>Commons-Clause</li>
+<li>Facebook-2-Clause</li>
+<li>Facebook-3-Clause</li>
+<li>Facebook-Examples</li>
+<li>WTFPL</li>
+</ul>
+<p>Restricted:</p>
+<ul>
+<li>BCL</li>
+<li>CC-BY-ND-1.0</li>
+<li>CC-BY-ND-2.0</li>
+<li>CC-BY-ND-2.5</li>
+<li>CC-BY-ND-3.0</li>
+<li>CC-BY-ND-4.0</li>
+<li>CC-BY-SA-1.0</li>
+<li>CC-BY-SA-2.0</li>
+<li>CC-BY-SA-2.5</li>
+<li>CC-BY-SA-3.0</li>
+<li>CC-BY-SA-4.0</li>
+<li>CERN 2</li>
+<li>GPL-1.0</li>
+<li>GPL-2.0</li>
+<li>GPL-2.0-with-autoconf-exception</li>
+<li>GPL-2.0-with-bison-exception</li>
+<li>GPL-2.0-with-classpath-exception</li>
+<li>GPL-2.0-with-font-exception</li>
+<li>GPL-2.0-with-GCC-exception</li>
+<li>GPL-3.0</li>
+<li>GPL-3.0-with-autoconf-exception</li>
+<li>GPL-3.0-with-GCC-exception</li>
+<li>LGPL-2.0</li>
+<li>LGPL-2.1</li>
+<li>LGPL-3.0</li>
+<li>NPL-1.0</li>
+<li>NPL-1.1</li>
+<li>OSL-1.0</li>
+<li>OSL-1.1</li>
+<li>OSL-2.0</li>
+<li>OSL-2.1</li>
+<li>OSL-3.0</li>
+<li>QPL-1.0</li>
+<li>Sleepycat</li>
+</ul>
+<blockquote>
+<p>NOTE <code>LGPL linking requirements</code></p>
+<p>Though marked as restricted, LGPL licensed components can be used without observing of the restricted type requirements if the component is dynamically linked.</p>
+<p>If distributing software outside of the company that incorporates any LGPL licensed libraries, there are ways of meeting the license obligations that are less restrictive than the GPL's obligations if certain requirements are observed. The following steps are required in order to be able to take advantage of the reduced requirements:</p>
+<ul>
+<li>The LGPL licensed library must be used as a shared library (dynamically linked).</li>
+<li>For LGPL v3 only, the user must be able to replace the shared library with a compatible library and have it work (the user must be able to swap out libraries on the device).</li>
+<li>Customers must receive either object files or source code (including any modifications) of the LGPL licensed library.</li>
+</ul>
+<p>NOTE YOU are NOT required to provide support for the LGPL licensed library. YOU are NOT required to work around bugs or problems in compatible libraries, or perform tech support for customer modifications. YOU are required to make library replacement possible (for LGPL v3). YOU are required to permit user modification of the software, and to not prohibit user modification in the terms of service.</p>
+<p>These requirements only apply to products shipped to end users. Software that is run internally (even if displayed on the web to the user) does not have to meet these requirements.</p>
+</blockquote>
+<p>Reciprocal:</p>
+<ul>
+<li>APSL-1.0</li>
+<li>APSL-1.1</li>
+<li>APSL-1.2</li>
+<li>APSL-2.0</li>
+<li>CDDL-1.0</li>
+<li>CDDL-1.1</li>
+<li>CPL-1.0</li>
+<li>EPL-1.0</li>
+<li>EPL-2.0</li>
+<li>FreeImage</li>
+<li>IPL-1.0</li>
+<li>MPL-1.0</li>
+<li>MPL-1.1</li>
+<li>MPL-2.0</li>
+<li>Ruby</li>
+</ul>
+<p>Notice:</p>
+<ul>
+<li>AFL-1.1</li>
+<li>AFL-1.2</li>
+<li>AFL-2.0</li>
+<li>AFL-2.1</li>
+<li>AFL-3.0</li>
+<li>Apache-1.0</li>
+<li>Apache-1.1</li>
+<li>Apache-2.0</li>
+<li>Artistic-1.0-cl8</li>
+<li>Artistic-1.0-Perl</li>
+<li>Artistic-1.0</li>
+<li>Artistic-2.0</li>
+<li>BSL-1.0</li>
+<li>BSD-2-Clause-FreeBSD</li>
+<li>BSD-2-Clause-NetBSD</li>
+<li>BSD-2-Clause</li>
+<li>BSD-3-Clause-Attribution</li>
+<li>BSD-3-Clause-Clear</li>
+<li>BSD-3-Clause-LBNL</li>
+<li>BSD-3-Clause</li>
+<li>BSD-4-Clause</li>
+<li>BSD-4-Clause-UC</li>
+<li>BSD-Protection</li>
+<li>CC-BY-1.0</li>
+<li>CC-BY-2.0</li>
+<li>CC-BY-2.5</li>
+<li>CC-BY-3.0</li>
+<li>CC-BY-4.0</li>
+<li>FTL</li>
+<li>ISC</li>
+<li>ImageMagick</li>
+<li>Libpng</li>
+<li>Lil-1.0</li>
+<li>Linux-OpenIB</li>
+<li>LPL-1.02</li>
+<li>LPL-1.0</li>
+<li>MS-PL</li>
+<li>MIT</li>
+<li>NCSA</li>
+<li>OpenSSL</li>
+<li>PHP-3.01</li>
+<li>PHP-3.0</li>
+<li>PIL</li>
+<li>Python-2.0</li>
+<li>Python-2.0-complete</li>
+<li>PostgreSQL</li>
+<li>SGI-B-1.0</li>
+<li>SGI-B-1.1</li>
+<li>SGI-B-2.0</li>
+<li>Unicode-DFS-2015</li>
+<li>Unicode-DFS-2016</li>
+<li>Unicode-TOU</li>
+<li>UPL-1.0</li>
+<li>W3C-19980720</li>
+<li>W3C-20150513</li>
+<li>W3C</li>
+<li>X11</li>
+<li>Xnet</li>
+<li>Zend-2.0</li>
+<li>zlib-acknowledgement</li>
+<li>Zlib</li>
+<li>ZPL-1.1</li>
+<li>ZPL-2.0</li>
+<li>ZPL-2.1</li>
+</ul>
+<p>Permissive:</p>
+<p>Unencumbered:</p>
+<ul>
+<li>CC0-1.0</li>
+<li>Unlicense</li>
+<li>0BSD</li>
+</ul>
+<h3 id="22-internal-use">2.2. Internal Use<a class="headerlink" href="#22-internal-use" title="Permanent link">&para;</a></h3>
+<p>Restricted:</p>
+<ul>
+<li>CERN 1.1</li>
+<li>OFL-1.1</li>
+<li>OpenVision</li>
+</ul>
+<blockquote>
+<p>NOTE <a href="http://opensource.org/licenses/OFL-1.1">SIL Open Font License (OFL-1.1)</a> is not a <code>notice</code> license and has additional restrictions. Please mark packages that use the OFL-1.1 license as <code>by_exception_only</code>.</p>
+</blockquote>
+<p>Notice:</p>
+<ul>
+<li>Beerware</li>
+<li>LaTeX License</li>
+</ul>
+<h2 id="3-tools">3. Tools<a class="headerlink" href="#3-tools" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://aquasecurity.github.io/trivy/v0.35/docs/licenses/scanning/">Trivy License Scanner</a><blockquote>
+<p>Trivy scans any container image for license files and offers an opinionated view on the risk associated with the license. License are classified using the <code>Google License Classification</code>. In addition to package licenses, Trivy scans source code files, Markdown documents, text files and <code>LICENSE</code> documents to identify license usage within the image or filesystem.</p>
+</blockquote>
+</li>
+</ul>
+<p>Scan license in container image and filesystem.</p>
+<p>Standard scanning, specify an image name with <code>--security-checks</code> license.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>trivy<span class="w"> </span>image<span class="w"> </span>--security-checks<span class="w"> </span>license<span class="w"> </span>--severity<span class="w"> </span>UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL<span class="w"> </span>alpine:3.15
+</span></code></pre></div>
+<p>Full scanning, specify an image name with <code>--license-full</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>trivy<span class="w"> </span>image<span class="w"> </span>--security-checks<span class="w"> </span>license<span class="w"> </span>--severity<span class="w"> </span>UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL<span class="w"> </span>--license-full<span class="w"> </span>grafana/grafana
+</span></code></pre></div>
+<p>Full scanning, specify a file system (fs) <code>--license-full</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>trivy<span class="w"> </span>fs<span class="w"> </span>--format<span class="w"> </span>json<span class="w"> </span>--security-checks<span class="w"> </span>license<span class="w"> </span>--severity<span class="w"> </span>UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL<span class="w"> </span>--license-full<span class="w"> </span>eddyData/<span class="w"> </span>-o<span class="w"> </span>license.log
+</span></code></pre></div>
+<h2 id="4-references">4. References<a class="headerlink" href="#4-references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Sentenz <a href="../../convention/spdx/">SPDX convention</a> article.</li>
+<li>Sentenz <a href="../../articles/licenses/">about licenses</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../../articles/feature-flags/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Feature Flags">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Feature Flags
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../versioning-guide/" class="md-footer__link md-footer__link--next" aria-label="Next: Versioning Guide">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Versioning Guide
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

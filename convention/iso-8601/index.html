@@ -1,0 +1,1201 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="General articles, conventions and guides for software projects.">
+      
+      
+        <meta name="author" content="Sentenz">
+      
+      
+        <link rel="canonical" href="https://sentenz.github.io/convention/convention/iso-8601/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+    
+    
+      
+        <title>ISO 8601 - Convention</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#iso-8601" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Convention" class="md-header__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Convention
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ISO 8601
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1M8 13h8v-2H8v2m9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1 0 1.71-1.39 3.1-3.1 3.1h-4V17h4a5 5 0 0 0 5-5 5 5 0 0 0-5-5Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5M7 15a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../articles/branching-strategies/" class="md-tabs__link">
+          
+  
+    
+  
+  Articles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guides/license-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  Guides
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Convention" class="md-nav__button md-logo" aria-label="Convention" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Convention
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/sentenz/convention/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Articles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/branching-strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Branching Strategies
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../articles/feature-flags/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Feature Flags
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Guides
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Guides
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/license-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    License Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guides/versioning-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Versioning Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Category
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Category">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-utc" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. UTC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-date-and-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Date and Time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. Duration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-time-zone" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.6. Time Zone
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-time-offset" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.7. Time Offset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-time-interval" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.8. Time Interval
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-recurring-time-intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9. Recurring Time Intervals
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Principles
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-best-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Best Practice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-terminology" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Terminology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      References
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/sentenz/convention/blob/main/internal/convention/iso-8601.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/sentenz/convention/raw/main/internal/convention/iso-8601.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 id="iso-8601">ISO 8601<a class="headerlink" href="#iso-8601" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.iso.org/iso-8601-date-and-time-format.html">ISO 8601</a> is an international standard for representing date and time in a machine-readable format. The standard was first published by the International Organization for Standardization (ISO).</p>
+<ul>
+<li><a href="#1-category">1. Category</a></li>
+<li><a href="#11-utc">1.1. UTC</a></li>
+<li><a href="#12-date">1.2. Date</a></li>
+<li><a href="#13-time">1.3. Time</a></li>
+<li><a href="#14-date-and-time">1.4. Date and Time</a></li>
+<li><a href="#15-duration">1.5. Duration</a></li>
+<li><a href="#16-time-zone">1.6. Time Zone</a></li>
+<li><a href="#17-time-offset">1.7. Time Offset</a></li>
+<li><a href="#18-time-interval">1.8. Time Interval</a></li>
+<li><a href="#19-recurring-time-intervals">1.9. Recurring Time Intervals</a></li>
+<li><a href="#2-principles">2. Principles</a></li>
+<li><a href="#3-best-practice">3. Best Practice</a></li>
+<li><a href="#4-terminology">4. Terminology</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h2 id="1-category">1. Category<a class="headerlink" href="#1-category" title="Permanent link">&para;</a></h2>
+<p>ISO 8601 standardized date format provides a clear and unambiguous way of representing dates that can be easily understood and interpreted by users worldwide.</p>
+<h3 id="11-utc">1.1. UTC<a class="headerlink" href="#11-utc" title="Permanent link">&para;</a></h3>
+<p>Coordinated Universal Time (UTC) is the primary time standard used in ISO 8601 for timekeeping and data exchange. UTC is a time standard that is based on the International System of Units (SI) second, which is defined as the duration of 9,192,631,770 cycles of the radiation corresponding to the transition between the two hyperfine levels of the ground state of the caesium-133 atom.</p>
+<p>In ISO 8601, UTC is represented as <code>Z</code> (which stands for <code>Zulu</code> time) at the end of the time string, following the time offset, if present. For example, the time 12:30:00 PM UTC would be represented as <code>12:30:00Z</code> in ISO 8601 format.</p>
+<p>Using UTC in ISO 8601 ensures that the representation of time is standardized and easily understood across different languages and cultures, making it useful for international communication and data exchange.</p>
+<h3 id="12-date">1.2. Date<a class="headerlink" href="#12-date" title="Permanent link">&para;</a></h3>
+<p>Represents a specific date in the format <code>YYYY-MM-DD</code>, where:</p>
+<ul>
+<li>
+<p><code>YYYY</code></p>
+<blockquote>
+<p>Represents the year with four digits.</p>
+</blockquote>
+</li>
+<li>
+<p><code>MM</code></p>
+<blockquote>
+<p>Represents the month with two digits (01-12).</p>
+</blockquote>
+</li>
+<li>
+<p><code>DD</code></p>
+<blockquote>
+<p>Represents the day with two digits (01-31).</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="13-time">1.3. Time<a class="headerlink" href="#13-time" title="Permanent link">&para;</a></h3>
+<p>Represents a specific time in the format <code>hh:mm:ss.sss</code>, where:</p>
+<ul>
+<li>
+<p><code>hh</code></p>
+<blockquote>
+<p>Represents the hour with two digits (00-23).</p>
+</blockquote>
+</li>
+<li>
+<p><code>mm</code></p>
+<blockquote>
+<p>Represents the minute with two digits (00-59).</p>
+</blockquote>
+</li>
+<li>
+<p><code>ss</code></p>
+<blockquote>
+<p>Represents the second with two digits (00-59).</p>
+</blockquote>
+</li>
+<li>
+<p><code>sss</code></p>
+<blockquote>
+<p>Represents the millisecond with three digits (000-999).</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="14-date-and-time">1.4. Date and Time<a class="headerlink" href="#14-date-and-time" title="Permanent link">&para;</a></h3>
+<p>Represents a specific point in time in the format <code>YYYY-MM-DDThh:mm:ss.sssZ</code>, where:</p>
+<ul>
+<li>
+<p><code>YYYY</code></p>
+<blockquote>
+<p>Represents the year with four digits.</p>
+</blockquote>
+</li>
+<li>
+<p><code>MM</code></p>
+<blockquote>
+<p>Represents the month with two digits (01-12).</p>
+</blockquote>
+</li>
+<li>
+<p><code>DD</code></p>
+<blockquote>
+<p>Represents the day with two digits (01-31).</p>
+</blockquote>
+</li>
+<li>
+<p><code>T</code></p>
+<blockquote>
+<p>Separates the date from the time.</p>
+</blockquote>
+</li>
+<li>
+<p><code>hh</code></p>
+<blockquote>
+<p>Represents the hour with two digits (00-23).</p>
+</blockquote>
+</li>
+<li>
+<p><code>mm</code></p>
+<blockquote>
+<p>Represents the minute with two digits (00-59).</p>
+</blockquote>
+</li>
+<li>
+<p><code>ss</code></p>
+<blockquote>
+<p>Represents the second with two digits (00-59).</p>
+</blockquote>
+</li>
+<li>
+<p><code>sss</code></p>
+<blockquote>
+<p>Represents the millisecond with three digits (000-999).</p>
+</blockquote>
+</li>
+<li>
+<p><code>Z</code></p>
+<blockquote>
+<p>Represents the time zone in UTC (Coordinated Universal Time).</p>
+</blockquote>
+</li>
+</ul>
+<p>An example of the ISO 8601 format for <code>April 23, 2023, at 10:30:45 AM</code> in Eastern Standard Time (UTC-5) would be <code>2023-04-23T10:30:45.000-05:00</code>.</p>
+<h3 id="15-duration">1.5. Duration<a class="headerlink" href="#15-duration" title="Permanent link">&para;</a></h3>
+<p>Duration is used to represent the amount of time between two events or the duration of an event. The format for durations is <code>P[n]Y[n]M[n]DT[n]H[n]M[n]S</code>, where:</p>
+<ul>
+<li>
+<p><code>P</code></p>
+<blockquote>
+<p>Represents the duration designator, which indicates that this is a duration value.</p>
+</blockquote>
+</li>
+<li>
+<p><code>n</code></p>
+<blockquote>
+<p>Represents the number of years (Y), months (M), days (D), hours (H), minutes (M), or seconds (S) in the duration. The number can be an integer or a decimal.</p>
+</blockquote>
+</li>
+<li>
+<p><code>T</code></p>
+<blockquote>
+<p>Represents the time designator, which indicates that the time values (hours, minutes, seconds) follow the date values (years, months, days).</p>
+</blockquote>
+</li>
+</ul>
+<p>For example, a duration of 1 year, 2 months, 3 days, 4 hours, 5 minutes, and 6 seconds would be represented as follows:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>P1Y2M3DT4H5M6S
+</span></code></pre></div>
+<p>Note that if any of the values are zero, they can be omitted. For example, a duration of 1 hour and 30 minutes would be represented as:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PT1H30M
+</span></code></pre></div>
+<h3 id="16-time-zone">1.6. Time Zone<a class="headerlink" href="#16-time-zone" title="Permanent link">&para;</a></h3>
+<p>The standardized format of time zones in ISO 8601 ensures that the representation of time zones is consistent and easily understood across different languages and cultures, making it useful for international communication and data exchange.</p>
+<p>In ISO 8601, time zones are represented using the format <code>±hh:mm</code> or <code>±hh</code>, where:</p>
+<ul>
+<li>
+<p><code>±</code></p>
+<blockquote>
+<p>The plus (+) or minus (-) sign indicates the direction of the offset from Coordinated Universal Time (UTC).</p>
+</blockquote>
+</li>
+<li>
+<p><code>hh</code></p>
+<blockquote>
+<p>Represents the number of hours in the time zone offset, ranging from 00 to 14.</p>
+</blockquote>
+</li>
+<li>
+<p><code>mm</code></p>
+<blockquote>
+<p>Represents the number of minutes in the time zone offset, ranging from 00 to 59.</p>
+</blockquote>
+</li>
+</ul>
+<p>For example, the time zone of Eastern Standard Time (EST) in the United States, which is 5 hours behind UTC, would be represented as <code>-05:00</code> in ISO 8601 format. Similarly, the time zone of India Standard Time (IST), which is 5 hours and 30 minutes ahead of UTC, would be represented as <code>+05:30</code>.</p>
+<h3 id="17-time-offset">1.7. Time Offset<a class="headerlink" href="#17-time-offset" title="Permanent link">&para;</a></h3>
+<p>In ISO 8601, time offsets are used to indicate the difference between Coordinated Universal Time (UTC) and the local time.</p>
+<p>The standardized format of time offsets in ISO 8601 ensures that the representation of time differences between UTC and local time is consistent and easily understood across different languages and cultures</p>
+<p>The time offset is represented as <code>±hh:mm</code>, where:</p>
+<ul>
+<li>
+<p><code>±</code></p>
+<blockquote>
+<p>The plus (+) or minus (-) sign indicates whether the local time is ahead of or behind UTC, respectively.</p>
+</blockquote>
+</li>
+<li>
+<p><code>HH</code></p>
+<blockquote>
+<p>Represents the number of hours in the time offset, ranging from 00 to 14.</p>
+</blockquote>
+</li>
+<li>
+<p><code>mm</code></p>
+<blockquote>
+<p>Represents the number of minutes in the time offset, ranging from 00 to 59.</p>
+</blockquote>
+</li>
+</ul>
+<p>For example, a time offset of 5 hours and 30 minutes behind UTC (i.e., India Standard Time) would be represented as <code>UTC-05:30</code> in ISO 8601 format.</p>
+<h3 id="18-time-interval">1.8. Time Interval<a class="headerlink" href="#18-time-interval" title="Permanent link">&para;</a></h3>
+<p>In ISO 8601, time intervals are represented using the format <code>P[n]Y[n]M[n]DT[n]H[n]M[n]S</code>, where:</p>
+<ul>
+<li>
+<p><code>P</code></p>
+<blockquote>
+<p>Represents the duration designator and is always the first character of the string.</p>
+</blockquote>
+</li>
+<li>
+<p><code>n</code></p>
+<blockquote>
+<p>Represents the number of years (Y), months (M), days (D), hours (H), minutes (M), or seconds (S) in the time interval.</p>
+</blockquote>
+</li>
+</ul>
+<p>For example, a time interval of 3 years, 2 months, and 15 days would be represented as <code>P3Y2M15D</code> in ISO 8601 format. Similarly, a time interval of 4 hours and 30 minutes would be represented as <code>PT4H30M</code>.</p>
+<p>ISO 8601 also allows for the use of decimal fractions of a second in the time interval format. For example, a time interval of 1 minute and 30.5 seconds would be represented as <code>PT1M30.5S</code>.</p>
+<p>The ISO 8601 time interval format is useful for representing durations, elapsed times, and intervals between two points in time. Its standardized format ensures that the representation of time intervals is unambiguous and easily understood across different languages and cultures.</p>
+<h3 id="19-recurring-time-intervals">1.9. Recurring Time Intervals<a class="headerlink" href="#19-recurring-time-intervals" title="Permanent link">&para;</a></h3>
+<p>Represented as a combination of a start time, a duration, and a repetition rate. This format allows users to represent complex patterns of recurring time intervals in a standardized and unambiguous way.</p>
+<p>The recurring time interval format follows the following syntax:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>R[repetition]/[duration]/[start time]/[time interval]
+</span></code></pre></div>
+<ul>
+<li>
+<p>Repetition</p>
+<blockquote>
+<p>This is represented as the letter <code>R</code> followed by the repetition rate in the form of an integer or a decimal number. For example, to represent an event that occurs every hour, the repetition would be <code>R1</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Duration</p>
+<blockquote>
+<p>This is represented as the letter <code>P</code> followed by a time duration in the format of <code>Thh:mm:ss.sss</code>. For example, to represent an event that lasts for 30 minutes, the duration would be <code>PT30M</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Start Time</p>
+<blockquote>
+<p>This is represented as a date and time in the format of <code>YYYY-MM-DDThh:mm:ss.sss</code>. This specifies the start time for the recurring time interval.</p>
+</blockquote>
+</li>
+<li>
+<p>Time Interval</p>
+<blockquote>
+<p>This is represented as the letter <code>P</code> followed by a time duration in the format of <code>Thh:mm:ss.sss</code>. This specifies the interval between each recurrence of the event. For example, to represent an event that occurs every hour and lasts for 30 minutes, the time interval would be <code>PT1H</code> (i.e., one hour).</p>
+</blockquote>
+</li>
+</ul>
+<p>This format can be used to represent a wide range of recurring time intervals, from simple daily events to complex schedules that occur at irregular intervals. An example of a recurring time interval expression for an event that occurs every hour and lasts for 30 minutes, starting on April 23, 2023, at 12:00:00 PM UTC:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>R/PT30M/2023-04-23T12:00:00Z/PT1H
+</span></code></pre></div>
+<h2 id="2-principles">2. Principles<a class="headerlink" href="#2-principles" title="Permanent link">&para;</a></h2>
+<p>ISO 8601 is based on several principles that aim to ensure that the date and time representation is standardized, unambiguous, and internationally recognized.</p>
+<ul>
+<li>
+<p>Complete representation</p>
+<blockquote>
+<p>The date and time representation should include all relevant information, including the year, month, day, hour, minute, second, and time zone.</p>
+</blockquote>
+</li>
+<li>
+<p>Ordering</p>
+<blockquote>
+<p>The date and time values should be ordered from the largest to smallest units, with the year coming first, followed by the month, day, hour, minute, and second.</p>
+</blockquote>
+</li>
+<li>
+<p>Separators</p>
+<blockquote>
+<p>Clear and unambiguous separators should be used between the different parts of the date and time representation, such as <code>-</code> between the year, month, and day, and <code>:</code> between the hours, minutes, and seconds.</p>
+</blockquote>
+</li>
+<li>
+<p>Unambiguous interpretation</p>
+<blockquote>
+<p>The date and time representation should be unambiguous, regardless of the location or language of the user. This is achieved by using a fixed format for the representation, which is easily recognizable and interpretable by anyone who is familiar with ISO 8601.</p>
+</blockquote>
+</li>
+<li>
+<p>Internationalization</p>
+<blockquote>
+<p>The date and time representation should be independent of language and cultural differences, and be easily understood by people from different countries and regions.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-best-practice">3. Best Practice<a class="headerlink" href="#3-best-practice" title="Permanent link">&para;</a></h2>
+<p>The best practices ensure that the use of ISO 8601 is consistent, accurate, and easily interpretable by others.</p>
+<ul>
+<li>
+<p>Use the full representation</p>
+<blockquote>
+<p>Whenever possible, use the full representation of the date and time format, including the time zone. This ensures that the representation is complete and unambiguous.</p>
+</blockquote>
+</li>
+<li>
+<p>Use separators consistently</p>
+<blockquote>
+<p>Use separators consistently in the date and time representations to make them easier to read and interpret. For example, use <code>-</code> to separate the year, month, and day, and <code>:</code> to separate the hours, minutes, and seconds.</p>
+</blockquote>
+</li>
+<li>
+<p>Use UTC</p>
+<blockquote>
+<p>Whenever possible, use Coordinated Universal Time (UTC) in the date and time representations. This helps to avoid confusion and ensures that the representation is consistent across different time zones.</p>
+</blockquote>
+</li>
+<li>
+<p>Be aware of time zone differences</p>
+<blockquote>
+<p>When working with dates and times across different time zones, be aware of the differences and adjust the representation accordingly. For example, use the time zone offset to represent the difference between the local time and UTC.</p>
+</blockquote>
+</li>
+<li>
+<p>Validate inputs</p>
+<blockquote>
+<p>When parsing or validating date and time inputs, make sure that they conform to the ISO 8601 standard to avoid errors and inconsistencies.</p>
+</blockquote>
+</li>
+<li>
+<p>Document the use of ISO 8601</p>
+<blockquote>
+<p>Document the use of ISO 8601 in the code or documentation to ensure that other developers can easily understand and work with the date and time representations.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-terminology">4. Terminology<a class="headerlink" href="#4-terminology" title="Permanent link">&para;</a></h2>
+<p>Understanding the terms is essential for working with ISO 8601 and ensuring accurate and consistent representations of date and time values.</p>
+<ul>
+<li>
+<p>Date</p>
+<blockquote>
+<p>A date is a specific point in time, represented by a combination of year, month, and day.</p>
+</blockquote>
+</li>
+<li>
+<p>Time</p>
+<blockquote>
+<p>Time refers to a specific moment in the day, represented by a combination of hours, minutes, and seconds.</p>
+</blockquote>
+</li>
+<li>
+<p>Time zone</p>
+<blockquote>
+<p>A time zone is a region of the world that observes a standardized time, usually based on the Coordinated Universal Time (UTC) offset.</p>
+</blockquote>
+</li>
+<li>
+<p>UTC</p>
+<blockquote>
+<p>Coordinated Universal Time (UTC) is the primary time standard by which the world regulates clocks and time. It is the basis for the standardization of time zones around the world.</p>
+</blockquote>
+</li>
+<li>
+<p>Time interval</p>
+<blockquote>
+<p>A time interval is a period of time between two points in time, represented by a start and end date and time.</p>
+</blockquote>
+</li>
+<li>
+<p>Duration</p>
+<blockquote>
+<p>Duration refers to the length of time between two points in time, represented by a combination of years, months, days, hours, minutes, and seconds.</p>
+</blockquote>
+</li>
+<li>
+<p>Recurring time interval</p>
+<blockquote>
+<p>A recurring time interval is a period of time that repeats at regular intervals, such as daily, weekly, or monthly.</p>
+</blockquote>
+</li>
+<li>
+<p>Time offset</p>
+<blockquote>
+<p>A time offset is the difference between the local time and Coordinated Universal Time (UTC).</p>
+</blockquote>
+</li>
+<li>
+<p>Combined date and time</p>
+<blockquote>
+<p>A combined date and time is a representation of both the date and time in a single value.</p>
+</blockquote>
+</li>
+<li>
+<p>Leap year</p>
+<blockquote>
+<p>A leap year is a year that is one day longer than a regular year, with an additional day added to the calendar in February.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>ISO <a href="https://www.iso.org/iso-8601-date-and-time-format.html">iso 8601 date and time format</a> article.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sentenz
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      
+    
+  </body>
+</html>

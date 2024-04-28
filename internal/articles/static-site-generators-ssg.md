@@ -1,4 +1,4 @@
-# Static Site Generators
+# Static Site Generators (SSG)
 
 Static site generators (SSGs) are tools that generate static HTML, CSS, and JavaScript files from templates and content files.
 

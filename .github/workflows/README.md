@@ -30,4 +30,4 @@ The `/.gitlab` directory contains GitLab configuration files and pipelines.
     - `pages.yml`
       > The configuration file is set to deploy the repository to GitHub Pages using the `gh-pages` branch. The `gh-pages` branch is created and maintained by the GitHub Actions workflow.
       >
-      > NOTE Persmissions are required to deploy to the `gh-pages` branch.
+      > NOTE Enable GitHub Pages under the repository settings and select the `gh-pages` branch as the source. GitHub Actions will automatically build and deploy the site to the `gh-pages` branch. Persmissions are required to deploy to the `gh-pages` branch. Ensure that the `actions/upload-pages-artifact` point to the `site_dir` directory from the `mkdocs.yml` configuration file.

@@ -15,10 +15,6 @@ source ./../scripts/shell/pkg.sh
 
 # Constant Variables
 
-readonly -A APT_PACKAGES=(
-  ["python3-pip"]=""
-)
-
 readonly -A PIP_PACKAGES=(
   ["mkdocs"]="1.6.0"
   ["mkdocs-material"]="9.5.19"
@@ -30,12 +26,6 @@ readonly -A PIP_PACKAGES=(
 
 function setup_pages() {
   local -i retval=0
-
-  pkg_apt_install_list APT_PACKAGES
-  ((retval |= $?))
-
-  pkg_apt_clean
-  ((retval |= $?))
 
   pkg_pip_install_list PIP_PACKAGES
   ((retval |= $?))

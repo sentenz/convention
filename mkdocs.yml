@@ -9,7 +9,7 @@ edit_uri: blob/main/internal/
 docs_dir: internal
 site_dir: public
 
-copyright: &copy; Sentenz
+copyright: Sentenz
 
 theme:
   name: material
@@ -114,9 +114,6 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-  - pymdownx.underline
-  - pymdownx.urlencode
-  - pymdownx.versions
 
 nav:
   - Home: README.md

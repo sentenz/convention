@@ -26,3 +26,8 @@ The `/.gitlab` directory contains GitLab configuration files and pipelines.
       > Adhere to `keeping a changelog` convention for tracking changes in releases.
       >
       > NOTE GitHub authentication configuration is **required** and can be set via environment variables. Create a fine-grained personal access token (PAT) `GH_TOKEN` or `GITHUB_TOKEN` in `Settings / Developer Settings` with the `repository permissions` read and write access to `code`, `issues`, and `pull requests`.
+
+    - `pages.yml`
+      > The configuration file is set to deploy the repository to GitHub Pages using the `gh-pages` branch. The `gh-pages` branch is created and maintained by the GitHub Actions workflow.
+      >
+      > NOTE Persmissions are required to deploy to the `gh-pages` branch.

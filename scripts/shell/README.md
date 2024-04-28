@@ -17,4 +17,4 @@ Files and Directories:
   > Contains miscellaneous utility functions.
 
 - `git.sh`
-  > TODO
+  > Contains functions for git operations.

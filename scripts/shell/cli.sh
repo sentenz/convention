@@ -563,7 +563,7 @@ function cli_semantic_release() {
 #   $? - Result
 #########################
 function cli_mkdocs() {
-  mkdocs build
+  mkdocs build --clean
 }
 
 ########################

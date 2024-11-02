@@ -2,19 +2,13 @@
   "recommendations": [
     "vivaxy.vscode-conventional-commits",
     "zainchen.json",
-    "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
     "timonwong.shellcheck",
     "foxundermoon.shell-format",
     "redhat.vscode-yaml",
     "alefragnani.project-manager",
     "editorconfig.editorconfig",
-    "leodevbro.blockman",
-    "bierner.markdown-mermaid",
     "yzhang.markdown-all-in-one",
-    "yzane.markdown-pdf",
-    "davidanson.vscode-markdownlint",
-    "eamodio.gitlens",
-    "visualstudioexptteam.vscodeintellicode",
+    "davidanson.vscode-markdownlint"
   ]
 }

@@ -18,7 +18,7 @@
     "editor.insertSpaces": true,
     "editor.detectIndentation": true,
     "editor.tabSize": 2,
-    "editor.defaultFormatter": "vscode.markdown-language-features"
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
   },
   "markdown.extension.toc.levels": "2..6",
   "[shell]": {

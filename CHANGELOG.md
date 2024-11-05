@@ -1,3 +1,12 @@
+# Changelog
+
+## [2.1.0](https://github.com/sentenz/convention/compare/v2.0.0...v2.1.0) (2024-11-05)
+
+
+### Features
+
+* add SSG pipeline and book configuration ([36a42d5](https://github.com/sentenz/convention/commit/36a42d515ede4e931eb015d2456a312273b0fc8f))
+
 # [2.0.0](https://github.com/sentenz/convention/compare/v1.26.0...v2.0.0) (2024-03-29)
 
 

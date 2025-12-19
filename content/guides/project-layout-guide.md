@@ -101,7 +101,44 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `inc/`
+      > Public header files for the library. Uses a subdirectory with the library name to avoid naming conflicts when installed system-wide.
+
+    - `src/`
+      > Source implementation files (`.c`/`.cpp`), unit tests (`_test.cc`), CMake build configuration, and module-specific documentation.
+
+    - `external/`
+      > Third-party dependencies and external libraries used by the project.
+
+    - `test/`
+      > Higher-level tests such as performance benchmarks and integration tests, separate from unit tests in `src/`.
+
+    - `examples/`
+      > Example programs demonstrating library usage, with their own build configuration.
+
+    - `docs/`
+      > Project documentation including Architecture Decision Records (ADRs) and developer guides.
+
+    - `build/`
+      > Build output directory containing compiled artifacts (libraries, executables) organized by build type (debug/release).
+
+    - `tools/`
+      > Build tools and utilities, such as CMake modules and helper scripts.
+
+    - `scripts/`
+      > Automation scripts for bootstrapping, setup, and teardown operations.
+
+    - `CMakeLists.txt`
+      > Root CMake build configuration file.
+
+    - `CMakePresets.json`
+      > CMake presets for common build configurations.
+
+    - `LICENSE`
+      > Project license file.
+
+    - `README.md`
+      > Project overview, build instructions, and usage documentation.
 
 #### 1.1.2. Application
 
@@ -195,7 +232,53 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `internal/`
+      > Private application code organized in a layered architecture structure (presentation, application, domain, infrastructure).
+
+    - `internal/presentation/`
+      > User interface and presentation layer components.
+
+    - `internal/application/`
+      > Application services and use cases that orchestrate domain logic.
+
+    - `internal/domain/`
+      > Core business logic, entities, and domain models.
+
+    - `internal/infrastructure/`
+      > External integrations, database access, and infrastructure concerns.
+
+    - `external/`
+      > Third-party dependencies and external libraries.
+
+    - `test/`
+      > Contains performance benchmarks, integration tests, and end-to-end tests.
+
+    - `examples/`
+      > Example programs demonstrating application usage.
+
+    - `docs/`
+      > Project documentation including Architecture Decision Records (ADRs) and API documentation.
+
+    - `build/`
+      > Build output directory containing binaries, libraries, and CMake artifacts.
+
+    - `tools/`
+      > Build tools and utilities, such as CMake modules.
+
+    - `scripts/`
+      > Automation scripts for bootstrapping, setup, and teardown operations.
+
+    - `data/`
+      > Application data files such as datasets, configurations, or test data.
+
+    - `CMakeLists.txt`
+      > Root CMake build configuration file.
+
+    - `LICENSE`
+      > Project license file.
+
+    - `README.md`
+      > Project overview, architecture documentation, and usage instructions.
 
 ### 1.2. Go
 
@@ -234,7 +317,23 @@ Go packages organize and reuse code in Go programming language. The [Standard Go
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `internal/`
+      > Private application and library code that cannot be imported by external projects.
+
+    - `pkg/`
+      > Public library code that can be used by external applications, organized by package name.
+
+    - `go.mod`
+      > Go module definition file declaring the module path and dependencies.
+
+    - `go.sum`
+      > Go module checksums for dependency verification.
+
+    - `LICENSE`
+      > Project license file.
+
+    - `README.md`
+      > Package documentation, installation instructions, and usage examples.
 
 #### 1.2.2. Application
 
@@ -248,11 +347,97 @@ Go packages organize and reuse code in Go programming language. The [Standard Go
     > [!NOTE]
     > Replace `<...>` brackets with the application-specific information.
 
-    <!-- TODO -->
+    ```markdown
+    <application>/
+    │
+    . `Hierarchical Structure`
+    │
+    ├── cmd/
+    │   └── <app>/
+    │       └── main.go
+    │
+    ├── internal/
+    │   ├── app/
+    │   ├── config/
+    │   └── ...
+    │
+    ├── pkg/
+    │   └── <package>/
+    │
+    ├── api/
+    │   ├── openapi/
+    │   └── proto/
+    │
+    ├── web/
+    │   ├── static/
+    │   └── templates/
+    │
+    ├── configs/
+    │   └── config.yaml
+    │
+    ├── scripts/
+    │
+    ├── deployments/
+    │   ├── docker/
+    │   └── k8s/
+    │
+    ├── test/
+    │
+    ├── docs/
+    │
+    ├── go.mod
+    ├── go.sum
+    ├── Makefile
+    ├── LICENSE
+    └── README.md
+    ```
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `cmd/`
+      > Main applications for the project. The directory name for each application should match the name of the executable.
+
+    - `internal/`
+      > Private application and library code that cannot be imported by external projects.
+
+    - `pkg/`
+      > Library code that can be used by external applications.
+
+    - `api/`
+      > API definition files (OpenAPI/Swagger specs, Protocol Buffers, JSON schema).
+
+    - `web/`
+      > Web application specific components: static assets, server-side templates.
+
+    - `configs/`
+      > Configuration file templates or default configs.
+
+    - `scripts/`
+      > Scripts for various build, install, analysis operations.
+
+    - `deployments/`
+      > IaaS, PaaS, system and container orchestration deployment configurations and templates.
+
+    - `test/`
+      > Additional external test apps and test data.
+
+    - `docs/`
+      > Design and user documents.
+
+    - `go.mod`
+      > Go module definition file.
+
+    - `go.sum`
+      > Go module checksums.
+
+    - `Makefile`
+      > Build and task automation.
+
+    - `LICENSE`
+      > Project license file.
+
+    - `README.md`
+      > Project overview and documentation.
 
 ### 1.3. Python
 
@@ -260,50 +445,182 @@ Go packages organize and reuse code in Go programming language. The [Standard Go
 
 #### 1.3.1. Module
 
-<!-- TODO -->
+A Python module is a reusable package that can be installed and imported by other Python projects.
 
 1. Layout and Structure
-
-    <!-- TODO -->
 
     > [!NOTE]
     > Replace `<...>` brackets with the module-specific information.
 
+    ```markdown
+    <module>/
+    │
+    ├── src/
+    │   └── <module>/
+    │       ├── __init__.py
+    │       ├── <module>.py
+    │       └── py.typed
+    │
+    ├── tests/
+    │   ├── __init__.py
+    │   ├── test_<module>.py
+    │   └── conftest.py
+    │
+    ├── docs/
+    │   ├── conf.py
+    │   ├── index.rst
+    │   └── api.rst
+    │
+    ├── pyproject.toml
+    ├── setup.py
+    ├── requirements.txt
+    ├── requirements-dev.txt
+    ├── LICENSE
+    └── README.md
+    ```
+
 2. Files and Folders
 
-    <!-- TODO -->
+    - `src/`
+      > Source code directory following the src-layout pattern to avoid import issues.
+
+    - `src/<module>/`
+      > The actual module package containing the implementation code.
+
+    - `__init__.py`
+      > Package initialization file that makes the directory a Python package.
+
+    - `py.typed`
+      > Marker file indicating the package supports type checking (PEP 561).
+
+    - `tests/`
+      > Test suite for the module including unit tests and integration tests.
+
+    - `conftest.py`
+      > Pytest configuration and shared fixtures.
+
+    - `docs/`
+      > Documentation source files, typically using Sphinx.
+
+    - `pyproject.toml`
+      > Python project configuration file (PEP 518) defining build system and dependencies.
+
+    - `setup.py`
+      > Package distribution setup script (being replaced by pyproject.toml).
+
+    - `requirements.txt`
+      > Runtime dependencies.
+
+    - `requirements-dev.txt`
+      > Development dependencies (testing, linting, documentation tools).
+
+    - `LICENSE`
+      > Project license file.
+
+    - `README.md`
+      > Module documentation, installation, and usage instructions.
 
 #### 1.3.2. Application
 
-<!-- TODO -->
+A Python application is a standalone program or service designed to be deployed and run.
 
 1. Layout and Structure
 
     > [!NOTE]
     > Replace `<...>` brackets with the application-specific information.
 
-    <!-- TODO -->
+    ```markdown
+    <application>/
+    │
+    ├── src/
+    │   └── <application>/
+    │       ├── __init__.py
+    │       ├── __main__.py
+    │       ├── cli.py
+    │       ├── core/
+    │       ├── models/
+    │       └── utils/
+    │
+    ├── tests/
+    │   ├── unit/
+    │   ├── integration/
+    │   └── conftest.py
+    │
+    ├── docs/
+    │   └── README.md
+    │
+    ├── scripts/
+    │   ├── bootstrap.sh
+    │   └── deploy.sh
+    │
+    ├── config/
+    │   ├── development.yaml
+    │   ├── production.yaml
+    │   └── config.yaml
+    │
+    ├── data/
+    │
+    ├── bin/
+    │
+    ├── pyproject.toml
+    ├── setup.py
+    ├── requirements.txt
+    ├── LICENSE
+    └── README.md
+    ```
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `src/<application>/`
+      > Main application package containing all source code.
 
-    - `/module`
+    - `__main__.py`
+      > Entry point for running the application as a module (`python -m <application>`).
 
-    - `/docs`
+    - `cli.py`
+      > Command-line interface implementation.
+
+    - `core/`
+      > Core business logic and application functionality.
+
+    - `models/`
+      > Data models and domain entities.
+
+    - `utils/`
+      > Utility functions and helper modules.
+
+    - `tests/`
+      > Test suite organized by test type (unit, integration, e2e).
+
+    - `docs/`
       > Package reference documentation.
 
-    - `/tests`
-      > Package unit tests, execution tests, integration tests.
+    - `scripts/`
+      > Automation scripts for deployment, bootstrapping, and maintenance.
 
-    - `/bin`
+    - `config/`
+      > Configuration files for different environments.
+
+    - `data/`
+      > Application data, datasets, or static files.
+
+    - `bin/`
       > Holds executable files.
+
+    - `pyproject.toml`
+      > Python project configuration and dependencies.
 
     - `setup.py`
       > Package and distribution management.
 
     - `requirements.txt`
       > Package dependency and version management.
+
+    - `LICENSE`
+      > Project license file.
+
+    - `README.md`
+      > Application documentation, setup instructions, and usage guide.
 
 ### 1.4. Ansible
 

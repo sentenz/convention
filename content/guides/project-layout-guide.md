@@ -707,36 +707,50 @@ An Ansible Collection packages and distributes roles, modules and plugins. Organ
 
 2. Files and Folders
 
-    <!-- TODO -->
-
-    - `galaxy.yml`
-      > The source of the [metadata](https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html#collections-galaxy-meta) file used to generate a collection on Galaxy and to build a collection artifact.
-
-    - Modules
-
-    - `/meta`
-    >
+    - `meta/`
+      > Collection metadata directory containing runtime configuration.
 
     - `runtime.yml`
-      >
+      > Defines Python and Ansible version requirements, plugin routing, and deprecation information.
 
     - `plugins/`
       > The Collections plugins directory can be used to ship various plugins inside an Ansible collection. Each plugin is placed in a folder that is named after the type of plugin it is in. It can also include the `module_utils` and `modules` directory that would contain module utils and modules respectively.
 
-    - `/modules`
-      > At least one plugin `required`.
+    - `plugins/modules/`
+      > At least one plugin `required`. Contains custom Ansible modules.
 
-    - `__init__.py`
+    - `plugins/__init__.py`
       > A `required` empty file to initialize namespace and allow Python to import the files.
 
-    - `/inventory`
-      > At least one plugin `required`.
+    - `plugins/inventory/`
+      > At least one plugin `required`. Dynamic inventory plugins.
 
-    - Roles
-    - Playbooks
+    - `plugins/action/`
+      > Action plugins that execute on the control node.
 
-    - `/docs`
+    - `plugins/filter/`
+      > Jinja2 filter plugins for data transformation.
+
+    - `plugins/lookup/`
+      > Lookup plugins for retrieving data from external sources.
+
+    - `plugins/module_utils/`
+      > Shared code that can be used by multiple modules.
+
+    - `roles/`
+      > Ansible roles organized by functionality, each with its own structure (defaults, handlers, tasks, templates, vars).
+
+    - `playbooks/`
+      > Example playbooks demonstrating collection usage.
+
+    - `galaxy.yml`
+      > The source of the [metadata](https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html#collections-galaxy-meta) file used to generate a collection on Galaxy and to build a collection artifact.
+
+    - `docs/`
       > Describes the use of the roles, plugins and role requirements provided by the collection.
+
+    - `README.md`
+      > Collection documentation, installation, and usage instructions.
 
 #### 1.4.2. Playbook
 
@@ -829,7 +843,44 @@ Ansible Playbook [directory layout](https://docs.ansible.com/ansible/latest/tips
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `collections/`
+      > Local Ansible collections organized by namespace and collection name.
+
+    - `collections/ansible_collections/<namespace>/<collection>/`
+      > Individual collection directories following the standard collection structure.
+
+    - `playbooks/`
+      > Main playbook files that orchestrate roles and tasks.
+
+    - `inventory/`
+      > Environment-specific inventory directories (dev, stage, prod).
+
+    - `inventory/<env>/hosts.yml`
+      > Inventory file defining hosts and groups for the environment.
+
+    - `inventory/<env>/group_vars/`
+      > Variables applied to groups of hosts.
+
+    - `inventory/<env>/group_vars/all/`
+      > Variables applied to all hosts in the environment.
+
+    - `inventory/<env>/group_vars/all/vault.yml`
+      > Encrypted sensitive variables using Ansible Vault.
+
+    - `inventory/<env>/host_vars/`
+      > Variables specific to individual hosts.
+
+    - `site.yml`
+      > Main playbook that typically includes or imports other playbooks.
+
+    - `requirements.yml`
+      > Lists external roles and collections to be installed.
+
+    - `ansible.cfg`
+      > Ansible configuration file specifying defaults and settings.
+
+    - `README.md`
+      > Project documentation, setup instructions, and usage guide.
 
 ### 1.5. Terraform
 
@@ -896,7 +947,62 @@ Terraform modules define self-contained, reusable resources of Infrastructure-as
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `modules/`
+      > Nested reusable submodules that can be composed together.
+
+    - `modules/<module>/main.tf`
+      > Primary resource definitions for the submodule.
+
+    - `modules/<module>/data.tf`
+      > Data source definitions for retrieving information from providers.
+
+    - `modules/<module>/locals.tf`
+      > Local values for internal module calculations and transformations.
+
+    - `modules/<module>/outputs.tf`
+      > Output values exposed by the module.
+
+    - `modules/<module>/variables.tf`
+      > Input variables with descriptions, types, and default values.
+
+    - `modules/<module>/versions.tf`
+      > Terraform and provider version constraints.
+
+    - `examples/`
+      > Example configurations demonstrating module usage patterns.
+
+    - `examples/simple/`
+      > Basic usage example with minimal configuration.
+
+    - `examples/complete/`
+      > Comprehensive example showing all module features.
+
+    - `tests/`
+      > Terraform test files using the native testing framework.
+
+    - `tests/unit/`
+      > Unit tests for module logic, input validation, and configuration.
+
+    - `tests/integration/`
+      > Integration tests that verify module behavior with actual providers.
+
+    - `main.tf`
+      > Root module's primary resource definitions.
+
+    - `variables.tf`
+      > Root module input variables.
+
+    - `outputs.tf`
+      > Root module output values.
+
+    - `versions.tf`
+      > Terraform and provider version constraints for the root module.
+
+    - `LICENSE`
+      > Project license file.
+
+    - `README.md`
+      > Module documentation, usage examples, and input/output descriptions.
 
 #### 1.5.2. Project
 
@@ -954,11 +1060,72 @@ A structured Terraform project designed to facilitate the management of Terrafor
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `modules/`
+      > Reusable Terraform modules used across multiple environments and components.
+
+    - `environments/`
+      > Environment-specific configurations organized by deployment stage (dev, stage, prod).
+
+    - `environments/<env>/<component>/`
+      > Individual infrastructure components within an environment (e.g., networking, compute, database).
+
+    - `environments/<env>/<component>/main.tf`
+      > Primary resource definitions for the component.
+
+    - `environments/<env>/<component>/backend.tf`
+      > Backend configuration for remote state storage (e.g., S3, Azure Storage).
+
+    - `environments/<env>/<component>/provider.tf`
+      > Provider configurations with environment-specific settings.
+
+    - `environments/<env>/<component>/locals.tf`
+      > Local values for component-specific calculations.
+
+    - `environments/<env>/<component>/variables.tf`
+      > Input variables for the component.
+
+    - `environments/<env>/<component>/outputs.tf`
+      > Output values from the component.
+
+    - `environments/<env>/<component>/data.tf`
+      > Data sources for retrieving information from providers.
+
+    - `environments/<env>/<component>/versions.tf`
+      > Terraform and provider version constraints.
+
+    - `tests/`
+      > Terraform tests for validating configurations.
+
+    - `README.md`
+      > Project documentation, architecture overview, and deployment instructions.
 
 3. Examples and Explanations
 
-    <!-- TODO -->
+    - Workspace Management
+      > Use Terraform workspaces or separate state files per environment to isolate infrastructure changes.
+
+      ```bash
+      # Initialize backend
+      terraform -chdir=environments/prod/networking init
+
+      # Plan changes
+      terraform -chdir=environments/prod/networking plan
+
+      # Apply changes
+      terraform -chdir=environments/prod/networking apply
+      ```
+
+    - Module Usage
+      > Reference local modules from environment configurations.
+
+      ```hcl
+      module "vpc" {
+        source = "../../../modules/vpc"
+        
+        environment = "prod"
+        cidr_block  = "10.0.0.0/16"
+      }
+      ```
 
 ### 1.6. Kubernetes
 
@@ -1023,22 +1190,22 @@ Helm Charts as a packaging is a collection of to describe a related set of Kuber
       > A directory of templates that, when combined with values, will generate valid Kubernetes manifest files.
 
       - `_helpers.tpl`
-        > TODO
+        > Template helpers and reusable template snippets (partials) used across multiple template files.
 
       - `deployment.yaml`
-        > TODO
+        > Kubernetes Deployment manifest template defining pods, replicas, and container specifications.
 
       - `hpa.yaml`
-        > TODO
+        > Horizontal Pod Autoscaler template for automatic scaling based on metrics.
 
       - `ingress.yaml`
-        > TODO
+        > Ingress resource template for external HTTP/HTTPS access to services.
 
       - `service.yaml`
-        > TODO
+        > Kubernetes Service template for exposing pods internally or externally.
 
       - `serviceaccount.yaml`
-        > TODO
+        > ServiceAccount template for pod identity and RBAC permissions.
 
       - `NOTES.txt`
         > A OPTIONAL plain text file containing short usage notes.
@@ -1123,7 +1290,35 @@ A structured Kubernetes project designed to facilitate the management of Kuberne
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `charts/`
+      > Local Helm charts or vendored charts used in the project.
+
+    - `manifests/`
+      > Kubernetes manifests organized using Kustomize structure.
+
+    - `manifests/base/`
+      > Base Kubernetes resources that are common across all environments.
+
+    - `manifests/base/kustomization.yaml`
+      > Kustomize configuration listing base resources and common transformations.
+
+    - `manifests/base/namespace.yaml`
+      > Namespace resource definitions.
+
+    - `manifests/base/common-labels.yaml`
+      > Common labels and annotations applied to all resources.
+
+    - `manifests/overlays/`
+      > Environment-specific customizations and patches.
+
+    - `manifests/overlays/<env>/kustomization.yaml`
+      > Kustomize overlay configuration referencing base and applying patches.
+
+    - `manifests/overlays/<env>/patch.yaml`
+      > Strategic merge patches or JSON patches for environment-specific modifications.
+
+    - `README.md`
+      > Project documentation, deployment instructions, and architecture overview.
 
 3. Examples and Explanations
 

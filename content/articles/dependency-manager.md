@@ -1,0 +1,846 @@
+# Dependency Manager
+
+A Dependency Manager is a tool that automates the process of installing, updating, configuring, and managing software dependencies for a project. It helps developers handle external libraries and packages that their projects rely on, ensuring that the correct versions are used and that any conflicts between dependencies are resolved.
+
+- [1. Category](#1-category)
+  - [1.1. C/C++](#11-cc)
+    - [1.1.1. Vcpkg](#111-vcpkg)
+    - [1.1.2. Conan](#112-conan)
+  - [1.2. JavaScript / Node.js](#12-javascript--nodejs)
+    - [1.2.1. NPM](#121-npm)
+    - [1.2.2. Yarn](#122-yarn)
+    - [1.2.3. pnpm](#123-pnpm)
+  - [1.3. Python](#13-python)
+    - [1.3.1. PIP](#131-pip)
+    - [1.3.2. Virtual Environments (venv/virtualenv)](#132-virtual-environments-venvvirtualenv)
+    - [1.3.3. Poetry](#133-poetry)
+  - [1.4. .NET](#14-net)
+    - [1.4.1. NuGet](#141-nuget)
+  - [1.5. Rust](#15-rust)
+    - [1.5.1. Cargo](#151-cargo)
+  - [1.6. Go](#16-go)
+    - [1.6.1. Go Modules](#161-go-modules)
+  - [1.7. Java / JVM](#17-java--jvm)
+    - [1.7.1. Maven](#171-maven)
+    - [1.7.2. Gradle](#172-gradle)
+- [2. References](#2-references)
+
+## 1. Category
+
+> [!NOTE]
+> A Dependency Manager and a Package Manager differ in that a Package Manager primarily focuses on the distribution and installation of software packages, while a Dependency Manager focuses on managing the dependencies of a project, ensuring that the correct versions of libraries are used and resolving any conflicts between them.
+
+### 1.1. C/C++
+
+#### 1.1.1. Vcpkg
+
+[Vcpkg](https://vcpkg.io/en/) is a dependency manager for C/C++ libraries designed for C and C++ projects on Windows, Linux, and macOS. It can be used to install packages from a variety of sources, including the official C++ package repositories and custom registry repositories.
+
+1. Concepts and Components
+
+    - Manifest Files
+      > Files that define the dependencies for a project. Manifest files allow developers to declare the libraries and their versions that the project depends on.
+
+    - Lockfiles
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `vcpkg.json`
+      > `vcpkg.json` is the manifest file used by Vcpkg to define the dependencies for a C/C++ project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `vcpkg-lock.json`
+      > `vcpkg-lock.json` is the lockfile used by Vcpkg to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `vcpkg.json`
+
+      ```json
+      {
+        "name": "my-cpp-project",
+        "version": "1.0.0",
+        "dependencies": [
+          "fmt",
+          "boost"
+        ]
+      }
+      ```
+
+    - `vcpkg-lock.json`
+
+      ```bash
+      vcpkg install --manifest
+      ```
+
+      ```json
+      {
+        "version": 1,
+        "dependencies": {
+          "fmt": {
+            "version": "8.0.1",
+            "triplet": "x64-windows"
+          },
+          "boost": {
+            "version": "1.76.0",
+            "triplet": "x64-windows"
+          }
+        }
+      }
+      ```
+
+#### 1.1.2. Conan
+
+[Conan](https://conan.io/) is an open-source package manager for C and C++ languages. It facilitates the management of C/C++ dependencies, enabling developers to download, build, and integrate libraries into their projects. Conan is particularly useful for managing binary packages and handling dependencies across different platforms and build configurations.
+
+1. Concepts and Components
+
+    - Manifest Files
+      > Conan uses manifest files to define the dependencies for a project. Manifest files allow developers to declare the libraries and their versions that the project depends on.
+
+    - [Lockfiles](https://docs.conan.io/2/tutorial/versioning/lockfiles.html)
+      > Conan uses lockfiles to record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `conanfile.py`
+      > `conanfile.py` is a Python script used to define the package recipe (Conan recipe). It specifies how Conan should retrieve, build, and package a C/C++ library. This file contains metadata, build instructions, and other necessary details for a specific library.
+
+    - `conanfile.txt`
+      > `conanfile.txt` is a text file that specifies the dependencies for a project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `conan.lock`
+      > `conan.lock` is the lockfile used by Conan to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+    - `conanbuildinfo.cmake`
+      > `conanbuildinfo.cmake` is generated by Conan during the installation of dependencies. It contains CMake variables and macros that can be included in the project's `CMakeLists.txt` to link with the installed dependencies.
+
+      ```cmake
+      include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+      conan_basic_setup()
+      ```
+
+3. Examples and Explanations
+
+    - `conanfile.txt`
+
+      ```plaintext
+      [requires]
+      fmt/8.0.1
+      boost/1.76.0
+
+      [generators]
+      cmake
+      ```
+
+    - `conan.lock`
+
+      ```bash
+      conan lock create conanfile.txt
+      ```
+
+      ```json
+      {
+          "version": "0.5",
+          "requires": [
+              "sound32/1.0#83d4b7bf607b3b60a6546f8b58b5cdd7%1675278904.0791488",
+              "matrix/1.1#905c3f0babc520684c84127378fefdd0%1675278901.7527816",
+              "matrix/1.0#905c3f0babc520684c84127378fefdd0%1675278900.0103245"
+          ],
+          "build_requires": [],
+          "python_requires": []
+      }
+      ```
+
+### 1.2. JavaScript / Node.js
+
+#### 1.2.1. NPM
+
+[npm (Node Package Manager)](https://www.npmjs.com/) is the official package manager for Node.js used to install, manage, and distribute packages for JavaScript applications.
+
+1. Concepts and Components
+
+    - Manifest Files
+      > Files that define the dependencies for a project. Manifest files allow developers to declare the libraries and their versions that the project depends on.
+
+    - Lockfiles
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `package.json`
+      > `package-lock.json` is the lockfile used by npm to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+    - `package-lock.json`
+      > `package-lock.json` is the lockfile used by npm to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree
+
+3. Examples and Explanations
+
+    - `package.json`
+
+      ```json
+      {
+        "name": "my-node-app",
+        "version": "1.0.0",
+        "dependencies": {
+          "express": "^4.17.1",
+          "lodash": "^4.17.21"
+        }
+      }
+      ```
+
+    - `package-lock.json`
+
+      ```bash
+      npm install
+      ```
+
+      ```json
+      {
+        "name": "my-node-app",
+        "version": "1.0.0",
+        "lockfileVersion": 2,
+        "dependencies": {
+          "express": {
+            "version": "4.17.1",
+            "resolved": "https://registry.npmjs.org/express/-/express-4.17.1.tgz",
+            "integrity": "sha512-...",
+            "requires": {
+              "accepts": "~1.3.7",
+              "array-flatten": "1.1.1",
+              ...
+            }
+          },
+          "lodash": {
+            "version": "4.17.21",
+            "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz",
+            "integrity": "sha512-..."
+          }
+        }
+      }
+      ```
+
+#### 1.2.2. Yarn
+
+[Yarn](https://yarnpkg.com/) is a package manager for JavaScript designed to be faster and more reliable, with a focus on deterministic dependency resolution.
+
+1. Concepts and Components
+
+    - Manifest Files
+      > Files that define the dependencies for a project. Manifest files allow developers to declare the libraries and their versions that the project depends on.
+
+    - Lockfiles
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `package.json`
+      > `package.json` is the manifest file used by Yarn to define the dependencies for a JavaScript project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `yarn.lock`
+      > `yarn.lock` is the lockfile used by Yarn to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `package.json`
+
+      ```json
+      {
+        "name": "my-yarn-app",
+        "version": "1.0.0",
+        "dependencies": {
+          "react": "^17.0.2",
+          "axios": "^0.21.1"
+        }
+      }
+      ```
+
+    - `yarn.lock`
+
+      ```bash
+      yarn install
+      ```
+
+      ```plaintext
+      react@^17.0.2:
+        version "17.0.2"
+        resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#..."
+        integrity sha512-...
+
+      axios@^0.21.1:
+        version "0.21.1"
+        resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#..."
+        integrity sha512-...
+      ```
+
+#### 1.2.3. pnpm
+
+[pnpm](https://pnpm.io/) is a fast, disk space-efficient package manager for JavaScript. It uses a unique approach to store dependencies in a global content-addressable store, allowing multiple projects to share the same packages without duplication.
+
+1. Concepts and Components
+
+    - Manifest Files
+      > Files that define the dependencies for a project. Manifest files allow developers to declare the libraries and their versions that the project depends on.
+
+    - Lockfiles
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `package.json`
+      > `package.json` is the manifest file used by pnpm to define the dependencies for a JavaScript project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `pnpm-lock.yaml`
+      > `pnpm-lock.yaml` is the lockfile used by pnpm to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `package.json`
+
+      ```json
+      {
+        "name": "my-pnpm-app",
+        "version": "1.0.0",
+        "dependencies": {
+          "vue": "^3.0.0",
+          "vue-router": "^4.0.0"
+        }
+      }
+      ```
+
+    - `pnpm-lock.yaml`
+
+      ```bash
+      pnpm install
+      ```
+
+      ```yaml
+      lockfileVersion: 5.4
+
+      packages:
+        /vue/3.2.0:
+          resolution:
+            tarball: https://registry.npmjs.org/vue/-/vue-3.2.0.tgz
+          dependencies:
+            vue-runtime-core: 3.2.0
+
+        /vue-router/4.0.0:
+          resolution:
+            tarball: https://registry.npmjs.org/vue-router/-/vue-router-4.0.0.tgz
+          dependencies:
+            vue: 3.2.0
+      ```
+
+### 1.3. Python
+
+#### 1.3.1. PIP
+
+[pip (Python Package Installer)](https://pypi.org/project/pip/) is the official package manager for Python used to install, manage, and distribute packages for Python applications.
+
+1. Concepts and Components
+
+    - Requirements Files
+      > Files that define the dependencies for a project. Requirements files allow developers to declare the libraries and their versions that the project depends on.
+
+    - Lockfiles
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `requirements.txt`
+      > `requirements.txt` is the requirements file used by pip to define the dependencies for a Python project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `Pipfile.lock`
+      > `Pipfile.lock` is the lockfile used by pip to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `requirements.txt`
+
+      ```plaintext
+      flask==2.0.1
+      requests==2.25.1
+      numpy==1.21.0
+      ```
+
+    - `Pipfile.lock`
+
+      ```bash
+      pipenv lock
+      ```
+
+      ```json
+      {
+        "_meta": {
+          "hash": {
+            "sha256": "..."
+          },
+          "pipfile-spec": 6,
+          "requires": {
+            "python_version": "3.8"
+          }
+        },
+        "default": {
+          "flask": {
+            "version": "==2.0.1",
+            "hashes": [
+              "sha256:..."
+            ]
+          },
+          "requests": {
+            "version": "==2.25.1",
+            "hashes": [
+              "sha256:..."
+            ]
+          },
+          "numpy": {
+            "version": "==1.21.0",
+            "hashes": [
+              "sha256:..."
+            ]
+          }
+        },
+        "develop": {}
+      }
+      ```
+
+#### 1.3.2. Virtual Environments (venv/virtualenv)
+
+Virtual environments are isolated Python environments that allow developers to manage dependencies for different projects without conflicts. Tools like `venv` (built-in) and `virtualenv` (third-party) help create and manage these environments.
+
+1. Concepts and Components
+
+    - Isolation
+      > Virtual environments provide isolation for project dependencies, ensuring that packages installed in one environment do not affect others.
+
+    - Environment Management
+      > Tools like `venv` and `virtualenv` help create, activate, and manage virtual environments for Python projects.
+
+2. Files and Folders
+
+    - `venv/` or `env/`
+      > The directory where the virtual environment is created. It contains the Python interpreter and installed packages specific to that environment.4
+
+    - `Pipfile.lock`
+      > `Pipfile.lock` is the lockfile used by pip to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - Virtual Environment
+
+      - Create
+
+        ```bash
+        python -m venv venv
+        ```
+
+      - Activate
+
+        ```bash
+        source venv/bin/activate
+        ```
+
+      - Install
+
+        ```bash
+        pip install -r requirements.txt
+        ```
+
+    - `Pipfile.lock`
+
+      ```bash
+      pipenv lock
+      ```
+
+      ```json
+      {
+        "_meta": {
+          "hash": {
+            "sha256": "..."
+          },
+          "pipfile-spec": 6,
+          "requires": {
+            "python_version": "3.8"
+          }
+        },
+        "default": {
+          "flask": {
+            "version": "==2.0.1",
+            "hashes": [
+              "sha256:..."
+            ]
+          },
+          "requests": {
+            "version": "==2.25.1",
+            "hashes": [
+              "sha256:..."
+            ]
+          },
+          "numpy": {
+            "version": "==1.21.0",
+            "hashes": [
+              "sha256:..."
+            ]
+          }
+        },
+        "develop": {}
+      }
+      ```
+
+#### 1.3.3. Poetry
+
+[Poetry](https://python-poetry.org/) is a dependency manager and build tool for Python to simplify the management of project dependencies, packaging, and publishing.
+
+1. Concepts and Components
+
+    - Manifest Files
+      > Files that define the dependencies for a project. Manifest files allow developers to declare the libraries and their versions that the project depends on.
+
+    - Lockfiles
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `pyproject.toml`
+      > `pyproject.toml` is the manifest file used by Poetry to define the dependencies for a Python project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `poetry.lock`
+      > `poetry.lock` is the lockfile used by Poetry to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `pyproject.toml`
+
+      ```toml
+      [tool.poetry]
+      name = "my-poetry-app"
+      version = "1.0.0"
+      description = ""
+      authors = ["Your Name <your.email@example.com>"]
+
+      [tool.poetry.dependencies]
+      python = "^3.8"
+      flask = "^2.0.1"
+      requests = "^2.25.1"
+      numpy = "^1.21.0"
+
+      [tool.poetry.dev.dependencies]
+      pytest = "^6.2.4"
+      ```
+
+    - `poetry.lock`
+
+      ```bash
+      poetry lock
+      ```
+
+      ```plaintext
+      [[flask]]
+      version = "2.0.1"
+      description = "A simple framework for building complex web applications."
+      category = "main"
+      optional = false
+      python-versions = ">=3.6"
+
+      [[requests]]
+      version = "2.25.1"
+      description = "Python HTTP for Humans."
+      category = "main"
+      optional = false
+      python-versions = ">=3.6"
+
+      [[numpy]]
+      version = "1.21.0"
+      description = "Fundamental package for array computing with Python."
+      category = "main"
+      optional = false
+      python-versions = ">=3.7"
+      ```
+
+### 1.4. .NET
+
+#### 1.4.1. NuGet
+
+[NuGet](https://www.nuget.org/) is the official package manager for **.NET** used to install, manage, and distribute packages for **.NET** applications.
+
+1. Concepts and Components
+
+    - Manifest Files
+      > Files that define the dependencies for a project. Manifest files allow developers to declare the libraries and their versions that the project depends on.
+
+    - Lockfiles
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `.csproj` / `.fsproj`
+      > Project files used by **.NET** to define the dependencies for a project. These files allow developers to declare the libraries and their versions that the project depends on.
+
+    - `packages.lock.json`
+      > `packages.lock.json` is the lockfile used by NuGet to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `.csproj`
+
+      ```xml
+      <Project Sdk="Microsoft.NET.Sdk">
+
+        <PropertyGroup>
+          <OutputType>Exe</OutputType>
+          <TargetFramework>net5.0</TargetFramework>
+        </PropertyGroup>
+
+        <ItemGroup>
+          <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+          <PackageReference Include="Dapper" Version="2.0.90" />
+        </ItemGroup>
+
+      </Project>
+      ```
+
+    - `packages.lock.json`
+
+      ```bash
+      dotnet restore --use-lock-file
+      ```
+
+      ```json
+      {
+        "version": 1,
+        "dependencies": {
+          ".NETCoreApp,Version=v5.0": {
+            "Dapper/2.0.90": {
+              "type": "Direct",
+              "requested": "[2.0.90, )",
+              "resolved": "2.0.90",
+              "contentHash": "..."
+            },
+            "Newtonsoft.Json/13.0.1": {
+              "type": "Direct",
+              "requested": "[13.0.1, )",
+              "resolved": "13.0.1",
+              "contentHash": "..."
+            }
+          }
+        }
+      }
+      ```
+
+### 1.5. Rust
+
+#### 1.5.1. Cargo
+
+[Cargo](https://doc.rust-lang.org/cargo/) is the official dependency manager for the Rust programming language. It can be used to manage dependencies, build projects, and publish packages.
+
+1. Concepts and Components
+
+    - Manifest Files
+      > Files that define the dependencies for a project. Manifest files allow developers to declare the libraries and their versions that the project depends on.
+
+    - [Lockfiles](https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html)
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `Cargo.toml`
+      > `Cargo.toml` is the manifest file used by Cargo to define the dependencies for a Rust project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `Cargo.lock`
+      > `Cargo.lock` is the lockfile used by Cargo to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `Cargo.toml`
+
+      ```toml
+      [package]
+      name = "hello_world"
+      version = "0.1.0"
+
+      [dependencies]
+      regex = { git = "https://github.com/rust-lang/regex.git" }
+      ```
+
+    - `Cargo.lock`
+
+      ```bash
+      cargo build
+      ```
+
+      ```toml
+      [[package]]
+      name = "hello_world"
+      version = "0.1.0"
+      dependencies = [
+      "regex 1.5.0 (git+https://github.com/rust-lang/regex.git#9f9f693768c584971a4d53bc3c586c33ed3a6831)",
+      ]
+
+      [[package]]
+      name = "regex"
+      version = "1.5.0"
+      source = "git+https://github.com/rust-lang/regex.git#9f9f693768c584971a4d53bc3c586c33ed3a6831"
+      ```
+
+### 1.6. Go
+
+#### 1.6.1. Go Modules
+
+[Go Modules](https://go.dev/doc/modules/managing-dependencies) is the official dependency management system for the Go programming language. It is a declarative system that is based on the Go module repository.
+
+1. Concepts and Components
+
+    - Modules
+      > A module is a collection of related Go packages that are versioned together as a single unit. Modules are defined by a `go.mod` file, which specifies the module's path and its dependencies.
+
+    - Versioning
+      > Go Modules use semantic versioning to manage dependencies. Versions are specified in the `go.mod` file, allowing developers to pin dependencies to specific versions or version ranges.
+
+2. Files and Folders
+
+    - `go.mod`
+      > `go.mod` is the manifest file used by Go Modules to define the dependencies for a Go project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `go.sum`
+      > `go.sum` is the lockfile used by Go Modules to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `go.mod`
+
+      ```go
+      module github.com/example/my-go-app
+
+      go 1.16
+
+      require (
+          github.com/gin-gonic/gin v1.7.4
+          github.com/sirupsen/logrus v1.8.1
+      )
+      ```
+
+    - `go.sum`
+
+      ```plaintext
+      github.com/gin-gonic/gin v1.7.4 h1:...
+      github.com/gin-gonic/gin v1.7.4/go.mod h1:...
+      github.com/sirupsen/logrus v1.8.1 h1:...
+      github.com/sirupsen/logrus v1.8.1/go.mod h1:...
+      ```
+
+### 1.7. Java / JVM
+
+#### 1.7.1. Maven
+
+[Apache Maven](https://maven.apache.org/) is a popular dependency manager for Java and JVM-based projects. It uses a declarative XML file called `pom.xml` to manage project dependencies, build configurations, and plugins.
+
+1. Concepts and Components
+
+    - POM (Project Object Model)
+      > The POM file is the fundamental unit of work in Maven. It contains information about the project and configuration details used by Maven to build the project.
+
+2. Files and Folders
+
+    - `pom.xml`
+      > `pom.xml` is the XML file used by Maven to define the dependencies for a Java project. It allows developers to declare the libraries and their versions that the project depends on.
+
+3. Examples and Explanations
+
+    - `pom.xml`
+
+      ```xml
+      <project xmlns="http://maven.apache.org/POM/4.0.0"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                                   http://maven.apache.org/xsd/maven-4.0.0.xsd">
+          <modelVersion>4.0.0</modelVersion>
+          <groupId>com.example</groupId>
+          <artifactId>my-java-app</artifactId>
+          <version>1.0.0</version>
+
+          <dependencies>
+              <dependency>
+                  <groupId>org.springframework.boot</groupId>
+                  <artifactId>spring-boot-starter-web</artifactId>
+                  <version>2.5.4</version>
+              </dependency>
+              <dependency>
+                  <groupId>com.fasterxml.jackson.core</groupId>
+                  <artifactId>jackson-databind</artifactId>
+                  <version>2.12.4</version>
+              </dependency>
+          </dependencies>
+      </project>
+      ```
+
+#### 1.7.2. Gradle
+
+[Gradle](https://gradle.org/) is dependency manager for Java and JVM-based projects. It uses a Groovy or Kotlin-based DSL to define project dependencies and build configurations.
+
+1. Concepts and Components
+
+    - Build Scripts
+      > Gradle uses build scripts to define the dependencies for a project. Build scripts allow developers to declare the libraries and their versions that the project depends on.
+
+    - Lockfiles
+      > Files that record the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+2. Files and Folders
+
+    - `build.gradle` / `build.gradle.kts`
+      > `build.gradle` (Groovy) or `build.gradle.kts` (Kotlin) is the build script used by Gradle to define the dependencies for a Java project. It allows developers to declare the libraries and their versions that the project depends on.
+
+    - `gradle.lockfile`
+      > `gradle.lockfile` is the lockfile used by Gradle to pin the exact versions of dependencies used in a project. Lockfiles ensure reproducible builds by locking down the entire dependency tree.
+
+3. Examples and Explanations
+
+    - `build.gradle`
+
+      ```groovy
+      plugins {
+          id 'java'
+      }
+
+      group 'com.example'
+      version '1.0.0'
+
+      repositories {
+          mavenCentral()
+      }
+
+      dependencies {
+          implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
+          implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+      }
+      ```
+
+    - `gradle.lockfile`
+
+      ```bash
+      ./gradlew dependencies --write-locks
+      ```
+
+      ```plaintext
+      org.springframework.boot:spring-boot-starter-web:2.5.4
+      com.fasterxml.jackson.core:jackson-databind:2.12.4
+      ```
+
+## 2. References
+
+- Sentenz [Dependency Pinning](../articles/dependency-pinning.md) article.
+
+- [Vcpkg Documentation](https://vcpkg.io/en/docs/)
+- [Conan Documentation](https://docs.conan.io/)
+- [npm Documentation](https://docs.npmjs.com/)
+- [Yarn Documentation](https://yarnpkg.com/getting-started)
+- [pnpm Documentation](https://pnpm.io/)
+- [pip Documentation](https://pip.pypa.io/en/stable/)
+- [Poetry Documentation](https://python-poetry.org/docs/)
+- [NuGet Documentation](https://docs.microsoft.com/en-us/nuget/)
+- [Cargo Documentation](https://doc.rust-lang.org/cargo/)
+- [Go Modules Documentation](https://go.dev/doc/modules/)
+- [Maven Documentation](https://maven.apache.org/guides/index.html)
+- [Gradle Documentation](https://docs.gradle.org/current/userguide/userguide.html)
+- [Virtual Environments in Python](https://docs.python.org/3/tutorial/venv.html)
+- [Virtualenv Documentation](https://virtualenv.pypa.io/en/latest/)

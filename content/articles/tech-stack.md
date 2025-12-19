@@ -1,6 +1,6 @@
 # Tech Stack
 
-Tech Stack (Technology Stack) refers to the combination of technologies, tools, databases, and frameworks used to develop and run a software application. It encompasses everything from programming languages and libraries to development frontend and backend tools and infrastructure components. A tech stack significantly influences the development process, performance, scalability, and maintainability of the application.
+A Tech Stack (Technology Stack) refers to the combination of languages, frameworks, tools, and infrastructure used to build, deploy, and run an application.
 
 - [1. Category](#1-category)
   - [1.1. Go](#11-go)
@@ -17,16 +17,15 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
   - [1.5. PowerShell](#15-powershell)
   - [1.6. Containerization](#16-containerization)
   - [1.7. Orchestration](#17-orchestration)
-  - [1.8. IaC](#18-iac)
-  - [1.9. CaC](#19-cac)
-  - [1.10. DaC](#110-dac)
-  - [1.11. DevOps](#111-devops)
+  - [1.8. Infrastructure-as-Code (IaC)](#18-infrastructure-as-code-iac)
+  - [1.9. Configuration-as-Code (CaC)](#19-configuration-as-code-cac)
+  - [1.10. Documentation-as-Code (DaC)](#110-documentation-as-code-dac)
+  - [1.11. DevSecOps](#111-devsecops)
   - [1.12. GitOps](#112-gitops)
-  - [1.13. Cybersecurity](#113-cybersecurity)
-  - [1.14. Cloud Computing](#114-cloud-computing)
-    - [1.14.1. Hosting](#1141-hosting)
-  - [1.15. Observability](#115-observability)
-  - [1.16. Database](#116-database)
+  - [1.13. Cloud Computing](#113-cloud-computing)
+    - [1.13.1. Hosting](#1131-hosting)
+  - [1.14. Observability](#114-observability)
+  - [1.15. Database](#115-database)
 - [2. References](#2-references)
 
 ## 1. Category
@@ -40,17 +39,12 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [x] Go (Golang)
       > A statically typed, compiled language.
 
-2. Package & Dependency Manager
+2. Dependency Manager
 
-    - [x] [Go Install](TODO)
-      > TODO
+    - [x] [Go Modules](https://go.dev/ref/mod)
+      > Go Modules are the official dependency management system for Go, allowing developers to manage versions and dependencies of their projects.
 
-3. Conventions
-
-    - [x] [Google Go Style Guide](https://google.github.io/styleguide/go/)
-      > The Go Style Guide and accompanying documents codify the current best approaches for writing readable and idiomatic Go.
-
-4. Test Frameworks
+3. Test Frameworks
 
     - [x] [Testing](https://pkg.go.dev/testing)
       > Go builtin TDD-style testing framework for unit, fuzz, and bench tests.
@@ -58,12 +52,12 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [ ] [GoConvey](https://github.com/smartystreets/goconvey)
       > BDD-style testing framework.
 
-5. Caching
+4. Caching
 
     - [x] [GroupCache](https://github.com/golang/groupcache)
       > GroupCache is a caching and cache-filling library, intended as a replacement for memcached.
 
-6. Logging
+5. Logging
 
     - [x] [Zap](https://github.com/uber-go/zap)
       > Fast, structured, leveled logging in Go.
@@ -74,23 +68,25 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [ ] [Zerolog](https://github.com/rs/zerolog)
       > Zero-allocation JSON logger.
 
-7. Authentication
+6. Authentication
 
     - [x] [Goth](https://github.com/markbates/goth)
       > A package for handling OAuth and OAuth2 authentication.
 
-8. Authorization
+7. Authorization
 
     - [x] [Casbin](https://github.com/casbin/casbin)
       > An authorization library that supports access control models like ACL, RBAC, ABAC.
 
-9. Architecture
+8. Repository Strategy
 
     - [x] [Modular Monolith](../articles/repository-strategies.md#12-modular-monolith)
-      > The `Repository Strategy` modular monolith organizes a single application into distinct, self-contained modules within one repository.
+      > The Modular Monolith organizes a single application into distinct, self-contained modules within one repository.
 
-    - [x] [Project Layout](../guides/project-layout-guide.md#12-go)
-      > Provides a specific folder organization to enforce architectural constraints.
+9. Conventions & Style Guides
+
+    - [x] [Google Go Style Guide](https://google.github.io/styleguide/go/)
+      > The Go Style Guide and accompanying documents codify the current best approaches for writing readable and idiomatic Go.
 
 #### 1.1.2. API
 
@@ -144,7 +140,7 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [ ] [DaisyUI](https://github.com/saadeghi/daisyui)
       > DaisyUI is a component library for Tailwind CSS.
 
-5. State Management
+5. State Manager
 
     - [ ] [Redux](https://github.com/reduxjs/redux)
       > Redux is a predictable state container for JavaScript apps.
@@ -212,7 +208,7 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [x] [Traefik](https://github.com/traefik/traefik)
       > Traefik is a modern HTTP reverse proxy and load balancer for deploying microservices.
 
-3. Certificate Management
+3. Certificate Manager
 
     - [x] [Let's Encrypt](https://letsencrypt.org/)
       > Let's Encrypt is a free, automated, and open certificate authority providing SSL/TLS certificates.
@@ -229,25 +225,39 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
 1. Programming & Scripting
 
     - [x] C
-      > Standard C99 is used for low-level programming and hardware interfacing.
+      > Standard C11/C17 is used for low-level programming and hardware interfacing.
 
     - [x] C++
-      > Standard C++11 is utilized due to microcontroller compatibility and to leverage object-oriented programming features.
+      > Standard C++17 is utilized to leverage modern object-oriented and functional programming features while maintaining compatibility.
 
-2. Package & Dependency Manager
+2. Build Systems
 
-    - [x] [Vcpkg](TODO)
-      > TODO
+    - [x] [CMake](https://cmake.org)
+      > Cross-platform build-system generator. Preferred for modern C/C++ projects; integrates with multiple toolchains and CI systems.
 
-    - [ ] [Conan](TODO)
-      > TODO
+    - [x] [Ninja](https://ninja-build.org)
+      > Lightweight, fast build backend used as CMake's primary generator for improved build performance.
 
-3. Conventions
+    - [ ] [GNU Make](https://www.gnu.org/software/make/)
+      > Traditional make-based build tool for Unix-like environments and simple projects.
 
-    - [x] [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
-      > The Google C++ Style Guide is adopted as the primary coding style guide for consistency and readability.
+3. Cache Manager
 
-4. Compilers & Toolchains
+    - [x] [ccache](https://github.com/ccache/ccache)
+      > A compiler cache to speeds up rebuilds by reusing previously compiled object files.
+
+    - [ ] [sccache](https://github.com/mozilla/sccache)
+      > A shared/remote compilation cache for distributed builds with Rust and C/C++ support.
+
+4. Dependency Manager
+
+    - [x] [Conan](https://github.com/conan-io/conan)
+      > A decentralized, cross-platform C/C++ package manager for dependency resolution, binary distribution, and reproducible builds.
+
+    - [ ] [Vcpkg](https://github.com/microsoft/vcpkg)
+      > A cross-platform C/C++ library manager that simplifies acquiring, building, and integrating third‑party dependencies.
+
+5. Compilers & Toolchains
 
     - [x] GNU Compiler Collection (GCC)
       > GCC is a compiler system supporting various programming languages for compiling C and C++ code on Unix-like systems.
@@ -255,44 +265,54 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [ ] Clang
       > Clang is an open-source compiler for the C family of programming languages, offering fast compilation and user-friendly error messages.
 
-    - [ ] IAR C/C++
-      > The IAR C/C++ Compiler is a high-performance optimizing compiler developed by IAR Systems for embedded systems programming.
+6. Analysis
 
-    - [ ] MSVC
-      > MSVC is Microsofts implementation of the C and C++ compiler, integrated into Visual Studio, used for developing Windows applications.
+    - [x] [SonarQube](https://www.sonarqube.org/)
+      > A platform for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities.
 
-5. Test Framework
+    - [x] [Clang-Format](https://clang.llvm.org/docs/ClangFormat.html)
+      > A tool to automatically format C/C++ code according to a set of rules and style guides.
+
+    - [x] [Sanitizers](https://clang.llvm.org/docs/AddressSanitizer.html)
+      > A suite of runtime tools to detect various types of bugs, including memory errors (AddressSanitizer), undefined behavior (UndefinedBehaviorSanitizer), and thread data races (ThreadSanitizer).
+
+7. Test Framework
 
     - [x] [GoogleTest](https://google.github.io/googletest/)
       > GoogleTest (gtest/gmock) is a testing framework for C++, providing a rich set of features for unit testing and test-driven development.
 
-      - [x] [Google FuzzTest](https://github.com/google/fuzztest)
+      - [ ] [Google FuzzTest](https://github.com/google/fuzztest)
         > A library for coverage-guided fuzz testing of C++ code, integrated with GoogleTest. It is used to discover and exploit software vulnerabilities by generating random inputs.
 
-      - [x] [Google Benchmark](https://github.com/google/benchmark)
+      - [ ] [Google Benchmark](https://github.com/google/benchmark)
         > A microbenchmark support library for GoogleTest. It is used to add performance benchmarks to tests.
 
-    - [ ] [MSTest (Microsoft Testing Framework)](https://github.com/microsoft/testfx)
-      > Microsoft Unit Testing Framework for C++ integrated into Visual Studio, enables unit testing of C++ code.
-
-      > [!NOTE]
-      > MSTest is not a standalone framework and requires Visual Studio built-in [C++ Test Framework](https://learn.microsoft.com/en-us/visualstudio/test/writing-unit-tests-for-c-cpp?view=vs-2022).
-
-    - [ ] [Boost.Test](https://www.boost.org/doc/libs/1_86_0/libs/test/doc/html/index.html)
-      > Part of the Boost libraries, providing a rich set of features for unit testing in C++, including test assertions, fixtures, and test organization.
-
-    - [ ] [CTest](https://cmake.org/cmake/help/latest/manual/ctest.1.html#)
+    - [x] [CTest](https://cmake.org/cmake/help/latest/manual/ctest.1.html#)
       > A testing tool integrated with CMake, primarily used for running tests and ensuring code quality across builds.
 
-6. Dependencies
+    - [ ] [Catch2](https://github.com/catchorg/Catch2)
+      > A modern, C++-native, header-only test framework for unit-tests, TDD and BDD.
 
-    - [x] [Mbed TLS](https://www.trustedfirmware.org/projects/mbed-tls/)
-      > Mbed TLS is an open-source library providing SSL/TLS and cryptographic functionalities for embedded devices, ensuring secure communication.
+    - [x] [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
+      > A test coverage program used to analyze and create code coverage reports for C/C++ programs.
 
-7. Documentation
+8. Documentation
 
     - [x] [Doxygen](https://www.doxygen.nl/)
       > Doxygen is a open-source API documentation generator for various programming languages, including C++. It extracts structured comments from source code and generates documentation in multiple formats such as HTML, LaTeX, and XML.
+
+9. Repository Strategy
+
+    - [x] [Modular Monolith](../articles/repository-strategies.md#12-modular-monolith)
+      > The Modular Monolith organizes a single application into distinct, self-contained modules within one repository.
+
+10. Conventions & Style Guides
+
+    - [x] [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+      > The Google C++ Style Guide is adopted as the primary coding style guide for consistency and readability.
+
+    - [x] [Microsoft CMake Style Guide](https://learn.microsoft.com/en-us/vcpkg/contributing/cmake-guidelines)
+      > Guidelines for writing clear, portable, and maintainable CMake scripts, including target-based patterns, recommended project layout, and best practices.
 
 ### 1.3. Python
 
@@ -303,10 +323,10 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [x] [Python](https://github.com/python)
       > Python is a high-level, interpreted programming language known for its readability and versatility. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming.
 
-2. Package & Dependency Manager
+2. Dependency Manager
 
-    - [x] [pip]([TODO](https://github.com/pypa/pip))
-      > The Python package installer.
+    - [x] [pip](https://pip.pypa.io/en/stable/)
+      > pip is the package installer for Python to install packages from the Python Package Index and other indexes.
 
 3. Analysis
 
@@ -324,7 +344,7 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [x] [pytest](https://github.com/pytest-dev/pytest)
       > `pytest` is widely used for writing simple as well as scalable test cases in Python. It supports fixtures, parameterized testing, and has a rich plugin architecture, making it highly extensible. The framework is known for its ease of use and powerful features, which help developers ensure their code works as expected.
 
-5. CLI Tools
+5. CLI
 
     > [!NOTE]
     > Concider the Order of Precedence for the configuration of variable parameters, from highest to lowest:
@@ -346,7 +366,7 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [ ] [argparse](https://docs.python.org/3/library/argparse.html)
       > argparse is Pythons built-in command-line parsing library. Natively does not support configuration files, it can be extended with libraries like `configargparse` to support order of precedence.
 
-6. Conventions
+6. Conventions & Style Guides
 
     - [x] [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)
       > Guide for writing consistent and idiomatic Python programs.
@@ -357,94 +377,83 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
 ### 1.4. Shell
 
 > [!NOTE]
-> Prefer using high-level interpreted languages like **Python** over **Shell** scripts to benefit from more readable syntax and mature tools for unit testing, linting, formatting, and error reporting.
+> Prefer high-level interpreted languages e.g. **Python** over **Shell** scripts to benefit from readable syntax and mature tooling for testing, linting, formatting, and error reporting.
 
 1. Programming & Scripting
 
     - [x] [Bash](https://www.gnu.org/software/bash/)
       > Bash (Bourne Again SHell) is a Unix shell and command language for writing scripts to automate tasks and workflows.
 
-2. Package & Dependency Manager
-
-    - [ ] [TODO](TODO)
-      > TODO
-
-3. Conventions
-
-    - [x] [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
-      > The Google Shell Style Guide provides best practices and coding standards for writing shell scripts. It covers various aspects such as naming conventions, indentation, commenting, and scripting practices to ensure that shell scripts are readable, maintainable, and consistent across different projects.
-
-4. Analysis
+2. Analysis
 
     - [x] [ShellCheck](https://github.com/koalaman/shellcheck)
-      > ShellCheck is a static analysis tool for shell scripts. It helps developers identify and fix common issues in their shell scripts, such as syntax errors, semantic problems, and potential pitfalls. By analyzing the script, ShellCheck provides detailed warnings and suggestions for improving the scripts robustness and readability.
+      > ShellCheck is a static analyzer for shell scripts. It finds syntax errors, common pitfalls, and suggests fixes.
 
     - [x] [shfmt](https://github.com/mvdan/sh#shfmt)
-      > `shfmt` is a shell script formatter that automatically formats shell scripts to follow a consistent style. It supports various shell dialects, including Bash, Dash, and Ksh. By using `shfmt`, developers can ensure that their shell scripts are uniformly formatted, which enhances readability and maintainability.
+      > shfmt formats shell scripts consistently across dialects (Bash, Dash, Ksh).
 
-5. Test Frameworks
+3. Test Frameworks
 
-    - [ ] [Bast](https://github.com/bats-core/bats-core)
-      > Bast (Bash Automated Testing System) is a TDD-style testing framework for Bash scripts. It allows developers to write and run unit tests for their shell scripts, ensuring that the scripts behave as expected. Bats provides a simple syntax for defining tests and includes features such as test discovery, assertions, and test reporting.
+    - [ ] [Bats](https://github.com/bats-core/bats-core)
+      > Bats (Bash Automated Testing System) is a TDD-style framework for testing Bash scripts, providing tests, assertions, and reporting.
 
-6. CLI Tools
+4. CLI
 
     - [x] [Argbash](https://github.com/matejak/argbash)
       > Argbash is not a parsing library, but it is rather a code generator that generates a bash library tailor-made for script.
+
+5. Conventions & Style Guides
+
+    - [x] [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)
+      > The guide defines best practices for writing readable, maintainable shell scripts, covering naming, indentation, commenting, and scripting patterns.
 
 ### 1.5. PowerShell
 
 1. Programming & Scripting
 
     - [x] [PowerShell](https://github.com/PowerShell/PowerShell)
-      > PowerShell is a task automation and configuration management framework from Microsoft, consisting of a command-line shell and associated scripting language. It is built on the .NET framework and is designed for system administrators to automate tasks and manage configurations.
+      > PowerShell is a cross-platform shell and scripting language for task automation and configuration management.
 
-    - [x] [PowerShell Advanced Functions](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced)
-      > PowerShell Advanced Functions are functions that can be used like cmdlets, providing additional features such as parameter validation, pipeline support, and output formatting. They allow developers to create reusable and modular code that can be easily integrated into PowerShell scripts and modules.
+2. Module Manager
 
-    - [x] [PowerShell Module](https://learn.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module)
-      > PowerShell Modules are packages that contain PowerShell functions, cmdlets, and other resources. They provide a way to organize and distribute PowerShell code, making it easier to share and reuse functionality across different scripts and projects. Modules can be imported into PowerShell sessions to extend the available commands and features.
+    - [x] [PowerShell Modules](https://learn.microsoft.com/en-us/powershell/scripting/developer/module/how-to-write-a-powershell-script-module)
+      > PowerShell Modules are self-contained packages of functions, cmdlets, and resources that organize, distribute, and enable reuse of PowerShell code.
 
-2. Registry
+3. Registry
 
     - [x] [PowerShell Gallery](https://www.powershellgallery.com)
-      > A repository for PowerShell scripts, modules, and Desired State Configuration (DSC) resources to share and download PowerShell modules and scripts.
+      > PowerShell Gallery is the central repository for publishing, discovering, and installing PowerShell modules and scripts.
 
-3. Analysis
+4. Analysis
 
     - [x] [PSScriptAnalyzer](https://github.com/PowerShell/PSScriptAnalyzer)
-      > PSScriptAnalyzer is a static code analysis tool for PowerShell scripts. It helps developers identify and correct issues in their PowerShell code by providing a set of built-in rules that check for best practices, coding standards, and potential errors. PSScriptAnalyzer can be integrated into development workflows to automatically analyze scripts and provide feedback, ensuring that the code is clean, efficient, and maintainable.
+      > PSScriptAnalyzer performs static code analysis to enforce best practices and identify script issues.
 
-4. Test Frameworks
+5. Test Frameworks
 
     - [ ] [Pester](https://github.com/pester/Pester)
-      > Pester is a testing framework for PowerShell, designed to help developers write and run unit tests for their PowerShell scripts and modules. It provides a syntax for defining tests and includes features such as mocking, assertions, and test discovery. Pester is used in the PowerShell community for ensuring that scripts and modules behave as expected and for facilitating Test-Driven Development (TDD).
+      > Pester is a PowerShell testing framework, providing assertions, mocking, and test discovery for unit tests.
 
-5. Architecture
+6. Conventions & Style Guides
 
-    - [x] [Modular Monolith](../articles/repository-strategies.md#12-modular-monolith)
-      > The `Repository Strategy` modular monolith organizes a single application into distinct, self-contained modules within one repository.
-
-    - [x] [Project Layout](../guides/project-layout-guide.md#powershell)
-      > Provides a specific folder organization to enforce architectural constraints.
-
-    - [x] [OTBS (One True Brace Style)](../articles/indentation.md#113-otbs-one-true-brace-style)
-      > The `Indentation` sets the code formatting options to indent style in PowerShell compatible syntax.
-
-6. Conventions
-
-    - [x] [PowerShell Documentation](https://learn.microsoft.com/en-us/powershell)
-      > Microsoft official documentation for PowerShell covers all aspects of the language, including syntax, cmdlets, advanced features, and use cases for automation and configuration management.
-
-    - [x] [Cmdlet Development Guidelines](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-development-guidelines)
-      > Guidelines and best practices for developing PowerShell cmdlets, including details on naming conventions, parameter handling, and output formatting to ensure consistency and ease of use.
+    - [x] [PowerShell Advanced Functions](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_functions_advanced)
+      > Advanced Functions enable cmdlet-like behavior with parameter validation or pipeline support.
 
     - [x] [PowerShell Verbs](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands)
-      > PowerShell verbs define the standard for naming cmdlets and functions to ensure consistency and predictability, with a set of approved verbs for common actions.
+      > Approved PowerShell Verbs standardize cmdlet and function naming for consistency.
+
+    - [x] [OTBS (One True Brace Style)](../articles/indentation.md)
+      > One True Brace Style (OTBS), a variant to **K&R**, defines indentation and brace placement compatible with PowerShell syntax.
+
+    - [x] [PowerShell Documentation](https://learn.microsoft.com/en-us/powershell)
+      > Microsoft PowerShell Documentation is the official reference for language features and cmdlets.
+
+    - [x] [Cmdlet Development Guidelines](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-development-guidelines)
+      > Cmdlet Development Guidelines prescribe naming, parameter handling, and output best practices.
 
 ### 1.6. Containerization
 
-1. Programming & Scripting
+1. Container Manager
 
     - [x] [Docker](https://github.com/docker)
       > Docker is an open-source platform that automates the deployment, scaling, and management of applications using containerization. It allows developers to package applications and their dependencies into containers, which can run consistently across different environments. Docker provides a command-line interface and a graphical user interface for managing containers, making it easier to develop, test, and deploy applications in a portable and efficient manner.
@@ -454,35 +463,48 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
 
 2. Registry
 
-    - [x] [Docker Hub](TODO)
-      > TODO
+    - [x] [Docker Hub](https://hub.docker.com/)
+      > Docker Hub is a cloud-based registry service for building and shipping application or service containers. It provides a centralized resource for container image discovery, distribution and change management, user and team collaboration, and workflow automation throughout the development pipeline.
 
 3. Analysis
 
     - [x] [hadolint](https://github.com/hadolint/hadolint)
-      > TODO
+      > A Dockerfile linter that helps to build best practice Docker images.
 
-4. Conventions
+4. Conventions & Style Guides
 
-    - [x] [Hardened Container Images](TODO)
-      > TODO
+    - [x] Hardened Container Images
+      > Curated base images and guidelines hardened to reduce attack surface and minimize image size.
+
+    - [x] [Dockerfile Best Practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+      > Docker provides a comprehensive guide on best practices for writing Dockerfiles. It covers various aspects such as minimizing image size, using multi-stage builds, and managing secrets, helping developers create efficient, secure, and maintainable container images.
 
 ### 1.7. Orchestration
 
-1. Programming & Scripting
+1. Orchestration Manager
 
-    - [x] [Kubernetes](https://github.com/kubernetes/kubernetes)
+    - [x] [Kubernetes (kubectl, kustomiz)](https://github.com/kubernetes/kubernetes)
       > Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It provides a framework for running distributed systems resiliently, allowing users to manage clusters of containers across multiple hosts. Kubernetes offers features such as load balancing, service discovery, and automated rollouts and rollbacks, making it a powerful tool for managing complex applications in production environments.
 
     - [ ] [Docker Compose](https://github.com/docker/compose)
       > Docker Compose is a tool for defining and running multi-container Docker applications. It allows users to define a multi-container application in a single YAML file, specifying the services, networks, and volumes required for the application. Docker Compose simplifies the process of managing complex applications by providing commands to start, stop, and manage the entire application stack with a single command.
 
-2. Package & Dependency Manager
+2. Module Manager
 
     - [x] [Helm Charts](https://helm.sh/)
       > Helm is a package manager for Kubernetes that simplifies the deployment of applications on a Kubernetes cluster. It provides a repository of pre-configured charts, which are packages of pre-defined Kubernetes resources such as deployments, services, and config maps. Helm allows users to install, upgrade, and manage applications on a Kubernetes cluster.
 
-3. Conventions
+3. Test Frameworks
+
+    - [ ] [helm-unittest](https://github.com/helm-unittest/helm-unittest)
+      > A Helm chart testing framework for unit testing Helm charts.
+
+4. Repository Strategy
+
+    - [x] [Modular Monolith](../articles/repository-strategies.md#12-modular-monolith)
+      > The Modular Monolith organizes a single application into distinct, self-contained modules within one repository.
+
+5. Conventions & Style Guides
     - [x] [Recommended Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/)
       > A common set of labels allows tools to work interoperably and describing objects in a common manner.
 
@@ -492,49 +514,33 @@ Tech Stack (Technology Stack) refers to the combination of technologies, tools, 
     - [x] [Kubernetes SIG](https://kubectl.docs.kubernetes.io/)
       > Kubernetes SIG (Special Interest Groups) provides Guides and API References for Kubectl and Kustomize.
 
-4. Test Frameworks
+### 1.8. Infrastructure-as-Code (IaC)
 
-    - [ ] [helm-unittest](https://github.com/helm-unittest/helm-unittest)
-      > TODO
-
-5. Architecture
-
-    - [x] [Modular Monolith](../articles/repository-strategies.md#12-modular-monolith)
-      > The `Repository Strategy` modular monolith organizes a single application into distinct, self-contained modules within one repository.
-
-    - [x] [Project Layout](../guides/project-layout-guide.md#16-kubernetes)
-      > Provides a specific folder organization to enforce architectural constraints.
-
-### 1.8. IaC
-
-Infrastructure-as-Code (IaC)
-
-1. Programming & Scripting
+1. Provisioning Manager
 
     - [x] [Terraform](https://github.com/hashicorp/terraform)
-      > Terraform is an open-source Infrastructure as Code (IaC) tool developed by HashiCorp. It allows users to define and provision data center infrastructure using a high-level configuration language known as HashiCorp Configuration Language (HCL). Terraform enables the automation of infrastructure management tasks to create, update, and version infrastructure safely and efficiently.
+      > Terraform is an open-source Infrastructure-as-Code (IaC) tool developed by HashiCorp. It allows users to define and provision data center infrastructure using a high-level configuration language known as HashiCorp Configuration Language (HCL). Terraform enables the automation of infrastructure management tasks to create, update, and version infrastructure safely and efficiently.
 
     - [ ] [OpenTofu](https://github.com/opentofu/opentofu)
       > OpenTofu is a community-driven fork of Terraform, created to continue the development of Terraform after HashiCorps decision to change the license. It aims to maintain compatibility with existing Terraform configurations while providing an open-source alternative for infrastructure management.
 
-2. Package & Dependency Manager
+2. Module Manager
 
-    - [x] [Terraform AWS Modules](https://github.com/terraform-aws-modules)
-      > A collection of reusable Terraform modules for managing AWS resources. These modules provide a standardized way to provision and manage AWS infrastructure, making it easier to implement best practices and reduce duplication of code.
+    - [x] [Terraform Modules](https://registry.terraform.io/browse/modules)
+      > Modules are self-contained packages of Terraform configurations that are managed as a group.
 
-3. Conventions
-    - [x] [HashiCorp Terraform Style Guide](https://developer.hashicorp.com/terraform/language/style)
-      > The HashiCorp Terraform Style Guide is a comprehensive resource that provides best practices and guidelines for writing Terraform configurations. It covers various aspects of Terraform configuration, including file structure, naming conventions, resource definitions, and module usage.
+      - [x] [Terraform AWS Modules](https://github.com/terraform-aws-modules)
+        > A collection of reusable Terraform modules for managing AWS resources. These modules provide a standardized way to provision and manage AWS infrastructure, making it easier to implement best practices and reduce duplication of code.
 
-4. Registry
+3. Registry
 
     - [x] [Terraform Registry](https://registry.terraform.io)
       > A repository for Terraform modules and providers to share and reuse Terraform configurations. Modules can be used to define reusable infrastructure components, while providers allow Terraform to interact with various cloud platforms and services.
 
-5. Analysis
+4. Analysis
 
     - [x] terraform fmt
-      > Formatting of configuration in the standard style.
+      > Terraform built-in formatting of configuration in the standard style.
 
     - [x] [TFLint](https://github.com/terraform-linters/tflint)
       > Linting of configuration files.
@@ -542,51 +548,50 @@ Infrastructure-as-Code (IaC)
     - [x] [trivy](https://github.com/aquasecurity/trivy)
       > Scanning of configuration files for vulnerabilities.
 
-6. Test Frameworks
+5. Test Frameworks
 
     - [x] [terraform test](https://developer.hashicorp.com/terraform/language/tests)
-      > TDD-style testing by writing Terraform `integration tests`, `unit tests`, or `mocks` to verify Infrastructure as Code (IaC) configurations.
+      > Terraform built-in TDD-style testing by writing Terraform `integration tests`, `unit tests`, or `mocks` to verify Infrastructure-as-Code (IaC) configurations.
 
     - [ ] [Terratest](https://github.com/gruntwork-io/terratest)
-      > TDD-style testing for Infrastructure as Code (IaC) configurations.
+      > TDD-style testing for Infrastructure-as-Code (IaC) configurations.
 
     - [ ] [terraform-compliance](https://github.com/terraform-compliance/cli)
-      > BDD-style testing for Infrastructure as Code (IaC) configurations.
+      > BDD-style testing for Infrastructure-as-Code (IaC) configurations.
 
-7. Documantion
+6. Documantion
 
     - [x] [terraform-docs](https://github.com/terraform-docs/terraform-docs)
       > A tool for generating documentation for Terraform modules. It automatically extracts information from Terraform configurations and generates Markdown or HTML documentation, making it easier to maintain and share module documentation.
 
-8. Architecture
+7. Repository Strategy
 
     - [x] [Modular Monolith](../articles/repository-strategies.md#12-modular-monolith)
-      > The `Repository Strategy` modular monolith organizes a single application into distinct, self-contained modules within one repository.
+      > The Modular Monolith organizes a single application into distinct, self-contained modules within one repository.
 
-    - [x] [Project Layout](../guides/project-layout-guide.md#15-terraform)
-      > Provides a specific folder organization to enforce architectural constraints.
+8. Conventions & Style Guides
+    - [x] [HashiCorp Terraform Style Guide](https://developer.hashicorp.com/terraform/language/style)
+      > The HashiCorp Terraform Style Guide is a comprehensive resource that provides best practices and guidelines for writing Terraform configurations. It covers various aspects of Terraform configuration, including file structure, naming conventions, resource definitions, and module usage.
 
-### 1.9. CaC
+### 1.9. Configuration-as-Code (CaC)
 
-Configuration-as-Code (CaC)
-
-1. Programming & Scripting
+1. Configuration Manager
 
     - [x] [Ansible](https://github.com/ansible/ansible)
-      > Ansible is an open-source Configuration as Code (CaC) tool to streamline the process of configuration management, application deployment, and task automation. It uses a declarative language to describe the desired state of the systems and applications, making it easy to manage complex environments. Ansible is agentless, meaning it does not require any special software to be installed on the managed nodes, which simplifies its setup and reduces overhead.
+      > Ansible is an open-source Configuration-as-Code (CaC) tool to streamline the process of configuration management, application deployment, and task automation. It uses a declarative language to describe the desired state of the systems and applications, making it easy to manage complex environments. Ansible is agentless, meaning it does not require any special software to be installed on the managed nodes, which simplifies its setup and reduces overhead.
 
-2. Registry
-
-    - [x] [Ansible Galaxy](https://galaxy.ansible.com)
-      > A repository for Ansible roles and collections to share and reuse Ansible content, such as roles (predefined automation tasks) and collections (bundles of roles, modules, and plugins).
-
-3. Package & Dependency Manager
+2. Module Manager
 
     - [x] [Ansible Collections](https://github.com/ansible-collections)
       > Ansible Collections are curated and pre-packaged Ansible content that includes playbooks, roles, modules, and plugins. Collections provide a way to organize and distribute Ansible content, making it easier to share and reuse automation code across different projects. Ansible Collections cover a wide range of use cases, including cloud provisioning, network automation, security compliance, and application deployment.
 
       - [ ] [OpenStack-Ansible](https://github.com/openstack/openstack-ansible)
-        > OpenStack-Ansible is a collection of Ansible playbooks and roles designed to deploy and manage OpenStack cloud infrastructure. It provides a set of reusable components for automating the deployment of OpenStack services, such as compute, storage, and networking, using Ansible.
+        > Ansible Collection for OpenStack of Ansible playbooks and roles designed to deploy and manage OpenStack cloud infrastructure. It provides a set of reusable components for automating the deployment of OpenStack services, such as compute, storage, and networking, using Ansible.
+
+3. Registry
+
+    - [x] [Ansible Galaxy](https://galaxy.ansible.com)
+      > A repository for Ansible roles and collections to share and reuse Ansible content, such as roles (predefined automation tasks) and collections (bundles of roles, modules, and plugins).
 
 4. Analysis
 
@@ -601,17 +606,12 @@ Configuration-as-Code (CaC)
     - [ ] [Molecule](https://github.com/ansible/molecule)
       > Molecule is a testing framework for Ansible roles that provides a way to create and manage test environments. It allows developers to define scenarios for testing their Ansible roles, including the setup of virtual machines or containers, execution of playbooks, and verification of results. Molecule supports various drivers, such as Docker, Vagrant, and OpenStack, making it flexible for different testing environments.
 
-6. Architecture
+6. Repository Strategy
 
     - [x] [Modular Monolith](../articles/repository-strategies.md#12-modular-monolith)
-      > The `Repository Strategy` modular monolith organizes a single application into distinct, self-contained modules within one repository.
+      > The Modular Monolith organizes a single application into distinct, self-contained modules within one repository.
 
-    - [x] [Project Layout](../guides/project-layout-guide.md#14-ansible)
-      > Provides a specific folder organization to enforce architectural constraints.
-
-### 1.10. DaC
-
-Documentation-as-Code (DaC)
+### 1.10. Documentation-as-Code (DaC)
 
 1. Markup Language
 
@@ -639,7 +639,7 @@ Documentation-as-Code (DaC)
     - [x] markdownlint
       > A static analysis tool for Markdown files that ensures adherence to formatting rules and conventions.
 
-5. Conventions
+5. Conventions & Style Guides
 
     - [x] [Google Markdown Style Guide](https://google.github.io/styleguide/docguide/style.html)
       > A comprehensive guide to writing clear, concise, and well-formatted documentation using Markdown.
@@ -647,7 +647,7 @@ Documentation-as-Code (DaC)
     - [ ] [GitLab Documentation Style Guide](https://docs.gitlab.com/ee/development/documentation/styleguide/)
       > GitLabs style guide for writing documentation, providing guidelines on structure, formatting, and best practices for clarity and consistency.
 
-### 1.11. DevOps
+### 1.11. DevSecOps
 
 1. Version Control System (VCS)
 
@@ -656,11 +656,60 @@ Documentation-as-Code (DaC)
 
 2. DevOps Platform
 
+    - [x] [GitLab](https://gitlab.com/)
+      > GitLab is a web-based DevOps platform that provides a complete set of tools for software development, including version control, issue tracking, continuous integration/continuous deployment (CI/CD), and project management. It allows teams to collaborate on code, automate testing and deployment processes, and manage projects efficiently. GitLab offers both self-hosted and cloud-hosted options.
+
     - [ ] [GitHub](https://github.com/)
       > GitHub is a web-based DevOps platform that provides version control and collaboration features for software development projects. It allows developers to host and manage their code repositories, track issues, and collaborate with other developers through pull requests and code reviews. GitHub also offers features such as project management tools, continuous integration/continuous deployment (CI/CD) pipelines, and community engagement through discussions and wikis.
 
-    - [ ] [GitLab](https://gitlab.com/)
-      > GitLab is a web-based DevOps platform that provides a complete set of tools for software development, including version control, issue tracking, continuous integration/continuous deployment (CI/CD), and project management. It allows teams to collaborate on code, automate testing and deployment processes, and manage projects efficiently. GitLab offers both self-hosted and cloud-hosted options.
+3. Analysis
+
+    - [X] SAST (Static Application Security Testing)
+      > SAST (Static Application Security Testing) is a method of analyzing source code or compiled code to identify security vulnerabilities and weaknesses without executing the program. It involves examining the code for patterns, coding practices, and potential security flaws that could be exploited by attackers. SAST tools can help developers identify and fix security issues early in the development process, improving the overall security posture of the application.
+
+    - [X] DAST (Dynamic Application Security Testing)
+      > DAST (Dynamic Application Security Testing) is a method of testing the security of an application while it is running. It involves simulating real-world attacks and vulnerabilities to identify potential security weaknesses that could be exploited by attackers. DAST tools analyze the application from the outside, looking for vulnerabilities such as SQL injection, cross-site scripting (XSS), and other common attack vectors. By performing DAST, organizations can identify and remediate security issues in their applications before they are exploited in production.
+
+    - [X] SCA (Software Composition Analysis)
+      > SCA (Software Composition Analysis) is a method of analyzing the components and dependencies of a software application to identify potential security vulnerabilities and license compliance issues. It involves scanning the application for third-party libraries, frameworks, and open-source components to determine if they contain known vulnerabilities or if they are subject to specific licensing requirements. SCA tools help organizations manage the risks associated with using third-party software by providing visibility into the components used in their applications.
+
+4. Secrets Manager
+
+    - [x] [SOPS](https://github.com/getsops/sops)
+      > SOPS (Secrets OPerationS) is a tool for managing secrets in a secure and version-controlled manner. It allows users to encrypt, decrypt, and edit files containing sensitive information, such as passwords, API keys, and certificates. SOPS integrates with various key management systems (KMS) to provide encryption and decryption capabilities, ensuring that secrets are stored securely while remaining accessible to authorized users.
+
+    - [ ] [External Secrets Operator](https://external-secrets.io/)
+      > External Secrets Operator is a Kubernetes operator that integrates external secret management systems like AWS Secrets Manager, HashiCorp Vault, Google Secrets Manager, Azure Key Vault, and many others. The operator reads information from external APIs and automatically injects the values into a Kubernetes Secret.
+
+    - [ ] [HashiCorp Vault](https://github.com/hashicorp/vault)
+      > HashiCorp Vault is a tool for securely accessing secrets, such as API keys, passwords, and certificates. It provides a centralized solution for managing secrets and sensitive data, allowing users to store, access, and control secrets across different environments. Vault supports various authentication methods, encryption backends, and secret engines, making it a versatile solution for managing secrets in modern applications.
+
+    - [ ] [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
+      > Kubernetes Secrets is a built-in feature of Kubernetes that allows users to store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys, in a secure manner. Secrets are stored in the Kubernetes API server and can be accessed by pods and containers running in the cluster. Kubernetes Secrets provides a way to decouple sensitive data from application code, enhancing security and flexibility.
+
+5. Policy Manager
+
+    - [x] [Open Policy Agent (OPA)](https://github.com/open-policy-agent/opa)
+      > Open Policy Agent (OPA) is an open-source, general-purpose policy engine that enables policy-based control across various systems and services. OPA allows users to define policies in a high-level declarative language called Rego, which can be used to enforce rules and constraints on data and operations. OPA can be integrated into different systems, such as Kubernetes, microservices, and CI/CD pipelines, to provide consistent policy enforcement across the stack.
+
+    - [ ] [Kyverno](https://kyverno.io/)
+      > Kyverno is a policy engine designed for Kubernetes. It allows you to manage policies as Kubernetes resources and no new language is required to write policies. Kyverno policies can validate, mutate, and generate Kubernetes resources.
+
+    - [ ] [HashiCorp Sentinel](https://registry.terraform.io/browse/policies)
+      > HashiCorp Sentinel is a policy-as-code framework that allows users to define and enforce policies across their infrastructure and applications. It provides a way to write policies in a high-level declarative language, enabling teams to codify their compliance and governance requirements. Sentinel can be integrated with various HashiCorp products, such as Terraform and Consul, to enforce policies during the provisioning and management of resources.
+
+6. Update Manager
+
+    - [x] [Renovate](https://github.com/renovatebot/renovate)
+      > Flexible dependency management bot that automates upgrades, groups changes, and supports advanced scheduling and automerge rules.
+
+    - [ ] [Dependabot](https://github.com/dependabot/dependabot-core)
+      > Automated dependency updater that scans manifests, opens PRs to update packages, and helps keep dependencies secure and current.
+
+7. Conventions & Style Guides
+
+    - [x] [Zero Trust Architecture (ZTA)](https://csrc.nist.gov/publications/detail/sp/800-207/final)
+      > A security framework that assumes no implicit trust; enforces continuous verification, least-privilege access, strong identity and device posture checks, and microsegmentation to minimize blast radius and reduce risk.
 
 ### 1.12. GitOps
 
@@ -678,48 +727,11 @@ Documentation-as-Code (DaC)
     - [ ] [Flux](https://github.com/fluxcd/flux2)
       > Flux is a GitOps tool for Kubernetes that automates the deployment of applications and infrastructure changes. It continuously monitors Git repositories for changes and applies them to the Kubernetes cluster, ensuring that the clusters state matches the desired state defined in Git. Flux supports various deployment strategies and integrates with other tools in the Kubernetes ecosystem.
 
-### 1.13. Cybersecurity
-
-1. Analysis
-
-    - [X] [SAST](TODO)
-      > TODO
-
-    - [X] [DAST](TODO)
-      > TODO
-
-    - [X] [SCA](TODO)
-      > TODO
-
-2. Secrets Management
-
-    - [X] [SOPS](https://github.com/getsops/sops)
-      > SOPS (Secrets OPerationS) is a tool for managing secrets in a secure and version-controlled manner. It allows users to encrypt, decrypt, and edit files containing sensitive information, such as passwords, API keys, and certificates. SOPS integrates with various key management systems (KMS) to provide encryption and decryption capabilities, ensuring that secrets are stored securely while remaining accessible to authorized users.
-
-    - [ ] [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
-      > Kubernetes Secrets is a built-in feature of Kubernetes that allows users to store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys, in a secure manner. Secrets are stored in the Kubernetes API server and can be accessed by pods and containers running in the cluster. Kubernetes Secrets provides a way to decouple sensitive data from application code, enhancing security and flexibility.
-
-    - [ ] [HashiCorp Vault](https://github.com/hashicorp/vault)
-      > HashiCorp Vault is a tool for securely accessing secrets, such as API keys, passwords, and certificates. It provides a centralized solution for managing secrets and sensitive data, allowing users to store, access, and control secrets across different environments. Vault supports various authentication methods, encryption backends, and secret engines, making it a versatile solution for managing secrets in modern applications.
-
-3. Policy Management
-
-    - [x] [HashiCorp Sentinel](https://registry.terraform.io/browse/policies)
-      > HashiCorp Sentinel is a policy-as-code framework that allows users to define and enforce policies across their infrastructure and applications. It provides a way to write policies in a high-level declarative language, enabling teams to codify their compliance and governance requirements. Sentinel can be integrated with various HashiCorp products, such as Terraform and Consul, to enforce policies during the provisioning and management of resources.
-
-    - [ ] [Open Policy Agent (OPA)](https://github.com/open-policy-agent/opa)
-      > Open Policy Agent (OPA) is an open-source, general-purpose policy engine that enables policy-based control across various systems and services. OPA allows users to define policies in a high-level declarative language called Rego, which can be used to enforce rules and constraints on data and operations. OPA can be integrated into different systems, such as Kubernetes, microservices, and CI/CD pipelines, to provide consistent policy enforcement across the stack.
-
-4. Conventions
-
-    - [x] [Zero Trust Architecture (ZTA)](TODO)
-      > TODO
-
-### 1.14. Cloud Computing
+### 1.13. Cloud Computing
 
 Cloud computing is the delivery of computing services over the internet, allowing users to access and use resources such as servers, storage, databases, networking, software, and analytics without the need for on-premises infrastructure. It provides scalability, flexibility, and cost-effectiveness by enabling users to pay for only the resources they consume.
 
-#### 1.14.1. Hosting
+#### 1.13.1. Hosting
 
 1. Provider
 
@@ -735,7 +747,7 @@ Cloud computing is the delivery of computing services over the internet, allowin
     - [ ] [Google Cloud Platform (GCP)](https://registry.terraform.io/providers/hashicorp/google/latest/docs)
       > The Google Cloud Platform (GCP) provider is used to interact with the resources supported by Google Cloud Platform. It allows users to manage GCP services such as Compute Engine, Cloud Storage, and BigQuery using Terraform.
 
-### 1.15. Observability
+### 1.14. Observability
 
 Observability is the practice of monitoring and understanding the internal state of a system based on the data it generates, such as metrics, logs, traces, and profiles. It enables teams to gain insights into system performance, diagnose issues, and improve reliability.
 
@@ -788,7 +800,7 @@ Observability is the practice of monitoring and understanding the internal state
     > [!NOTE]
     > Profiles are not yet widely adopted in the industry, but they are gaining traction as a way to gain deeper insights into application performance and resource utilization.
 
-5. Conventions
+5. Conventions & Style Guides
 
     - [ ] [OpenTelemetry](https://github.com/open-telemetry)
       > OpenTelemetry is an open-source observability framework that provides a set of APIs, libraries, agents, and instrumentation to collect and export telemetry data (metrics, logs, and traces) from applications. It is designed to be vendor-neutral and supports multiple programming languages, making it easier for developers to instrument their applications for observability without being tied to a specific vendors solution.
@@ -799,17 +811,26 @@ Observability is the practice of monitoring and understanding the internal state
     - [ ] [eBPF](https://ebpf.io/)
       > eBPF (Extended Berkeley Packet Filter) is a powerful technology that allows developers to run custom code in the Linux kernel without modifying the kernel itself. It provides a way to extend the functionality of the kernel and applications by enabling the execution of user-defined programs in response to specific events, such as network packets, system calls, or tracepoints. eBPF is widely used for performance monitoring, security, and networking tasks.
 
-### 1.16. Database
+### 1.15. Database
 
 1. Relational Database (SQL)
 
    - [x] [PostgreSQL](https://github.com/postgres/postgres)
      > A robust, open-source object–relational database system that extends **SQL** with advanced features. PostgreSQL is widely adopted for `Online Transaction Processing (OLTP)`, offering `ACID` compliance, complex query support, extensibility, and strong indexing for high-performance workloads.
 
+   - [ ] [SQLite](https://github.com/sqlite/sqlite)
+     > A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine. Ideal for embedded applications, local development, and testing.
+
      ORM (Object–Relational Mappers)
 
      - [x] [GORM](https://gorm.io/)
        > Active Record–inspired ORM with support for associations, migrations, and query building for Go.
+
+     - [x] [SQLAlchemy](https://www.sqlalchemy.org/)
+       > The Python SQL Toolkit and Object Relational Mapper that gives application developers the full power and flexibility of SQL.
+
+     - [ ] [Ent](https://entgo.io/)
+       > An entity framework for Go, a powerful ORM for modeling and querying data.
 
 2. Non-Relational Database (NoSQL)
 
@@ -818,17 +839,19 @@ Observability is the practice of monitoring and understanding the internal state
 
      ODM (Object–Document Mappers)
 
-     - [ ] [MotorEngine](https://github.com/heynemann/motorengine)
-       > Async ODM for MongoDB with Motor/Tornado for Python.
+     - [ ] [Beanie](https://github.com/roman-right/beanie)
+       > An asynchronous Python object-document mapper (ODM) for MongoDB, built on top of Motor and Pydantic.
 
 3. In-Memory Database (Caching / Message Broker)
 
-   - [ ] [Redis](https://github.com/redis/redis)
+   - [x] [Redis](https://github.com/redis/redis)
      > An open-source, in-memory data structure store used as a cache, database, and message broker. Redis supports advanced data types, persistence, clustering, and pub/sub messaging, making it ideal for low-latency caching and real-time event-driven architectures.
+
+   - [ ] [Memcached](https://github.com/memcached/memcached)
+     > A high-performance, distributed memory object caching system, generic in nature, but intended for use in speeding up dynamic web applications by alleviating database load.
 
 ## 2. References
 
-- Sentenz [Project Layout](../articles/project-layout.md) article.
 - Sentenz [Repository Strategies](../articles/repository-strategies.md) article.
 - Sentenz [Everything as Code (XaC)](../articles/everything-as-code-xac.md) article.
 - Sentenz [Everything Ops (XOps)](../articles/everything-ops-xops.md) article.

@@ -57,7 +57,7 @@ Adopt a structured risk-based patch process for managing CVEs in the software st
     ```mermaid
     flowchart TD
         %% Notification and Initiation
-        A[New CVEs Notification] --> B([Start CVE Process])
+        A[New CVE Notifications] --> B([Start CVE Process])
         B --> C[Determine Criticality<br/><code>Research</code>]
         C --> D{Update Available?}
 

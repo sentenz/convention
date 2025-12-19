@@ -1,28 +1,15 @@
 root = true
 
-[**/node_modules/*]
-ignore = true
-
-[**/vendor/*]
-ignore = true
-
 [*]
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
-
-[*.go]
-indent_style = tab
-indent_size = 2
+max_line_length = 100
 
 [*.sh]
 indent_style = space
 indent_size = 2
-max_line_length = 100
-end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
 never_split = false        # like -ns
 function_next_line = false # like -fn
 keep_padding = false       # like -kp
@@ -30,26 +17,27 @@ space_redirects = false    # like -sr
 switch_case_indent = true  # like -ci
 binary_next_line = false   # like -bn
 
+[*.md]
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = false
+max_line_length = 0
+
 [*.{yml,yaml}]
 indent_style = space
 indent_size = 2
-insert_final_newline = true
 
 [*.json]
 indent_style = space
 indent_size = 2
+insert_final_newline = false
 
-[*.md]
-indent_style = space
+[*.go]
+indent_style = tab
 indent_size = 2
 max_line_length = 0
-trim_trailing_whitespace = false
-insert_final_newline = true
 
-[*.{js,jsx,ts,tsx,css,less,sass,scss,vue,py}]
+[*.py]
 indent_style = space
-indent_size = 2
-max_line_length = 100
-
-# [COMMIT_EDITMSG]
-# max_line_length = 0
+indent_size = 4
+max_line_length = 88

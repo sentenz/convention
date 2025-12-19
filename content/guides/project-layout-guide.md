@@ -201,6 +201,8 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 #### 1.2.1. Package
 
+Go packages organize and reuse code in Go programming language. The [Standard Go Project Layout](https://github.com/golang-standards/project-layout) for packages is a convention that promotes consistency and maintainability across Go projects.
+
 1. Layout and Structure
 
     > [!NOTE]
@@ -211,19 +213,17 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     │
     . `Hierarchical Structure`
     │
-    ├── cmd/
-    │   └── app/
-    │       └── main.go
-    │
+
     ├── internal/
-    │   └── pkg/
-    │       ├── helper.go
-    │       └── helper_test.go
+    │  ├── auth/
+    │  ├── transport/
+    │  └── ...
     │
     ├── pkg/
     │   └── <package>/
-    │       ├── <package>.go
-    │       └── <package>_test.go
+    │       ├── <filename>.go
+    │       ├── <filename>_test.go
+    │       └── ...
     │
     ├── go.mod
     ├── go.sum
@@ -607,7 +607,7 @@ A structured Terraform project designed to facilitate the management of Terrafor
     ├── environments/
     │   ├── dev/
     │   ├── stage/
-    │   │   ├── <stack-a>/
+    │   │   ├── <component-a>/
     │   │   │   ├── main.tf
     │   │   │   ├── backend.tf
     │   │   │   ├── provider.tf
@@ -616,9 +616,9 @@ A structured Terraform project designed to facilitate the management of Terrafor
     │   │   │   ├── outputs.tf
     │   │   │   ├── data.tf
     │   │   │   └── versions.tf
-    │   │   └── <stack-b>/
+    │   │   └── <component-b>/
     │   └── prod/
-    │       ├── <stack-a>/
+    │       ├── <component-a>/
     │       │   ├── main.tf
     │       │   ├── backend.tf
     │       │   ├── provider.tf
@@ -627,7 +627,7 @@ A structured Terraform project designed to facilitate the management of Terrafor
     │       │   ├── outputs.tf
     │       │   ├── data.tf
     │       │   └── versions.tf
-    │       └── <stack-b>/
+    │       └── <component-b>/
     │
     ├── tests/
     │

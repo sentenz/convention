@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "ms-vscode.makefile-tools",
-    "ms-vscode.live-server",
     "ms-vscode.powershell",
     "ms-python.python",
     "ms-python.debugpy",
@@ -27,6 +26,7 @@
     "zainchen.json",
     "yzhang.markdown-all-in-one",
     "davidanson.vscode-markdownlint",
-    "alefragnani.project-manager"
+    "alefragnani.project-manager",
+    "tsandall.opa"
   ]
 }

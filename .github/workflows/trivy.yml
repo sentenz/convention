@@ -1,0 +1,136 @@
+# SPDX-License-Identifier: Apache-2.0
+
+name: Trivy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  trivy-fs-scan:
+    name: Trivy Action - Filesystem Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.1
+
+      - name: Run Trivy Filesystem Scan
+        uses: sentenz/actions/trivy@1.1.3
+        with:
+          scan-type: fs
+          scan-target: "."
+          format: sarif
+          output: trivy-results.sarif
+
+      - name: Upload results to GitHub Security
+        if: always()
+        uses: github/codeql-action/upload-sarif@v4.31.9
+        with:
+          sarif_file: trivy-results.sarif
+        continue-on-error: false
+
+  trivy-config-scan:
+    name: Trivy Action - Configuration Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.1
+
+      - name: Run Trivy Config Scan
+        uses: sentenz/actions/trivy@1.1.3
+        with:
+          scan-type: config
+          scan-target: "."
+          format: sarif
+          output: trivy-iac.sarif
+          severity: HIGH,CRITICAL
+
+      - name: Upload Trivy Config Scan
+        if: always()
+        uses: github/codeql-action/upload-sarif@v4.31.9
+        with:
+          sarif_file: trivy-iac.sarif
+        continue-on-error: false
+
+  trivy-sbom-generation:
+    name: Trivy Action - SBOM Generation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.1
+
+      - name: Run SBOM Generation (CycloneDX)
+        uses: sentenz/actions/trivy@1.1.3
+        with:
+          scan-type: sbom-generate
+          scan-target: "."
+          format: cyclonedx
+          output: sbom.cdx.json
+
+      - name: Run SBOM Generation (SPDX)
+        uses: sentenz/actions/trivy@1.1.3
+        with:
+          scan-type: sbom-generate
+          scan-target: "."
+          format: spdx-json
+          output: sbom.spdx.json
+
+      - name: Upload SBOM artifacts
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: sbom-files
+          path: |
+            sbom.cdx.json
+            sbom.spdx.json
+
+  trivy-sbom-scan:
+    name: Trivy Action - SBOM Scan
+    runs-on: ubuntu-latest
+    needs: trivy-sbom-generation
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.1
+
+      - name: Download SBOM artifacts
+        uses: actions/download-artifact@v7.0.0
+        with:
+          name: sbom-files
+
+      - name: Scan SBOM for vulnerabilities
+        uses: sentenz/actions/trivy@1.1.3
+        with:
+          scan-type: sbom
+          scan-target: sbom.cdx.json
+        continue-on-error: false
+
+  trivy-license-compliance:
+    name: Trivy Action - License Compliance
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.1
+
+      - name: Run License Compliance Scan
+        uses: sentenz/actions/trivy@1.1.3
+        with:
+          scan-type: fs
+          scan-target: "."
+          scanners: license
+          format: table
+        continue-on-error: false

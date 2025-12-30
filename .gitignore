@@ -1,2 +1,6 @@
+# https://www.toptal.com/developers/gitignore/
+
+build/
+logs/
 *.log
-logs
+.env

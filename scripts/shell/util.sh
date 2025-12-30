@@ -1,16 +1,13 @@
 #!/bin/bash
 #
-# SPDX-License-Identifier: Apache-2.0
-#
 # Library for utility based on conditional expression.
 
-########################
 # Verify if string is empty or null.
+#
 # Arguments:
 #   $1 - String
 # Returns:
 #   $? - 0 if the length of string is non-zero, 1 otherwise.
-#########################
 function util_string_exist() {
   local string="${1}"
 
@@ -21,14 +18,13 @@ function util_string_exist() {
   return 0
 }
 
-########################
 # Verify if strings are equal.
+#
 # Arguments:
 #   $1 - String1
 #   $2 - String2
 # Returns:
 #   $? - 0 if the strings are equal, 1 otherwise.
-#########################
 function util_string_equals() {
   local string1="${1:?missing}"
   local string2="${2:?missing}"
@@ -40,14 +36,13 @@ function util_string_equals() {
   return 0
 }
 
-########################
 # Verify if directory exist.
+#
 # Arguments:
 #   $1 - Directory
 #   $2 - Owner
 # Returns:
 #   $? - 0 if the directory exists, 1 otherwise.
-#########################
 function util_dir_exist() {
   local dir="${1:?missing}"
 
@@ -58,31 +53,49 @@ function util_dir_exist() {
   return 0
 }
 
-########################
 # Create directory path.
+#
 # Arguments:
-#   $1 - Filepath
+#   $1 - filepath
 # Returns:
 #   $? - directory path if successful, empty string otherwise.
-#########################
 function util_dir_create() {
-  local file="${1:?missing}"
+  local filepath="${1}"
 
+  if ! util_string_exist "${filepath}"; then
+    return 0
+  fi
+
+  # Use `dirname` to get the directory path
   local dir
-  dir="$(dirname "${file}")"
+  dir="$(dirname "${filepath}")"
 
-  mkdir -p "$dir"
-  echo "$dir"
+  # Check if dirname succeeded
+  if [[ -z "${dir}" || "${dir}" == "." ]]; then
+    echo "Info: Unable to determine directory for '${filepath}'." >&2
+    return 0
+  fi
+
+  # Create the directory if it does not exist, with error checking
+  if [[ ! -d "${dir}" ]]; then
+    if ! mkdir -p "${dir}"; then
+      echo "Error: Failed to create directory '${dir}'." >&2
+      return 1
+    fi
+  fi
+
+  # Output the created or existing directory
+  echo "${dir}"
+  return 0
 }
 
-########################
 # Verify if directory is empty.
+#
 # Arguments:
 #   $1 - Directory
 #   $2 - Owner
 # Returns:
 #   $? - 0 if the directory is empty, 1 otherwise.
-#########################
 function util_dir_empty() {
   local dir="${1:?missing}"
 
@@ -93,13 +106,12 @@ function util_dir_empty() {
   return 0
 }
 
-########################
 # Verify if file exists.
+#
 # Arguments:
 #   $1 - Filename
 # Returns:
 #   $? - 0 if file exists, 1 otherwise.
-#########################
 function util_file_exist() {
   local file="${1:?missing}"
 
@@ -110,13 +122,12 @@ function util_file_exist() {
   return 0
 }
 
-########################
 # Verify if file is empty.
+#
 # Arguments:
 #   $1 - Filename
 # Returns:
 #   $? - 0 if file is empty, 1 otherwise.
-#########################
 function util_file_empty() {
   local file="${1:?missing}"
 
@@ -127,13 +138,12 @@ function util_file_empty() {
   return 0
 }
 
-########################
 # Create a file.
+#
 # Arguments:
 #   $1 - Filename
 # Returns:
 #   $? - 0 if the file is created, 1 otherwise.
-#########################
 function util_file_create() {
   local file="${1:?missing}"
 
@@ -145,14 +155,13 @@ function util_file_create() {
   echo -n >"${file}"
 }
 
-########################
 # Perform a regex match against the specified pattern.
+#
 # Arguments:
 #   $1 - String
 #   $2 - Pattern (must be unquoted)
 # Returns:
 #   $? - 0 if the pattern matchs, 1 otherwise.
-#########################
 function util_regex_match() {
   local string="${1:?missing}"
   local pattern="${2:?missing}"

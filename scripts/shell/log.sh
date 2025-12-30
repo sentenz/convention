@@ -1,7 +1,5 @@
 #!/bin/bash
 #
-# SPDX-License-Identifier: Apache-2.0
-#
 # Library for logging actions.
 
 # A color init string consists of one or more of the following numeric codes:
@@ -23,7 +21,6 @@
 # https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 
 # Formats
-readonly RESET='\033[0m'
 
 # Regular Colors
 # readonly BLACK='\033[38;5;0m'
@@ -34,12 +31,13 @@ readonly RESET='\033[0m'
 # readonly WHITE='\033[38;5;7m'
 
 # High Intensty
-# readonly INTENS_BLACK='\033[38;5;8m'
-readonly INTENS_BLUE='\033[38;5;12m'
-readonly INTENS_RED='\033[38;5;9m'
-readonly INTENS_GREEN='\033[38;5;10m'
-readonly INTENS_YELLOW='\033[38;5;11m'
-readonly INTENS_WHITE='\033[38;5;15m'
+# readonly COLOR_BLACK='\033[38;5;8m'
+readonly COLOR_BLUE='\033[38;5;12m'
+readonly COLOR_RED='\033[38;5;9m'
+readonly COLOR_GREEN='\033[38;5;10m'
+readonly COLOR_YELLOW='\033[38;5;11m'
+readonly COLOR_WHITE='\033[38;5;15m'
+readonly COLOR_RESET='\033[0m'
 
 # Status Codes
 export STATUS_SUCCESS=0
@@ -47,93 +45,82 @@ export STATUS_ERROR=1
 export STATUS_WARNING=2
 export STATUS_SKIP=255
 
+# Messages
+
 DATE="$(date +'%Y-%m-%dT%H:%M:%S%z')"
 readonly DATE
+readonly MSG_SKIP="SKIP"
+readonly MSG_INFO="INFO"
+readonly MSG_WARN="WARN"
+readonly MSG_ERROR="ERROR"
 
 # Functions
 
-########################
 # Log message to stderr.
+#
 # Arguments:
 #   $1 - Message to log
 # Returns:
 #   $? - Message
-#########################
 function log_print() {
   printf "%b\\n" "${*}" >&2
 }
 
-########################
 # Log info message.
+#
 # Arguments:
 #   $1 - Message to log
 # Returns:
 #   $? - Message
-#########################
 function log_info() {
-  log_print "${DATE}\t ${INTENS_BLUE}info ${RESET}\t" "${*}"
+  log_print "${DATE} ${COLOR_BLUE}${MSG_INFO}${COLOR_RESET}" "${*}"
 }
 
-########################
 # Log skipped message.
+#
 # Arguments:
 #   $1 - Message to log
 # Returns:
 #   $? - Message
-#########################
 function log_skip() {
-  log_print "${DATE}\t ${INTENS_WHITE}skipped ${RESET}\t" "${*}"
+  log_print "${DATE} ${COLOR_WHITE}${MSG_SKIP}${COLOR_RESET}" "${*}"
 }
 
-########################
-# Log pass message.
-# Arguments:
-#   $1 - Message to log
-# Returns:
-#   $? - Message
-#########################
-function log_pass() {
-  log_print "${DATE}\t ${INTENS_GREEN}passed ${RESET}\t" "${*}"
-}
-
-########################
 # Log warning message.
+#
 # Arguments:
 #   $1 - Message to log
 # Returns:
 #   $? - Message
-#########################
 function log_warn() {
-  log_print "${DATE}\t ${INTENS_YELLOW}warning ${RESET}\t" "${*}"
+  log_print "${DATE} ${COLOR_YELLOW}${MSG_WARN}${COLOR_RESET}" "${*}"
 }
 
-########################
 # Log error message.
+#
 # Arguments:
 #   $1 - Message to log
 # Returns:
 #   $? - Message
-#########################
 function log_error() {
-  log_print "${DATE}\t ${INTENS_RED}failed ${RESET}\t" "${*}"
+  log_print "${DATE} ${COLOR_RED}${MSG_ERROR}${COLOR_RESET}" "${*}"
 }
 
-########################
 # Monitor logging message.
+#
 # Arguments:
 #   $1 - Task is running
 #   $2 - Performed package
 #   $3 - Status of the package
 # Returns:
 #   None
-#########################
 function log_message() {
   local task="${1:?task is missing}"
   local package="${2:?package is missing}"
   local status="${3:?status is missing}"
 
   if ((status == STATUS_SUCCESS)); then
-    log_pass "[${task}] ${package}"
+    log_info "[${task}] ${package}"
   elif ((status == STATUS_SKIP)); then
     log_skip "[${task}] ${package}"
   elif ((status == STATUS_WARNING)); then

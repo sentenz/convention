@@ -3,19 +3,8 @@
     "main"
   ],
   "plugins": [
-    "@semantic-release/github",
-    [
-      "@semantic-release/release-notes-generator",
-      {
-        "preset": "conventionalcommits"
-      }
-    ],
-    [
-      "@semantic-release/commit-analyzer",
-      {
-        "preset": "conventionalcommits"
-      }
-    ],
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
     [
       "@semantic-release/changelog",
       {
@@ -25,14 +14,9 @@
     [
       "@semantic-release/git",
       {
-        "message": "chore(release): ${nextRelease.version} [skip ci]"
+        "message": "chore(release): version ${nextRelease.version} [skip ci]"
       }
     ],
-    [
-      "@semantic-release/exec",
-      {
-        "publishCmd": "git tag ${nextRelease.version}"
-      }
-    ]
+    "@semantic-release/github"
   ]
 }

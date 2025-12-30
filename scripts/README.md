@@ -1,6 +1,6 @@
-# `/scripts`
+# `scripts/`
 
-The `/scripts` directory contains script files used for various tasks and  setups.
+The `scripts/` directory contains script files used for various tasks and  setups.
 
 1. Files and Folders
 

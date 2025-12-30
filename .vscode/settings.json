@@ -7,27 +7,32 @@
   "editor.suggest.showFolders": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.stickyScroll.enabled": true,
-  "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "editor.renderWhitespace": "all",
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.stickyScroll.enabled": true,
-  "conventionalCommits.gitmoji": false,
   "[markdown]": {
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
     "editor.detectIndentation": true,
     "editor.tabSize": 2,
-    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+    "editor.defaultFormatter": "vscode.markdown-language-features"
   },
-  "markdown.extension.toc.levels": "2..6",
   "[shell]": {
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
     "editor.detectIndentation": true,
     "editor.tabSize": 2,
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    "editor.defaultFormatter": null
   },
+  "[powershell]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.detectIndentation": true,
+    "editor.defaultFormatter": "ms-vscode.powershell"
+  },
+  "powershell.codeFormatting.preset": "OTBS",
   "[yaml]": {
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
@@ -40,28 +45,14 @@
     "editor.tabSize": 2,
     "editor.defaultFormatter": "vscode.json-language-features"
   },
-  "[jsonc]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[c]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "xaver.clang-format"
-  },
-  "[cpp]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "xaver.clang-format"
-  },
   "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers",
+    "editor.formatOnSave": true
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "go.coverOnSingleTest": true,
-  "go.lintOnSave": "package",
-  "go.lintTool": "golangci-lint",
-  "go.lintFlags": [
-    "--fast"
-  ]
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  }
 }

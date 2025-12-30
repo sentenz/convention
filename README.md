@@ -2,14 +2,19 @@
 
 General articles, conventions and guides for software development.
 
-- [1. Usage](#1-usage)
-  - [1.1. Identity and Access](#11-identity-and-access)
-  - [1.2. Commands and Operations](#12-commands-and-operations)
-- [2. License](#2-license)
+- [1. Details](#1-details)
+- [2. Usage](#2-usage)
+  - [2.1. Authentication](#21-authentication)
+  - [2.2. Task Runner](#22-task-runner)
+- [3. References](#3-references)
 
-## 1. Usage
+## 1. Details
 
-### 1.1. Identity and Access
+TODO
+
+## 2. Usage
+
+### 2.1. Authentication
 
 1. SSH Authentication
 
@@ -28,7 +33,7 @@ General articles, conventions and guides for software development.
      - Public Key
        > An SSH public key is part of a key pair. Share the public key, e.g. `~/.ssh/github.pub` within the GitHub account in `Settings > SSH and GPG keys` by configuring `New SSH key` or `Add SSH key`.
 
-### 1.2. Commands and Operations
+### 2.2. Task Runner
 
 1. Tasks
 
@@ -48,6 +53,6 @@ General articles, conventions and guides for software development.
               setup                        Setup the Software Development environment
       ```
 
-## 2. License
+## 3. References
 
-`Apache-2.0` Licensed. See the [LICENSE](LICENSE) file for details.
+TODO

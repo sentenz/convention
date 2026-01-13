@@ -1,3 +1,11 @@
+---
+title: "Software Testing"
+date: 2026-01-13
+draft: false
+description: "Comprehensive guide to software testing patterns, techniques, and best practices including TDD, BDD, and test doubles"
+tags: ["testing", "quality-assurance", "tdd", "bdd"]
+---
+
 # Software Testing
 
 Software testing is the process of evaluating a software application or system to identify any defects or issues. The purpose of software testing is to ensure that the software meets its intended requirements, is functional, reliable, and operates as expected.

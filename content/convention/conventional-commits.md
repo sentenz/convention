@@ -1,3 +1,11 @@
+---
+title: "Conventional Commits"
+date: 2026-01-13
+draft: false
+description: "Standardized commit message convention for structured and informative version control"
+tags: ["commits", "version-control", "convention"]
+---
+
 # Conventional Commits
 
 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) is a commit message convention that provides a standardized and structured format for commit messages in software development projects. It aims to make commit messages more readable, informative, and useful for both humans and automated tools.

@@ -1,3 +1,11 @@
+---
+title: "Versioning Guide"
+date: 2026-01-13
+draft: false
+description: "Guide to version control and versioning strategies for software projects"
+tags: ["versioning", "version-control", "best-practices"]
+---
+
 # Versioning Guide
 
 [Semantic Versioning (SemVer)](../convention/semantic-versioning.md) is a system that aids in tracking versioning projects.

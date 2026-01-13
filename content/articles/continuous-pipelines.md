@@ -1,3 +1,11 @@
+---
+title: "Continuous Pipelines"
+date: 2026-01-13
+draft: false
+description: "CI/CD pipelines for automated build, test, and deployment workflows"
+tags: ["ci-cd", "devops", "automation"]
+---
+
 # Continuous Pipelines
 
 Continuous Pipelines refer to the process of automating the software development workflow from code creation to deployment. This process involves multiple stages such as code integration, build, testing, and deployment to production. The pipeline runs continuously, ensuring that every change made to the code is automatically built, tested, and deployed, providing quick feedback to the development team and enabling faster delivery of new features to customers. By automating this process, organizations can improve efficiency, reduce errors, and increase the speed of delivering software updates.

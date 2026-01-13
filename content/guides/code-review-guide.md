@@ -1,3 +1,11 @@
+---
+title: "Code Review Guide"
+date: 2026-01-13
+draft: false
+description: "Best practices and principles for conducting effective code reviews"
+tags: ["code-review", "best-practices", "collaboration"]
+---
+
 # Code Review Guide
 
 The code review guide contains suggestions on how to conduct code reviews effectively.

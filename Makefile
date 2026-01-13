@@ -52,6 +52,17 @@ hugo:
 	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_hugo
 .PHONY: hugo
 
+## Test the Hugo SSG build
+test-hugo:
+	@echo "Testing Hugo build..."
+	@$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_hugo
+	@echo "Checking if public directory was created..."
+	@test -d public || (echo "ERROR: public directory not created" && exit 1)
+	@echo "Checking if index.html exists..."
+	@test -f public/index.html || (echo "ERROR: index.html not found" && exit 1)
+	@echo "✓ Hugo build test passed"
+.PHONY: test-hugo
+
 ## Serve the Hugo site locally for development
 hugo-serve:
 	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && hugo server --config hugo.yml --bind 127.0.0.1 --port 1313 --disableFastRender -D

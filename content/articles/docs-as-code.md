@@ -1,3 +1,11 @@
+---
+title: "Docs as Code"
+date: 2026-01-13
+draft: false
+description: "Treating documentation as code with version control and automated workflows"
+tags: ["documentation", "devops", "automation"]
+---
+
 # Docs as Code
 
 Docs as Code is a set of principles and practices that aims to treat documentation as code, and apply software development practices to documentation.

@@ -1,6 +1,6 @@
 ---
 title: "Continuous Pipelines"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "CI/CD pipelines for automated build, test, and deployment workflows"
 tags: ["ci-cd", "devops", "automation"]

@@ -1,6 +1,6 @@
 ---
 title: "Docs as Code"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Treating documentation as code with version control and automated workflows"
 tags: ["documentation", "devops", "automation"]

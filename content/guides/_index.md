@@ -1,6 +1,6 @@
 ---
 title: "Guides"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Comprehensive guides for software development practices"
 ---

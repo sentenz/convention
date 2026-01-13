@@ -1,6 +1,6 @@
 ---
 title: "Software Design Principles"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Core software design principles including SOLID, DRY, KISS, and YAGNI"
 tags: ["design", "principles", "best-practices"]

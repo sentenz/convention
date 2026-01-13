@@ -1,6 +1,6 @@
 ---
 title: "Software Architecture"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Fundamental structures of software systems including Clean, Onion, Hexagonal, and Layered architectures"
 tags: ["architecture", "design", "patterns"]

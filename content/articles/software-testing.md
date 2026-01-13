@@ -1,6 +1,6 @@
 ---
 title: "Software Testing"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Comprehensive guide to software testing patterns, techniques, and best practices including TDD, BDD, and test doubles"
 tags: ["testing", "quality-assurance", "tdd", "bdd"]

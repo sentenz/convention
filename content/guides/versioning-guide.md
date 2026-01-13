@@ -1,6 +1,6 @@
 ---
 title: "Versioning Guide"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Guide to version control and versioning strategies for software projects"
 tags: ["versioning", "version-control", "best-practices"]

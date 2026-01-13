@@ -1,6 +1,6 @@
 ---
 title: "Code Review Guide"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Best practices and principles for conducting effective code reviews"
 tags: ["code-review", "best-practices", "collaboration"]

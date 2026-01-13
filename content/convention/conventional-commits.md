@@ -1,6 +1,6 @@
 ---
 title: "Conventional Commits"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Standardized commit message convention for structured and informative version control"
 tags: ["commits", "version-control", "convention"]

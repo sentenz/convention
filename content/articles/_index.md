@@ -1,6 +1,6 @@
 ---
 title: "Articles"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Technical articles on various software development topics"
 ---

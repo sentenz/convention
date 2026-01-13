@@ -1,6 +1,6 @@
 ---
 title: "Clean Code Guide"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "Comprehensive guide to writing clean, maintainable code with SOLID principles and best practices"
 tags: ["clean-code", "best-practices", "design-principles"]

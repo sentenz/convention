@@ -1,6 +1,6 @@
 ---
 title: "Semantic Versioning"
-date: 2026-01-13
+date: 2025-01-13
 draft: false
 description: "SemVer specification for meaningful version numbers (MAJOR.MINOR.PATCH)"
 tags: ["versioning", "semver", "convention"]

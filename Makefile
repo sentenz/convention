@@ -42,6 +42,16 @@ release:
 	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_semantic_release
 .PHONY: release
 
+## Setup of the Hugo SSG environment
+setup-hugo:
+	cd $(@D)/scripts && chmod +x setup_hugo.sh && ./setup_hugo.sh
+.PHONY: setup-hugo
+
+## Perform the Hugo SSG build with CommonMark support
+hugo:
+	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_hugo
+.PHONY: hugo
+
 ## Setup of the SSG Pages environment
 setup-pages:
 	cd $(@D)/scripts && chmod +x setup_pages.sh && ./setup_pages.sh
@@ -57,6 +67,12 @@ workflow-release:
 	$(MAKE) setup-release
 	$(MAKE) release
 .PHONY: workflow-release
+
+## Workflow of the Hugo SSG process
+workflow-hugo:
+	$(MAKE) setup-hugo
+	$(MAKE) hugo
+.PHONY: workflow-hugo
 
 ## Workflow of the SSG Pages process
 workflow-pages:

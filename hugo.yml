@@ -1,0 +1,106 @@
+# SPDX-License-Identifier: Apache-2.0
+
+# Hugo Static Site Generator Configuration
+# https://gohugo.io/getting-started/configuration/
+
+baseURL: "https://sentenz.github.io/convention/"
+languageCode: "en-us"
+title: "Convention"
+
+# Content directories
+contentDir: "content"
+publishDir: "public"
+
+# Markdown configuration using Goldmark (CommonMark compliant)
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # Allow raw HTML in markdown for backwards compatibility
+    parser:
+      attribute:
+        block: true
+        title: true
+      autoHeadingID: true
+      autoHeadingIDType: "github"
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+    hl_Lines: ""
+    lineAnchors: ""
+    lineNoStart: 1
+    lineNos: false
+    lineNumbersInTable: true
+    noClasses: true
+    style: "monokai"
+    tabWidth: 4
+  tableOfContents:
+    endLevel: 3
+    ordered: false
+    startLevel: 2
+
+# Taxonomies
+taxonomies:
+  category: "categories"
+  tag: "tags"
+
+# Build options
+build:
+  writeStats: false
+
+# Server options for development
+server:
+  headers:
+    - for: "/**"
+      values:
+        X-Frame-Options: "DENY"
+        X-Content-Type-Options: "nosniff"
+        Referrer-Policy: "strict-origin-when-cross-origin"
+
+# Related content
+related:
+  includeNewer: true
+  indices:
+    - name: "keywords"
+      weight: 80
+    - name: "tags"
+      weight: 60
+  threshold: 80
+  toLower: false
+
+# Permalinks
+permalinks:
+  articles: "/articles/:slug/"
+  guides: "/guides/:slug/"
+  convention: "/convention/:slug/"
+
+# Menu configuration
+menu:
+  main:
+    - identifier: "articles"
+      name: "Articles"
+      url: "/articles/"
+      weight: 10
+    - identifier: "guides"
+      name: "Guides"
+      url: "/guides/"
+      weight: 20
+    - identifier: "convention"
+      name: "Conventions"
+      url: "/convention/"
+      weight: 30
+
+# Output formats
+outputs:
+  home:
+    - "HTML"
+    - "RSS"
+  page:
+    - "HTML"
+
+# Additional params
+params:
+  description: "General articles, conventions and guides for software development"
+  author: "sentenz"
+  github: "https://github.com/sentenz/convention"
+

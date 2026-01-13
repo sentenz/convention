@@ -727,3 +727,60 @@ function cli_ansible_lint() {
 
   return "${retval}"
 }
+
+# Build static site using Hugo SSG with CommonMark support.
+#
+# Globals:
+#   None
+# Arguments:
+#   $1 (optional) - config: Path to Hugo configuration file. Defaults to 'hugo.yml' in current directory.
+#   $2 (optional) - destination: Path to output directory. Defaults to 'public'.
+# Outputs:
+#   Builds the static site to the specified destination directory.
+# Returns:
+#   0: Successful build.
+#   1: Build failed.
+function cli_hugo() {
+  local config="${1:-hugo.yml}"
+  local destination="${2:-public}"
+
+  local -i retval=0
+
+  if [[ -f "${config}" ]]; then
+    hugo --config "${config}" --destination "${destination}" --minify
+    ((retval |= $?))
+  else
+    echo "ERROR: Hugo configuration file not found: ${config}" >&2
+    return 1
+  fi
+
+  return "${retval}"
+}
+
+# Build static site using MkDocs SSG.
+#
+# Globals:
+#   None
+# Arguments:
+#   $1 (optional) - config: Path to MkDocs configuration file. Defaults to 'mkdocs.yml' in current directory.
+# Outputs:
+#   Builds the static site using MkDocs.
+# Returns:
+#   0: Successful build.
+#   1: Build failed.
+function cli_mkdocs() {
+  local config="${1:-mkdocs.yml}"
+
+  local -i retval=0
+
+  if [[ -f "${config}" ]]; then
+    mkdocs build --config-file "${config}" --strict
+    ((retval |= $?))
+  else
+    echo "ERROR: MkDocs configuration file not found: ${config}" >&2
+    return 1
+  fi
+
+  return "${retval}"
+}
+

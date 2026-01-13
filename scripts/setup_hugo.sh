@@ -21,7 +21,7 @@ fi
 
 # Constant Variables
 
-readonly HUGO_VERSION="0.139.3"
+readonly HUGO_VERSION="0.140.2"
 readonly HUGO_EXTENDED="hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
 readonly HUGO_URL="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${HUGO_EXTENDED}"
 readonly INSTALL_DIR="/usr/local/bin"

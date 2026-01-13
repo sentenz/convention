@@ -730,16 +730,11 @@ function cli_ansible_lint() {
 
 # Build static site using Hugo SSG with CommonMark support.
 #
-# Globals:
-#   None
 # Arguments:
-#   $1 (optional) - config: Path to Hugo configuration file. Defaults to 'hugo.yml' in current directory.
-#   $2 (optional) - destination: Path to output directory. Defaults to 'public'.
-# Outputs:
-#   Builds the static site to the specified destination directory.
+#   $1 - config (optional)
+#   $2 - destination (optional)
 # Returns:
-#   0: Successful build.
-#   1: Build failed.
+#   $? - Result
 function cli_hugo() {
   local config="${1:-hugo.yml}"
   local destination="${2:-public}"
@@ -759,15 +754,10 @@ function cli_hugo() {
 
 # Build static site using MkDocs SSG.
 #
-# Globals:
-#   None
 # Arguments:
-#   $1 (optional) - config: Path to MkDocs configuration file. Defaults to 'mkdocs.yml' in current directory.
-# Outputs:
-#   Builds the static site using MkDocs.
+#   $1 - config (optional)
 # Returns:
-#   0: Successful build.
-#   1: Build failed.
+#   $? - Result
 function cli_mkdocs() {
   local config="${1:-mkdocs.yml}"
 

@@ -52,6 +52,11 @@ hugo:
 	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_hugo
 .PHONY: hugo
 
+## Serve the Hugo site locally for development
+hugo-serve:
+	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && hugo server --config hugo.yml --bind 127.0.0.1 --port 1313 --disableFastRender -D
+.PHONY: hugo-serve
+
 ## Setup of the SSG Pages environment
 setup-pages:
 	cd $(@D)/scripts && chmod +x setup_pages.sh && ./setup_pages.sh

@@ -4,3 +4,9 @@ build/
 logs/
 *.log
 .env
+
+# Hugo build artifacts
+public/
+resources/
+.hugo_build.lock
+

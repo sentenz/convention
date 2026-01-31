@@ -28,21 +28,21 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '12'
           cache: 'npm'
 
       - name: Install dependencies
         run: |
           npm install
-          npx honkit install
+          npx gitbook install
 
       - name: Generate SUMMARY.md
         run: |
           chmod +x scripts/generate_summary.sh
           ./scripts/generate_summary.sh
 
-      - name: Build GitBook with HonKit
-        run: npx honkit build . _book
+      - name: Build GitBook
+        run: npx gitbook build . _book
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

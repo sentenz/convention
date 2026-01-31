@@ -18,20 +18,17 @@ source ./../scripts/shell/pkg.sh
 function setup_pages() {
   local -i retval=0
 
-  # Install HonKit (GitBook alternative) and plugins via npm
+  # Install GitBook CLI and plugins via npm
   if command -v npm &> /dev/null; then
-    echo "Installing HonKit and dependencies..."
+    echo "Installing GitBook CLI and dependencies..."
     npm install
     ((retval |= $?))
     
-    # Install HonKit plugins
-    npx honkit install
+    # Install GitBook plugins
+    npx gitbook install
     ((retval |= $?))
   else
-    echo "Error: npm is not installed."
-    echo "Please install Node.js and npm first:"
-    echo "  - Visit: https://nodejs.org/"
-    echo "  - Or use package manager: apt-get install nodejs npm"
+    echo "Error: npm is not installed. Please install Node.js and npm first."
     return 1
   fi
 

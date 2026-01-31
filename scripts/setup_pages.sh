@@ -13,25 +13,27 @@ set -uo pipefail
 
 source ./../scripts/shell/pkg.sh
 
-# Constant Variables
-
-readonly -A PIP_PACKAGES=(
-  ["mkdocs"]="1.6.0"
-  ["mkdocs-material"]="9.5.19"
-  ["mkdocs-macros-plugin"]="1.0.5"
-  ["pymdown-extensions"]="10.8"
-)
-
 # Internal Functions
 
 function setup_pages() {
   local -i retval=0
 
-  pkg_pip_install_list PIP_PACKAGES
-  ((retval |= $?))
-
-  pkg_pip_clean
-  ((retval |= $?))
+  # Install HonKit (maintained GitBook fork) and plugins via npm
+  if command -v npm &> /dev/null; then
+    echo "Installing HonKit and dependencies..."
+    npm install
+    ((retval |= $?))
+    
+    # Install HonKit plugins
+    npx honkit install
+    ((retval |= $?))
+  else
+    echo "Error: npm is not installed."
+    echo "Please install Node.js and npm first:"
+    echo "  - Visit: https://nodejs.org/"
+    echo "  - Or use package manager: apt-get install nodejs npm"
+    return 1
+  fi
 
   return "${retval}"
 }

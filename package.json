@@ -1,0 +1,27 @@
+{
+  "name": "convention",
+  "version": "1.0.0",
+  "description": "General articles, conventions and guides for software development",
+  "scripts": {
+    "docs:build": "honkit build",
+    "docs:serve": "honkit serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sentenz/convention.git"
+  },
+  "keywords": [
+    "documentation",
+    "gitbook",
+    "conventions",
+    "guides"
+  ],
+  "author": "sentenz",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "honkit": "^6.1.6"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -4,3 +4,8 @@ build/
 logs/
 *.log
 .env
+
+# GitBook
+_book/
+node_modules/
+package-lock.json

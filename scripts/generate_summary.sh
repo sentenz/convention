@@ -7,10 +7,17 @@
 set -uo pipefail
 
 # Function to convert filename to title
+# Removes .md extension, replaces dashes with spaces, and capitalizes each word
 filename_to_title() {
   local filename="$1"
-  # Remove extension and convert dashes to spaces, capitalize words
-  echo "$filename" | sed 's/.md$//' | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}1'
+  # Step 1: Remove .md extension
+  local no_ext
+  no_ext=$(echo "$filename" | sed 's/.md$//')
+  # Step 2: Replace dashes with spaces
+  local with_spaces
+  with_spaces=$(echo "$no_ext" | sed 's/-/ /g')
+  # Step 3: Capitalize first letter of each word
+  echo "$with_spaces" | awk '{for(i=1;i<=NF;i++)sub(/./,toupper(substr($i,1,1)),$i)}1'
 }
 
 # Start SUMMARY.md

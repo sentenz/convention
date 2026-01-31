@@ -94,6 +94,7 @@ Documentation is automatically built and deployed to GitHub Pages on every push 
 
 The `book.json` file contains the GitBook configuration:
 
+- **gitbook**: Version field "3.2.3" maintains compatibility with GitBook 3.2.3 syntax (HonKit is a maintained fork that is compatible with GitBook 3.2.3 configuration format)
 - **title**: Documentation title
 - **description**: Site description
 - **language**: Content language (en)

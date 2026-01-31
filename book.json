@@ -9,32 +9,8 @@
     "readme": "README.md",
     "summary": "SUMMARY.md"
   },
-  "plugins": [
-    "-lunr",
-    "-search",
-    "-sharing",
-    "-fontsettings",
-    "search-pro",
-    "github",
-    "edit-link",
-    "page-toc-button",
-    "back-to-top-button",
-    "expandable-chapters-small",
-    "anchors"
-  ],
-  "pluginsConfig": {
-    "github": {
-      "url": "https://github.com/sentenz/convention"
-    },
-    "edit-link": {
-      "base": "https://github.com/sentenz/convention/edit/main",
-      "label": "Edit This Page"
-    },
-    "page-toc-button": {
-      "maxTocDepth": 3,
-      "minTocSize": 2
-    }
-  },
+  "plugins": [],
+  "pluginsConfig": {},
   "variables": {},
   "links": {
     "sidebar": {

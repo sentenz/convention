@@ -728,7 +728,7 @@ function cli_ansible_lint() {
   return "${retval}"
 }
 
-# GitBook static site generator for documentation.
+# GitBook/HonKit static site generator for documentation.
 #
 # Globals:
 #   None
@@ -754,8 +754,8 @@ function cli_gitbook() {
         ((retval |= $?))
       fi
       
-      # Build GitBook
-      npx gitbook build . "${output_dir}"
+      # Build with HonKit (GitBook compatible)
+      npx honkit build . "${output_dir}"
       ((retval |= $?))
       ;;
     serve)
@@ -765,13 +765,13 @@ function cli_gitbook() {
         ((retval |= $?))
       fi
       
-      # Serve GitBook
-      npx gitbook serve .
+      # Serve with HonKit
+      npx honkit serve .
       ((retval |= $?))
       ;;
     install)
-      # Install GitBook plugins
-      npx gitbook install
+      # Install HonKit plugins
+      npx honkit install
       ((retval |= $?))
       ;;
     *)

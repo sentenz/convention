@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "General articles, conventions and guides for software development",
   "scripts": {
-    "docs:build": "gitbook build",
-    "docs:serve": "gitbook serve"
+    "docs:build": "honkit build",
+    "docs:serve": "honkit serve"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "author": "sentenz",
   "license": "Apache-2.0",
   "devDependencies": {
-    "gitbook-cli": "^2.3.2"
+    "honkit": "^6.1.6"
   },
   "engines": {
     "node": ">=16.0.0"

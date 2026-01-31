@@ -44,6 +44,9 @@ jobs:
       - name: Build GitBook with HonKit
         run: npx honkit build . _book
 
+      - name: Add .nojekyll file
+        run: touch _book/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

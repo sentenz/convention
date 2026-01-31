@@ -6,11 +6,12 @@ General articles, conventions and guides for software development.
 - [2. Usage](#2-usage)
   - [2.1. Authentication](#21-authentication)
   - [2.2. Task Runner](#22-task-runner)
+  - [2.3. Documentation](#23-documentation)
 - [3. References](#3-references)
 
 ## 1. Details
 
-TODO
+This repository contains technical documentation, articles, conventions, and guides for software development. The documentation is automatically built and published to GitHub Pages using HonKit, a maintained fork of GitBook.
 
 ## 2. Usage
 
@@ -52,6 +53,40 @@ TODO
       TARGET
               setup                        Setup the Software Development environment
       ```
+
+### 2.3. Documentation
+
+The project documentation is built using HonKit and automatically published to GitHub Pages.
+
+1. Local Development
+
+    Build and serve the documentation locally:
+
+    ```bash
+    # Install dependencies
+    make setup-pages
+
+    # Build documentation
+    make pages
+
+    # Serve locally with live reload
+    npx honkit serve
+    ```
+
+    The documentation will be available at `http://localhost:4000`.
+
+2. GitHub Pages Deployment
+
+    The documentation is automatically built and deployed to GitHub Pages when changes are pushed to the `main` branch. The workflow:
+
+    - Generates navigation from markdown files in `content/articles/`, `content/guides/`, and `content/convention/`
+    - Builds static HTML using HonKit (GitBook-compatible SSG)
+    - Deploys to GitHub Pages
+
+    To enable GitHub Pages for this repository:
+    1. Go to repository Settings > Pages
+    2. Under "Build and deployment", select "GitHub Actions" as the source
+    3. The site will be published automatically on the next push to `main`
 
 ## 3. References
 

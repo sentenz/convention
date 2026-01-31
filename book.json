@@ -1,0 +1,47 @@
+{
+  "gitbook": "3.2.3",
+  "title": "Convention - Software Development Guide",
+  "description": "General articles, conventions and guides for software development",
+  "author": "sentenz",
+  "language": "en",
+  "root": ".",
+  "structure": {
+    "readme": "README.md",
+    "summary": "SUMMARY.md"
+  },
+  "plugins": [
+    "-lunr",
+    "-search",
+    "-sharing",
+    "-fontsettings",
+    "search-pro",
+    "github",
+    "edit-link",
+    "page-toc-button",
+    "back-to-top-button",
+    "expandable-chapters-small",
+    "anchors"
+  ],
+  "pluginsConfig": {
+    "github": {
+      "url": "https://github.com/sentenz/convention"
+    },
+    "edit-link": {
+      "base": "https://github.com/sentenz/convention/edit/main",
+      "label": "Edit This Page"
+    },
+    "page-toc-button": {
+      "maxTocDepth": 3,
+      "minTocSize": 2
+    }
+  },
+  "variables": {},
+  "links": {
+    "sidebar": {
+      "GitHub Repository": "https://github.com/sentenz/convention"
+    }
+  },
+  "styles": {
+    "website": "styles/website.css"
+  }
+}

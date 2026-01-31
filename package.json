@@ -1,0 +1,27 @@
+{
+  "name": "convention",
+  "version": "1.0.0",
+  "description": "General articles, conventions and guides for software development",
+  "scripts": {
+    "docs:build": "gitbook build",
+    "docs:serve": "gitbook serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sentenz/convention.git"
+  },
+  "keywords": [
+    "documentation",
+    "gitbook",
+    "conventions",
+    "guides"
+  ],
+  "author": "sentenz",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "gitbook-cli": "^2.3.2"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

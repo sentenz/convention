@@ -49,7 +49,7 @@ setup-pages:
 
 ## Perform the SSG Pages build
 pages:
-	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_mkdocs
+	$(SHELL_COMMAND) $(SHELL_FILE_CLI) && cli_gitbook build
 .PHONY: pages
 
 ## Workflow of the Software Release process

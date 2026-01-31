@@ -727,3 +727,58 @@ function cli_ansible_lint() {
 
   return "${retval}"
 }
+
+# GitBook static site generator for documentation.
+#
+# Globals:
+#   None
+# Arguments:
+#   $1 (optional) - action: Action to perform (build, serve, install). Defaults to 'build'.
+#   $2 (optional) - output_dir: Output directory for the build. Defaults to '_book'.
+# Outputs:
+#   Builds GitBook documentation or starts development server.
+# Returns:
+#   0: On success.
+#   1: On error.
+function cli_gitbook() {
+  local action="${1:-build}"
+  local output_dir="${2:-_book}"
+
+  local -i retval=0
+
+  case "${action}" in
+    build)
+      # Generate SUMMARY.md first
+      if [[ -f "scripts/generate_summary.sh" ]]; then
+        bash scripts/generate_summary.sh
+        ((retval |= $?))
+      fi
+      
+      # Build GitBook
+      npx gitbook build . "${output_dir}"
+      ((retval |= $?))
+      ;;
+    serve)
+      # Generate SUMMARY.md first
+      if [[ -f "scripts/generate_summary.sh" ]]; then
+        bash scripts/generate_summary.sh
+        ((retval |= $?))
+      fi
+      
+      # Serve GitBook
+      npx gitbook serve .
+      ((retval |= $?))
+      ;;
+    install)
+      # Install GitBook plugins
+      npx gitbook install
+      ((retval |= $?))
+      ;;
+    *)
+      echo "Error: Unknown action '${action}'. Use 'build', 'serve', or 'install'."
+      return 1
+      ;;
+  esac
+
+  return "${retval}"
+}

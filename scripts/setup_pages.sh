@@ -13,25 +13,24 @@ set -uo pipefail
 
 source ./../scripts/shell/pkg.sh
 
-# Constant Variables
-
-readonly -A PIP_PACKAGES=(
-  ["mkdocs"]="1.6.0"
-  ["mkdocs-material"]="9.5.19"
-  ["mkdocs-macros-plugin"]="1.0.5"
-  ["pymdown-extensions"]="10.8"
-)
-
 # Internal Functions
 
 function setup_pages() {
   local -i retval=0
 
-  pkg_pip_install_list PIP_PACKAGES
-  ((retval |= $?))
-
-  pkg_pip_clean
-  ((retval |= $?))
+  # Install GitBook CLI and plugins via npm
+  if command -v npm &> /dev/null; then
+    echo "Installing GitBook CLI and dependencies..."
+    npm install
+    ((retval |= $?))
+    
+    # Install GitBook plugins
+    npx gitbook install
+    ((retval |= $?))
+  else
+    echo "Error: npm is not installed. Please install Node.js and npm first."
+    return 1
+  fi
 
   return "${retval}"
 }

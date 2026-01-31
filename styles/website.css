@@ -1,0 +1,55 @@
+/* Custom GitBook Styles */
+
+/* Improve readability */
+.book .book-body .page-wrapper .page-inner section.normal {
+  max-width: 900px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* Better code block styling */
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  overflow-x: auto;
+}
+
+/* Improve table styling */
+.book .book-body .page-wrapper .page-inner section.normal table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal table th,
+.book .book-body .page-wrapper .page-inner section.normal table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+/* Link styling */
+.book .book-body .page-wrapper .page-inner section.normal a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal a:hover {
+  text-decoration: underline;
+}
+
+/* Blockquote styling */
+.book .book-body .page-wrapper .page-inner section.normal blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 20px;
+  color: #666;
+  font-style: italic;
+  margin: 20px 0;
+}

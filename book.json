@@ -1,0 +1,23 @@
+{
+  "gitbook": "3.2.3",
+  "title": "Convention - Software Development Guide",
+  "description": "General articles, conventions and guides for software development",
+  "author": "sentenz",
+  "language": "en",
+  "root": ".",
+  "structure": {
+    "readme": "README.md",
+    "summary": "SUMMARY.md"
+  },
+  "plugins": [],
+  "pluginsConfig": {},
+  "variables": {},
+  "links": {
+    "sidebar": {
+      "GitHub Repository": "https://github.com/sentenz/convention"
+    }
+  },
+  "styles": {
+    "website": "styles/website.css"
+  }
+}

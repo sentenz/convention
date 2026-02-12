@@ -18,7 +18,7 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
 
-    - name: Install dependencies
+    - name: Install Dependencies
       shell: bash
       run: |
         pip install --quiet --upgrade pip
@@ -29,6 +29,6 @@ runs:
           "markdown-it-py==3.0.0" \
           "pymdown-extensions==10.8"
 
-    - name: Build site
+    - name: Build Site
       shell: bash
       run: mkdocs build

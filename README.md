@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Convention is a collection of generel articles, conventions and guides for software development as a reference to follow standardized approaches in projects.
+The Convention is a collection of general articles, conventions, and guides for software development as a reference to apply standardized approaches in projects.
 
 - [1. Details](#1-details)
   - [1.1. Prerequisites](#11-prerequisites)
@@ -30,28 +30,37 @@ Convention is a collection of generel articles, conventions and guides for softw
   sudo apt install make
   ```
 
-
 ### 1.2. Static Site Generator (SSG)
 
-The project uses [MkDocs](https://www.mkdocs.org/) with the Material theme and content sourced from the [`content/`](content/) directory.
+ [MkDocs](https://www.mkdocs.org/) is used as the static site generator for building and serving the documentation site.
 
-- Dynamic navigation
-  > The top-level navigation sections are generated automatically from subfolders in `content/` using a custom MkDocs hook.
+1. Insights and Details
 
-- CommonMark support
-  > A custom MkDocs hook renders pages with `markdown-it-py` using the `commonmark` preset to provide CommonMark-compatible parsing.
+    - Dynamic Navigation
+      > The top-level navigation sections are generated automatically from subfolders in [content/](content/) using a custom MkDocs hook.
 
-- Build
+    - CommonMark Markdown Flavor
+      > A custom MkDocs hook renders pages with `markdown-it-py` using the `commonmark` preset to provide CommonMark-compatible parsing.
 
-  ```bash
-  make pages-build
-  ```
+2. Usage and Instructions
 
-- Serve locally
+    - Local Setup
 
-  ```bash
-  make pages-serve
-  ```
+      ```bash
+      make pages-setup
+      ```
+
+    - Local Build
+
+      ```bash
+      make pages-build
+      ```
+
+    - Local Serve
+
+      ```bash
+      make pages-serve
+      ```
 
 ## 2. Contribute
 

@@ -44,13 +44,13 @@ The project uses [MkDocs](https://www.mkdocs.org/) with the Material theme and c
 - Build
 
   ```bash
-  mkdocs build --strict
+  make pages-build
   ```
 
 - Serve locally
 
   ```bash
-  mkdocs serve
+  make pages-serve
   ```
 
 ## 2. Contribute

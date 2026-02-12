@@ -41,6 +41,19 @@ teardown:
 	@cd ./scripts/ && bash ./teardown.sh
 .PHONY: teardown
 
+
+# ── Static Site Generator (SSG) ─────────────────────────────────────────────────────────────────
+
+## Build documentation pages with MkDocs
+pages-build:
+	$(PIP_VENV)/mkdocs build --strict
+.PHONY: pages-build
+
+## Serve documentation pages locally with MkDocs
+pages-serve:
+	$(PIP_VENV)/mkdocs serve --dev-addr 127.0.0.1:8000
+.PHONY: pages-serve
+
 # ── Policy Manager ───────────────────────────────────────────────────────────────────────────────
 
 POLICY_IMAGE_CONFTEST ?= docker.io/openpolicyagent/conftest:v0.65.0@sha256:afa510df6d4562ebe24fb3e457da6f6d6924124140a13b51b950cc6cb1d25525

@@ -1,5 +1,13 @@
 # Changelog
 
+# [2.2.0](https://github.com/sentenz/convention/compare/v2.1.0...2.2.0) (2026-02-12)
+
+
+### Features
+
+* **make:** add mkdocs build and serve tasks ([1481bd3](https://github.com/sentenz/convention/commit/1481bd3907ae138f870ae17fc3e1a2bc97262a73))
+* **ssg:** add mkdocs build with dynamic nav and commonmark hook ([ef4abcf](https://github.com/sentenz/convention/commit/ef4abcf71cfc142922ab167779d983ad5086f8df))
+
 ## [2.1.0](https://github.com/sentenz/convention/compare/v2.0.0...v2.1.0) (2024-11-05)
 
 

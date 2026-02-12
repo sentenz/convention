@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: Apache-2.0
+
+name: MkDocs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  mkdocs:
+    name: MkDocs Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Build MkDocs
+        uses: ./.github/actions/mkdocs

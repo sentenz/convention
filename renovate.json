@@ -3,10 +3,6 @@
   "extends": [
     "config:recommended"
   ],
-  "timezone": "UTC",
-  "schedule": [
-    "before 3am on monday"
-  ],
   "rebaseWhen": "behind-base-branch",
   "dependencyDashboard": false,
   "labels": [

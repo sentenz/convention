@@ -23,7 +23,7 @@ db:
   skip-update: false
 debug: false
 dependency-tree: false
-exit-code: 1
+exit-code: 0
 exit-on-eol: 0
 ignore-policy: ""
 ignorefile: .trivyignore

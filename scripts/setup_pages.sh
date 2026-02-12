@@ -16,8 +16,8 @@ source ./../scripts/shell/pkg.sh
 # Constant Variables
 
 readonly -A PIP_PACKAGES=(
-  ["mkdocs"]="1.6.0"
-  ["mkdocs-material"]="9.5.19"
+  ["mkdocs"]="1.6.1"
+  ["mkdocs-material"]="9.7.1"
   ["mkdocs-macros-plugin"]="1.0.5"
   ["markdown-it-py"]="3.0.0"
   ["pymdown-extensions"]="10.8"

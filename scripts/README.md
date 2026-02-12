@@ -1,17 +1,20 @@
 # `scripts/`
 
-The `scripts/` directory contains script files used for various tasks and  setups.
+- [1. Details](#1-details)
+  - [1.1. Shell (Bash)](#11-shell-bash)
 
-1. Files and Folders
+## 1. Details
 
-    - `setup.sh`
-      > A script responsible for performing initial setup scripts.
+### 1.1. Shell (Bash)
 
-    - `setup_testing.sh`
-      > A script for setting up testing environments.
+- `shell/`
+  > Contains a suite of modular shell scripts intended for system automation and orchestration of complex workflows.
 
-    - `setup_release.sh`
-      > A script for setting up release environments.
+- `bootstrap.sh`
+  > Initializes the operating environment by setting up essential prerequisites and configuring dependencies.
 
-    - `setup_linrer.sh`
-      > A script for setting up software analysis using linters.
+- `setup.sh`
+  > System configuration and preparation, ensuring that all required services and settings are in place for the successful execution of subsequent tasks or applications.
+
+- `teardown.sh`
+  > Facilitates the graceful decommissioning of the environment by reversing configurations and cleaning up temporary artifacts.

@@ -42,7 +42,7 @@ theme:
   name: material
   features:
     # - navigation.sections
-    - navigation.expand
+    # - navigation.expand
     - navigation.top
     - toc.integrate
   palette:

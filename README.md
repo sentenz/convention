@@ -6,6 +6,7 @@ Convention is a collection of generel articles, conventions and guides for softw
 
 - [1. Details](#1-details)
   - [1.1. Prerequisites](#11-prerequisites)
+  - [1.2. Static Site Generator (SSG)](#12-static-site-generator-ssg)
 - [2. Contribute](#2-contribute)
 - [3. Troubleshoot](#3-troubleshoot)
   - [3.1. TODO](#31-todo)
@@ -27,6 +28,29 @@ Convention is a collection of generel articles, conventions and guides for softw
 
   ```bash
   sudo apt install make
+  ```
+
+
+### 1.2. Static Site Generator (SSG)
+
+The project uses [MkDocs](https://www.mkdocs.org/) with the Material theme and content sourced from the [`content/`](content/) directory.
+
+- Dynamic navigation
+  > The top-level navigation sections are generated automatically from subfolders in `content/` using a custom MkDocs hook.
+
+- CommonMark support
+  > A custom MkDocs hook renders pages with `markdown-it-py` using the `commonmark` preset to provide CommonMark-compatible parsing.
+
+- Build
+
+  ```bash
+  mkdocs build --strict
+  ```
+
+- Serve locally
+
+  ```bash
+  mkdocs serve
   ```
 
 ## 2. Contribute

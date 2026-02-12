@@ -1,0 +1,16 @@
+site_name: Convention
+site_description: Software development conventions, guides and articles.
+repo_name: sentenz/convention
+repo_url: https://github.com/sentenz/convention
+
+docs_dir: content
+site_dir: site
+
+hooks:
+  - scripts/mkdocs_hooks.py
+
+plugins:
+  - search
+
+theme:
+  name: material

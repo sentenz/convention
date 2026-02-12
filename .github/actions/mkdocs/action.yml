@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: Apache-2.0
+
+name: MkDocs
+description: Build MkDocs documentation site with Material theme and CommonMark rendering.
+author: "sentenz"
+
+inputs:
+  python-version:
+    description: Python version to use.
+    required: false
+    default: "3.12"
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        pip install --quiet --upgrade pip
+        pip install --quiet \
+          "mkdocs==1.6.1" \
+          "mkdocs-material==9.7.1" \
+          "mkdocs-macros-plugin==1.0.5" \
+          "markdown-it-py==3.0.0" \
+          "pymdown-extensions==10.8"
+
+    - name: Build site
+      shell: bash
+      run: mkdocs build

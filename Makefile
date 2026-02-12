@@ -299,3 +299,20 @@ skills-add:
 skills-update:
 	skills update sentenz/skills
 .PHONY: skills-update
+
+# ── Static Site Generator (SSG) ─────────────────────────────────────────────────────────────────
+
+### Setup documentation pages with MkDocs
+pages-setup:
+	@cd ./scripts/ && bash ./setup_pages.sh
+.PHONY: pages-setup
+
+## Build documentation pages with MkDocs
+pages-build:
+	mkdocs build
+.PHONY: pages-build
+
+## Serve documentation pages locally with MkDocs
+pages-serve:
+	mkdocs serve --dev-addr 127.0.0.1:8000
+.PHONY: pages-serve

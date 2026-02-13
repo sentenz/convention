@@ -7,7 +7,7 @@ docs_dir: content
 site_dir: public
 
 hooks:
-  - scripts/mkdocs_hooks.py
+  - scripts/python/mkdocs_hooks.py
 
 plugins:
   - search
@@ -41,18 +41,21 @@ markdown_extensions:
 theme:
   name: material
   features:
-    # - navigation.sections
-    # - navigation.expand
     - navigation.top
-    - toc.integrate
+    - navigation.tabs
+    - content.code.copy
   palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
-        icon: material/weather-night
+        icon: material/weather-sunny
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
+        icon: material/weather-night
+        name: Switch to system preference

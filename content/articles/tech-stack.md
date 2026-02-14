@@ -106,21 +106,21 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 
 13. Platform
 
+    - [x] [GitHub](https://github.com/)
+      > GitHub is a web-based DevOps platform that provides version control and collaboration features for software development projects.
+
     - [x] [GitLab](https://gitlab.com/)
       > GitLab is a web-based DevOps platform that provides a complete set of tools for software development, including version control, issue tracking, continuous integration/continuous deployment (CI/CD), and project management.
 
-    - [ ] [GitHub](https://github.com/)
-      > GitHub is a web-based DevOps platform that provides version control and collaboration features for software development projects.
-
 14. Analysis
 
-    - [X] SAST (Static Application Security Testing)
+    - [X] SAST
       > SAST (Static Application Security Testing) is a method of analyzing source code or compiled code to identify security vulnerabilities and weaknesses without executing the program.
 
-    - [X] DAST (Dynamic Application Security Testing)
+    - [X] DAST
       > DAST (Dynamic Application Security Testing) is a method of testing the security of an application while it is running.
 
-    - [X] SCA (Software Composition Analysis)
+    - [X] SCA
       > SCA (Software Composition Analysis) is a method of analyzing the components and dependencies of a software application to identify potential security vulnerabilities and license compliance.
 
 15. Conventions & Style Guides

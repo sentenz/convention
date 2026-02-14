@@ -380,10 +380,10 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
       > GoogleTest (gtest/gmock) is a testing framework for C++, providing a rich set of features for unit testing and test-driven development.
 
       - [ ] [Google FuzzTest](https://github.com/google/fuzztest)
-        > A library for coverage-guided fuzz testing of C++ code, integrated with GoogleTest. It is used to discover and exploit software vulnerabilities by generating random inputs.
+        > A library for coverage-guided fuzz testing of C++ code, integrated with GoogleTest.
 
       - [ ] [Google Benchmark](https://github.com/google/benchmark)
-        > A microbenchmark support library for GoogleTest. It is used to add performance benchmarks to tests.
+        > A microbenchmark support library for GoogleTest, designed to measure the performance of C++ code.
 
     - [x] [CTest](https://cmake.org/cmake/help/latest/manual/ctest.1.html#)
       > A testing tool integrated with CMake, primarily used for running tests and ensuring code quality across builds.
@@ -397,7 +397,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 8. Documentation Generators
 
     - [x] [Doxygen](https://www.doxygen.nl/)
-      > Doxygen is a open-source API documentation generator for various programming languages, including C++. It extracts structured comments from source code and generates documentation in multiple formats such as HTML, LaTeX, and XML.
+      > Doxygen is a open-source API documentation generator for various programming languages, including C++.
 
 9. Repository Strategy
 
@@ -419,7 +419,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 1. Programming & Scripting
 
     - [x] [Python](https://github.com/python)
-      > Python is a high-level, interpreted programming language known for its readability and versatility. It supports multiple programming paradigms, including procedural, object-oriented, and functional programming.
+      > Python is a high-level, interpreted programming language known for its readability and versatility.
 
 2. Dependency Manager
 
@@ -440,7 +440,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 4. Test Frameworks
 
     - [x] [pytest](https://github.com/pytest-dev/pytest)
-      > `pytest` is widely used for writing simple as well as scalable test cases in Python. It supports fixtures, parameterized testing, and has a rich plugin architecture, making it highly extensible. The framework is known for its ease of use and powerful features, which help developers ensure their code works as expected.
+      > `pytest` is widely used for writing simple as well as scalable test cases in Python.
 
 5. CLI
 
@@ -459,7 +459,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
       > Click is a Python package for creating command-line interfaces with support for configuration precedence.
 
     - [ ] [Typer](https://github.com/tiangolo/typer)
-      > Typer is a library for building CLI applications based on Python type hints. It provides automatic help generation and supports configuration precedence through integration with Click.
+      > Typer is a library for building CLI applications based on Python type hints.
 
     - [ ] [argparse](https://docs.python.org/3/library/argparse.html)
       > argparse is Pythons built-in command-line parsing library. Natively does not support configuration files, it can be extended with libraries like `configargparse` to support order of precedence.
@@ -485,7 +485,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 2. Analysis
 
     - [x] [ShellCheck](https://github.com/koalaman/shellcheck)
-      > ShellCheck is a static analyzer for shell scripts. It finds syntax errors, common pitfalls, and suggests fixes.
+      > ShellCheck is a static analyzer for shell scripts.
 
     - [x] [shfmt](https://github.com/mvdan/sh#shfmt)
       > shfmt formats shell scripts consistently across dialects (Bash, Dash, Ksh).
@@ -559,7 +559,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 2. Registry
 
     - [x] [Docker Hub](https://hub.docker.com/)
-      > Docker Hub is a cloud-based registry service for building and shipping application or service containers. It provides a centralized resource for container image discovery, distribution and change management, user and team collaboration, and workflow automation throughout the development pipeline.
+      > Docker Hub is a cloud-based registry service for building and shipping application or service containers.
 
 3. Analysis
 
@@ -595,21 +595,21 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
       > External Secrets Operator is a Kubernetes operator that integrates external secret management systems like AWS Secrets Manager, HashiCorp Vault, Google Secrets Manager, Azure Key Vault, and many others. The operator reads information from external APIs and automatically injects the values into a Kubernetes Secret.
 
     - [ ] [HashiCorp Vault](https://github.com/hashicorp/vault)
-      > HashiCorp Vault is a tool for securely accessing secrets, such as API keys, passwords, and certificates. It provides a centralized solution for managing secrets and sensitive data, allowing users to store, access, and control secrets across different environments. Vault supports various authentication methods, encryption backends, and secret engines, making it a versatile solution for managing secrets in modern applications.
+      > HashiCorp Vault is a tool for securely accessing secrets, such as API keys, passwords, and certificates.
 
     - [ ] [Kubernetes Secrets](https://kubernetes.io/docs/concepts/configuration/secret/)
-      > Kubernetes Secrets is a built-in feature of Kubernetes that allows users to store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys, in a secure manner. Secrets are stored in the Kubernetes API server and can be accessed by pods and containers running in the cluster. Kubernetes Secrets provides a way to decouple sensitive data from application code, enhancing security and flexibility.
+      > Kubernetes Secrets is a built-in feature of Kubernetes to store and manage sensitive information, such as passwords, OAuth tokens, and SSH keys, in a secure manner.
 
 4. Policy Manager
 
     - [x] [Kyverno](https://kyverno.io/)
-      > Kyverno is a policy engine designed for Kubernetes. It allows you to manage policies as Kubernetes resources and no new language is required to write policies. Kyverno policies can validate, mutate, and generate Kubernetes resources.
+      > Kyverno is a policy engine designed for Kubernetes.
 
     - [ ] [Open Policy Agent (OPA)](https://github.com/open-policy-agent/opa)
-      > Open Policy Agent (OPA) is an open-source, general-purpose policy engine that enables policy-based control across a wide range of systems and applications. OPA allows users to define policies using a high-level declarative language called Rego, which can be used to enforce rules and make decisions based on various inputs, such as API requests, configuration files, and runtime data.
+      > Open Policy Agent (OPA) is a general-purpose policy engine used to enforce policies across various systems.
 
     - [ ] [HashiCorp Sentinel](https://registry.terraform.io/browse/policies)
-      > HashiCorp Sentinel is a framework that enables fine-grained, logic-based policy decisions to be integrated into the workflow of HashiCorp products. Sentinel allows users to define policies using a high-level language, enabling organizations to enforce compliance, security, and operational best practices across their infrastructure and applications.
+      > HashiCorp Sentinel is a policy as code framework that provides fine-grained, logic-based policy decisions for infrastructure management.
 
 5. Test Frameworks
 
@@ -733,7 +733,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 1. Markup Language
 
     - [x] [Markdown](https://github.com/commonmark/commonmark-spec)
-      > Markdown is a lightweight markup language with plain text formatting syntax.
+      > Markdown is a lightweight markup language with plain text formatting syntax for Documentation-as-Code.
 
       > [!NOTE]
       > Documentation uses [CommonMark Flavored Markdown](https://commonmark.org/) renderers.
@@ -787,16 +787,16 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 1. Provisioning Manager
 
     - [x] [AWS](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
-      > The AWS provider is used to interact with the resources supported by Amazon Web Services (AWS). It allows users to manage AWS services such as EC2, S3, RDS, and more using Terraform.
+      > The AWS provider is used to interact with the resources supported by Amazon Web Services (AWS).
 
     - [ ] [OpenStack](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest/docs)
-      > The OpenStack provider is used to interact with the resources supported by OpenStack. It allows users to manage OpenStack services such as compute, networking, and storage using Terraform.
+      > The OpenStack provider is used to interact with the resources supported by OpenStack.
 
     - [ ] [Azure](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
-      > The Azure provider is used to interact with the resources supported by Microsoft Azure. It allows users to manage Azure services such as virtual machines, storage accounts, and networking using Terraform.
+      > The Azure provider is used to interact with the resources supported by Microsoft Azure.
 
     - [ ] [Google Cloud Platform (GCP)](https://registry.terraform.io/providers/hashicorp/google/latest/docs)
-      > The Google Cloud Platform (GCP) provider is used to interact with the resources supported by Google Cloud Platform. It allows users to manage GCP services such as Compute Engine, Cloud Storage, and BigQuery using Terraform.
+      > The Google Cloud Platform (GCP) provider is used to interact with the resources supported by Google Cloud Platform.
 
 ### 1.15. Observability
 

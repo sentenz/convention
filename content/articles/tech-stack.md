@@ -4,7 +4,6 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 
 - [1. Category](#1-category)
   - [1.1. DevOps](#11-devops)
-  - [1.2. Go](#12-go)
     - [1.2.1. Backend](#121-backend)
     - [1.2.2. API](#122-api)
     - [1.2.3. Frontend](#123-frontend)
@@ -99,20 +98,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
     - [x] [MkDocs](https://www.mkdocs.org/)
       > MkDocs is a Static Site Generator (SSG) designed for building project documentation using Markdown.
 
-12. Version Control System (VCS)
-
-    - [x] [Git](https://git-scm.com/)
-      > Git is a distributed version control system used for tracking changes in source code during software development. It allows multiple developers to work on a project simultaneously without interfering with each others work. Git provides features such as branching, merging, and version history, which help manage and coordinate collaborative development efforts.
-
-13. Platform
-
-    - [x] [GitHub](https://github.com/)
-      > GitHub is a web-based DevOps platform that provides version control and collaboration features for software development projects.
-
-    - [x] [GitLab](https://gitlab.com/)
-      > GitLab is a web-based DevOps platform that provides a complete set of tools for software development, including version control, issue tracking, continuous integration/continuous deployment (CI/CD), and project management.
-
-14. Analysis
+12. Analysis
 
     - [X] SAST
       > SAST (Static Application Security Testing) is a method of analyzing source code or compiled code to identify security vulnerabilities and weaknesses without executing the program.
@@ -123,12 +109,23 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
     - [X] SCA
       > SCA (Software Composition Analysis) is a method of analyzing the components and dependencies of a software application to identify potential security vulnerabilities and license compliance.
 
+13. Version Control System (VCS)
+
+    - [x] [Git](https://git-scm.com/)
+      > Git is a distributed version control system to collaborate and coordinate on a project by tracking changes in source code during software development.
+
+14. Platform
+
+    - [x] [GitHub](https://github.com/)
+      > GitHub is a web-based DevOps platform that provides version control and collaboration features for software development projects.
+
+    - [x] [GitLab](https://gitlab.com/)
+      > GitLab is a web-based and self-hosted DevOps platform that provides version control, CI/CD, and collaboration features for software development projects.
+
 15. Conventions & Style Guides
 
     - [x] [Zero Trust Architecture (ZTA)](https://csrc.nist.gov/publications/detail/sp/800-207/final)
-      > A security framework that assumes no implicit trust; enforces continuous verification, least-privilege access, strong identity and device posture checks, and microsegmentation to minimize blast radius and reduce risk.
-
-### 1.2. Go
+      > Zero Trust Architecture (ZTA) is a security model that requires strict identity verification, enforces continuous verification, least-privilege access, strong identity and device posture checks, and microsegmentation of the network perimeter.
 
 #### 1.2.1. Backend
 

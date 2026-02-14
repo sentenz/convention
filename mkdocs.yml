@@ -44,10 +44,13 @@ theme:
     - navigation.top
     - navigation.tabs
     - content.code.copy
+    - search.suggest
+    - search.highlight
+    - search.share
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/brightness-auto
+        icon: material/link
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default

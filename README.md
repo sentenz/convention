@@ -40,7 +40,10 @@ The Convention is a collection of general articles, conventions, and guides for 
       > The top-level navigation sections are generated automatically from subfolders in [content/](content/) using a custom MkDocs hook.
 
     - CommonMark Markdown Flavor
-      > A custom MkDocs hook renders pages with `markdown-it-py` using the `commonmark` preset to provide CommonMark-compatible parsing.
+      > A custom MkDocs hook in [hooks.py](hooks.py) extends the rendering of pages with `markdown-it-py` using the `commonmark` preset to provide CommonMark-compatible parsing.
+
+    - Configuration
+      > The [mkdocs.yml](mkdocs.yml) file contains the configuration for the MkDocs site, including theme, plugins, and markdown extensions.
 
 2. Usage and Instructions
 

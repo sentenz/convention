@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.3.0](https://github.com/sentenz/convention/compare/2.2.0...2.3.0) (2026-02-14)
+
+
+### Features
+
+* create an article about `Manager Tools` ([c0f2ac6](https://github.com/sentenz/convention/commit/c0f2ac659c01072b3f08b4776b296ff1ccea6362)), closes [#392](https://github.com/sentenz/convention/issues/392)
+
 # [2.2.0](https://github.com/sentenz/convention/compare/v2.1.0...2.2.0) (2026-02-12)
 
 

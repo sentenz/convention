@@ -1,4 +1,24 @@
-"""MkDocs hooks for dynamic navigation and CommonMark compatibility."""
+"""MkDocs hooks for dynamic navigation and CommonMark compatibility.
+
+DEPRECATED: This hook has been converted to a proper MkDocs plugin.
+Please use the mkdocs-convention-plugin instead.
+
+See: mkdocs_convention_plugin/ for the new plugin implementation.
+To migrate, update your mkdocs.yml:
+
+    Before:
+        hooks:
+          - scripts/python/mkdocs_hooks.py
+        plugins:
+          - search
+
+    After:
+        plugins:
+          - search
+          - convention
+
+This file is kept for backward compatibility and may be removed in a future release.
+"""
 
 from __future__ import annotations
 

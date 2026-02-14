@@ -592,7 +592,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 3. Secrets Manager
 
     - [x] [External Secrets Operator](https://external-secrets.io/)
-      > External Secrets Operator is a Kubernetes operator that integrates external secret management systems like AWS Secrets Manager, HashiCorp Vault, Google Secrets Manager, Azure Key Vault, and many others. The operator reads information from external APIs and automatically injects the values into a Kubernetes Secret.
+      > External Secrets Operator is a Kubernetes operator that integrates with external secret management systems to securely manage and inject secrets into Kubernetes workloads.
 
     - [ ] [HashiCorp Vault](https://github.com/hashicorp/vault)
       > HashiCorp Vault is a tool for securely accessing secrets, such as API keys, passwords, and certificates.

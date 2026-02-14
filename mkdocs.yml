@@ -6,11 +6,9 @@ repo_url: https://github.com/sentenz/convention
 docs_dir: content
 site_dir: public
 
-hooks:
-  - scripts/python/mkdocs_hooks.py
-
 plugins:
   - search
+  - convention
 
 markdown_extensions:
   - admonition

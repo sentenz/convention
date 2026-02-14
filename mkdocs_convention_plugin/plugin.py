@@ -1,30 +1,13 @@
-"""MkDocs hooks for dynamic navigation and CommonMark compatibility.
-
-DEPRECATED: This hook has been converted to a proper MkDocs plugin.
-Please use the mkdocs-convention-plugin instead.
-
-See: mkdocs_convention_plugin/ for the new plugin implementation.
-To migrate, update your mkdocs.yml:
-
-    Before:
-        hooks:
-          - scripts/python/mkdocs_hooks.py
-        plugins:
-          - search
-
-    After:
-        plugins:
-          - search
-          - convention
-
-This file is kept for backward compatibility and may be removed in a future release.
-"""
+"""MkDocs Convention Plugin for dynamic navigation and CommonMark compatibility."""
 
 from __future__ import annotations
 
 import re
 from pathlib import Path
 from typing import Any
+
+from mkdocs.config import config_options
+from mkdocs.plugins import BasePlugin
 
 _ALERT_TYPE_MAP: dict[str, tuple[str, str]] = {
     "NOTE": ("note", "Note"),
@@ -75,31 +58,6 @@ def _nav_entry(markdown_file: Path, root: Path) -> dict[str, str]:
         else _format_title(markdown_file.stem)
     )
     return {title: relative_path}
-
-
-def on_config(config: Any, **_kwargs: Any) -> Any:
-    """Generate navigation based on top-level folders in the content directory."""
-    docs_root = Path(config["docs_dir"])
-
-    nav: list[Any] = []
-
-    for markdown_file in _sorted_markdown_files(docs_root, exclude={"index.md"}):
-        nav.append(_nav_entry(markdown_file, docs_root))
-
-    for directory in sorted(
-        (entry for entry in docs_root.iterdir() if entry.is_dir()),
-        key=lambda item: item.name.lower(),
-    ):
-        section_items = [
-            _nav_entry(markdown_file, docs_root)
-            for markdown_file in _sorted_markdown_files(directory)
-        ]
-        if section_items:
-            nav.append({_format_title(directory.name): section_items})
-
-    config["nav"] = nav
-
-    return config
 
 
 def _read_blockquote(lines: list[str], start: int) -> tuple[list[str], int, str]:
@@ -396,6 +354,50 @@ def _convert_github_alerts(markdown: str) -> str:
     return "\n".join(converted)
 
 
-def on_page_markdown(markdown: str, **_kwargs: Any) -> str:
-    """Pre-process markdown while keeping MkDocs markdown extension pipeline."""
-    return _convert_github_alerts(markdown)
+class ConventionPlugin(BasePlugin):
+    """MkDocs plugin for dynamic navigation and GitHub alert conversion."""
+
+    config_scheme = (
+        ("enabled", config_options.Type(bool, default=True)),
+        ("generate_nav", config_options.Type(bool, default=True)),
+        ("convert_alerts", config_options.Type(bool, default=True)),
+    )
+
+    def on_config(self, config: Any, **kwargs: Any) -> Any:
+        """Generate navigation based on top-level folders in the content directory."""
+        if not self.config.get("enabled", True):
+            return config
+
+        if not self.config.get("generate_nav", True):
+            return config
+
+        docs_root = Path(config["docs_dir"])
+        nav: list[Any] = []
+
+        for markdown_file in _sorted_markdown_files(docs_root, exclude={"index.md"}):
+            nav.append(_nav_entry(markdown_file, docs_root))
+
+        for directory in sorted(
+            (entry for entry in docs_root.iterdir() if entry.is_dir()),
+            key=lambda item: item.name.lower(),
+        ):
+            section_items = [
+                _nav_entry(markdown_file, docs_root)
+                for markdown_file in _sorted_markdown_files(directory)
+            ]
+            if section_items:
+                nav.append({_format_title(directory.name): section_items})
+
+        config["nav"] = nav
+
+        return config
+
+    def on_page_markdown(self, markdown: str, **kwargs: Any) -> str:
+        """Pre-process markdown while keeping MkDocs markdown extension pipeline."""
+        if not self.config.get("enabled", True):
+            return markdown
+
+        if not self.config.get("convert_alerts", True):
+            return markdown
+
+        return _convert_github_alerts(markdown)

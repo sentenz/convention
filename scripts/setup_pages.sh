@@ -31,6 +31,10 @@ function setup_pages() {
   pkg_pip_install_list PIP_PACKAGES
   ((retval |= $?))
 
+  # Install the MkDocs Convention Plugin in editable mode
+  pip install -e .
+  ((retval |= $?))
+
   pkg_pip_clean
   ((retval |= $?))
 

@@ -4,6 +4,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 
 - [1. Category](#1-category)
   - [1.1. DevOps](#11-devops)
+  - [1.2. Go](#12-go)
     - [1.2.1. Backend](#121-backend)
     - [1.2.2. API](#122-api)
     - [1.2.3. Frontend](#123-frontend)
@@ -126,6 +127,8 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 
     - [x] [Zero Trust Architecture (ZTA)](https://csrc.nist.gov/publications/detail/sp/800-207/final)
       > Zero Trust Architecture (ZTA) is a security model that requires strict identity verification, enforces continuous verification, least-privilege access, strong identity and device posture checks, and microsegmentation of the network perimeter.
+
+### 1.2. Go
 
 #### 1.2.1. Backend
 

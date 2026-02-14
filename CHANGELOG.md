@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.5.0](https://github.com/sentenz/convention/compare/2.4.0...2.5.0) (2026-02-14)
+
+
+### Features
+
+* create an article about `Tech Stack` ([a2a3cac](https://github.com/sentenz/convention/commit/a2a3cacfbd598c67da87c24ac2f9f7bd572369d5)), closes [#300](https://github.com/sentenz/convention/issues/300)
+
 # [2.4.0](https://github.com/sentenz/convention/compare/2.3.0...2.4.0) (2026-02-14)
 
 

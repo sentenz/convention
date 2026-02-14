@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.4.0](https://github.com/sentenz/convention/compare/2.3.0...2.4.0) (2026-02-14)
+
+
+### Features
+
+* create an article about `Dependency Pinning` ([a2cd279](https://github.com/sentenz/convention/commit/a2cd27991aaeb2316c1297c0a77135efc0eb640a)), closes [#389](https://github.com/sentenz/convention/issues/389)
+
 # [2.3.0](https://github.com/sentenz/convention/compare/2.2.0...2.3.0) (2026-02-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.7.1](https://github.com/sentenz/convention/compare/2.7.0...2.7.1) (2026-02-16)
+
+
+### Bug Fixes
+
+* clarify note on breaking changes in Commit article ([2012c9a](https://github.com/sentenz/convention/commit/2012c9ac7a8a02e43aa81f1cc3690d8e580b8332))
+
 # [2.7.0](https://github.com/sentenz/convention/compare/2.6.0...2.7.0) (2026-02-16)
 
 

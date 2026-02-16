@@ -143,27 +143,14 @@ Tags improve readability and maintainability by making technical debt and follow
     - `XXX`
       > Flags code that is risky, ambiguous, or requires careful review.
 
-      Before:
-
       ```java
-      // XXX Decide null-handling contract: throw IllegalArgumentException or accept Optional<Integer>.
+      // XXX Decide null-handling strategy to throw IllegalArgumentException or accept Optional<Integer>.
       public int calculateSum(Integer a, Integer b) {
         if (a == null) {
           a = 0;
         }
         if (b == null) {
           b = 0;
-        }
-        return a + b;
-      }
-      ```
-
-      After:
-
-      ```java
-      public int calculateSum(Integer a, Integer b) {
-        if (a == null || b == null) {
-          throw new IllegalArgumentException("calculateSum: arguments must not be null");
         }
         return a + b;
       }

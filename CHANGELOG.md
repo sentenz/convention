@@ -1,5 +1,6 @@
 # Changelog
 
+
 # [2.7.0](https://github.com/sentenz/convention/compare/2.6.0...2.7.0) (2026-02-16)
 
 

@@ -26,19 +26,25 @@ The [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) speci
 1. Conventions and Standards
 
     - Type
-      > Conventional Commits define several standard types to categorize the purpose of a commit. Types provide a standardized way to convey the nature of changes, making it easier to understand the history of a project. Additionally, using Conventional Commits facilitates automated versioning and release note generation.
+      > The `type` in Conventional Commits indicates the nature of the change being made. It is a required element that provides a high-level categorization of the commit, helping to convey the intent and impact of the changes to other developers and tools.
 
       - `feat`
         > A new feature introduced to the codebase.
         >
         > [!NOTE]
-        > This correlates with `MINOR` in Semantic Versioning.
+        > Correlates with `MINOR` in Semantic Versioning.
 
       - `fix`
         > A bug fix or correction to existing functionality.
         >
         > [!NOTE]
-        > This correlates with `PATCH` in Semantic Versioning.
+        > Correlates with `PATCH` in Semantic Versioning.
+
+      - `!`
+        > A commit that appends a `!` after the type or scope indicates a breaking API change. A `BREAKING CHANGE` can appear in commits of any type.
+        >
+        > [!NOTE]
+        > Correlates with `MAJOR` in Semantic Versioning.
 
       - `chore`
         > Routine tasks, maintenance, or tooling changes that don't impact the user-facing features.
@@ -67,155 +73,75 @@ The [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) speci
       - `revert`
         > Reverting a previous commit.
 
-      - `!`
-        > A commit that appends a `!` after the type or scope indicates a breaking API change. A `BREAKING CHANGE` can appear in commits of any type.
-
-        > [!NOTE]
-        > `!` correlates with `MAJOR` in Semantic Versioning.
-
     - Scope
-      > The `scope` in Conventional Commits provides context by specifying the module, component, or area of the project that a commit affects. While the use of scopes is optional to organize and categorize changes precisely.
-      >
-      > Scopes provide a way to quickly identify the area of the codebase affected by a commit, enhancing the readability and organization of the commit history. However, the choice of scopes is project-specific and should reflect the structure and components of the particular codebase.
+      > The `scope` in Conventional Commits is an optional element that provides additional context about the area of the codebase affected by the commit. It is enclosed in parentheses immediately following the `type` and serves to further categorize the commit, making it easier for developers and tools to understand the specific part of the project that is impacted.
 
     - Description
-      > The `description` section of a Conventional Commit is the one-line summary that describes the purpose or nature of the change. It is the first part of the commit message and provides a quick overview of the commit.
-      >
-      > The description is a brief and imperative statement summarizing the change and should be concise yet informative, conveying the essence of the commit in a single line.
+      > The `description` in Conventional Commits is a concise summary of the changes made in the commit. It follows the `type` and optional `scope`, separated by a colon and a space. The description should be brief yet informative, providing enough context for other developers to understand the purpose of the commit at a glance.
 
     - Body
-      > The `body` of Conventional Commits is an optional section that provides additional context and details about the changes in the commit. It follows the one-line description and is separated from it by a blank line. The body is often used to explain motivation, describe technical details, or provide relevant background.
+      > The `body` in Conventional Commits is an optional section that provides a more detailed explanation of the changes made in the commit. It follows the `description` and is separated by a blank line. The body can include additional context, rationale, or any relevant information that helps other developers understand the intent and implications of the changes.
 
     - Footer
-      > The `footer` of Conventional Commits is an optional section after the body, separated by a blank line, that provides additional metadata about the commit. Footers are typically used for references to related issues, breaking changes, or other relevant details.
-      >
-      > The use of footers enhances the commit message with structured information, making it easier to understand the context and implications of the changes. Automated tools often utilize this metadata for tasks such as generating release notes or determining version bumps.
+      > The `footer` in Conventional Commits is an optional section that appears at the end of the commit message. It is used to reference issues, pull requests, or any other relevant information related to the commit. The footer can also include a `BREAKING CHANGE` declaration if the commit introduces a breaking API change.
 
 2. Examples and Explanations
 
     - Type
 
-      - Commit message with `description` and `breaking change` in the `footer`.
+      ```plaintext
+      feat: commit message with focus on the `type`
+      ```
 
-        ```plaintext
-        feat: allow provided config object to extend other configs
-
-        BREAKING CHANGE: extends key in config file is now used for extending other config files.
-        ```
-
-      - Commit message with `!` to draw attention to breaking change.
-
-        ```plaintext
-        feat!: send an email to the customer when a product is shipped
-        ```
-
-      - Commit message with `scope` and `!` to draw attention to breaking change.
-
-        ```plaintext
-        feat(api)!: send an email to the customer when a product is shipped
-        ```
-
-      - Commit message with both `!` and `BREAKING CHANGE` in the `footer`.
-
-        ```plaintext
-        chore!: drop support for Node 6
-
-        BREAKING CHANGE: use JavaScript features not available in Node 6.
-        ```
-
-      - Commit message with no `scope`, no `body`, and no `footer`.
-
-        ```plaintext
-        docs: correct spelling of CHANGELOG
-        ```
-
-      - Commit message with `scope`, a multi-paragraph `body`, and multiple `footers` in a single change request.
-
-        ```plaintext
-        fix(api): prevent racing of requests (#122)
-
-        Introduce a request id and a reference to latest request. Dismiss incoming responses other than from latest request. Remove timeouts which were used to mitigate the racing issue but are obsolete now.
-
-        Closes #123
-        ```
+      ```plaintext
+      chore!: commit message with focus on the `type` and `breaking change`
+      ```
 
     - Scope
 
-      - Commit message with focus on the `scope`.
+      ```plaintext
+      feat(auth): commit message with focus on the `scope`
+      ```
 
-        ```plaintext
-        feat(auth): changes related to authentication
-        ```
-
-        ```plaintext
-        refactor(internal): modify domain API
-        ```
-
-        ```plaintext
-        chore(external): updates or modifications to project dependencies
-        ```
+      ```plaintext
+      refactor(internal)!: commit message with focus on the `scope` and `breaking change`
+      ```
 
     - Description
 
-      - Commit message with focus on the `description`.
+      ```plaintext
+      chore: commit message with focus on the `description`
+      ```
 
-        ```plaintext
-        feat(auth): create password reset functionality
-        ```
-
-        ```plaintext
-        refactor(auth): modify password reset functionality
-        ```
+      ```plaintext
+      feat: commit message with focus on the `description` (#122)
+      ```
 
     - Body
 
-      - Commit message with focus on the `body`.
+      ```plaintext
+      fix(api): commit message with focus on the `body` (#123)
 
-        ```plaintext
-        feat(auth): create password reset functionality
-
-        This change introduces a new endpoint for resetting user passwords. It is accessible at `/api/auth/reset-password` and accepts a `POST` request with the user's email address. The endpoint then sends an email to the user with a link to reset their password.
-        ```
+      Introduce a request id and a reference to latest request. Dismiss incoming responses other than from latest request. Remove timeouts which were used to mitigate the racing issue but are obsolete now.
+      ```
 
     - Footer
 
-      - Commit message with focus on the `footer` reference to issues.
+      ```plaintext
+      feat(auth): commit message with focus on the `footer` reference to issues (#2)
 
-        ```plaintext
-        feat(auth): create password reset functionality
+      Closes #1
+      ```
 
-        Closes #123
-        ```
+      ```plaintext
+      refactor!: commit message with focus on the `footer` reference to `body` and `breaking change` (#4)
 
-      - Commit message with focus on the `footer` reference to issues and pull requests.
+      Change to improve security and performance by updating the password hashing algorithm.
 
-        ```plaintext
-        feat(auth): create password reset functionality
+      BREAKING CHANGE: update password hashing algorithm from `Bcrypt` to `Argon`.
 
-        Closes #123
-
-        PR #42
-        ```
-
-      - Commit message with focus on the `footer` reference to breaking changes.
-
-        ```plaintext
-        refactor(auth): modify user authentication functionality
-
-        This change is necessary to improve security and performance. The new algorithm is more secure and faster than the previous one. However, it is incompatible with the old algorithm, so existing users will need to reset their passwords.
-
-        BREAKING CHANGE: update password hashing algorithm from `Bcrypt` to `Argon`.
-
-        Closes #123
-        ```
-
-      - Commit message with focus on the `footer` reference to custom footers.
-
-        ```plaintext
-        refactor(ui): modify styling
-
-        Reviewed-by @reviewer
-        ```
+      Closes #3
+      ```
 
 3. Tools and Frameworks
 

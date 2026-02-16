@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.7.0](https://github.com/sentenz/convention/compare/2.6.0...2.7.0) (2026-02-16)
+
+
+### Features
+
+* create an article on Commit with Conventional Commits ([b59c500](https://github.com/sentenz/convention/commit/b59c500af9028fbe95ad1f41ff1520326ef01080)), closes [#280](https://github.com/sentenz/convention/issues/280)
+
 # [2.6.0](https://github.com/sentenz/convention/compare/2.5.0...2.6.0) (2026-02-16)
 
 

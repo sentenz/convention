@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.10.1](https://github.com/sentenz/convention/compare/2.10.0...2.10.1) (2026-02-16)
+
+
+### Bug Fixes
+
+* refine article about Branching Strategies ([0ad645e](https://github.com/sentenz/convention/commit/0ad645eeb88df5266cd8712eceaa106add79f053)), closes [#177](https://github.com/sentenz/convention/issues/177)
+
 # [2.10.0](https://github.com/sentenz/convention/compare/2.9.0...2.10.0) (2026-02-16)
 
 

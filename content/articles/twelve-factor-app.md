@@ -1,13 +1,13 @@
 # Twelve-Factor App
 
-The [Twelve-Factor App](https://12factor.net/) methodology is a software design and development methodology that outlines best practices for building scalable, maintainable, and cloud-native software applications. It provides a theoretical framework for designing and building software systems that can run and scale Software-as-a-Service (SaaS) applications in modern cloud environments.
+The Twelve-Factor App is a methodology for building software-as-a-service applications to improve portability, scalability, and maintainability by adhering to twelve principles.
 
 - [1. Category](#1-category)
   - [1.1. Codebase](#11-codebase)
   - [1.2. Dependencies](#12-dependencies)
   - [1.3. Config](#13-config)
   - [1.4. Backing Services](#14-backing-services)
-  - [1.5. Building, Release, Run](#15-building-release-run)
+  - [1.5. Build, Release, Run](#15-build-release-run)
   - [1.6. Processes](#16-processes)
   - [1.7. Port Binding](#17-port-binding)
   - [1.8. Concurrency](#18-concurrency)
@@ -19,291 +19,680 @@ The [Twelve-Factor App](https://12factor.net/) methodology is a software design 
 
 ## 1. Category
 
-The Twelve-Factor App principles are technology-agnostic, meaning that they can be applied with any programming language, framework, or infrastructure.
-
 ### 1.1. Codebase
 
-The `Codebase` principle states that each application should have a single, version-controlled codebase that is used to deploy the application across all environments.
+The `Codebase` factor in the Twelve-Factor App methodology states that each app should have exactly one codebase. That codebase is tracked in version control and can be deployed to multiple environments.
 
-In practice, this means that developers should use a version control system, such as Git or SVN, to manage the source code for their application. The codebase should include all of the application's code, dependencies, and configuration files, and should be used to deploy the application across all environments, from development to production.
+> [!NOTE]
+> Separate codebases for a single app, or splitting one app across multiple repositories, does not adhere to this factor. The intent is one version-controlled codebase per app that can be deployed across environments.
 
-By using a single, version-controlled codebase, developers can more easily manage and maintain their applications, and can ensure that all changes to the application are tracked and versioned. This can also help to ensure that all environments are consistent, and can reduce the risk of issues that may arise from differences between environments.
+1. Components and Features
 
-Benefits to using a single, version-controlled codebase:
+    - Single Codebase
+      > A codebase is the source code for a service or application. In the Twelve-Factor methodology, there should be exactly one codebase per app. If there are multiple codebases, it is a distributed system whose components are separate Twelve-Factor apps.
 
-- Improved collaboration
-  > By using a version control system, developers can more easily collaborate on the application's codebase, and can track changes and revisions over time.
+    - Multiple Deployments
+      > The same codebase can be deployed to different environments, e.g. production, staging, and development. Each deployment can run a different release. The codebase remains the single source of truth for the app.
 
-- Better versioning
-  > By versioning the application's codebase, developers can more easily manage and maintain different versions of the application, and can ensure that all changes are tracked and versioned.
-
-- Easier deployment
-  > By using a single, version-controlled codebase, developers can more easily deploy the application across different environments, and can ensure that all environments are consistent and up-to-date.
+    - Version Control
+      > The app codebase is tracked in a version control system such as Git, and many deploys (development, staging, production) can be executed from it.
 
 ### 1.2. Dependencies
 
-The `Dependencies` principle states that applications should explicitly declare and isolate their dependencies. In a modern software application, dependencies can include libraries, frameworks, and other third-party software components that your application relies on to function properly.
+The `Dependencies` factor focuses on managing software dependencies by explicitly declaring and isolating them.
 
-In practice, this means that developers should define their application's dependencies in a manifest or configuration file, such as a `package.json` file in Node.js or a `requirements.txt` file in Python. Dependencies should be declared explicitly, including the version numbers of each dependency, and should be isolated from the application's runtime environment. This can be achieved using tools such as virtual environments, Docker containers, or other containerization technologies.
+> [!NOTE]
+> Adhering to the `Dependencies` principle improves portability, scalability, and maintainability. It also makes development setup easier, supports consistent deployment across environments, and simplifies scaling.
 
-By explicitly declaring and isolating dependencies, developers can ensure that their applications are consistent across all environments, and can avoid potential issues that may arise from differences in dependencies or dependency versions. This can also help to ensure that the application can be easily deployed and scaled across different environments, and can be easily updated or modified over time.
+1. Components and Features
 
-Benefits to explicitly declaring and isolating dependencies:
+    - Explicit Declaration
+      > The application should declare all dependencies by using a dependency management tool such as pip for Python (`requirements.txt`) or npm for Node.js (`package.json`).
 
-- Improved consistency
-  > By explicitly declaring and isolating dependencies, developers can ensure that their applications are consistent across all environments, and can avoid potential issues that may arise from differences in dependencies or dependency versions.
+    - Isolation
+      > Dependencies should be isolated to prevent conflicts between applications. This can be achieved through virtual environments in Python (`venv`) or containers (e.g. Docker, Podman).
 
-- Better scalability
-  > By isolating dependencies from the application's runtime environment, developers can more easily deploy and scale their applications across different environments, and can ensure that the application remains consistent and reliable.
+2. Examples and Explanations
 
-- Easier maintenance
-  > By explicitly declaring dependencies, developers can more easily update or modify their applications over time, and can ensure that changes to dependencies do not impact the application's runtime environment.
+    Dependencies are explicitly declared, and isolation is achieved by installing dependencies in environments that are separate from the system global environment. This helps avoid version conflicts between projects.
 
-> NOTE See [package managers](../articles/package-managers.md) for details.
+    - Python
+      > Python uses `pip` as its de facto standard package manager. Declare dependencies in a `requirements.txt` file, which can be generated using `pip freeze > requirements.txt`.
+
+      ```python
+      flask==1.1.2
+      numpy==1.19.2
+      pandas==1.1.3
+      ```
+
+      Install dependencies in an isolated environment using a virtual environment.
+
+      ```bash
+      python3 -m venv env
+      source env/bin/activate
+      pip install -r requirements.txt
+      ```
+
+    - Node.js
+      > Node.js uses `npm` or `yarn` to manage dependencies, which are declared in a `package.json` file. Install dependencies using `npm install` or `yarn` command in an isolated `node_modules` directory environment.
+
+      ```json
+      {
+        "name": "my-app",
+        "version": "1.0.0",
+        "dependencies": {
+          "express": "^4.17.1",
+          "mongoose": "^5.10.14",
+          "dotenv": "^8.2.0"
+        }
+      }
+      ```
+
+    - Java
+      > Java applications often use Maven for dependency management. Dependencies are declared in a `pom.xml` file. Maven automatically handles the installation of dependencies in an isolated local Maven repository environment.
+
+      ```xml
+      <project>
+        ...
+        <dependencies>
+          <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+          </dependency>
+          <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+          </dependency>
+        </dependencies>
+        ...
+      </project>
+      ```
 
 ### 1.3. Config
 
-The `Config` principle states that an application's configuration should be stored in environment variables, and should be separate from the application code.
+The `Config` factor advocates strict separation of configuration from code.
 
-In practice, this means that developers should store any configuration information that may change between environments, such as database credentials or API keys, in environment variables rather than hard-coding them into the application code. This can be achieved using a configuration management tool, such as Puppet or Chef, or by using a platform-as-a-service (PaaS) provider, such as Heroku, that provides built-in support for environment variables.
+> [!NOTE]
+> Adhering to the `Config` principle makes applications easier to configure and deploy across environments, improving developer productivity and system robustness.
 
-By storing configuration information in environment variables, developers can more easily manage and maintain their applications, and can ensure that the same application code can be used across different environments, without needing to modify the code for each environment. This can also help to ensure that sensitive information, such as passwords or API keys, are not hard-coded into the application code, and are instead stored securely in environment variables.
+1. Components and Features
 
-Benefits to storing configuration information as environment variables:
+    - Configuration
+      > Any aspect of the application that can vary between deployments (staging, production, developer environments) should be extracted as configuration. This can include database handles, credentials for external services, and per-deploy values such as canonical hostnames.
 
-- Better portability
-  > By storing configuration information in environment variables, developers can more easily deploy their applications across different environments, without needing to modify the application code for each environment.
+    - Environment Variables
+      > The Twelve-Factor App encourages storing configuration in environment variables. Environment variables are easy to change between deploys without code changes. Unlike config files, they are less likely to be committed accidentally, and unlike language-specific mechanisms (such as Java system properties), they are language- and OS-agnostic.
 
-- Improved security
-  > By storing sensitive configuration information in environment variables, rather than hard-coding them into the application code, developers can improve the security of their applications and reduce the risk of security breaches. Further,  it is possible to restrict access to this information and ensure that it is not accidentally committed to source control or otherwise exposed.
+2. Examples and Explanations
 
-- Higher scalability
-  > By separating configuration information from the application code, it is possible to scale the application horizontally by running multiple instances of the same codebase with different configuration settings.
+    - Environment Variables
+      > Store and access configurations in environment variables using `.env` files.
 
-- Easier maintenance
-  > By storing configuration information in environment variables, developers can more easily update or modify the application configuration over time, without needing to modify the application code.
+      ```dotenv
+      DATABASE_URL=your-database-url
+      SECRET_KEY=your-secret-key
+      ```
 
-> NOTE Avoid storing sensitive information such as secrets and credentials in environment variables, as any process running on the same machine can access them and they can be accidentally exposed through logs or debugging messages. Instead use a secure secret manager such as Hashicorp [Vault](https://github.com/hashicorp/vault) or [Dapr](https://github.com/dapr/dapr) to store sensitive information. However, in cases where environment variables are used, it is recommended to avoid global variables and instead use an [.env](https://github.com/motdotla/dotenv) file to store configuration information. The .env file should be kept secure and not accessible to unauthorized users.
+    - Python
+      > In Python, use `os.getenv()` to read configuration values from environment variables.
+
+        ```python
+        import os
+
+        DATABASE_URL = os.getenv('DATABASE_URL')
+        SECRET_KEY = os.getenv('SECRET_KEY')
+        ```
+
+    - Node.js
+      > In Node.js, load environment variables and access them through `process.env`.
+
+      ```javascript
+      require('dotenv').config()
+
+      console.log(process.env.DATABASE_URL);
+      console.log(process.env.SECRET_KEY);
+      ```
+
+    - Java
+      > In Java, use `System.getenv()` to read configuration values from the environment.
+
+      ```java
+      String databaseUrl = System.getenv("DATABASE_URL");
+      String secretKey = System.getenv("SECRET_KEY");
+      ```
 
 ### 1.4. Backing Services
 
-The `Backing Services` principle states that any external resources that the application depends on, such as databases, message queues, or caching systems, should be treated as attached resources, and accessed via a well-defined API.
+The `Backing Services` factor treats all services an application relies on as attached resources. Backing services include databases, messaging/queueing systems, SMTP services, and caching systems.
 
-In practice, this means that applications should not depend on specific instances of backing services, but rather should be designed to work with a variety of different providers, and to use service discovery and configuration management tools to locate and connect to the appropriate services.
+> [!NOTE]
+> Adhering to the `Backing Services` principle improves flexibility, portability across environments, and scalability under load.
 
-By treating backing services as attached resources, and accessing them via a well-defined API, applications can be more easily scaled, deployed, and updated, since the dependencies on the underlying services are managed separately from the application code.
+1. Components and Features
 
-Benefits to treating backing services as attached resources:
+    - Backing Services
+      > Backing services are network-accessed services that an application uses. Examples include databases (like MySQL or MongoDB), messaging/queueing systems (like RabbitMQ or SQS), SMTP services for outgoing email, and caches (like Memcached or Redis).
 
-- Portability
-  > By treating backing services as attached resources, applications can be easily moved between different environments or cloud providers, since the services can be easily swapped out or reconfigured.
+    - Attached Resources
+      > Treat backing services like databases, message brokers, and caches as attached resources. They should be accessed via a URL or connection string stored in the environment.
 
-- Scalability
-  > By abstracting away the underlying implementation details of the backing services, applications can be more easily scaled horizontally by running multiple instances of the same codebase with different backing services.
+    - Swappable
+      > The backing service should be easily replaceable without changing the application code, enhancing flexibility and scalability.
 
-- Maintainability
-  > By decoupling the application code from the underlying services, it becomes easier to update or replace the services without impacting the application code.
+2. Examples and Explanations
 
-### 1.5. Building, Release, Run
+    The backing service (a database in this case) is treated as an attached resource, and the same code is used whether it is local or third-party.
 
-The `Building, Release, Run` principle states that an application should be built, released, and run as discrete stages, with each stage having a distinct responsibility. It is a process-oriented approach that emphasizes the separation of concerns between the development, deployment, and operation of the application.
+    - Python
+      > Python with SQLAlchemy for database interaction. The database URL, whether it's a local database or a third-party one, can be stored as an environment variable.
 
-In practice, this means that the development process should be broken down into three stages:
+      ```python
+      import os
+      from sqlalchemy import create_engine
 
-- Build
-  > This stage involves compiling the application code and any required dependencies, and creating a build artifact that can be deployed to different environments. The output of this stage is a deployable artifact, such as a executable, library, Docker container or ZIP file.
+      DATABASE_URL = os.getenv('DATABASE_URL')
 
-- Release
-  > This stage involves taking the build artifact and combining it with the configuration information needed for the specific environment. This creates a release artifact which is specific version to the environment in which the application will run. The release should be immutable, meaning that it should not be changed once it has been created.
+      engine = create_engine(DATABASE_URL)
+      ```
 
-- Run
-  > This stage involves running the application in the environment for which it was released, using the specific release artifact created in the previous stage. The release artifact is deployed to a production environment and started as a process. This process should be stateless and should not rely on any shared resources.
+    - Node.js
+      > Node.js with Mongoose for MongoDB interaction and object modeling. The MongoDB URI can be stored in an environment variable.
 
-By breaking down the development process into these discrete stages, developers can more easily manage and maintain their applications, and can ensure that each stage has a distinct responsibility. This can also help to ensure that the application is easily deployable and scalable across different environments, and that changes can be made to the application without affecting the runtime environment.
+      ```javascript
+      const mongoose = require('mongoose');
+      require('dotenv').config();
 
-Benefits of stages:
+      const uri = process.env.MONGODB_URI;
 
-- Consistency
-  > By breaking down the development process into discrete stages, developers can ensure that each stage has a distinct responsibility, which can improve the consistency and reliability of the application across different environments.
+      mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+      ```
 
-- Portability
-  > By separating the application code from the configuration and runtime environment, the application can be deployed to multiple environments without modification.
+    - Java
+      > Java using Spring Boot to interact with databases. The database URL can be stored in an `application.properties` or `application.yml` file.
 
-- Scalability
-  > By separating the application runtime from the application code, the application can be scaled horizontally by running multiple instances of the application in parallel.
+      ```properties
+      # application.properties
+      spring.datasource.url=${DATABASE_URL}
+      ```
 
-- Maintainability
-  > By separating the application code from the configuration and runtime environment, the application can be updated or modified and maintained without affecting the production environment.
+### 1.5. Build, Release, Run
 
-> NOTE See [continuous pipelines](../articles/continuous-pipelines.md) for details.
+`Build, Release, Run` emphasizes distinct and well-defined stages in an application's lifecycle.
+
+> [!NOTE]
+> These stages should be strictly separated to ensure reliable, reproducible, and consistent deployments. Any change to the application moves back through these stages, creating a new release before entering the run stage. This workflow supports version tracking, problem diagnosis, and rollback.
+
+1. Components and Features
+
+    - Build Stage
+      > Converts the code repository into an executable bundle. This might involve compiling code, packaging dependencies.
+
+    - Release Stage
+      > Combines the build with configuration data, resulting in a release that can be deployed to any environment.
+
+    - Run Stage
+      > Launches the application using a specific release. This stage is responsible for executing the code in the chosen environment.
 
 ### 1.6. Processes
 
-The `Processes` principle states that applications should be designed as stateless processes, which do not maintain any application state in memory.
+The `Processes` factor emphasizes that applications should run as stateless, share-nothing processes. Any data that must persist should be stored in a stateful backing service, typically a database.
 
-In practice, this means that applications should avoid storing session state, caches, or any other kind of stateful data in memory. Instead, applications should store all stateful data in external services, such as databases or caching systems, and use stateless processes to access this data via well-defined APIs.
+> [!NOTE]
+> Adhering to the `Processes` principle improves scalability and resilience. Processes can be replicated to handle load, and a crash usually affects only a single request.
 
-By designing applications as stateless processes, developers can make them more easily scalable, deployable, and fault-tolerant. Stateless processes can be scaled horizontally by running multiple instances of the same codebase, and can be deployed and updated independently of each other. Since each process does not maintain any application state in memory, it can be easily replaced or restarted without affecting the overall application state.
+1. Components and Features
 
-Benefits to designing applications as stateless processes:
+    - Stateless Processes
+      > Application processes should be stateless and share-nothing. Data that needs to persist should be stored in a stateful backing service such as a database.
 
-- Scalability
-  > By designing applications as stateless processes, it becomes easier to scale the application horizontally by running multiple instances of the same codebase.
+    - Ephemeral
+      > Processes can start and stop at any time. They should be designed to handle this volatility gracefully.
 
-- Resilience
-  > Since stateless processes do not maintain any application state in memory, they can be easily replaced or restarted without affecting the overall application state, making the application more resilient to failures.
+2. Examples and Explanations
 
-- Maintainability
-  > By separating application state from the application logic, it becomes easier to maintain and update the application over time, without risking data corruption or inconsistencies.
+    - Python
+      > Python application using Flask and a database as backing service for persistent data to avoid storing the state in the application.
+
+      ```python
+      from flask import Flask, request
+      from flask_sqlalchemy import SQLAlchemy
+
+      app = Flask(__name__)
+      app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://user:pass@localhost/db'
+      db = SQLAlchemy(app)
+
+      class User(db.Model):
+          id = db.Column(db.Integer, primary_key=True)
+          name = db.Column(db.String(50))
+
+      @app.route('/users', methods=['POST'])
+      def create_user():
+          name = request.json['name']
+          new_user = User(name=name)
+          db.session.add(new_user)
+          db.session.commit()
+          return f'User {name} has been created!', 201
+      ```
+
+    - Node.js
+      > Node.js application using Express and a database like MongoDB to avoid storing state in the application.
+
+      ```javascript
+      const express = require('express');
+      const app = express();
+      const mongoose = require('mongoose');
+      const { User } = require('./models/User');
+
+      mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true});
+
+      app.use(express.json());
+
+      app.post('/users', async (req, res) => {
+          const { name } = req.body;
+          const user = new User({ name });
+          await user.save();
+          res.status(201).send(`User ${name} has been created!`);
+      });
+
+      app.listen(3000);
+      ```
 
 ### 1.7. Port Binding
 
-The `Port Binding` principle states that applications should be self-contained and should not rely on the availability of any external dependencies to run.
+The `Port Binding` factor in the Twelve-Factor App methodology emphasizes that applications should be self-contained and make services available to the outside world by binding to a specified port.
 
-In practice, this means that applications should listen on a designated port and bind to it when started. The application should not assume anything about the host environment, such as the availability of a specific port or network interface, but should instead use environment variables or configuration files to specify the port number and other network settings.
+Port binding aligns with the principles of the Twelve-Factor App methodology, promoting portability, flexibility, and scalability. The application can run independently in a variety of environments, making it easier to manage and deploy.
 
-By adhering to the Port Binding principle, applications can be more easily deployed and scaled across different environments, since the application code does not rely on any external dependencies or assumptions about the host environment.
+1. Components and Features
 
-Benefits of Port Binding:
+    - Self-Contained Services
+      > The application should be self-contained and expose services by binding to a port. For web applications, this means running an HTTP server inside the application (e.g., using Express in Node.js or Gunicorn in Python).
 
-- Portability
-  > By using environment variables or configuration files to specify network settings, applications can be easily deployed to different environments without modification.
+    - Port Binding
+      > The application should be configured to bind to a specific port and handle incoming requests.
 
-- Scalability
-  > By binding to a designated port and listening for incoming requests, applications can be more easily scaled horizontally by running multiple instances of the same codebase on different ports or hosts.
+    - Environment-Based Configuration
+      > The specific port number that the application binds to might be provided as an environment variable. This allows the configuration to change between different environments, such as development, testing, and production environments. It provides flexibility and helps to keep the environments isolated from each other.
 
-- Robustness
-  > By using a designated port and adhering to a well-defined protocol, applications can be more easily monitored, debugged, and tested, since the network interface is clearly specified and documented.
+2. Examples and Explanations
+
+    - Node.js
+      > Node.js application using Express, setting port number within an environment variable. If that variable isn't set, it defaults to 3000.
+
+      ```javascript
+      const express = require('express');
+      const app = express();
+      const port = process.env.PORT || 3000;
+
+      app.get('/', (req, res) => res.send('Hello World!'));
+
+      app.listen(port, () => console.log(`App listening on port ${port}!`));
+      ```
+
+    - Python
+      > Python application using Flask, setting port number within an environment variable. If that variable isn't set, it defaults to 5000.
+
+      ```python
+      from flask import Flask
+      import os
+
+      app = Flask(__name__)
+      port = int(os.getenv('PORT', 5000))
+
+      @app.route('/')
+      def hello_world():
+          return 'Hello, World!'
+
+      if __name__ == '__main__':
+          app.run(host='0.0.0.0', port=port)
+      ```
+
+    - Java
+      > Java application using Spring Boot, setting port number within an environment variable in `application.properties` file. If that variable isn't set, it defaults to 8080.
+
+      ```properties
+      # application.properties
+      server.port=${PORT:8080}
+      ```
 
 ### 1.8. Concurrency
 
-The `Concurrency` principle states that applications should be designed to take advantage of concurrency and parallelism in order to maximize resource utilization and responsiveness.
+The `Concurrency` factor advocates scaling out through the process model.
 
-In practice, this means that applications should be designed to handle multiple requests and processes concurrently, rather than relying on a single thread or process to handle all incoming requests. This can be achieved through the use of asynchronous programming models, such as event-driven architectures or reactive programming, or by using techniques such as thread pooling and load balancing to distribute requests across multiple threads or processes.
+> [!NOTE]
+> Adhering to the `Concurrency` principle helps applications handle varying load, increase fault tolerance, and improve overall performance.
 
-By designing applications to take advantage of concurrency, developers can improve the performance, scalability, and responsiveness of their applications, especially in high-traffic or high-load scenarios. Concurrency allows multiple requests to be processed simultaneously, reducing latency and increasing throughput.
+1. Components and Features
 
-Benefits to designing applications to take advantage of concurrency:
+    - Process Model
+      > Scale out the application by running multiple processes or instances of the application. This can be achieved by leveraging process management tools or orchestrators like Kubernetes.
 
-- Scalability
-  > By handling multiple requests concurrently, applications can more easily scale horizontally by running multiple instances of the same codebase on different hosts or clusters.
+    - Types of Processes
+      > Different process types (web servers, background workers) can handle different workloads and improve concurrency. For instance, long-running tasks can be handled by workers, while short request/response tasks can be handled by web processes.
 
-- Responsiveness
-  > By processing requests asynchronously, applications can provide more responsive user experiences, since users do not have to wait for long-running operations to complete before receiving a response.
+    - Scaling Out
+      > The Twelve-Factor App methodology emphasizes scaling out (horizontal scaling), rather than scaling up (vertical scaling). Scaling out means increasing the number of processes to handle more tasks simultaneously. This allows the application to distribute the load across multiple processes, making it more resilient and adaptable to changes in load. It contrasts with scaling up, which involves increasing the computational resources of an individual component.
 
-- Resource utilization
-  > By maximizing resource utilization through concurrency, applications can more efficiently use available resources, reducing costs and increasing efficiency.
+2. Examples and Explanations
+
+    - Node.js
+      > Node.js has a built-in module called `Cluster` to create child processes (workers) that share server ports to scale an application.
+
+      ```javascript
+      const cluster = require('cluster');
+      const os = require('os');
+
+      if (cluster.isMaster) {
+          const cpuCount = os.cpus().length; // Get the number of CPUs
+
+          // Create a worker for each CPU
+          for (let i = 0; i < cpuCount; i++) {
+              cluster.fork();
+          }
+      } else {
+          const express = require('express');
+          const app = express();
+          
+          app.get('/', (req, res) => res.send('Hello from Worker!'));
+
+          app.listen(3000);
+      }
+      ```
+
+    - Java
+      > Java using Spring Boot and Executors framework to manage threads to work with many tasks concurrently.
+
+      ```java
+      import java.util.concurrent.ExecutorService;
+      import java.util.concurrent.Executors;
+
+      public class App {
+          private static final int NTHREDS = 10;
+
+          public static void main(String[] args) {
+              ExecutorService executor = Executors.newFixedThreadPool(NTHREDS);
+              for (int i = 0; i < 500; i++) {
+                  Runnable worker = new MyRunnable(10000000L + i);
+                  executor.execute(worker);
+              }
+              executor.shutdown();
+              while (!executor.isTerminated()) {
+              }
+              System.out.println("Finished all threads");
+          }
+      }
+      ```
 
 ### 1.9. Disposability
 
-The `Disposability` principle states that applications should be designed to be easily disposable and replaceable, and should be able to start up and shut down quickly without causing any data loss or corruption.
+The `Disposability` factor emphasizes maximum robustness through fast startup and graceful shutdown.
 
-In practice, this means that applications should be designed to handle graceful shutdowns and restarts, and should be able to recover quickly from crashes or other failures. Applications should not rely on long-lived processes or in-memory state, but should instead use external storage systems, such as databases or file systems, to store application data.
+Applications that adhere to this factor improve robustness and resilience. They can handle unexpected changes in system state, such as sudden load increases or crashes. They are also more amenable to rapid scaling because new instances can start quickly.
 
-By designing applications to be disposable, developers can ensure that their applications can be easily updated, scaled, and replaced without causing any disruptions to the user experience or data integrity. Disposable applications are also more fault-tolerant, since they can recover quickly from crashes or other failures without losing data or requiring manual intervention.
+1. Components and Features
 
-Benefits to designing applications to be disposable:
+    - Fast Startup
+      > Applications should start quickly to facilitate rapid deployment and scaling.
 
-- Scalability
-  > Disposable applications can be easily scaled horizontally by running multiple instances of the same codebase, allowing for more efficient resource utilization and improved performance.
+    - Graceful Shutdown
+      > Applications should shut down gracefully to handle termination signals (SIGTERM) properly, allowing for tasks to be completed or cleaned up.
 
-- Resilience
-  > Disposable applications are more resilient to failures, since they can quickly recover from crashes or other failures without losing data or requiring manual intervention.
+2. Examples and Explanations
 
-- Maintainability
-  > By separating application logic from application state, disposable applications are easier to maintain and update over time, without risking data corruption or inconsistencies.
+    - Node.js
+      > Node.js using Express to listen for the SIGTERM signal and shut down gracefully.
+
+      ```javascript
+      const express = require('express');
+      const app = express();
+      const server = app.listen(3000);
+
+      process.on('SIGTERM', () => {
+          server.close(() => {
+              console.log('Process terminated')
+          })
+      });
+      ```
+
+    - Python
+      > Python applications using Flask to listen for the SIGTERM signal, designed to shut down gracefully when it receives a signal.
+
+      ```python
+      from flask import Flask
+      import os
+      import signal
+      import sys
+
+      app = Flask(__name__)
+
+      def graceful_shutdown(signal, frame):
+          print('SIGTERM received. Shutting down gracefully.')
+          sys.exit()
+
+      signal.signal(signal.SIGTERM, graceful_shutdown)
+
+      if __name__ == '__main__':
+          app.run(host='0.0.0.0', port=int(os.getenv('PORT', 5000)))
+      ```
+
+    - Java
+      > Java application using Spring Boot `@PreDestroy` annotation to do cleanup before the application is terminated.
+
+      ```java
+      import javax.annotation.PreDestroy;
+
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+      @SpringBootApplication
+      public class Application {
+
+          public static void main(String[] args) {
+              SpringApplication.run(Application.class, args);
+          }
+
+          @PreDestroy
+          public void preDestroy() {
+              System.out.println("Application is about to terminate...");
+              // Perform cleanup here
+          }
+      }
+      ```
 
 ### 1.10. Dev/Prod Parity
 
-The `Dev/Prod Parity` principle states that the development, testing, and production environments should be as similar as possible in order to minimize differences and avoid issues that may arise from environment-specific configuration or dependencies.
+The `Dev/Prod Parity` factor emphasizes keeping the gap between development and production as small as possible.
 
-In practice, this means that developers should strive to use the same tools, libraries, and configurations in all environments, and should avoid making changes to the production environment that are not tested and approved in the development and testing environments. This can be achieved through the use of automated build and deployment processes, version control, and configuration management tools.
+> [!NOTE]
+> Minimizing this gap increases consistency between environments, reduces unexpected deployment issues, and improves reliability.
 
-By ensuring that the development, testing, and production environments are as similar as possible, developers can reduce the risk of issues arising from environment-specific differences, such as incompatible dependencies, configuration mismatches, or differences in hardware or software. This can help to minimize the time and effort required to deploy and maintain applications, and can improve the overall quality and reliability of the application.
+1. Components and Features
 
-Benefits to ensuring dev/prod parity:
+    - Time Gap
+      > Minimize the time gap between writing code and deploying it to production, e.g. by using Continuous Integration/Continuous Deployment (CI/CD) pipelines.
 
-- Reduced risk
-  > By minimizing environment-specific differences, developers can reduce the risk of issues arising from incompatibilities or mismatches.
+    - Identical Environments
+      > Keep development, staging, and production environments as similar as possible. Use the same type of backing services, same configurations, and similar infrastructure.
 
-- Improved quality
-  > By ensuring that changes are tested and approved in the development and testing environments before being deployed to production, developers can improve the quality and reliability of the application.
+2. Examples and Explanations
 
-- Faster deployments
-  > By using automated build and deployment processes, developers can reduce the time and effort required to deploy and maintain applications, allowing for faster and more frequent deployments.
+    - Environment Variables
+      > Use environment variables to manage configuration across different environments, ensuring that the same code can run in development, staging, and production without modification.
+
+      ```dotenv
+      # .env file for development
+      DATABASE_URL=postgresql://localhost/dev_db
+      ```
+
+      ```javascript
+      const mongoose = require('mongoose');
+      const uri = process.env.DATABASE_URL;
+      mongoose.connect(uri);
+      ```
+
+    - Containerization
+      > Use containerization (e.g., Docker) to create consistent environments across development and production. This ensures that the application runs the same way regardless of where it is deployed.
+
+      ```Dockerfile
+      FROM node:14
+      WORKDIR /app
+      COPY package.json ./
+      RUN npm install
+      COPY . .
+      EXPOSE 3000
+      CMD ["npm", "start"]
+      ```
 
 ### 1.11. Logs
 
-The `Logs` principle states that applications should treat logs as event streams, and should generate logs in a standardized format that can be easily aggregated and analyzed.
+The `Logs` factor emphasizes that applications should treat logs as event streams.
 
-In practice, this means that developers should design their applications to generate logs in a standardized format, such as JSON or syslog, and should use logging frameworks and libraries that support structured logging. Logs should be generated for all significant events, such as requests, errors, and warnings, and should be sent to a centralized logging service, such as Splunk, Logstash or Elasticsearch, where they can be aggregated, analyzed, and searched.
+Applications should not manage routing and storage of their output streams. Instead, each process writes its event stream, unbuffered, to stdout. This makes it easy to collect logs with aggregation tools such as `Fluentd`, `Grafana Loki`, or `Logstash`, then forward them to centralized log management services for analysis.
 
-By treating logs as event streams, developers can gain valuable insights into the behavior and performance of their applications, and can quickly identify and diagnose issues that may arise. Centralized logging also makes it easier to manage and maintain logs, and can provide a centralized source of truth for debugging and troubleshooting.
+> [!NOTE]
+> Treating logs as event streams and decoupling log management from the application creates systems that are easier to observe, debug, and maintain.
 
-> NOTE For more information see the article about [Logging and Monitoring](../articles/logging-and-monitoring.md).
+1. Components and Features
 
-Benefits to treating logs as event streams:
+    - Event Streams
+      > Treat logs as continuous event streams. Write logs to stdout (standard output) and let the environment handle the aggregation, storage, and analysis.
 
-- Improved troubleshooting
-  > By generating logs for all significant events, developers can quickly identify and diagnose issues that may arise, reducing the time and effort required for troubleshooting.
+    - Log Routing
+      > Logs should be captured by the execution environment, collated together with logs from other applications, and then forwarded to a centralized log indexing and analysis system. This allows for more sophisticated analysis and troubleshooting across multiple services. Use tools like Logstash, Fluentd, or cloud-based logging services to collect and analyze logs.
 
-- Better performance monitoring
-  > By analyzing log data, developers can gain insights into the behavior and performance of their applications, and can identify bottlenecks or other issues that may be impacting performance.
+2. Examples and Explanations
 
-- Easier maintenance
-  > By centralizing logs in a single location, developers can more easily manage and maintain logs, and can ensure that all logs are retained for the appropriate length of time.
+    - Node.js
+      > Node.js, using Express with `console.log()` to write log messages to stdout.
 
-Example of conform Logs principle:
+      ```javascript
+      const express = require('express');
+      const app = express();
 
-```go
-package main
+      app.get('/', (req, res) => {
+          console.log('GET request received at /');
+          res.send('Hello World!');
+      });
 
-import (
-    "os"
-    "github.com/rs/zerolog"
-    "github.com/rs/zerolog/log"
-)
+      app.listen(3000, () => console.log('App listening on port 3000!'));
+      ```
 
-func main() {
-    // Set up the logger to output JSON format
-    log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
+    - Python
+      > Python using Flask with `logging` module to write log messages to stdout.
 
-    // Set the logging level to debug
-    zerolog.SetGlobalLevel(zerolog.DebugLevel)
+      ```python
+      from flask import Flask
+      import logging
 
-    // Log some events
-    log.Debug().Msg("This is a debug message")
-    log.Info().Msg("This is an info message")
-    log.Warn().Msg("This is a warning message")
-    log.Error().Msg("This is an error message")
-}
-```
+      app = Flask(__name__)
+
+      @app.route('/')
+      def hello_world():
+          app.logger.info('GET request received at /')
+          return 'Hello, World!'
+
+      if __name__ == '__main__':
+          logging.basicConfig(level=logging.INFO)
+          app.run(host='0.0.0.0', port=5000)
+      ```
+
+    - Java
+      > Java using Spring Boot with Logback or Log4j to write log messages to stdout.
+
+      ```java
+      import org.slf4j.Logger;
+      import org.slf4j.LoggerFactory;
+      import org.springframework.boot.SpringApplication;
+      import org.springframework.boot.autoconfigure.SpringBootApplication;
+      import org.springframework.web.bind.annotation.GetMapping;
+      import org.springframework.web.bind.annotation.RestController;
+
+      @SpringBootApplication
+      public class Application {
+          public static void main(String[] args) {
+              SpringApplication.run(Application.class, args);
+          }
+
+          @RestController
+          public class HelloController {
+              Logger logger = LoggerFactory.getLogger(HelloController.class);
+
+              @GetMapping("/")
+              public String hello() {
+                  logger.info("GET request received at /");
+                  return "Hello, World!";
+              }
+          }
+      }
+      ```
 
 ### 1.12. Admin Processes
 
-The `Admin Processes` principle states that applications should provide administrative processes as one-off processes that can be run independently of the application's main processes.
+The `Admin Processes` factor emphasizes that one-off administrative tasks should run in an environment identical to the app's long-running processes.
 
-In practice, this means that developers should design their applications to provide a set of administrative processes that can be used to perform tasks such as database migrations, backups, and other maintenance tasks. These administrative processes should be run independently of the application's main processes, and should be designed to run in a single execution environment, rather than being part of the application's ongoing runtime.
+One-off admin processes run in the same environment as the app and are managed as part of the same codebase. This ensures they use the same code and follow the same release lifecycle.
 
-By providing administrative processes as one-off processes, developers can more easily manage and maintain their applications, and can avoid potential issues that may arise from running administrative tasks as part of the application's ongoing runtime. This can also help to ensure that administrative tasks are performed in a consistent and repeatable manner, regardless of the underlying environment.
+> [!NOTE]
+> Adhering to the `Admin Processes` principle ensures that regular and administrative tasks are subject to the same environmental conditions, reducing discrepancies and risk.
 
-Benefits to providing administrative processes as one-off processes:
+1. Components and Features
 
-- Improved reliability
-  > By running administrative tasks as one-off processes, developers can reduce the risk of issues that may arise from running administrative tasks as part of the application's ongoing runtime.
+    - One-Off Tasks
+      > Administrative tasks such as database migrations, maintenance scripts, or debugging tasks should be run as one-off processes in an environment identical to the application’s runtime.
 
-- Better manageability
-  > By providing administrative processes as one-off processes, developers can more easily manage and maintain their applications, and can ensure that administrative tasks are performed in a consistent and repeatable manner.
+    - Environment Consistency
+      > Ensure that admin tasks have the same dependencies and configuration as the main application processes. This prevents issues caused by environmental differences and ensures consistency across all operations of the app.
 
-- Easier scaling
-  > By separating administrative tasks from the application's main processes, developers can more easily scale their applications and ensure that administrative tasks do not impact the performance or reliability of the application's main processes.
+    - Part of Application Codebase
+      > Administrative code should be included in the application's codebase. This way, it evolves with the rest of the application, ensuring that these tasks can always be executed without compatibility issues.
+
+2. Examples and Explanations
+
+    - Node.js
+      > In Node.js, you might have a script to seed a database. This script is run as a one-off process in the same environment, for example via a `package.json` script. Run the seed script with `npm run seed`.
+
+      ```json
+      "scripts": {
+          "start": "node app.js",
+          "seed": "node seed.js"
+      }
+      ```
+
+    - Python
+      > In Python with Django, create custom management commands. These can be run from the command line and are well-suited for administrative tasks. Run the seed command with `python manage.py seed`.
+
+      ```python
+      # app/management/commands/seed.py
+      from django.core.management.base import BaseCommand
+      from app.models import MyModel
+
+      class Command(BaseCommand):
+          help = 'Seeds the database'
+
+          def handle(self, *args, **options):
+              MyModel.objects.create(...)
+      ```
+
+    - Java
+      > In Java using Spring Boot, create a CommandLineRunner bean for tasks that should be executed after the application context is loaded. Conditionally run the seeder based on a program argument or an environment variable.
+
+      ```java
+      import org.springframework.boot.CommandLineRunner;
+      import org.springframework.stereotype.Component;
+
+      @Component
+      public class Seeder implements CommandLineRunner {
+
+          @Override
+          public void run(String... args) throws Exception {
+              // Seed database here
+          }
+      }
+      ```
 
 ## 2. References
 
-- Sentenz [package managers](../articles/package-managers.md) article.
-- Sentenz [continuous pipelines](../articles/continuous-pipelines.md) article.
-- Sentenz [logging and monitoring](../articles/logging-and-monitoring.md) article.
-- Google [twelve-factor app](https://cloud.google.com/architecture/twelve-factor-app-development-on-gcp?hl=en) article.
-- IBM [twelve plus factors](https://www.ibm.com/cloud/blog/12-plus-factors-for-containerized-ui-microservices) article.
-- IBM [seven missing factors](https://www.ibm.com/cloud/blog/7-missing-factors-from-12-factor-applications) article.
-- Github [twelve-factor app](https://github.com/heroku/12factor) repository.
+- The [Twelve-Factor App](https://12factor.net/) page.

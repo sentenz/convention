@@ -1,5 +1,17 @@
 # Changelog
 
+# [2.8.0](https://github.com/sentenz/convention/compare/2.7.0...2.8.0) (2026-02-16)
+
+
+### Bug Fixes
+
+* clarify note on breaking changes in Commit article ([6b7c8e0](https://github.com/sentenz/convention/commit/6b7c8e05d77760489e54deeece9d0e6e224d8944))
+
+
+### Features
+
+* create an article on Git merge methods ([90e46b5](https://github.com/sentenz/convention/commit/90e46b50e442ea5ad4c702542041ca624f536214))
+
 ## [2.7.1](https://github.com/sentenz/convention/compare/2.7.0...2.7.1) (2026-02-16)
 
 

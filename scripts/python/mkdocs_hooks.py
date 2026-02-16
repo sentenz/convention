@@ -226,11 +226,7 @@ def _normalize_list_item_indent_for_nested_block(
     is_blockquote = candidate_stripped.startswith(">")
 
     normalized_indent = item_indent
-    if is_fence:
-        normalized_indent = ((item_indent // 4) + 1) * 4
-    elif is_blockquote and _list_item_contains_alert_marker(
-        lines, item_index, item_indent
-    ):
+    if is_fence or is_blockquote:
         normalized_indent = ((item_indent // 4) + 1) * 4
     else:
         previous_sibling_indent = _previous_sibling_list_indent(
@@ -252,38 +248,6 @@ def _normalize_list_item_indent_for_nested_block(
 def _is_list_item(line: str) -> bool:
     """Check whether a line starts a list item."""
     return _LIST_ITEM_RE.match(line) is not None
-
-
-def _list_item_contains_alert_marker(
-    lines: list[str], item_index: int, item_indent: int
-) -> bool:
-    """Check whether the list item's continuation block contains a GitHub alert."""
-    look_ahead = item_index + 1
-
-    while look_ahead < len(lines):
-        probe = lines[look_ahead]
-        probe_stripped = probe.lstrip(" ")
-
-        if not probe_stripped:
-            look_ahead += 1
-            continue
-
-        if _is_list_break(probe, item_indent):
-            return False
-
-        if not probe_stripped.startswith(">"):
-            look_ahead += 1
-            continue
-
-        content = probe_stripped[1:]
-        if content.startswith(" "):
-            content = content[1:]
-        if _ALERT_MARKER_RE.match(content):
-            return True
-
-        look_ahead += 1
-
-    return False
 
 
 def _previous_sibling_list_indent(
@@ -447,8 +411,24 @@ def _normalize_list_blockquote_indentation(markdown: str) -> str:
 
     lines = markdown.splitlines()
     index = 0
+    active_fence_marker: str | None = None
 
     while index < len(lines):
+        stripped_line = lines[index].lstrip(" ")
+        line_fence_marker = _fence_marker(stripped_line)
+
+        if line_fence_marker is not None:
+            if active_fence_marker is None:
+                active_fence_marker = line_fence_marker
+            elif line_fence_marker == active_fence_marker:
+                active_fence_marker = None
+            index += 1
+            continue
+
+        if active_fence_marker is not None:
+            index += 1
+            continue
+
         match = _LIST_ITEM_RE.match(lines[index])
         if not match:
             index += 1

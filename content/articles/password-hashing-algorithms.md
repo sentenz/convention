@@ -1,6 +1,9 @@
 # Password Hashing Algorithms
 
-Password hashing algorithms are a specific type of hash function that are designed to store and verify passwords securely. Password hashing algorithms are designed to be slow and computationally intensive, making them more difficult to crack through brute-force attacks.
+Password hashing algorithms are a specific type of hash function designed to store and verify passwords securely.
+
+> [!NOTE]
+> Password hashing algorithms are intentionally slow and computationally intensive, making brute-force attacks significantly more difficult.
 
 - [1. Category](#1-category)
   - [1.1. Argon2](#11-argon2)
@@ -76,10 +79,10 @@ Argon2 is a password-hashing function that summarizes the state of the art in th
       >
       > - **argon2i** provides less GPU resistance, but strong side-channel attack resistance.
       >
-      > - **argoin2id** is a hybrid of `argon2i` and `argon2d`, using a combination of data-depending and data-independent memory accesses.
+      > - **argon2id** is a hybrid of `argon2i` and `argon2d`, using a combination of data-dependent and data-independent memory accesses.
 
     - `v`
-      > Provides version.
+      > Provides the algorithm version.
 
     - `m, t, p`
       > Provides parameters:
@@ -88,7 +91,7 @@ Argon2 is a password-hashing function that summarizes the state of the art in th
       >
       > - **t** time cost, which defines the amount of computation realized.
       >
-      > - **p** degree, which defines the number of parallel threads.
+      > - **p** parallelism degree, which defines the number of parallel threads.
 
     - `salt`
       > Unique random data used in the hashing process.
@@ -98,7 +101,7 @@ Argon2 is a password-hashing function that summarizes the state of the art in th
 
 2. Output and Result
 
-    Argon2 is a password hashing algorithm and it produces a hash value that is typically represented as a string with different sections, separated by commas or dollar signs `$`.
+    Argon2 is a password hashing algorithm that produces an encoded hash string with multiple sections separated by dollar signs `$`.
 
     ```plaintext
     $argon2id$v=19$m=65536,t=2,p=4$c29tZXNhbHQ$xBZi7BvdgwwMVMEVqoV7jQ
@@ -167,7 +170,7 @@ Argon2 is a password-hashing function that summarizes the state of the art in th
 
 4. Examples and Explanations
 
-    - `scrypt.py`
+    - `argon2.py`
       > Python script using the `argon2-cffi` library.
 
       ```python
@@ -206,13 +209,13 @@ Scrypt is a password-based key derivation function designed to be memory-hard. I
 1. Schema and Format
 
     > [!NOTE]
-    > Scrypt doesn't have a standard format for storing hashed passwords like BCrypt, but a common scheme.
+    > Scrypt doesn't have a universal standard format for storing hashed passwords like bcrypt, but a common scheme is widely used.
 
     ```plaintext
     <algorithm>:<parameters>:<salt>:<hash>
     ```
 
-    - algorithm
+    - `algorithm`
       > The identifier of the scrypt algorithm.
 
     - `parameters`
@@ -222,10 +225,10 @@ Scrypt is a password-based key derivation function designed to be memory-hard. I
       >
       > - **p** the parallelization factor.
 
-    - salt
+    - `salt`
       > A random value that's generated when the password is hashed. It's used to prevent pre-computed hash attacks (like rainbow tables). The salt is often stored in base64 format.
 
-    - hash
+    - `hash`
       > The actual hash of the password, also often stored in base64 format.
 
 2. Output and Result
@@ -275,7 +278,7 @@ Scrypt is a password-based key derivation function designed to be memory-hard. I
     - Java
 
       - [Bouncy Castle](https://www.bouncycastle.org/)
-        > A cryptography API that including support for scrypt.
+        > A cryptography API that includes support for scrypt.
 
     - Ruby
 
@@ -290,12 +293,12 @@ Scrypt is a password-based key derivation function designed to be memory-hard. I
     - C#/.NET
 
       - [CryptSharp](https://www.zer7.com/software/cryptsharp)
-        > A C# library that including support for scrypt.
+        > A C# library that includes support for scrypt.
 
 4. Examples and Explanations
 
     - `scrypt.go`
-      > Golang source file using the go builtin `scrypt` library.
+      > Golang source file using the Go built-in compatible `scrypt` package from `golang.org/x/crypto`.
 
       ```go
       package main
@@ -317,20 +320,20 @@ Scrypt is a password-based key derivation function designed to be memory-hard. I
       }
 
       func hash(password string, salt []byte) (string, error) {
-        hash, err := scrypt.Key([]byte(password), salt, 32768, 8, 1, 32)
+        derivedKey, err := scrypt.Key([]byte(password), salt, 32768, 8, 1, 32)
         if err != nil {
           return "", err
         }
-        return base64.StdEncoding.EncodeToString(hash), nil
+        return base64.StdEncoding.EncodeToString(derivedKey), nil
       }
 
-      func verify(password, hash string, salt []byte) (bool, error) {
-        hash, err := scrypt.Key([]byte(password), salt, 32768, 8, 1, 32)
+      func verify(password, encodedHash string, salt []byte) (bool, error) {
+        derivedKey, err := scrypt.Key([]byte(password), salt, 32768, 8, 1, 32)
         if err != nil {
-          log.Fatal(err)
+          return false, err
         }
-        computedHash := base64.StdEncoding.EncodeToString(hash)
-        return subtle.ConstantTimeCompare([]byte(hash), []byte(computedHash)) == 1, nil
+        computedHash := base64.StdEncoding.EncodeToString(derivedKey)
+        return subtle.ConstantTimeCompare([]byte(encodedHash), []byte(computedHash)) == 1, nil
       }
 
       func main() {
@@ -361,7 +364,7 @@ Scrypt is a password-based key derivation function designed to be memory-hard. I
 
 ### 1.3. Bcrypt
 
-Bcrypt is a password hashing function based on the Blowfish cipher. It incorporates a salt to protect against rainbow table attacks and is an adaptive function over time, the iteration count can be increased to make it slower, so it remains resistant to brute-force search attacks even with increasing computation power.
+Bcrypt is a password hashing function based on the Blowfish cipher. It incorporates a salt to protect against rainbow table attacks and is adaptive over time. The cost factor can be increased to keep brute-force attacks expensive as computing power grows.
 
 1. Schema and Format
 
@@ -370,10 +373,10 @@ Bcrypt is a password hashing function based on the Blowfish cipher. It incorpora
     ```
 
     - `id`
-      > Identifies the Bcrypt algorithm and version `2`, `2a`, `2x`, `2y`, and `2b`.
+      > Identifies the bcrypt algorithm variant, such as `2a`, `2y`, or `2b`.
 
       > [!NOTE]
-      > Except the `2b` identifier, all Bcrypt algorithm and version are considered deprecated.
+      > Prefer `2b` for new hashes where available. Legacy systems may still contain `2a` or `2y` hashes.
 
     - `cost`
       > Represents the cost factor or number of iterations.
@@ -394,13 +397,13 @@ Bcrypt is a password hashing function based on the Blowfish cipher. It incorpora
     ```
 
     - `$2a$`
-      > The BCrypt algorithm identifier. The `2a` signifies the version of BCrypt.
+      > The bcrypt algorithm identifier. In this example, `2a` denotes the variant.
 
     - `10$`
-      > The cost factor is a measure of how much computational power it will take to hash the password. The higher the cost, the more rounds of hashing are performed, and thus the longer it will take to hash the password (and also to verify it later). This is a built-in protection against brute force attacks.
+      > The cost factor controls how much computation is required to hash and verify a password. Higher values increase resistance to brute-force attacks, but also increase authentication latency.
 
     - `N9qoB1Qa5Kf3g0VwSzBZjuI7kI.ZEXa2G7pESKg1OfveJgp3wCqTS`
-      > The hashed password is a 128-bit value, encoded in a modified Base-64 format. The first 22 characters are a `salt` (random data to protect against pre-computed lookup tables attacks), and the remaining 31 characters are the hashed password.
+      > bcrypt encodes its result in a modified Base64 format. In this representation, the first 22 characters are the `salt`, and the remaining 31 characters are the hash output.
 
 3. Tools and Frameworks
 
@@ -416,7 +419,7 @@ Bcrypt is a password hashing function based on the Blowfish cipher. It incorpora
         > A package that provides bindings to the native BCrypt library.
 
       - [node.bcrypt.js](https://github.com/kelektiv/node.bcrypt.js)
-        > NodeJs implementation of Bcrypt.
+        > Node.js implementation of bcrypt.
 
     - Python
 
@@ -449,7 +452,7 @@ Bcrypt is a password hashing function based on the Blowfish cipher. It incorpora
 4. Examples and Explanations
 
     - `bcrypt.go`
-      > Golang source file using the go builtin `brcypt` library.
+      > Golang source file using the `bcrypt` package from `golang.org/x/crypto`.
 
       ```go
       package main
@@ -482,7 +485,10 @@ Bcrypt is a password hashing function based on the Blowfish cipher. It incorpora
         fmt.Println("Password:", password)
         fmt.Println("Hash:    ", hash)
 
-        match := verify(password, hash)
+        match, err := verify(password, hash)
+        if err != nil {
+          log.Fatal(err)
+        }
 
         fmt.Println("Match:   ", match)
       }
@@ -495,7 +501,7 @@ PBKDF2 (Password-Based Key Derivation Function 2) is a key derivation function t
 1. Schema and Format
 
     > [!NOTE]
-    > PBKDF2 (Password-Based Key Derivation Function 2) doesn't have a universal standard format for storing hashed passwords like BCrypt, but a common scheme.
+    > PBKDF2 (Password-Based Key Derivation Function 2) doesn't have a universal standard format for storing hashed passwords like bcrypt, but a common scheme is widely used.
 
     ```plaintext
     <algorithm>:<iterations>:<salt>:<hash>
@@ -573,7 +579,7 @@ PBKDF2 (Password-Based Key Derivation Function 2) is a key derivation function t
     - C#/.NET
 
       - [.NET's Rfc2898DeriveBytes Class](https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.rfc2898derivebytes)
-        > Password-based key derivation functionality, PBKDF2, by using a pseudo-random number generator based on HMACSHA1.
+        > Password-based key derivation functionality for PBKDF2, including implementations based on HMAC.
 
 4. Examples and Explanations
 
@@ -622,7 +628,7 @@ PBKDF2 (Password-Based Key Derivation Function 2) is a key derivation function t
 - Slow
   > Password hashing algorithms are intentionally slow to make brute-force attacks more difficult. This slows down attackers who try to guess passwords by hashing them repeatedly until they find a match.
 
-- Non-Reversible
+- Irreversible
   > Password hashing algorithms are non-reversible, meaning that it is computationally infeasible to determine the password from the hash value. This helps ensure that even if an attacker gains access to the password hash values, they cannot easily determine the passwords themselves.
 
 - Regular Updates
@@ -634,13 +640,13 @@ PBKDF2 (Password-Based Key Derivation Function 2) is a key derivation function t
 ## 3. Terminology
 
 - Hashing
-  > The process of transforming input of any length into a fixed size string of text, using a mathematical function.
+  > The process of transforming input of any length into a fixed-size string using a mathematical function.
 
 - Salt
-  > Random data that is used as an additional input to a one-way function that hashes data, a password or passphrase. The primary function of salts is to defend against dictionary attacks or against its hashed equivalent, a pre-computed rainbow table attack.
+  > Random data used as additional input to a one-way function that hashes data, such as a password or passphrase. Salts defend against dictionary attacks and precomputed rainbow table attacks.
 
 - Pepper
-  > A secret added to the hashing process to secure passwords, similar to a salt, but while a salt is not secret (it is stored in the database next to the hashed password), a pepper is.
+  > A secret value added to the hashing process to harden password storage. Unlike a salt (which is stored alongside the hash), a pepper must remain secret.
 
 - Work Factor/Cost Factor
   > Parameters that determine how computationally expensive the hashing process is. The work factor is usually configurable so that as hardware gets faster, the hash function can remain resistant to brute-force search attacks.
@@ -667,7 +673,7 @@ PBKDF2 (Password-Based Key Derivation Function 2) is a key derivation function t
   > A method of breaking a hashed password by trying all the possible plaintext permutations.
 
 - Cryptographic Hash Function
-  > A mathematical algorithm that takes an input and returns a fixed size string of bytes typically a digest that is unique to each unique input. It is 'one way', meaning that it is impossible to regenerate the original input from the digest.
+  > A mathematical algorithm that takes input and returns a fixed-size output (digest). It is one-way, meaning the original input cannot feasibly be recovered from the digest.
 
 ## 4. References
 

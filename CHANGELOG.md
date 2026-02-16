@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.6.0](https://github.com/sentenz/convention/compare/2.5.0...2.6.0) (2026-02-16)
+
+
+### Features
+
+* create an article on Versioning with SemVer and CalVer ([0dc87d0](https://github.com/sentenz/convention/commit/0dc87d00a514a7005d7016fdac835841b5d86ce6)), closes [#277](https://github.com/sentenz/convention/issues/277)
+
 # [2.5.0](https://github.com/sentenz/convention/compare/2.4.0...2.5.0) (2026-02-14)
 
 

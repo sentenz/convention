@@ -71,7 +71,7 @@ The [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) speci
         > A commit that appends a `!` after the type or scope indicates a breaking API change. A `BREAKING CHANGE` can appear in commits of any type.
 
         > [!NOTE]
-        > `!` correlates with `MAJOR` in Semantic Versioning.
+        > The `!` correlates with `MAJOR` in Semantic Versioning.
 
     - Scope
       > The `scope` in Conventional Commits provides context by specifying the module, component, or area of the project that a commit affects. While the use of scopes is optional to organize and categorize changes precisely.

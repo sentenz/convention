@@ -1,6 +1,6 @@
 # Sanitizer
 
-Sanitizers are dynamic analysis tools that detect bugs such as buffer overflows or accesses, dangling pointers or different types of undefined behavior at runtime and prevent security vulnerabilities in C/C++ code.
+Sanitizers are dynamic analysis tools that detect runtime bugs such as buffer overflows, invalid memory accesses, dangling pointers, and different types of undefined behavior to prevent security vulnerabilities in C/C++ code.
 
 - [1. Category](#1-category)
   - [1.1. Valgrind](#11-valgrind)
@@ -21,7 +21,7 @@ Sanitizers are dynamic analysis tools that detect bugs such as buffer overflows 
 
 ### 1.1. Valgrind
 
-[Valgrind](https://valgrind.org/) is a dynamic analysis tool that can be used to detect memory leaks, or buffer overflows errors in C/C++ code.
+[Valgrind](https://valgrind.org/) is a dynamic analysis framework that can be used to detect memory leaks and buffer overflow errors in C/C++ code.
 
 > [!NOTE]
 > Valgrind tools are not designed to be used simultaneously. Each tool serves a specific purpose and provides different types of analysis or debugging capabilities. Run one tool at a time to get the desired information about a program's behavior or performance.
@@ -40,7 +40,7 @@ Sanitizers are dynamic analysis tools that detect bugs such as buffer overflows 
     - FreeBSD
       > Support for `X86`, `AMD64`.
 
-    - MacOSX
+    - macOS
       > Support for `AMD64`.
 
 #### 1.1.1. Memcheck
@@ -215,7 +215,7 @@ Sanitizers are dynamic analysis tools that detect bugs such as buffer overflows 
 2. Commands and Operations
 
     - Compile and Detect
-      > Detecting a thread error detector DRD
+      > Detecting thread errors with DRD.
 
       ```bash
       gcc -g -pthread program.c -o executable
@@ -277,7 +277,7 @@ Sanitizers are dynamic analysis tools that detect bugs such as buffer overflows 
         free(block);
       }
 
-      int main() {
+      int main(void) {
         function();
         massif();
         return 0;
@@ -402,7 +402,7 @@ Sanitizers are dynamic analysis tools that detect bugs such as buffer overflows 
 The [Google Sanitizers](https://github.com/google/sanitizers) are a collection of tools integrated into compilers, designed to detect various types of bugs.
 
 > [!NOTE]
-> `Google Sanitizers` are not designed to be used simultaneously. Each sanitizer serves a specific purpose and provides different types of analysis or debugging capabilities. Compile and run a program with one sanitizer at a time to get the desired information about a program’s behavior or performance. Using multiple sanitizers at once could lead to conflicts and potentially inaccurate results.
+> Google Sanitizers are not designed to be used simultaneously. Each sanitizer serves a specific purpose and provides different types of analysis or debugging capabilities. Run one sanitizer at a time to get the desired information about a program's behavior or performance.
 
 1. Support and Services
 
@@ -445,7 +445,7 @@ The [Google Sanitizers](https://github.com/google/sanitizers) are a collection o
       > Compiling with the sanitizer flag `-fsanitize=address`.
 
       ```bash
-      g++ -fsanitize=address -std=c++14 program.cpp -o executable
+      g++ -fsanitize=address -g -O0 -std=c++14 program.cpp -o executable
       ./executable
       ```
 
@@ -536,11 +536,11 @@ The [Google Sanitizers](https://github.com/google/sanitizers) are a collection o
       > Compiling with the sanitizer flag `-fsanitize=leak`.
 
       ```bash
-      g++ -fsanitize=leak -std=c++14 program.cpp -o executable
+      g++ -fsanitize=leak -g -O0 -std=c++14 program.cpp -o executable
       ./executable
       ```
 
-    1. Output and Result
+3. Output and Result
 
     - `output.log`
 
@@ -643,7 +643,7 @@ The [Google Sanitizers](https://github.com/google/sanitizers) are a collection o
       > Compiling with the sanitizer flag `-fsanitize=undefined`.
 
       ```bash
-      g++ -fsanitize=undefined -std=c++14 program.cpp -o executable
+      g++ -fsanitize=undefined -g -O0 -std=c++14 program.cpp -o executable
       ./executable
       ```
 
@@ -690,7 +690,7 @@ The [Google Sanitizers](https://github.com/google/sanitizers) are a collection o
       > Compiling with the sanitizer flag `-fsanitize=thread`.
 
       ```bash
-      g++ -fsanitize=thread -std=c++14 -pthread program.cpp -o executable
+      g++ -fsanitize=thread -g -O0 -std=c++14 -pthread program.cpp -o executable
       ./executable
       ```
 

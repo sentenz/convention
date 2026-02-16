@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.10.0](https://github.com/sentenz/convention/compare/2.9.0...2.10.0) (2026-02-16)
+
+
+### Features
+
+* create an article about Observability Strategies ([6616c2d](https://github.com/sentenz/convention/commit/6616c2d7d7394c93280c505e90624f1991c1114a)), closes [#327](https://github.com/sentenz/convention/issues/327)
+
 # [2.9.0](https://github.com/sentenz/convention/compare/2.8.0...2.9.0) (2026-02-16)
 
 

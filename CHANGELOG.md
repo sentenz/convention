@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.9.0](https://github.com/sentenz/convention/compare/2.8.0...2.9.0) (2026-02-16)
+
+
+### Features
+
+* create an article about Password Hashing Algorithms ([7cf3769](https://github.com/sentenz/convention/commit/7cf3769935f67f0cf59d98e48762d79e1020eba4)), closes [#328](https://github.com/sentenz/convention/issues/328)
+
 # [2.8.0](https://github.com/sentenz/convention/compare/2.7.0...2.8.0) (2026-02-16)
 
 

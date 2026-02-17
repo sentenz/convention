@@ -1,90 +1,96 @@
 # Branching Strategies Guide
 
-[Branching strategies](../articles/branching-strategies.md) defines how a team uses branching to achieve a level of concurrent development.
+- [1. Category](#1-category)
+  - [1.1. Git Flow](#11-git-flow)
+  - [1.2. Scaled Trunk-Based Development](#12-scaled-trunk-based-development)
+- [2. References](#2-references)
 
-- [1. Git Flow](#1-git-flow)
-- [2. Scaled Trunk-Based Development](#2-scaled-trunk-based-development)
+## 1. Category
 
-## 1. Git Flow
+### 1.1. Git Flow
 
-[Git Flow](../articles/branching-strategies.md#git-flow) is a lightweight, branch-based workflow.
+[Git Flow](../articles/branching-strategies.md#12-git-flow) is a lightweight branch-based workflow that separates integration and release activities.
 
-The repository contains two base branches with an infinite lifetime:
+1. Components and Features
 
-- `main` and `develop`.
+    - Base Branches
 
-Next to the base branches there are supporting branches with limited life time:
+      - `main`
+        > Production-Ready Code
+        >
+        > The `main` branch contains production-ready code only. Direct pushes to `main` are forbidden.
 
-- `feature`, `release` and `fix`.
+      - `develop`
+        > Integration Point
+        >
+        > The `develop` branch is the default integration branch for ongoing development. Direct pushes to `develop` are forbidden.
 
-The strategy contains the following rules:
+    - Support Branches
 
-1. There are only two base branches, called *main* and *develop*.
-   - Direct push to *main* and *develop* branches is forbidden.
+      - `feature`
+        > Isolated Development
+        >
+        > Feature branches are created from `develop` and merged back into `develop` only. Branch naming convention: `feature/[issue-id]-[short-describe]`.
 
-2. *feature* branches are created from and merged back into *develop* branches.
-   - Branch naming convention: `feature/[ISSUETYPE-ID]-[short-describe]`.
-   - Pull requests (PR) of *feature* branches only into *develop* branch.
-   - Merge *feature* branch into *develop* by select `Squash and merge` option on PR merge (Squashing will combine all commits into one).
-   - Features should never interact directly with *main*.
+      - `release`
+        > Preparation for Deployment
+        >
+        > Release branches are created from `develop` (for example `release/1.2.x`) to prepare production releases and stage final stabilization.
 
-3. Merge to *main* will create a new release version and deploy to production.
-   - Merge of the *release* branch into the *main* branch will create a *tag* with the release version.
-   - The release version is created according to the [semver convention](../convention/semantic-versioning.md) by analyzing the [commit messages](../convention/conventional-commits.md).
+      - `fix`
+        > Urgent Production Fixes
+        >
+        > Fix branches are created from `main` (for example `fix/[issue-id]-[short-describe]`) for urgent production issues.
 
-4. *release* branches support preparation of a new production release and deploy to staging.
-   - Create *release* branch from *develop* (naming convention, i.e. `release/[1.2.x]`).
-   - Identified bugs are fixed and committed directly to the *release* branch.
-   - Pull requests (PR) of *release* branches first into *main* and next into *develop* branch.
+2. Rules
 
-5. *fix* branches of production issues that need an immediate fix of a production version.
-   - Create a *fix* branch from *main* (naming convention, i.e. `fix/[ISSUETYPE-ID]-[short-describe]`).
-   - Commit fix with commit message by [conventional commits](../convention/conventional-commits.md), i.e `fix(scope): what was fixed`.
-   - Pull requests (PR) of *fix* branches first into *main* and next into *develop* branch.
+      1. Pull requests from `feature` branches target `develop` only.
+      2. Feature branches never interact directly with `main`.
+      3. Merge `feature` branches using `Squash and merge`.
+      4. Merge `release` and `fix` branches first into `main`, then back into `develop`.
+      5. Merging `release` into `main` creates a version tag.
+      6. Versioning follows [Semantic Versioning](../articles/versioning.md#11-semantic-versioning-semver).
+      7. Commit and pull request titles follow [Conventional Commits](../articles/commit.md#11-conventional-commits) specification.
+      8. Supporting branches are deleted after merge.
 
-6. Pull requests (PR) title should follow the [conventional commits](../convention/conventional-commits.md).
+### 1.2. Scaled Trunk-Based Development
 
-7. Supporting branches are to be deleted after merging.
+[Scaled Trunk-Based Development](../articles/branching-strategies.md#11-trunk-based-development-tbd) uses short-lived feature branches, pull-request reviews, and CI/CD automation before integrating into `main`.
 
-## 2. Scaled Trunk-Based Development
+1. Components and Features
 
-[Scaled Trunk-Based Development](../articles/branching-strategies.md#scaled-trunk-based-development) is done with short-lived feature branches. One developer over a couple of days (max) and flowing through Pull-Request style code-review & automation (CI/CD) before integrating (merging) into the trunk (main) branch.
+    - Base Branches
 
-The repository contains one base branch with an infinite lifetime:
+      - `main` (or `trunk`)
+        > Shared Integration Branch
+        >
+        > The `main` branch is the single long-lived branch. Direct pushes to `main` are forbidden.
 
-- `trunk` or `main`.
+    - Support Branches
 
-Next to the base branches there are supporting branches with limited life time:
+      - `feature`
+        > Short-Lived Development Branches
+        >
+        > Feature branches are created from `main` and merged back into `main` through pull requests. Branch naming convention: `feature/[issue-id]-[short-describe]`.
 
-- `feature` and `release`.
+      - `release`
+        > Release Stabilization
+        >
+        > Release branches are cut from selected revisions of `main` (for example `release/1.2.x`) when a stabilization stream is required.
 
-The strategy contains the following rules:
+2. Rules
 
-1. There is only one base branch, called *main*.
-   - Direct push to *main* branch is forbidden.
-   - All development happens on the *main* branch.
-   - Pull requests (PR) of short-living *feature* branches still exist.
-   - Unfinished features are hidden behind [feature flags](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/feature-flags/index.html) until they are publish with an official release.
-   - Breaking changes stay behind [feature flags](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/feature-flags/index.html).
-   - The *main* contains only backward-compatible changes and feature additions.
+    1. All integration happens through `main`.
+    2. Pull requests from `feature` branches target `main` only.
+    3. Merge `feature` branches using `Squash and Merge` or `Rebase and Merge`.
+    4. Incomplete changes stay behind [Feature Flags](../articles/feature-flags.md).
+    5. The `main` branch should remain backward-compatible and continuously releasable.
+    6. Merging into `main` creates release tags and versions.
+    7. Versioning follows [Semantic Versioning](../articles/versioning.md#11-semantic-versioning-semver).
+    8. Production fixes are developed on `feature` branches and can be cherry-picked into release branches when needed.
+    9. Commit and pull request titles follow [Conventional Commits](../articles/commit.md#11-conventional-commits) specification.
+    10. Supporting branches are deleted after merge.
 
-2. *feature* branches are created from and merged back into *main* branch.
-   - Branch naming convention: `feature/[ISSUETYPE-ID]-[short-describe]`.
-   - Pull requests (PR) of *feature* branches only into *main* branch.
-   - Merge *feature* branch into *main* by select `Squash and merge` option on PR merge (Squashing will combine all commits into one).
+## 2. References
 
-3. Merge to *main* creates a release version.
-   - Merge of the *feature* branch into the *main* branch will create a *tag* with the release version.
-   - The release version is created according to the [semver convention](../convention/semantic-versioning.md) by analyzing the [commit messages](../convention/conventional-commits.md).
-
-4. *release* branches are cut from a specific revision of the *main*.
-   - Release from [main](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/release-from-trunk/index.html) retroactively by selecting the revision in the past to branch from.
-   - Branch naming convention, i.e. `release/[1.2.x]`.
-
-5. [Fix](https://sentenz.github.io/backup-service/website/trunkbaseddevelopment.com/branch-for-release/index.html#fix-production-bugs-on-trunk) production bugs.
-   - Create a *feature* branch from *main* (naming convention, i.e. `feature/[ISSUETYPE-ID]-[fix]-[short-describe]`).
-   - Fix bugs on the *feature* and cherry-picking them back to the release branch.
-
-6. Pull requests (PR) title should follow the [conventional commits](../convention/conventional-commits.md).
-
-7. Supporting branches are to be deleted after merging.
+- Sentenz [Branching strategies](../articles/branching-strategies.md) article.

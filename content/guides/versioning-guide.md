@@ -1,79 +1,78 @@
 # Versioning Guide
 
-[Semantic Versioning (SemVer)](../convention/semantic-versioning.md) is a system that aids in tracking versioning projects.
+- [1. Category](#1-category)
+  - [Semantic Versioning (SemVer)](#semantic-versioning-semver)
+    - [1.1. Release](#11-release)
+    - [1.2. Pre-release](#12-pre-release)
+- [2. References](#2-references)
 
-- [1. Versioning](#1-versioning)
-  - [1.1. Release](#11-release)
-  - [1.2. Pre-release](#12-pre-release)
-- [2. Tools](#2-tools)
-  - [2.1. Semantic Release](#21-semantic-release)
-  - [2.2. Standard Version](#22-standard-version)
-  - [2.3. Conventional Changelog](#23-conventional-changelog)
-  - [2.4. Conventional Changelog Configuration Spec](#24-conventional-changelog-configuration-spec)
-  - [2.5. Release Tools](#25-release-tools)
+## 1. Category
 
-## 1. Versioning
+### Semantic Versioning (SemVer)
 
-The actions to create a `version tag` and a `CHANGELOG.md` file based on the `semantic versioning` convention rely on the [commit messages](../guides/commit-message-guide.md) following the `conventional commits` convention.
+[Semantic Versioning (SemVer)](../articles/versioning.md#11-semantic-versioning-semver) and [Conventional Commits](../articles/commit.md#11-conventional-commits) are commonly combined to automate `version tags` and `CHANGELOG.md` updates in release pipelines.
 
-An yaml file containing actions for [continuous release](../articles/continuous-pipelines.md#15-continuous-release) pipeline is triggered from base branch.
+#### 1.1. Release
 
-### 1.1. Release
+[Semantic Versioning (SemVer)](../articles/versioning.md#11-semantic-versioning-semver) uses a three-component version format `MAJOR.MINOR.PATCH`.
 
-SemVer is a 3-component system `x`.`y`.`z`:
+1. Components and Features
 
-- `x`
-  > Stands for a major version. Introduces a breaking change, code that contains incompatible or significant changes.
+    - `MAJOR`
+      > Increments when incompatible changes are introduced.
+      >
+      > Example: `1.0.0` -> `2.0.0`
 
-- `y`
-  > Stands for a minor version. Introduces a feature change, code that includes new backward compatible changes.
+    - `MINOR`
+      > Increments when new backward-compatible functionality is added.
+      >
+      > Example: `1.0.0` -> `1.1.0`
 
-- `z`
-  > Stands for a patch. Introduces a bug fix, code that contains backward compatible fix changes.
+    - `PATCH`
+      > Increments when backward-compatible fixes are introduced.
+      >
+      > Example: `1.0.0` -> `1.0.1`
 
-`Major`.`Minor`.`Patch`, increment cases:
+2. Rules
 
-- `Major`
-  > Increments the version tag `1.0.0` -> `2.0.0` and modifies the `CHANGELOG.md`.
+    1. Commit messages should follow [Conventional Commits](../articles/commit.md#11-conventional-commits) to enable release tooling to detect change types.
+    2. Versioning should follow the `MAJOR.MINOR.PATCH` format, incrementing according to the nature of changes introduced in the release.
+    3. The release workflow should create a version tag and update `CHANGELOG.md`.
 
-- `Minor`
-  > Increments the version tag `1.0.0` -> `1.1.0` and modifies the `CHANGELOG.md`.
+#### 1.2. Pre-release
 
-- `Patch`
-  > Increments the version tag `1.0.0` -> `1.0.1` and modifies the `CHANGELOG.md`.
+Pre-release identifiers can be appended to the next target version to indicate that the release is not yet stable.
 
-### 1.2. Pre-release
+1. Components and Features
 
-With Semantic Versioning, pre-releases or release candidate (rc) for a given release can be defined by appending a hyphen and an identifier to a version.
+    - `rc`
+      > Release candidate identifier.
+      >
+      > Example progression: `1.0.0` -> `1.1.0-rc.1` -> `1.1.0-rc.2` -> `1.1.0`
 
-Regular releases to the `next` distribution channel from the branch `next` if it exists:
+    - `next`
+      > Distribution channel identifier for iterative upcoming releases.
+      >
+      > Example progression: `1.0.0` -> `1.1.0-next.1` -> `1.1.0-next.2` -> `1.1.0`
 
-- `1.0.0` -> `1.1.0-rc.1` -> `1.1.0-rc.2` -> `1.1.0`
+    - `alpha`
+      > Unstable pre-release identifier for early testing.
+      >
+      > Example progression: `1.0.0` -> `1.1.0-alpha.1` -> `1.1.0-alpha.2` -> `1.1.0`
 
-or
+    - `beta`
+      > More stable pre-release identifier for broader testing.
+      >
+      > Example progression: `1.0.0` -> `1.1.0-beta.1` -> `1.1.0-beta.2` -> `1.1.0`
 
-- `1.0.0` -> `1.1.0-next.1` -> `1.1.0-next.2` -> `1.1.0`
+2. Rules
 
-## 2. Tools
+    1. Pre-release versions are created from the next planned release version.
+    2. Numeric suffixes (`.1`, `.2`, ...) should increment sequentially per identifier.
+    3. Promoting to stable removes the pre-release suffix and publishes the final version.
 
-Tools to generate changelogs and version tag from a commit messages and metadata.
+## 2. References
 
-### 2.1. Semantic Release
-
-[semantic-release](https://sentenz.github.io/backup-service/website/semantic-release.gitbook.io/semantic-release/index.html) automates the whole package release workflow including: determining the next version number by `Semantic Versioning`, generating the release notes based on `Conventional Commits`, and publishing the package. Unlike `standard-version`,  `semantic-release` is meant to be executed on the CI environment after every successful build on the release branch.
-
-### 2.2. Standard Version
-
-[standard-version](https://github.com/conventional-changelog/standard-version) is a CLI utility for automate versioning and CHANGELOG generation based on `Semantic Versioning` and `Conventional Commits`.
-
-### 2.3. Conventional Changelog
-
-[Generate changelogs](https://github.com/conventional-changelog/conventional-changelog) and release notes from a project's commit messages and metadata.
-
-### 2.4. Conventional Changelog Configuration Spec
-
-A spec describing the config options supported by [conventional-config](https://github.com/conventional-changelog/conventional-changelog-config-spec) for upstream tooling.
-
-### 2.5. Release Tools
-
-Create a GitHub/GitLab/etc. [release](https://github.com/conventional-changelog/releaser-tools) using a project's commit messages and metadata.
+- Sentenz [Versioning](../articles/versioning.md) article.
+- Sentenz [Commit](../articles/commit.md) article.
+- Sentenz [Changelog](../articles/changelog.md) article.

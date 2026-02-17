@@ -155,7 +155,7 @@ Features of Code:
     - [Dynamic Analysis](../articles/software-analysis.md#113-dynamic-analysis)
       > Dynamic analysis is a software analysis technique that involves observing and analyzing the behavior of a software system during its execution. It helps uncover defects, validate functionality, memory leaks, assess performance, and understand system behavior under different conditions.
 
-5. [Conventional Commits](../convention/conventional-commits.md)
+5. [Commit](../articles/commit.md)
 
     Conventional Commits is a commit message convention that provides a standardized and structured format for commit messages in software development projects. It aims to make commit messages more readable, informative, and useful for both humans and automated tools.
 

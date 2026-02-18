@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkdocs-convention-plugin"
+version = "1.0.0"
+description = "MkDocs plugin for dynamic navigation generation and GitHub alert conversion, harmonized with Material for MkDocs"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "sentenz" }
+]
+keywords = ["mkdocs", "plugin", "material", "navigation", "github-alerts"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation",
+]
+dependencies = [
+    "mkdocs>=1.5.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/sentenz/convention"
+"Bug Tracker" = "https://github.com/sentenz/convention/issues"
+"Source Code" = "https://github.com/sentenz/convention"
+
+[project.entry-points."mkdocs.plugins"]
+convention = "mkdocs_convention_plugin.plugin:ConventionPlugin"
+
+[tool.setuptools.packages.find]
+include = ["mkdocs_convention_plugin*"]
+exclude = ["tests*"]

@@ -1,30 +1,13 @@
-"""MkDocs hooks for dynamic navigation and CommonMark compatibility.
-
-DEPRECATED: This hook has been converted to a proper MkDocs plugin.
-Please use the mkdocs-convention-plugin instead.
-
-See: mkdocs_convention_plugin/ for the new plugin implementation.
-To migrate, update your mkdocs.yml:
-
-    Before:
-        hooks:
-          - scripts/python/mkdocs_hooks.py
-        plugins:
-          - search
-
-    After:
-        plugins:
-          - search
-          - convention
-
-This file is kept for backward compatibility and may be removed in a future release.
-"""
+"""MkDocs Convention Plugin for dynamic navigation and CommonMark compatibility."""
 
 from __future__ import annotations
 
 import re
 from pathlib import Path
 from typing import Any
+
+from mkdocs.config import config_options
+from mkdocs.plugins import BasePlugin
 
 _ALERT_TYPE_MAP: dict[str, tuple[str, str]] = {
     "NOTE": ("note", "Note"),
@@ -37,7 +20,7 @@ _ALERT_TYPE_MAP: dict[str, tuple[str, str]] = {
 _ALERT_MARKER_RE = re.compile(
     r"^\[!(?P<type>NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(?P<title>.*)$"
 )
-_LIST_ITEM_RE = re.compile(r"^(?P<indent>\s*)(?P<marker>(?:[-*+]|\d+[.)]))(?P<gap>\s+)")
+_LIST_ITEM_RE = re.compile(r"^(?P<indent>\s*)(?:[-*+]|\d+[.)])\s+")
 _TOC_ITEM_RE = re.compile(
     r"^(?P<indent>\s*)[-*+]\s+\[[^\]]+\]\(#[-a-zA-Z0-9_:.%]+\)\s*$"
 )
@@ -77,31 +60,6 @@ def _nav_entry(markdown_file: Path, root: Path) -> dict[str, str]:
     return {title: relative_path}
 
 
-def on_config(config: Any, **_kwargs: Any) -> Any:
-    """Generate navigation based on top-level folders in the content directory."""
-    docs_root = Path(config["docs_dir"])
-
-    nav: list[Any] = []
-
-    for markdown_file in _sorted_markdown_files(docs_root, exclude={"index.md"}):
-        nav.append(_nav_entry(markdown_file, docs_root))
-
-    for directory in sorted(
-        (entry for entry in docs_root.iterdir() if entry.is_dir()),
-        key=lambda item: item.name.lower(),
-    ):
-        section_items = [
-            _nav_entry(markdown_file, docs_root)
-            for markdown_file in _sorted_markdown_files(directory)
-        ]
-        if section_items:
-            nav.append({_format_title(directory.name): section_items})
-
-    config["nav"] = nav
-
-    return config
-
-
 def _read_blockquote(lines: list[str], start: int) -> tuple[list[str], int, str]:
     """Read consecutive blockquote lines from ``start`` index."""
     quote_block: list[str] = []
@@ -116,12 +74,6 @@ def _read_blockquote(lines: list[str], start: int) -> tuple[list[str], int, str]
         content = candidate_stripped[1:]
         if content.startswith(" "):
             content = content[1:]
-
-        if _ALERT_MARKER_RE.match(content) and any(
-            part.strip() for part in quote_block
-        ):
-            break
-
         quote_block.append(content)
         index += 1
 
@@ -135,14 +87,7 @@ def _alert_block_to_admonition(
     if not quote_block:
         return None
 
-    marker_index = 0
-    while marker_index < len(quote_block) and not quote_block[marker_index].strip():
-        marker_index += 1
-
-    if marker_index >= len(quote_block):
-        return None
-
-    match = _ALERT_MARKER_RE.match(quote_block[marker_index])
+    match = _ALERT_MARKER_RE.match(quote_block[0])
     if not match:
         return None
 
@@ -152,7 +97,7 @@ def _alert_block_to_admonition(
     title = custom_title or default_title
 
     converted = [f'{base_indent}!!! {css_class} "{title}"']
-    for body_line in quote_block[marker_index + 1 :]:
+    for body_line in quote_block[1:]:
         converted.append(f"{base_indent}    {body_line}" if body_line else "")
 
     if len(converted) == 1:
@@ -223,82 +168,9 @@ def _normalize_toc_sections(markdown: str) -> str:
     return "\n".join(lines)
 
 
-def _normalize_list_item_indent_for_nested_block(
-    lines: list[str], item_index: int, item_indent: int
-) -> int:
-    """Normalize list item indent when it contains nested block syntax."""
-    if item_indent % 4 == 0:
-        return item_indent
-
-    scan = item_index + 1
-    while scan < len(lines) and not lines[scan].strip():
-        scan += 1
-
-    if scan >= len(lines):
-        return item_indent
-
-    candidate = lines[scan]
-    if _line_indent(candidate) <= item_indent:
-        return item_indent
-
-    candidate_stripped = candidate.lstrip(" ")
-    is_fence = _fence_marker(candidate_stripped) is not None
-    is_blockquote = candidate_stripped.startswith(">")
-
-    normalized_indent = item_indent
-    if is_fence or is_blockquote:
-        normalized_indent = ((item_indent // 4) + 1) * 4
-    else:
-        previous_sibling_indent = _previous_sibling_list_indent(
-            lines, item_index, item_indent
-        )
-        if (
-            previous_sibling_indent is not None
-            and previous_sibling_indent > item_indent
-        ):
-            normalized_indent = previous_sibling_indent
-
-    if normalized_indent == item_indent:
-        return item_indent
-
-    lines[item_index] = f'{" " * normalized_indent}{lines[item_index].lstrip()}'
-    return normalized_indent
-
-
 def _is_list_item(line: str) -> bool:
     """Check whether a line starts a list item."""
     return _LIST_ITEM_RE.match(line) is not None
-
-
-def _previous_sibling_list_indent(
-    lines: list[str], item_index: int, item_indent: int
-) -> int | None:
-    """Return indentation of the previous sibling list item when available."""
-    index = item_index - 1
-
-    while index >= 0:
-        candidate = lines[index]
-        stripped = candidate.lstrip(" ")
-
-        if not stripped:
-            index -= 1
-            continue
-
-        if stripped.startswith(">") or _fence_marker(stripped) is not None:
-            index -= 1
-            continue
-
-        match = _LIST_ITEM_RE.match(candidate)
-        if match is None:
-            return None
-
-        indent = len(match.group("indent"))
-        if indent <= item_indent + 3:
-            return indent
-
-        return None
-
-    return None
 
 
 def _is_list_break(line: str, item_indent: int) -> bool:
@@ -317,7 +189,7 @@ def _fence_marker(stripped_line: str) -> str | None:
 def _insert_blank_before_immediate_list_block(
     lines: list[str], item_index: int, item_indent: int
 ) -> int:
-    """Separate immediate nested blockquotes under list items with a blank line."""
+    """Ensure nested block syntax below list item text is separated by a blank line."""
     next_index = item_index + 1
     if next_index >= len(lines):
         return item_index
@@ -327,9 +199,12 @@ def _insert_blank_before_immediate_list_block(
         return item_index
 
     candidate_stripped = candidate.lstrip(" ")
-    has_nested_blockquote = candidate_stripped.startswith(">")
+    is_nested_block = (
+        candidate_stripped.startswith(">")
+        or _fence_marker(candidate_stripped) is not None
+    )
 
-    if _line_indent(candidate) >= item_indent and has_nested_blockquote:
+    if _line_indent(candidate) > item_indent and is_nested_block:
         lines.insert(next_index, "")
         return item_index + 1
 
@@ -431,33 +306,14 @@ def _normalize_list_blockquote_indentation(markdown: str) -> str:
 
     lines = markdown.splitlines()
     index = 0
-    active_fence_marker: str | None = None
 
     while index < len(lines):
-        stripped_line = lines[index].lstrip(" ")
-        line_fence_marker = _fence_marker(stripped_line)
-
-        if line_fence_marker is not None:
-            if active_fence_marker is None:
-                active_fence_marker = line_fence_marker
-            elif line_fence_marker == active_fence_marker:
-                active_fence_marker = None
-            index += 1
-            continue
-
-        if active_fence_marker is not None:
-            index += 1
-            continue
-
         match = _LIST_ITEM_RE.match(lines[index])
         if not match:
             index += 1
             continue
 
         item_indent = len(match.group("indent"))
-        item_indent = _normalize_list_item_indent_for_nested_block(
-            lines, index, item_indent
-        )
         index = _insert_blank_before_immediate_list_block(lines, index, item_indent)
         _normalize_list_item_continuation_blocks(lines, index, item_indent)
 
@@ -498,6 +354,50 @@ def _convert_github_alerts(markdown: str) -> str:
     return "\n".join(converted)
 
 
-def on_page_markdown(markdown: str, **_kwargs: Any) -> str:
-    """Pre-process markdown while keeping MkDocs markdown extension pipeline."""
-    return _convert_github_alerts(markdown)
+class ConventionPlugin(BasePlugin):
+    """MkDocs plugin for dynamic navigation and GitHub alert conversion."""
+
+    config_scheme = (
+        ("enabled", config_options.Type(bool, default=True)),
+        ("generate_nav", config_options.Type(bool, default=True)),
+        ("convert_alerts", config_options.Type(bool, default=True)),
+    )
+
+    def on_config(self, config: Any, **kwargs: Any) -> Any:
+        """Generate navigation based on top-level folders in the content directory."""
+        if not self.config.get("enabled", True):
+            return config
+
+        if not self.config.get("generate_nav", True):
+            return config
+
+        docs_root = Path(config["docs_dir"])
+        nav: list[Any] = []
+
+        for markdown_file in _sorted_markdown_files(docs_root, exclude={"index.md"}):
+            nav.append(_nav_entry(markdown_file, docs_root))
+
+        for directory in sorted(
+            (entry for entry in docs_root.iterdir() if entry.is_dir()),
+            key=lambda item: item.name.lower(),
+        ):
+            section_items = [
+                _nav_entry(markdown_file, docs_root)
+                for markdown_file in _sorted_markdown_files(directory)
+            ]
+            if section_items:
+                nav.append({_format_title(directory.name): section_items})
+
+        config["nav"] = nav
+
+        return config
+
+    def on_page_markdown(self, markdown: str, **kwargs: Any) -> str:
+        """Pre-process markdown while keeping MkDocs markdown extension pipeline."""
+        if not self.config.get("enabled", True):
+            return markdown
+
+        if not self.config.get("convert_alerts", True):
+            return markdown
+
+        return _convert_github_alerts(markdown)

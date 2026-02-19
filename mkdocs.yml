@@ -11,6 +11,7 @@ hooks:
 
 plugins:
   - search
+  - awesome-nav
 
 markdown_extensions:
   - admonition

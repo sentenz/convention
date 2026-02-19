@@ -36,11 +36,11 @@ The Convention is a collection of general articles, conventions, and guides for 
 
 1. Insights and Details
 
-    - Dynamic Navigation
-      > The top-level navigation sections are generated automatically from subfolders in [content/](content/) using a custom MkDocs hook.
+    - Navigation
+      > Navigation is managed by the [mkdocs-awesome-nav](https://lukasgeiter.github.io/mkdocs-awesome-nav/) plugin.
 
-    - CommonMark Markdown Flavor
-      > A custom MkDocs hook in [mkdocs_hooks.py](scripts/python/mkdocs_hooks.py) extends the rendering of pages with `markdown-it-py` using the `commonmark` preset to provide CommonMark-compatible parsing.
+    - CommonMark Flavored Markdown
+      > A custom MkDocs hook in [mkdocs_hooks.py](scripts/python/mkdocs_hooks.py) normalizes markdown rendering behavior for CommonMark-style content and GitHub Flavored Markdown.
 
     - Configuration
       > The [mkdocs.yml](mkdocs.yml) file contains the configuration for the MkDocs site, including theme, plugins, and markdown extensions.

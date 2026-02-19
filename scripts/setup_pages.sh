@@ -21,6 +21,7 @@ readonly -A PIP_PACKAGES=(
   ["mkdocs-macros-plugin"]="1.0.5"
   ["markdown-it-py"]="3.0.0"
   ["pymdown-extensions"]="10.8"
+  ["mkdocs-awesome-nav"]="3.3.0"
 )
 
 # Internal Functions

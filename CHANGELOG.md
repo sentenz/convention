@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.11.1](https://github.com/sentenz/convention/compare/2.11.0...2.11.1) (2026-02-19)
+
+
+### Bug Fixes
+
+* ensure mkdocs-awesome-nav plugin is installed in dependencies ([7874670](https://github.com/sentenz/convention/commit/78746700ff109818db75986a8fc22ebe2d37d897))
+
 # [2.11.0](https://github.com/sentenz/convention/compare/2.10.1...2.11.0) (2026-02-19)
 
 

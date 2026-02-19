@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.11.0](https://github.com/sentenz/convention/compare/2.10.1...2.11.0) (2026-02-19)
+
+
+### Features
+
+* add mkdocs-awesome-nav plugin and update setup script ([3a64a2e](https://github.com/sentenz/convention/commit/3a64a2e90c37bd43b4b8a65d2deac3af61445d10))
+
 ## [2.10.1](https://github.com/sentenz/convention/compare/2.10.0...2.10.1) (2026-02-16)
 
 

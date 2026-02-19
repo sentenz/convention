@@ -15,485 +15,794 @@ A build system is a software tool or framework that automates the process of com
 
 ### 1.1. Make
 
-[Make](https://www.gnu.org/software/make/) is a widely used build system primarily found in Unix-based systems. It automates the process of compiling source code into executable programs or libraries. Make relies on makefiles, which are text files containing rules and instructions for building the project.
+[Make](https://www.gnu.org/software/make/) is a build system in Unix-like environments to build targets from rules declared in a `Makefile`, and updates only what is out of date based on file dependencies and timestamps.
 
-Make provides various features, such as automatic dependency tracking and support for variables and macros. It allows to create complex build systems with multiple targets and conditional compilation. Makefiles can be customized to suit the specific requirements of your project.
+> [!NOTE]
+> `Makefile` recipes require **tab indentation** (not spaces).
 
-> NOTE Makefiles use indentation with tabs (not spaces), so ensure that your text editor is configured to use tabs for indentation to avoid any issues.
+1. Project Layout and Directory Structure
 
-Example of Make:
-
-- Structure
-
-  ```txt
-  MyProject/
-  ├── Makefile
-  ├── src/
-  │   ├── main.c
-  │   └── utility.c
-  └── (other directories or files, if any)
-  ```
-
-- Makefile
-
-  ```makefile
-  CC = gcc
-  CFLAGS = -Wall -Werror
-  
-  all: myprogram
-  
-  myprogram: main.o utility.o
-      $(CC) $(CFLAGS) -o myprogram main.o utility.o
-  
-  main.o: main.c
-      $(CC) $(CFLAGS) -c main.c
-  
-  utility.o: utility.c
-      $(CC) $(CFLAGS) -c utility.c
-  
-  clean:
-      rm -f *.o
-  ```
-  
-  In the example:
-  
-  - `myprogram` is the target executable, `main.o` and `utility.o` are the object file dependencies, and `clean` is a target for removing built artifacts.
-  
-  - Open a terminal or command prompt, navigate to the project's root directory, and run the following command:
-  
-    ```shell
-    make
-    ```
-  
-    Make will read the makefile, analyze the dependencies, and execute the necessary commands to build the project.
-  
-  - To remove the generated files run the following command:
-  
-    ```shell
-    make clean
+    ```plaintext
+    .
+    ├── Makefile
+    └── src/
+        ├── main.c
+        ├── utility.c
+        └── utility.h
     ```
 
-    This target will remove the built artifacts, such as the object files.
+2. Files and Folders
+
+    - `Makefile`
+      > Root build definition. Declares targets, dependencies, compiler flags, and utility targets such as `clean`.
+
+      ```makefile
+      CC = gcc
+      CFLAGS = -Wall -Wextra -Werror -std=c11
+      TARGET = myprogram
+      OBJ = main.o utility.o
+      TAB := $(shell printf '\t')
+
+      .PHONY: all clean
+
+      all: $(TARGET)
+
+      $(TARGET): $(OBJ)
+      $(TAB)$(CC) $(CFLAGS) -o $@ $^
+
+      main.o: src/main.c src/utility.h
+      $(TAB)$(CC) $(CFLAGS) -c $< -o $@
+
+      utility.o: src/utility.c src/utility.h
+      $(TAB)$(CC) $(CFLAGS) -c $< -o $@
+
+      clean:
+      $(TAB)rm -f $(OBJ) $(TARGET)
+      ```
+
+    - `src/main.c`
+      > Entry point that calls functionality from `utility`.
+
+      ```c
+      #include <stdio.h>
+
+      #include "utility.h"
+
+      int main(void) {
+          puts(greet("Make"));
+          return 0;
+      }
+      ```
+
+    - `src/utility.c`
+      > Implementation file for reusable helper functions.
+
+      ```c
+      #include <stdio.h>
+
+      #include "utility.h"
+
+      const char* greet(const char* name) {
+          static char buffer[64];
+          snprintf(buffer, sizeof(buffer), "Hello, %s!", name);
+          return buffer;
+      }
+      ```
+
+    - `src/utility.h`
+      > Public declarations shared between translation units.
+
+      ```c
+      #pragma once
+
+      const char* greet(const char* name);
+      ```
+
+3. Instructions and Commands
+
+    - Build
+      > Compile and link the default target.
+
+      ```shell
+      make
+      ```
+
+    - Run
+      > Execute the generated binary.
+
+      ```shell
+      ./myprogram
+      ```
+
+    - Clean
+      > Remove generated objects and binaries.
+
+      ```shell
+      make clean
+      ```
 
 ### 1.2. CMake
 
-[CMake](https://cmake.org/) is a cross-platform build system generator. It generates build files (e.g., Makefiles or project files) for different build systems, such as Make, Ninja, or Visual Studio. CMake provides a high-level scripting language that allows developers to define the build process and handle platform-specific differences.
+[CMake](https://cmake.org/) is a cross-platform build system generator for C, C++, and other languages. Modern CMake emphasizes **target-based design** (properties, include paths, and links attached to targets), reproducible configuration via **CMake presets**, and clear separation of source and build trees.
 
-Example of CMake:
+1. Project Layout and Directory Structure
 
-- Structure
+    ```plaintext
+    .
+    ├── CMakeLists.txt
+    ├── CMakePresets.json
+    ├── include/
+    │   └── foo/
+    │       └── foo.hpp
+    └── src/
+        ├── CMakeLists.txt
+        ├── app/
+        │   ├── CMakeLists.txt
+        │   └── main.cpp
+        └── foo/
+            ├── CMakeLists.txt
+            └── foo.cpp
+    ```
 
-  ```txt
-  MyProject/
-  ├── CMakeLists.txt
-  ├── src/
-  │   ├── main.cpp
-  │   └── utility.cpp
-  └── include/
-      └── (header files, if any)
-  ```
+2. Files and Folders
 
-- CMakeLists.txt
+    - `CMakeLists.txt`
+      > Root build entry point. Defines global project metadata and includes subdirectories. Keep this file small and delegate target definitions to child directories.
 
-  ```cmake
-  cmake_minimum_required(VERSION 3.21)
-  project(MyProject)
+      ```cmake
+      cmake_minimum_required(VERSION 3.30)
 
-  # Set C++ standard to C++11
-  set(CMAKE_CXX_STANDARD 11)
-  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+      project(MyProject VERSION 1.0.0 LANGUAGES CXX)
 
-  # Add source files
-  set(SOURCES
-      src/main.cpp
-      src/utility.cpp
-  )
+      set(CMAKE_CXX_STANDARD 20)
+      set(CMAKE_CXX_STANDARD_REQUIRED ON)
+      set(CMAKE_CXX_EXTENSIONS OFF)
 
-  # Add an executable target
-  add_executable(MyExecutable ${SOURCES})
+      add_subdirectory(src)
+      ```
 
-  # Set include directories
-  target_include_directories(MyExecutable
-      PRIVATE include
-  )
-  ```
+    - `CMakePresets.json`
+      > Standardized, shareable configure/build presets. Improves reproducibility across local machines and CI.
 
-  In the example:
+      ```json
+      {
+        "version": 7,
+        "cmakeMinimumRequired": {
+          "major": 3,
+          "minor": 30,
+          "patch": 0
+        },
+        "configurePresets": [
+          {
+            "name": "dev-debug",
+            "displayName": "Development Debug",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+              "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+              "CMAKE_BUILD_TYPE": "Debug"
+            }
+          },
+          {
+            "name": "dev-release",
+            "displayName": "Development Release",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+              "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+              "CMAKE_BUILD_TYPE": "Release"
+            }
+          }
+        ],
+        "buildPresets": [
+          {
+            "name": "build-debug",
+            "configurePreset": "dev-debug"
+          },
+          {
+            "name": "build-release",
+            "configurePreset": "dev-release"
+          }
+        ]
+      }
+      ```
 
-  - Set the minimum required CMake version to 3.21 using `cmake_minimum_required(VERSION 3.21)`. Then, we specify the project name using `project(MyProject)`.
+    - `src/CMakeLists.txt`
+      > Aggregates subdirectories that define their own targets and dependencies.
 
-  - Set the C++ standard to C++11 with `set(CMAKE_CXX_STANDARD 11)`.
+      ```cmake
+      add_subdirectory(foo)
+      add_subdirectory(app)
+      ```
 
-  - Define a list of source files (`src/main.cpp` and `src/utility.cpp`) in the `SOURCES` variable.
+    - `src/app/CMakeLists.txt`
+      > Defines executable and links against internal library targets.
 
-  - Add an executable target named `MyExecutable` that will be built from the specified source files using `add_executable(MyExecutable ${SOURCES})`.
+      ```cmake
+      add_executable(app main.cpp)
 
-  - Set the include directories using `target_include_directories(MyExecutable PRIVATE include)` to include the `include` directory for the target `MyExecutable`.
+      target_link_libraries(app
+        PRIVATE
+          foo
+      )
+
+      target_compile_features(app PRIVATE cxx_std_20)
+      ```
+
+    - `src/foo/CMakeLists.txt`
+      > Defines a reusable library and publishes the root-level `include/` directory with proper visibility.
+
+      ```cmake
+      add_library(foo foo.cpp)
+
+      target_include_directories(foo
+        PUBLIC
+          $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+          $<INSTALL_INTERFACE:include>
+      )
+
+      target_compile_features(foo PUBLIC cxx_std_20)
+      ```
+
+    - `src/app/main.cpp`
+      > Application entry point that consumes the `foo` library using a namespaced include path (`foo/foo.hpp`).
+
+      ```cpp
+      #include <iostream>
+
+      #include "foo/foo.hpp"
+
+      int main() {
+          std::cout << foo::greet("CMake") << '\n';
+          return 0;
+      }
+      ```
+
+    - `src/foo/foo.cpp`
+      > Implementation for the library API.
+
+      ```cpp
+      #include "foo/foo.hpp"
+
+      namespace foo {
+
+      std::string greet(const std::string& name) {
+          return "Hello, " + name + "!";
+      }
+
+      }  // namespace foo
+      ```
+
+    - `include/foo/foo.hpp`
+      > Public header for the `foo` library target. When installed this header should be available as `foo/foo.hpp` so consumers use namespaced includes.
+
+      ```cpp
+      #pragma once
+
+      #include <string>
+
+      namespace foo {
+
+      std::string greet(const std::string& name);
+
+      }  // namespace foo
+      ```
+
+3. Instructions and Commands
+
+    - Configure
+      > Configure the project using the debug preset.
+
+      ```shell
+      cmake --preset dev-debug
+      ```
+
+    - Build
+      > Build all targets defined by the selected preset.
+
+      ```shell
+      cmake --build --preset build-debug
+      ```
+
+    - Run
+      > Execute the generated binary from the build tree.
+
+      ```shell
+      ./build/dev-debug/src/app/app
+      ```
+
+    - Clean
+      > Remove generated artifacts by deleting the build directory.
+
+      ```shell
+      rm -rf build/
+      ```
 
 ### 1.3. Gradle
 
-[Gradle](https://gradle.org/) is a build system commonly used in Java and Android development. It offers a flexible and powerful build automation framework. Gradle uses a Groovy-based domain-specific language (DSL) to define the build scripts. It supports dependency management, task parallelization, and incremental builds.
+[Gradle](https://gradle.org/) is a build automation tool commonly used for Java, Kotlin, and Android projects. It uses a declarative build model and supports dependency management, incremental builds, and task orchestration.
 
-Example of Gradle:
+1. Project Layout and Directory Structure
 
-- Structure
+    ```plaintext
+    .
+    ├── settings.gradle
+    ├── build.gradle
+    └── src/
+        ├── main/
+        │   └── java/
+        │       └── com/
+        │           └── example/
+        │               └── MyApplication.java
+        └── test/
+            └── java/
+                └── com/
+                    └── example/
+                        └── MyApplicationTest.java
+    ```
 
-  ```txt
-  MyProject/
-  ├── build.gradle
-  └── src/
-      ├── main/
-      │   └── java/
-      │       └── com/
-      │           └── example/
-      │               └── MyApplication.java
-      └── test/
-          └── java/
-              └── com/
-                  └── example/
-                      └── MyApplicationTest.java
-  ```
+2. Files and Folders
 
-  In the structure:
+    - `settings.gradle`
+      > Declares the root project name and included modules.
 
-  - `build.gradle`: The Gradle build script file that defines the project configuration, dependencies, and tasks.
-  - `src/`: The directory that contains the source code for the project.
-    - `main/`: The directory for main source code.
-      - `java/`: The directory for Java source files.
-        - `com/`: The package structure for the project.
-          - `example/`: The package for the project's classes.
-            - `MyApplication.java`: The main Java class file for the project.
-    - `test/`: The directory for test source code.
-      - `java/`: The directory for Java test source files.
-        - `com/`: The package structure for the test code.
-          - `example/`: The package for the project's test classes.
-            - `MyApplicationTest.java`: The Java test class file for the project.
+      ```groovy
+      rootProject.name = 'MyProject'
+      ```
 
-- build.gradle
+    - `build.gradle`
+      > Defines plugins, dependencies, Java toolchain settings, and custom tasks.
 
-  ```groovy
-  plugins {
-      id 'java'
-  }
+      ```groovy
+      plugins {
+          id 'application'
+      }
 
-  group 'com.example'
-  version '1.0.0'
+      group = 'com.example'
+      version = '1.0.0'
 
-  repositories {
-      mavenCentral()
-  }
+      repositories {
+          mavenCentral()
+      }
 
-  dependencies {
-      implementation 'com.google.guava:guava:30.1-jre'
-      testImplementation 'junit:junit:4.13.2'
-  }
+      java {
+          toolchain {
+              languageVersion = JavaLanguageVersion.of(21)
+          }
+      }
 
-  tasks.test {
-      useJUnit()
-  }
+      dependencies {
+          implementation 'com.google.guava:guava:33.4.8-jre'
+          testImplementation 'org.junit.jupiter:junit-jupiter:5.12.0'
+      }
 
-  task runApplication(type: JavaExec) {
-      mainClassName = 'com.example.MyApplication'
-      classpath = sourceSets.main.runtimeClasspath
-  }
-  ```
+      application {
+          mainClass = 'com.example.MyApplication'
+      }
 
-  In the example, written in Groovy:
+      tasks.test {
+          useJUnitPlatform()
+      }
+      ```
 
-  - `plugins` block: This block specifies the plugins to be applied to the project. In this case, we apply the `java` plugin, which adds support for Java compilation, testing, and packaging.
+    - `src/main/java/com/example/MyApplication.java`
+      > Application entry point.
 
-  - `group` and `version`: These properties define the project's group and version, which are used for identifying the project artifacts.
+      ```java
+      package com.example;
 
-  - `repositories` block: This block configures the repositories where Gradle looks for dependencies. In this example, we use `mavenCentral()` as the repository for fetching dependencies.
+      public class MyApplication {
+          public static void main(String[] args) {
+              System.out.println("Hello, Gradle!");
+          }
+      }
+      ```
 
-  - `dependencies` block: This block defines the project's dependencies. In this example, we include `com.google.guava:guava:30.1-jre` as an implementation dependency, and `junit:junit:4.13.2` as a test implementation dependency.
+    - `src/test/java/com/example/MyApplicationTest.java`
+      > Unit test verifying basic behavior.
 
-  - `tasks.test` block: This block configures the test task. In this example, we use JUnit for testing by calling `useJUnit()`.
+      ```java
+      package com.example;
 
-  - `task runApplication` block: This block defines a custom task named `runApplication`. It uses the `JavaExec` type to execute a Java class. We specify the main class name as `com.example.MyApplication` and set the classpath to the runtime classpath of the `main` source set.
+      import org.junit.jupiter.api.Test;
+
+      import static org.junit.jupiter.api.Assertions.assertTrue;
+
+      class MyApplicationTest {
+          @Test
+          void smokeTest() {
+              assertTrue(true);
+          }
+      }
+      ```
+
+3. Instructions and Commands
+
+    - Build
+      > Compile and package the project.
+
+      ```shell
+      ./gradlew build
+      ```
+
+    - Run
+      > Execute the application configured by the `application` plugin.
+
+      ```shell
+      ./gradlew run
+      ```
+
+    - Test
+      > Run unit tests.
+
+      ```shell
+      ./gradlew test
+      ```
+
+    - Clean
+      > Remove generated build outputs.
+
+      ```shell
+      ./gradlew clean
+      ```
 
 ### 1.4. Maven
 
-[Maven](https://maven.apache.org/) is a build automation and dependency management tool primarily used for Java projects. It emphasizes convention over configuration and follows the Project Object Model (POM) approach. Maven manages project dependencies, builds the project using predefined lifecycle phases, and provides plugins for various tasks.
+[Maven](https://maven.apache.org/) is a build and dependency management tool for Java projects. It uses a standardized project layout and a lifecycle-based model configured through `pom.xml`.
 
-Example of Maven:
+1. Project Layout and Directory Structure
 
-- Structure
+    ```plaintext
+    .
+    ├── pom.xml
+    └── src
+        ├── main
+        │   └── java
+        │       └── com/
+        │           └── example/
+        │               └── MyApp.java
+        └── test/
+            └── java/
+                └── com/
+                    └── example/
+                        └── MyAppTest.java
+    ```
 
-  ```txt
-  MyProject/
-  ├── src/
-  │   ├── main/
-  │   │   └── java/
-  │   │       └── com/
-  │   │           └── example/
-  │   │               └── MyApp.java
-  │   └── test/
-  │       └── java/
-  │           └── com/
-  │               └── example/
-  │                   └── MyAppTest.java
-  └── pom.xml
-  ```
+2. Files and Folders
 
-  In the structure:
+    - `pom.xml`
+      > Project Object Model (POM) file that defines coordinates, Java version, dependencies, and plugins.
 
-  - `src/`: The directory that contains the source code for the project.
-    - `main/`: The directory for main source code.
-      - `java/`: The directory for Java source files.
-        - `com/`: The package structure for the project.
-          - `example/`: The package for the project's classes.
-            - `MyApp.java`: The main Java class file for the project.
-    - `test/`: The directory for test source code.
-      - `java/`: The directory for Java test source files.
-        - `com/`: The package structure for the test code.
-          - `example/`: The package for the project's test classes.
-            - `MyAppTest.java`: The Java test class file for the project.
-  - `pom.xml`: The Project Object Model (POM) file that contains project configuration and dependencies.
+      ```xml
+      <project xmlns="http://maven.apache.org/POM/4.0.0"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+          <modelVersion>4.0.0</modelVersion>
 
-- pom.xml
+          <groupId>com.example</groupId>
+          <artifactId>myproject</artifactId>
+          <version>1.0.0</version>
 
-  ```xml
-  <project xmlns="http://maven.apache.org/POM/4.0.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
-      <modelVersion>4.0.0</modelVersion>
-      <groupId>com.example</groupId>
-      <artifactId>MyProject</artifactId>
-      <version>1.0.0</version>
-      
-      <properties>
-          <maven.compiler.source>1.8</maven.compiler.source>
-          <maven.compiler.target>1.8</maven.compiler.target>
-      </properties>
-      
-      <dependencies>
-          <dependency>
-              <groupId>junit</groupId>
-              <artifactId>junit</artifactId>
-              <version>4.13.2</version>
-              <scope>test</scope>
-          </dependency>
-      </dependencies>
-      
-  </project>
-  ```
+          <properties>
+              <maven.compiler.release>21</maven.compiler.release>
+              <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+          </properties>
 
-  In the example:
+          <dependencies>
+              <dependency>
+                  <groupId>org.junit.jupiter</groupId>
+                  <artifactId>junit-jupiter</artifactId>
+                  <version>5.12.0</version>
+                  <scope>test</scope>
+              </dependency>
+          </dependencies>
 
-  - `<groupId>`, `<artifactId>`, and `<version>`: These elements define the project's coordinates, specifying the group, artifact, and version identifiers.
+          <build>
+              <plugins>
+                  <plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-surefire-plugin</artifactId>
+                      <version>3.5.2</version>
+                  </plugin>
+              </plugins>
+          </build>
+      </project>
+      ```
 
-  - `<properties>`: This section allows to define properties that can be referenced throughout the POM. In this example, we specify the source and target Java versions for compilation.
+    - `src/main/java/com/example/MyApp.java`
+      > Main class for the application.
 
-  - `<dependencies>`: This section defines the project's dependencies. In this example, we include the JUnit dependency with the specified version and scope.
+      ```java
+      package com.example;
+
+      public class MyApp {
+          public static void main(String[] args) {
+              System.out.println("Hello, Maven!");
+          }
+      }
+      ```
+
+    - `src/test/java/com/example/MyAppTest.java`
+      > Unit test class.
+
+      ```java
+      package com.example;
+
+      import org.junit.jupiter.api.Test;
+
+      import static org.junit.jupiter.api.Assertions.assertTrue;
+
+      class MyAppTest {
+          @Test
+          void smokeTest() {
+              assertTrue(true);
+          }
+      }
+      ```
+
+3. Instructions and Commands
+
+    - Build
+      > Compile, test, and package the project.
+
+      ```shell
+      mvn clean package
+      ```
+
+    - Run Tests
+      > Execute the test phase only.
+
+      ```shell
+      mvn test
+      ```
+
+    - Clean
+      > Remove generated artifacts.
+
+      ```shell
+      mvn clean
+      ```
 
 ### 1.5. Ant
 
-[Ant (Another Neat Tool)](https://ant.apache.org/) is a Java-based build system that uses XML-based build scripts. It provides a flexible and customizable approach to building, testing, and deploying applications.
+[Ant (Another Neat Tool)](https://ant.apache.org/) is an XML-based Java build tool. It provides explicit control over build steps through named targets and dependencies.
 
-Example of Ant:
+1. Project Layout and Directory Structure
 
-- Structure
+    ```plaintext
+    .
+    ├── build.xml
+    └── src/
+        └── com/
+            └── example/
+                └── MyApp.java
+    ```
 
-  ```txt
-  MyProject/
-  ├── build.xml
-  └── src/
-      └── com/
-          └── example/
-              └── MyApp.java
-  ```
+2. Files and Folders
 
-  In the structure:
+    - `build.xml`
+      > Main Ant script that defines properties and targets such as `clean`, `compile`, and `jar`.
 
-  - `build.xml`: The Ant build script file that contains the project configuration and build targets.
-  - `src/`: The directory that contains the source code for the project.
-    - `com/`: The package structure for the project.
-      - `example/`: The package for the project's classes.
-        - `MyApp.java`: The Java source file for the project.
+      ```xml
+      <project name="MyProject" default="build">
+          <property name="src.dir" value="src"/>
+          <property name="build.dir" value="build"/>
+          <property name="dist.dir" value="dist"/>
 
-- build.xml
+          <target name="clean">
+              <delete dir="${build.dir}"/>
+              <delete dir="${dist.dir}"/>
+          </target>
 
-  ```xml
-  <project name="MyProject" default="build">
+          <target name="compile" depends="clean">
+              <mkdir dir="${build.dir}"/>
+              <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
+          </target>
 
-      <!-- Define properties -->
-      <property name="src.dir" value="src"/>
-      <property name="build.dir" value="build"/>
-      <property name="dist.dir" value="dist"/>
+          <target name="jar" depends="compile">
+              <mkdir dir="${dist.dir}"/>
+              <jar destfile="${dist.dir}/MyProject.jar" basedir="${build.dir}">
+                  <manifest>
+                      <attribute name="Main-Class" value="com.example.MyApp"/>
+                  </manifest>
+              </jar>
+          </target>
 
-      <!-- Clean the build directory -->
-      <target name="clean">
-          <delete dir="${build.dir}"/>
-          <delete dir="${dist.dir}"/>
-      </target>
+          <target name="build" depends="jar"/>
+      </project>
+      ```
 
-      <!-- Compile Java source files -->
-      <target name="compile" depends="clean">
-          <mkdir dir="${build.dir}"/>
-          <javac srcdir="${src.dir}" destdir="${build.dir}"/>
-      </target>
+    - `src/com/example/MyApp.java`
+      > Application entry point.
 
-      <!-- Create a JAR file -->
-      <target name="jar" depends="compile">
-          <mkdir dir="${dist.dir}"/>
-          <jar destfile="${dist.dir}/MyProject.jar" basedir="${build.dir}">
-              <manifest>
-                  <attribute name="Main-Class" value="com.example.MyApp"/>
-              </manifest>
-          </jar>
-      </target>
+      ```java
+      package com.example;
 
-      <!-- Default target -->
-      <target name="build" depends="jar"/>
+      public class MyApp {
+          public static void main(String[] args) {
+              System.out.println("Hello, Ant!");
+          }
+      }
+      ```
 
-  </project>
-  ```
+3. Instructions and Commands
 
-  In the example:
+    - Build
+      > Run the default target (`build`), which compiles and packages the JAR.
 
-  - `<project>`: The root element of the Ant build script. It defines the project name and specifies the default target.
+      ```shell
+      ant
+      ```
 
-  - `<property>`: This element defines properties that can be used throughout the build script. In this example, we define properties for the source directory (`src.dir`), build directory (`build.dir`), and distribution directory (`dist.dir`).
+    - Run
+      > Execute the generated JAR.
 
-  - `<target>`: Targets represent specific build actions or tasks. They can have dependencies on other targets. In this example, we have three targets: `clean`, `compile`, and `jar`.
+      ```shell
+      java -jar dist/MyProject.jar
+      ```
 
-  - `clean`: The `clean` target deletes the build and distribution directories to ensure a clean build environment.
+    - Clean
+      > Remove generated build and distribution directories.
 
-  - `compile`: The `compile` target creates the build directory, and then compiles the Java source files in the source directory (`src.dir`) and places the compiled classes in the build directory (`build.dir`).
-
-  - `jar`: The `jar` target creates a JAR file using the compiled classes from the build directory. It creates the distribution directory if it doesn't exist, and the resulting JAR file is named `MyProject.jar` and placed in the distribution directory (`dist.dir`). The `<manifest>` element inside the `<jar>` task specifies the Main-Class attribute for the JAR file.
-
-  - `build`: The `build` target is the default target, which means it will be executed when no specific target is specified. In this example, the `build` target depends on the `jar` target, so running `ant` without specifying a target will clean the build directories, compile the Java source files, and create the JAR file.
+      ```shell
+      ant clean
+      ```
 
 ### 1.6. Bazel
 
-[Bazel](https://bazel.build/) is an open-source build system developed by Google. It focuses on scalability and supports large-scale projects with multiple programming languages. Bazel uses a declarative language to define build targets and dependencies. It provides caching, parallel execution, and incremental builds.
+[Bazel](https://bazel.build/) is a scalable build system designed for monorepos and multi-language projects. It uses declarative targets, strict dependency graphs, and aggressive caching for reproducible builds.
 
-Bazel allows to customize the build configuration based on the project's specific requirements. It allows to define additional build targets, specify compiler flags, include additional libraries. Bazel's flexibility and extensibility provide the ability to create complex build configurations for large-scale projects.
+1. Project Layout and Directory Structure
 
-Example of Bazel:
+    ```plaintext
+    .
+    ├── WORKSPACE
+    ├── BUILD
+    └── src/
+        ├── BUILD
+        ├── main.cc
+        ├── lib.cc
+        └── lib.h
+    ```
 
-- Structure
+2. Files and Folders
 
-  ```txt
-  MyProject/
-  ├── WORKSPACE
-  ├── BUILD
-  └── src/
-      ├── main.cc
-      └── BUILD
-  ```
+    - `WORKSPACE`
+      > Declares the workspace and external dependencies.
 
-  In the structure:
+      ```python
+      workspace(name = "myproject")
+      ```
 
-  - `WORKSPACE`: The Bazel workspace file that defines the project and its external dependencies.
-  - `BUILD`: The project-level Bazel build file that specifies build targets and dependencies.
-  - `src/`: The directory that contains the source code for the project.
-    - `main.cc`: The C++ source file for the project.
-    - `BUILD`: The package-level Bazel build file that specifies build targets and dependencies for the `src/` directory.
+    - `BUILD`
+      > Defines top-level targets such as executables and their dependencies.
 
-- WORKSPACE
+      ```python
+      cc_binary(
+          name = "myapp",
+          srcs = ["src/main.cc"],
+          deps = ["//src:mylib"],
+      )
+      ```
 
-  ```python
-  workspace(name = "MyProject")
+    - `src/BUILD`
+      > Defines package-level library targets.
 
-  # External dependency declarations
-  load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+      ```python
+      cc_library(
+          name = "mylib",
+          srcs = ["lib.cc"],
+          hdrs = ["lib.h"],
+          visibility = ["//visibility:public"],
+      )
+      ```
 
-  http_archive(
-      name = "googletest",
-      url = "https://github.com/google/googletest/archive/refs/tags/release-1.11.0.zip",
-      sha256 = "9be78e475e8e262ecf1a1a205ffe05db9e6a65b7003d6b2cccbc960c5e7ed23e",
-      strip_prefix = "googletest-release-1.11.0",
-  )
-  ```
+    - `src/main.cc`
+      > Entry point that consumes the internal library.
 
-  In the example, we define a Bazel workspace named `"MyProject"` and declare an external dependency on Google Test (googletest). The `http_archive` rule is used to download and configure the external dependency.
+      ```cpp
+      #include <iostream>
 
-- BUILD
+      #include "src/lib.h"
 
-  ```python
-  cc_binary(
-      name = "myapp",
-      srcs = ["main.cc"],
-      deps = ["@googletest//:gtest_main"],
-  )
-  ```
+      int main() {
+          std::cout << greet("Bazel") << '\n';
+          return 0;
+      }
+      ```
 
-  In the project-level BUILD file, we define a C++ binary target named "myapp" using the `cc_binary` rule. The `srcs` attribute specifies the source files, and the `deps` attribute declares the dependency on the Google Test framework.
+3. Instructions and Commands
 
-- src/BUILD
+    - Build
+      > Build the binary target.
 
-  ```python
-  cc_library(
-      name = "mylib",
-      srcs = ["main.cc"],
-      hdrs = ["main.h"],
-      visibility = ["//src:__pkg__"],
-  )
-  ```
+      ```shell
+      bazel build //:myapp
+      ```
 
-  In the package-level BUILD file, we define a C++ library target named "mylib" using the `cc_library` rule. The `srcs` attribute specifies the source files, the `hdrs` attribute specifies the header files, and the `visibility` attribute sets the visibility of the target within the package.
+    - Run
+      > Build and run the binary target.
+
+      ```shell
+      bazel run //:myapp
+      ```
+
+    - Clean
+      > Remove Bazel output state (expensive, use only when needed).
+
+      ```shell
+      bazel clean
+      ```
 
 ### 1.7. Ninja
 
-Ninja is a fast and efficient build system designed for speed and simplicity. It focuses on minimizing build times and providing a streamlined build experience. Ninja is commonly used as a backend for other build systems, such as CMake and Meson, to perform the actual building process.
+[Ninja](https://ninja-build.org/) is a fast, low-level build system focused on minimal overhead and fast incremental rebuilds. It is commonly used as an execution backend generated by tools such as CMake and Meson.
 
-> NOTE Ninja build files are typically generated by higher-level build systems such as CMake or Meson.
+> NOTE In most projects, `build.ninja` is generated rather than maintained by hand.
 
-Example of Ninja:
+1. Project Layout and Directory Structure
 
-- Structure
+    ```plaintext
+    .
+    ├── build.ninja
+    └── src/
+        └── main.cpp
+    ```
 
-  ```txt
-  MyProject/
-  ├── build.ninja
-  └── src/
-      └── main.cpp
-  ```
+2. Files and Folders
 
-  In the structure:
+    - `build.ninja`
+      > Declares variables, rules, and targets used by the Ninja executor.
 
-  - `build.ninja`: The Ninja build file that contains the build rules, targets, and commands for compiling and linking the project.
-  - `src/`: The directory that contains the source code for the project.
-    - `main.cpp`: The C++ source file for the project.
+      ```ninja
+      cxx = g++
+      cxxflags = -std=c++20 -Wall -Wextra -Werror
 
-- build.ninja
+      rule compile
+        command = $cxx $cxxflags -c $in -o $out
+        description = CXX $out
 
-  ```ninja
-  # Define variables
-  CXX = g++
-  CXXFLAGS = -std=c++11 -Wall
+      rule link
+        command = $cxx $in -o $out
+        description = LINK $out
 
-  # Define build rules
-  rule compile
-      command = $CXX $CXXFLAGS -c $in -o $out
-      description = Compiling $in
+      build obj/main.o: compile src/main.cpp
+      build bin/myapp: link obj/main.o
 
-  rule link
-      command = $CXX $in -o $out
-      description = Linking $out
+      default bin/myapp
+      ```
 
-  # Define build targets
-  build obj/main.o: compile src/main.cpp
-  build bin/myapp: link obj/main.o
+    - `src/main.cpp`
+      > Minimal source file compiled by Ninja.
 
-  # Phony target for clean
-  build clean:
-      command = rm -rf obj bin
-      description = Cleaning build artifacts
-  ```
+      ```cpp
+      #include <iostream>
 
-  In this example:
+      int main() {
+          std::cout << "Hello, Ninja!\n";
+          return 0;
+      }
+      ```
 
-  - Variables: The `CXX` variable specifies the C++ compiler command, and `CXXFLAGS` sets the compiler flags.
+3. Instructions and Commands
 
-  - Build Rules: The `compile` rule defines how to compile source files. The `link` rule defines how to link object files into an executable. Each rule specifies the command to execute and a description for display during the build process.
+    - Build
+      > Execute the default target.
 
-  - Build Targets: The `build` command associates build rules with specific targets. Here, we compile `src/main.cpp` into `obj/main.o` using the `compile` rule, and then link `obj/main.o` into the final executable `bin/myapp` using the `link` rule.
+      ```shell
+      ninja
+      ```
 
-  - Phony Target: The `clean` target is a phony target that is not associated with a file. It defines a command to clean the build artifacts by removing the `obj` and `bin` directories.
+    - Run
+      > Execute the generated binary.
 
-  - To use the Ninja build file, invoke the `ninja` command in the directory containing the `build.ninja` file. For example, running `ninja` would execute the build steps defined in the file, compiling the source file and linking the executable.
+      ```shell
+      ./bin/myapp
+      ```
+
+    - Clean
+      > Remove generated outputs known to Ninja.
+
+      ```shell
+      ninja -t clean
+      ```

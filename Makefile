@@ -304,15 +304,16 @@ skills-update:
 
 ### Setup documentation pages with MkDocs
 pages-setup:
-	@cd ./scripts/ && bash ./setup_pages.sh
+	@python3 -m venv .venv
+	@. $(PIP_VENV)/activate; @cd ./scripts/ && bash ./setup_pages.sh
 .PHONY: pages-setup
 
 ## Build documentation pages with MkDocs
 pages-build:
-	mkdocs build
+	@. $(PIP_VENV)/activate; mkdocs build
 .PHONY: pages-build
 
 ## Serve documentation pages locally with MkDocs
 pages-serve:
-	mkdocs serve --dev-addr 127.0.0.1:8000
+	@. $(PIP_VENV)/activate; mkdocs serve --dev-addr 127.0.0.1:8000
 .PHONY: pages-serve

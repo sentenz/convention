@@ -47,19 +47,21 @@ The Convention is a collection of general articles, conventions, and guides for 
 
 2. Usage and Instructions
 
-    - Local Setup
+    - CI/CD
+
+      ```yaml
+      uses: .github/actions/mkdocs
+      ```
+
+    - Tasks
 
       ```bash
       make pages-setup
       ```
 
-    - Local Build
-
       ```bash
       make pages-build
       ```
-
-    - Local Serve
 
       ```bash
       make pages-serve
@@ -95,6 +97,9 @@ The Convention is a collection of general articles, conventions, and guides for 
 
 - [Supply Chain Manager](CONTRIBUTING.md#11-supply-chain-manager)
   > Trivy for security scanning of vulnerabilities, misconfigurations, and compliance issues.
+
+- [Documentation Generators](CONTRIBUTING.md#12-documentation-generators)
+  > MkDocs for building and serving the documentation site.
 
 ## 3. Troubleshoot
 

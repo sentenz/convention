@@ -23,6 +23,8 @@ Contribution guidelines and project management tools.
   - [10.1. Conftest](#101-conftest)
 - [11. Supply Chain Manager](#11-supply-chain-manager)
   - [11.1. Trivy](#111-trivy)
+- [12. Documentation Generators](#12-documentation-generators)
+  - [MkDocs](#mkdocs)
 
 ## 1. AI Agents
 
@@ -355,4 +357,40 @@ AI Agents are automated tools that assist in various development tasks such as c
 
       ```bash
       make sast-trivy-sbom-license <sbom_path>
+      ```
+
+## 12. Documentation Generators
+
+### MkDocs
+
+[MkDocs](https://www.mkdocs.org/) is a Static Site Generator (SSG) designed for building project documentation using Markdown files.
+
+1. Insights and Details
+
+    - [mkdocs.yml](mkdocs.yml)
+      > Configuration file for MkDocs specifying site settings, theme, plugins, and markdown extensions.
+
+    - [mkdocs_hooks.py](scripts/python/mkdocs_hooks.py)
+      > Custom MkDocs hooks for normalizing markdown rendering behavior.
+
+2. Usage and Instructions
+
+    - CI/CD
+
+      ```yaml
+      uses: sentenz/actions/mkdocs@latest
+      ```
+
+    - Tasks
+
+      ```bash
+      make pages-setup
+      ```
+
+      ```bash
+      make pages-build
+      ```
+
+      ```bash
+      make pages-serve
       ```

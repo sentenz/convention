@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.12.0](https://github.com/sentenz/convention/compare/2.11.1...2.12.0) (2026-04-06)
+
+
+### Features
+
+* create an article about threat modeling ([febf3ac](https://github.com/sentenz/convention/commit/febf3ac0add1c9dd8c386cd28ffd8fdbe56f16c3))
+
 ## [2.11.1](https://github.com/sentenz/convention/compare/2.11.0...2.11.1) (2026-02-19)
 
 

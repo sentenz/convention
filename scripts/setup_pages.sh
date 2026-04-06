@@ -11,13 +11,17 @@ set -uo pipefail
 
 # Include Scripts
 
-source ./../scripts/shell/pkg.sh
+source "$(dirname "${BASH_SOURCE[0]}")/shell/pkg.sh"
 
 # Constant Variables
 
 readonly -A PIP_PACKAGES=(
   ["mkdocs"]="1.6.1"
   ["mkdocs-material"]="9.7.1"
+  ["mkdocs-macros-plugin"]="1.0.5"
+  ["markdown-it-py"]="3.0.0"
+  ["pymdown-extensions"]="10.21.2"
+  ["pygments"]="2.20.0"
   ["mkdocs-awesome-nav"]="3.3.0"
 )
 

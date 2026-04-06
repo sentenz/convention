@@ -304,8 +304,7 @@ skills-update:
 
 ### Setup documentation pages with MkDocs
 pages-setup:
-	@python3 -m venv .venv
-	@. $(PIP_VENV)/activate; cd ./scripts/ && bash ./setup_pages.sh
+	@python3 -m venv .venv && . $(PIP_VENV)/activate && cd ./scripts/ && bash ./setup_pages.sh
 .PHONY: pages-setup
 
 ## Build documentation pages with MkDocs

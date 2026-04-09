@@ -21,6 +21,9 @@ Threat modeling is a structured process for identifying, analyzing, and mitigati
 - Proactive Defense
   > Threat modeling enables teams to identify and mitigate security risks early in the design phase, reducing the likelihood of vulnerabilities being introduced during development.
 
+- Risidual Risk
+  > TODO 
+
 - Attack Surface Reduction
   > By identifying all entry points and data flows, threat modeling helps minimize the attack surface, reducing the number of potential vulnerabilities that can be exploited.
 

@@ -56,15 +56,15 @@ The Convention is a collection of general articles, conventions, and guides for 
     - Tasks
 
       ```bash
-      make pages-setup
+      make pages-mkdocs-setup
       ```
 
       ```bash
-      make pages-build
+      make pages-mkdocs-build
       ```
 
       ```bash
-      make pages-serve
+      make pages-mkdocs-serve
       ```
 
 ## 2. Contribute

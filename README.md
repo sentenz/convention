@@ -6,7 +6,7 @@ The Convention is a collection of general articles, conventions, and guides for 
 
 - [1. Details](#1-details)
   - [1.1. Prerequisites](#11-prerequisites)
-  - [1.2. Static Site Generator (SSG)](#12-static-site-generator-ssg)
+  - [1.2. Usage](#12-usage)
 - [2. Contribute](#2-contribute)
 - [3. Troubleshoot](#3-troubleshoot)
   - [3.1. TODO](#31-todo)
@@ -30,7 +30,7 @@ The Convention is a collection of general articles, conventions, and guides for 
   sudo apt install make
   ```
 
-### 1.2. Static Site Generator (SSG)
+### 1.2. Usage
 
  [MkDocs](https://www.mkdocs.org/) is used as the static site generator for building and serving the documentation site.
 
@@ -98,7 +98,7 @@ The Convention is a collection of general articles, conventions, and guides for 
 - [Supply Chain Manager](CONTRIBUTING.md#11-supply-chain-manager)
   > Trivy for security scanning of vulnerabilities, misconfigurations, and compliance issues.
 
-- [Documentation Generators](CONTRIBUTING.md#12-documentation-generators)
+- [Documentation Generators](CONTRIBUTING.md#122-mkdocs)
   > MkDocs for building and serving the documentation site.
 
 ## 3. Troubleshoot

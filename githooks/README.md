@@ -1,4 +1,4 @@
-# `/githooks`
+# `githooks/`
 
 Git hooks provides the ability to trigger custom scripts when certain git actions occur.
 

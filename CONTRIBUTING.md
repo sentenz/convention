@@ -384,13 +384,13 @@ AI Agents are automated tools that assist in various development tasks such as c
     - Tasks
 
       ```bash
-      make pages-setup
+      make pages-mkdocs-setup
       ```
 
       ```bash
-      make pages-build
+      make pages-mkdocs-build
       ```
 
       ```bash
-      make pages-serve
+      make pages-mkdocs-serve
       ```

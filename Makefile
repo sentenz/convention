@@ -303,16 +303,16 @@ skills-update:
 # ── Static Site Generator (SSG) ─────────────────────────────────────────────────────────────────
 
 ### Setup documentation pages with MkDocs
-pages-setup:
+pages-mkdocs-setup:
 	@python3 -m venv .venv && . $(PIP_VENV)/activate && cd ./scripts/ && bash ./setup_pages.sh
-.PHONY: pages-setup
+.PHONY: pages-mkdocs-setup
 
 ## Build documentation pages with MkDocs
-pages-build:
+pages-mkdocs-build:
 	@. $(PIP_VENV)/activate; mkdocs build
-.PHONY: pages-build
+.PHONY: pages-mkdocs-build
 
 ## Serve documentation pages locally with MkDocs
-pages-serve:
+pages-mkdocs-serve:
 	@. $(PIP_VENV)/activate; mkdocs serve --dev-addr 127.0.0.1:8000
-.PHONY: pages-serve
+.PHONY: pages-mkdocs-serve

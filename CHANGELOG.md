@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.13.0](https://github.com/sentenz/convention/compare/2.12.0...2.13.0) (2026-04-26)
+
+
+### Features
+
+* add Software Engineers article ([#428](https://github.com/sentenz/convention/issues/428)) ([11d5d74](https://github.com/sentenz/convention/commit/11d5d747ac0ff9be53a7c6f66f77838122538f9d))
+
 # [2.12.0](https://github.com/sentenz/convention/compare/2.11.1...2.12.0) (2026-04-06)
 
 

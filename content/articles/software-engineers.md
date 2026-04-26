@@ -963,3 +963,7 @@ A Distinguished Engineer or Fellow operates at the highest technical level, shap
 
     - Innovation
       > Drive long-term research, technology adoption, and paradigm shifts that define the organization's competitive advantage.
+
+## 2. References
+
+- Sentenz [Manager Tools](https://github.com/sentenz/convention/issues/392) article.

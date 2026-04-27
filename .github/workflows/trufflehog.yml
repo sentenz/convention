@@ -25,7 +25,7 @@ jobs:
 
       - name: Run TruffleHog
         id: trufflehog
-        uses: trufflesecurity/trufflehog@v3.94.3
+        uses: trufflesecurity/trufflehog@v3.95.2
         continue-on-error: true
         with:
           path: ./

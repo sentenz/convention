@@ -11,7 +11,7 @@
     "source=convention-workspace-volume,target=/workspaces,type=volume"
   ],
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
+    "ghcr.io/devcontainers/features/common-utils:": {
       "installZsh": "true",
       "username": "vscode",
       "userUid": "1000",

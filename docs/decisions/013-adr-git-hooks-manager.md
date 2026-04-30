@@ -22,7 +22,7 @@ Architectural Decision Records (ADR) on implementing a Git Hooks Manager for Sof
 
 ## 2. Context
 
-We need a Git hooks manager to automate tasks during the Git workflow, such as linting, formatting, and enforcing commit message conventions. Managing raw Git hooks as shell scripts lacks consistency, portability, and ease of onboarding. A dedicated Git hooks manager will standardize hook definitions, improve developer experience, and integrate seamlessly with our multi-language toolchain.
+A Git hooks manager automates tasks during the Git workflow, such as linting, formatting, and enforcing commit message conventions. Managing raw Git hooks as shell scripts lacks consistency, portability, and ease of onboarding. A dedicated Git hooks manager will standardize hook definitions, improve developer experience, and integrate seamlessly with our multi-language toolchain.
 
 1. Decision Drivers
 

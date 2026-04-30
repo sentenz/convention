@@ -73,6 +73,9 @@ Software testing is the process of evaluating a software application or system t
         - [1.3.2.3.5. Volume Testing](#13235-volume-testing)
         - [1.3.2.3.6. Scalability Testing](#13236-scalability-testing)
         - [1.3.2.3.7. Capacity Testing](#13237-capacity-testing)
+  - [1.3.3. On/Off-Target Testing](#133-onoff-target-testing)
+    - [1.3.3.1. Off-Target Testing](#1331-off-target-testing)
+    - [1.3.3.2. On-Target Testing](#1332-on-target-testing)
 - [2. Terminology](#2-terminology)
 - [3. References](#3-references)
 
@@ -1967,6 +1970,212 @@ Scalability testing involves testing the system's ability to scale up or down in
 
 Capacity testing involves testing the system's ability to handle a specific capacity or volume of users, requests, or transactions.
 
+#### 1.3.3. On/Off-Target Testing
+
+On/Off-target testing distinguishes between executing tests on the development host machine (off-target) and executing tests directly on the target hardware (on-target). This distinction is particularly relevant in embedded software development, where the target platform is a microcontroller or other constrained device with an architecture that differs from the host.
+
+##### 1.3.3.1. Off-Target Testing
+
+Off-target testing, also known as host-based testing, involves building and executing tests on the development host machine using the native toolchain. This approach enables fast iteration and early defect detection without requiring physical target hardware.
+
+1. Features and Benefits
+
+    - Fast Iteration
+      > Off-target testing eliminates the need to flash and boot hardware, allowing developers to rapidly build, run, and debug tests on the host machine.
+
+    - No Hardware Required
+      > Tests can be executed without physical target hardware, making off-target testing accessible to the entire development team regardless of hardware availability.
+
+    - Native Toolchain
+      > Off-target testing leverages the native host toolchain (e.g., GCC, Clang) to compile and execute tests, simplifying the build and test workflow.
+
+    - CI/CD Integration
+      > Off-target tests integrate seamlessly into continuous integration pipelines, enabling automated test execution on standard build servers.
+
+2. Tools and Frameworks
+
+    - [GTest](https://github.com/google/googletest)
+      > Google Test (GTest) is a C++ testing framework that provides assertions, test fixtures, and test runners for writing and executing unit tests on the host machine.
+
+    - [CMake](https://cmake.org)
+      > CMake is a cross-platform build system generator that manages the build process for off-target tests and supports integration with CTest for test execution and reporting.
+
+3. Examples and Explanations
+
+    Off-target testing using `GTest` and `CMake` to build and execute unit tests on the host machine.
+
+    - `calculator.h`
+      > Header file declaring the `Calculator` class.
+
+      ```cpp
+      #pragma once
+
+      class Calculator {
+      public:
+          int Add(int a, int b);
+          int Subtract(int a, int b);
+      };
+      ```
+
+    - `calculator.cpp`
+
+      ```cpp
+      #include "calculator.h"
+
+      int Calculator::Add(int a, int b) {
+          return a + b;
+      }
+
+      int Calculator::Subtract(int a, int b) {
+          return a - b;
+      }
+      ```
+
+    - `calculator_test.cpp`
+      > Unit test file using GTest to verify the `Calculator` class on the host machine.
+
+      ```cpp
+      #include <gtest/gtest.h>
+
+      #include "calculator.h"
+
+      TEST(CalculatorTest, AddPositiveNumbers) {
+          Calculator calc;
+          EXPECT_EQ(calc.Add(2, 3), 5);
+      }
+
+      TEST(CalculatorTest, SubtractPositiveNumbers) {
+          Calculator calc;
+          EXPECT_EQ(calc.Subtract(5, 3), 2);
+      }
+      ```
+
+    - `CMakeLists.txt`
+      > CMake configuration for building and running off-target unit tests with GTest.
+
+      ```cmake
+      cmake_minimum_required(VERSION 3.21)
+      project(calculator_test)
+
+      find_package(GTest REQUIRED)
+
+      add_executable(calculator_test
+          calculator.cpp
+          calculator_test.cpp
+      )
+
+      target_link_libraries(calculator_test
+          GTest::GTest
+          GTest::Main
+      )
+
+      include(GoogleTest)
+      gtest_discover_tests(calculator_test)
+      ```
+
+##### 1.3.3.2. On-Target Testing
+
+On-target testing involves cross-compiling the test suites for the specific microcontroller architecture and executing them directly on the hardware. Combining Google Test (GTest), CMake, and SEGGER J-Run provides a streamlined workflow where tests are built on a host machine and automatically flashed and executed on the target microcontroller.
+
+1. Features and Benefits
+
+    - Hardware Validation
+      > On-target testing validates software behavior on the actual target hardware, ensuring that architecture-specific characteristics such as memory layout, peripheral access, and instruction set behavior are correctly handled.
+
+    - Architecture-Specific Testing
+      > Cross-compiling and executing tests on the target exposes defects that may not be observable on the host, such as alignment issues, integer size differences, and hardware-dependent behavior.
+
+    - SEGGER J-Run Integration
+      > SEGGER J-Run automates the process of flashing the compiled test binary to the target and collecting test results via SEGGER RTT, enabling a fully automated on-target test execution workflow from the command line.
+
+    - SEGGER RTT Output
+      > SEGGER Real-Time Transfer (RTT) provides a high-speed, non-intrusive communication channel between the target microcontroller and the host machine, allowing GTest output to be relayed back to the host without a dedicated UART connection.
+
+2. Tools and Frameworks
+
+    - [GTest](https://github.com/google/googletest)
+      > Google Test (GTest) is a C++ testing framework used to write and execute unit tests that are cross-compiled for and executed on the target microcontroller.
+
+    - [CMake](https://cmake.org)
+      > CMake manages the cross-compilation build process, using a toolchain file to configure the target architecture, cross-compiler, and linker settings.
+
+    - [SEGGER J-Run](https://kb.segger.com/J-Run)
+      > SEGGER J-Run is a command-line tool that automates flashing a binary to the target hardware via a J-Link debug probe and collecting the program output from the target using SEGGER RTT.
+
+    - [SEGGER RTT](https://github.com/SEGGERMicro/RTT)
+      > SEGGER Real-Time Transfer (RTT) is a technology for bidirectional communication between a microcontroller and a host machine using a J-Link debug probe, enabling GTest output printed by the test binary to be read back on the host.
+
+3. Examples and Explanations
+
+    On-target testing using `GTest`, `CMake`, and `SEGGER J-Run` to cross-compile and execute unit tests on an ARM Cortex-M microcontroller.
+
+    - `toolchain-arm-none-eabi.cmake`
+      > CMake toolchain file that configures the cross-compiler for ARM Cortex-M bare-metal targets.
+
+      ```cmake
+      set(CMAKE_SYSTEM_NAME Generic)
+      set(CMAKE_SYSTEM_PROCESSOR arm)
+
+      set(CMAKE_C_COMPILER arm-none-eabi-gcc)
+      set(CMAKE_CXX_COMPILER arm-none-eabi-g++)
+      set(CMAKE_ASM_COMPILER arm-none-eabi-gcc)
+
+      set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+      set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+      set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+      ```
+
+    - `CMakeLists.txt`
+      > CMake configuration for cross-compiling GTest-based unit tests for a Cortex-M target with SEGGER RTT output support.
+
+      ```cmake
+      cmake_minimum_required(VERSION 3.21)
+      project(calculator_test)
+
+      add_executable(calculator_test
+          calculator.cpp
+          calculator_test.cpp
+          SEGGER_RTT.c
+          SEGGER_RTT_printf.c
+      )
+
+      target_include_directories(calculator_test PRIVATE
+          ${GTEST_INCLUDE_DIRS}
+          segger/rtt
+      )
+
+      target_link_libraries(calculator_test
+          gtest
+          gtest_main
+      )
+
+      target_compile_options(calculator_test PRIVATE
+          -mcpu=cortex-m4
+          -mthumb
+          -fno-exceptions
+      )
+
+      target_link_options(calculator_test PRIVATE
+          -mcpu=cortex-m4
+          -mthumb
+          -T${CMAKE_SOURCE_DIR}/linker.ld
+          --specs=nosys.specs
+      )
+      ```
+
+    - J-Run Command
+      > Flash the test binary to the target and collect GTest results via SEGGER RTT using J-Run.
+
+      ```bash
+      JRunExe --device STM32F407VG --rtt calculator_test.elf
+      ```
+
+      - `--device`
+        > Specifies the target microcontroller device identifier recognized by the J-Link debug probe.
+
+      - `--rtt`
+        > Enables SEGGER RTT output collection, capturing the GTest results printed by the test binary running on the target microcontroller.
+
 ## 2. Terminology
 
 - Test Suite
@@ -2017,3 +2226,5 @@ Capacity testing involves testing the system's ability to handle a specific capa
 ## 3. References
 
 - RedHat [Shift-Left vs Shift-Right](https://www.redhat.com/en/topics/devops/shift-left-vs-shift-right) page.
+- SEGGER [J-Run](https://kb.segger.com/J-Run) page.
+- SEGGER [RTT](https://github.com/SEGGERMicro/RTT) repository.

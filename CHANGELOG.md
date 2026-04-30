@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.19.0](https://github.com/sentenz/convention/compare/2.18.0...2.19.0) (2026-04-30)
+
+
+### Features
+
+* **adr:** review, refine and finalize ADR Task Runner ([#436](https://github.com/sentenz/convention/issues/436)) ([606a9de](https://github.com/sentenz/convention/commit/606a9de007b96b24fbdbeec78d8adfb9230eff39))
+
 # [2.18.0](https://github.com/sentenz/convention/compare/2.17.0...2.18.0) (2026-04-30)
 
 

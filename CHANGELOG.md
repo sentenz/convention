@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.14.0](https://github.com/sentenz/convention/compare/2.13.0...2.14.0) (2026-04-30)
+
+
+### Features
+
+* add On/Off-Target Testing section in Software Testing article ([#431](https://github.com/sentenz/convention/issues/431)) ([8441751](https://github.com/sentenz/convention/commit/8441751aba844b50ae1147a40a8ba34fe2eeddc7))
+
 # [2.13.0](https://github.com/sentenz/convention/compare/2.12.0...2.13.0) (2026-04-26)
 
 

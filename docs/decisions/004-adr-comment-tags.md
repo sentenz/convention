@@ -210,17 +210,21 @@ Marks minor issues or nitpicks that do not affect functionality but could improv
 
 ## 5. Consequences
 
-1. Positive
+- Positive
+  - Readability
+    > Improved code readability and maintainability through consistent and descriptive comment tags.
+  - Technical Debt
+    > Better tracking and management of technical debt and bugs with standardized markers.
+  - Collaboration
+    > Enhanced collaboration among developers through clear and consistent comment conventions.
+  - Risk Identification
+    > Easier identification of potentially risky or problematic code areas that require further attention.
 
-    - Improved code readability and maintainability.
-    - Better tracking and management of technical debt and bugs.
-    - Enhanced collaboration among developers through clear and consistent comments.
-    - Identification of potentially risky or problematic code areas that require further attention.
-
-2. Negative
-
-    - Requires initial effort to standardize existing comments in the codebase.
-    - Developers need to be trained or made aware of the new standards.
+- Negative
+  - Migration Effort
+    > Requires initial effort to standardize existing comments in the codebase.
+  - Onboarding
+    > Developers need to be trained or made aware of the new comment tag standards.
 
 ## 6. Implementation
 

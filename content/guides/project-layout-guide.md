@@ -101,7 +101,56 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `inc/<library>/`
+      > Public header files for the library, organized under the library name to avoid name collisions when installed system-wide.
+
+    - `src/`
+      > Implementation files and in-tree unit tests. Follows a `Functional-based Structure` to group related implementation and test files together.
+
+      - `file.c`
+        > Source implementation file.
+
+      - `file_test.cc`
+        > In-tree unit test file paired with the source file.
+
+      - `CMakeLists.txt`
+        > CMake build definition for the source directory.
+
+    - `external/`
+      > Third-party dependencies vendored into the project.
+
+    - `test/`
+      > Additional tests that are not co-located with the source, such as performance benchmarks.
+
+      - `performance/`
+        > Benchmark tests measuring library performance.
+
+    - `examples/`
+      > Standalone example programs demonstrating library usage.
+
+    - `docs/`
+      > Project documentation and Architecture Decision Records (ADRs).
+
+    - `build/`
+      > Build output artifacts, separated into `debug/` and `release/` sub-directories.
+
+    - `tools/`
+      > Supporting development tools such as CMake helper scripts.
+
+    - `scripts/`
+      > Shell and Python scripts for bootstrapping, setup, and teardown of the development environment.
+
+    - `CMakeLists.txt`
+      > Root CMake build definition for the library.
+
+    - `CMakePresets.json`
+      > CMake presets for configuring common build configurations.
+
+    - `LICENSE`
+      > License file for the library.
+
+    - `README.md`
+      > Project overview and usage instructions.
 
 #### 1.1.2. Application
 
@@ -195,7 +244,62 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `/internal`
+      > Private application code organized using a `Layered Structure`. Code placed here cannot be imported by external packages.
+
+      - `/presentation`
+        > Presentation layer handling user interface and API endpoints.
+
+      - `/application`
+        > Application layer orchestrating use cases and business workflows.
+
+      - `/domain`
+        > Domain layer containing business logic, entities, and domain services.
+
+      - `/infrastructure`
+        > Infrastructure layer for persistence, messaging, and external service integrations.
+
+    - `/external`
+      > Third-party dependencies and vendored libraries.
+
+    - `/test`
+      > Tests that are not co-located with the source, including performance benchmarks, integration tests, and end-to-end tests.
+
+      - `/performance`
+        > Benchmark tests for measuring application performance.
+
+      - `/integration`
+        > Integration tests exercising multiple components together.
+
+      - `/e2e`
+        > End-to-end tests validating full application scenarios.
+
+    - `/examples`
+      > Standalone example programs demonstrating application usage.
+
+    - `/docs`
+      > Project documentation and Architecture Decision Records (ADRs).
+
+    - `/build`
+      > Build output artifacts, including binaries and libraries.
+
+    - `/tools`
+      > Supporting development tools such as CMake helper scripts.
+
+    - `scripts/`
+      > Shell and Python scripts for bootstrapping, setup, and teardown of the development environment.
+
+    - `/data`
+      > Data files such as datasets, fixtures, and static assets.
+
+    - `CMakeLists.txt`
+      > Root CMake build definition for the application.
+
+    - `LICENSE`
+      > License file for the application.
+
+    - `README.md`
+      > Project overview and usage instructions.
 
 ### 1.2. Go
 
@@ -234,7 +338,26 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `cmd/`
+      > Main applications for the project. Each sub-directory represents a single executable (e.g., `cmd/app/`).
+
+    - `internal/`
+      > Private application and library code that cannot be imported by external packages.
+
+    - `pkg/`
+      > Library code intended to be used by external applications.
+
+    - `go.mod`
+      > Module definition file specifying the module path and dependency requirements.
+
+    - `go.sum`
+      > Checksums for the module's dependencies, ensuring reproducible builds.
+
+    - `LICENSE`
+      > License file for the package.
+
+    - `README.md`
+      > Project overview and usage instructions.
 
 #### 1.2.2. Application
 
@@ -248,11 +371,120 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     > [!NOTE]
     > Replace `<...>` brackets with the application-specific information.
 
-    <!-- TODO -->
+    ```markdown
+    <project>/
+    │
+    . `Hierarchical Structure`
+    │
+    ├── cmd/
+    │   └── <project>/
+    │       └── main.go
+    │
+    ├── internal/
+    │   ├── <package-a>/
+    │   │   ├── <package-a>.go
+    │   │   └── <package-a>_test.go
+    │   └── <package-b>/
+    │       ├── <package-b>.go
+    │       └── <package-b>_test.go
+    │
+    ├── pkg/
+    │   └── <package>/
+    │       ├── <package>.go
+    │       └── <package>_test.go
+    │
+    ├── api/
+    │   └── <api>.proto
+    │
+    ├── configs/
+    │   └── <config>.yaml
+    │
+    ├── scripts/
+    │   ├── bootstrap
+    │   ├── setup
+    │   └── teardown
+    │
+    ├── build/
+    │   ├── ci/
+    │   └── package/
+    │
+    ├── deployments/
+    │   └── <deployment>.yaml
+    │
+    ├── test/
+    │   ├── integration/
+    │   └── e2e/
+    │
+    ├── docs/
+    │   ├── decisions/
+    │   │   └── adr-<topic>.md
+    │   └── README.md
+    │
+    ├── tools/
+    │
+    ├── examples/
+    │   └── <example>/
+    │       └── main.go
+    │
+    ├── go.mod
+    ├── go.sum
+    ├── Makefile
+    ├── LICENSE
+    └── README.md
+    ```
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `cmd/`
+      > Main applications for the project. Each sub-directory name matches the executable to build.
+
+    - `internal/`
+      > Private application and library code. This is the primary location for business logic that should not be exposed externally.
+
+    - `pkg/`
+      > Library code intended for use by external applications. Other projects can import these packages.
+
+    - `api/`
+      > OpenAPI/Swagger specs, JSON schema files, and protocol definition files.
+
+    - `configs/`
+      > Configuration file templates or default configurations.
+
+    - `scripts/`
+      > Scripts for building, installing, and performing various operations.
+
+    - `build/`
+      > Packaging and Continuous Integration configurations and scripts.
+
+    - `deployments/`
+      > IaaS, PaaS, system, and container orchestration deployment configurations.
+
+    - `test/`
+      > Additional external test apps and test data that do not belong alongside source files.
+
+    - `docs/`
+      > Design and user documentation, including Architecture Decision Records (ADRs).
+
+    - `tools/`
+      > Supporting tools for this project.
+
+    - `examples/`
+      > Examples for the application or public libraries.
+
+    - `go.mod`
+      > Module definition file specifying the module path and dependency requirements.
+
+    - `go.sum`
+      > Checksums for the module's dependencies, ensuring reproducible builds.
+
+    - `Makefile`
+      > Build automation and task runner for common development operations.
+
+    - `LICENSE`
+      > License file for the application.
+
+    - `README.md`
+      > Project overview and usage instructions.
 
 ### 1.3. Python
 
@@ -260,50 +492,134 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 #### 1.3.1. Module
 
-<!-- TODO -->
-
 1. Layout and Structure
-
-    <!-- TODO -->
 
     > [!NOTE]
     > Replace `<...>` brackets with the module-specific information.
 
+    ```markdown
+    <module>/
+    │
+    . `Hierarchical Structure`
+    │
+    ├── src/
+    │   └── <module>/
+    │       ├── __init__.py
+    │       └── <module>.py
+    │
+    ├── tests/
+    │   ├── __init__.py
+    │   └── test_<module>.py
+    │
+    ├── docs/
+    │   └── README.md
+    │
+    ├── pyproject.toml
+    ├── LICENSE
+    └── README.md
+    ```
+
 2. Files and Folders
 
-    <!-- TODO -->
+    - `src/<module>/`
+      > Source code for the module, placed under `src/` to prevent accidental imports from the project root during development.
+
+      - `__init__.py`
+        > Marks the directory as a Python package and defines the public API of the module.
+
+      - `<module>.py`
+        > Module implementation file.
+
+    - `tests/`
+      > Unit and integration tests for the module.
+
+    - `docs/`
+      > Module documentation.
+
+    - `pyproject.toml`
+      > Project metadata, build configuration, and tool settings (replaces `setup.py` and `setup.cfg`).
+
+    - `LICENSE`
+      > License file for the module.
+
+    - `README.md`
+      > Module overview and usage instructions.
 
 #### 1.3.2. Application
-
-<!-- TODO -->
 
 1. Layout and Structure
 
     > [!NOTE]
     > Replace `<...>` brackets with the application-specific information.
 
-    <!-- TODO -->
+    ```markdown
+    <project>/
+    │
+    . `Hierarchical Structure`
+    │
+    ├── src/
+    │   └── <project>/
+    │       ├── __init__.py
+    │       ├── main.py
+    │       └── <module>/
+    │           ├── __init__.py
+    │           └── <module>.py
+    │
+    ├── tests/
+    │   ├── __init__.py
+    │   ├── unit/
+    │   │   └── test_<module>.py
+    │   └── integration/
+    │       └── test_<module>.py
+    │
+    ├── docs/
+    │   └── README.md
+    │
+    ├── scripts/
+    │   ├── bootstrap
+    │   ├── setup
+    │   └── teardown
+    │
+    ├── pyproject.toml
+    ├── requirements.txt
+    ├── LICENSE
+    └── README.md
+    ```
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `src/<project>/`
+      > Application source code, placed under `src/` to prevent accidental imports from the project root.
 
-    - `/module`
+      - `__init__.py`
+        > Marks the directory as a Python package.
 
-    - `/docs`
-      > Package reference documentation.
+      - `main.py`
+        > Application entry point.
 
-    - `/tests`
-      > Package unit tests, execution tests, integration tests.
+      - `<module>/`
+        > Sub-module containing related functionality.
 
-    - `/bin`
-      > Holds executable files.
+    - `tests/`
+      > Unit tests, integration tests, and execution tests for the application.
 
-    - `setup.py`
-      > Package and distribution management.
+    - `docs/`
+      > Application documentation.
+
+    - `scripts/`
+      > Shell scripts for bootstrapping, setup, and teardown of the development environment.
+
+    - `pyproject.toml`
+      > Project metadata, build configuration, and tool settings.
 
     - `requirements.txt`
-      > Package dependency and version management.
+      > Package dependency and version management for pinned runtime dependencies.
+
+    - `LICENSE`
+      > License file for the application.
+
+    - `README.md`
+      > Project overview and usage instructions.
 
 ### 1.4. Ansible
 
@@ -390,36 +706,38 @@ An Ansible Collection packages and distributes roles, modules and plugins. Organ
 
 2. Files and Folders
 
-    <!-- TODO -->
-
     - `galaxy.yml`
       > The source of the [metadata](https://docs.ansible.com/ansible/latest/dev_guide/collections_galaxy_meta.html#collections-galaxy-meta) file used to generate a collection on Galaxy and to build a collection artifact.
 
-    - Modules
+    - `meta/`
+      > Collection metadata directory.
 
-    - `/meta`
-    >
-
-    - `runtime.yml`
-      >
+      - `runtime.yml`
+        > Declares the minimum required Ansible version and plugin routing for the collection.
 
     - `plugins/`
-      > The Collections plugins directory can be used to ship various plugins inside an Ansible collection. Each plugin is placed in a folder that is named after the type of plugin it is in. It can also include the `module_utils` and `modules` directory that would contain module utils and modules respectively.
+      > The collections plugins directory ships various plugins inside an Ansible collection. Each plugin is placed in a folder named after its type. It also includes `module_utils` and `modules` directories for module utilities and modules respectively.
 
-    - `/modules`
-      > At least one plugin `required`.
+      - `modules/`
+        > Custom Ansible modules. At least one module is `required` for most collections.
 
-    - `__init__.py`
-      > A `required` empty file to initialize namespace and allow Python to import the files.
+        - `__init__.py`
+          > A `required` empty file to initialize the namespace and allow Python to import the files.
 
-    - `/inventory`
-      > At least one plugin `required`.
+      - `inventory/`
+        > Custom inventory plugins. At least one plugin is `required` for inventory collections.
 
-    - Roles
-    - Playbooks
+    - `roles/`
+      > Ansible roles bundled with the collection, each following the standard role directory structure.
 
-    - `/docs`
-      > Describes the use of the roles, plugins and role requirements provided by the collection.
+    - `playbooks/`
+      > Playbooks distributed as part of the collection.
+
+    - `docs/`
+      > Describes the use of the roles, plugins, and role requirements provided by the collection.
+
+    - `README.md`
+      > Collection overview and usage instructions.
 
 #### 1.4.2. Playbook
 
@@ -512,7 +830,35 @@ Ansible Playbook [directory layout](https://docs.ansible.com/ansible/latest/tips
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `collections/`
+      > Vendored Ansible collections installed locally, organized by namespace and collection name under `ansible_collections/`.
+
+    - `playbooks/`
+      > Ansible playbooks that define the automation workflows applied to the inventory.
+
+    - `inventory/`
+      > Host inventory files and variable definitions, organized per environment (`dev/`, `stage/`, `prod/`).
+
+      - `group_vars/`
+        > Variable files applied to host groups, including an `all/` sub-directory for variables shared across all hosts.
+
+      - `host_vars/`
+        > Variable files applied to specific hosts.
+
+      - `hosts.yml`
+        > Inventory file listing the hosts and their group memberships for the environment.
+
+    - `site.yml`
+      > Top-level playbook entry point that includes all other playbooks.
+
+    - `requirements.yml`
+      > Declares the Ansible collections and roles required by the project.
+
+    - `ansible.cfg`
+      > Ansible configuration file defining project-level settings.
+
+    - `README.md`
+      > Project overview and usage instructions.
 
 ### 1.5. Terraform
 
@@ -579,7 +925,59 @@ Terraform modules define self-contained, reusable resources of Infrastructure-as
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `modules/`
+      > Reusable Terraform sub-modules that can be composed to build the root module.
+
+      - `<module>/`
+        > An individual sub-module with its own set of Terraform files.
+
+        - `main.tf`
+          > Primary resource definitions for the module.
+
+        - `data.tf`
+          > Data source definitions for the module.
+
+        - `locals.tf`
+          > Local value definitions to simplify expressions within the module.
+
+        - `outputs.tf`
+          > Output value definitions exposed by the module.
+
+        - `variables.tf`
+          > Input variable declarations for the module.
+
+        - `versions.tf`
+          > Provider version constraints for the module.
+
+    - `examples/`
+      > Example configurations demonstrating how to use the module in simple and complete scenarios.
+
+    - `tests/`
+      > Terraform test files using the native HCL test framework.
+
+      - `unit/`
+        > Unit tests validating individual module inputs and resource naming.
+
+      - `integration/`
+        > Integration tests validating the composition of multiple modules.
+
+    - `main.tf`
+      > Root module entry point defining the primary resources.
+
+    - `variables.tf`
+      > Input variable declarations for the root module.
+
+    - `outputs.tf`
+      > Output value definitions exposed by the root module.
+
+    - `versions.tf`
+      > Provider and Terraform version constraints for the root module.
+
+    - `LICENSE`
+      > License file for the module.
+
+    - `README.md`
+      > Module overview, usage instructions, and input/output documentation.
 
 #### 1.5.2. Project
 
@@ -637,11 +1035,76 @@ A structured Terraform project designed to facilitate the management of Terrafor
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `modules/`
+      > Local reusable Terraform modules shared across environments.
+
+    - `environments/`
+      > Environment-specific Terraform configurations, each environment containing one or more stacks.
+
+      - `<env>/<stack>/`
+        > A single deployable stack within the environment.
+
+        - `main.tf`
+          > Primary resource definitions and module calls for the stack.
+
+        - `backend.tf`
+          > Remote state backend configuration for the stack.
+
+        - `provider.tf`
+          > Provider configurations for the stack.
+
+        - `locals.tf`
+          > Local value definitions to simplify expressions within the stack.
+
+        - `variables.tf`
+          > Input variable declarations for the stack.
+
+        - `outputs.tf`
+          > Output value definitions exposed by the stack.
+
+        - `data.tf`
+          > Data source definitions for the stack.
+
+        - `versions.tf`
+          > Provider and Terraform version constraints for the stack.
+
+    - `tests/`
+      > Terraform test files validating project configurations.
+
+    - `README.md`
+      > Project overview and usage instructions.
 
 3. Examples and Explanations
 
-    <!-- TODO -->
+    - Initialize workspace
+      > Initialize the Terraform working directory for a specific environment and stack.
+
+      ```make
+      ## Initialize Terraform workspace
+      terraform-init:
+        terraform -chdir=environments/$(ENV)/$(STACK) init
+      .PHONY: terraform-init
+      ```
+
+    - Plan changes
+      > Generate and review an execution plan for a specific environment and stack.
+
+      ```make
+      ## Plan Terraform changes
+      terraform-plan:
+        terraform -chdir=environments/$(ENV)/$(STACK) plan
+      .PHONY: terraform-plan
+      ```
+
+    - Apply changes
+      > Apply the Terraform execution plan for a specific environment and stack.
+
+      ```make
+      ## Apply Terraform changes
+      terraform-apply:
+        terraform -chdir=environments/$(ENV)/$(STACK) apply
+      .PHONY: terraform-apply
+      ```
 
 ### 1.6. Kubernetes
 
@@ -706,25 +1169,25 @@ Helm Charts as a packaging is a collection of to describe a related set of Kuber
       > A directory of templates that, when combined with values, will generate valid Kubernetes manifest files.
 
       - `_helpers.tpl`
-        > TODO
+        > A partial template file defining reusable named template blocks (e.g., labels, selectors) used across other templates.
 
       - `deployment.yaml`
-        > TODO
+        > Template for the Kubernetes `Deployment` resource managing application pod replicas.
 
       - `hpa.yaml`
-        > TODO
+        > Template for the Kubernetes `HorizontalPodAutoscaler` resource enabling automatic scaling based on metrics.
 
       - `ingress.yaml`
-        > TODO
+        > Template for the Kubernetes `Ingress` resource exposing HTTP and HTTPS routes to services.
 
       - `service.yaml`
-        > TODO
+        > Template for the Kubernetes `Service` resource providing stable network access to pods.
 
       - `serviceaccount.yaml`
-        > TODO
+        > Template for the Kubernetes `ServiceAccount` resource used to control pod permissions.
 
       - `NOTES.txt`
-        > A OPTIONAL plain text file containing short usage notes.
+        > An OPTIONAL plain text file containing short usage notes displayed after chart installation.
 
 3. Examples and Explanations
 
@@ -806,9 +1269,35 @@ A structured Kubernetes project designed to facilitate the management of Kuberne
 
 2. Files and Folders
 
-    <!-- TODO -->
+    - `charts/`
+      > Helm charts for the applications deployed in the project, each following the Helm chart file structure.
 
-3. Examples and Explanations
+    - `manifests/`
+      > Kustomize-managed Kubernetes manifests organized into base and environment-specific overlays.
+
+      - `base/`
+        > Base Kubernetes manifests shared across all environments.
+
+        - `kustomization.yaml`
+          > Kustomize configuration listing all base resources to include.
+
+        - `namespace.yaml`
+          > Kubernetes `Namespace` manifest defining the target namespace.
+
+        - `common-labels.yaml`
+          > Common label definitions applied across all resources.
+
+      - `overlays/`
+        > Environment-specific Kustomize overlays that patch or extend the base manifests.
+
+        - `<env>/kustomization.yaml`
+          > Kustomize configuration for the environment, referencing the base and listing patches.
+
+        - `<env>/patch.yaml`
+          > Kustomize patch file applying environment-specific changes to base resources.
+
+    - `README.md`
+      > Project overview and usage instructions.
 
     ```make
     # Usage: make k8s-deploy-<env>

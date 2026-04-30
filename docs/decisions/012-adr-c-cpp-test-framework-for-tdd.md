@@ -53,7 +53,7 @@ Efficient software development requires a robust test framework for C/C++ to sup
       > Ability to compile with multiple compilers (e.g., GCC, Clang, MSVC) to ensure broad platform and toolchain compatibility.
 
     - Build System (CMake/CTest)
-      > Integration with CMake for cross-platform builds and dependency management. CTest support for standardized test discovery and execution, enabling straightforward CI/CD integration.
+      > Integration with CMake for cross-platform builds and dependency management, and CTest support for standardized test discovery and execution, enabling straightforward CI/CD integration.
 
     - CI/CD Pipeline
       > Seamless integration with continuous integration/deployment workflows.
@@ -238,7 +238,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
   - Documentation
     > Sparse documentation and limited examples.
   - Unit Testing (JUnit XML)
-    > XML reporting is available but JUnit XML compatibility is limited and often requires adapters for standardized CI ingestion.
+    > XML reporting is available, but JUnit XML compatibility is limited and often requires adapters for standardized CI ingestion.
   - On/Off-Target Testing
     > No standardized built-in workflow for combining host-based and device-based test execution.
 
@@ -326,7 +326,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 ### 4.6. CppUTest
 
-[CppUTest](https://github.com/cpputest/cpputest) is a C/C++ unit testing framework specifically designed for embedded systems, though it supports any C/C++ environment. Its lightweight and focuses on simplicity, making it particularly suitable for resource-constrained systems and projects requiring minimal dependencies.
+[CppUTest](https://github.com/cpputest/cpputest) is a C/C++ unit testing framework specifically designed for embedded systems, though it supports any C/C++ environment. It is lightweight and focuses on simplicity, making it particularly suitable for resource-constrained systems and projects requiring minimal dependencies.
 
 - Pros:
   - Footprint
@@ -368,7 +368,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 ### 4.7. MSTest
 
-The [MSTest (Microsoft Testing Framework)](https://github.com/microsoft/testfx) Microsoft testing framework that supports C++ through the Visual Studio C++ Test Framework. Its designed to integrate seamlessly with Visual Studio and the broader Microsoft development ecosystem.
+The [MSTest (Microsoft Testing Framework)](https://github.com/microsoft/testfx) is a Microsoft testing framework that supports C++ through the Visual Studio C++ Test Framework. It is designed to integrate seamlessly with Visual Studio and the broader Microsoft development ecosystem.
 
 - Pros:
   - Unit Testing

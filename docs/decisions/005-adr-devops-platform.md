@@ -5,14 +5,21 @@ Architectural Decision Records (ADR) on implementing DevOps Platform for Softwar
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
+  - [3.1. GitLab](#31-gitlab)
 - [4. Considered](#4-considered)
+  - [4.1. Jenkins](#41-jenkins)
+  - [4.2. GitLab](#42-gitlab)
+  - [4.3. Azure DevOps](#43-azure-devops)
+  - [4.4. CircleCI](#44-circleci)
+  - [4.5. GitHub](#45-github)
+  - [4.6. Bitbucket](#46-bitbucket)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2024-07-03
 - Status: Proposed
 
@@ -42,7 +49,11 @@ As our organization scales, the need for a robust DevOps platform has become cri
 
 ## 3. Decision
 
-1. GitLab
+### 3.1. GitLab
+
+GitLab is selected as the DevOps platform due to its comprehensive lifecycle management, self-hosted deployment capabilities, and seamless integration with Git, Docker, and Kubernetes, providing a single application for the entire DevOps workflow.
+
+1. Rationale
 
     - Comprehensive
       > GitLab provides a single application for the entire DevOps Lifecycle Management, from Source Code Management, built-in CI/CD capabilities, Container Registry, Security and Compliance, Community and Support, and Performance Monitoring. This reduces the complexity of managing multiple tools and integrations.
@@ -64,53 +75,95 @@ As our organization scales, the need for a robust DevOps platform has become cri
 
 ## 4. Considered
 
-1. Jenkins
+### 4.1. Jenkins
 
-    - Pros
-      > Highly extensible, wide plugin ecosystem, open-source, strong self-managed capabilities.
+Jenkins is an open-source automation server with a large plugin ecosystem for building, deploying, and automating software projects.
 
-    - Cons
-      > Requires significant configuration and maintenance, plugins can introduce instability. High setup and maintenance overhead compared to more integrated solutions.
+- Pros
 
-2. GitLab
+  - Extensibility
+    > Highly extensible with a wide plugin ecosystem supporting a broad range of integrations and workflows.
 
-    - Pros
-      > Comprehensive DevOps lifecycle management, self-managed capabilities, robust source code management, project management tools, integrated CI/CD, Kubernetes and Container support, scalability, strong security and compliance features, large community and support.
+  - Open Source
+    > Fully open-source with strong self-managed capabilities and no licensing costs.
 
-    - Cons
-      > Initial learning curve, potential migration challenges for existing projects and repositories, additional responsibility for managing and maintaining the self-hosted environment, may have higher costs for premium features.
+- Cons
 
-3. Azure DevOps
+  - Maintenance Overhead
+    > Requires significant configuration and maintenance; plugins can introduce instability.
 
-    - Pros
-      > Enterprise-grade, deep integration with Microsoft products, comprehensive suite including Azure Pipelines, Azure Repos, and Azure Boards.
+  - Setup Complexity
+    > High setup and maintenance overhead compared to more integrated solutions.
 
-    - Cons
-      > Better suited for organizations heavily invested in the Microsoft ecosystem. Potentially high costs for scaling. Primarily a cloud-based solution, the self-managed version (Azure DevOps Server) is less feature-rich and requires significant effort to manage.
+### 4.2. GitLab
 
-4. CircleCI
+GitLab is a complete DevOps platform delivered as a single application, providing source code management, CI/CD, container registry, and security tools.
 
-    - Pros
-      > Fast and efficient CI/CD, excellent Docker support, easy configuration with YAML.
+- Pros
 
-    - Cons
-      > Primarily focused on CI/CD, lacks integrated project management tools and broader DevOps lifecycle management. Limited self-managed capabilities.
+  - Comprehensive Lifecycle
+    > Comprehensive DevOps lifecycle management, self-managed capabilities, robust source code management, project management tools, integrated CI/CD, Kubernetes and Container support, scalability, strong security and compliance features, large community and support.
 
-5. GitHub
+- Cons
 
-    - Pros
-      > Widely used, seamless integration with GitHub Actions for CI/CD, strong community and collaboration features.
+  - Learning Curve
+    > Initial learning curve, potential migration challenges for existing projects and repositories, additional responsibility for managing and maintaining the self-hosted environment, may have higher costs for premium features.
 
-    - Cons
-      > Limited in terms of integrated DevOps lifecycle features and security management. GitHub Enterprise Server offers self-managed hosting, but with less comprehensive DevOps capabilities.
+### 4.3. Azure DevOps
 
-6. Bitbucket
+Azure DevOps is an enterprise-grade suite from Microsoft providing Azure Pipelines, Azure Repos, and Azure Boards for end-to-end software delivery.
 
-    - Pros
-      > Integration with Jira and other Atlassian tools, Bitbucket Pipelines for CI/CD.
+- Pros
 
-    - Cons
-      > Less extensible than other platforms, smaller plugin ecosystem, primarily suited for Atlassian ecosystems. Bitbucket Server offers self-managed hosting but lacks the breadth of features.
+  - Enterprise Grade
+    > Enterprise-grade platform with deep integration with Microsoft products and a comprehensive suite including Azure Pipelines, Azure Repos, and Azure Boards.
+
+- Cons
+
+  - Microsoft Ecosystem
+    > Better suited for organizations heavily invested in the Microsoft ecosystem. Potentially high costs for scaling. Primarily a cloud-based solution, the self-managed version (Azure DevOps Server) is less feature-rich and requires significant effort to manage.
+
+### 4.4. CircleCI
+
+CircleCI is a cloud-native CI/CD platform with excellent Docker support and YAML-based pipeline configuration.
+
+- Pros
+
+  - CI/CD Performance
+    > Fast and efficient CI/CD with excellent Docker support and easy configuration with YAML.
+
+- Cons
+
+  - Scope
+    > Primarily focused on CI/CD, lacks integrated project management tools and broader DevOps lifecycle management. Limited self-managed capabilities.
+
+### 4.5. GitHub
+
+GitHub is a widely used code hosting and collaboration platform with GitHub Actions for CI/CD automation.
+
+- Pros
+
+  - Community
+    > Widely used platform with seamless integration with GitHub Actions for CI/CD and strong community and collaboration features.
+
+- Cons
+
+  - Lifecycle Coverage
+    > Limited in terms of integrated DevOps lifecycle features and security management. GitHub Enterprise Server offers self-managed hosting, but with less comprehensive DevOps capabilities.
+
+### 4.6. Bitbucket
+
+Bitbucket is a Git-based code hosting platform from Atlassian with native integration with Jira and Bitbucket Pipelines for CI/CD.
+
+- Pros
+
+  - Atlassian Integration
+    > Integration with Jira and other Atlassian tools, with Bitbucket Pipelines for CI/CD.
+
+- Cons
+
+  - Ecosystem
+    > Less extensible than other platforms, smaller plugin ecosystem, primarily suited for Atlassian ecosystems. Bitbucket Server offers self-managed hosting but lacks the breadth of features.
 
 ## 5. Consequences
 

@@ -1,4 +1,4 @@
-# XXX-ADR: Repository Strategies
+# 007-ADR: Repository Strategies
 
 Architectural Decision Records (ADR) for Repository Strategies in Software Develpoment.
 
@@ -16,7 +16,7 @@ Architectural Decision Records (ADR) for Repository Strategies in Software Devel
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2025-03-10
 - Status: Proposed
 

@@ -1,4 +1,4 @@
-# XXX-ADR: Task Runner
+# 011-ADR: Task Runner
 
 Task Runner for streamlining development workflows and reducing manual effort. Focuses on automating repetitive tasks in software development, such as building, testing, linting, and deploying code.
 
@@ -19,7 +19,7 @@ Task Runner for streamlining development workflows and reducing manual effort. F
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2025-01-23
 - Status: Proposed
 

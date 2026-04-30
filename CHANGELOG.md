@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.18.0](https://github.com/sentenz/convention/compare/2.17.0...2.18.0) (2026-04-30)
+
+
+### Features
+
+* **adr:** finalize ADR for Repository Strategies ([#437](https://github.com/sentenz/convention/issues/437)) ([f122323](https://github.com/sentenz/convention/commit/f1223238e9b89581adce9213719fee01cece038c))
+
 # [2.17.0](https://github.com/sentenz/convention/compare/2.16.0...2.17.0) (2026-04-30)
 
 

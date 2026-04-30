@@ -16,7 +16,7 @@ Architectural Decision Records (ADR) on implementing a Git Hooks Manager for Sof
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2026-04-30
 - Status: Proposed
 

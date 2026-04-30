@@ -96,14 +96,26 @@ npx lint-staged
 ```
 
 - Pros
-  - Simple setup for Node.js projects via `npm install`.
-  - Widely adopted in the JavaScript ecosystem with extensive community resources.
-  - Tight integration with `lint-staged` for running checks only on staged files.
+
+  - Ease of Use
+    > Simple setup for Node.js projects via `npm install`.
+
+  - Adoption
+    > Widely adopted in the JavaScript ecosystem with extensive community resources.
+
+  - Integration
+    > Tight integration with `lint-staged` for running checks only on staged files.
 
 - Cons
-  - Requires Node.js and `npm` as a runtime dependency, which is not suitable for our multi-language environment.
-  - Hook configuration is split across multiple shell scripts rather than a single declarative file.
-  - Does not support parallel execution of hook commands natively.
+
+  - Runtime Dependency
+    > Requires Node.js and `npm` as a runtime dependency, which is not suitable for our multi-language environment.
+
+  - Configuration
+    > Hook configuration is split across multiple shell scripts rather than a single declarative file.
+
+  - Performance
+    > Does not support parallel execution of hook commands natively.
 
 ### 4.2. Lefthook
 
@@ -126,16 +138,32 @@ commit-msg:
 ```
 
 - Pros
-  - Language-agnostic with no runtime dependencies beyond the binary itself.
-  - Supports parallel execution of multiple commands within a single hook.
-  - Single declarative YAML configuration file for all hooks.
-  - Cross-platform binaries available for Linux, macOS, and Windows.
-  - Supports filtering commands to run only on staged or changed files.
-  - Actively maintained with comprehensive documentation.
+
+  - Language Agnostic
+    > No runtime dependencies beyond the binary itself, making it suitable for multi-language environments.
+
+  - Performance
+    > Supports parallel execution of multiple commands within a single hook.
+
+  - Configuration
+    > Single declarative YAML configuration file for all hooks.
+
+  - Cross-Platform Support
+    > Cross-platform binaries available for Linux, macOS, and Windows.
+
+  - Staged Files
+    > Supports filtering commands to run only on staged or changed files.
+
+  - Community and Ecosystem
+    > Actively maintained with comprehensive documentation.
 
 - Cons
-  - Requires installing the `lefthook` binary on all development machines.
-  - Less established than Husky in the JavaScript ecosystem.
+
+  - Binary Dependency
+    > Requires installing the `lefthook` binary on all development machines.
+
+  - Adoption
+    > Less established than Husky in the JavaScript ecosystem.
 
 ### 4.3. Pre-commit
 
@@ -152,15 +180,29 @@ repos:
 ```
 
 - Pros
-  - Rich ecosystem of ready-made hooks from the pre-commit community.
-  - Language-agnostic hook definitions that can invoke tools from various runtimes.
-  - Automatic virtual environment management for Python-based hooks.
+
+  - Ecosystem
+    > Rich ecosystem of ready-made hooks from the pre-commit community.
+
+  - Language Agnostic
+    > Hook definitions that can invoke tools from various runtimes.
+
+  - Environment Management
+    > Automatic virtual environment management for Python-based hooks.
 
 - Cons
-  - Requires Python as a runtime dependency for the framework itself.
-  - Hook definitions are fetched from remote repositories, introducing external dependencies and potential network latency.
-  - Configuration is limited to the `pre-commit` hook by default; other hooks require additional setup.
-  - Slower compared to Lefthook due to virtual environment management overhead.
+
+  - Runtime Dependency
+    > Requires Python as a runtime dependency for the framework itself.
+
+  - External Dependencies
+    > Hook definitions are fetched from remote repositories, introducing external dependencies and potential network latency.
+
+  - Hook Coverage
+    > Configuration is limited to the `pre-commit` hook by default; other hooks require additional setup.
+
+  - Performance
+    > Slower compared to Lefthook due to virtual environment management overhead.
 
 ## 5. Consequences
 

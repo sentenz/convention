@@ -1,6 +1,6 @@
 # 007-ADR: Repository Strategies
 
-Architectural Decision Records (ADR) for Repository Strategies in Software Develpoment.
+Architectural Decision Records (ADR) for Repository Strategies in Software Development.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)

@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.21.0](https://github.com/sentenz/convention/compare/2.20.0...2.21.0) (2026-04-30)
+
+
+### Features
+
+* **adr:** restructure ADR comment tags ([#440](https://github.com/sentenz/convention/issues/440)) ([e2ea77a](https://github.com/sentenz/convention/commit/e2ea77adf9bbb7cc8c689e9746036b44d808c54d))
+
 # [2.20.0](https://github.com/sentenz/convention/compare/2.19.0...2.20.0) (2026-04-30)
 
 

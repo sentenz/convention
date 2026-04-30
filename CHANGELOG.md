@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.16.0](https://github.com/sentenz/convention/compare/2.15.0...2.16.0) (2026-04-30)
+
+
+### Features
+
+* **docs:** add ADR Language for Technical Documentation ([#434](https://github.com/sentenz/convention/issues/434)) ([4bee0a6](https://github.com/sentenz/convention/commit/4bee0a67558a0091f649b5b8d94ad25d5df981f4))
+
 # [2.15.0](https://github.com/sentenz/convention/compare/2.14.0...2.15.0) (2026-04-30)
 
 

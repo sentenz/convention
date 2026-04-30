@@ -84,101 +84,129 @@ We will standardize the use of the following comment tags across the entire code
 
 Indicate tasks that need to be done in the future.
 
-- Pros
-  - Clearly identifies tasks that need to be done, aiding in task management.
+- Pros:
+  - Task Management
+    > Clearly identifies tasks that need to be done, aiding in task management.
 
-- Cons
-  - Can become outdated if not regularly maintained.
-  - May lead to an accumulation of unfinished tasks if not properly tracked.
+- Cons:
+  - Maintenance
+    > Can become outdated if not regularly maintained.
+  - Task Tracking
+    > May lead to an accumulation of unfinished tasks if not properly tracked.
 
 ### 4.2. `FIXME`
 
 Highlight code that is broken or incorrect and needs to be fixed.
 
-- Pros
-  - Clearly marks broken or incorrect code, making it easier to prioritize fixes.
+- Pros:
+  - Code Quality
+    > Clearly marks broken or incorrect code, making it easier to prioritize fixes.
 
-- Cons
-  - Overlaps with `BUG`, leading to potential redundancy.
-  - Can lead to neglected fixes if not properly managed.
+- Cons:
+  - Redundancy
+    > Overlaps with `BUG`, leading to potential redundancy.
+  - Fix Management
+    > Can lead to neglected fixes if not properly managed.
 
 ### 4.3. `NOTE`
 
 Provide additional information or context about the code.
 
-- Pros
-  - Provides additional context, improving code readability and understanding.
+- Pros:
+  - Readability
+    > Provides additional context, improving code readability and understanding.
 
-- Cons
-  - Can be overused for trivial information, cluttering the codebase.
-  - May become outdated or irrelevant over time.
+- Cons:
+  - Overuse
+    > Can be overused for trivial information, cluttering the codebase.
+  - Maintenance
+    > May become outdated or irrelevant over time.
 
 ### 4.4. `DEPRECATED`
 
 Mark code that is outdated and should not be used in new developments.
 
-- Pros
-  - Clearly marks outdated code, guiding developers to use current solutions.
+- Pros:
+  - Code Guidance
+    > Clearly marks outdated code, guiding developers to use current solutions.
 
-- Cons
-  - Requires regular updates to reflect current best practices.
-  - Can lead to confusion if deprecated code is not removed promptly.
+- Cons:
+  - Maintenance
+    > Requires regular updates to reflect current best practices.
+  - Code Removal
+    > Can lead to confusion if deprecated code is not removed promptly.
 
 ### 4.5. `XXX`
 
 Draw attention to potentially problematic or risky code that needs further review.
 
-- Pros
-  - Highlights potentially risky or problematic code, ensuring careful review.
-  - Useful for marking places where linters are disabled, indicating potential issues.
+- Pros:
+  - Risk Identification
+    > Highlights potentially risky or problematic code, ensuring careful review.
+  - Linter Bypass
+    > Useful for marking places where linters are disabled, indicating potential issues.
 
-- Cons
-  - Can overlap with `HACK` and `FIXME`, leading to redundancy.
-  - May not be prioritized, leading to unresolved risky code.
+- Cons:
+  - Redundancy
+    > Can overlap with `HACK` and `FIXME`, leading to redundancy.
+  - Prioritization
+    > May not be prioritized, leading to unresolved risky code.
 
 ### 4.6. `HACK`
 
 Indicates a temporary workaround or a quick fix that is not an ideal solution.
 
-- Pros
-  - Clearly marks code that is not ideal and needs to be revisited.
+- Pros:
+  - Code Quality
+    > Clearly marks code that is not ideal and needs to be revisited.
 
-- Cons
-  - Often overlaps with `FIXME` and `XXX`, leading to potential redundancy.
-  - May encourage the use of poor coding practices if not addressed promptly.
+- Cons:
+  - Redundancy
+    > Often overlaps with `FIXME` and `XXX`, leading to potential redundancy.
+  - Code Practices
+    > May encourage the use of poor coding practices if not addressed promptly.
 
 ### 4.7. `BUG`
 
 Specifically marks known bugs in the code.
 
-- Pros
-  - Clearly identifies known bugs, making it easier to track and prioritize fixes.
+- Pros:
+  - Bug Tracking
+    > Clearly identifies known bugs, making it easier to track and prioritize fixes.
 
-- Cons
-  - Overlaps with `FIXME`, which already serves a similar purpose.
-  - Can clutter the codebase if overused or not properly managed.
+- Cons:
+  - Redundancy
+    > Overlaps with `FIXME`, which already serves a similar purpose.
+  - Codebase Clutter
+    > Can clutter the codebase if overused or not properly managed.
 
 ### 4.8. `OPTIMIZE`
 
 Highlights code that needs performance improvements.
 
-- Pros
-  - Focuses on performance-related issues, which can be crucial for high-performance applications.
+- Pros:
+  - Performance Focus
+    > Focuses on performance-related issues, which can be crucial for high-performance applications.
 
-- Cons
-  - Can be too specific and overlaps with `TODO` for performance-related tasks.
-  - May not be used consistently if not enforced strictly.
+- Cons:
+  - Redundancy
+    > Can be too specific and overlaps with `TODO` for performance-related tasks.
+  - Consistency
+    > May not be used consistently if not enforced strictly.
 
 ### 4.9. `NIT`
 
 Marks minor issues or nitpicks that do not affect functionality but could improve clarity.
 
-- Pros
-  - Helps identify minor improvements that can enhance code quality and readability.
+- Pros:
+  - Code Quality
+    > Helps identify minor improvements that can enhance code quality and readability.
 
-- Cons
-  - Can lead to excessive comments for trivial matters, cluttering the codebase.
-  - May not be prioritized, leading to accumulation of minor issues.
+- Cons:
+  - Codebase Clutter
+    > Can lead to excessive comments for trivial matters, cluttering the codebase.
+  - Prioritization
+    > May not be prioritized, leading to accumulation of minor issues.
 
 ## 5. Consequences
 

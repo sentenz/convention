@@ -1,6 +1,6 @@
-# XXX-ADR: Repository Strategies
+# 007-ADR: Repository Strategies
 
-Architectural Decision Records (ADR) for Repository Strategies in Software Develpoment.
+Architectural Decision Records (ADR) for Repository Strategies in Software Development.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)
@@ -16,7 +16,7 @@ Architectural Decision Records (ADR) for Repository Strategies in Software Devel
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2025-03-10
 - Status: Proposed
 
@@ -53,19 +53,19 @@ Evaluating the project’s current size, team structure, growth potential, and o
 1. Rationale
 
     - Scalability
-      > TODO
+      > Modules can be extracted into independent services incrementally as the system grows, avoiding a full architectural rewrite while preserving the ability to scale specific components under load.
 
     - Maintainability
-      > TODO
+      > Enforced module boundaries and clear separation of concerns make the codebase easier to understand, refactor, and evolve without unintended cross-cutting side effects.
 
     - Development Workflow
-      > TODO
+      > Teams can develop and test modules independently within a single repository, reducing cross-team coordination overhead while maintaining a unified branching and review workflow.
 
     - CI/CD Complexity
-      > TODO
+      > A single repository simplifies pipeline configuration; targeted build and test execution can be scoped per module to control build times as the system matures.
 
     - Dependency Management
-      > TODO
+      > All internal dependencies reside within one repository, eliminating cross-repository versioning overhead and reducing integration complexity for shared libraries and utilities.
 
 ## 4. Considered
 
@@ -161,7 +161,35 @@ A Monorepo (Single Repository) approach consolidates all services, modules, libr
 
 ### 4.4. Monolith
 
-<!-- TODO -->
+A Monolith (Traditional Monolithic Architecture) packages all application functionality as a single, tightly-coupled deployable unit. All components share the same process space, database, and runtime environment with no enforced internal boundaries.
+
+- Pros
+
+  - Simplicity
+    > Simple to develop, test, and deploy as a single unit with no distributed system complexity.
+
+  - Ease of Development
+    > Low initial complexity makes it accessible for small teams and early-stage projects.
+
+  - Consistent Data Management
+    > All components share a single database, simplifying transactions and data consistency.
+
+  - Low Overhead
+    > No need for inter-service communication protocols, service discovery, or distributed tracing tooling.
+
+- Cons
+
+  - Scalability Limitations
+    > The entire application must be scaled as one unit, regardless of which component requires additional resources.
+
+  - Tight Coupling
+    > Changes to one area can inadvertently impact others, increasing the risk of regressions across the system.
+
+  - Deployment Risk
+    > Every release requires deploying the full system, increasing the blast radius of failed deployments.
+
+  - Technology Lock-in
+    > The entire codebase is bound to a single technology stack, making it difficult to adopt new technologies incrementally.
 
 ## 5. Consequences
 
@@ -185,7 +213,9 @@ A Monorepo (Single Repository) approach consolidates all services, modules, libr
 
 4. Monolith
 
-    <!-- TODO -->
+    - Simple to start but increasingly difficult to maintain as the codebase grows due to tight coupling and absence of enforced module boundaries.
+
+    - Deployment risk escalates over time as the system expands and every change requires a full application release.
 
 ## 6. References
 

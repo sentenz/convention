@@ -1,6 +1,6 @@
-# XXX-ADR: Code Review
+# 009-ADR: Code Review
 
-Architectural Decision Records (ADR) for Code Reviews in Software Develpoment.
+Architectural Decision Records (ADR) for Code Reviews in Software Development.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)
@@ -17,7 +17,7 @@ Architectural Decision Records (ADR) for Code Reviews in Software Develpoment.
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2024-10-11
 - Status: Proposed
 
@@ -27,8 +27,20 @@ Code review is a systematic software quality assurance technique for developers 
 
 1. Decision Drivers
 
-    - TODO Topic
-      > TODO Description
+    - Code Quality
+      > Ensure that code meets established quality standards, reducing the likelihood of bugs, security vulnerabilities, and technical debt.
+
+    - Knowledge Sharing
+      > Promote collaborative learning and knowledge transfer across the team to prevent knowledge silos and foster collective code ownership.
+
+    - Automation
+      > Reduce manual effort and accelerate feedback cycles by automating routine checks for style, formatting, and basic quality issues.
+
+    - Team Collaboration
+      > Foster a culture of constructive peer collaboration and continuous improvement through structured review workflows.
+
+    - Scalability
+      > Ensure the review process remains effective and manageable as the codebase and team grow over time.
 
 ## 3. Decision
 
@@ -36,8 +48,20 @@ A hybrid Code Review process that combines `Automated Code Review` with `Asynchr
 
 1. Rationale
 
-    - TODO Topic
-      > TODO Description
+    - Code Quality
+      > The hybrid approach combines automated quality gates for consistent enforcement of standards with thorough human reviews for complex logic, architecture, and design decisions, achieving comprehensive quality assurance.
+
+    - Knowledge Sharing
+      > Asynchronous peer reviews through Merge Requests and Pull Requests facilitate mentorship and collective code ownership, while optional synchronous meetings provide a deeper collaborative understanding of complex business and domain logic.
+
+    - Automation
+      > Automated Code Review handles routine style, formatting, and basic quality checks efficiently, reducing the cognitive load on human reviewers and enabling them to focus on higher-order concerns such as architecture and functionality.
+
+    - Team Collaboration
+      > Pull Requests provide structured collaboration touchpoints with clear traceability, while optional Peer Review meetings enable real-time discussion for critical or complex areas of the codebase.
+
+    - Scalability
+      > Automation manages review volume as the codebase grows, structured asynchronous reviews scale naturally with the team, and synchronous reviews are reserved for critical areas to limit scheduling overhead.
 
 ### 3.1. Automated Code Review
 

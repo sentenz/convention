@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.15.0](https://github.com/sentenz/convention/compare/2.14.0...2.15.0) (2026-04-30)
+
+
+### Features
+
+* **guide:** complete project layout guide ([#433](https://github.com/sentenz/convention/issues/433)) ([85eb449](https://github.com/sentenz/convention/commit/85eb449c629d33c2c7978aa756bdd063b3359aee))
+
 # [2.14.0](https://github.com/sentenz/convention/compare/2.13.0...2.14.0) (2026-04-30)
 
 

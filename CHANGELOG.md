@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.17.0](https://github.com/sentenz/convention/compare/2.16.0...2.17.0) (2026-04-30)
+
+
+### Features
+
+* **adr:** complete ADR C/C++ Test Framework for TDD ([#435](https://github.com/sentenz/convention/issues/435)) ([a9ce2ca](https://github.com/sentenz/convention/commit/a9ce2ca8424cab97722247d2a40038a961ed3704))
+
 # [2.16.0](https://github.com/sentenz/convention/compare/2.15.0...2.16.0) (2026-04-30)
 
 

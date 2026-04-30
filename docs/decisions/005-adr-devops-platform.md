@@ -4,15 +4,15 @@ Architectural Decision Records (ADR) on implementing DevOps Platform for Softwar
 
 - [1. State](#1-state)
 - [2. Context](#2-context)
-- [3. Decision](#3-decision)
-- [4. Considered](#4-considered)
-- [5. Consequences](#5-consequences)
-- [6. Implementation](#6-implementation)
-- [7. References](#7-references)
+- [3. Decision Drivers](#3-decision-drivers)
+- [4. Decision](#4-decision)
+- [5. Considered](#5-considered)
+- [6. Consequences](#6-consequences)
+- [7. Implementation](#7-implementation)
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2024-07-03
 - Status: Proposed
 
@@ -20,27 +20,27 @@ Architectural Decision Records (ADR) on implementing DevOps Platform for Softwar
 
 As our organization scales, the need for a robust DevOps platform has become critical. We aim to streamline our development and operations processes, improve deployment efficiency, and enhance collaboration between development and operations teams. A comprehensive DevOps platform will facilitate continuous integration (CI), continuous delivery (CD), automated testing, and monitoring.
 
-1. Decision Drivers
+## 3. Decision Drivers
 
-    - Comprehensive
-      > Comprehensive DevOps Lifecycle Management.
+- Comprehensive
+  > Comprehensive DevOps Lifecycle Management.
 
-    - Integration and Compatibility
-      > The platform must seamlessly integrate with our existing tools and technology stack (e.g. Git, Docker, Kubernetes).
+- Integration and Compatibility
+  > The platform must seamlessly integrate with our existing tools and technology stack (e.g. Git, Docker, Kubernetes).
 
-    - Ease of Use
-      > The platform should have a user-friendly interface and provide comprehensive documentation.
+- Ease of Use
+  > The platform should have a user-friendly interface and provide comprehensive documentation.
 
-    - Scalability
-      > The platform must be able to scale with the growth of the organization.
+- Scalability
+  > The platform must be able to scale with the growth of the organization.
 
-    - Security
-      > The platform must offer robust security features, including role-based access control, encryption, and audit logs.
+- Security
+  > The platform must offer robust security features, including role-based access control, encryption, and audit logs.
 
-    - Cost
-      > The total cost of ownership should be within our budget constraints.
+- Cost
+  > The total cost of ownership should be within our budget constraints.
 
-## 3. Decision
+## 4. Decision
 
 1. GitLab
 
@@ -62,7 +62,7 @@ As our organization scales, the need for a robust DevOps platform has become cri
     - Cost
       > GitLab offers a competitive pricing model. The open-source version is free, and the paid versions provide additional features and support at a reasonable cost.
 
-## 4. Considered
+## 5. Considered
 
 1. Jenkins
 
@@ -112,7 +112,7 @@ As our organization scales, the need for a robust DevOps platform has become cri
     - Cons
       > Less extensible than other platforms, smaller plugin ecosystem, primarily suited for Atlassian ecosystems. Bitbucket Server offers self-managed hosting but lacks the breadth of features.
 
-## 5. Consequences
+## 6. Consequences
 
 1. Positive
 
@@ -133,7 +133,7 @@ As our organization scales, the need for a robust DevOps platform has become cri
     - Migration Effort
       > Migrating existing CI/CD pipelines and infrastructure to GitLab will require effort and careful planning.
 
-## 6. Implementation
+## 7. Implementation
 
 1. Training
 
@@ -151,6 +151,6 @@ As our organization scales, the need for a robust DevOps platform has become cri
 
     - Continuously monitor the performance and security of the new platform, making adjustments as necessary.
 
-## 7. References
+## References
 
 - GitLab [Secrets Manager](https://docs.gitlab.com/ee/architecture/blueprints/secret_manager/) page.

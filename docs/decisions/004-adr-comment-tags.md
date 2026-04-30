@@ -5,14 +5,28 @@ Architectural Decision Records (ADR) on implementing Comment Tags for Software P
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
+  - [3.1. `TODO`](#31-todo)
+  - [3.2. `FIXME`](#32-fixme)
+  - [3.3. `NOTE`](#33-note)
+  - [3.4. `DEPRECATED`](#34-deprecated)
+  - [3.5. `XXX`](#35-xxx)
 - [4. Considered](#4-considered)
+  - [4.1. `TODO`](#41-todo)
+  - [4.2. `FIXME`](#42-fixme)
+  - [4.3. `NOTE`](#43-note)
+  - [4.4. `DEPRECATED`](#44-deprecated)
+  - [4.5. `XXX`](#45-xxx)
+  - [4.6. `HACK`](#46-hack)
+  - [4.7. `BUG`](#47-bug)
+  - [4.8. `OPTIMIZE`](#48-optimize)
+  - [4.9. `NIT`](#49-nit)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2024-07-03
 - Status: Proposed
 
@@ -24,157 +38,147 @@ In a scale software project, maintaining a consistent and clear codebase is crit
 
 We will standardize the use of the following comment tags across the entire codebase.
 
-1. `TODO`
+### 3.1. `TODO`
 
-    `TODO` tag should be used for tasks that need to be completed but are not immediately critical. It can include enhancements, feature implementations, or code refactoring.
+`TODO` tag should be used for tasks that need to be completed but are not immediately critical. It can include enhancements, feature implementations, or code refactoring.
 
-    Example:
+```python
+# TODO Implement the user authentication mechanism
+```
 
-    ```python
-    # TODO Implement the user authentication mechanism
-    ```
+### 3.2. `FIXME`
 
-2. `FIXME`
+`FIXME` tag is used to point out code that is currently broken, buggy, or incorrect.
 
-    `FIXME` tag is used to point out code that is currently broken, buggy, or incorrect.
+```python
+# FIXME This function returns incorrect values for negative inputs. See issue sentenz/convention#123.
+```
 
-    Example:
+### 3.3. `NOTE`
 
-    ```python
-    # FIXME This function returns incorrect values for negative inputs. See issue #123.
-    ```
+`NOTE` tag to provide supplementary information about the code, which might not be immediately obvious to the reader. This can include explanations of complex logic, rationale for certain decisions, or any other information that could be helpful for understanding the code.
 
-3. `NOTE`
+```python
+# NOTE This algorithm assumes input is always sorted
+```
 
-    `NOTE` tag to provide supplementary information about the code, which might not be immediately obvious to the reader. This can include explanations of complex logic, rationale for certain decisions, or any other information that could be helpful for understanding the code.
+### 3.4. `DEPRECATED`
 
-    Example:
+`DEPRECATED` tag is used to mark code that is obsolete and should be avoided in new developments. It should include a description of why the code is deprecated and, if applicable, suggest alternative solutions or point to updated code.
 
-    ```python
-      # NOTE This algorithm assumes input is always sorted
-    ```
+```python
+# DEPRECATED Use the new `calculate_metrics` function instead of this method
+```
 
-4. `DEPRECATED`
+### 3.5. `XXX`
 
-    `DEPRECATED` tag is used to mark code that is obsolete and should be avoided in new developments. It should include a description of why the code is deprecated and, if applicable, suggest alternative solutions or point to updated code.
+`XXX` tag should be used to draw attention to code that is potentially problematic or risky and needs further review or scrutiny. It can be used to highlight code that may not adhere to best practices, is fragile, or is a temporary solution that requires a more permanent fix.
 
-    Example:
-
-    ```python
-    # DEPRECATED Use the new `calculate_metrics` function instead of this method
-    ```
-
-5. `XXX`
-
-    `XXX` tag should be used to draw attention to code that is potentially problematic or risky and needs further review or scrutiny. It can be used to highlight code that may not adhere to best practices, is fragile, or is a temporary solution that requires a more permanent fix.
-
-    Example:
-
-    ```python
-    # XXX This is a quick fix for the deadline. Needs proper error handling.
-    ```
+```python
+# XXX This is a quick fix for the deadline. Needs proper error handling
+```
 
 ## 4. Considered
 
-1. `TODO`
+### 4.1. `TODO`
 
-    Indicate tasks that need to be done in the future.
+Indicate tasks that need to be done in the future.
 
-    - Pros
-      - Clearly identifies tasks that need to be done, aiding in task management.
+- Pros
+  - Clearly identifies tasks that need to be done, aiding in task management.
 
-    - Cons
-      - Can become outdated if not regularly maintained.
-      - May lead to an accumulation of unfinished tasks if not properly tracked.
+- Cons
+  - Can become outdated if not regularly maintained.
+  - May lead to an accumulation of unfinished tasks if not properly tracked.
 
-2. `FIXME`
+### 4.2. `FIXME`
 
-    Highlight code that is broken or incorrect and needs to be fixed.
+Highlight code that is broken or incorrect and needs to be fixed.
 
-    - Pros
-      - Clearly marks broken or incorrect code, making it easier to prioritize fixes.
+- Pros
+  - Clearly marks broken or incorrect code, making it easier to prioritize fixes.
 
-    - Cons
-      - Overlaps with `BUG`, leading to potential redundancy.
-      - Can lead to neglected fixes if not properly managed.
+- Cons
+  - Overlaps with `BUG`, leading to potential redundancy.
+  - Can lead to neglected fixes if not properly managed.
 
-3. `NOTE`
+### 4.3. `NOTE`
 
-    Provide additional information or context about the code.
+Provide additional information or context about the code.
 
-    - Pros
-      - Provides additional context, improving code readability and understanding.
+- Pros
+  - Provides additional context, improving code readability and understanding.
 
-    - Cons
-      - Can be overused for trivial information, cluttering the codebase.
-      - May become outdated or irrelevant over time.
+- Cons
+  - Can be overused for trivial information, cluttering the codebase.
+  - May become outdated or irrelevant over time.
 
-4. `DEPRECATED`
+### 4.4. `DEPRECATED`
 
-    Mark code that is outdated and should not be used in new developments.
+Mark code that is outdated and should not be used in new developments.
 
-    - Pros
-      - Clearly marks outdated code, guiding developers to use current solutions.
+- Pros
+  - Clearly marks outdated code, guiding developers to use current solutions.
 
-    - Cons
-      - Requires regular updates to reflect current best practices.
-      - Can lead to confusion if deprecated code is not removed promptly.
+- Cons
+  - Requires regular updates to reflect current best practices.
+  - Can lead to confusion if deprecated code is not removed promptly.
 
-5. `XXX`
+### 4.5. `XXX`
 
-    Draw attention to potentially problematic or risky code that needs further review.
+Draw attention to potentially problematic or risky code that needs further review.
 
-    - Pros
-      - Highlights potentially risky or problematic code, ensuring careful review.
-      - Useful for marking places where linters are disabled, indicating potential issues.
+- Pros
+  - Highlights potentially risky or problematic code, ensuring careful review.
+  - Useful for marking places where linters are disabled, indicating potential issues.
 
-    - Cons
-      - Can overlap with `HACK` and `FIXME`, leading to redundancy.
-      - May not be prioritized, leading to unresolved risky code.
+- Cons
+  - Can overlap with `HACK` and `FIXME`, leading to redundancy.
+  - May not be prioritized, leading to unresolved risky code.
 
-6. `HACK`
+### 4.6. `HACK`
 
-    Indicates a temporary workaround or a quick fix that is not an ideal solution.
+Indicates a temporary workaround or a quick fix that is not an ideal solution.
 
-    - Pros
-      - Clearly marks code that is not ideal and needs to be revisited.
+- Pros
+  - Clearly marks code that is not ideal and needs to be revisited.
 
-    - Cons
-      - Often overlaps with `FIXME` and `XXX`, leading to potential redundancy.
-      - May encourage the use of poor coding practices if not addressed promptly.
+- Cons
+  - Often overlaps with `FIXME` and `XXX`, leading to potential redundancy.
+  - May encourage the use of poor coding practices if not addressed promptly.
 
-7. `BUG`
+### 4.7. `BUG`
 
-    Specifically marks known bugs in the code.
+Specifically marks known bugs in the code.
 
-    - Pros
-      - Clearly identifies known bugs, making it easier to track and prioritize fixes.
+- Pros
+  - Clearly identifies known bugs, making it easier to track and prioritize fixes.
 
-    - Cons
-      - Overlaps with `FIXME`, which already serves a similar purpose.
-      - Can clutter the codebase if overused or not properly managed.
+- Cons
+  - Overlaps with `FIXME`, which already serves a similar purpose.
+  - Can clutter the codebase if overused or not properly managed.
 
-8. `OPTIMIZE`
+### 4.8. `OPTIMIZE`
 
-    Highlights code that needs performance improvements.
+Highlights code that needs performance improvements.
 
-    - Pros
-      - Focuses on performance-related issues, which can be crucial for high-performance applications.
+- Pros
+  - Focuses on performance-related issues, which can be crucial for high-performance applications.
 
-    - Cons
-      - Can be too specific and overlaps with `TODO` for performance-related tasks.
-      - May not be used consistently if not enforced strictly.
+- Cons
+  - Can be too specific and overlaps with `TODO` for performance-related tasks.
+  - May not be used consistently if not enforced strictly.
 
-9. `NIT`
+### 4.9. `NIT`
 
-    Marks minor issues or nitpicks that do not affect functionality but could improve code quality.
+Marks minor issues or nitpicks that do not affect functionality but could improve clarity.
 
-    - Pros
-      - Helps identify minor improvements that can enhance code quality and readability.
+- Pros
+  - Helps identify minor improvements that can enhance code quality and readability.
 
-    - Cons
-      - Can lead to excessive comments for trivial matters, cluttering the codebase.
-      - May not be prioritized, leading to accumulation of minor issues.
+- Cons
+  - Can lead to excessive comments for trivial matters, cluttering the codebase.
+  - May not be prioritized, leading to accumulation of minor issues.
 
 ## 5. Consequences
 

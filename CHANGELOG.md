@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.22.0](https://github.com/sentenz/convention/compare/2.21.0...2.22.0) (2026-04-30)
+
+
+### Features
+
+* **adr:** refine ADR DevOps Platform ([#439](https://github.com/sentenz/convention/issues/439)) ([66327d7](https://github.com/sentenz/convention/commit/66327d7a96e52870d568f05a474a30ed420bae13))
+
 # [2.21.0](https://github.com/sentenz/convention/compare/2.20.0...2.21.0) (2026-04-30)
 
 

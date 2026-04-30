@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.20.0](https://github.com/sentenz/convention/compare/2.19.0...2.20.0) (2026-04-30)
+
+
+### Features
+
+* **adr:** finalize ADR for Code Review ([#438](https://github.com/sentenz/convention/issues/438)) ([25fdce5](https://github.com/sentenz/convention/commit/25fdce52de53f1c176a70e3c5b00e949c2d46bd5))
+
 # [2.19.0](https://github.com/sentenz/convention/compare/2.18.0...2.19.0) (2026-04-30)
 
 

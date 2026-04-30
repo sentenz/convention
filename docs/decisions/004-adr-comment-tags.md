@@ -56,7 +56,7 @@ We will standardize the use of the following comment tags across the entire code
 
 ### 3.3. `NOTE`
 
-`NOTE` tag to provide supplementary information about the code, which might not be immediately obvious to the reader. This can include explanations of complex logic, rationale for certain decisions, or any other information that could be helpful for understanding the code.
+The `NOTE` tag is used to provide supplementary information about the code, which might not be immediately obvious to the reader. This can include explanations of complex logic, rationale for certain decisions, or any other information that could be helpful for understanding the code.
 
 ```python
 # NOTE This algorithm assumes input is always sorted

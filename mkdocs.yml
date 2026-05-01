@@ -5,6 +5,8 @@ repo_url: https://github.com/sentenz/convention
 
 docs_dir: content
 site_dir: public
+exclude_docs: |
+  decisions/draft/
 
 hooks:
   - scripts/python/mkdocs_hooks.py

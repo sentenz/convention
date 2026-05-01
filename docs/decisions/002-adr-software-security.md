@@ -41,6 +41,9 @@ In the development of our software product, ensuring robust security is paramoun
     - Authentication and Access Control
       > Ensuring that only authorized users can access specific resources through robust authentication mechanisms and fine-grained authorization controls.
 
+    - Cybersecurity Perimeter
+      > Establishing and enforcing network security boundaries through segmentation, firewalls, and intrusion detection and prevention systems to limit the attack surface and contain potential breaches.
+
     - SSDLC Integration
       > Embedding security practices at every stage of the software development lifecycle, following Security by Design and Security by Default principles.
 
@@ -51,7 +54,7 @@ In the development of our software product, ensuring robust security is paramoun
 
 ### 3.1. Comprehensive Software Security
 
-We will implement a comprehensive software security strategy that includes secure coding practices, static and dynamic code analysis, robust authentication and authorization, encryption, regular security audits, security training, and an SSDLC framework. This approach ensures compliance with IEC 62443, ISO/IEC 27001, and other applicable standards.
+We will implement a comprehensive software security strategy that includes secure coding practices, static and dynamic code analysis, robust authentication and authorization, cybersecurity perimeter controls, encryption, regular security audits, security training, and an SSDLC framework. This approach ensures compliance with IEC 62443, ISO/IEC 27001, and other applicable standards.
 
 1. Rationale
 
@@ -69,6 +72,9 @@ We will implement a comprehensive software security strategy that includes secur
 
     - Authentication and Access Control
       > Implementing multi-factor authentication and fine-grained authorization controls, as specified in IEC 62443-3-3 and NIST SP 800-63-3, ensures that only authorized users can access specific resources.
+
+    - Cybersecurity Perimeter
+      > Defining and enforcing network boundaries through segmentation, firewalls, and intrusion detection and prevention systems, as required by IEC 62443-3-3, reduces the attack surface and limits lateral movement in the event of a breach.
 
     - SSDLC Integration
       > An SSDLC framework incorporating Security by Design and Security by Default principles embeds security at every stage of development, reducing the cost of late-stage remediation.
@@ -89,6 +95,9 @@ Implementing a thorough and extensive set of security measures, exceeding standa
 
   - Vulnerability Management
     > Future-proofs the software against emerging threats through proactive and layered security controls.
+
+  - Cybersecurity Perimeter
+    > Establishes well-defined network boundaries through segmentation and monitoring, providing defense-in-depth and containing potential breaches.
 
   - Security Awareness
     > Enhances organizational reputation for security commitment and fosters a security-first culture.
@@ -127,6 +136,9 @@ Adopting a minimalistic approach to security, focusing only on basic protective 
   - Authentication and Access Control
     > Potential loss of user trust and reputational damage following security incidents.
 
+  - Cybersecurity Perimeter
+    > Lack of network boundary controls leaves systems exposed to lateral movement and escalation following an initial compromise.
+
 ### 4.3. Outsourcing Security
 
 Engaging a third-party vendor to handle all security aspects of the software.
@@ -146,6 +158,9 @@ Engaging a third-party vendor to handle all security aspects of the software.
 
   - Authentication and Access Control
     > Potential issues with ensuring vendor compliance with data protection and access control requirements.
+
+  - Cybersecurity Perimeter
+    > Delegating perimeter management to a third party reduces visibility into network boundaries and incident response timelines.
 
   - SSDLC Integration
     > Less control over ongoing security maintenance, enhancement, and responsiveness to emerging threats.
@@ -187,13 +202,15 @@ Engaging a third-party vendor to handle all security aspects of the software.
 
 3. Implement multi-factor authentication and fine-grained authorization controls in accordance with IEC 62443-3-3 and NIST SP 800-63-3.
 
-4. Apply strong encryption protocols (e.g., AES-256) for data at rest and in transit, aligned with IEC 62443-3-3, ISO/IEC 27001, and NIST SP 800-57.
+4. Define and enforce cybersecurity perimeter controls including network segmentation, firewalls, and intrusion detection and prevention systems aligned with IEC 62443-3-3.
 
-5. Establish a schedule for regular security audits and penetration testing to identify and address vulnerabilities proactively.
+5. Apply strong encryption protocols (e.g., AES-256) for data at rest and in transit, aligned with IEC 62443-3-3, ISO/IEC 27001, and NIST SP 800-57.
 
-6. Deliver ongoing security training and awareness programs for developers and stakeholders to maintain awareness of evolving threats and best practices.
+6. Establish a schedule for regular security audits and penetration testing to identify and address vulnerabilities proactively.
 
-7. Define and enforce an SSDLC framework incorporating Security by Design and Security by Default principles across all project phases.
+7. Deliver ongoing security training and awareness programs for developers and stakeholders to maintain awareness of evolving threats and best practices.
+
+8. Define and enforce an SSDLC framework incorporating Security by Design and Security by Default principles across all project phases.
 
 ## 7. References
 

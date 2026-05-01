@@ -1,4 +1,4 @@
-# ADR Static Site Generator (SSG)
+# 001-ADR: Static Site Generator (SSG)
 
 Architectural Decision Records (ADR) on a Static Site Generator (SSG) for a project documentation site.
 
@@ -11,7 +11,8 @@ Architectural Decision Records (ADR) on a Static Site Generator (SSG) for a proj
   - [4.2. MkDocs](#42-mkdocs)
   - [4.3. Docusaurus](#43-docusaurus)
 - [5. Consequences](#5-consequences)
-- [6. References](#6-references)
+- [6. Implementation](#6-implementation)
+- [7. References](#7-references)
 
 ## 1. State
 
@@ -55,29 +56,31 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
 1. Rationale
 
     - Ease of Use
-      > TODO
+      > Hugo provides extensive documentation and a wide range of community themes, making it approachable despite an initial learning curve. Once familiar, content management and site configuration are manageable for the team.
 
     - Performance
-      > TODO
+      > Hugo is built with Go and is one of the fastest SSGs available, capable of building thousands of pages per second, significantly improving the development workflow for large documentation sites.
 
     - Customization and Extensibility
-      > TODO
+      > Hugo supports custom themes, shortcodes, and data templates, enabling extensive customization of content presentation and site structure without external dependencies.
 
     - Community and Support
-      > TODO
+      > Hugo has a large, active community with comprehensive official documentation, a broad selection of themes and plugins, and active forums for troubleshooting and guidance.
 
     - Integration
-      > TODO
+      > Hugo integrates seamlessly with CI/CD pipelines, version control workflows, and popular deployment platforms such as GitHub Pages and Netlify, aligning with our existing toolchain.
 
     - Markdown Flavor
-      > TODO
+      > Hugo uses Goldmark, a CommonMark-compliant Markdown parser with extension support, offering greater flexibility for advanced Markdown features compared to the alternatives considered.
 
     - Markup Languages
-      > TODO
+      > Hugo natively supports multiple markup languages including Markdown, AsciiDoc, and reStructuredText, providing flexibility for diverse content authoring needs across the team.
 
 ## 4. Considered
 
 ### 4.1. Hugo
+
+[Hugo](https://gohugo.io/) is a fast and flexible open-source static site generator written in Go.
 
 - Pros
 
@@ -112,6 +115,8 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
 
 ### 4.2. MkDocs
 
+[MkDocs](https://www.mkdocs.org/) is a fast, simple static site generator geared towards building project documentation using Markdown.
+
 - Pros
 
   - Ease of Use
@@ -131,7 +136,7 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
   - Customization
     > Limited theming and customization options compared to Hugo and Docusaurus.
 
-  - Extensibility:
+  - Extensibility
     > Fewer plugins and extensions available.
 
   - Markdown Flavor
@@ -141,6 +146,8 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
     > Primarily supports Markdown, with limited support for other markup languages.
 
 ### 4.3. Docusaurus
+
+[Docusaurus](https://docusaurus.io/) is a static-site generator built with React, optimized for creating documentation websites with versioning and internationalization support.
 
 - Pros
 
@@ -154,9 +161,9 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
     > Works well with existing JavaScript/React projects.
 
   - Community
-    > Active community college and support from Facebook.
+    > Active community and support from Facebook.
 
-  - Markdowns Flavor
+  - Markdown Flavor
     > Uses `Remark/MDX`, which supports JSX within Markdown, enabling complex interactions and component embedding.
 
 - Cons
@@ -200,9 +207,26 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
     - Complexity
       > Initial setup may be more involved, requiring careful planning and configuration.
 
-## 6. References
+3. Risks
 
-- Sentenz [Static Site Generator (SSG)](../articles/static-site-generator-ssg.md) article.
+    - Templating Complexity
+      > Hugo's Go-based templating may introduce complexity for team members unfamiliar with the language. Mitigation: Provide team training and maintain shared template libraries to reduce duplication and onboarding effort.
+
+    - Version Upgrades
+      > Breaking changes between Hugo versions may require updates to templates and configuration. Mitigation: Pin Hugo to a specific version in CI/CD pipelines and test upgrades in a staging environment before rolling out to production.
+
+## 6. Implementation
+
+1. Install Hugo on all development machines and CI/CD runners.
+2. Create the site structure using `hugo new site <name>` and configure the `hugo.toml` configuration file.
+3. Select and integrate a Hugo theme, or create a custom theme aligned with the project's design requirements.
+4. Migrate existing documentation content into Hugo's content directory structure.
+5. Configure CI/CD pipelines to build and deploy the static site on each commit to the main branch.
+6. Validate the generated site output against the expected content structure and broken-link checks.
+
+## 7. References
+
+- Sentenz [Docs as Code](../articles/docs-as-code.md) article.
 - Docusaurus [Official Documentation](https://docusaurus.io/docs) page.
 - Hugo [Official Documentation](https://gohugo.io/documentation/) page.
 - MkDocs [Official Documentation](https://www.mkdocs.org/user-guide/writing-your-docs/) page.

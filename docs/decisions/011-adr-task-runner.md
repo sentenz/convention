@@ -316,10 +316,21 @@ end
 
 ## 6. Implementation
 
-1. Install the `task` utility on all development machines.
-2. Create a `Taskfile.yml` in the project root to define common tasks (e.g., build, test, lint).
-3. Document the usage of Taskfile in the project README.
-4. Train the team on how to use and update the Taskfile.
+1. Install Task Utility
+
+    Install the `task` utility on all development machines.
+
+2. Create Taskfile
+
+    Create a `Taskfile.yml` in the project root to define common tasks (e.g., build, test, lint).
+
+3. Documentation
+
+    Document the usage of Taskfile in the project README.
+
+4. Team Training
+
+    Train the team on how to use and update the Taskfile.
 
 ## 7. References
 

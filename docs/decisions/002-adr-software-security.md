@@ -196,21 +196,37 @@ Engaging a third-party vendor to handle all security aspects of the software.
 
 ## 6. Implementation
 
-1. Adopt and enforce secure coding guidelines based on IEC 62443-4-1 and OWASP Secure Coding Practices across all development teams.
+1. Secure Coding Guidelines
 
-2. Integrate automated SAST and DAST tools into the CI/CD pipeline to detect and remediate security vulnerabilities early in the development process.
+    Adopt and enforce secure coding guidelines based on IEC 62443-4-1 and OWASP Secure Coding Practices across all development teams.
 
-3. Implement multi-factor authentication and fine-grained authorization controls in accordance with IEC 62443-3-3 and NIST SP 800-63-3.
+2. SAST and DAST Integration
 
-4. Define and enforce cybersecurity perimeter controls including network segmentation, firewalls, and intrusion detection and prevention systems aligned with IEC 62443-3-3.
+    Integrate automated SAST and DAST tools into the CI/CD pipeline to detect and remediate security vulnerabilities early in the development process.
 
-5. Apply strong encryption protocols (e.g., AES-256) for data at rest and in transit, aligned with IEC 62443-3-3, ISO/IEC 27001, and NIST SP 800-57.
+3. Authentication and Access Control
 
-6. Establish a schedule for regular security audits and penetration testing to identify and address vulnerabilities proactively.
+    Implement multi-factor authentication and fine-grained authorization controls in accordance with IEC 62443-3-3 and NIST SP 800-63-3.
 
-7. Deliver ongoing security training and awareness programs for developers and stakeholders to maintain awareness of evolving threats and best practices.
+4. Cybersecurity Perimeter Controls
 
-8. Define and enforce an SSDLC framework incorporating Security by Design and Security by Default principles across all project phases.
+    Define and enforce cybersecurity perimeter controls including network segmentation, firewalls, and intrusion detection and prevention systems aligned with IEC 62443-3-3.
+
+5. Encryption Protocols
+
+    Apply strong encryption protocols (e.g., AES-256) for data at rest and in transit, aligned with IEC 62443-3-3, ISO/IEC 27001, and NIST SP 800-57.
+
+6. Security Audits and Penetration Testing
+
+    Establish a schedule for regular security audits and penetration testing to identify and address vulnerabilities proactively.
+
+7. Security Training
+
+    Deliver ongoing security training and awareness programs for developers and stakeholders to maintain awareness of evolving threats and best practices.
+
+8. SSDLC Framework
+
+    Define and enforce an SSDLC framework incorporating Security by Design and Security by Default principles across all project phases.
 
 ## 7. References
 

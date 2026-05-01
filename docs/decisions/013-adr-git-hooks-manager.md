@@ -230,12 +230,29 @@ repos:
 
 ## 6. Implementation
 
-1. Install the `lefthook` binary on all development machines and CI/CD runners.
-2. Create a `lefthook.yml` configuration file at the project root, defining hooks for `pre-commit`, `commit-msg`, `pre-push`, `post-checkout`, and `pre-rebase`.
-3. Migrate the existing hook logic from the `githooks/` shell scripts into the corresponding Lefthook commands.
-4. Run `lefthook install` to register the hooks in the local `.git/hooks/` directory.
-5. Update the project README and onboarding documentation to include Lefthook setup instructions.
-6. Validate hook execution in CI/CD pipelines to ensure consistent behavior across environments.
+1. Install Lefthook
+
+    Install the `lefthook` binary on all development machines and CI/CD runners.
+
+2. Create Configuration
+
+    Create a `lefthook.yml` configuration file at the project root, defining hooks for `pre-commit`, `commit-msg`, `pre-push`, `post-checkout`, and `pre-rebase`.
+
+3. Migrate Existing Hooks
+
+    Migrate the existing hook logic from the `githooks/` shell scripts into the corresponding Lefthook commands.
+
+4. Register Hooks
+
+    Run `lefthook install` to register the hooks in the local `.git/hooks/` directory.
+
+5. Update Documentation
+
+    Update the project README and onboarding documentation to include Lefthook setup instructions.
+
+6. Validate
+
+    Validate hook execution in CI/CD pipelines to ensure consistent behavior across environments.
 
 ## 7. References
 

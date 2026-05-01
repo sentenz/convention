@@ -178,8 +178,8 @@ CMakeToolchain
   - Cross-Platform Support
     > Supports Linux, macOS, and Windows through a triplet system to express target platform, architecture, and linkage type.
 
-  - Prebuilt Binary and Source Build
-    > vcpkg's central registry provides prebuilt binaries for ports. Source builds for custom options or platforms are supported.
+  - Source Build with Optional Binary Caching
+    > vcpkg builds all ports from source by default. Binary caching can be configured to reuse previously compiled artifacts across builds, reducing rebuild overhead in CI environments.
 
   - Private and Public Dependencies
     > Supports private registries and overlay ports, allowing internal packages to be managed alongside public ones.

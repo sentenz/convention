@@ -50,7 +50,7 @@ In software development, selecting a tech stack involves choosing a specific set
 
 ### 3.1. Tech Stack
 
-Defining a tech stack for the projects is selected. This approach ensures that all projects use a consistent, well-understood set of technologies that best meet current and foreseeable future needs.
+The projects will standardize on a defined tech stack. This approach ensures that all projects use a consistent, well-understood set of technologies that best meet current and foreseeable future needs.
 
 1. Rationale
 

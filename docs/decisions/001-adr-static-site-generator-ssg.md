@@ -16,7 +16,7 @@ Architectural Decision Records (ADR) on a Static Site Generator (SSG) for a proj
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2024-05-28
 - Status: Proposed
 

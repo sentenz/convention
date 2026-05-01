@@ -12,7 +12,8 @@ Architectural Decision Records (ADR) for Repository Strategies in Software Devel
   - [4.3. Monorepo](#43-monorepo)
   - [4.4. Monolith](#44-monolith)
 - [5. Consequences](#5-consequences)
-- [6. References](#6-references)
+- [6. Implementation](#6-implementation)
+- [7. References](#7-references)
 
 ## 1. State
 
@@ -193,30 +194,55 @@ A Monolith (Traditional Monolithic Architecture) packages all application functi
 
 ## 5. Consequences
 
-1. Polyrepo
+- Positive
 
-    - Greater complexity in dependency management and coordination between repositories.
+  - Module Independence
+    > Enforced module boundaries reduce unintended coupling and enable teams to develop and test modules independently within a shared repository.
 
-    - Teams must invest in strong versioning and integration strategies.
+  - Incremental Scalability
+    > Individual modules can be extracted into independent services as the system grows, avoiding a full architectural rewrite while preserving evolutionary flexibility.
 
-2. Modular Monolith
+  - Simplified Dependency Management
+    > All internal dependencies reside in a single repository, eliminating cross-repository versioning overhead and simplifying shared library updates.
 
-    - Balances simplicity with modularity but may introduce deployment challenges.
+- Negative
 
-    - May require future migration towards Polyrepo if the system grows too large.
+  - Deployment Bottlenecks
+    > The entire repository is deployed as a unit, which may delay the release of independently evolving modules as the system matures.
 
-3. Monorepo
+  - Boundary Discipline Required
+    > As the codebase grows, module boundaries must be actively enforced to prevent tight coupling and gradual regression toward a traditional monolith.
 
-    - Potential performance bottlenecks and tooling complexity as the codebase scales.
+- Risks
 
-    - Streamlined collaboration and simpler dependency management.
+  - Scaling Threshold
+    > If team size or service complexity grows significantly, the Modular Monolith may become a bottleneck. Mitigation: Review the architecture periodically and evaluate transition to a Polyrepo or microservices architecture if warranted.
 
-4. Monolith
+  - CI/CD Build Times
+    > A single repository may produce increasing CI/CD build times as the codebase scales. Mitigation: Implement module-scoped build and test execution to limit pipeline scope to changed modules.
 
-    - Simple to start but increasingly difficult to maintain as the codebase grows due to tight coupling and absence of enforced module boundaries.
+## 6. Implementation
 
-    - Deployment risk escalates over time as the system expands and every change requires a full application release.
+1. Define Module Boundaries
 
-## 6. References
+    Establish clear module boundaries within the repository using directory structure conventions and access control guidelines to enforce separation of concerns.
 
-- Sentenz [Repository Strategies](../internal/articles/repository-strategies.md) article.
+2. Enforce Architectural Rules
+
+    Configure linting or static analysis tools to detect and reject cross-module dependencies that violate the defined boundaries.
+
+3. Configure CI/CD Pipelines
+
+    Set up module-aware CI/CD pipelines that scope build, test, and lint jobs to the modules affected by each change to control execution time.
+
+4. Document the Strategy
+
+    Record the repository structure, module layout, and contribution conventions in the repository README and onboarding documentation.
+
+5. Review Periodically
+
+    Schedule periodic reviews of the repository strategy to assess whether team size or system complexity warrants transitioning to a Polyrepo or microservices architecture.
+
+## 7. References
+
+- Sentenz [Branching Strategies](../articles/branching-strategies.md) article.

@@ -182,38 +182,38 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Performance
-      > Fast build times will improve the development workflow and scalability of the website.
+  - Performance
+    > Fast build times will improve the development workflow and scalability of the website.
 
-    - Flexibility
-      > Ability to handle various content types and complex structures.
+  - Flexibility
+    > Ability to handle various content types and complex structures.
 
-    - Community
-      > Access to a large number of themes, plugins, and support resources.
+  - Community
+    > Access to a large number of themes, plugins, and support resources.
 
-    - Markdown
-      > Support for advanced Markdown features and customization options.
+  - Markdown
+    > Support for advanced Markdown features and customization options.
 
-    - Markup Languages
-      > Support for multiple markup languages increases flexibility in content authoring.
+  - Markup Languages
+    > Support for multiple markup languages increases flexibility in content authoring.
 
-2. Negative
+- Negative
 
-    - Learning Curve
-      > Team members will need to invest time in learning Hugo's configuration and capabilities.
+  - Learning Curve
+    > Team members will need to invest time in learning Hugo's configuration and capabilities.
 
-    - Complexity
-      > Initial setup may be more involved, requiring careful planning and configuration.
+  - Complexity
+    > Initial setup may be more involved, requiring careful planning and configuration.
 
-3. Risks
+- Risks
 
-    - Templating Complexity
-      > Hugo's Go-based templating may introduce complexity for team members unfamiliar with the language. Mitigation: Provide team training and maintain shared template libraries to reduce duplication and onboarding effort.
+  - Templating Complexity
+    > Hugo's Go-based templating may introduce complexity for team members unfamiliar with the language. Mitigation: Provide team training and maintain shared template libraries to reduce duplication and onboarding effort.
 
-    - Version Upgrades
-      > Breaking changes between Hugo versions may require updates to templates and configuration. Mitigation: Pin Hugo to a specific version in CI/CD pipelines and test upgrades in a staging environment before rolling out to production.
+  - Version Upgrades
+    > Breaking changes between Hugo versions may require updates to templates and configuration. Mitigation: Pin Hugo to a specific version in CI/CD pipelines and test upgrades in a staging environment before rolling out to production.
 
 ## 6. Implementation
 

@@ -140,30 +140,30 @@ Defining the technologies to be used throughout the project.
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Consistency
-      > A uniform codebase across all projects reduces maintenance burden and simplifies cross-team contributions.
+  - Consistency
+    > A uniform codebase across all projects reduces maintenance burden and simplifies cross-team contributions.
 
-    - Onboarding
-      > New team members ramp up faster by focusing on a single, well-documented set of technologies.
+  - Onboarding
+    > New team members ramp up faster by focusing on a single, well-documented set of technologies.
 
-    - Operational Efficiency
-      > Reduced context-switching and deeper tooling expertise accelerate delivery and improve quality.
+  - Operational Efficiency
+    > Reduced context-switching and deeper tooling expertise accelerate delivery and improve quality.
 
-    - Collaboration
-      > Shared technology choices remove barriers between teams and support a culture of collective ownership.
+  - Collaboration
+    > Shared technology choices remove barriers between teams and support a culture of collective ownership.
 
-2. Negative
+- Negative
 
-    - Inflexibility
-      > Teams may be prevented from adopting better-suited tools for specific use cases without a formal review process.
+  - Inflexibility
+    > Teams may be prevented from adopting better-suited tools for specific use cases without a formal review process.
 
-    - Obsolescence Risk
-      > The defined stack may become outdated over time, requiring coordinated migration efforts across all projects.
+  - Obsolescence Risk
+    > The defined stack may become outdated over time, requiring coordinated migration efforts across all projects.
 
-    - Initial Investment
-      > Defining, communicating, and enforcing the tech stack requires upfront time and organizational alignment.
+  - Initial Investment
+    > Defining, communicating, and enforcing the tech stack requires upfront time and organizational alignment.
 
 ## 6. Implementation
 

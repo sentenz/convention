@@ -179,29 +179,29 @@ Each system directly communicates with the other using APIs without a centralize
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Full Control
-      > Full control over data flow and transformation through custom middleware.
+  - Full Control
+    > Full control over data flow and transformation through custom middleware.
 
-    - Scalability
-      > Scalability to handle future integrations by adding new systems to the middleware layer.
+  - Scalability
+    > Scalability to handle future integrations by adding new systems to the middleware layer.
 
-    - Extensibility
-      > Ability to implement advanced features like logging, error handling, and conflict resolution.
+  - Extensibility
+    > Ability to implement advanced features like logging, error handling, and conflict resolution.
 
-2. Negative
+- Negative
 
-    - Development Effort
-      > Higher initial development and maintenance effort for the middleware component.
+  - Development Effort
+    > Higher initial development and maintenance effort for the middleware component.
 
-    - Expertise Required
-      > Requires expertise in middleware development and API handling across multiple platforms.
+  - Expertise Required
+    > Requires expertise in middleware development and API handling across multiple platforms.
 
-3. Risks
+- Risks
 
-    - Integration Platform Dependency
-      > Reliance on JCI for Jama-Jira synchronization introduces a dependency on a third-party platform; evaluate fallback options if the platform becomes unavailable or cost-prohibitive.
+  - Integration Platform Dependency
+    > Reliance on JCI for Jama-Jira synchronization introduces a dependency on a third-party platform; evaluate fallback options if the platform becomes unavailable or cost-prohibitive.
 
 ## 6. Implementation
 

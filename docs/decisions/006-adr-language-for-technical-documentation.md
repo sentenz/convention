@@ -11,6 +11,8 @@ Architecture Decision Record (ADR) describing the choice of language strategy fo
   - [4.2. Multi Language](#42-multi-language)
   - [4.3. AI Agents](#43-ai-agents)
 - [5. Consequences](#5-consequences)
+- [6. Implementation](#6-implementation)
+- [7. References](#7-references)
 
 ## 1. State
 
@@ -200,27 +202,49 @@ AI tools to assist with translation and quality assurance (QA) based on English.
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Streamlined Processes
-      > Streamlined documentation processes with reduced complexity.
+  - Streamlined Processes
+    > Streamlined documentation processes with reduced complexity.
 
-    - Faster Publication
-      > Faster publication cycles and improved responsiveness to changes.
+  - Faster Publication
+    > Faster publication cycles and improved responsiveness to changes.
 
-    - Reduced Costs
-      > Lower costs associated with translation and maintenance.
+  - Reduced Costs
+    > Lower costs associated with translation and maintenance.
 
-    - Consistency
-      > Clear and consistent documentation in a single language.
+  - Consistency
+    > Clear and consistent documentation in a single language.
 
-2. Negative
+- Negative
 
-    - Reduced Accessibility
-      > Reduced accessibility for non-English speaking audiences.
+  - Reduced Accessibility
+    > Reduced accessibility for non-English speaking audiences.
 
-    - Support Channels
-      > Potential need for additional support channels for non-English speakers.
+  - Support Channels
+    > Potential need for additional support channels for non-English speakers.
 
-    - Market Risk
-      > Risk of alienating non-English speaking users or markets.
+  - Market Risk
+    > Risk of alienating non-English speaking users or markets.
+
+## 6. Implementation
+
+1. Update Documentation Standards
+
+    Update the contribution guidelines and documentation standards to reflect the single-language (English) strategy, including authoring conventions and review expectations.
+
+2. Communicate to Stakeholders
+
+    Communicate the language strategy to all teams and stakeholders through onboarding materials and internal announcements.
+
+3. Establish Review Process
+
+    Define a review process that ensures all documentation is authored, reviewed, and published in English before release.
+
+4. Monitor and Evaluate
+
+    Periodically evaluate the strategy against evolving AI translation capabilities and compliance requirements, adjusting the approach as enterprise-grade solutions mature.
+
+## 7. References
+
+- Sentenz [Docs as Code](../articles/docs-as-code.md) article.

@@ -77,7 +77,7 @@ GitLab is selected as the DevOps platform due to its comprehensive lifecycle man
 
 ### 4.1. Jenkins
 
-Jenkins is an open-source automation server with a large plugin ecosystem for building, deploying, and automating software projects.
+[Jenkins](https://www.jenkins.io/) is an open-source automation server with a large plugin ecosystem for building, deploying, and automating software projects.
 
 - Pros
 
@@ -97,7 +97,7 @@ Jenkins is an open-source automation server with a large plugin ecosystem for bu
 
 ### 4.2. GitLab
 
-GitLab is a complete DevOps platform delivered as a single application, providing source code management, CI/CD, container registry, and security tools.
+[GitLab](https://about.gitlab.com/) is a complete DevOps platform delivered as a single application, providing source code management, CI/CD, container registry, and security tools.
 
 - Pros
 
@@ -111,7 +111,7 @@ GitLab is a complete DevOps platform delivered as a single application, providin
 
 ### 4.3. Azure DevOps
 
-Azure DevOps is an enterprise-grade suite from Microsoft providing Azure Pipelines, Azure Repos, and Azure Boards for end-to-end software delivery.
+[Azure DevOps](https://azure.microsoft.com/en-us/products/devops/) is an enterprise-grade suite from Microsoft providing Azure Pipelines, Azure Repos, and Azure Boards for end-to-end software delivery.
 
 - Pros
 
@@ -125,7 +125,7 @@ Azure DevOps is an enterprise-grade suite from Microsoft providing Azure Pipelin
 
 ### 4.4. CircleCI
 
-CircleCI is a cloud-native CI/CD platform with excellent Docker support and YAML-based pipeline configuration.
+[CircleCI](https://circleci.com/) is a cloud-native CI/CD platform with excellent Docker support and YAML-based pipeline configuration.
 
 - Pros
 
@@ -139,7 +139,7 @@ CircleCI is a cloud-native CI/CD platform with excellent Docker support and YAML
 
 ### 4.5. GitHub
 
-GitHub is a widely used code hosting and collaboration platform with GitHub Actions for CI/CD automation.
+[GitHub](https://github.com/) is a widely used code hosting and collaboration platform with GitHub Actions for CI/CD automation.
 
 - Pros
 
@@ -153,7 +153,7 @@ GitHub is a widely used code hosting and collaboration platform with GitHub Acti
 
 ### 4.6. Bitbucket
 
-Bitbucket is a Git-based code hosting platform from Atlassian with native integration with Jira and Bitbucket Pipelines for CI/CD.
+[Bitbucket](https://bitbucket.org/) is a Git-based code hosting platform from Atlassian with native integration with Jira and Bitbucket Pipelines for CI/CD.
 
 - Pros
 
@@ -167,24 +167,24 @@ Bitbucket is a Git-based code hosting platform from Atlassian with native integr
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Streamlined Processes
-      > GitLab will streamline our development and operations processes, enhancing productivity and collaboration.
+  - Streamlined Processes
+    > GitLab will streamline our development and operations processes, enhancing productivity and collaboration.
 
-    - Improved Deployment
-      > Automated CI/CD pipelines will reduce deployment time and minimize errors, leading to faster release cycles.
+  - Improved Deployment
+    > Automated CI/CD pipelines will reduce deployment time and minimize errors, leading to faster release cycles.
 
-    - Enhanced Security
-      > The robust security features will ensure the integrity and confidentiality of our code and deployment pipelines.
+  - Enhanced Security
+    > The robust security features will ensure the integrity and confidentiality of our code and deployment pipelines.
 
-2. Negative
+- Negative
 
-    - Learning Curve
-      > Initial learning curve for teams unfamiliar with or transitioning to GitLab, requiring training and adjustment time.
+  - Learning Curve
+    > Initial learning curve for teams unfamiliar with or transitioning to GitLab, requiring training and adjustment time.
 
-    - Migration Effort
-      > Migrating existing CI/CD pipelines and infrastructure to GitLab will require effort and careful planning.
+  - Migration Effort
+    > Migrating existing CI/CD pipelines and infrastructure to GitLab will require effort and careful planning.
 
 ## 6. Implementation
 

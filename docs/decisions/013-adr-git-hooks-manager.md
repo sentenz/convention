@@ -80,7 +80,7 @@ Lefthook is selected as the Git hooks manager due to its language-agnostic desig
 
 ### 4.1. Husky
 
-Husky is a widely used Git hooks manager for JavaScript and Node.js projects. It relies on `npm` scripts and stores hook definitions in the `.husky/` directory.
+[Husky](https://typicode.github.io/husky/) is a widely used Git hooks manager for JavaScript and Node.js projects that relies on `npm` scripts and stores hook definitions in the `.husky/` directory.
 
 ```json
 {
@@ -119,7 +119,7 @@ npx lint-staged
 
 ### 4.2. Lefthook
 
-Lefthook is a fast, language-agnostic Git hooks manager distributed as a standalone binary. It uses a single `lefthook.yml` configuration file to define all hooks.
+[Lefthook](https://lefthook.dev/) is a fast, language-agnostic Git hooks manager distributed as a standalone binary that uses a single `lefthook.yml` configuration file to define all hooks.
 
 ```yaml
 # lefthook.yml
@@ -167,7 +167,7 @@ commit-msg:
 
 ### 4.3. Pre-commit
 
-Pre-commit is a framework for managing and maintaining multi-language pre-commit hooks. It is configured via a `.pre-commit-config.yaml` file and pulls hook definitions from remote repositories.
+[Pre-commit](https://pre-commit.com/) is a framework for managing and maintaining multi-language pre-commit hooks, configured via a `.pre-commit-config.yaml` file and pulling hook definitions from remote repositories.
 
 ```yaml
 # .pre-commit-config.yaml
@@ -206,27 +206,27 @@ repos:
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Consistency
-      > Standardized hook definitions in a single `lefthook.yml` file improve consistency and reduce onboarding time for new team members.
+  - Consistency
+    > Standardized hook definitions in a single `lefthook.yml` file improve consistency and reduce onboarding time for new team members.
 
-    - Performance
-      > Parallel execution of hook commands reduces wait time for developers during the Git workflow.
+  - Performance
+    > Parallel execution of hook commands reduces wait time for developers during the Git workflow.
 
-    - Portability
-      > No runtime dependency beyond the binary ensures hooks work identically across all supported operating systems and CI/CD environments.
+  - Portability
+    > No runtime dependency beyond the binary ensures hooks work identically across all supported operating systems and CI/CD environments.
 
-    - Maintainability
-      > Declarative YAML configuration is easy to read, update, and review in code reviews.
+  - Maintainability
+    > Declarative YAML configuration is easy to read, update, and review in code reviews.
 
-2. Negative
+- Negative
 
-    - Binary Dependency
-      > All developers and CI/CD runners must have the `lefthook` binary installed, requiring updates to onboarding documentation and setup scripts.
+  - Binary Dependency
+    > All developers and CI/CD runners must have the `lefthook` binary installed, requiring updates to onboarding documentation and setup scripts.
 
-    - Migration Effort
-      > Existing raw shell-based Git hooks in the `githooks/` directory need to be migrated to Lefthook configuration, requiring testing to ensure equivalent behavior.
+  - Migration Effort
+    > Existing raw shell-based Git hooks in the `githooks/` directory need to be migrated to Lefthook configuration, requiring testing to ensure equivalent behavior.
 
 ## 6. Implementation
 

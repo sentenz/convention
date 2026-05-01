@@ -78,7 +78,7 @@ Taskfile is selected as the task runner due to its YAML-based declarative config
 
 ### 4.1. Makefile
 
-Makefiles are used with the `make` utility, a build automation tool that has been around since the 1970s. They are primarily used to compile and build software projects.
+[Makefile](https://www.gnu.org/software/make/) is a build automation tool that has been around since the 1970s, using rules and dependencies to automate software compilation and deployment via the `make` utility.
 
 ```makefile
 build:
@@ -109,7 +109,7 @@ build:
 
 ### 4.2. Justfile
 
-Justfiles are used with the `just` command runner, a modern alternative to `make`. It focuses on simplicity and ease of use for defining and running tasks.
+[Justfile](https://github.com/casey/just) is a command runner focused on simplicity and ease of use for defining and running tasks, serving as a modern alternative to `make`.
 
 ```justfile
 build:
@@ -137,7 +137,7 @@ test:
 
 ### 4.3. Taskfile
 
-Taskfiles are used with the `task` command runner (Taskfile.yml), a tool inspired by Makefiles but designed to be more modern and user-friendly. It uses YAML for configuration.
+[Taskfile](https://taskfile.dev/) is a task runner using YAML-based declarative configuration, inspired by Makefiles but designed to be more modern, user-friendly, and cross-platform.
 
 ```yaml
 version: '3'
@@ -173,7 +173,7 @@ tasks:
 
 ### 4.4. Mage
 
-Mage is a task runner written in Go. It uses Go scripts to define tasks, making it ideal for Go projects or teams familiar with Go.
+[Mage](https://magefile.org/) is a Go-based task runner that uses standard Go files to define and execute build tasks, making it ideal for Go projects or teams familiar with Go.
 
 ```go
 // magefile.go
@@ -207,7 +207,7 @@ func Build() error {
 
 ### 4.5. Earthly
 
-Earthly is a build automation tool that uses Docker-like syntax to define tasks. It is designed for reproducibility and portability, making it suitable for containerized builds and CI/CD pipelines.
+[Earthly](https://earthly.dev/) is a build automation tool that uses Docker-like syntax to define reproducible, containerized builds and CI/CD pipelines.
 
 ```earthfile
 VERSION 0.6
@@ -235,7 +235,7 @@ build:
 
 ### 4.6. Rake
 
-Rake is a build automation tool written in Ruby. It uses Ruby scripts to define tasks, making it ideal for Ruby projects or teams familiar with Ruby.
+[Rake](https://github.com/ruby/rake) is a Ruby-based build automation tool that uses Ruby DSL scripts to define and compose tasks, making it ideal for Ruby projects or teams familiar with Ruby.
 
 ```ruby
 task :build do
@@ -265,7 +265,7 @@ end
 
 ### 4.7. NPM
 
-NPM scripts (package.json) are a built-in feature of Node.js projects. They allow you to define tasks in the `scripts` section of the `package.json` file.
+[NPM scripts](https://docs.npmjs.com/cli/v10/using-npm/scripts) is a built-in task automation feature of Node.js projects that defines tasks in the `scripts` section of the `package.json` file.
 
 ```json
 {
@@ -295,24 +295,24 @@ NPM scripts (package.json) are a built-in feature of Node.js projects. They allo
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Readability
-      > Improved readability and maintainability of task definitions through YAML-based declarative configuration.
+  - Readability
+    > Improved readability and maintainability of task definitions through YAML-based declarative configuration.
 
-    - Onboarding
-      > Easier onboarding for new team members due to Taskfile's intuitive syntax and structured configuration.
+  - Onboarding
+    > Easier onboarding for new team members due to Taskfile's intuitive syntax and structured configuration.
 
-    - Consistency
-      > Consistent behavior across development environments with cross-platform support.
+  - Consistency
+    > Consistent behavior across development environments with cross-platform support.
 
-2. Negative
+- Negative
 
-    - Verbosity
-      > YAML syntax may become verbose for very simple tasks compared to more concise alternatives.
+  - Verbosity
+    > YAML syntax may become verbose for very simple tasks compared to more concise alternatives.
 
-    - Additional Dependency
-      > Requires installing the `task` utility on all development machines, adding an external dependency.
+  - Additional Dependency
+    > Requires installing the `task` utility on all development machines, adding an external dependency.
 
 ## 6. Implementation
 

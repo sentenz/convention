@@ -95,7 +95,7 @@ Lefthook is selected as the Git hooks manager due to its language-agnostic desig
 npx lint-staged
 ```
 
-- Pros:
+- Pros
 
   - Ease of Use
     > Simple setup for Node.js projects via `npm install`.
@@ -106,7 +106,7 @@ npx lint-staged
   - Integration
     > Tight integration with `lint-staged` for running checks only on staged files.
 
-- Cons:
+- Cons
 
   - Runtime Dependency
     > Requires Node.js and `npm` as a runtime dependency, which is not suitable for our multi-language environment.
@@ -137,7 +137,7 @@ commit-msg:
       run: make run-linter-commit {1}
 ```
 
-- Pros:
+- Pros
 
   - Language Agnostic
     > No runtime dependencies beyond the binary itself, making it suitable for multi-language environments.
@@ -157,7 +157,7 @@ commit-msg:
   - Community and Ecosystem
     > Actively maintained with comprehensive documentation.
 
-- Cons:
+- Cons
 
   - Binary Dependency
     > Requires installing the `lefthook` binary on all development machines.
@@ -179,7 +179,7 @@ repos:
       - id: end-of-file-fixer
 ```
 
-- Pros:
+- Pros
 
   - Ecosystem
     > Rich ecosystem of ready-made hooks from the pre-commit community.
@@ -190,7 +190,7 @@ repos:
   - Environment Management
     > Automatic virtual environment management for Python-based hooks.
 
-- Cons:
+- Cons
 
   - Runtime Dependency
     > Requires Python as a runtime dependency for the framework itself.

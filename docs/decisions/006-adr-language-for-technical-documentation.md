@@ -81,7 +81,7 @@ Where non-English access is required, translations will be provided selectively 
 
 Author and publish exclusively in English.
 
-- Pros:
+- Pros
 
   - Simplified Maintenance
     > Simplifies maintenance and reduces risk of contradictory guidance.
@@ -98,7 +98,7 @@ Author and publish exclusively in English.
   - Standards Alignment
     > Aligns with the majority of technical documentation standards.
 
-- Cons:
+- Cons
 
   - Limited Accessibility
     > Limits accessibility for non-English speaking audiences.
@@ -113,7 +113,7 @@ Author and publish exclusively in English.
 
 Author in English and translate to multiple languages.
 
-- Pros:
+- Pros
 
   - Global Accessibility
     > Increases accessibility for a global audience.
@@ -127,7 +127,7 @@ Author in English and translate to multiple languages.
   - Locale Alignment
     > Aligns with locales requiring native-language documentation.
 
-- Cons:
+- Cons
 
   - Maintenance Overhead
     > Higher maintenance overhead and risk of inconsistencies.
@@ -154,7 +154,7 @@ Author in English and translate to multiple languages.
 
 AI tools to assist with translation and quality assurance (QA) based on English.
 
-- Pros:
+- Pros
 
   - Advanced Technology
     > Leverages cutting-edge technology for translation and quality assurance.
@@ -183,7 +183,7 @@ AI tools to assist with translation and quality assurance (QA) based on English.
   - Continuous Improvement
     > Allows for continuous improvement through machine learning and feedback loops.
 
-- Cons:
+- Cons
 
   - Accuracy Concerns
     > AI translations may lack accuracy and nuance, leading to potential misinterpretations.

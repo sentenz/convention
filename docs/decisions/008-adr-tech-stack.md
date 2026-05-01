@@ -78,7 +78,7 @@ The projects will standardize on a defined tech stack. This approach ensures tha
 
 Allowing developers to use any technology that best fits, with no formalized set of tools.
 
-- Pros:
+- Pros
 
   - Flexibility
     > Allows developers to choose the most suitable tools for specific problems, potentially leading to innovative solutions.
@@ -89,7 +89,7 @@ Allowing developers to use any technology that best fits, with no formalized set
   - Developer Autonomy
     > Can increase job satisfaction by giving developers more control over their work.
 
-- Cons:
+- Cons
 
   - Inconsistency
     > Leads to a fragmented codebase, making maintenance and knowledge transfer challenging.
@@ -110,7 +110,7 @@ Allowing developers to use any technology that best fits, with no formalized set
 
 Defining the technologies to be used throughout the project.
 
-- Pros:
+- Pros
 
   - Consistency
     > Ensures a uniform codebase, making it easier to read, understand, and maintain.
@@ -127,7 +127,7 @@ Defining the technologies to be used throughout the project.
   - Scalability
     > Predictable technologies make it easier to plan for application scaling.
 
-- Cons:
+- Cons
 
   - Inflexibility
     > Limits the ability to incorporate new or specialized technologies that may be better suited for certain tasks.

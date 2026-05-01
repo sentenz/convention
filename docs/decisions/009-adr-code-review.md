@@ -86,7 +86,7 @@ Synchronous Code Review utilizing Peer Review meetings will be employed as neede
 
 Proceed without implementing any formal code review process. Developers commit code directly to the main branch without peer evaluation.
 
-- Pros:
+- Pros
 
   - Speed
     > Faster code integration with no delays for reviews.
@@ -94,7 +94,7 @@ Proceed without implementing any formal code review process. Developers commit c
   - Simplicity
     > Reduced process overhead and administrative burden.
 
-- Cons:
+- Cons
 
   - Quality Risks
     > Higher likelihood of bugs, security vulnerabilities, and inconsistent code quality.
@@ -109,7 +109,7 @@ Proceed without implementing any formal code review process. Developers commit c
 
 Utilize tools and scripts to automatically review code for style, formatting, and basic quality checks before integration.
 
-- Pros:
+- Pros
 
   - Efficiency
     > Quickly identifies common issues without human intervention.
@@ -120,7 +120,7 @@ Utilize tools and scripts to automatically review code for style, formatting, an
   - Continuous Integration
     > Integrates seamlessly with CI/CD pipelines for real-time feedback.
 
-- Cons:
+- Cons
 
   - Limited Scope
     > Cannot assess complex logic, architectural decisions, or nuanced design patterns.
@@ -135,7 +135,7 @@ Utilize tools and scripts to automatically review code for style, formatting, an
 
 Implement a formal code review process where peers review each other’s code, providing feedback on functionality, design, and adherence to standards.
 
-- Pros:
+- Pros
 
   - Enhanced Quality
     > Thorough evaluation of code logic, architecture, and design patterns.
@@ -152,7 +152,7 @@ Implement a formal code review process where peers review each other’s code, p
   - Peer Review
     > Encourages accountability and fosters a culture of continuous improvement through direct feedback from peers.
 
-- Cons:
+- Cons
 
   - Time-Consuming
     > Can slow down the development process due to the need for reviewer availability.
@@ -167,7 +167,7 @@ Implement a formal code review process where peers review each other’s code, p
 
 Conduct regular meetings where team members present and discuss their code changes in a collaborative setting, allowing for collective feedback and discussion.
 
-- Pros:
+- Pros
 
   - Collaborative Feedback
     > Encourages open discussion and collective problem-solving.
@@ -181,7 +181,7 @@ Conduct regular meetings where team members present and discuss their code chang
   - Flexibility
     > Adaptable to various types of projects and team sizes.
 
-- Cons:
+- Cons
 
   - Scheduling Overhead
     > Requires coordination of meeting times, which can be time-consuming.

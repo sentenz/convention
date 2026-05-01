@@ -120,7 +120,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 [GoogleTest (GTest)](https://github.com/google/googletest) is a C++ testing framework developed and maintained by Google. It provides a rich set of assertions, test fixtures, and mocking capabilities through the included GMock library.
 
-- Pros:
+- Pros
 
   - Unit Testing
     > Comprehensive assertion library with clear failure diagnostics and native JUnit XML report generation for CI/CD consumption.
@@ -158,7 +158,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
   - Documentation
     > Well-documented with extensive examples and tutorials.
 
-- Cons:
+- Cons
 
   - Complexity
     > Requires integration of multiple complementary tools to address all decision drivers with additional setup and configuration.
@@ -176,7 +176,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 [Catch2 (C++ Automated Test Cases in a Header)](https://github.com/catchorg/Catch2) is a modern, C++-native, header-only test framework for unit-tests, TDD and BDD.
 
-- Pros:
+- Pros
 
   - Simplicity
     > Header-only library with minimal setup required, without additional dependencies or build configurations.
@@ -211,7 +211,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
   - Documentation
     > Good documentation with examples.
 
-- Cons:
+- Cons
 
   - Maturity
     > Less mature than GoogleTest, potentially fewer community resources and limited built-in mocking capabilities compared to GoogleTest.
@@ -235,7 +235,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 [CppUnit](https://sourceforge.net/projects/cppunit/) is a traditional xUnit-style C++ unit testing framework, modeled after JUnit for Java.
 
-- Pros:
+- Pros
 
   - Simplicity
     > Supports header-only integration, allowing easy inclusion in existing projects without additional build configurations.
@@ -258,7 +258,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
   - Platform Portability
     > Cross-platform support for Linux, Windows, and macOS.
 
-- Cons:
+- Cons
 
   - Maturity
     > Legacy framework with established history (xUnit family) with limited support for newer C++ features and less active development.
@@ -297,7 +297,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 [Boost.Test](https://github.com/boostorg/test) is part of the Boost C++ Libraries collection, providing tools for implementing test programs, organizing tests into test cases and test suites, and controlling the runtime execution.
 
-- Pros:
+- Pros
 
   - Maturity
     > Part of the Boost ecosystem, benefits from its stability and maintenance.
@@ -326,7 +326,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
   - Platform Portability
     > Cross-platform support for Linux, Windows, and macOS as part of Boost ecosystem.
 
-- Cons:
+- Cons
 
   - Complexity
     > Complex setup and configuration, heavier dependency due to Boost requirements.
@@ -362,7 +362,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 [Unity Test Framework](https://github.com/ThrowTheSwitch/Unity) is a lightweight C unit testing framework designed for embedded and resource-constrained systems. Unity is part of the ThrowTheSwitch ecosystem and is commonly paired with CMock and Ceedling.
 
-- Pros:
+- Pros
 
   - Footprint
     > Very small footprint, suitable for constrained embedded targets.
@@ -388,7 +388,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
   - Documentation
     > Good documentation in the ThrowTheSwitch ecosystem with many embedded-focused examples.
 
-- Cons:
+- Cons
 
   - Language Scope
     > Primarily C-oriented, the C++ support is limited compared to native C++ frameworks.
@@ -412,7 +412,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 [CppUTest](https://github.com/cpputest/cpputest) is a C/C++ unit testing framework specifically designed for embedded systems, though it supports any C/C++ environment. It is lightweight and focuses on simplicity, making it particularly suitable for resource-constrained systems and projects requiring minimal dependencies.
 
-- Pros:
+- Pros
 
   - Footprint
     > Extremely light footprint, suitable for constrained environments with minimal dependencies.
@@ -441,7 +441,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
   - On/Off-Target Testing
     > Designed for embedded development and supports both host and target testing workflows with lightweight runtime requirements.
 
-- Cons:
+- Cons
 
   - Maturity
     > Less active development, smaller community and ecosystem, and limited built-in features compared to larger frameworks.
@@ -471,7 +471,7 @@ Adopt a multi-tool approach, using GoogleTest (GTest) with GoogleMock (GMock) as
 
 The [MSTest (Microsoft Testing Framework)](https://github.com/microsoft/testfx) is a Microsoft testing framework that supports C++ through the Visual Studio C++ Test Framework. It is designed to integrate seamlessly with Visual Studio and the broader Microsoft development ecosystem.
 
-- Pros:
+- Pros
 
   - Unit Testing
     > Comprehensive unit testing in Visual Studio ecosystem, but native results are centered on TRX rather than JUnit XML.
@@ -491,7 +491,7 @@ The [MSTest (Microsoft Testing Framework)](https://github.com/microsoft/testfx) 
   - Documentation
     > Extensive documentation within Microsoft ecosystem.
 
-- Cons:
+- Cons
 
   - Platform Portability
     > Limited to Windows platforms, reducing cross-platform applicability.

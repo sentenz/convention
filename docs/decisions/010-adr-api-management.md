@@ -84,7 +84,7 @@ The selected approach combines Integration Platforms with Middleware. The hybrid
 
 A custom application acts as an intermediary between API Endpoints, managing API communication, data transformation, and synchronization logic.
 
-- Pros:
+- Pros
 
   - Full Control
     > Full control over data transformation, mediation, conflict resolution, and API logic.
@@ -92,7 +92,7 @@ A custom application acts as an intermediary between API Endpoints, managing API
   - Event-Driven Integration
     > Supports integration with event-driven mechanisms (e.g., webhooks) for real-time synchronization.
 
-- Cons:
+- Cons
 
   - Development Effort
     > Higher initial development effort compared to managed integration platforms.
@@ -104,7 +104,7 @@ A custom application acts as an intermediary between API Endpoints, managing API
 
 Use a third-party integration platform (e.g., Jama Connect Interchange (JCI), MuleSoft, Boomi, Zapier) for synchronization.
 
-- Pros:
+- Pros
 
   - Minimal Development
     > Minimal development effort with built-in connectors for Jira and flexibility for customization.
@@ -112,7 +112,7 @@ Use a third-party integration platform (e.g., Jama Connect Interchange (JCI), Mu
   - Managed Scalability
     > Scalable and monitored by the platform provider without additional infrastructure effort.
 
-- Cons:
+- Cons
 
   - Cost
     > High cost for enterprise-grade platforms.
@@ -127,7 +127,7 @@ Use a third-party integration platform (e.g., Jama Connect Interchange (JCI), Mu
 
 Use an API Gateway (e.g., AWS API Gateway, Kong) to manage and route API communication between API Endpoints.
 
-- Pros:
+- Pros
 
   - Centralized Management
     > Centralized API management with built-in security features like rate limiting and authentication.
@@ -135,7 +135,7 @@ Use an API Gateway (e.g., AWS API Gateway, Kong) to manage and route API communi
   - Endpoint Consolidation
     > Simplifies endpoint consolidation and routing across systems.
 
-- Cons:
+- Cons
 
   - Limited Transformation
     > Not designed for complex data transformation, mediation, or synchronization logic.
@@ -147,7 +147,7 @@ Use an API Gateway (e.g., AWS API Gateway, Kong) to manage and route API communi
 
 Use event-driven systems (e.g., Kafka, RabbitMQ) to trigger updates between API Endpoints.
 
-- Pros:
+- Pros
 
   - Real-Time Updates
     > Near real-time updates and decoupled architecture.
@@ -155,7 +155,7 @@ Use event-driven systems (e.g., Kafka, RabbitMQ) to trigger updates between API 
   - Scalability
     > Scalable with additional platforms or events as the system grows.
 
-- Cons:
+- Cons
 
   - Middleware Required
     > Requires middleware for data transformation, mediation, and API communication.
@@ -167,12 +167,12 @@ Use event-driven systems (e.g., Kafka, RabbitMQ) to trigger updates between API 
 
 Each system directly communicates with the other using APIs without a centralized intermediary.
 
-- Pros:
+- Pros
 
   - Simplicity
     > Simple to implement for small-scale point-to-point integrations.
 
-- Cons:
+- Cons
 
   - Manageability
     > Complex to manage and scale, lacks centralized control as the number of systems grows.

@@ -145,7 +145,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats) is a threat modeling methodology developed by Microsoft that categorizes threats into six types: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.
 
-- Pros:
+- Pros
 
   - Comprehensiveness
     > Provides a comprehensive approach to identifying a wide range of threat types across all system components.
@@ -153,7 +153,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Accessibility
     > Simple and easy to understand, with well-established documentation and tooling support.
 
-- Cons:
+- Cons
 
   - Risk Assessment
     > Limited in assessing the impact and likelihood of identified threats. Requires additional tools for quantitative risk evaluation.
@@ -165,7 +165,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [DREAD](https://owasp.org/www-community/Threat_Modeling_Process) is a risk assessment model used to rate, compare, and prioritize threats using five scoring categories: Damage, Reproducibility, Exploitability, Affected Users, and Discoverability.
 
-- Pros:
+- Pros
 
   - Prioritization
     > Provides a scoring system to evaluate and prioritize threats based on their potential impact.
@@ -173,7 +173,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Simplicity
     > Straightforward model that helps teams rank threats without deep security expertise.
 
-- Cons:
+- Cons
 
   - Subjectivity
     > Scoring is subjective and susceptible to inconsistency across teams and reviewers.
@@ -185,7 +185,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [PASTA (Process for Attack Simulation and Threat Analysis)](https://www.iriusrisk.com/resources-blog/pasta-threat-modeling-methodology) is a risk-centric threat modeling framework that provides a seven-stage methodology aligned with business objectives and technical risks.
 
-- Pros:
+- Pros
 
   - Business Alignment
     > Focuses on business objectives and potential impact, connecting technical threats to organizational risk.
@@ -193,7 +193,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Methodology
     > Provides a comprehensive seven-step methodology covering the full lifecycle from objectives to attack simulation.
 
-- Cons:
+- Cons
 
   - Complexity
     > More complex and time-consuming to implement than simpler frameworks.
@@ -205,7 +205,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [LINDDUN](https://linddun.org/) is a privacy threat modeling framework that systematically identifies and addresses privacy threats in software systems using a structured taxonomy of seven privacy threat categories.
 
-- Pros:
+- Pros
 
   - Privacy Focus
     > Specializes in privacy threat modeling, providing systematic coverage of privacy issues that security-only frameworks overlook.
@@ -213,7 +213,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Structure
     > Offers a structured methodology with supporting worksheets and data flow diagram-based analysis.
 
-- Cons:
+- Cons
 
   - Scope
     > Limited to privacy threats and does not cover general security threats, requiring use alongside security-focused frameworks.
@@ -225,7 +225,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [Attack Tree](https://en.wikipedia.org/wiki/Attack_tree) is a conceptual threat modeling method that represents attacks on a system using a tree structure, where the root represents the goal of the attack and branches represent alternative means of achieving it.
 
-- Pros:
+- Pros
 
   - Visualization
     > Provides a visual representation of threats and attack paths that aids communication among stakeholders.
@@ -233,7 +233,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Prioritization
     > Helps identify and prioritize vulnerabilities by tracing attack paths back to root causes.
 
-- Cons:
+- Cons
 
   - Complexity
     > Can become difficult to manage for large systems with many interdependencies.
@@ -245,7 +245,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [MITRE ATT&CK](https://attack.mitre.org/) is a globally accessible knowledge base of adversary tactics and techniques based on real-world observations, used as a foundation for threat modeling, detection, and response.
 
-- Pros:
+- Pros
 
   - Knowledge Base
     > Comprehensive and detailed database of adversary tactics and techniques continuously updated based on real-world threat intelligence.
@@ -253,7 +253,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Adoption
     > Widely adopted across the industry with strong tooling integrations in SIEM and SOAR platforms.
 
-- Cons:
+- Cons
 
   - Integration Dependency
     > Requires integration with complementary frameworks to support the full threat modeling lifecycle.
@@ -265,7 +265,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [CVSS (Common Vulnerability Scoring System)](https://www.first.org/cvss/) is an open framework for communicating the characteristics and severity of software vulnerabilities, providing a standardized numerical score to represent risk.
 
-- Pros:
+- Pros
 
   - Standardization
     > Provides a widely recognized and standardized method for assessing and communicating vulnerability severity.
@@ -273,7 +273,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Tooling
     > Supported by NVD, CVE databases, and a broad range of security tools with built-in CVSS calculators.
 
-- Cons:
+- Cons
 
   - Scope
     > Focuses on vulnerability severity scoring rather than the broader threat identification and modeling process.
@@ -285,7 +285,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [TRIKE](http://octotrike.org/) is a threat modeling framework that combines threat modeling with risk management, using a requirements model and implementation model to evaluate whether risks are acceptable to stakeholders.
 
-- Pros:
+- Pros
 
   - Risk Integration
     > Integrates threat modeling and risk management into a unified framework for risk-based security decisions.
@@ -293,7 +293,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Stakeholder Focus
     > Explicitly incorporates stakeholder risk tolerance into the threat assessment process.
 
-- Cons:
+- Cons
 
   - Adoption
     > Less widely adopted and supported compared to established frameworks, with limited community resources.
@@ -305,7 +305,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [VAST (Visual, Agile, and Simple Threat modeling)](https://www.threatmodeler.com/) is a scalable threat modeling methodology designed to integrate with agile development processes and DevOps pipelines.
 
-- Pros:
+- Pros
 
   - Agile Integration
     > Designed to integrate with agile development processes and scale across large engineering organizations.
@@ -313,7 +313,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Visualization
     > Provides visual process and application threat models to support both development and operations teams.
 
-- Cons:
+- Cons
 
   - Maturity
     > Relatively new and less proven in large-scale deployments compared to established frameworks.
@@ -325,7 +325,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 [OCTAVE (Operationally Critical Threat, Asset, and Vulnerability Evaluation)](https://www.sei.cmu.edu/our-work/projects/display.cfm?customel_datapageid_4050=53321) is a risk-based strategic assessment and planning framework focused on organizational security risk management.
 
-- Pros:
+- Pros
 
   - Organizational Focus
     > Centers on organizational risk management, aligning threat analysis with business assets and operational priorities.
@@ -333,7 +333,7 @@ Included to specifically address privacy threats and ensure comprehensive privac
   - Comprehensiveness
     > Comprehensive methodology covering asset identification, threat profiling, and risk evaluation across the organization.
 
-- Cons:
+- Cons
 
   - Resource Intensity
     > Time-consuming and resource-intensive to execute, requiring significant organizational commitment.

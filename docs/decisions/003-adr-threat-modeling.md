@@ -375,15 +375,25 @@ Included to specifically address privacy threats and ensure comprehensive privac
 
 ## 6. Implementation
 
-1. Conduct training sessions on STRIDE, MITRE ATT&CK, CVSS, and LINDDUN for development and security teams to establish a shared understanding of each framework's scope and application.
+1. Team Training
 
-2. Evaluate and integrate tools that support the selected methodologies, such as Microsoft Threat Modeling Tool, MITRE ATT&CK Navigator, CVSS calculators, and LINDDUN worksheets.
+    Conduct training sessions on STRIDE, MITRE ATT&CK, CVSS, and LINDDUN for development and security teams to establish a shared understanding of each framework's scope and application.
 
-3. Define guidelines and templates for applying each framework consistently across all projects, including clear boundaries between frameworks to avoid duplication.
+2. Tool Integration
 
-4. Execute a pilot project applying the integrated threat modeling approach to validate the process, identify gaps, and refine tooling and guidelines.
+    Evaluate and integrate tools that support the selected methodologies, such as Microsoft Threat Modeling Tool, MITRE ATT&CK Navigator, CVSS calculators, and LINDDUN worksheets.
 
-5. Roll out the process organization-wide and establish a schedule for regular reviews to incorporate new security and privacy trends.
+3. Guidelines and Templates
+
+    Define guidelines and templates for applying each framework consistently across all projects, including clear boundaries between frameworks to avoid duplication.
+
+4. Pilot Project
+
+    Execute a pilot project applying the integrated threat modeling approach to validate the process, identify gaps, and refine tooling and guidelines.
+
+5. Organization-Wide Rollout
+
+    Roll out the process organization-wide and establish a schedule for regular reviews to incorporate new security and privacy trends.
 
 ## 7. References
 

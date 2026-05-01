@@ -10,6 +10,7 @@ Architectural Decision Records (ADR) on selecting a dependency manager for C/C++
   - [4.1. Conan](#41-conan)
   - [4.2. vcpkg](#42-vcpkg)
   - [4.3. CPM.cmake](#43-cpmcmake)
+  - [4.4. Git Submodules](#44-git-submodules)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -234,6 +235,46 @@ CPMAddPackage("gh:google/googletest@1.14.0")
   - Transitive Dependencies
     > Transitive dependency resolution is limited to `CMakeLists.txt` package declarations; conflicts must be resolved manually.
 
+### 4.4. Git Submodules
+
+[Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) is a Git-native mechanism for embedding external repositories at a pinned commit SHA as a subdirectory of the parent repository.
+
+```ini
+# .gitmodules
+[submodule "third_party/googletest"]
+    path = third_party/googletest
+    url = https://github.com/google/googletest.git
+    branch = main
+```
+
+- Pros
+
+  - Dependency Pinning
+    > Each submodule is pinned to an exact commit SHA recorded in the parent repository index, guaranteeing deterministic checkout across all environments without external tooling.
+
+  - Zero Installation
+    > No additional package manager is required; Git's built-in submodule support is the only prerequisite.
+
+  - Private and Public Dependencies
+    > Works with any accessible Git remote (GitHub, GitLab, self-hosted), including private repositories authenticated via SSH or HTTPS tokens.
+
+  - CMake Integration
+    > Submodules expose the full source tree, allowing `add_subdirectory()` to build the dependency in-tree with direct access to its CMake targets.
+
+- Cons
+
+  - Dependency Resolution
+    > No automatic resolution of transitive dependencies; each indirect dependency must be identified and added as a separate submodule manually.
+
+  - Dependencies and Dev Dependencies
+    > No mechanism to distinguish runtime from development-only dependencies; all submodules are checked out unconditionally.
+
+  - Prebuilt Binary and Source Build
+    > Submodules always require building from source; there is no binary caching or prebuilt binary distribution mechanism.
+
+  - CI/CD
+    > CI pipelines must run `git submodule update --init --recursive` before building; sparse or shallow submodule checkouts require additional configuration to avoid cloning full upstream histories.
+
 ## 5. Consequences
 
 1. Positive
@@ -293,3 +334,4 @@ CPMAddPackage("gh:google/googletest@1.14.0")
 - vcpkg [Documentation](https://vcpkg.io/en/docs/README.html) site.
 - vcpkg [Manifest Mode](https://learn.microsoft.com/en-us/vcpkg/reference/vcpkg-json) page.
 - GitHub [CPM.cmake](https://github.com/cpm-cmake/CPM.cmake) repository.
+- Git [Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) reference.

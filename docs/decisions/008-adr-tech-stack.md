@@ -167,12 +167,29 @@ Defining the technologies to be used throughout the project.
 
 ## 6. Implementation
 
-1. Document the defined tech stack in the repository tech stack article, listing selected technologies by category.
-2. Communicate the defined tech stack to all team members through onboarding documentation and internal announcements.
-3. Update project templates and scaffolding tools to default to the defined tech stack.
-4. Establish a periodic review cadence (e.g., annually) to evaluate the tech stack against emerging technologies and evolving project requirements.
-5. Define a governed process for requesting exceptions or experimenting with technologies outside the defined stack in isolated environments.
-6. Validate conformance with the defined tech stack through code review criteria and CI/CD pipeline checks where applicable.
+1. Document the Tech Stack
+
+    Record the defined tech stack in the repository tech stack article, listing selected technologies by category with brief descriptions.
+
+2. Communicate to Team Members
+
+    Share the defined tech stack with all team members through onboarding documentation and internal announcements to ensure awareness and alignment.
+
+3. Update Project Templates
+
+    Revise project scaffolding tools and starter templates to default to the defined tech stack, reducing friction when starting new projects.
+
+4. Establish a Review Cadence
+
+    Schedule periodic reviews (e.g., annually) to evaluate the tech stack against emerging technologies and evolving project requirements.
+
+5. Define an Exception Process
+
+    Create a governed process for requesting exceptions or experimenting with technologies outside the defined stack in isolated, controlled environments.
+
+6. Validate Conformance
+
+    Verify adherence to the defined tech stack through code review criteria and CI/CD pipeline checks where applicable.
 
 ## 7. References
 

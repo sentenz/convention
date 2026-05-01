@@ -217,12 +217,29 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
 
 ## 6. Implementation
 
-1. Install Hugo on all development machines and CI/CD runners.
-2. Create the site structure using `hugo new site <name>` and configure the `hugo.toml` configuration file.
-3. Select and integrate a Hugo theme, or create a custom theme aligned with the project's design requirements.
-4. Migrate existing documentation content into Hugo's content directory structure.
-5. Configure CI/CD pipelines to build and deploy the static site on each commit to the main branch.
-6. Validate the generated site output against the expected content structure and broken-link checks.
+1. Installation
+
+    Install Hugo on all development machines and CI/CD runners using the project's pinned version to ensure consistent builds across all environments.
+
+2. Site Initialization
+
+    Create the site structure using `hugo new site <name>` and configure the `hugo.toml` configuration file with the project name, base URL, language settings, and content directory layout.
+
+3. Theme Configuration
+
+    Select and integrate a Hugo theme, or create a custom theme aligned with the project's design requirements. Document the theme configuration and any customizations in the repository.
+
+4. Content Migration
+
+    Migrate existing documentation content into Hugo's content directory structure, organizing pages into appropriate sections and updating internal links and references accordingly.
+
+5. CI/CD Integration
+
+    Configure CI/CD pipelines to install Hugo, build the static site, and deploy the output on each commit to the main branch. Pin the Hugo version in the pipeline configuration to ensure reproducible builds.
+
+6. Validation
+
+    Validate the generated site output by running broken-link checks and reviewing the rendered content structure to confirm all pages, assets, and references resolve correctly before deployment.
 
 ## 7. References
 

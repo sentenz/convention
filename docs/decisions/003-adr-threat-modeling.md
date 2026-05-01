@@ -26,7 +26,7 @@ Architectural Decision Records (ADR) on implementing Threat Modeling for Softwar
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2024-07-01
 - Status: Proposed
 

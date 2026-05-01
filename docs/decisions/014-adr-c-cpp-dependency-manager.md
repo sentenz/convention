@@ -262,15 +262,25 @@ CPMAddPackage("gh:google/googletest@1.14.0")
 
 ## 6. Implementation
 
-1. Install the Conan client (`pip install conan`) and initialize a default profile (`conan profile detect`) on all developer machines and CI runners.
+1. Install
 
-2. Define a `conanfile.txt` at the repository root declaring `[requires]` for runtime dependencies and `[tool_requires]` for development dependencies, with `CMakeDeps` and `CMakeToolchain` listed under `[generators]`.
+    Install the Conan client (`pip install conan`) and initialize a default profile (`conan profile detect`) on all developer machines and CI runners.
 
-3. Run `conan install . --lockfile-out=conan.lock` to resolve the dependency graph and generate an immutable lockfile; commit `conan.lock` to version control.
+2. Configure
 
-4. Integrate the Conan-generated toolchain file into `CMakePresets.json` via the `CMAKE_TOOLCHAIN_FILE` cache variable so that all CMake presets automatically consume Conan-managed dependencies.
+    Define a `conanfile.txt` at the repository root declaring `[requires]` for runtime dependencies and `[tool_requires]` for development dependencies, with `CMakeDeps` and `CMakeToolchain` listed under `[generators]`.
 
-5. Validate integration by confirming that `cmake --preset <preset>` resolves all `find_package()` calls without errors and that CI builds reproduce identically using the committed lockfile.
+3. Lockfile
+
+    Run `conan install . --lockfile-out=conan.lock` to resolve the dependency graph and generate an immutable lockfile; commit `conan.lock` to version control.
+
+4. CMake Integration
+
+    Integrate the Conan-generated toolchain file into `CMakePresets.json` via the `CMAKE_TOOLCHAIN_FILE` cache variable so that all CMake presets automatically consume Conan-managed dependencies.
+
+5. Validate
+
+    Confirm that `cmake --preset <preset>` resolves all `find_package()` calls without errors and that CI builds reproduce identically using the committed lockfile.
 
 ## 7. References
 

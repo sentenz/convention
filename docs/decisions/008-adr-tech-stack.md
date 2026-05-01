@@ -193,4 +193,4 @@ Defining the technologies to be used throughout the project.
 
 ## 7. References
 
-- Sentenz [Tech Stack](../articles/tech-stack.md) article.
+- Sentenz [Tech Stack](../../content/articles/tech-stack.md) article.

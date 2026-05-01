@@ -245,4 +245,4 @@ A Monolith (Traditional Monolithic Architecture) packages all application functi
 
 ## 7. References
 
-- Sentenz [Repository Strategies](../internal/articles/repository-strategies.md) article.
+- Sentenz [Branching Strategies](../articles/branching-strategies.md) article.

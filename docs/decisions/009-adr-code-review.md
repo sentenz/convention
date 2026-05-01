@@ -339,4 +339,4 @@ Conduct regular meetings where team members present and discuss their code chang
 
 ## 7. References
 
-- Sentenz [Code Review](../articles/code-review.md) article.
+- Sentenz [Code Review](../guides/code-review-guide.md) guide.

@@ -76,7 +76,7 @@ The selected approach combines Integration Platforms with Middleware. The hybrid
       > The combination of a managed integration platform (JCI) for standard workflows and custom middleware for complex logic reduces overall maintenance burden.
 
     - Ease of Implementation
-      > JCI accelerates time-to-market for Jama-Jira integration while custom middleware handles Mantis and advanced synchronization requirements.
+      > Jama Connect Interchange (JCI) accelerates time-to-market for Jama-Jira integration while custom middleware handles Mantis and advanced synchronization requirements.
 
 ## 4. Considered
 

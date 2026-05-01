@@ -18,7 +18,7 @@ Architectural Decision Records (ADR) on implementing a bidirectional API managem
 
 ## 1. State
 
-- Author(s): ALKL
+- Author(s): Sentenz
 - Date: 2025-01-13
 - Status: Proposed
 

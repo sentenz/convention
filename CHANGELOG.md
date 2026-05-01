@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.23.0](https://github.com/sentenz/convention/compare/2.22.0...2.23.0) (2026-05-01)
+
+
+### Features
+
+* **adr:** add ADR for C/C++ Dependency Manager ([#453](https://github.com/sentenz/convention/issues/453)) ([9e917c7](https://github.com/sentenz/convention/commit/9e917c76c6bda325e3e0db54dc89b1db066f08d5))
+
 # [2.22.0](https://github.com/sentenz/convention/compare/2.21.0...2.22.0) (2026-04-30)
 
 

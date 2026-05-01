@@ -95,7 +95,7 @@ Husky is a widely used Git hooks manager for JavaScript and Node.js projects. It
 npx lint-staged
 ```
 
-- Pros
+- Pros:
 
   - Ease of Use
     > Simple setup for Node.js projects via `npm install`.
@@ -106,7 +106,7 @@ npx lint-staged
   - Integration
     > Tight integration with `lint-staged` for running checks only on staged files.
 
-- Cons
+- Cons:
 
   - Runtime Dependency
     > Requires Node.js and `npm` as a runtime dependency, which is not suitable for our multi-language environment.
@@ -137,7 +137,7 @@ commit-msg:
       run: make run-linter-commit {1}
 ```
 
-- Pros
+- Pros:
 
   - Language Agnostic
     > No runtime dependencies beyond the binary itself, making it suitable for multi-language environments.
@@ -157,7 +157,7 @@ commit-msg:
   - Community and Ecosystem
     > Actively maintained with comprehensive documentation.
 
-- Cons
+- Cons:
 
   - Binary Dependency
     > Requires installing the `lefthook` binary on all development machines.
@@ -179,7 +179,7 @@ repos:
       - id: end-of-file-fixer
 ```
 
-- Pros
+- Pros:
 
   - Ecosystem
     > Rich ecosystem of ready-made hooks from the pre-commit community.
@@ -190,7 +190,7 @@ repos:
   - Environment Management
     > Automatic virtual environment management for Python-based hooks.
 
-- Cons
+- Cons:
 
   - Runtime Dependency
     > Requires Python as a runtime dependency for the framework itself.
@@ -206,27 +206,27 @@ repos:
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Consistency
-      > Standardized hook definitions in a single `lefthook.yml` file improve consistency and reduce onboarding time for new team members.
+  - Consistency
+    > Standardized hook definitions in a single `lefthook.yml` file improve consistency and reduce onboarding time for new team members.
 
-    - Performance
-      > Parallel execution of hook commands reduces wait time for developers during the Git workflow.
+  - Performance
+    > Parallel execution of hook commands reduces wait time for developers during the Git workflow.
 
-    - Portability
-      > No runtime dependency beyond the binary ensures hooks work identically across all supported operating systems and CI/CD environments.
+  - Portability
+    > No runtime dependency beyond the binary ensures hooks work identically across all supported operating systems and CI/CD environments.
 
-    - Maintainability
-      > Declarative YAML configuration is easy to read, update, and review in code reviews.
+  - Maintainability
+    > Declarative YAML configuration is easy to read, update, and review in code reviews.
 
-2. Negative
+- Negative
 
-    - Binary Dependency
-      > All developers and CI/CD runners must have the `lefthook` binary installed, requiring updates to onboarding documentation and setup scripts.
+  - Binary Dependency
+    > All developers and CI/CD runners must have the `lefthook` binary installed, requiring updates to onboarding documentation and setup scripts.
 
-    - Migration Effort
-      > Existing raw shell-based Git hooks in the `githooks/` directory need to be migrated to Lefthook configuration, requiring testing to ensure equivalent behavior.
+  - Migration Effort
+    > Existing raw shell-based Git hooks in the `githooks/` directory need to be migrated to Lefthook configuration, requiring testing to ensure equivalent behavior.
 
 ## 6. Implementation
 

@@ -85,12 +85,15 @@ The `NOTE` tag is used to provide supplementary information about the code, whic
 Indicate tasks that need to be done in the future.
 
 - Pros:
+
   - Task Management
     > Clearly identifies tasks that need to be done, aiding in task management.
 
 - Cons:
+
   - Maintenance
     > Can become outdated if not regularly maintained.
+
   - Task Tracking
     > May lead to an accumulation of unfinished tasks if not properly tracked.
 
@@ -99,12 +102,15 @@ Indicate tasks that need to be done in the future.
 Highlight code that is broken or incorrect and needs to be fixed.
 
 - Pros:
+
   - Code Quality
     > Clearly marks broken or incorrect code, making it easier to prioritize fixes.
 
 - Cons:
+
   - Redundancy
     > Overlaps with `BUG`, leading to potential redundancy.
+
   - Fix Management
     > Can lead to neglected fixes if not properly managed.
 
@@ -113,12 +119,15 @@ Highlight code that is broken or incorrect and needs to be fixed.
 Provide additional information or context about the code.
 
 - Pros:
+
   - Readability
     > Provides additional context, improving code readability and understanding.
 
 - Cons:
+
   - Overuse
     > Can be overused for trivial information, cluttering the codebase.
+
   - Maintenance
     > May become outdated or irrelevant over time.
 
@@ -127,12 +136,15 @@ Provide additional information or context about the code.
 Mark code that is outdated and should not be used in new developments.
 
 - Pros:
+
   - Code Guidance
     > Clearly marks outdated code, guiding developers to use current solutions.
 
 - Cons:
+
   - Maintenance
     > Requires regular updates to reflect current best practices.
+
   - Code Removal
     > Can lead to confusion if deprecated code is not removed promptly.
 
@@ -141,14 +153,18 @@ Mark code that is outdated and should not be used in new developments.
 Draw attention to potentially problematic or risky code that needs further review.
 
 - Pros:
+
   - Risk Identification
     > Highlights potentially risky or problematic code, ensuring careful review.
+
   - Linter Bypass
     > Useful for marking places where linters are disabled, indicating potential issues.
 
 - Cons:
+
   - Redundancy
     > Can overlap with `HACK` and `FIXME`, leading to redundancy.
+
   - Prioritization
     > May not be prioritized, leading to unresolved risky code.
 
@@ -157,12 +173,15 @@ Draw attention to potentially problematic or risky code that needs further revie
 Indicates a temporary workaround or a quick fix that is not an ideal solution.
 
 - Pros:
+
   - Code Quality
     > Clearly marks code that is not ideal and needs to be revisited.
 
 - Cons:
+
   - Redundancy
     > Often overlaps with `FIXME` and `XXX`, leading to potential redundancy.
+
   - Code Practices
     > May encourage the use of poor coding practices if not addressed promptly.
 
@@ -171,12 +190,15 @@ Indicates a temporary workaround or a quick fix that is not an ideal solution.
 Specifically marks known bugs in the code.
 
 - Pros:
+
   - Bug Tracking
     > Clearly identifies known bugs, making it easier to track and prioritize fixes.
 
 - Cons:
+
   - Redundancy
     > Overlaps with `FIXME`, which already serves a similar purpose.
+
   - Codebase Clutter
     > Can clutter the codebase if overused or not properly managed.
 
@@ -185,12 +207,15 @@ Specifically marks known bugs in the code.
 Highlights code that needs performance improvements.
 
 - Pros:
+
   - Performance Focus
     > Focuses on performance-related issues, which can be crucial for high-performance applications.
 
 - Cons:
+
   - Redundancy
     > Can be too specific and overlaps with `TODO` for performance-related tasks.
+
   - Consistency
     > May not be used consistently if not enforced strictly.
 
@@ -199,30 +224,39 @@ Highlights code that needs performance improvements.
 Marks minor issues or nitpicks that do not affect functionality but could improve clarity.
 
 - Pros:
+
   - Code Quality
     > Helps identify minor improvements that can enhance code quality and readability.
 
 - Cons:
+
   - Codebase Clutter
     > Can lead to excessive comments for trivial matters, cluttering the codebase.
+
   - Prioritization
     > May not be prioritized, leading to accumulation of minor issues.
 
 ## 5. Consequences
 
 - Positive
+
   - Readability
     > Improved code readability and maintainability through consistent and descriptive comment tags.
+
   - Technical Debt
     > Better tracking and management of technical debt and bugs with standardized markers.
+
   - Collaboration
     > Enhanced collaboration among developers through clear and consistent comment conventions.
+
   - Risk Identification
     > Easier identification of potentially risky or problematic code areas that require further attention.
 
 - Negative
+
   - Migration Effort
     > Requires initial effort to standardize existing comments in the codebase.
+
   - Onboarding
     > Developers need to be trained or made aware of the new comment tag standards.
 

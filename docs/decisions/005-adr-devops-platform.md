@@ -79,7 +79,7 @@ GitLab is selected as the DevOps platform due to its comprehensive lifecycle man
 
 Jenkins is an open-source automation server with a large plugin ecosystem for building, deploying, and automating software projects.
 
-- Pros
+- Pros:
 
   - Extensibility
     > Highly extensible with a wide plugin ecosystem supporting a broad range of integrations and workflows.
@@ -87,7 +87,7 @@ Jenkins is an open-source automation server with a large plugin ecosystem for bu
   - Open Source
     > Fully open-source with strong self-managed capabilities and no licensing costs.
 
-- Cons
+- Cons:
 
   - Maintenance Overhead
     > Requires significant configuration and maintenance; plugins can introduce instability.
@@ -99,12 +99,12 @@ Jenkins is an open-source automation server with a large plugin ecosystem for bu
 
 GitLab is a complete DevOps platform delivered as a single application, providing source code management, CI/CD, container registry, and security tools.
 
-- Pros
+- Pros:
 
   - Comprehensive Lifecycle
     > Comprehensive DevOps lifecycle management, self-managed capabilities, robust source code management, project management tools, integrated CI/CD, Kubernetes and Container support, scalability, strong security and compliance features, large community and support.
 
-- Cons
+- Cons:
 
   - Learning Curve
     > Initial learning curve, potential migration challenges for existing projects and repositories, additional responsibility for managing and maintaining the self-hosted environment, may have higher costs for premium features.
@@ -113,12 +113,12 @@ GitLab is a complete DevOps platform delivered as a single application, providin
 
 Azure DevOps is an enterprise-grade suite from Microsoft providing Azure Pipelines, Azure Repos, and Azure Boards for end-to-end software delivery.
 
-- Pros
+- Pros:
 
   - Enterprise Grade
     > Enterprise-grade platform with deep integration with Microsoft products and a comprehensive suite including Azure Pipelines, Azure Repos, and Azure Boards.
 
-- Cons
+- Cons:
 
   - Microsoft Ecosystem
     > Better suited for organizations heavily invested in the Microsoft ecosystem. Potentially high costs for scaling. Primarily a cloud-based solution, the self-managed version (Azure DevOps Server) is less feature-rich and requires significant effort to manage.
@@ -127,12 +127,12 @@ Azure DevOps is an enterprise-grade suite from Microsoft providing Azure Pipelin
 
 CircleCI is a cloud-native CI/CD platform with excellent Docker support and YAML-based pipeline configuration.
 
-- Pros
+- Pros:
 
   - CI/CD Performance
     > Fast and efficient CI/CD with excellent Docker support and easy configuration with YAML.
 
-- Cons
+- Cons:
 
   - Scope
     > Primarily focused on CI/CD, lacks integrated project management tools and broader DevOps lifecycle management. Limited self-managed capabilities.
@@ -141,12 +141,12 @@ CircleCI is a cloud-native CI/CD platform with excellent Docker support and YAML
 
 GitHub is a widely used code hosting and collaboration platform with GitHub Actions for CI/CD automation.
 
-- Pros
+- Pros:
 
   - Community
     > Widely used platform with seamless integration with GitHub Actions for CI/CD and strong community and collaboration features.
 
-- Cons
+- Cons:
 
   - Lifecycle Coverage
     > Limited in terms of integrated DevOps lifecycle features and security management. GitHub Enterprise Server offers self-managed hosting, but with less comprehensive DevOps capabilities.
@@ -155,36 +155,36 @@ GitHub is a widely used code hosting and collaboration platform with GitHub Acti
 
 Bitbucket is a Git-based code hosting platform from Atlassian with native integration with Jira and Bitbucket Pipelines for CI/CD.
 
-- Pros
+- Pros:
 
   - Atlassian Integration
     > Integration with Jira and other Atlassian tools, with Bitbucket Pipelines for CI/CD.
 
-- Cons
+- Cons:
 
   - Ecosystem
     > Less extensible than other platforms, smaller plugin ecosystem, primarily suited for Atlassian ecosystems. Bitbucket Server offers self-managed hosting but lacks the breadth of features.
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Streamlined Processes
-      > GitLab will streamline our development and operations processes, enhancing productivity and collaboration.
+  - Streamlined Processes
+    > GitLab will streamline our development and operations processes, enhancing productivity and collaboration.
 
-    - Improved Deployment
-      > Automated CI/CD pipelines will reduce deployment time and minimize errors, leading to faster release cycles.
+  - Improved Deployment
+    > Automated CI/CD pipelines will reduce deployment time and minimize errors, leading to faster release cycles.
 
-    - Enhanced Security
-      > The robust security features will ensure the integrity and confidentiality of our code and deployment pipelines.
+  - Enhanced Security
+    > The robust security features will ensure the integrity and confidentiality of our code and deployment pipelines.
 
-2. Negative
+- Negative
 
-    - Learning Curve
-      > Initial learning curve for teams unfamiliar with or transitioning to GitLab, requiring training and adjustment time.
+  - Learning Curve
+    > Initial learning curve for teams unfamiliar with or transitioning to GitLab, requiring training and adjustment time.
 
-    - Migration Effort
-      > Migrating existing CI/CD pipelines and infrastructure to GitLab will require effort and careful planning.
+  - Migration Effort
+    > Migrating existing CI/CD pipelines and infrastructure to GitLab will require effort and careful planning.
 
 ## 6. Implementation
 

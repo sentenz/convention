@@ -146,14 +146,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats) is a threat modeling methodology developed by Microsoft that categorizes threats into six types: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.
 
 - Pros:
+
   - Comprehensiveness
     > Provides a comprehensive approach to identifying a wide range of threat types across all system components.
+
   - Accessibility
     > Simple and easy to understand, with well-established documentation and tooling support.
 
 - Cons:
+
   - Risk Assessment
     > Limited in assessing the impact and likelihood of identified threats. Requires additional tools for quantitative risk evaluation.
+
   - Scope
     > Focuses primarily on security threats and does not address privacy concerns without supplemental frameworks.
 
@@ -162,14 +166,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [DREAD](https://owasp.org/www-community/Threat_Modeling_Process) is a risk assessment model used to rate, compare, and prioritize threats using five scoring categories: Damage, Reproducibility, Exploitability, Affected Users, and Discoverability.
 
 - Pros:
+
   - Prioritization
     > Provides a scoring system to evaluate and prioritize threats based on their potential impact.
+
   - Simplicity
     > Straightforward model that helps teams rank threats without deep security expertise.
 
 - Cons:
+
   - Subjectivity
     > Scoring is subjective and susceptible to inconsistency across teams and reviewers.
+
   - Structure
     > Less structured and rigorous compared to other threat modeling methods, reducing reproducibility.
 
@@ -178,14 +186,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [PASTA (Process for Attack Simulation and Threat Analysis)](https://www.iriusrisk.com/resources-blog/pasta-threat-modeling-methodology) is a risk-centric threat modeling framework that provides a seven-stage methodology aligned with business objectives and technical risks.
 
 - Pros:
+
   - Business Alignment
     > Focuses on business objectives and potential impact, connecting technical threats to organizational risk.
+
   - Methodology
     > Provides a comprehensive seven-step methodology covering the full lifecycle from objectives to attack simulation.
 
 - Cons:
+
   - Complexity
     > More complex and time-consuming to implement than simpler frameworks.
+
   - Resource Requirements
     > Requires significant expertise and resources, making it less accessible for smaller teams.
 
@@ -194,14 +206,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [LINDDUN](https://linddun.org/) is a privacy threat modeling framework that systematically identifies and addresses privacy threats in software systems using a structured taxonomy of seven privacy threat categories.
 
 - Pros:
+
   - Privacy Focus
     > Specializes in privacy threat modeling, providing systematic coverage of privacy issues that security-only frameworks overlook.
+
   - Structure
     > Offers a structured methodology with supporting worksheets and data flow diagram-based analysis.
 
 - Cons:
+
   - Scope
     > Limited to privacy threats and does not cover general security threats, requiring use alongside security-focused frameworks.
+
   - Adoption
     > Less widely adopted than security frameworks, with a smaller community and fewer integrated tooling options.
 
@@ -210,14 +226,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [Attack Tree](https://en.wikipedia.org/wiki/Attack_tree) is a conceptual threat modeling method that represents attacks on a system using a tree structure, where the root represents the goal of the attack and branches represent alternative means of achieving it.
 
 - Pros:
+
   - Visualization
     > Provides a visual representation of threats and attack paths that aids communication among stakeholders.
+
   - Prioritization
     > Helps identify and prioritize vulnerabilities by tracing attack paths back to root causes.
 
 - Cons:
+
   - Complexity
     > Can become difficult to manage for large systems with many interdependencies.
+
   - Metrics
     > Does not provide standardized risk assessment metrics, limiting quantitative comparison across threats.
 
@@ -226,14 +246,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [MITRE ATT&CK](https://attack.mitre.org/) is a globally accessible knowledge base of adversary tactics and techniques based on real-world observations, used as a foundation for threat modeling, detection, and response.
 
 - Pros:
+
   - Knowledge Base
     > Comprehensive and detailed database of adversary tactics and techniques continuously updated based on real-world threat intelligence.
+
   - Adoption
     > Widely adopted across the industry with strong tooling integrations in SIEM and SOAR platforms.
 
 - Cons:
+
   - Integration Dependency
     > Requires integration with complementary frameworks to support the full threat modeling lifecycle.
+
   - Scope
     > Extensive detail can be overwhelming and may require significant effort to apply selectively and effectively.
 
@@ -242,14 +266,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [CVSS (Common Vulnerability Scoring System)](https://www.first.org/cvss/) is an open framework for communicating the characteristics and severity of software vulnerabilities, providing a standardized numerical score to represent risk.
 
 - Pros:
+
   - Standardization
     > Provides a widely recognized and standardized method for assessing and communicating vulnerability severity.
+
   - Tooling
     > Supported by NVD, CVE databases, and a broad range of security tools with built-in CVSS calculators.
 
 - Cons:
+
   - Scope
     > Focuses on vulnerability severity scoring rather than the broader threat identification and modeling process.
+
   - Identification Gap
     > Does not address how threats are discovered; serves as a rating tool rather than a discovery methodology.
 
@@ -258,14 +286,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [TRIKE](http://octotrike.org/) is a threat modeling framework that combines threat modeling with risk management, using a requirements model and implementation model to evaluate whether risks are acceptable to stakeholders.
 
 - Pros:
+
   - Risk Integration
     > Integrates threat modeling and risk management into a unified framework for risk-based security decisions.
+
   - Stakeholder Focus
     > Explicitly incorporates stakeholder risk tolerance into the threat assessment process.
 
 - Cons:
+
   - Adoption
     > Less widely adopted and supported compared to established frameworks, with limited community resources.
+
   - Complexity
     > Can be complex to implement effectively, requiring significant time investment to learn and apply.
 
@@ -274,14 +306,18 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [VAST (Visual, Agile, and Simple Threat modeling)](https://www.threatmodeler.com/) is a scalable threat modeling methodology designed to integrate with agile development processes and DevOps pipelines.
 
 - Pros:
+
   - Agile Integration
     > Designed to integrate with agile development processes and scale across large engineering organizations.
+
   - Visualization
     > Provides visual process and application threat models to support both development and operations teams.
 
 - Cons:
+
   - Maturity
     > Relatively new and less proven in large-scale deployments compared to established frameworks.
+
   - Resources
     > Limited publicly available resources and community support outside of commercial tooling.
 
@@ -290,38 +326,50 @@ Included to specifically address privacy threats and ensure comprehensive privac
 [OCTAVE (Operationally Critical Threat, Asset, and Vulnerability Evaluation)](https://www.sei.cmu.edu/our-work/projects/display.cfm?customel_datapageid_4050=53321) is a risk-based strategic assessment and planning framework focused on organizational security risk management.
 
 - Pros:
+
   - Organizational Focus
     > Centers on organizational risk management, aligning threat analysis with business assets and operational priorities.
+
   - Comprehensiveness
     > Comprehensive methodology covering asset identification, threat profiling, and risk evaluation across the organization.
 
 - Cons:
+
   - Resource Intensity
     > Time-consuming and resource-intensive to execute, requiring significant organizational commitment.
+
   - Scale Suitability
     > Better suited to larger organizations with mature security processes and dedicated risk management teams.
 
 ## 5. Consequences
 
 - Positive
+
   - Security Coverage
     > Combining STRIDE, MITRE ATT&CK, CVSS, and LINDDUN provides holistic coverage of security, privacy, and risk dimensions across the software development lifecycle.
+
   - Standardization
     > Use of industry-recognized frameworks enables consistent threat identification, scoring, and communication across teams and projects.
+
   - Early Risk Mitigation
     > Integration into the SSDLC design phase enables identification and mitigation of threats before implementation, reducing the cost of remediation.
 
 - Negative
+
   - Complexity
     > Managing multiple threat modeling frameworks simultaneously increases process complexity and requires clear coordination to avoid gaps or duplication.
+
   - Learning Curve
     > Teams unfamiliar with all four frameworks require dedicated training and time to achieve consistent and effective application.
+
   - Tooling Overhead
     > Supporting multiple frameworks may require maintaining several specialized tools, increasing setup and maintenance effort.
 
 - Risks
+
   - Framework Overlap
     > Overlapping coverage between frameworks (e.g., STRIDE and MITRE ATT&CK) may result in duplicated effort if boundaries are not clearly defined.
+
   - Inconsistent Application
     > Without documented guidelines and templates, teams may apply the frameworks inconsistently across projects, reducing the reliability of threat models.
 

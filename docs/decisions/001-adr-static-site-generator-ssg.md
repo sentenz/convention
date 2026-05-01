@@ -82,7 +82,7 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
 
 [Hugo](https://gohugo.io/) is a fast and flexible open-source static site generator written in Go.
 
-- Pros
+- Pros:
 
   - Performance
     > Hugo is one of the fastest SSGs available, capable of building large sites quickly.
@@ -105,7 +105,7 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
   - Markup Languages
     > Supports various markup languages including Markdown, AsciiDoc, and reStructuredText (RST).
 
-- Cons
+- Cons:
 
   - Learning Curve
     > Can be complex for beginners due to its wide range of features and options, and the Go-based templating system can be complicated for those unfamiliar with the language.
@@ -117,7 +117,7 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
 
 [MkDocs](https://www.mkdocs.org/) is a fast, simple static site generator geared towards building project documentation using Markdown.
 
-- Pros
+- Pros:
 
   - Ease of Use
     > Simple and straightforward, especially for documentation websites.
@@ -128,7 +128,7 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
   - Documentation
     > Good documentation and a friendly community.
 
-- Cons
+- Cons:
 
   - Performance
     > Slower than Hugo for large sites.
@@ -149,7 +149,7 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
 
 [Docusaurus](https://docusaurus.io/) is a static-site generator built with React, optimized for creating documentation websites with versioning and internationalization support.
 
-- Pros
+- Pros:
 
   - Ease of Use
     > Designed for documentation with a strong focus on ease of use.
@@ -166,7 +166,7 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
   - Markdown Flavor
     > Uses `Remark/MDX`, which supports JSX within Markdown, enabling complex interactions and component embedding.
 
-- Cons
+- Cons:
 
   - Performance
     > Slower build times compared to Hugo.
@@ -182,38 +182,38 @@ Hugo was selected due to its superior performance, flexibility, extensive custom
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Performance
-      > Fast build times will improve the development workflow and scalability of the website.
+  - Performance
+    > Fast build times will improve the development workflow and scalability of the website.
 
-    - Flexibility
-      > Ability to handle various content types and complex structures.
+  - Flexibility
+    > Ability to handle various content types and complex structures.
 
-    - Community
-      > Access to a large number of themes, plugins, and support resources.
+  - Community
+    > Access to a large number of themes, plugins, and support resources.
 
-    - Markdown
-      > Support for advanced Markdown features and customization options.
+  - Markdown
+    > Support for advanced Markdown features and customization options.
 
-    - Markup Languages
-      > Support for multiple markup languages increases flexibility in content authoring.
+  - Markup Languages
+    > Support for multiple markup languages increases flexibility in content authoring.
 
-2. Negative
+- Negative
 
-    - Learning Curve
-      > Team members will need to invest time in learning Hugo's configuration and capabilities.
+  - Learning Curve
+    > Team members will need to invest time in learning Hugo's configuration and capabilities.
 
-    - Complexity
-      > Initial setup may be more involved, requiring careful planning and configuration.
+  - Complexity
+    > Initial setup may be more involved, requiring careful planning and configuration.
 
-3. Risks
+- Risks
 
-    - Templating Complexity
-      > Hugo's Go-based templating may introduce complexity for team members unfamiliar with the language. Mitigation: Provide team training and maintain shared template libraries to reduce duplication and onboarding effort.
+  - Templating Complexity
+    > Hugo's Go-based templating may introduce complexity for team members unfamiliar with the language. Mitigation: Provide team training and maintain shared template libraries to reduce duplication and onboarding effort.
 
-    - Version Upgrades
-      > Breaking changes between Hugo versions may require updates to templates and configuration. Mitigation: Pin Hugo to a specific version in CI/CD pipelines and test upgrades in a staging environment before rolling out to production.
+  - Version Upgrades
+    > Breaking changes between Hugo versions may require updates to templates and configuration. Mitigation: Pin Hugo to a specific version in CI/CD pipelines and test upgrades in a staging environment before rolling out to production.
 
 ## 6. Implementation
 

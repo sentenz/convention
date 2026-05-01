@@ -115,7 +115,7 @@ CMakeDeps
 CMakeToolchain
 ```
 
-- Pros
+- Pros:
 
   - Dependencies and Dev Dependencies
     > Supports `[requires]` for runtime dependencies and `[tool_requires]` for build-time and dev-only tools, cleanly separating production from development artifacts.
@@ -144,7 +144,7 @@ CMakeToolchain
   - Private and Public Dependencies
     > Supports multiple remotes with per-remote authentication; works with ConanCenter (public), JFrog Artifactory, and self-hosted Conan servers.
 
-- Cons
+- Cons:
 
   - Setup Complexity
     > Requires installing Python and configuring profiles, remotes, and settings before first use, adding initial onboarding friction compared to header-only solutions.
@@ -167,7 +167,7 @@ CMakeToolchain
 }
 ```
 
-- Pros
+- Pros:
 
   - Dependency Resolution
     > Resolves and installs transitive dependencies automatically from a large curated port catalogue (over 2,000 ports).
@@ -184,7 +184,7 @@ CMakeToolchain
   - Private and Public Dependencies
     > Supports private registries and overlay ports, allowing internal packages to be managed alongside public ones.
 
-- Cons
+- Cons:
 
   - Dependencies and Dev Dependencies
     > No distinction between runtime and development-only dependencies within the manifest file.
@@ -207,7 +207,7 @@ CPMAddPackage("gh:fmtlib/fmt#9.1.0")
 CPMAddPackage("gh:google/googletest@1.14.0")
 ```
 
-- Pros
+- Pros:
 
   - CMake Integration
     > Packages are declared directly in `CMakeLists.txt` using `CPMAddPackage()`, requiring no external tooling beyond CMake itself.
@@ -224,7 +224,7 @@ CPMAddPackage("gh:google/googletest@1.14.0")
   - Immutable Lockfiles
     > CPM.cmake can generate a `package-lock.cmake` file that captures the exact resolved URLs and commit hashes of dependencies, enabling reproducible builds.
 
-- Cons
+- Cons:
 
   - Prebuilt Binary and Source Build
     > CPM.cmake always builds dependencies from source; there is no prebuilt binary registry or binary caching mechanism, leading to significantly longer build times.
@@ -247,7 +247,7 @@ CPMAddPackage("gh:google/googletest@1.14.0")
     branch = main
 ```
 
-- Pros
+- Pros:
 
   - Dependency Pinning
     > Each submodule is pinned to an exact commit SHA recorded in the parent repository index, guaranteeing deterministic checkout across all environments without external tooling.
@@ -261,7 +261,7 @@ CPMAddPackage("gh:google/googletest@1.14.0")
   - CMake Integration
     > Submodules expose the full source tree, allowing `add_subdirectory()` to build the dependency in-tree with direct access to its CMake targets.
 
-- Cons
+- Cons:
 
   - Dependency Resolution
     > No automatic resolution of transitive dependencies; each indirect dependency must be identified and added as a separate submodule manually.
@@ -277,29 +277,29 @@ CPMAddPackage("gh:google/googletest@1.14.0")
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Reproducibility
-      > Conan provides fully reproducible builds via `conan.lock`, enabling the exact same dependency graph to be reproduced from a single `conanfile.txt` and lockfile across all developer machines and CI environments.
+  - Reproducibility
+    > Conan provides fully reproducible builds via `conan.lock`, enabling the exact same dependency graph to be reproduced from a single `conanfile.txt` and lockfile across all developer machines and CI environments.
 
-    - Binary Caching
-      > Conan's binary cache reduces CI build times by reusing prebuilt packages rather than rebuilding dependencies from source on every pipeline run.
+  - Binary Caching
+    > Conan's binary cache reduces CI build times by reusing prebuilt packages rather than rebuilding dependencies from source on every pipeline run.
 
-    - CMake Integration
-      > Native integration with the CMake build system through `CMakeDeps` and `CMakeToolchain` eliminates manual path configuration and aligns with existing build conventions.
+  - CMake Integration
+    > Native integration with the CMake build system through `CMakeDeps` and `CMakeToolchain` eliminates manual path configuration and aligns with existing build conventions.
 
-2. Negative
+- Negative
 
-    - Setup Overhead
-      > Developers must install Python and the Conan client and must create and maintain a Conan profile for each platform or toolchain target, increasing initial onboarding effort.
+  - Setup Overhead
+    > Developers must install Python and the Conan client and must create and maintain a Conan profile for each platform or toolchain target, increasing initial onboarding effort.
 
-    - Custom Recipes
-      > Any new dependency not present on ConanCenter requires authoring a custom Conan recipe in Python (`conanfile.py`), which involves learning the domain-specific language (DSL).
+  - Custom Recipes
+    > Any new dependency not present on ConanCenter requires authoring a custom Conan recipe in Python (`conanfile.py`), which involves learning the domain-specific language (DSL).
 
-3. Risks
+- Risks
 
-    - Package Availability
-      > If a required package is not available on ConanCenter and a custom recipe cannot be maintained, an alternative source strategy (vendoring, system package) must be adopted. Mitigation: audit all required dependencies against ConanCenter before adoption and prefer widely used libraries with existing recipes.
+  - Package Availability
+    > If a required package is not available on ConanCenter and a custom recipe cannot be maintained, an alternative source strategy (vendoring, system package) must be adopted. Mitigation: audit all required dependencies against ConanCenter before adoption and prefer widely used libraries with existing recipes.
 
 ## 6. Implementation
 

@@ -85,7 +85,7 @@ build:
     gcc -o program main.c utils.c
 ```
 
-- Pros
+- Pros:
 
   - Maturity
     > Mature and widely used in the industry, with decades of adoption across software build systems.
@@ -96,7 +96,7 @@ build:
   - Platform Support
     > Natively supported on almost all Unix-based platforms without additional installation.
 
-- Cons
+- Cons:
 
   - Syntax
     > Cryptic syntax and platform-specific behavior make it difficult for non-experts to read and maintain.
@@ -119,7 +119,7 @@ test:
     ./program --test
 ```
 
-- Pros
+- Pros:
 
   - Readability
     > Simple and human-readable syntax designed specifically for task automation.
@@ -130,7 +130,7 @@ test:
   - Ease of Use
     > Easy to learn and use, serving as a modern alternative to `make`.
 
-- Cons
+- Cons:
 
   - Ecosystem
     > Lacks the flexibility and ecosystem maturity of more established task runners.
@@ -152,7 +152,7 @@ tasks:
       - ./program --test
 ```
 
-- Pros
+- Pros:
 
   - Readability
     > Uses YAML, which is easy to read and write, with a structured and declarative syntax.
@@ -163,7 +163,7 @@ tasks:
   - Features
     > Built-in support for variables, dependencies, and complex task workflows.
 
-- Cons
+- Cons:
 
   - Verbosity
     > YAML can be verbose for simple tasks compared to more concise task runner formats.
@@ -189,7 +189,7 @@ func Build() error {
 }
 ```
 
-- Pros
+- Pros:
 
   - Go Integration
     > Go-based syntax is familiar to Go developers and integrates naturally with Go projects.
@@ -197,7 +197,7 @@ func Build() error {
   - Performance
     > Fast and efficient execution leveraging the Go runtime.
 
-- Cons
+- Cons:
 
   - Language Dependency
     > Requires knowledge of Go, limiting adoption in non-Go environments.
@@ -220,7 +220,7 @@ build:
     SAVE ARTIFACT output AS LOCAL ./output
 ```
 
-- Pros
+- Pros:
 
   - Reproducibility
     > Reproducible builds using containers ensure consistent execution across environments.
@@ -228,7 +228,7 @@ build:
   - CI/CD Integration
     > Suitable for containerized builds and CI/CD pipelines with a simple declarative syntax.
 
-- Cons
+- Cons:
 
   - Container Dependency
     > Requires Docker or a container runtime, adding infrastructure overhead.
@@ -247,7 +247,7 @@ task :test => :build do
 end
 ```
 
-- Pros
+- Pros:
 
   - Flexibility
     > Powerful and flexible, leveraging Ruby's expressive syntax for defining and composing tasks.
@@ -255,7 +255,7 @@ end
   - Readability
     > Ruby-based scripts are easy to read and extend for developers familiar with Ruby.
 
-- Cons
+- Cons:
 
   - Language Dependency
     > Requires knowledge of Ruby, limiting adoption in non-Ruby environments.
@@ -277,7 +277,7 @@ NPM scripts (package.json) are a built-in feature of Node.js projects. They allo
 }
 ```
 
-- Pros
+- Pros:
 
   - No Additional Dependencies
     > No additional tools required, as NPM scripts are bundled with Node.js.
@@ -285,7 +285,7 @@ NPM scripts (package.json) are a built-in feature of Node.js projects. They allo
   - Node.js Integration
     > Built into Node.js projects, making it immediately accessible for JavaScript/TypeScript developers.
 
-- Cons
+- Cons:
 
   - Scope
     > Limited to Node.js projects and not suitable for our multi-language environment.
@@ -295,24 +295,24 @@ NPM scripts (package.json) are a built-in feature of Node.js projects. They allo
 
 ## 5. Consequences
 
-1. Positive
+- Positive
 
-    - Readability
-      > Improved readability and maintainability of task definitions through YAML-based declarative configuration.
+  - Readability
+    > Improved readability and maintainability of task definitions through YAML-based declarative configuration.
 
-    - Onboarding
-      > Easier onboarding for new team members due to Taskfile's intuitive syntax and structured configuration.
+  - Onboarding
+    > Easier onboarding for new team members due to Taskfile's intuitive syntax and structured configuration.
 
-    - Consistency
-      > Consistent behavior across development environments with cross-platform support.
+  - Consistency
+    > Consistent behavior across development environments with cross-platform support.
 
-2. Negative
+- Negative
 
-    - Verbosity
-      > YAML syntax may become verbose for very simple tasks compared to more concise alternatives.
+  - Verbosity
+    > YAML syntax may become verbose for very simple tasks compared to more concise alternatives.
 
-    - Additional Dependency
-      > Requires installing the `task` utility on all development machines, adding an external dependency.
+  - Additional Dependency
+    > Requires installing the `task` utility on all development machines, adding an external dependency.
 
 ## 6. Implementation
 

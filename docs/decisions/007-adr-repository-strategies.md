@@ -12,7 +12,8 @@ Architectural Decision Records (ADR) for Repository Strategies in Software Devel
   - [4.3. Monorepo](#43-monorepo)
   - [4.4. Monolith](#44-monolith)
 - [5. Consequences](#5-consequences)
-- [6. References](#6-references)
+- [6. Implementation](#6-implementation)
+- [7. References](#7-references)
 
 ## 1. State
 
@@ -73,7 +74,7 @@ Evaluating the project’s current size, team structure, growth potential, and o
 
 In a Polyrepo (Multiple Repositories) strategy, each service, module, library, or component is maintained in its own repository. This creates clear boundaries between services or modules, giving teams greater autonomy.
 
-- Pros
+- Pros:
 
   - Isolation of Services/Components
     > Clear separation between modules, enabling independent versioning, CI/CD pipelines, and deployments.
@@ -87,7 +88,7 @@ In a Polyrepo (Multiple Repositories) strategy, each service, module, library, o
   - Scalability
     > Allows distributed teams to scale independently, without affecting other parts of the system.
 
-- Cons
+- Cons:
 
   - Dependency Management Complexity
     > Managing cross-repository dependencies can become complex, requiring custom tooling or significant configuration.
@@ -105,7 +106,7 @@ In a Polyrepo (Multiple Repositories) strategy, each service, module, library, o
 
 In a Modular Monolith (Single Repository with Modular Architecture) strategy the codebase resides in a single repository but is structured into well-defined, independent modules or components that can function as individual units with strong boundaries while adhering to a monolithic strategy.
 
-- Pros
+- Pros:
 
   - Modularity
     > Provides the benefits of both modularity (encapsulation) and simplicity (single repository).
@@ -119,7 +120,7 @@ In a Modular Monolith (Single Repository with Modular Architecture) strategy the
   - Simplified Dependencies
     > Sharing code and dependencies across modules is straightforward, reducing the overhead of managing external repositories.
 
-- Cons
+- Cons:
 
   - Deployment Bottlenecks
     > The entire monolithic system must be deployed as a whole, which can delay the release of independent modules.
@@ -134,7 +135,7 @@ In a Modular Monolith (Single Repository with Modular Architecture) strategy the
 
 A Monorepo (Single Repository) approach consolidates all services, modules, libraries, and components into a single repository. The entire codebase is versioned together, and all parts of the system are developed and maintained centrally.
 
-- Pros
+- Pros:
 
   - Unified Codebase
     > Simplifies dependency management, as all code is within a single repo, enabling easy sharing and updating of libraries.
@@ -148,7 +149,7 @@ A Monorepo (Single Repository) approach consolidates all services, modules, libr
   - Atomic Changes
     > Cross-project changes can be implemented atomically in a single commit, reducing inconsistencies, reducing integration challenges and minimizing version mismatches.
 
-- Cons
+- Cons:
 
   - Scaling Complexity
     > The larger the codebase, the more difficult it can become to manage the repository in terms of performance, especially with large commit histories or complex branching strategies.
@@ -163,7 +164,7 @@ A Monorepo (Single Repository) approach consolidates all services, modules, libr
 
 A Monolith (Traditional Monolithic Architecture) packages all application functionality as a single, tightly-coupled deployable unit. All components share the same process space, database, and runtime environment with no enforced internal boundaries.
 
-- Pros
+- Pros:
 
   - Simplicity
     > Simple to develop, test, and deploy as a single unit with no distributed system complexity.
@@ -177,7 +178,7 @@ A Monolith (Traditional Monolithic Architecture) packages all application functi
   - Low Overhead
     > No need for inter-service communication protocols, service discovery, or distributed tracing tooling.
 
-- Cons
+- Cons:
 
   - Scalability Limitations
     > The entire application must be scaled as one unit, regardless of which component requires additional resources.
@@ -193,30 +194,55 @@ A Monolith (Traditional Monolithic Architecture) packages all application functi
 
 ## 5. Consequences
 
-1. Polyrepo
+- Positive
 
-    - Greater complexity in dependency management and coordination between repositories.
+  - Module Independence
+    > Enforced module boundaries reduce unintended coupling and enable teams to develop and test modules independently within a shared repository.
 
-    - Teams must invest in strong versioning and integration strategies.
+  - Incremental Scalability
+    > Individual modules can be extracted into independent services as the system grows, avoiding a full architectural rewrite while preserving evolutionary flexibility.
 
-2. Modular Monolith
+  - Simplified Dependency Management
+    > All internal dependencies reside in a single repository, eliminating cross-repository versioning overhead and simplifying shared library updates.
 
-    - Balances simplicity with modularity but may introduce deployment challenges.
+- Negative
 
-    - May require future migration towards Polyrepo if the system grows too large.
+  - Deployment Bottlenecks
+    > The entire repository is deployed as a unit, which may delay the release of independently evolving modules as the system matures.
 
-3. Monorepo
+  - Boundary Discipline Required
+    > As the codebase grows, module boundaries must be actively enforced to prevent tight coupling and gradual regression toward a traditional monolith.
 
-    - Potential performance bottlenecks and tooling complexity as the codebase scales.
+- Risks
 
-    - Streamlined collaboration and simpler dependency management.
+  - Scaling Threshold
+    > If team size or service complexity grows significantly, the Modular Monolith may become a bottleneck. Mitigation: Review the architecture periodically and evaluate transition to a Polyrepo or microservices architecture if warranted.
 
-4. Monolith
+  - CI/CD Build Times
+    > A single repository may produce increasing CI/CD build times as the codebase scales. Mitigation: Implement module-scoped build and test execution to limit pipeline scope to changed modules.
 
-    - Simple to start but increasingly difficult to maintain as the codebase grows due to tight coupling and absence of enforced module boundaries.
+## 6. Implementation
 
-    - Deployment risk escalates over time as the system expands and every change requires a full application release.
+1. Define Module Boundaries
 
-## 6. References
+    Establish clear module boundaries within the repository using directory structure conventions and access control guidelines to enforce separation of concerns.
+
+2. Enforce Architectural Rules
+
+    Configure linting or static analysis tools to detect and reject cross-module dependencies that violate the defined boundaries.
+
+3. Configure CI/CD Pipelines
+
+    Set up module-aware CI/CD pipelines that scope build, test, and lint jobs to the modules affected by each change to control execution time.
+
+4. Document the Strategy
+
+    Record the repository structure, module layout, and contribution conventions in the repository README and onboarding documentation.
+
+5. Review Periodically
+
+    Schedule periodic reviews of the repository strategy to assess whether team size or system complexity warrants transitioning to a Polyrepo or microservices architecture.
+
+## 7. References
 
 - Sentenz [Repository Strategies](../internal/articles/repository-strategies.md) article.

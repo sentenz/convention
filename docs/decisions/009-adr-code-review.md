@@ -5,15 +5,18 @@ Architectural Decision Records (ADR) for Code Reviews in Software Development.
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
-  - [3.1. Automated Code Review](#31-automated-code-review)
-  - [3.2. Asynchronous Code Review](#32-asynchronous-code-review)
-  - [3.3. Synchronous Code Review (Optional)](#33-synchronous-code-review-optional)
+  - [3.1. Hybrid Code Review](#31-hybrid-code-review)
+  - [3.2. Automated Code Review](#32-automated-code-review)
+  - [3.3. Asynchronous Code Review](#33-asynchronous-code-review)
+  - [3.4. Synchronous Code Review (Optional)](#34-synchronous-code-review-optional)
 - [4. Considered](#4-considered)
   - [4.1. No Code Review](#41-no-code-review)
   - [4.2. Automated Code Review](#42-automated-code-review)
   - [4.3. Asynchronous Code Review](#43-asynchronous-code-review)
   - [4.4. Synchronous Code Review](#44-synchronous-code-review)
-- [5. Implementation](#5-implementation)
+- [5. Consequences](#5-consequences)
+- [6. Implementation](#6-implementation)
+- [7. References](#7-references)
 
 ## 1. State
 
@@ -44,6 +47,8 @@ Code review is a systematic software quality assurance technique for developers 
 
 ## 3. Decision
 
+### 3.1. Hybrid Code Review
+
 A hybrid Code Review process that combines `Automated Code Review` with `Asynchronous Code Review` is selected. Additionally, `Synchronous Code Review` will be utilized as needed specifically for Business Logic or Domain Logic. This approach leverages the efficiency of automation, the thoroughness of structured reviews, and the collaborative benefits of peer meetings when dealing with complex or critical areas of the codebase.
 
 1. Rationale
@@ -63,15 +68,15 @@ A hybrid Code Review process that combines `Automated Code Review` with `Asynchr
     - Scalability
       > Automation manages review volume as the codebase grows, structured asynchronous reviews scale naturally with the team, and synchronous reviews are reserved for critical areas to limit scheduling overhead.
 
-### 3.1. Automated Code Review
+### 3.2. Automated Code Review
 
 Automated Code Review will handle routine checks, enforcing coding standards, and catching basic errors quickly. This reduces the burden on developers and allows structured reviews to focus on more complex and critical aspects of the code.
 
-### 3.2. Asynchronous Code Review
+### 3.3. Asynchronous Code Review
 
 Asynchronous Code Review will be reserved for significant code changes, architectural decisions, and areas requiring deeper scrutiny. This ensures high code quality, fosters team collaboration, and supports knowledge sharing without overloading the review process for minor changes.
 
-### 3.3. Synchronous Code Review (Optional)
+### 3.4. Synchronous Code Review (Optional)
 
 Synchronous Code Review utilizing Peer Review meetings will be employed as needed for Business Logic or Domain Logic. These meetings provide a platform for discussing complex business rules, ensuring that the implementation aligns with domain requirements, and facilitating a deeper understanding among team members. By limiting Synchronous Code Review to these critical areas, we manage scheduling overhead and maintain scalability while enhancing the quality of essential components.
 
@@ -81,7 +86,7 @@ Synchronous Code Review utilizing Peer Review meetings will be employed as neede
 
 Proceed without implementing any formal code review process. Developers commit code directly to the main branch without peer evaluation.
 
-- Pros
+- Pros:
 
   - Speed
     > Faster code integration with no delays for reviews.
@@ -89,7 +94,7 @@ Proceed without implementing any formal code review process. Developers commit c
   - Simplicity
     > Reduced process overhead and administrative burden.
 
-- Cons
+- Cons:
 
   - Quality Risks
     > Higher likelihood of bugs, security vulnerabilities, and inconsistent code quality.
@@ -104,7 +109,7 @@ Proceed without implementing any formal code review process. Developers commit c
 
 Utilize tools and scripts to automatically review code for style, formatting, and basic quality checks before integration.
 
-- Pros
+- Pros:
 
   - Efficiency
     > Quickly identifies common issues without human intervention.
@@ -115,7 +120,7 @@ Utilize tools and scripts to automatically review code for style, formatting, an
   - Continuous Integration
     > Integrates seamlessly with CI/CD pipelines for real-time feedback.
 
-- Cons
+- Cons:
 
   - Limited Scope
     > Cannot assess complex logic, architectural decisions, or nuanced design patterns.
@@ -130,7 +135,7 @@ Utilize tools and scripts to automatically review code for style, formatting, an
 
 Implement a formal code review process where peers review each other’s code, providing feedback on functionality, design, and adherence to standards.
 
-- Pros
+- Pros:
 
   - Enhanced Quality
     > Thorough evaluation of code logic, architecture, and design patterns.
@@ -147,7 +152,7 @@ Implement a formal code review process where peers review each other’s code, p
   - Peer Review
     > Encourages accountability and fosters a culture of continuous improvement through direct feedback from peers.
 
-- Cons
+- Cons:
 
   - Time-Consuming
     > Can slow down the development process due to the need for reviewer availability.
@@ -162,7 +167,7 @@ Implement a formal code review process where peers review each other’s code, p
 
 Conduct regular meetings where team members present and discuss their code changes in a collaborative setting, allowing for collective feedback and discussion.
 
-- Pros
+- Pros:
 
   - Collaborative Feedback
     > Encourages open discussion and collective problem-solving.
@@ -176,7 +181,7 @@ Conduct regular meetings where team members present and discuss their code chang
   - Flexibility
     > Adaptable to various types of projects and team sizes.
 
-- Cons
+- Cons:
 
   - Scheduling Overhead
     > Requires coordination of meeting times, which can be time-consuming.
@@ -190,7 +195,36 @@ Conduct regular meetings where team members present and discuss their code chang
   - Disruption to Workflow
     > Interruptions for meetings can affect developer focus and productivity.
 
-## 5. Implementation
+## 5. Consequences
+
+- Positive
+
+  - Improved Code Quality
+    > The hybrid approach enforces consistent quality standards through automation while human reviews catch complex logic errors, architecture issues, and security concerns.
+
+  - Knowledge Sharing
+    > Structured asynchronous peer reviews promote collective code ownership and mentorship across team members.
+
+  - Automation Efficiency
+    > Automated checks reduce repetitive review burden, freeing reviewers to focus on higher-order concerns.
+
+- Negative
+
+  - Review Overhead
+    > Maintaining a hybrid process requires coordination between automated pipelines, asynchronous reviewers, and optional synchronous meetings, increasing process complexity.
+
+  - Scheduling Challenges
+    > Synchronous Code Review meetings require availability coordination, which can slow development velocity for time-sensitive changes.
+
+- Risks
+
+  - Tool Dependency
+    > Reliance on automated review tools introduces risk of false positives or missed issues. Mitigation: Regularly evaluate and calibrate automated tools to minimize noise and ensure coverage.
+
+  - Review Fatigue
+    > High review volume may lead to reduced thoroughness over time. Mitigation: Define review scope clearly, limit required reviewers per change, and reserve synchronous reviews for complex areas only.
+
+## 6. Implementation
 
 1. Code Review Process
 
@@ -302,3 +336,7 @@ Conduct regular meetings where team members present and discuss their code chang
     - Continuous Improvement
       - Incorporate feedback to enhance code quality and personal development.
       - Stay updated with best practices and evolving coding standards.
+
+## 7. References
+
+- Sentenz [Code Review](../articles/code-review.md) article.

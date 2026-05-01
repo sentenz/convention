@@ -88,7 +88,7 @@ We will implement a comprehensive software security strategy that includes secur
 
 Implementing a thorough and extensive set of security measures, exceeding standard compliance requirements.
 
-- Pros
+- Pros:
 
   - Regulatory Compliance
     > Exceeds compliance requirements, providing a higher level of security assurance against IEC 62443, ISO/IEC 27001, and NIST standards.
@@ -102,7 +102,7 @@ Implementing a thorough and extensive set of security measures, exceeding standa
   - Security Awareness
     > Enhances organizational reputation for security commitment and fosters a security-first culture.
 
-- Cons
+- Cons:
 
   - SSDLC Integration
     > Resource-intensive and complex to implement across all development stages.
@@ -117,7 +117,7 @@ Implementing a thorough and extensive set of security measures, exceeding standa
 
 Adopting a minimalistic approach to security, focusing only on basic protective measures.
 
-- Pros
+- Pros:
 
   - SSDLC Integration
     > Lower implementation cost and faster development timeline with simpler security controls.
@@ -125,7 +125,7 @@ Adopting a minimalistic approach to security, focusing only on basic protective 
   - Secure Coding Practices
     > Less resource-intensive to apply, reducing initial development effort.
 
-- Cons
+- Cons:
 
   - Vulnerability Management
     > High risk of security breaches due to absence of comprehensive threat detection and remediation.
@@ -143,7 +143,7 @@ Adopting a minimalistic approach to security, focusing only on basic protective 
 
 Engaging a third-party vendor to handle all security aspects of the software.
 
-- Pros
+- Pros:
 
   - Vulnerability Management
     > Leverages external expertise and specialized resources for security assessment and remediation.
@@ -151,7 +151,7 @@ Engaging a third-party vendor to handle all security aspects of the software.
   - SSDLC Integration
     > Can reduce internal implementation burden if the vendor is highly competent and well-integrated.
 
-- Cons
+- Cons:
 
   - Regulatory Compliance
     > Dependency on external parties introduces risk of misalignment with IEC 62443 and other applicable standards.

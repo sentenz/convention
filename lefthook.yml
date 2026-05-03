@@ -6,26 +6,32 @@ pre-commit:
     codespell:
       glob: "**/*.{md,txt,sh}"
       run: codespell {staged_files}
-      skip: true
+      skip:
+        - run: "! which codespell"
     markdownlint:
       glob: "**/*.md"
       run: markdownlint-cli2 {staged_files}
-      skip: true
+      skip:
+        - run: "! which markdownlint-cli2"
     prettier:
       glob: "**/*.{json,md,yml,yaml}"
       run: prettier --check {staged_files}
-      skip: true
+      skip:
+        - run: "! which prettier"
     shellcheck:
       glob: "**/*.sh"
       run: shellcheck {staged_files}
-      skip: true
+      skip:
+        - run: "! which shellcheck"
     yamllint:
       glob: "**/*.{yml,yaml}"
       run: yamllint {staged_files}
-      skip: true
+      skip:
+        - run: "! which yamllint"
 
 commit-msg:
   commands:
     commitlint:
       run: commitlint --edit {1}
-      skip: true
+      skip:
+        - run: "! which commitlint"

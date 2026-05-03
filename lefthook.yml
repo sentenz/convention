@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: Apache-2.0
+
+pre-commit:
+  parallel: true
+  commands:
+    codespell:
+      glob: "**/*.{md,txt,sh}"
+      run: codespell {staged_files}
+      skip: true
+    markdownlint:
+      glob: "**/*.md"
+      run: markdownlint-cli2 {staged_files}
+      skip: true
+    prettier:
+      glob: "**/*.{json,md,yml,yaml}"
+      run: prettier --check {staged_files}
+      skip: true
+    shellcheck:
+      glob: "**/*.sh"
+      run: shellcheck {staged_files}
+      skip: true
+    yamllint:
+      glob: "**/*.{yml,yaml}"
+      run: yamllint {staged_files}
+      skip: true
+
+commit-msg:
+  commands:
+    commitlint:
+      run: commitlint --edit {1}
+      skip: true

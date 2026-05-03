@@ -17,6 +17,10 @@ readonly -A GO_PACKAGES=(
   ["go.mozilla.org/sops/cmd/sops"]="3.4.0"
 )
 
+readonly -A NPM_PACKAGES=(
+  ["lefthook"]="2.1.6"
+)
+
 # Control Flow Logic
 
 function setup() {
@@ -26,6 +30,12 @@ function setup() {
   ((retval |= $?))
 
   pkg_go_clean
+  ((retval |= $?))
+
+  pkg_npm_install_list NPM_PACKAGES
+  ((retval |= $?))
+
+  pkg_npm_clean
   ((retval |= $?))
 
   return "${retval}"

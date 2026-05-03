@@ -9,23 +9,25 @@ Contribution guidelines and project management tools.
   - [3.1. Make](#31-make)
 - [4. Bootstrap](#4-bootstrap)
   - [4.1. Scripts](#41-scripts)
-- [5. Dev Containers](#5-dev-containers)
-- [6. Release Manager](#6-release-manager)
-  - [6.1. Semantic-Release](#61-semantic-release)
-- [7. Update Manager](#7-update-manager)
-  - [7.1. Renovate](#71-renovate)
-  - [7.2. Dependabot](#72-dependabot)
+- [5. Git Hooks Manager](#5-git-hooks-manager)
+  - [5.1. Lefthook](#51-lefthook)
+- [6. Dev Containers](#6-dev-containers)
+- [7. Release Manager](#7-release-manager)
+  - [7.1. Semantic-Release](#71-semantic-release)
+- [8. Update Manager](#8-update-manager)
+  - [8.1. Renovate](#81-renovate)
+  - [8.2. Dependabot](#82-dependabot)
 - [8. Secrets Manager](#8-secrets-manager)
-  - [8.1. SOPS](#81-sops)
-- [9. Container Manager](#9-container-manager)
-  - [9.1. Docker](#91-docker)
-- [10. Policy Manager](#10-policy-manager)
-  - [10.1. Conftest](#101-conftest)
-- [11. Supply Chain Manager](#11-supply-chain-manager)
-  - [11.1. Trivy](#111-trivy)
-- [12. Documentation Generators](#12-documentation-generators)
-  - [12.1. Doxygen](#121-doxygen)
-  - [12.2. MkDocs](#122-mkdocs)
+  - [9.1. SOPS](#91-sops)
+- [10. Container Manager](#10-container-manager)
+  - [10.1. Docker](#101-docker)
+- [11. Policy Manager](#11-policy-manager)
+  - [11.1. Conftest](#111-conftest)
+- [12. Supply Chain Manager](#12-supply-chain-manager)
+  - [12.1. Trivy](#121-trivy)
+- [13. Documentation Generators](#13-documentation-generators)
+  - [13.1. Doxygen](#131-doxygen)
+  - [13.2. MkDocs](#132-mkdocs)
 
 ## 1. AI Agents
 
@@ -65,6 +67,9 @@ AI Agents are automated tools that assist in various development tasks such as c
 
     - [Sentenz Skills](https://github.com/sentenz/skills)
       > Reusable AI agent skills for various development tasks.
+
+    - [skills-lock.json](skills-lock.json)
+      > Lock file for managing skill dependencies and versions.
 
 2. Usage and Instructions
 
@@ -139,7 +144,30 @@ AI Agents are automated tools that assist in various development tasks such as c
       make teardown
       ```
 
-## 5. Dev Containers
+## 5. Git Hooks Manager
+
+### 5.1. Lefthook
+
+[Lefthook](https://lefthook.dev/) is a fast, language-agnostic Git hooks manager that uses a single `lefthook.yml` configuration file to define hooks for automating tasks during the Git workflow.
+
+1. Insights and Details
+
+    - [lefthook.yml](lefthook.yml)
+      > Configuration file for Lefthook defining Git hooks for `pre-commit` and `commit-msg`.
+
+2. Usage and Instructions
+
+    - Tasks
+
+      ```bash
+      make githooks-lefthook-initialize
+      ```
+
+      ```bash
+      make githooks-lefthook-deinitialize
+      ```
+
+## 6. Dev Containers
 
 1. Insights and Details
 
@@ -156,9 +184,9 @@ AI Agents are automated tools that assist in various development tasks such as c
       make devcontainer-python
       ```
 
-## 6. Release Manager
+## 7. Release Manager
 
-### 6.1. Semantic-Release
+### 7.1. Semantic-Release
 
 [Semantic-Release](https://github.com/semantic-release/semantic-release) automates the release process by analyzing commit messages to determine the next version number, generating changelog and release notes, and publishing the release.
 
@@ -175,9 +203,9 @@ AI Agents are automated tools that assist in various development tasks such as c
       uses: sentenz/actions/semantic-release@latest
       ```
 
-## 7. Update Manager
+## 8. Update Manager
 
-### 7.1. Renovate
+### 8.1. Renovate
 
 [Renovate](https://github.com/renovatebot/renovate) automates dependency updates by creating merge requests for outdated dependencies, libraries and packages.
 
@@ -194,7 +222,7 @@ AI Agents are automated tools that assist in various development tasks such as c
       uses: sentenz/actions/renovate@latest
       ```
 
-### 7.2. Dependabot
+### 8.2. Dependabot
 
 [Dependabot](https://github.com/dependabot/dependabot-core) automates dependency updates by creating pull requests for outdated dependencies, libraries and packages.
 
@@ -205,7 +233,7 @@ AI Agents are automated tools that assist in various development tasks such as c
 
 ## 8. Secrets Manager
 
-### 8.1. SOPS
+### 9.1. SOPS
 
 [SOPS (Secrets OPerationS)](https://github.com/getsops/sops) is a tool for managing and encrypting sensitive data such as passwords, API keys, and other secrets.
 
@@ -222,7 +250,7 @@ AI Agents are automated tools that assist in various development tasks such as c
         > Generate a new key pair to be used with SOPS.
 
         > [!NOTE]
-        > The UID can be customized via the `SECRETS_SOPS_UID` variable (defaults to `sops-dx`).
+        > Customize the UID by providing the `SECRETS_SOPS_UID` variable. Default UID is `sops-<repo>`.
 
         ```bash
         make secrets-gpg-generate SECRETS_SOPS_UID=<uid>
@@ -258,9 +286,9 @@ AI Agents are automated tools that assist in various development tasks such as c
         make secrets-sops-decrypt <files>
         ```
 
-## 9. Container Manager
+## 10. Container Manager
 
-### 9.1. Docker
+### 10.1. Docker
 
 [Docker](https://github.com/docker) containerization tool to run applications in isolated container environments and execute container-based tasks.
 
@@ -287,9 +315,9 @@ AI Agents are automated tools that assist in various development tasks such as c
       make container-docker-run
       ```
 
-## 10. Policy Manager
+## 11. Policy Manager
 
-### 10.1. Conftest
+### 11.1. Conftest
 
 [Conftest](https://www.conftest.dev/) is a **Policy as Code (PaC)** tool to streamline policy management for improved development, security and audit capability.
 
@@ -323,9 +351,9 @@ AI Agents are automated tools that assist in various development tasks such as c
       make policy-conftest-test <filepath>
       ```
 
-## 11. Supply Chain Manager
+## 12. Supply Chain Manager
 
-### 11.1. Trivy
+### 12.1. Trivy
 
 [Trivy](https://github.com/aquasecurity/trivy) is a comprehensive security scanner for vulnerabilities, misconfigurations, and compliance issues in container images, filesystems, and source code.
 
@@ -363,9 +391,9 @@ AI Agents are automated tools that assist in various development tasks such as c
       make sast-trivy-sbom-license <sbom_path>
       ```
 
-## 12. Documentation Generators
+## 13. Documentation Generators
 
-### 12.1. Doxygen
+### 13.1. Doxygen
 
 [Doxygen](https://www.doxygen.nl/) is an **API Documentation Generator** for C++, C programming languages, used to create software reference documentation from annotated source code.
 
@@ -392,7 +420,7 @@ AI Agents are automated tools that assist in various development tasks such as c
       make pages-doxygen-serve
       ```
 
-### 12.2. MkDocs
+### 13.2. MkDocs
 
 [MkDocs](https://www.mkdocs.org/) is a Static Site Generator (SSG) designed for building project documentation using Markdown files.
 

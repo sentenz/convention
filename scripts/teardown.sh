@@ -17,6 +17,10 @@ readonly -A GO_PACKAGES=(
   ["sops"]=""
 )
 
+readonly -A NPM_PACKAGES=(
+  ["lefthook"]=""
+)
+
 readonly -A APT_PACKAGES=(
   ["make"]=""
   ["git"]=""
@@ -31,6 +35,12 @@ function teardown() {
   # NOTE Use reversed order of `bootstrap.sh` and `setup.sh` scripts for tearing down the environment
 
   local -i retval=0
+
+  pkg_npm_uninstall_list NPM_PACKAGES
+  ((retval |= $?))
+
+  pkg_npm_clean
+  ((retval |= $?))
 
   pkg_go_uninstall_list GO_PACKAGES
   ((retval |= $?))

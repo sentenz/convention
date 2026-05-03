@@ -83,22 +83,25 @@ The Convention is a collection of general articles, conventions, and guides for 
 - [Bootstrap](CONTRIBUTING.md#4-bootstrap)
   > Scripts to bootstrap, setup, and teardown a software development workspace with requisites.
 
-- [Dev Containers](CONTRIBUTING.md#5-dev-containers)
+- [Git Hooks Manager](CONTRIBUTING.md#5-git-hooks-manager)
+  > Lefthook automates Git hooks for pre-commit linting and commit message validation.
+
+- [Dev Containers](CONTRIBUTING.md#6-dev-containers)
   > Consistent development environments using Docker containers.
 
-- [Release Manager](CONTRIBUTING.md#6-release-manager)
+- [Release Manager](CONTRIBUTING.md#7-release-manager)
   > Semantic-Release automates the release process by analyzing commit messages.
 
-- [Update Manager](CONTRIBUTING.md#7-update-manager)
+- [Update Manager](CONTRIBUTING.md#8-update-manager)
   > Renovate and Dependabot automate dependency updates by creating pull requests.
 
-- [Policy Manager](CONTRIBUTING.md#10-policy-manager)
+- [Policy Manager](CONTRIBUTING.md#11-policy-manager)
   > Conftest for policy-as-code enforcement.
 
-- [Supply Chain Manager](CONTRIBUTING.md#11-supply-chain-manager)
+- [Supply Chain Manager](CONTRIBUTING.md#12-supply-chain-manager)
   > Trivy for security scanning of vulnerabilities, misconfigurations, and compliance issues.
 
-- [Documentation Generators](CONTRIBUTING.md#122-mkdocs)
+- [Documentation Generators](CONTRIBUTING.md#132-mkdocs)
   > MkDocs for building and serving the documentation site.
 
 ## 3. Troubleshoot

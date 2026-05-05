@@ -108,10 +108,10 @@ git config core.hooksPath githooks
 - Cons
 
   - Ease of Use
-    > Hook scripts are not automatically shared with team members via version control; each developer must manually configure the hooks path or run a setup script.
+    > Hook scripts are not automatically shared with team members via version control, each developer must manually configure the hooks path or run a setup script.
 
   - Configuration
-    > No declarative configuration format; each hook is a separate shell script requiring individual maintenance and duplication of shared logic.
+    > No declarative configuration format, each hook is a separate shell script requiring individual maintenance and duplication of shared logic.
 
   - Performance
     > No built-in support for parallel execution of multiple commands within a single hook.
@@ -163,7 +163,7 @@ npx lint-staged
 
 ### 4.3. Lefthook
 
-[Lefthook](https://lefthook.dev/) is a fast, language-agnostic Git hooks manager distributed as a standalone binary that uses a single `lefthook.yml` configuration file to define all hooks.
+[Lefthook](https://lefthook.dev/) is a fast, language-agnostic Git hooks manager distributed as a standalone binary that uses a `lefthook.yml` configuration file to define hooks.
 
 ```yaml
 # lefthook.yml
@@ -243,7 +243,7 @@ repos:
     > Hook definitions are fetched from remote repositories, introducing external dependencies and potential network latency.
 
   - Hook Coverage
-    > Configuration is limited to the `pre-commit` hook by default; other hooks require additional setup.
+    > Configuration is limited to the `pre-commit` hook by default, other hooks require additional setup.
 
   - Performance
     > Slower compared to Lefthook due to virtual environment management overhead.
@@ -259,7 +259,7 @@ repos:
     > Parallel execution of hook commands reduces wait time for developers during the Git workflow.
 
   - Portability
-    > No runtime dependency beyond the binary ensures hooks work identically across all supported operating systems and CI/CD environments.
+    > No runtime dependency beyond the binary ensures hooks work identically across all supported operating systems and environments.
 
   - Maintainability
     > Declarative YAML configuration is easy to read, update, and review in code reviews.
@@ -267,16 +267,16 @@ repos:
 - Negative
 
   - Binary Dependency
-    > All developers and CI/CD runners must have the `lefthook` binary installed, requiring updates to onboarding documentation and setup scripts.
+    > All developers and environments must have the `lefthook` binary installed, requiring updates to onboarding documentation and setup scripts.
 
   - Migration Effort
-    > Existing raw shell-based Git hooks in the `githooks/` directory need to be migrated to Lefthook configuration, requiring testing to ensure equivalent behavior.
+    > Existing raw shell-based Git hooks in the `.git/hooks/` or `githooks/` directory need to be migrated to Lefthook configuration, requiring testing to ensure equivalent behavior.
 
 ## 6. Implementation
 
 1. Install Lefthook
 
-    Install the `lefthook` binary on all development machines and CI/CD runners.
+    Install the `lefthook` binary on all development machines and environments.
 
 2. Create Configuration
 
@@ -284,7 +284,7 @@ repos:
 
 3. Migrate Existing Hooks
 
-    Migrate the existing hook logic from the `githooks/` shell scripts into the corresponding Lefthook commands.
+    Migrate the existing hook logic from the `.git/hooks/` or `githooks/` shell scripts into the corresponding Lefthook commands.
 
 4. Register Hooks
 
@@ -292,11 +292,11 @@ repos:
 
 5. Update Documentation
 
-    Update the project README and onboarding documentation to include Lefthook setup instructions.
+    Update the project `README.md` and onboarding documentation to include Lefthook setup instructions.
 
 6. Validate
 
-    Validate hook execution in CI/CD pipelines to ensure consistent behavior across environments.
+    Validate hook execution of staged files to ensure consistent behavior across environments.
 
 ## 7. References
 

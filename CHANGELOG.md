@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.24.0](https://github.com/sentenz/convention/compare/2.23.1...2.24.0) (2026-05-05)
+
+
+### Features
+
+* **adr:** create an ADR for TLS-PSK ([#457](https://github.com/sentenz/convention/issues/457)) ([94b3266](https://github.com/sentenz/convention/commit/94b32665e98fab0b21c1f0878d1a2536cf4adb24))
+
 ## [2.23.1](https://github.com/sentenz/convention/compare/2.23.0...2.23.1) (2026-05-05)
 
 

@@ -7,9 +7,10 @@ Architectural Decision Records (ADR) on implementing a Git Hooks Manager for Sof
 - [3. Decision](#3-decision)
   - [3.1. Lefthook](#31-lefthook)
 - [4. Considered](#4-considered)
-  - [4.1. Husky](#41-husky)
-  - [4.2. Lefthook](#42-lefthook)
-  - [4.3. Pre-commit](#43-pre-commit)
+  - [4.1. Git Hooks](#41-git-hooks)
+  - [4.2. Husky](#42-husky)
+  - [4.3. Lefthook](#43-lefthook)
+  - [4.4. Pre-commit](#44-pre-commit)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -78,7 +79,50 @@ Lefthook is selected as the Git hooks manager due to its language-agnostic desig
 
 ## 4. Considered
 
-### 4.1. Husky
+### 4.1. Git Hooks
+
+[Git Hooks](https://git-scm.com/docs/githooks) are native shell scripts placed in the `.git/hooks/` directory (or a custom path configured via `core.hooksPath`) that Git executes automatically at specific points in the workflow.
+
+```sh
+# githooks/pre-commit
+#!/bin/sh
+make run-linter-staged
+```
+
+```sh
+# Configure custom hooks path
+git config core.hooksPath githooks
+```
+
+- Pros
+
+  - No Dependencies
+    > Requires no additional tooling beyond Git itself, with zero external dependencies.
+
+  - Native Support
+    > Built into Git and supported on all platforms without any installation step.
+
+  - Full Control
+    > Complete control over hook scripts with no abstraction layer or framework constraints.
+
+- Cons
+
+  - Ease of Use
+    > Hook scripts are not automatically shared with team members via version control; each developer must manually configure the hooks path or run a setup script.
+
+  - Configuration
+    > No declarative configuration format; each hook is a separate shell script requiring individual maintenance and duplication of shared logic.
+
+  - Performance
+    > No built-in support for parallel execution of multiple commands within a single hook.
+
+  - Cross-Platform Support
+    > Shell scripts may behave differently on Windows without a Unix-compatible shell environment (e.g., Git Bash or WSL).
+
+  - Integration
+    > Integrating multiple tools requires manual composition within shell scripts, increasing complexity and maintenance burden.
+
+### 4.2. Husky
 
 [Husky](https://typicode.github.io/husky/) is a widely used Git hooks manager for JavaScript and Node.js projects that relies on `npm` scripts and stores hook definitions in the `.husky/` directory.
 
@@ -117,7 +161,7 @@ npx lint-staged
   - Performance
     > Does not support parallel execution of hook commands natively.
 
-### 4.2. Lefthook
+### 4.3. Lefthook
 
 [Lefthook](https://lefthook.dev/) is a fast, language-agnostic Git hooks manager distributed as a standalone binary that uses a single `lefthook.yml` configuration file to define all hooks.
 
@@ -165,7 +209,7 @@ commit-msg:
   - Adoption
     > Less established than Husky in the JavaScript ecosystem.
 
-### 4.3. Pre-commit
+### 4.4. Pre-commit
 
 [Pre-commit](https://pre-commit.com/) is a framework for managing and maintaining multi-language pre-commit hooks, configured via a `.pre-commit-config.yaml` file and pulling hook definitions from remote repositories.
 
@@ -257,6 +301,7 @@ repos:
 ## 7. References
 
 - Sentenz [Manager Tools](../articles/manager-tools.md) article.
+- Git [Hooks Documentation](https://git-scm.com/docs/githooks) page.
 - Lefthook [Official Documentation](https://lefthook.dev/) page.
 - Lefthook [GitHub Repository](https://github.com/evilmartians/lefthook) page.
 - Husky [Official Documentation](https://typicode.github.io/husky/) page.

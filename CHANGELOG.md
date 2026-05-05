@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.23.1](https://github.com/sentenz/convention/compare/2.23.0...2.23.1) (2026-05-05)
+
+
+### Bug Fixes
+
+* formatting and clarify in ADR for Git Hooks Manager ([6fdc955](https://github.com/sentenz/convention/commit/6fdc9555d879eb63a460ca1bfa3d181d07bdd2f5))
+
 # [2.23.0](https://github.com/sentenz/convention/compare/2.22.0...2.23.0) (2026-05-01)
 
 

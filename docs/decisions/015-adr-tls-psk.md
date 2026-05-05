@@ -148,25 +148,41 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
 
 ## 6. Implementation
 
-1. Configure PSK Mode
+1. PSK Generation
 
-    Configure the TLS 1.3 stack to advertise only `psk_dhe_ke` in the `psk_key_exchange_modes` extension of the ClientHello, disabling `psk_ke` (PSK-only without DHE) to enforce forward secrecy on all PSK-authenticated sessions.
+    Generate each external PSK using a cryptographically secure pseudo-random number generator (CSPRNG) with at least 128 bits of entropy as recommended by RFC 9257 §4. Assign a globally unique PSK identity per communicating endpoint pair and bind each PSK to a single TLS hash algorithm (e.g., SHA-256) to prevent cross-protocol confusion.
 
 2. PSK Provisioning
 
-    Provision external PSKs out-of-band using a secure channel (e.g., device manufacturing pipeline, encrypted configuration bundle). Assign a unique PSK identity per communicating endpoint pair and bind each PSK to a single hash algorithm as specified in RFC 9257.
+    Inject PSKs at device manufacturing time via a dedicated secure programming station connected over a physically protected interface (e.g., JTAG/SWD or UART with a write-once OTP lock). Provision each device with a device-unique PSK to limit the blast radius of any single key compromise, and record the PSK identity-to-device mapping in a secured key-management database.
 
-3. Nonce Derivation
+3. PSK Exchange
+
+    For devices that cannot receive PSKs at the factory, establish a one-time secure bootstrap session to deliver the PSK: authenticate the provisioning server using a certificate-based TLS handshake or a hardware-rooted attestation protocol, transfer the PSK over the protected channel, and disable or lock the bootstrap interface after the device confirms successful receipt. Never transmit PSKs over unauthenticated or unencrypted channels.
+
+4. PSK Storage
+
+    Persist PSKs in tamper-resistant, hardware-backed storage. Prefer a dedicated secure element (e.g., Microchip ATECC608, NXP SE050) or a Trusted Execution Environment (e.g., ARM TrustZone with OP-TEE) that exposes a use-key interface without permitting key export. On devices without a secure element, store the PSK in an OTP-locked or read-protected flash region and restrict access using the Memory Protection Unit (MPU) so that only the TLS stack execution context can read the key material.
+
+5. Configure PSK Mode
+
+    Configure the TLS 1.3 stack to advertise only `psk_dhe_ke` in the `psk_key_exchange_modes` extension of the ClientHello, disabling `psk_ke` (PSK-only without DHE) to enforce forward secrecy on all PSK-authenticated sessions.
+
+6. Nonce Derivation
 
     Rely on the TLS 1.3 record-layer nonce construction defined in RFC 8446 §5.3: pad the 64-bit sequence number to the IV length and XOR it with the static write IV derived during the handshake. Do not implement custom nonce logic outside of the TLS stack.
 
-4. Disable 0-RTT
+7. Disable 0-RTT
 
     Disable 0-RTT early data at the server configuration level unless a bounded, idempotent use case with server-side anti-replay state (per RFC 8446 §8) explicitly justifies its activation.
 
-5. Validate
+8. PSK Rotation
 
-    Verify that all TLS sessions use `psk_dhe_ke` by inspecting captured handshakes with a TLS 1.3-capable analyser (e.g., Wireshark with a TLS secrets log file) and confirm that a `key_share` extension is present in both ClientHello and ServerHello.
+    Define a rotation policy that bounds PSK lifetime by time or connection count. Deliver the replacement PSK via the same secure channel used for initial provisioning, write it alongside the active PSK in protected storage, and atomically promote the replacement only after the device confirms successful storage. Revoke and securely erase the superseded PSK immediately after promotion.
+
+9. Validate
+
+    Verify that all TLS sessions use `psk_dhe_ke` by inspecting captured handshakes with a TLS 1.3-capable analyser (e.g., Wireshark with a TLS secrets log file) and confirm that a `key_share` extension is present in both ClientHello and ServerHello. Additionally, verify that PSK storage satisfies the hardware security requirements by reviewing the secure element or TEE integration test results.
 
 ## 7. References
 

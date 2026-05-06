@@ -54,6 +54,8 @@ The EU Cyber Resilience Act (CRA), Regulation (EU) 2024/2847, entered into force
 
 ## 3. Decision
 
+Adopt an integrated, multi-layer security testing and analysis strategy for C/C++ software to achieve EU Cyber Resilience Act (CRA) compliance (Regulation (EU) 2024/2847).
+
 ### 3.1. SAST
 
 Selected for its ability to detect insecure code patterns and potential vulnerabilities directly in C/C++ source code, before any code is executed or deployed. For C/C++, SAST encompasses compile-time analysis tools (SonarQube with C/C++ analysis plugins, Semgrep with C/C++ rulesets) and standalone checkers (cppcheck, clang-tidy) that identify memory-safety vulnerabilities, undefined behaviour, insecure API usage, and CWE-enumerated vulnerability classes. Integrating SAST as a mandatory quality gate on every pull request ensures that security issues are identified at the earliest possible stage of the development lifecycle.

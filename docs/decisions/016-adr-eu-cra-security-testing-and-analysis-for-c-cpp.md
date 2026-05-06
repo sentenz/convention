@@ -201,7 +201,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 
 ### 4.2. SCA and SBOM
 
-[SCA (Software Composition Analysis)](https://owasp.org/www-community/Component_Analysis) for C/C++ identifies open-source and third-party components managed via Conan, vcpkg, or vendored source trees, checks them against vulnerability databases, and generates a machine-readable SBOM documenting the software supply chain.
+[SCA (Software Composition Analysis)](https://owasp.org/www-community/Component_Analysis) for C/C++ identifies open-source and third-party components managed via Conan, vcpkg, or vendored source trees, checks them against vulnerability databases, and generates a machine-readable SBOM documenting the software supply chain. Dependency-Track provides continuous monitoring of the published SBOM against the NVD, OSV, and GitHub Advisory databases, enabling ongoing vulnerability alerting between release cycles.
 
 - Pros
 
@@ -397,6 +397,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 - cppcheck [C/C++ static analysis](https://cppcheck.sourceforge.io/) tool.
 - LLVM [clang-tidy linter](https://clang.llvm.org/extra/clang-tidy/) tool.
 - Trivy [vulnerability and SBOM scanner](https://aquasecurity.github.io/trivy/) tool.
+- OWASP [Dependency-Track](https://dependencytrack.org/) continuous SBOM monitoring platform.
 - LLVM [AddressSanitizer](https://clang.llvm.org/docs/AddressSanitizer.html) runtime memory-safety checker.
 - LLVM [UndefinedBehaviorSanitizer](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html) runtime checker.
 - LLVM [MemorySanitizer](https://clang.llvm.org/docs/MemorySanitizer.html) runtime checker.

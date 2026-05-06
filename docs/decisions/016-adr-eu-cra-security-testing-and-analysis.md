@@ -5,10 +5,18 @@ Architectural Decision Records (ADR) on adopting an integrated security testing 
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
-  - [3.1. Integrated Multi-Layer Security Testing and Analysis](#31-integrated-multi-layer-security-testing-and-analysis)
+  - [3.1. SAST](#31-sast)
+  - [3.2. SCA and SBOM](#32-sca-and-sbom)
+  - [3.3. DAST](#33-dast)
+  - [3.4. Fuzz Testing](#34-fuzz-testing)
+  - [3.5. Penetration Testing](#35-penetration-testing)
 - [4. Considered](#4-considered)
-  - [4.1. Integrated Multi-Layer Security Testing and Analysis](#41-integrated-multi-layer-security-testing-and-analysis)
-  - [4.2. Static-Only Analysis](#42-static-only-analysis)
+  - [4.1. SAST](#41-sast)
+  - [4.2. SCA and SBOM](#42-sca-and-sbom)
+  - [4.3. DAST](#43-dast)
+  - [4.4. Fuzz Testing](#44-fuzz-testing)
+  - [4.5. Penetration Testing](#45-penetration-testing)
+  - [4.6. Static-Only Analysis](#46-static-only-analysis)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -45,61 +53,216 @@ The EU Cyber Resilience Act (CRA), Regulation (EU) 2024/2847, entered into force
 
 ## 3. Decision
 
-### 3.1. Integrated Multi-Layer Security Testing and Analysis
+### 3.1. SAST
 
-An integrated, multi-layer strategy combining Static Application Security Testing (SAST), Dynamic Application Security Testing (DAST), Software Composition Analysis (SCA) with SBOM generation, fuzz testing, and periodic penetration testing is selected. This approach covers all CRA-mandated testing dimensions—source code, runtime behaviour, third-party components, and adversarial resilience—within the existing CI/CD pipeline and produces the documented evidence required by CRA Article 13 and Annex I.
+Selected for its ability to detect insecure code patterns and potential vulnerabilities directly in source code, before any code is executed or deployed. Integrating SAST as a mandatory quality gate on every pull request and main-branch push ensures that security issues are identified at the earliest possible stage of the development lifecycle, minimising remediation cost and satisfying CRA Annex I requirements for security by design.
 
 1. Rationale
 
     - CRA Compliance
-      > The combined use of SAST, DAST, SCA, fuzzing, and penetration testing satisfies the essential requirements of CRA Annex I Part I (security by design, attack surface minimisation) and Part II (vulnerability management, security updates), and produces documented evidence for conformity assessments under CRA Article 13.
+      > SAST produces documented evidence of source-code security evaluation required by CRA Annex I Part I (security by design, elimination of known vulnerability classes) and supports conformity-assessment documentation under CRA Article 13.
 
     - Vulnerability Management
-      > Automated SAST and SCA scans run on every commit; DAST and fuzz tests execute against every integration build; periodic penetration tests validate system-level resilience. Together they ensure vulnerabilities are detected and remediated continuously, fulfilling CRA Annex I Part II obligations for timely patching and disclosure.
-
-    - SBOM Transparency
-      > SCA tooling generates a machine-readable SBOM (CycloneDX or SPDX format) for every release, satisfying CRA transparency requirements and enabling downstream consumers to assess supply-chain risk.
+      > Automated static analysis on every commit detects insecure patterns, hardcoded secrets, and known vulnerability classes at the point of introduction, enabling immediate remediation before code reaches production.
 
     - SSDLC Integration
-      > All automated tools are integrated into the CI/CD pipeline as quality gates, enforcing security checks at the code-review, build, and integration stages without requiring manual intervention for routine scans.
+      > SAST tools integrate natively into CI/CD pipelines and code-review workflows, enforcing security checks at the earliest development stage without disrupting developer productivity.
 
     - Auditability
-      > Each tool produces structured reports stored as CI/CD artefacts. SBOM files, SAST/DAST/SCA findings, fuzz-test results, and penetration-test summaries constitute the technical documentation required by CRA Article 13(3) and support market-surveillance inspections.
+      > Structured SAST reports stored as versioned pipeline artefacts constitute technical documentation demonstrating security evaluation of each code change, as required by CRA Article 13(3).
 
     - Attack Surface Reduction
-      > SAST detects insecure code patterns; DAST exercises the running application to find runtime-exposed weaknesses; SCA flags vulnerable third-party components; fuzzing uncovers input-handling edge cases; penetration testing validates systemic resilience. The combination addresses all CRA Annex I Part I attack-surface minimisation requirements.
+      > Detection of insecure coding patterns, injection vulnerabilities, and unsafe API usage reduces the number of exploitable weaknesses in the codebase before deployment.
+
+### 3.2. SCA and SBOM
+
+Selected for its role in identifying vulnerabilities in third-party dependencies and producing a machine-readable Software Bill of Materials (SBOM) per release. SCA addresses the supply-chain dimension of CRA compliance, while SBOM generation fulfils CRA transparency obligations and enables downstream consumers to assess component risk.
+
+1. Rationale
+
+    - CRA Compliance
+      > SCA identifies third-party components with known CVEs, satisfying CRA Annex I Part II obligations for monitoring and addressing vulnerabilities in dependencies. SBOM generation fulfils CRA transparency and supply-chain due-diligence requirements.
+
+    - Vulnerability Management
+      > Continuous dependency scanning against NVD, OSV, and vendor advisory databases detects newly disclosed vulnerabilities in third-party components and triggers remediation before release.
+
+    - SBOM Transparency
+      > SCA tooling generates a machine-readable SBOM in CycloneDX or SPDX format for every release, providing a complete inventory of software components and their licence and vulnerability status.
+
+    - SSDLC Integration
+      > SCA runs automatically within the CI/CD pipeline on every build, providing continuous visibility into dependency health without requiring manual inventory management.
+
+    - Auditability
+      > SBOM files and SCA scan reports stored per release serve as evidence of supply-chain due diligence and support conformity-assessment body requests for technical documentation.
+
+### 3.3. DAST
+
+Selected for its capacity to identify runtime vulnerabilities that are not detectable through static analysis alone. DAST exercises the running application by simulating real-world attack patterns, uncovering weaknesses that only manifest during execution and satisfying CRA requirements for runtime vulnerability evaluation.
+
+1. Rationale
+
+    - CRA Compliance
+      > DAST provides evidence of runtime security evaluation required by CRA Annex I Part I, complementing SAST and SCA to achieve the multi-layer testing coverage expected under CRA Article 13 for higher-risk product classes.
+
+    - Vulnerability Management
+      > Dynamic scanning against the OWASP Top 10 and CWE Top 25 attack patterns detects authentication flaws, injection vulnerabilities, and misconfigurations that only appear when the application is running.
+
+    - SSDLC Integration
+      > DAST executes against a running application instance in the integration-test stage of the CI/CD pipeline, providing automated runtime security feedback without manual testing effort.
+
+    - Auditability
+      > DAST reports generated per integration build are stored as pipeline artefacts, providing documented evidence of runtime security testing for conformity assessments.
+
+    - Attack Surface Reduction
+      > Simulating adversarial HTTP requests and protocol-level attacks exposes runtime-exploitable weaknesses, reducing the effective attack surface of the deployed application.
+
+### 3.4. Fuzz Testing
+
+Selected for its ability to discover unexpected input-handling vulnerabilities and memory-safety issues that evade both static and dynamic analysis. Fuzz testing subjects components that process untrusted input to a high volume of malformed and edge-case inputs, uncovering crashes, hangs, and assertion failures that represent potential security vulnerabilities.
+
+1. Rationale
+
+    - CRA Compliance
+      > Fuzz testing demonstrates adversarial input-handling robustness required by CRA Annex I Part I for attack surface minimisation and contributes to the documented security testing evidence required under CRA Article 13.
+
+    - Vulnerability Management
+      > Automated fuzz campaigns detect memory-corruption bugs, integer overflows, and input-validation failures that static and dynamic analysis tools do not reliably identify, reducing the residual vulnerability surface.
+
+    - SSDLC Integration
+      > Fuzz testing runs in a dedicated scheduled pipeline stage targeting components that process untrusted input, providing continuous adversarial validation without disrupting the main CI/CD pipeline.
+
+    - Attack Surface Reduction
+      > Exercising parsers, protocol handlers, and deserialisation routines with high volumes of malformed input identifies and enables remediation of input-handling edge cases before they can be exploited in production.
+
+### 3.5. Penetration Testing
+
+Selected for its ability to validate the overall security posture through independent adversarial assessment. Periodic penetration testing by an external party uncovers systemic weaknesses, validates the effectiveness of automated tooling, and produces the independent security evaluation documentation required for CRA conformity assessments of higher-risk product classes.
+
+1. Rationale
+
+    - CRA Compliance
+      > An independent penetration test provides evidence of adversarial security validation required by CRA Annex I Part I and supports the technical documentation package for conformity assessments under CRA Article 13(3).
+
+    - Vulnerability Management
+      > Penetration testing identifies systemic weaknesses and attack-chain scenarios that automated tools cannot replicate, validating that the cumulative effect of SAST, DAST, SCA, and fuzz testing mitigations is sufficient.
+
+    - Auditability
+      > Penetration-test reports documenting findings, remediation actions, and retesting outcomes constitute formal security evaluation evidence for conformity-assessment bodies and market-surveillance authorities.
+
+    - Attack Surface Reduction
+      > Independent expert assessment of the full system under realistic adversarial conditions identifies residual systemic weaknesses that automated pipeline tooling does not cover.
 
 ## 4. Considered
 
-### 4.1. Integrated Multi-Layer Security Testing and Analysis
+### 4.1. SAST
 
-Combination of SAST, DAST, SCA with SBOM generation, fuzz testing, and periodic penetration testing integrated into the CI/CD pipeline.
+[SAST (Static Application Security Testing)](https://owasp.org/www-community/Source_Code_Analysis_Tools) analyses source code or compiled bytecode without executing the program to identify security vulnerabilities, insecure coding patterns, and compliance violations.
 
 - Pros
 
   - CRA Compliance
-    > Produces evidence across all CRA Annex I testing dimensions and satisfies conformity-assessment documentation requirements, reducing compliance risk.
+    > Produces documented evidence of source-code security evaluation that supports CRA conformity-assessment requirements.
 
   - Vulnerability Management
-    > Continuous, multi-vector detection (static, dynamic, dependency, adversarial) maximises the probability of identifying vulnerabilities before release.
+    > Detects a broad range of known vulnerability classes (injection, hardcoded credentials, insecure APIs) at commit time, before deployment.
 
-  - Attack Surface Reduction
-    > Layered tooling addresses code-level, runtime, supply-chain, and systemic attack vectors simultaneously.
-
-  - Auditability
-    > Generates structured, version-stamped reports and an SBOM that serve as audit evidence without additional manual documentation effort.
+  - SSDLC Integration
+    > Integrates natively into CI/CD pipelines and code-review workflows with low execution overhead.
 
 - Cons
 
-  - SSDLC Integration
-    > Increases CI/CD pipeline complexity and execution time; requires initial investment in tool configuration, tuning, and false-positive triage.
+  - Coverage
+    > Cannot detect vulnerabilities that only manifest at runtime, such as authentication flaws, server-side request forgery, or dynamic injection paths.
+
+  - False Positives
+    > High false-positive rates for certain rule sets require ongoing triage effort and careful tuning to avoid alert fatigue.
+
+### 4.2. SCA and SBOM
+
+[SCA (Software Composition Analysis)](https://owasp.org/www-community/Component_Analysis) identifies open-source and third-party components in a codebase, checks them against vulnerability databases, and generates a machine-readable SBOM documenting the software supply chain.
+
+- Pros
+
+  - SBOM Transparency
+    > Generates a machine-readable SBOM in CycloneDX or SPDX format that fulfils CRA supply-chain transparency and due-diligence requirements.
 
   - Vulnerability Management
-    > Tool sprawl may generate overlapping findings across SAST, DAST, and SCA layers, increasing triage overhead for development teams.
+    > Continuously monitors third-party dependencies for newly disclosed CVEs and licence violations, enabling timely remediation.
 
-### 4.2. Static-Only Analysis
+  - Auditability
+    > SBOM files and scan reports stored per release provide auditable supply-chain evidence for conformity-assessment bodies.
 
-Adoption of SAST and SCA tools exclusively, without DAST, fuzzing, or penetration testing.
+- Cons
+
+  - Coverage
+    > Limited to vulnerabilities with public CVE or OSV database entries; zero-day and supply chain tampering vulnerabilities (e.g., malicious packages) are not reliably detected.
+
+  - Noise
+    > Dependency graphs in large projects can generate a high volume of findings, including transitive dependencies, requiring prioritisation to manage remediation effort.
+
+### 4.3. DAST
+
+[DAST (Dynamic Application Security Testing)](https://owasp.org/www-community/Vulnerability_Scanning_Tools) tests a running application by simulating external attacks to identify vulnerabilities that are only exploitable at runtime, such as authentication bypasses, injection flaws, and security misconfigurations.
+
+- Pros
+
+  - CRA Compliance
+    > Provides runtime vulnerability evidence that complements SAST, satisfying the multi-layer testing coverage expected by CRA Annex I.
+
+  - Attack Surface Reduction
+    > Identifies runtime-exploitable weaknesses, including those introduced by third-party frameworks and deployment configuration, that static analysis cannot detect.
+
+- Cons
+
+  - Pipeline Complexity
+    > Requires a running application instance with representative configuration, adding test-environment provisioning overhead to the CI/CD pipeline.
+
+  - Coverage
+    > Black-box scanning cannot reach all application code paths; coverage depends on the quality of the test configuration and crawling depth.
+
+### 4.4. Fuzz Testing
+
+[Fuzz testing (fuzzing)](https://owasp.org/www-community/Fuzzing) automatically generates large volumes of malformed, unexpected, or random inputs to exercise software interfaces and uncover crashes, memory-safety violations, and assertion failures that indicate potential security vulnerabilities.
+
+- Pros
+
+  - Vulnerability Management
+    > Discovers novel input-handling vulnerabilities—memory corruption, integer overflows, parser bugs—that neither SAST nor DAST reliably identifies.
+
+  - Attack Surface Reduction
+    > Exercises high-risk interfaces (parsers, protocol handlers, deserialisers) under adversarial input conditions, reducing residual input-handling vulnerabilities.
+
+- Cons
+
+  - Execution Time
+    > Thorough fuzz campaigns require long run times, making them unsuitable for standard per-commit CI pipelines and better suited to scheduled or nightly builds.
+
+  - Applicability
+    > Most effective for components processing untrusted input; limited value for business-logic or UI layers with few external input surfaces.
+
+### 4.5. Penetration Testing
+
+[Penetration testing](https://owasp.org/www-project-web-security-testing-guide/) is a structured, adversarial security assessment conducted by independent experts who simulate real-world attacks against a system to identify exploitable vulnerabilities, attack chains, and systemic security weaknesses.
+
+- Pros
+
+  - CRA Compliance
+    > Provides independent evidence of adversarial security evaluation that supports conformity-assessment documentation requirements under CRA Article 13(3).
+
+  - Auditability
+    > Produces formal reports documenting findings, risk ratings, remediation guidance, and retesting results that satisfy market-surveillance authority requests.
+
+- Cons
+
+  - Point-in-Time
+    > Assessments are conducted at discrete intervals rather than continuously; vulnerabilities introduced between engagements accumulate undetected until the next test.
+
+  - Cost
+    > Independent penetration testing requires significant financial and scheduling investment, limiting feasibility to annual or pre-release engagements.
+
+### 4.6. Static-Only Analysis
+
+Adoption of SAST and SCA tools exclusively, without DAST, fuzz testing, or penetration testing.
 
 - Pros
 

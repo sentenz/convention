@@ -10,13 +10,14 @@ Architectural Decision Records (ADR) on adopting an integrated security testing 
   - [3.3. DAST](#33-dast)
   - [3.4. Fuzz Testing](#34-fuzz-testing)
   - [3.5. Penetration Testing](#35-penetration-testing)
+  - [3.6. Performance Testing](#36-performance-testing)
 - [4. Considered](#4-considered)
   - [4.1. SAST](#41-sast)
   - [4.2. SCA and SBOM](#42-sca-and-sbom)
   - [4.3. DAST](#43-dast)
   - [4.4. Fuzz Testing](#44-fuzz-testing)
   - [4.5. Penetration Testing](#45-penetration-testing)
-  - [4.6. Static-Only Analysis](#46-static-only-analysis)
+  - [4.6. Performance Testing](#46-performance-testing)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -152,6 +153,27 @@ Selected for its ability to validate the overall security posture through indepe
     - Attack Surface Reduction
       > Independent expert assessment of the full system under realistic adversarial conditions identifies residual systemic weaknesses that automated pipeline tooling does not cover.
 
+### 3.6. Performance Testing
+
+Selected for its ability to uncover security-relevant failure modes that only emerge under load, such as resource exhaustion, denial-of-service susceptibility, and latency-amplifying vulnerabilities. Integrating performance testing into the CI/CD pipeline validates that the application maintains its security posture under production-representative traffic levels and satisfies CRA Annex I Part I requirements for availability and resilience.
+
+1. Rationale
+
+    - CRA Compliance
+      > Performance testing provides evidence that the product maintains operational availability and resilience under load, supporting CRA Annex I Part I requirements for protection against availability attacks and contributing to conformity-assessment documentation under CRA Article 13.
+
+    - Vulnerability Management
+      > Load and stress tests expose resource-exhaustion vulnerabilities, memory leaks, and unthrottled endpoints that are not detectable by SAST, DAST, or fuzz testing, enabling remediation before they can be exploited as denial-of-service vectors.
+
+    - SSDLC Integration
+      > Performance tests execute in a dedicated pipeline stage against a production-representative environment, providing automated feedback on throughput, latency, and error rates without requiring manual benchmark runs.
+
+    - Auditability
+      > Performance test reports recording baseline thresholds, load profiles, and regression results are stored as versioned pipeline artefacts, providing documented evidence of availability and resilience validation.
+
+    - Attack Surface Reduction
+      > Identifying and remediating rate-limiting gaps, unthrottled API endpoints, and resource-exhaustion paths reduces the attack surface available to denial-of-service and amplification attacks.
+
 ## 4. Considered
 
 ### 4.1. SAST
@@ -260,28 +282,28 @@ Selected for its ability to validate the overall security posture through indepe
   - Cost
     > Independent penetration testing requires significant financial and scheduling investment, limiting feasibility to annual or pre-release engagements.
 
-### 4.6. Static-Only Analysis
+### 4.6. Performance Testing
 
-Adoption of SAST and SCA tools exclusively, without DAST, fuzz testing, or penetration testing.
+[Performance testing](https://k6.io/docs/) evaluates how a system behaves under normal and peak load conditions, measuring throughput, latency, error rates, and resource utilisation to identify bottlenecks, denial-of-service susceptibility, and availability risks.
 
 - Pros
 
-  - SSDLC Integration
-    > Simpler pipeline integration with lower execution overhead; easier to implement and maintain than a multi-layer approach.
+  - CRA Compliance
+    > Demonstrates that the product maintains availability and resilience under load, complementing security-layer testing to satisfy CRA Annex I Part I availability and attack-resistance requirements.
 
   - Vulnerability Management
-    > Covers the most common vulnerability classes in source code and third-party dependencies with well-established tooling.
+    > Detects resource-exhaustion vulnerabilities, unthrottled endpoints, and memory leaks that only appear under load, which SAST, DAST, and fuzz testing do not cover.
+
+  - Auditability
+    > Load test reports with defined baseline thresholds and pass/fail criteria provide documented evidence of availability validation for conformity-assessment bodies.
 
 - Cons
 
-  - CRA Compliance
-    > Does not satisfy CRA requirements for runtime vulnerability detection (DAST) or adversarial resilience validation (penetration testing), leaving the conformity assessment incomplete.
+  - Environment Dependency
+    > Meaningful performance testing requires a production-representative environment with realistic data volumes and network conditions, increasing infrastructure cost and setup complexity.
 
-  - Attack Surface Reduction
-    > Misses runtime-only vulnerabilities, input-handling edge cases exposed only during execution, and systemic weaknesses that appear only under adversarial conditions.
-
-  - Auditability
-    > Produces insufficient evidence for CRA Article 13 conformity assessments, which require documentation of both static and dynamic security evaluations.
+  - Maintenance Overhead
+    > Baseline thresholds and load profiles must be updated as the application evolves; stale benchmarks produce misleading results and erode confidence in the test suite.
 
 ## 5. Consequences
 
@@ -340,15 +362,19 @@ Adoption of SAST and SCA tools exclusively, without DAST, fuzz testing, or penet
 
     Schedule at least one independent penetration test annually and after significant architectural changes. Use the results to validate the effectiveness of automated tooling, identify systemic weaknesses, and update the CRA risk assessment. Document findings, remediation actions, and retesting outcomes as part of the technical documentation required by CRA Article 13(3).
 
-6. Establish Vulnerability Management Process
+6. Integrate Performance Testing
+
+    Add a performance testing tool (e.g., k6, Locust, or Apache JMeter) to the pipeline as a scheduled or pre-release stage. Define baseline thresholds for throughput, latency, and error rate and configure the pipeline to fail on threshold regressions. Include rate-limiting and resource-exhaustion scenarios in the load profile to validate denial-of-service resilience. Store performance reports as versioned pipeline artefacts.
+
+7. Establish Vulnerability Management Process
 
     Define a vulnerability management policy specifying severity classifications, remediation SLAs (e.g., critical within 24 hours of confirmed identification to meet CRA reporting obligations from September 11, 2026), and coordinated disclosure procedures. Maintain a vulnerability register updated by automated scan results and manual findings.
 
-7. Compile and Maintain Technical Documentation
+8. Compile and Maintain Technical Documentation
 
-    Aggregate SAST reports, DAST reports, SCA findings, SBOM files, fuzz-test results, and penetration-test summaries into a versioned technical documentation package per release. Ensure this package is accessible to conformity-assessment bodies and market-surveillance authorities on request, as required by CRA Article 13(3).
+    Aggregate SAST reports, DAST reports, SCA findings, SBOM files, fuzz-test results, penetration-test summaries, and performance test reports into a versioned technical documentation package per release. Ensure this package is accessible to conformity-assessment bodies and market-surveillance authorities on request, as required by CRA Article 13(3).
 
-8. Validate
+9. Validate
 
     Verify pipeline integration by confirming that each tool executes and produces a structured report on every CI run. Perform a quarterly review of tool configurations, rule sets, and false-positive rates. Annually assess the overall strategy against published ENISA guidance and updated CRA harmonised standards to ensure continued compliance.
 
@@ -366,4 +392,5 @@ Adoption of SAST and SCA tools exclusively, without DAST, fuzz testing, or penet
 - GitHub [CodeQL static analysis](https://codeql.github.com/) tool.
 - Semgrep [static analysis](https://semgrep.dev/) tool.
 - Trivy [vulnerability and SBOM scanner](https://aquasecurity.github.io/trivy/) tool.
+- k6 [performance testing](https://k6.io/docs/) tool.
 - Sentenz convention [002-ADR: Software Security](002-adr-software-security.md) record.

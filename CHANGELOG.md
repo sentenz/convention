@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.25.0](https://github.com/sentenz/convention/compare/2.24.0...2.25.0) (2026-05-06)
+
+
+### Features
+
+* **adr:** create an ADR EU CRA Security Testing and Security Analysis for C/C++ ([#459](https://github.com/sentenz/convention/issues/459)) ([8b70a85](https://github.com/sentenz/convention/commit/8b70a85f5d3525a7a222f02d0c17b62b9d02c191))
+
 # [2.24.0](https://github.com/sentenz/convention/compare/2.23.1...2.24.0) (2026-05-05)
 
 

@@ -9,7 +9,6 @@ Architectural Decision Records (ADR) on adopting an integrated security testing 
 - [4. Considered](#4-considered)
   - [4.1. Integrated Multi-Layer Security Testing and Analysis](#41-integrated-multi-layer-security-testing-and-analysis)
   - [4.2. Static-Only Analysis](#42-static-only-analysis)
-  - [4.3. Third-Party Security Assessment](#43-third-party-security-assessment)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -120,29 +119,6 @@ Adoption of SAST and SCA tools exclusively, without DAST, fuzzing, or penetratio
 
   - Auditability
     > Produces insufficient evidence for CRA Article 13 conformity assessments, which require documentation of both static and dynamic security evaluations.
-
-### 4.3. Third-Party Security Assessment
-
-Delegating all security testing and analysis to an external managed-security or conformity-assessment provider.
-
-- Pros
-
-  - CRA Compliance
-    > A qualified third-party assessor can provide the formal conformity assessment documentation required for higher-risk CRA product classes.
-
-  - Vulnerability Management
-    > Leverages specialist expertise and tooling that may exceed internal capabilities for advanced penetration testing and adversarial analysis.
-
-- Cons
-
-  - SSDLC Integration
-    > External assessments occur at discrete intervals rather than continuously; late detection of vulnerabilities increases remediation cost and may delay releases.
-
-  - Auditability
-    > Creates dependency on third-party reporting cadence and formats, reducing agility in responding to market-surveillance requests or emerging vulnerabilities.
-
-  - Vulnerability Management
-    > Slower feedback loop compared to automated pipeline-integrated tooling; vulnerabilities introduced between assessments accumulate undetected.
 
 ## 5. Consequences
 

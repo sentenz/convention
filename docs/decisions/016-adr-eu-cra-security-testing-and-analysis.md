@@ -155,7 +155,7 @@ Selected for its ability to validate the overall security posture through indepe
 
 ### 3.6. Performance Testing
 
-Selected for its ability to uncover security-relevant failure modes that only emerge under load, such as resource exhaustion, denial-of-service susceptibility, and latency-amplifying vulnerabilities. Integrating performance testing into the CI/CD pipeline validates that the application maintains its security posture under production-representative traffic levels and satisfies CRA Annex I Part I requirements for availability and resilience.
+Selected for its ability to uncover security-relevant failure modes that only emerge under load, such as resource exhaustion, denial-of-service susceptibility, and latency-amplifying vulnerabilities. Performance testing encompasses two complementary disciplines: load and stress testing, which validates system behaviour under peak external traffic, and benchmark testing, which measures the execution time and memory footprint of individual components to detect performance regressions and resource-exhaustion conditions within the codebase itself. Tooling is selected to match the target technology stack — HTTP services and containers, embedded C/C++, and Go — ensuring coverage across the full deployment surface.
 
 1. Rationale
 
@@ -163,16 +163,16 @@ Selected for its ability to uncover security-relevant failure modes that only em
       > Performance testing provides evidence that the product maintains operational availability and resilience under load, supporting CRA Annex I Part I requirements for protection against availability attacks and contributing to conformity-assessment documentation under CRA Article 13.
 
     - Vulnerability Management
-      > Load and stress tests expose resource-exhaustion vulnerabilities, memory leaks, and unthrottled endpoints that are not detectable by SAST, DAST, or fuzz testing, enabling remediation before they can be exploited as denial-of-service vectors.
+      > Load, stress, and benchmark tests expose resource-exhaustion vulnerabilities, memory leaks, unthrottled endpoints, and regression-inducing code changes that SAST, DAST, and fuzz testing do not cover, enabling remediation before they can be exploited as denial-of-service vectors.
 
     - SSDLC Integration
-      > Performance tests execute in a dedicated pipeline stage against a production-representative environment, providing automated feedback on throughput, latency, and error rates without requiring manual benchmark runs.
+      > Stack-specific tooling integrates natively into the CI/CD pipeline: k6 or Locust for HTTP services and containerised workloads; Google Benchmark or perf for embedded C/C++ components; and `go test -bench` with pprof and benchstat for Go services. Benchmark tests run on every pull request to catch regressions at the point of introduction; load tests run in a dedicated scheduled or pre-release stage.
 
     - Auditability
-      > Performance test reports recording baseline thresholds, load profiles, and regression results are stored as versioned pipeline artefacts, providing documented evidence of availability and resilience validation.
+      > Performance test reports recording baseline thresholds, load profiles, benchmark results, and regression deltas are stored as versioned pipeline artefacts, providing documented evidence of availability and resilience validation.
 
     - Attack Surface Reduction
-      > Identifying and remediating rate-limiting gaps, unthrottled API endpoints, and resource-exhaustion paths reduces the attack surface available to denial-of-service and amplification attacks.
+      > Identifying and remediating rate-limiting gaps, unthrottled API endpoints, memory-allocation hotspots, and resource-exhaustion paths reduces the attack surface available to denial-of-service and amplification attacks.
 
 ## 4. Considered
 
@@ -284,7 +284,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 
 ### 4.6. Performance Testing
 
-[Performance testing](https://k6.io/docs/) evaluates how a system behaves under normal and peak load conditions, measuring throughput, latency, error rates, and resource utilisation to identify bottlenecks, denial-of-service susceptibility, and availability risks.
+[Performance testing](https://k6.io/docs/) evaluates how a system behaves under normal and peak load conditions, measuring throughput, latency, error rates, and resource utilisation to identify bottlenecks, denial-of-service susceptibility, and availability risks. It covers two complementary disciplines: load and stress testing (external, black-box) for validating system capacity, and benchmark testing (internal, white-box) for measuring execution time and memory footprint of individual components. Tool selection is matched to the technology stack: k6 or Locust for HTTP services and containerised workloads; [Google Benchmark](https://github.com/google/benchmark) or perf for embedded C/C++ components; and `go test -bench` with [pprof](https://pkg.go.dev/net/http/pprof) and [benchstat](https://pkg.go.dev/golang.org/x/perf/cmd/benchstat) for Go services.
 
 - Pros
 
@@ -292,18 +292,21 @@ Selected for its ability to uncover security-relevant failure modes that only em
     > Demonstrates that the product maintains availability and resilience under load, complementing security-layer testing to satisfy CRA Annex I Part I availability and attack-resistance requirements.
 
   - Vulnerability Management
-    > Detects resource-exhaustion vulnerabilities, unthrottled endpoints, and memory leaks that only appear under load, which SAST, DAST, and fuzz testing do not cover.
+    > Detects resource-exhaustion vulnerabilities, unthrottled endpoints, memory leaks, and performance regressions that only appear under load or targeted benchmarking, which SAST, DAST, and fuzz testing do not cover.
+
+  - Stack Coverage
+    > Stack-specific tooling ensures meaningful coverage across embedded C/C++, Go services, HTTP APIs, and containerised workloads without requiring a single general-purpose tool that may produce inaccurate results on low-level or constrained-resource targets.
 
   - Auditability
-    > Load test reports with defined baseline thresholds and pass/fail criteria provide documented evidence of availability validation for conformity-assessment bodies.
+    > Load test reports and benchmark result sets with defined baseline thresholds and pass/fail criteria provide documented evidence of availability validation for conformity-assessment bodies.
 
 - Cons
 
   - Environment Dependency
-    > Meaningful performance testing requires a production-representative environment with realistic data volumes and network conditions, increasing infrastructure cost and setup complexity.
+    > Meaningful load and stress testing requires a production-representative environment with realistic data volumes and network conditions, increasing infrastructure cost and setup complexity.
 
   - Maintenance Overhead
-    > Baseline thresholds and load profiles must be updated as the application evolves; stale benchmarks produce misleading results and erode confidence in the test suite.
+    > Baseline thresholds, load profiles, and benchmark baselines must be updated as the application evolves; stale benchmarks produce misleading results and erode confidence in the test suite.
 
 ## 5. Consequences
 
@@ -364,7 +367,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 
 6. Integrate Performance Testing
 
-    Add a performance testing tool (e.g., k6, Locust, or Apache JMeter) to the pipeline as a scheduled or pre-release stage. Define baseline thresholds for throughput, latency, and error rate and configure the pipeline to fail on threshold regressions. Include rate-limiting and resource-exhaustion scenarios in the load profile to validate denial-of-service resilience. Store performance reports as versioned pipeline artefacts.
+    Adopt stack-specific performance and benchmark tooling across the technology surface: use k6 or Locust for load and stress testing of HTTP services and containerised workloads; use Google Benchmark or perf for embedded C/C++ components; and use `go test -bench` with pprof and benchstat for Go services. Run benchmark tests on every pull request to detect per-component performance regressions at the point of introduction. Run load and stress tests in a dedicated scheduled or pre-release pipeline stage against a production-representative environment. Define baseline thresholds for throughput, latency, error rate, and memory consumption and configure the pipeline to fail on threshold regressions. Include rate-limiting and resource-exhaustion scenarios in the load profile to validate denial-of-service resilience. Store performance and benchmark reports as versioned pipeline artefacts.
 
 7. Establish Vulnerability Management Process
 
@@ -393,4 +396,9 @@ Selected for its ability to uncover security-relevant failure modes that only em
 - Semgrep [static analysis](https://semgrep.dev/) tool.
 - Trivy [vulnerability and SBOM scanner](https://aquasecurity.github.io/trivy/) tool.
 - k6 [performance testing](https://k6.io/docs/) tool.
+- Locust [load testing](https://locust.io/) tool.
+- Google [Benchmark C++ microbenchmarking](https://github.com/google/benchmark) library.
+- Go [testing benchmarks](https://pkg.go.dev/testing#hdr-Benchmarks) package.
+- Go [pprof profiling](https://pkg.go.dev/net/http/pprof) package.
+- Go [benchstat benchmark statistics](https://pkg.go.dev/golang.org/x/perf/cmd/benchstat) tool.
 - Sentenz convention [002-ADR: Software Security](002-adr-software-security.md) record.

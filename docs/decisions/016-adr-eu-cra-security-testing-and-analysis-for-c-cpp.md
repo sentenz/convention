@@ -119,7 +119,7 @@ Selected for its capacity to identify runtime vulnerabilities that are not detec
 
 ### 3.4. Fuzz Testing
 
-Selected for its ability to discover unexpected input-handling vulnerabilities and memory-safety issues that evade both static and dynamic analysis. Fuzz testing is particularly effective for C/C++ components: tools such as AFL++, libFuzzer, and Honggfuzz integrate directly with the C/C++ build system and generate high volumes of malformed and edge-case inputs to exercise parsers, protocol handlers, and deserialization routines, uncovering crashes, memory-corruption bugs, and assertion failures that represent potential security vulnerabilities.
+Selected for its ability to discover unexpected input-handling vulnerabilities and memory-safety issues that evade both static and dynamic analysis. Fuzz testing is particularly effective for C/C++ components: Google FuzzTest integrates directly with the C/C++ build system and generates high volumes of malformed and edge-case inputs to exercise parsers, protocol handlers, and deserialization routines, uncovering crashes, memory-corruption bugs, and assertion failures that represent potential security vulnerabilities.
 
 1. Rationale
 
@@ -244,7 +244,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 
 ### 4.4. Fuzz Testing
 
-[Fuzz testing (fuzzing)](https://owasp.org/www-community/Fuzzing) for C/C++ uses coverage-guided engines — AFL++, libFuzzer, Honggfuzz — compiled with sanitizer instrumentation to generate large volumes of malformed and boundary-condition inputs targeting C/C++ components, uncovering crashes, memory-safety violations, heap/stack corruptions, and assertion failures that indicate potential security vulnerabilities.
+[Fuzz testing (fuzzing)](https://owasp.org/www-community/Fuzzing) for C/C++ uses Google FuzzTest — compiled with sanitizer instrumentation — to generate large volumes of malformed and boundary-condition inputs targeting C/C++ components, uncovering crashes, memory-safety violations, heap/stack corruptions, and assertion failures that indicate potential security vulnerabilities.
 
 - Pros
 
@@ -359,7 +359,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 
 4. Integrate Fuzz Testing
 
-    Introduce coverage-guided fuzz testing (AFL++, libFuzzer, or Honggfuzz) for C/C++ components that process untrusted input, such as parsers, protocol handlers, and deserialization routines. Compile fuzz targets with sanitizer and coverage instrumentation (`-fsanitize=address,fuzzer`). Run fuzz campaigns in a dedicated nightly or scheduled pipeline stage, triage identified crashes promptly, and document confirmed findings in the project vulnerability register.
+    Introduce fuzz testing with Google FuzzTest for C/C++ components that process untrusted input, such as parsers, protocol handlers, and deserialization routines. Compile fuzz targets with sanitizer and coverage instrumentation (`-fsanitize=address,fuzzer`). Run fuzz campaigns in a dedicated nightly or scheduled pipeline stage, triage identified crashes promptly, and document confirmed findings in the project vulnerability register.
 
 5. Conduct Periodic Penetration Testing
 
@@ -401,9 +401,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 - LLVM [UndefinedBehaviorSanitizer](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html) runtime checker.
 - LLVM [MemorySanitizer](https://clang.llvm.org/docs/MemorySanitizer.html) runtime checker.
 - LLVM [ThreadSanitizer](https://clang.llvm.org/docs/ThreadSanitizer.html) runtime race-condition checker.
-- AFL++ [coverage-guided fuzzer](https://aflplus.plus/) tool.
-- LLVM [libFuzzer coverage-guided fuzzer](https://llvm.org/docs/LibFuzzer.html) tool.
-- Honggfuzz [security-oriented fuzzer](https://honggfuzz.dev/) tool.
+- Google [FuzzTest C/C++ fuzzing framework](https://github.com/google/fuzztest) tool.
 - NSA [Ghidra binary analysis](https://ghidra-sre.org/) tool.
 - Google [Benchmark C++ microbenchmarking](https://github.com/google/benchmark) library.
 - Linux [perf CPU profiling](https://perf.wiki.kernel.org/) tool.

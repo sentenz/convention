@@ -56,7 +56,7 @@ The EU Cyber Resilience Act (CRA), Regulation (EU) 2024/2847, entered into force
 
 ### 3.1. SAST
 
-Selected for its ability to detect insecure code patterns and potential vulnerabilities directly in C/C++ source code, before any code is executed or deployed. For C/C++, SAST encompasses compile-time analysis tools (CodeQL with C/C++ query suites, Semgrep with C/C++ rulesets) and standalone checkers (cppcheck, clang-tidy) that identify memory-safety vulnerabilities, undefined behaviour, insecure API usage, and CWE-enumerated vulnerability classes. Integrating SAST as a mandatory quality gate on every pull request ensures that security issues are identified at the earliest possible stage of the development lifecycle.
+Selected for its ability to detect insecure code patterns and potential vulnerabilities directly in C/C++ source code, before any code is executed or deployed. For C/C++, SAST encompasses compile-time analysis tools (SonarQube with C/C++ analysis plugins, Semgrep with C/C++ rulesets) and standalone checkers (cppcheck, clang-tidy) that identify memory-safety vulnerabilities, undefined behaviour, insecure API usage, and CWE-enumerated vulnerability classes. Integrating SAST as a mandatory quality gate on every pull request ensures that security issues are identified at the earliest possible stage of the development lifecycle.
 
 1. Rationale
 
@@ -67,7 +67,7 @@ Selected for its ability to detect insecure code patterns and potential vulnerab
       > Automated static analysis on every commit detects memory-corruption patterns, buffer overflows, use-after-free, integer overflows, format-string vulnerabilities, and unsafe API calls at the point of introduction, enabling immediate remediation before code reaches production.
 
     - SSDLC Integration
-      > CodeQL and Semgrep integrate natively into CI/CD pipelines; cppcheck and clang-tidy integrate with CMake and build systems as additional compilation steps, enforcing security checks at the earliest development stage without disrupting developer productivity.
+      > SonarQube and Semgrep integrate natively into CI/CD pipelines; cppcheck and clang-tidy integrate with CMake and build systems as additional compilation steps, enforcing security checks at the earliest development stage without disrupting developer productivity.
 
     - Auditability
       > Structured SAST reports stored as versioned pipeline artefacts constitute technical documentation demonstrating security evaluation of each code change, as required by CRA Article 13(3).
@@ -178,7 +178,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 
 ### 4.1. SAST
 
-[SAST (Static Application Security Testing)](https://owasp.org/www-community/Source_Code_Analysis_Tools) for C/C++ analyses source code using tools such as CodeQL (with C/C++ query suites), Semgrep (with C/C++ rulesets), cppcheck, and clang-tidy to identify memory-safety vulnerabilities, undefined behaviour, insecure API usage, CWE-enumerated vulnerability classes, and compliance violations without executing the program.
+[SAST (Static Application Security Testing)](https://owasp.org/www-community/Source_Code_Analysis_Tools) for C/C++ analyses source code using tools such as SonarQube (with C/C++ analysis plugins), Semgrep (with C/C++ rulesets), cppcheck, and clang-tidy to identify memory-safety vulnerabilities, undefined behaviour, insecure API usage, CWE-enumerated vulnerability classes, and compliance violations without executing the program.
 
 - Pros
 
@@ -189,7 +189,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
     > Detects a broad range of C/C++ vulnerability classes (buffer overflows, use-after-free, integer overflows, format-string bugs, unsafe API calls) at commit time, before deployment.
 
   - SSDLC Integration
-    > CodeQL and Semgrep integrate natively into CI/CD pipelines; cppcheck and clang-tidy integrate with CMake and build systems, enabling security checks at the earliest development stage.
+    > SonarQube and Semgrep integrate natively into CI/CD pipelines; cppcheck and clang-tidy integrate with CMake and build systems, enabling security checks at the earliest development stage.
 
 - Cons
 
@@ -347,7 +347,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 
 1. Integrate SAST
 
-    Add SAST tooling for C/C++ to the CI/CD pipeline as a mandatory quality gate on every pull request and main-branch push: configure CodeQL with C/C++ query suites and Semgrep with C/C++ security rulesets for CI scanning; integrate cppcheck and clang-tidy into the CMake build system or as pre-commit checks to surface issues during development. Enforce a policy that blocks merging on high-severity findings. Store scan reports as versioned pipeline artefacts.
+    Add SAST tooling for C/C++ to the CI/CD pipeline as a mandatory quality gate on every pull request and main-branch push: configure SonarQube with C/C++ analysis plugins and Semgrep with C/C++ security rulesets for CI scanning; integrate cppcheck and clang-tidy into the CMake build system or as pre-commit checks to surface issues during development. Enforce a policy that blocks merging on high-severity findings. Store scan reports as versioned pipeline artefacts.
 
 2. Integrate SCA and SBOM Generation
 
@@ -392,7 +392,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 - OSV [Open Source Vulnerability database](https://osv.dev/) database.
 - CycloneDX [SBOM standard specification](https://cyclonedx.org/) page.
 - SPDX [Software Package Data Exchange specification](https://spdx.dev/) page.
-- GitHub [CodeQL static analysis](https://codeql.github.com/) tool.
+- SonarQube [C/C++ static analysis](https://www.sonarsource.com/c/) tool.
 - Semgrep [static analysis](https://semgrep.dev/) tool.
 - cppcheck [C/C++ static analysis](https://cppcheck.sourceforge.io/) tool.
 - LLVM [clang-tidy linter](https://clang.llvm.org/extra/clang-tidy/) tool.

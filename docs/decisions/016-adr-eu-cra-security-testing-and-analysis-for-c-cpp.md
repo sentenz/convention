@@ -387,7 +387,7 @@ Selected for its ability to uncover security-relevant failure modes that only em
 
 - EU [Cyber Resilience Act – Regulation (EU) 2024/2847](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202402847) regulation.
 - European Commission [Cyber Resilience Act overview](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act) page.
-- ENISA [EU Cyber Resilience Act standards mapping](https://www.enisa.europa.eu/topics/cybersecurity-standardisation/eu-cyber-resilience-act) page.
+- ENISA [EU CRA Mapping](https://www.enisa.europa.eu/publications/cyber-resilience-act-requirements-standards-mapping) page.
 - OWASP [Top 10 Web Application Security Risks](https://owasp.org/www-project-top-ten/) project.
 - OWASP [ZAP Dynamic Application Security Testing](https://www.zaproxy.org/) tool.
 - NIST [National Vulnerability Database (NVD)](https://nvd.nist.gov/) database.

@@ -5,11 +5,11 @@ Architectural Decision Records (ADR) on implementing Threat Modeling for Industr
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
-  - [3.1. MITRE ATT\&CK for ICS](#31-mitre-attck-for-ics)
-  - [3.2. MITRE EMB3D](#32-mitre-emb3d)
-  - [3.3. STRIDE](#33-stride)
-  - [3.4. IEC 62443](#34-iec-62443)
-  - [3.5. MITRE CWE](#35-mitre-cwe)
+  - [3.1. STRIDE](#31-stride)
+  - [3.2. MITRE ATT\&CK for ICS](#32-mitre-attck-for-ics)
+  - [3.3. MITRE EMB3D](#33-mitre-emb3d)
+  - [3.4. MITRE CWE](#34-mitre-cwe)
+  - [3.5. IEC 62443](#35-iec-62443)
 - [4. Considered](#4-considered)
   - [4.1. MITRE ATT\&CK for ICS](#41-mitre-attck-for-ics)
   - [4.2. MITRE EMB3D](#42-mitre-emb3d)
@@ -70,73 +70,7 @@ Selecting appropriate threat modeling frameworks is critical to identifying, ass
 
 ## 3. Decision
 
-### 3.1. MITRE ATT&CK for ICS
-
-Selected for its structured, real-world-based taxonomy of adversary tactics and techniques targeting industrial control systems and operational technology environments. MITRE ATT&CK for ICS provides the most comprehensive and actively maintained reference for understanding how adversaries interact with ICS-specific assets such as PLCs, HMIs, engineering workstations, and field devices.
-
-1. Rationale
-
-    - ICS/OT Threat Coverage
-      > Provides a dedicated ICS matrix with tactics and techniques drawn from real-world ICS incidents (e.g., TRITON, Industroyer, BlackEnergy), covering initial access through impact across ICS-specific targets.
-
-    - Embedded Device Coverage
-      > Includes techniques targeting control logic, firmware manipulation, and communication protocol exploitation relevant to embedded controllers and field devices.
-
-    - Safety-Security Integration
-      > Explicitly includes the Inhibit Response Function and Impair Process Control tactic categories that directly map to safety system manipulation and physical process disruption.
-
-    - Operational Continuity
-      > Covers techniques that adversaries use to remain persistent and stealthy in availability-sensitive OT environments, enabling analysts to model threats without disrupting production processes.
-
-    - Compliance Alignment
-      > Aligns with IEC 62443-3-3 security requirements and supports mapping of ATT&CK techniques to required countermeasures for compliance evidence.
-
-    - Tooling and Community Adoption
-      > Maintained by MITRE with a dedicated ICS matrix, ATT&CK Navigator support, and integration with leading ICS security platforms such as Claroty and Dragos.
-
-    - Risk-Based Prioritization
-      > Techniques include frequency and impact metadata, and ATT&CK Navigator supports heat-mapping and prioritization of techniques based on their observed prevalence in ICS incidents.
-
-    - Adversary-Centric Approach
-      > The Groups matrix maps techniques to named threat actor groups (e.g., Sandworm, XENOTIME) known to target ICS, enabling direct adversary-based threat scenario construction.
-
-    - TTP-Based Approach (Tactics, Techniques, Procedures)
-      > Structured as a TTP taxonomy with ICS-specific tactic categories and associated techniques, providing a native TTP language for ICS threat modeling and detection engineering.
-
-### 3.2. MITRE EMB3D
-
-Selected for its property-based approach to enumerating threats against embedded devices, enabling threat identification grounded in the specific hardware and software characteristics of a target device. MITRE EMB3D fills the gap between general ICS frameworks and hardware-level embedded device security by mapping device features directly to threats and tiered mitigations.
-
-1. Rationale
-
-    - ICS/OT Threat Coverage
-      > Covers embedded devices deployed in critical infrastructure, industrial automation, automotive, healthcare, and manufacturing environments, providing ICS-relevant threat entries for field devices and controllers.
-
-    - Embedded Device Coverage
-      > Organizes threats into Hardware, System Software, Application Software, and Networking categories, enabling systematic enumeration of all attack surfaces present in a constrained embedded device.
-
-    - Safety-Security Integration
-      > Addresses threats to safety-critical device properties such as secure boot, memory protection, and hardware isolation mechanisms, which directly underpin functional safety guarantees.
-
-    - Operational Continuity
-      > Provides mitigation maturity tiers (Foundational, Intermediate, Leading) that allow organizations to select controls appropriate for devices that cannot tolerate downtime or significant design changes.
-
-    - Compliance Alignment
-      > Aligned with CWE and CVE, supporting evidence collection required under EU CRA for embedded devices and facilitating cross-referencing with IEC 62443-4-2 component security requirements.
-
-    - Tooling and Community Adoption
-      > Maintained by MITRE with an online knowledge base, structured threat and mitigation catalog, and alignment with the broader MITRE ATT&CK and CWE ecosystems.
-
-    - Risk-Based Prioritization
-      > Mitigation maturity tiers (Foundational, Intermediate, Leading) enable prioritization of controls based on device criticality and resource constraints, supporting incremental risk reduction.
-
-    - Adversary-Centric Approach
-      > Threat entries reference associated MITRE ATT&CK for ICS and ATT&CK Enterprise techniques, enabling correlation of device-level threats to the adversary groups and campaigns that exploit them.
-
-    - TTP-Based Approach (Tactics, Techniques, Procedures)
-      > Each threat entry describes the threat actor's required actions and associated CWE weaknesses, providing a TTP-grounded view of how specific device properties are exploited.
-
-### 3.3. STRIDE
+### 3.1. STRIDE
 
 Selected for its systematic, category-driven threat classification that enables structured enumeration of threats across all ICS components, data flows, and trust boundaries using Data Flow Diagrams (DFDs). STRIDE provides a foundational threat identification methodology — covering Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege — that integrates naturally with the IEC 62443 zones-and-conduits architecture model and serves as the primary threat classification layer for all subsequent risk-scoring and TTP-mapping activities.
 
@@ -169,40 +103,73 @@ Selected for its systematic, category-driven threat classification that enables 
     - TTP-Based Approach (Tactics, Techniques, Procedures)
       > STRIDE threat categories align with MITRE ATT&CK for ICS tactics, enabling cross-referencing between structural DFD-based threat analysis and TTP-based threat intelligence for detection and response engineering.
 
-### 3.4. IEC 62443
+### 3.2. MITRE ATT&CK for ICS
 
-Selected as the governing compliance and architectural framework for securing Industrial Automation and Control Systems (IACS). IEC 62443 provides the zones-and-conduits security architecture model, security levels, and product development lifecycle requirements that define the structural boundaries within which all other threat modeling activities are performed.
+Selected for its structured, real-world-based taxonomy of adversary tactics and techniques targeting industrial control systems and operational technology environments. MITRE ATT&CK for ICS provides the most comprehensive and actively maintained reference for understanding how adversaries interact with ICS-specific assets such as PLCs, HMIs, engineering workstations, and field devices.
 
 1. Rationale
 
     - ICS/OT Threat Coverage
-      > Defines a security architecture model (zones, conduits, Purdue Reference Model alignment) that establishes the scope boundaries for threat modeling across the entire ICS network, from the enterprise zone to field devices.
+      > Provides a dedicated ICS matrix with tactics and techniques drawn from real-world ICS incidents (e.g., TRITON, Industroyer, BlackEnergy), covering initial access through impact across ICS-specific targets.
 
     - Embedded Device Coverage
-      > IEC 62443-4-2 specifies component-level security requirements for embedded devices, and IEC 62443-4-1 defines the secure product development lifecycle applicable to embedded firmware and hardware.
+      > Includes techniques targeting control logic, firmware manipulation, and communication protocol exploitation relevant to embedded controllers and field devices.
 
     - Safety-Security Integration
-      > Addresses the co-engineering of security and functional safety requirements, referencing IEC 61508 and providing guidance on avoiding conflicts between safety instrumented systems and cybersecurity controls.
+      > Explicitly includes the Inhibit Response Function and Impair Process Control tactic categories that directly map to safety system manipulation and physical process disruption.
 
     - Operational Continuity
-      > Security levels (SL 1–4) allow organizations to select and justify proportionate security controls that preserve operational continuity while meeting compliance targets.
+      > Covers techniques that adversaries use to remain persistent and stealthy in availability-sensitive OT environments, enabling analysts to model threats without disrupting production processes.
 
     - Compliance Alignment
-      > IEC 62443 is the primary international standard for IACS security, referenced by EU NIS2, EU CRA, and national critical infrastructure protection regulations globally.
+      > Aligns with IEC 62443-3-3 security requirements and supports mapping of ATT&CK techniques to required countermeasures for compliance evidence.
 
     - Tooling and Community Adoption
-      > Widely adopted by asset owners, system integrators, and product vendors with a broad ecosystem of certification bodies, assessment tools, and implementation guides maintained by ISA Global Cybersecurity Alliance (ISAGCA).
+      > Maintained by MITRE with a dedicated ICS matrix, ATT&CK Navigator support, and integration with leading ICS security platforms such as Claroty and Dragos.
 
     - Risk-Based Prioritization
-      > IEC 62443-3-2 provides a structured risk assessment process for assigning Target Security Levels (SL-T) to zones and conduits, ensuring mitigations are proportionate to the risk level of each ICS segment.
+      > Techniques include frequency and impact metadata, and ATT&CK Navigator supports heat-mapping and prioritization of techniques based on their observed prevalence in ICS incidents.
 
     - Adversary-Centric Approach
-      > Security level assignment is informed by threat profiles of adversaries targeting the specific operational context, from opportunistic attackers (SL 1) to nation-state actors pursuing physical process disruption (SL 4).
+      > The Groups matrix maps techniques to named threat actor groups (e.g., Sandworm, XENOTIME) known to target ICS, enabling direct adversary-based threat scenario construction.
 
     - TTP-Based Approach (Tactics, Techniques, Procedures)
-      > IEC 62443-3-2 risk assessment integrates with MITRE ATT&CK for ICS TTPs to map security level requirements to the techniques adversaries use to achieve tactical objectives within ICS zones and conduits.
+      > Structured as a TTP taxonomy with ICS-specific tactic categories and associated techniques, providing a native TTP language for ICS threat modeling and detection engineering.
 
-### 3.5. MITRE CWE
+### 3.3. MITRE EMB3D
+
+Selected for its property-based approach to enumerating threats against embedded devices, enabling threat identification grounded in the specific hardware and software characteristics of a target device. MITRE EMB3D fills the gap between general ICS frameworks and hardware-level embedded device security by mapping device features directly to threats and tiered mitigations.
+
+1. Rationale
+
+    - ICS/OT Threat Coverage
+      > Covers embedded devices deployed in critical infrastructure, industrial automation, automotive, healthcare, and manufacturing environments, providing ICS-relevant threat entries for field devices and controllers.
+
+    - Embedded Device Coverage
+      > Organizes threats into Hardware, System Software, Application Software, and Networking categories, enabling systematic enumeration of all attack surfaces present in a constrained embedded device.
+
+    - Safety-Security Integration
+      > Addresses threats to safety-critical device properties such as secure boot, memory protection, and hardware isolation mechanisms, which directly underpin functional safety guarantees.
+
+    - Operational Continuity
+      > Provides mitigation maturity tiers (Foundational, Intermediate, Leading) that allow organizations to select controls appropriate for devices that cannot tolerate downtime or significant design changes.
+
+    - Compliance Alignment
+      > Aligned with CWE and CVE, supporting evidence collection required under EU CRA for embedded devices and facilitating cross-referencing with IEC 62443-4-2 component security requirements.
+
+    - Tooling and Community Adoption
+      > Maintained by MITRE with an online knowledge base, structured threat and mitigation catalog, and alignment with the broader MITRE ATT&CK and CWE ecosystems.
+
+    - Risk-Based Prioritization
+      > Mitigation maturity tiers (Foundational, Intermediate, Leading) enable prioritization of controls based on device criticality and resource constraints, supporting incremental risk reduction.
+
+    - Adversary-Centric Approach
+      > Threat entries reference associated MITRE ATT&CK for ICS and ATT&CK Enterprise techniques, enabling correlation of device-level threats to the adversary groups and campaigns that exploit them.
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > Each threat entry describes the threat actor's required actions and associated CWE weaknesses, providing a TTP-grounded view of how specific device properties are exploited.
+
+### 3.4. MITRE CWE
 
 Selected as the foundational weakness taxonomy that underpins vulnerability identification, threat entry cross-referencing, and root cause analysis across all other selected frameworks. MITRE CWE provides the common language for classifying software and hardware weaknesses at the code and design level, and is directly referenced by MITRE EMB3D threat entries and CVE records, enabling a complete traceability chain from adversary tactic through technical weakness to mitigation.
 
@@ -234,6 +201,39 @@ Selected as the foundational weakness taxonomy that underpins vulnerability iden
 
     - TTP-Based Approach (Tactics, Techniques, Procedures)
       > CWE weakness entries are cross-referenced with MITRE ATT&CK for ICS techniques and MITRE EMB3D threat entries, providing a complete TTP-to-weakness traceability chain from adversary tactic through technical root cause.
+
+### 3.5. IEC 62443
+
+Selected as the governing compliance and architectural framework for securing Industrial Automation and Control Systems (IACS). IEC 62443 provides the zones-and-conduits security architecture model, security levels, and product development lifecycle requirements that define the structural boundaries within which all other threat modeling activities are performed.
+
+1. Rationale
+
+    - ICS/OT Threat Coverage
+      > Defines a security architecture model (zones, conduits, Purdue Reference Model alignment) that establishes the scope boundaries for threat modeling across the entire ICS network, from the enterprise zone to field devices.
+
+    - Embedded Device Coverage
+      > IEC 62443-4-2 specifies component-level security requirements for embedded devices, and IEC 62443-4-1 defines the secure product development lifecycle applicable to embedded firmware and hardware.
+
+    - Safety-Security Integration
+      > Addresses the co-engineering of security and functional safety requirements, referencing IEC 61508 and providing guidance on avoiding conflicts between safety instrumented systems and cybersecurity controls.
+
+    - Operational Continuity
+      > Security levels (SL 1–4) allow organizations to select and justify proportionate security controls that preserve operational continuity while meeting compliance targets.
+
+    - Compliance Alignment
+      > IEC 62443 is the primary international standard for IACS security, referenced by EU NIS2, EU CRA, and national critical infrastructure protection regulations globally.
+
+    - Tooling and Community Adoption
+      > Widely adopted by asset owners, system integrators, and product vendors with a broad ecosystem of certification bodies, assessment tools, and implementation guides maintained by ISA Global Cybersecurity Alliance (ISAGCA).
+
+    - Risk-Based Prioritization
+      > IEC 62443-3-2 provides a structured risk assessment process for assigning Target Security Levels (SL-T) to zones and conduits, ensuring mitigations are proportionate to the risk level of each ICS segment.
+
+    - Adversary-Centric Approach
+      > Security level assignment is informed by threat profiles of adversaries targeting the specific operational context, from opportunistic attackers (SL 1) to nation-state actors pursuing physical process disruption (SL 4).
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > IEC 62443-3-2 risk assessment integrates with MITRE ATT&CK for ICS TTPs to map security level requirements to the techniques adversaries use to achieve tactical objectives within ICS zones and conduits.
 
 ## 4. Considered
 

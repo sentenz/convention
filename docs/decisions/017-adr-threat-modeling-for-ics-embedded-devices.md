@@ -283,7 +283,7 @@ Selected as the governing compliance and architectural framework for securing In
   - Methodology Gap
     > Provides requirements and a risk assessment process but does not prescribe a detailed threat identification methodology, requiring supplemental threat modeling frameworks.
 
-### 4.5. STRIDE (adapted for ICS)
+### 4.5. STRIDE
 
 [STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats) is a threat classification methodology developed by Microsoft that categorizes threats by the security property they violate: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege.
 

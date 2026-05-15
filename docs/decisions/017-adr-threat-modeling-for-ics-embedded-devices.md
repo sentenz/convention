@@ -36,7 +36,7 @@ Architectural Decision Records (ADR) on implementing Threat Modeling for Industr
 
 ## 2. Context
 
-Industrial Control Systems (ICS) and embedded devices operate in environments where cybersecurity threats carry safety-critical consequences. Unlike general-purpose IT systems, ICS/OT environments prioritize availability and physical process integrity, and embedded devices introduce hardware-level attack surfaces — including firmware, bootloaders, and constrained communication interfaces — that standard IT threat models do not adequately address.
+Industrial Control Systems (ICS) and embedded devices operate in environments where cybersecurity threats carry safety-critical consequences. Unlike general-purpose IT systems, ICS/OT environments prioritize availability and physical process integrity, and embedded devices introduce hardware-level attack surfaces, including firmware, bootloaders, and constrained communication interfaces.
 
 Selecting appropriate threat modeling frameworks is critical to identifying, assessing, and mitigating risks across ICS network architectures (zones and conduits), programmable logic controllers (PLCs), human-machine interfaces (HMIs), remote terminal units (RTUs), and the firmware and hardware of constrained embedded endpoints.
 

@@ -1,4 +1,4 @@
-# 017-ADR: Threat Modeling for ICS/Embedded Devices
+# 003-ADR: Threat Modeling for ICS/Embedded Devices
 
 Architectural Decision Records (ADR) on implementing Threat Modeling for Industrial Control Systems (ICS) and Embedded Devices.
 
@@ -96,7 +96,7 @@ Selected for its systematic, category-driven threat classification that enables 
       > Broad tooling support including Microsoft Threat Modeling Tool and OWASP Threat Dragon, with extensive documentation and community adoption across both IT and ICS security domains.
 
     - Risk-Based Prioritization
-      > STRIDE threat categories integrate with DREAD scoring and CVSS to support prioritized mitigation planning, enabling risk-ranked treatment of identified threats across ICS zones and embedded devices.
+      > STRIDE threat categories integrate with CVSS to support prioritized mitigation planning, enabling risk-ranked treatment of identified threats across ICS zones and embedded devices.
 
     - Adversary-Centric Approach
       > STRIDE categories can be mapped to attacker motivations and capabilities, enabling correlation of structural threats with threat actor profiles targeting ICS components across the identified trust boundaries.

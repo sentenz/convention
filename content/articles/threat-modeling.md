@@ -7,8 +7,8 @@ Threat modeling is a structured process for identifying, analyzing, and prioriti
 - [3. Category](#3-category)
   - [3.1. Threat Actors](#31-threat-actors)
     - [3.1.1. Nation-State Actors / Advanced Persistent Threats (APTs)](#311-nation-state-actors--advanced-persistent-threats-apts)
-    - [3.1.2. Cybercriminals](#312-cybercriminals)
-    - [3.1.3. Insider Threats](#313-insider-threats)
+    - [3.1.2. Insider Threats](#312-insider-threats)
+    - [3.1.3. Cybercriminals](#313-cybercriminals)
     - [3.1.4. Hacktivists](#314-hacktivists)
     - [3.1.5. Script Kiddies](#315-script-kiddies)
   - [3.2. Threat Frameworks](#32-threat-frameworks)
@@ -73,8 +73,8 @@ Threat actors are individuals, groups, or organizations with the motivation and 
 | #   | Threat Actor       | Skill Level | Resources | Persistence | Detection Difficulty | Primary Motivation                                      | Common Targets                                                            | Typical TTPs                                                                               |
 | --- | ------------------ | ----------- | --------- | ----------- | -------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | 1   | Nation-State / APT | Very High   | Very High | Very High   | Very High            | Espionage, Geopolitical Dominance, Strategic Objectives | Government, Defense, Critical Infrastructure, Research, Financial Systems | Zero-days, Supply Chain Attacks, Living-off-the-Land (LOTL), Lateral Movement, SIGINT      |
-| 2   | Cybercriminal      | Low–High    | Low–High  | Low–High    | Low–High             | Financial Gain                                          | Individuals, SMBs, Enterprises, Banks, Healthcare                         | Ransomware-as-a-Service, Phishing, BEC, Carding, Credential Theft, Identity Fraud          |
-| 3   | Insider Threat     | Low–High    | Low–High  | Low–High    | Very High            | Greed, Grievance, Coercion, or Negligence / Human Error | Employer's Sensitive Systems & Data                                       | Data Exfiltration, Sabotage, Privilege Abuse, Misconfiguration, Unauthorized Data Transfer |
+| 2   | Insider Threat     | Low–High    | Low–High  | Low–High    | Very High            | Greed, Grievance, Coercion, or Negligence / Human Error | Employer's Sensitive Systems & Data                                       | Data Exfiltration, Sabotage, Privilege Abuse, Misconfiguration, Unauthorized Data Transfer |
+| 3   | Cybercriminal      | Low–High    | Low–High  | Low–High    | Low–High             | Financial Gain                                          | Individuals, SMBs, Enterprises, Banks, Healthcare                         | Ransomware-as-a-Service, Phishing, BEC, Carding, Credential Theft, Identity Fraud          |
 | 4   | Hacktivist         | Low–Medium  | Low       | Low–Medium  | Low–Medium           | Political, Social, or Ideological Cause                 | Governments, Corporations, Media Outlets                                  | DDoS, Website Defacement, Doxing, Data Leaks                                               |
 | 5   | Script Kiddie      | Low–Medium  | Low       | Low         | Low                  | Curiosity, Notoriety, Thrill, or Mischief               | Random / Opportunistic Systems                                            | Pre-built Exploit Kits, DDoS-for-Hire, Unauthorized Vulnerability Discovery, Defacement    |
 
@@ -82,11 +82,7 @@ Threat actors are individuals, groups, or organizations with the motivation and 
 
 Nation-states are highly sophisticated threat actors with significant resources, often motivated by geopolitical objectives, espionage, or disruption. APTs are a subset of nation-state actors that conduct prolonged, targeted campaigns against specific organizations or sectors, often using custom malware and zero-day exploits to achieve their objectives.
 
-#### 3.1.2. Cybercriminals
-
-Cybercriminals are financially motivated threat actors who pursue illicit profit through ransomware, data theft, fraud, and account compromise. They range from individual opportunistic actors to structured groups that operate affiliate programs, sell access to compromised systems, and offer exploitation capabilities as commercial services.
-
-#### 3.1.3. Insider Threats
+#### 3.1.2. Insider Threats
 
 Insiders are individuals with legitimate access to organizational systems who may cause harm through malicious intent, negligence, or compromise by an external party.
 
@@ -98,6 +94,10 @@ Insiders are individuals with legitimate access to organizational systems who ma
   
 - Compromised Insiders
   > Manipulated or coerced by external threat actors to act on their behalf.
+
+#### 3.1.3. Cybercriminals
+
+Cybercriminals are financially motivated threat actors who pursue illicit profit through ransomware, data theft, fraud, and account compromise. They range from individual opportunistic actors to structured groups that operate affiliate programs, sell access to compromised systems, and offer exploitation capabilities as commercial services.
 
 #### 3.1.4. Hacktivists
 

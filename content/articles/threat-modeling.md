@@ -236,7 +236,7 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
 
 #### 3.2.8. MITRE ATT&CK
 
-[MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge)](https://attack.mitre.org/) is a globally accessible knowledge base of real-world adversary tactics and techniques based on observed cyberattacks. It provides a structured taxonomy that can be used in threat modeling to map realistic attack paths against system components.
+[MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge)](https://attack.mitre.org/) is a knowledge base of real-world adversary tactics and techniques based on observed cyberattacks. It provides a structured taxonomy that can be used in threat modeling to map realistic attack paths against system components.
 
 1. Domains and Categories
 
@@ -260,11 +260,19 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
     - [Techniques](https://attack.mitre.org/techniques/ics/)
       > A specific method used by adversaries to achieve a tactic, such as spearphishing, credential dumping, or data staging.
 
+      - Sub-technique
+        > A granular method that falls under a broader technique, providing additional detail on how a specific attack action is executed.
+
 #### 3.2.9. MITRE EMB3D
 
-[MITRE EMB3D (Embedded Device Threat Model)](https://emb3d.mitre.org/) is a knowledge base of cyber threats and associated mitigations for embedded devices developed by MITRE in critical infrastructure, IoT, automotive, healthcare, and manufacturing environments. EMB3D aligns with MITRE ATT&CK, CWE, and CVE to provide a property-based threat model that maps device features to specific threats and recommends mitigations tiered by implementation maturity.
+[MITRE EMB3D (Embedded Device Threat Model)](https://emb3d.mitre.org/) is a MITRE-developed knowledge base of cyber threats and associated mitigations for embedded devices found in critical infrastructure, IoT, automotive, healthcare, and manufacturing environments. EMB3D aligns with MITRE ATT&CK, CWE, and CVE to provide a property-based threat model that maps device features to specific threats and recommends mitigations tiered by implementation maturity.
 
-1. Concepts and Components
+1. Domains and Categories
+
+    - Embedded Devices
+      > Covers a wide range of embedded systems, including IoT devices, industrial control systems, automotive electronics, medical devices, and consumer electronics.
+
+2. Concepts and Components
 
     - [Device Properties](https://emb3d.mitre.org/properties-list/)
       > Describe the hardware and software features of a device, including physical hardware, network services and protocols, software, and firmware. Each property is mapped to a set of threats, enabling enumeration of threat exposure based on known device features.
@@ -285,16 +293,16 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
         > Threats targeting network services, protocols, and communication interfaces of the device.
 
     - [Mitigations](https://emb3d.mitre.org/mitigations)
-      > Security mechanisms for each threat, categorized by maturity level. Mitigations target device vendors for design-time security and asset owners for acquisition evaluation and compensating control decisions.
+      > Security mechanisms for each threat, categorized by implementation maturity level. Mitigations are intended for device vendors to implement at design time and for asset owners to evaluate during device acquisition.
 
       - [Foundational](https://emb3d.mitre.org/mitigations/foundational)
-        > Foundational (baseline controls) mitigations that should be implemented in all devices to address common threats.
+        > Baseline controls applicable to all devices, addressing the most common embedded device threats.
 
       - [Intermediate](https://emb3d.mitre.org/mitigations/intermediate)
-        > Intermediate (enhanced controls) mitigations that may require moderate design changes or additional resources.
+        > Enhanced controls addressing more complex threats, potentially requiring moderate design changes or additional device resources.
 
       - [Leading](https://emb3d.mitre.org/mitigations/leading)
-        > Leading (advanced controls) mitigations that may require significant design changes or emerging technologies.
+        > Advanced controls targeting sophisticated threats, potentially requiring significant design changes or emerging security technologies.
 
 ### 3.3. Terminology
 

@@ -10,6 +10,7 @@ Architectural Decision Records (ADR) on implementing Threat Modeling for Industr
   - [3.3. MITRE EMB3D](#33-mitre-emb3d)
   - [3.4. MITRE CWE](#34-mitre-cwe)
   - [3.5. IEC 62443](#35-iec-62443)
+  - [3.6. CVSS](#36-cvss)
 - [4. Considered](#4-considered)
   - [4.1. MITRE ATT\&CK for ICS](#41-mitre-attck-for-ics)
   - [4.2. MITRE EMB3D](#42-mitre-emb3d)
@@ -234,6 +235,39 @@ Selected as the governing compliance and architectural framework for securing In
 
     - TTP-Based Approach (Tactics, Techniques, Procedures)
       > IEC 62443-3-2 risk assessment integrates with MITRE ATT&CK for ICS TTPs to map security level requirements to the techniques adversaries use to achieve tactical objectives within ICS zones and conduits.
+
+### 3.6. CVSS
+
+Selected as the standardized vulnerability severity scoring framework that provides a quantitative, reproducible risk score for each identified vulnerability and weakness across the ICS and embedded device environment. CVSS supplies the numerical risk signal consumed by IEC 62443 security level assignment and STRIDE-based threat prioritization, enabling objective, comparable risk rankings aligned to ICS-specific environmental and temporal factors.
+
+1. Rationale
+
+    - ICS/OT Threat Coverage
+      > CVSS environmental metrics allow scoring customization to reflect the amplified impact of vulnerabilities in ICS contexts, including the disproportionate availability and safety consequences of moderate vulnerabilities in operational technology environments.
+
+    - Embedded Device Coverage
+      > Provides a standardized scoring mechanism for CVEs associated with embedded device firmware, hardware interfaces, and proprietary fieldbus protocol implementations, enabling consistent severity communication across diverse device types.
+
+    - Safety-Security Integration
+      > CVSS impact metrics (Confidentiality, Integrity, Availability) can be weighted to reflect the safety criticality of affected ICS components, ensuring that vulnerabilities with physical safety consequences receive appropriately elevated scores.
+
+    - Operational Continuity
+      > Temporal metrics allow scores to be adjusted as patch availability and remediation timelines evolve, enabling security teams to prioritize mitigations that protect operational continuity without requiring immediate process downtime.
+
+    - Compliance Alignment
+      > Required by EU CRA and referenced in IEC 62443-4-1 for product vulnerability documentation; NVD-published CVSS scores support compliance evidence and regulatory reporting obligations.
+
+    - Tooling and Community Adoption
+      > Universally adopted across vulnerability databases (NVD, CVE), security tools, and regulatory frameworks, with CVSS v4.0 extending coverage to OT, ICS, and safety system contexts.
+
+    - Risk-Based Prioritization
+      > Provides a standardized numerical risk score enabling direct comparison and ranked prioritization of vulnerabilities and STRIDE-identified threats across all ICS zones, conduits, and embedded devices.
+
+    - Adversary-Centric Approach
+      > Exploitability metrics (Attack Vector, Attack Complexity, Privileges Required) reflect attacker capability and access requirements, enabling scoring to be interpreted in terms of the adversary profiles relevant to each ICS zone.
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > CVSS scores are mapped to CVE records that reference MITRE ATT&CK techniques and CWE weaknesses, integrating quantitative risk scores directly into the TTP-to-weakness traceability chain established by the selected frameworks.
 
 ## 4. Considered
 
@@ -482,7 +516,7 @@ Selected as the governing compliance and architectural framework for securing In
 - Positive
 
   - Comprehensive ICS/Embedded Coverage
-    > Combining MITRE ATT&CK for ICS, MITRE EMB3D, STRIDE, MITRE CWE, and IEC 62443 provides layered coverage from enterprise OT network architecture through field device firmware and root-cause weakness analysis, addressing all layers of the ICS attack surface.
+    > Combining STRIDE, MITRE ATT&CK for ICS, MITRE EMB3D, MITRE CWE, IEC 62443, and CVSS provides layered coverage from enterprise OT network architecture through field device firmware, root-cause weakness analysis, and quantitative risk scoring, addressing all layers of the ICS attack surface.
 
   - Standards Alignment
     > Adoption of IEC 62443 as the governing architectural framework ensures that threat modeling outputs directly support compliance evidence for IEC 62443 certification and EU regulatory requirements.
@@ -491,12 +525,12 @@ Selected as the governing compliance and architectural framework for securing In
     > Explicit consideration of safety-security integration through IEC 62443 guidance and ICS-specific threat categories enables concurrent safety and security analysis, reducing the risk of conflicting requirements.
 
   - Evidence-Based Threat Prioritization
-    > STRIDE's systematic threat classification combined with ATT&CK for ICS techniques, EMB3D threat entries, and MITRE CWE weakness mappings enables risk-based prioritization grounded in structural threat analysis, observed ICS attack patterns, and technical root causes.
+    > STRIDE's systematic threat classification combined with ATT&CK for ICS techniques, EMB3D threat entries, MITRE CWE weakness mappings, and CVSS severity scores enables risk-based prioritization grounded in structural threat analysis, observed ICS attack patterns, technical root causes, and quantitative vulnerability scoring.
 
 - Negative
 
   - Framework Complexity
-    > Operating four complementary frameworks simultaneously requires clear scoping, defined handoff points, and trained personnel to avoid gaps or duplication between framework outputs.
+    > Operating six complementary frameworks simultaneously requires clear scoping, defined handoff points, and trained personnel to avoid gaps or duplication between framework outputs.
 
   - Learning Curve
     > Teams transitioning from IT-centric security practices require dedicated training in ICS/OT threat modeling concepts, IEC 62443 architecture, and embedded hardware security fundamentals.
@@ -535,7 +569,7 @@ Selected as the governing compliance and architectural framework for securing In
 
 5. Risk Assessment and Security Level Assignment
 
-    Apply IEC 62443-3-2 risk assessment procedures to assign Target Security Levels (SL-T) to each zone and conduit based on the identified STRIDE threats and ATT&CK for ICS techniques. Map EMB3D mitigations and ATT&CK for ICS countermeasures to the security requirements defined in IEC 62443-3-3 (system) and IEC 62443-4-2 (component).
+    Apply IEC 62443-3-2 risk assessment procedures to assign Target Security Levels (SL-T) to each zone and conduit based on the identified STRIDE threats and ATT&CK for ICS techniques. Score identified vulnerabilities and CWE-mapped weaknesses using CVSS with ICS-appropriate environmental metrics to produce quantitative risk rankings. Map EMB3D mitigations and ATT&CK for ICS countermeasures to the security requirements defined in IEC 62443-3-3 (system) and IEC 62443-4-2 (component).
 
 6. Mitigation Planning
 
@@ -552,6 +586,7 @@ Selected as the governing compliance and architectural framework for securing In
 - MITRE [ATT&CK for ICS](https://attack.mitre.org/matrices/ics/) page.
 - MITRE [EMB3D](https://emb3d.mitre.org/) page.
 - MITRE [CWE](https://cwe.mitre.org/) page.
+- FIRST [CVSS](https://www.first.org/cvss/) page.
 - ISA/IEC [62443 Series of Standards](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards) page.
 - NIST [SP 800-82 Rev. 3: Guide to OT Security](https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final) page.
 - CISA [ICS Security](https://www.cisa.gov/topics/industrial-control-systems) page.

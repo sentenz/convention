@@ -18,6 +18,10 @@ Architectural Decision Records (ADR) on implementing Threat Modeling for Industr
   - [4.6. Attack Trees](#46-attack-trees)
   - [4.7. CVSS](#47-cvss)
   - [4.8. OCTAVE Allegro](#48-octave-allegro)
+  - [4.9. PASTA](#49-pasta)
+  - [4.10. DREAD](#410-dread)
+  - [4.11. LINDDUN](#411-linddun)
+  - [4.12. MITRE CWE](#412-mitre-cwe)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -54,6 +58,15 @@ Selecting appropriate threat modeling frameworks is critical to identifying, ass
     - Tooling and Community Adoption
       > Availability of tooling, maintained knowledge bases, and community support within the OT and embedded security domain.
 
+    - Risk-Based Prioritization
+      > Frameworks should support quantitative or qualitative scoring of identified threats to enable prioritized mitigation planning aligned with the operational and safety risk profile of each ICS zone and embedded device.
+
+    - Adversary-Centric Approach
+      > Frameworks should incorporate threat actor profiling — including nation-state APTs, insiders, and supply chain adversaries — to ensure threat identification reflects the motivations and capabilities of realistic ICS attackers.
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > Frameworks should map identified threats to structured TTP taxonomies, enabling teams to reason about how adversaries operate within ICS and embedded environments and to detect or block specific attack steps.
+
 ## 3. Decision
 
 ### 3.1. MITRE ATT&CK for ICS
@@ -80,6 +93,15 @@ Selected for its structured, real-world-based taxonomy of adversary tactics and 
     - Tooling and Community Adoption
       > Maintained by MITRE with a dedicated ICS matrix, ATT&CK Navigator support, and integration with leading ICS security platforms such as Claroty and Dragos.
 
+    - Risk-Based Prioritization
+      > Techniques include frequency and impact metadata, and ATT&CK Navigator supports heat-mapping and prioritization of techniques based on their observed prevalence in ICS incidents.
+
+    - Adversary-Centric Approach
+      > The Groups matrix maps techniques to named threat actor groups (e.g., Sandworm, XENOTIME) known to target ICS, enabling direct adversary-based threat scenario construction.
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > Structured as a TTP taxonomy with ICS-specific tactic categories and associated techniques, providing a native TTP language for ICS threat modeling and detection engineering.
+
 ### 3.2. MITRE EMB3D
 
 Selected for its property-based approach to enumerating threats against embedded devices, enabling threat identification grounded in the specific hardware and software characteristics of a target device. MITRE EMB3D fills the gap between general ICS frameworks and hardware-level embedded device security by mapping device features directly to threats and tiered mitigations.
@@ -103,6 +125,15 @@ Selected for its property-based approach to enumerating threats against embedded
 
     - Tooling and Community Adoption
       > Maintained by MITRE with an online knowledge base, structured threat and mitigation catalog, and alignment with the broader MITRE ATT&CK and CWE ecosystems.
+
+    - Risk-Based Prioritization
+      > Mitigation maturity tiers (Foundational, Intermediate, Leading) enable prioritization of controls based on device criticality and resource constraints, supporting incremental risk reduction.
+
+    - Adversary-Centric Approach
+      > Threat entries reference associated MITRE ATT&CK for ICS and ATT&CK Enterprise techniques, enabling correlation of device-level threats to the adversary groups and campaigns that exploit them.
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > Each threat entry describes the threat actor's required actions and associated CWE weaknesses, providing a TTP-grounded view of how specific device properties are exploited.
 
 ### 3.3. TARA
 
@@ -128,6 +159,15 @@ Selected for its threat-agent-centric approach, which is particularly valuable i
     - Tooling and Community Adoption
       > Methodology is openly documented and applicable without specialized tooling, facilitating adoption by small OT security teams and embedded systems engineers.
 
+    - Risk-Based Prioritization
+      > Produces a threat agent risk register that ranks agents by their risk to each asset, providing a direct input for prioritizing mitigations and security investment across the ICS deployment.
+
+    - Adversary-Centric Approach
+      > Methodology is fundamentally adversary-centric, defining risk as a function of threat agent motivation and capability against each protected asset, directly aligning with ICS threat actor profiles.
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > Threat agent profiles are linked to MITRE ATT&CK for ICS TTPs, connecting the adversary-centric assessment to the technique-level detail needed for control selection and detection engineering.
+
 ### 3.4. IEC 62443
 
 Selected as the governing compliance and architectural framework for securing Industrial Automation and Control Systems (IACS). IEC 62443 provides the zones-and-conduits security architecture model, security levels, and product development lifecycle requirements that define the structural boundaries within which all other threat modeling activities are performed.
@@ -151,6 +191,15 @@ Selected as the governing compliance and architectural framework for securing In
 
     - Tooling and Community Adoption
       > Widely adopted by asset owners, system integrators, and product vendors with a broad ecosystem of certification bodies, assessment tools, and implementation guides maintained by ISA Global Cybersecurity Alliance (ISAGCA).
+
+    - Risk-Based Prioritization
+      > IEC 62443-3-2 provides a structured risk assessment process for assigning Target Security Levels (SL-T) to zones and conduits, ensuring mitigations are proportionate to the risk level of each ICS segment.
+
+    - Adversary-Centric Approach
+      > Security level assignment is informed by threat profiles of adversaries targeting the specific operational context, from opportunistic attackers (SL 1) to nation-state actors pursuing physical process disruption (SL 4).
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > IEC 62443-3-2 risk assessment integrates with MITRE ATT&CK for ICS TTPs to map security level requirements to the techniques adversaries use to achieve tactical objectives within ICS zones and conduits.
 
 ## 4. Considered
 
@@ -314,6 +363,86 @@ Selected as the governing compliance and architectural framework for securing In
   - ICS Community Adoption
     > Limited adoption within the OT and embedded security community compared to IEC 62443 and MITRE ATT&CK for ICS, resulting in fewer ICS-specific guidance resources.
 
+### 4.9. PASTA
+
+[PASTA (Process for Attack Simulation and Threat Analysis)](https://www.iriusrisk.com/resources-blog/pasta-threat-modeling-methodology) is a seven-stage, risk-centric threat modeling methodology that aligns threat analysis with business objectives and simulates real attacker behavior to quantify risk in business terms.
+
+- Pros
+
+  - Business Alignment
+    > Connects technical threat analysis to business risk objectives and acceptable risk thresholds, supporting management communication and risk-based investment decisions.
+
+  - Attack Simulation
+    > Constructs attack trees and simulates viable attack paths to model how threats can be realized, providing concrete scenarios for ICS risk quantification.
+
+- Cons
+
+  - Complexity
+    > Seven-stage methodology is resource-intensive and time-consuming, making it impractical for smaller OT teams or time-constrained embedded device security assessments.
+
+  - ICS Specificity
+    > Designed primarily for enterprise IT and application environments; does not natively address ICS-specific threat categories, OT network architecture, or embedded device hardware threats.
+
+### 4.10. DREAD
+
+[DREAD](https://owasp.org/www-community/Threat_Modeling_Process) is a qualitative risk-scoring framework that ranks threats by assigning scores across five dimensions — Damage, Reproducibility, Exploitability, Affected Users, and Discoverability — to prioritize identified threats.
+
+- Pros
+
+  - Prioritization
+    > Provides a lightweight scoring mechanism to rank and compare identified threats, enabling teams to focus remediation effort on the highest-risk items.
+
+  - Simplicity
+    > Straightforward scoring model that can be applied alongside STRIDE or other threat identification frameworks without significant additional process overhead.
+
+- Cons
+
+  - Subjectivity
+    > Scoring is qualitative and susceptible to inconsistency across analysts without calibrated criteria specific to ICS impact and availability consequences.
+
+  - ICS Calibration
+    > Default scoring dimensions do not account for ICS-specific impact factors such as physical process disruption, safety system inhibition, or cascading effects across interconnected control zones.
+
+### 4.11. LINDDUN
+
+[LINDDUN](https://linddun.org/) is a privacy threat modeling framework that systematically identifies and addresses privacy threats in software systems using a structured taxonomy of seven privacy threat categories.
+
+- Pros
+
+  - Privacy Focus
+    > Addresses privacy threats systematically across seven categories, covering scenarios such as identifiability and non-compliance relevant to ICS systems processing operator data or connected to cloud platforms.
+
+  - Structure
+    > Structured methodology with supporting worksheets and data flow diagram-based analysis, enabling integration alongside security-focused ICS threat modeling frameworks.
+
+- Cons
+
+  - Scope
+    > Focused exclusively on privacy threats; does not address the safety-critical, availability-focused, or hardware-level security threats characteristic of ICS and embedded device environments.
+
+  - Relevance
+    > Privacy threats are a secondary concern in most ICS deployments relative to process integrity, availability, and functional safety; applying LINDDUN without strong data-processing context yields limited actionable output.
+
+### 4.12. MITRE CWE
+
+[MITRE CWE (Common Weakness Enumeration)](https://cwe.mitre.org/) is a community-developed dictionary of software and hardware weaknesses that provides a common language for describing security weaknesses at the code and design level, used as a foundation for vulnerability identification, tool coverage assessment, and root cause analysis.
+
+- Pros
+
+  - Weakness Taxonomy
+    > Provides a standardized catalog of software and hardware weaknesses enabling consistent root cause classification of vulnerabilities identified during threat modeling and security testing.
+
+  - Cross-Framework Alignment
+    > Directly referenced by MITRE EMB3D threat entries and CVE records, enabling seamless correlation between embedded device threat enumeration and underlying weakness categories.
+
+- Cons
+
+  - Scope
+    > Catalogs weaknesses rather than threats or attack paths; functions as a complementary reference for root cause analysis rather than a standalone threat modeling methodology.
+
+  - ICS Granularity
+    > General-purpose weakness catalog requires filtering and contextualization to identify entries relevant to ICS-specific protocols, hardware constraints, and operational technology contexts.
+
 ## 5. Consequences
 
 - Positive
@@ -388,6 +517,7 @@ Selected as the governing compliance and architectural framework for securing In
 - Sentenz [003-ADR: Threat Modeling](003-adr-threat-modeling.md) decision.
 - MITRE [ATT&CK for ICS](https://attack.mitre.org/matrices/ics/) page.
 - MITRE [EMB3D](https://emb3d.mitre.org/) page.
+- MITRE [CWE](https://cwe.mitre.org/) page.
 - ISA/IEC [62443 Series of Standards](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards) page.
 - NIST [SP 800-82 Rev. 3: Guide to OT Security](https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final) page.
 - CISA [ICS Security](https://www.cisa.gov/topics/industrial-control-systems) page.

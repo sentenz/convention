@@ -9,8 +9,8 @@ Architectural Decision Records (ADR) on implementing Threat Modeling for Industr
   - [3.2. MITRE ATT\&CK for ICS](#32-mitre-attck-for-ics)
   - [3.3. MITRE EMB3D](#33-mitre-emb3d)
   - [3.4. MITRE CWE](#34-mitre-cwe)
-  - [3.5. IEC 62443](#35-iec-62443)
-  - [3.6. CVSS](#36-cvss)
+  - [3.5. CVSS](#35-cvss)
+  - [3.6. IEC 62443](#36-iec-62443)
 - [4. Considered](#4-considered)
   - [4.1. MITRE ATT\&CK for ICS](#41-mitre-attck-for-ics)
   - [4.2. MITRE EMB3D](#42-mitre-emb3d)
@@ -203,40 +203,7 @@ Selected as the foundational weakness taxonomy that underpins vulnerability iden
     - TTP-Based Approach (Tactics, Techniques, Procedures)
       > CWE weakness entries are cross-referenced with MITRE ATT&CK for ICS techniques and MITRE EMB3D threat entries, providing a complete TTP-to-weakness traceability chain from adversary tactic through technical root cause.
 
-### 3.5. IEC 62443
-
-Selected as the governing compliance and architectural framework for securing Industrial Automation and Control Systems (IACS). IEC 62443 provides the zones-and-conduits security architecture model, security levels, and product development lifecycle requirements that define the structural boundaries within which all other threat modeling activities are performed.
-
-1. Rationale
-
-    - ICS/OT Threat Coverage
-      > Defines a security architecture model (zones, conduits, Purdue Reference Model alignment) that establishes the scope boundaries for threat modeling across the entire ICS network, from the enterprise zone to field devices.
-
-    - Embedded Device Coverage
-      > IEC 62443-4-2 specifies component-level security requirements for embedded devices, and IEC 62443-4-1 defines the secure product development lifecycle applicable to embedded firmware and hardware.
-
-    - Safety-Security Integration
-      > Addresses the co-engineering of security and functional safety requirements, referencing IEC 61508 and providing guidance on avoiding conflicts between safety instrumented systems and cybersecurity controls.
-
-    - Operational Continuity
-      > Security levels (SL 1–4) allow organizations to select and justify proportionate security controls that preserve operational continuity while meeting compliance targets.
-
-    - Compliance Alignment
-      > IEC 62443 is the primary international standard for IACS security, referenced by EU NIS2, EU CRA, and national critical infrastructure protection regulations globally.
-
-    - Tooling and Community Adoption
-      > Widely adopted by asset owners, system integrators, and product vendors with a broad ecosystem of certification bodies, assessment tools, and implementation guides maintained by ISA Global Cybersecurity Alliance (ISAGCA).
-
-    - Risk-Based Prioritization
-      > IEC 62443-3-2 provides a structured risk assessment process for assigning Target Security Levels (SL-T) to zones and conduits, ensuring mitigations are proportionate to the risk level of each ICS segment.
-
-    - Adversary-Centric Approach
-      > Security level assignment is informed by threat profiles of adversaries targeting the specific operational context, from opportunistic attackers (SL 1) to nation-state actors pursuing physical process disruption (SL 4).
-
-    - TTP-Based Approach (Tactics, Techniques, Procedures)
-      > IEC 62443-3-2 risk assessment integrates with MITRE ATT&CK for ICS TTPs to map security level requirements to the techniques adversaries use to achieve tactical objectives within ICS zones and conduits.
-
-### 3.6. CVSS
+### 3.5. CVSS
 
 Selected as the standardized vulnerability severity scoring framework that provides a quantitative, reproducible risk score for each identified vulnerability and weakness across the ICS and embedded device environment. CVSS supplies the numerical risk signal consumed by IEC 62443 security level assignment and STRIDE-based threat prioritization, enabling objective, comparable risk rankings aligned to ICS-specific environmental and temporal factors.
 
@@ -268,6 +235,39 @@ Selected as the standardized vulnerability severity scoring framework that provi
 
     - TTP-Based Approach (Tactics, Techniques, Procedures)
       > CVSS scores are mapped to CVE records that reference MITRE ATT&CK techniques and CWE weaknesses, integrating quantitative risk scores directly into the TTP-to-weakness traceability chain established by the selected frameworks.
+
+### 3.6. IEC 62443
+
+Selected as the governing compliance and architectural framework for securing Industrial Automation and Control Systems (IACS). IEC 62443 provides the zones-and-conduits security architecture model, security levels, and product development lifecycle requirements that define the structural boundaries within which all other threat modeling activities are performed.
+
+1. Rationale
+
+    - ICS/OT Threat Coverage
+      > Defines a security architecture model (zones, conduits, Purdue Reference Model alignment) that establishes the scope boundaries for threat modeling across the entire ICS network, from the enterprise zone to field devices.
+
+    - Embedded Device Coverage
+      > IEC 62443-4-2 specifies component-level security requirements for embedded devices, and IEC 62443-4-1 defines the secure product development lifecycle applicable to embedded firmware and hardware.
+
+    - Safety-Security Integration
+      > Addresses the co-engineering of security and functional safety requirements, referencing IEC 61508 and providing guidance on avoiding conflicts between safety instrumented systems and cybersecurity controls.
+
+    - Operational Continuity
+      > Security levels (SL 1–4) allow organizations to select and justify proportionate security controls that preserve operational continuity while meeting compliance targets.
+
+    - Compliance Alignment
+      > IEC 62443 is the primary international standard for IACS security, referenced by EU NIS2, EU CRA, and national critical infrastructure protection regulations globally.
+
+    - Tooling and Community Adoption
+      > Widely adopted by asset owners, system integrators, and product vendors with a broad ecosystem of certification bodies, assessment tools, and implementation guides maintained by ISA Global Cybersecurity Alliance (ISAGCA).
+
+    - Risk-Based Prioritization
+      > IEC 62443-3-2 provides a structured risk assessment process for assigning Target Security Levels (SL-T) to zones and conduits, ensuring mitigations are proportionate to the risk level of each ICS segment.
+
+    - Adversary-Centric Approach
+      > Security level assignment is informed by threat profiles of adversaries targeting the specific operational context, from opportunistic attackers (SL 1) to nation-state actors pursuing physical process disruption (SL 4).
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > IEC 62443-3-2 risk assessment integrates with MITRE ATT&CK for ICS TTPs to map security level requirements to the techniques adversaries use to achieve tactical objectives within ICS zones and conduits.
 
 ## 4. Considered
 
@@ -582,11 +582,10 @@ Selected as the standardized vulnerability severity scoring framework that provi
 ## 7. References
 
 - Sentenz [Threat Modeling](../articles/threat-modeling.md) article.
-- Sentenz [003-ADR: Threat Modeling](003-adr-threat-modeling.md) decision.
 - MITRE [ATT&CK for ICS](https://attack.mitre.org/matrices/ics/) page.
 - MITRE [EMB3D](https://emb3d.mitre.org/) page.
 - MITRE [CWE](https://cwe.mitre.org/) page.
 - FIRST [CVSS](https://www.first.org/cvss/) page.
-- ISA/IEC [62443 Series of Standards](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards) page.
+- ISA/IEC [62443](https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards) page.
 - NIST [SP 800-82 Rev. 3: Guide to OT Security](https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final) page.
 - CISA [ICS Security](https://www.cisa.gov/topics/industrial-control-systems) page.

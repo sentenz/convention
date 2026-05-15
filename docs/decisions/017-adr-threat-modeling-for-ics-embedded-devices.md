@@ -7,8 +7,9 @@ Architectural Decision Records (ADR) on implementing Threat Modeling for Industr
 - [3. Decision](#3-decision)
   - [3.1. MITRE ATT\&CK for ICS](#31-mitre-attck-for-ics)
   - [3.2. MITRE EMB3D](#32-mitre-emb3d)
-  - [3.3. TARA](#33-tara)
+  - [3.3. STRIDE](#33-stride)
   - [3.4. IEC 62443](#34-iec-62443)
+  - [3.5. MITRE CWE](#35-mitre-cwe)
 - [4. Considered](#4-considered)
   - [4.1. MITRE ATT\&CK for ICS](#41-mitre-attck-for-ics)
   - [4.2. MITRE EMB3D](#42-mitre-emb3d)
@@ -135,38 +136,38 @@ Selected for its property-based approach to enumerating threats against embedded
     - TTP-Based Approach (Tactics, Techniques, Procedures)
       > Each threat entry describes the threat actor's required actions and associated CWE weaknesses, providing a TTP-grounded view of how specific device properties are exploited.
 
-### 3.3. TARA
+### 3.3. STRIDE
 
-Selected for its threat-agent-centric approach, which is particularly valuable in ICS/OT environments where adversary motivation and capability determine the credibility of threat scenarios. TARA provides a structured methodology for profiling realistic threat actors — including nation-states, insider threats, and cybercriminals targeting critical infrastructure — and translating those profiles into prioritized risk assessments.
+Selected for its systematic, category-driven threat classification that enables structured enumeration of threats across all ICS components, data flows, and trust boundaries using Data Flow Diagrams (DFDs). STRIDE provides a foundational threat identification methodology — covering Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege — that integrates naturally with the IEC 62443 zones-and-conduits architecture model and serves as the primary threat classification layer for all subsequent risk-scoring and TTP-mapping activities.
 
 1. Rationale
 
     - ICS/OT Threat Coverage
-      > Enables profiling of ICS-relevant threat agents such as nation-state APT groups targeting operational technology, insider operators with privileged physical access, and supply chain adversaries.
+      > Systematically enumerates threats across six categories applicable to ICS data flows, trust boundaries, and components within zones-and-conduits architectures, providing complete structural threat coverage of the OT environment.
 
     - Embedded Device Coverage
-      > Supports assessment of threat agents motivated to target embedded device firmware, hardware supply chains, and proprietary industrial communication protocols.
+      > DFD-based decomposition exposes threats at the communication boundaries and process interfaces of constrained embedded devices, including Tampering threats against device firmware and Spoofing threats against fieldbus identities.
 
     - Safety-Security Integration
-      > Focuses threat analysis on adversaries with the capability and motivation to cause physical harm or safety system compromise, ensuring safety-critical scenarios receive appropriate priority.
+      > The Tampering and Denial of Service categories map directly to process integrity threats and availability attacks with safety-critical consequences, enabling explicit safety-security co-analysis within the STRIDE enumeration process.
 
     - Operational Continuity
-      > Risk prioritization based on threat agent profiles allows security teams to focus mitigation effort on credible, high-impact agents while avoiding unnecessary disruption to operational processes.
+      > The Denial of Service category explicitly addresses availability threats at each ICS data flow and component, supporting systematic analysis of operational impact scenarios in high-availability OT environments.
 
     - Compliance Alignment
-      > Provides documented threat agent assessments that support risk management evidence requirements under IEC 62443-3-2 security risk assessment and IEC 62443-4-1 product security development lifecycle.
+      > Aligns with IEC 62443 threat analysis requirements and supports structured threat identification evidence for compliance demonstrations under IEC 62443-3-2 and IEC 62443-4-1.
 
     - Tooling and Community Adoption
-      > Methodology is openly documented and applicable without specialized tooling, facilitating adoption by small OT security teams and embedded systems engineers.
+      > Broad tooling support including Microsoft Threat Modeling Tool and OWASP Threat Dragon, with extensive documentation and community adoption across both IT and ICS security domains.
 
     - Risk-Based Prioritization
-      > Produces a threat agent risk register that ranks agents by their risk to each asset, providing a direct input for prioritizing mitigations and security investment across the ICS deployment.
+      > STRIDE threat categories integrate with DREAD scoring and CVSS to support prioritized mitigation planning, enabling risk-ranked treatment of identified threats across ICS zones and embedded devices.
 
     - Adversary-Centric Approach
-      > Methodology is fundamentally adversary-centric, defining risk as a function of threat agent motivation and capability against each protected asset, directly aligning with ICS threat actor profiles.
+      > STRIDE categories can be mapped to attacker motivations and capabilities, enabling correlation of structural threats with threat actor profiles targeting ICS components across the identified trust boundaries.
 
     - TTP-Based Approach (Tactics, Techniques, Procedures)
-      > Threat agent profiles are linked to MITRE ATT&CK for ICS TTPs, connecting the adversary-centric assessment to the technique-level detail needed for control selection and detection engineering.
+      > STRIDE threat categories align with MITRE ATT&CK for ICS tactics, enabling cross-referencing between structural DFD-based threat analysis and TTP-based threat intelligence for detection and response engineering.
 
 ### 3.4. IEC 62443
 
@@ -200,6 +201,39 @@ Selected as the governing compliance and architectural framework for securing In
 
     - TTP-Based Approach (Tactics, Techniques, Procedures)
       > IEC 62443-3-2 risk assessment integrates with MITRE ATT&CK for ICS TTPs to map security level requirements to the techniques adversaries use to achieve tactical objectives within ICS zones and conduits.
+
+### 3.5. MITRE CWE
+
+Selected as the foundational weakness taxonomy that underpins vulnerability identification, threat entry cross-referencing, and root cause analysis across all other selected frameworks. MITRE CWE provides the common language for classifying software and hardware weaknesses at the code and design level, and is directly referenced by MITRE EMB3D threat entries and CVE records, enabling a complete traceability chain from adversary tactic through technical weakness to mitigation.
+
+1. Rationale
+
+    - ICS/OT Threat Coverage
+      > Maps software and hardware weaknesses to ICS-relevant vulnerability categories, enabling structured root cause classification for weaknesses identified across OT components, fieldbus interfaces, and field devices.
+
+    - Embedded Device Coverage
+      > Includes dedicated hardware weakness categories covering firmware, bootloader, memory protection, and hardware interface weaknesses relevant to constrained embedded devices, complementing the MITRE EMB3D threat enumeration.
+
+    - Safety-Security Integration
+      > CWE weakness entries document the technical root causes of vulnerabilities that can compromise safety-critical device properties, linking security weakness identification to functional safety impact analysis.
+
+    - Operational Continuity
+      > Identifies weaknesses that could lead to availability failures in OT environments, supporting weakness-level root cause analysis of denial-of-service risks and process disruption scenarios in ICS deployments.
+
+    - Compliance Alignment
+      > Referenced by EU CRA for vulnerability documentation and product security transparency, and used in IEC 62443-4-1 secure development lifecycle activities for weakness identification and remediation tracking.
+
+    - Tooling and Community Adoption
+      > Maintained by MITRE with broad integration across static analysis tools, vulnerability scanners, and the NVD/CVE ecosystem, with specific hardware and firmware CWE entries relevant to embedded security workflows.
+
+    - Risk-Based Prioritization
+      > CWE severity data and CVSS scores associated with CWE-mapped CVEs support risk-based prioritization of identified weaknesses, enabling prioritized treatment of the threats and vulnerabilities most relevant to ICS safety and availability.
+
+    - Adversary-Centric Approach
+      > CWE entries reference associated CVEs exploited in real-world attacks, enabling correlation of design weaknesses with adversary campaigns and techniques targeting ICS and embedded systems.
+
+    - TTP-Based Approach (Tactics, Techniques, Procedures)
+      > CWE weakness entries are cross-referenced with MITRE ATT&CK for ICS techniques and MITRE EMB3D threat entries, providing a complete TTP-to-weakness traceability chain from adversary tactic through technical root cause.
 
 ## 4. Considered
 
@@ -448,7 +482,7 @@ Selected as the governing compliance and architectural framework for securing In
 - Positive
 
   - Comprehensive ICS/Embedded Coverage
-    > Combining MITRE ATT&CK for ICS, MITRE EMB3D, TARA, and IEC 62443 provides layered coverage from enterprise OT network architecture through field device firmware, addressing all layers of the ICS attack surface.
+    > Combining MITRE ATT&CK for ICS, MITRE EMB3D, STRIDE, MITRE CWE, and IEC 62443 provides layered coverage from enterprise OT network architecture through field device firmware and root-cause weakness analysis, addressing all layers of the ICS attack surface.
 
   - Standards Alignment
     > Adoption of IEC 62443 as the governing architectural framework ensures that threat modeling outputs directly support compliance evidence for IEC 62443 certification and EU regulatory requirements.
@@ -457,7 +491,7 @@ Selected as the governing compliance and architectural framework for securing In
     > Explicit consideration of safety-security integration through IEC 62443 guidance and ICS-specific threat categories enables concurrent safety and security analysis, reducing the risk of conflicting requirements.
 
   - Evidence-Based Threat Prioritization
-    > TARA's adversary profiles combined with ATT&CK for ICS and EMB3D threat entries enable risk-based prioritization grounded in realistic attacker capabilities and observed ICS attack patterns.
+    > STRIDE's systematic threat classification combined with ATT&CK for ICS techniques, EMB3D threat entries, and MITRE CWE weakness mappings enables risk-based prioritization grounded in structural threat analysis, observed ICS attack patterns, and technical root causes.
 
 - Negative
 
@@ -491,17 +525,17 @@ Selected as the governing compliance and architectural framework for securing In
 
     For each embedded device in scope, enumerate device properties using the MITRE EMB3D property taxonomy, covering physical hardware, network services and protocols, software, and firmware characteristics. Capture properties in a device register to enable consistent threat enumeration across the device fleet.
 
-3. Threat Agent Profiling with TARA
+3. Threat Identification with STRIDE
 
-    Apply TARA to identify and profile threat agents relevant to the ICS environment, including nation-state APT groups, cybercriminal organizations, malicious insiders, and supply chain adversaries. For each agent, assess motivation and capability against the identified ICS assets to produce a prioritized threat agent risk register.
+    Apply STRIDE to each ICS component, data flow, and trust boundary identified in the architecture model, systematically enumerating threats across the six categories (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege). Map identified threats to MITRE ATT&CK for ICS techniques and MITRE CWE weakness entries to establish traceability from structural threat analysis to adversary tactics and technical root causes.
 
 4. Threat Enumeration
 
-    Use MITRE ATT&CK for ICS to enumerate adversary tactics and techniques applicable to the system-level architecture, mapping techniques to zones, conduits, and ICS components. Apply MITRE EMB3D to enumerate device-level threats for each embedded device based on its registered properties, covering Hardware, System Software, Application Software, and Networking threat categories.
+    Use MITRE ATT&CK for ICS to enumerate adversary tactics and techniques applicable to the system-level architecture, mapping techniques to zones, conduits, and ICS components. Apply MITRE EMB3D to enumerate device-level threats for each embedded device based on its registered properties, covering Hardware, System Software, Application Software, and Networking threat categories. Cross-reference identified threats and techniques with MITRE CWE entries to classify underlying weaknesses and support root cause analysis.
 
 5. Risk Assessment and Security Level Assignment
 
-    Apply IEC 62443-3-2 risk assessment procedures to assign Target Security Levels (SL-T) to each zone and conduit based on the identified threats and threat agent risk profiles. Map EMB3D mitigations and ATT&CK for ICS countermeasures to the security requirements defined in IEC 62443-3-3 (system) and IEC 62443-4-2 (component).
+    Apply IEC 62443-3-2 risk assessment procedures to assign Target Security Levels (SL-T) to each zone and conduit based on the identified STRIDE threats and ATT&CK for ICS techniques. Map EMB3D mitigations and ATT&CK for ICS countermeasures to the security requirements defined in IEC 62443-3-3 (system) and IEC 62443-4-2 (component).
 
 6. Mitigation Planning
 

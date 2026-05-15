@@ -1,27 +1,28 @@
 # Threat Modeling
 
-Threat modeling is a structured process for identifying, analyzing, and mitigating security threats to a system during design and development. It provides a systematic way to reason about adversarial conditions, expose potential vulnerabilities before they can be exploited, and drive security-aware architecture decisions throughout the software development lifecycle.
+Threat modeling is a structured process for identifying, analyzing, and prioritizing security threats to a system with the goal of defining appropriate mitigations. It is a proactive approach to security that helps organizations understand their attack surface, identify potential vulnerabilities, and implement controls to reduce risk before systems are built or deployed.
 
 - [1. Benefits](#1-benefits)
 - [2. Principles](#2-principles)
 - [3. Category](#3-category)
-  - [4.1. Threat Actors](#41-threat-actors)
-    - [4.1.1. Nation-State Actors / Advanced Persistent Threats (APTs)](#411-nation-state-actors--advanced-persistent-threats-apts)
-    - [4.1.2. Cybercriminals](#412-cybercriminals)
-    - [4.1.3. Insider Threats](#413-insider-threats)
-    - [4.1.4. Hacktivists](#414-hacktivists)
-    - [4.1.5. Script Kiddies](#415-script-kiddies)
-  - [4.2. Threat Frameworks](#42-threat-frameworks)
-    - [4.2.1. STRIDE](#421-stride)
-    - [4.2.2. PASTA](#422-pasta)
-    - [4.2.3. DREAD](#423-dread)
-    - [4.2.4. LINDDUN](#424-linddun)
-    - [4.2.5. OCTAVE](#425-octave)
-    - [4.2.6. Attack Trees](#426-attack-trees)
-    - [4.2.7. TARA](#427-tara)
-    - [4.2.8. MITRE ATT\&CK](#428-mitre-attck)
-  - [4.3. Terminology](#43-terminology)
-- [5. References](#5-references)
+  - [3.1. Threat Actors](#31-threat-actors)
+    - [3.1.1. Nation-State Actors / Advanced Persistent Threats (APTs)](#311-nation-state-actors--advanced-persistent-threats-apts)
+    - [3.1.2. Cybercriminals](#312-cybercriminals)
+    - [3.1.3. Insider Threats](#313-insider-threats)
+    - [3.1.4. Hacktivists](#314-hacktivists)
+    - [3.1.5. Script Kiddies](#315-script-kiddies)
+  - [3.2. Threat Frameworks](#32-threat-frameworks)
+    - [3.2.1. STRIDE](#321-stride)
+    - [3.2.2. PASTA](#322-pasta)
+    - [3.2.3. DREAD](#323-dread)
+    - [3.2.4. LINDDUN](#324-linddun)
+    - [3.2.5. OCTAVE](#325-octave)
+    - [3.2.6. Attack Trees](#326-attack-trees)
+    - [3.2.7. TARA](#327-tara)
+    - [3.2.8. MITRE ATT\&CK](#328-mitre-attck)
+    - [3.2.9. MITRE EMB3D](#329-mitre-emb3d)
+  - [3.3. Terminology](#33-terminology)
+- [4. References](#4-references)
 
 ## 1. Benefits
 
@@ -55,7 +56,7 @@ Threat modeling is a structured process for identifying, analyzing, and mitigati
   > By identifying multiple attack paths and their corresponding mitigations, threat modeling promotes layered defenses so that no single point of failure exposes the system to an attacker.
 
 - CIA Triad
-  > Threat modeling classifies each identified threat by the security property it violates Confidentiality, Integrity, or Availability ensuring that mitigations directly address the specific risk to each property.
+  > Threat modeling classifies each identified threat by the security property it violates: Confidentiality, Integrity, or Availability, ensuring that mitigations directly address the specific risk to each property.
 
 - Risk-Based Prioritization
   > Threat modeling ranks identified threats by likelihood and impact so that security effort is directed at the highest-priority risks first, rather than applied uniformly across all findings.
@@ -65,7 +66,7 @@ Threat modeling is a structured process for identifying, analyzing, and mitigati
 
 ## 3. Category
 
-### 4.1. Threat Actors
+### 3.1. Threat Actors
 
 Threat actors are individuals, groups, or organizations with the motivation and capability to carry out attacks against systems, data, or infrastructure.
 
@@ -77,15 +78,15 @@ Threat actors are individuals, groups, or organizations with the motivation and 
 | 4   | Hacktivist         | Low–Medium  | Low       | Low–Medium  | Low–Medium           | Political, Social, or Ideological Cause                 | Governments, Corporations, Media Outlets                                  | DDoS, Website Defacement, Doxing, Data Leaks                                               |
 | 5   | Script Kiddie      | Low–Medium  | Low       | Low         | Low                  | Curiosity, Notoriety, Thrill, or Mischief               | Random / Opportunistic Systems                                            | Pre-built Exploit Kits, DDoS-for-Hire, Unauthorized Vulnerability Discovery, Defacement    |
 
-#### 4.1.1. Nation-State Actors / Advanced Persistent Threats (APTs)
+#### 3.1.1. Nation-State Actors / Advanced Persistent Threats (APTs)
 
 Nation-states are highly sophisticated threat actors with significant resources, often motivated by geopolitical objectives, espionage, or disruption. APTs are a subset of nation-state actors that conduct prolonged, targeted campaigns against specific organizations or sectors, often using custom malware and zero-day exploits to achieve their objectives.
 
-#### 4.1.2. Cybercriminals
+#### 3.1.2. Cybercriminals
 
 Cybercriminals are financially motivated threat actors who pursue illicit profit through ransomware, data theft, fraud, and account compromise. They range from individual opportunistic actors to structured groups that operate affiliate programs, sell access to compromised systems, and offer exploitation capabilities as commercial services.
 
-#### 4.1.3. Insider Threats
+#### 3.1.3. Insider Threats
 
 Insiders are individuals with legitimate access to organizational systems who may cause harm through malicious intent, negligence, or compromise by an external party.
 
@@ -98,19 +99,19 @@ Insiders are individuals with legitimate access to organizational systems who ma
 - Compromised Insiders
   > Manipulated or coerced by external threat actors to act on their behalf.
 
-#### 4.1.4. Hacktivists
+#### 3.1.4. Hacktivists
 
 Hacktivists are ideologically motivated threat actors who target organizations to promote a cause or agenda, often through defacement, DDoS attacks, or data leaks.
 
-#### 4.1.5. Script Kiddies
+#### 3.1.5. Script Kiddies
 
 Script kiddies are low-skill threat actors who rely on pre-built exploit kits, publicly available scripts, and automated tools to conduct opportunistic attacks, typically motivated by curiosity, notoriety, or the thrill of unauthorized access rather than targeted objectives.
 
-### 4.2. Threat Frameworks
+### 3.2. Threat Frameworks
 
 Threat modeling provides structured methodologies for systematically identifying, categorizing, and analyzing threats. The choice of framework depends on the system type, team expertise, and desired level of rigor.
 
-#### 4.2.1. STRIDE
+#### 3.2.1. STRIDE
 
 STRIDE is a threat categorization model developed by Microsoft that classifies threats into six categories mapped to violated security properties. It is widely used during design reviews and is well-suited for analyzing individual components and trust boundaries in a Data Flow Diagram.
 
@@ -125,7 +126,7 @@ STRIDE is a threat categorization model developed by Microsoft that classifies t
     | Denial of Service      | Availability      | Disrupting system availability by exhausting resources or crashing services.                             |
     | Elevation of Privilege | Authorization     | Gaining capabilities beyond those which were intended or authorized.                                     |
 
-#### 4.2.2. PASTA
+#### 3.2.2. PASTA
 
 PASTA (Process for Attack Simulation and Threat Analysis) is a seven-stage, risk-centric threat modeling methodology that aligns threat analysis with business objectives. It focuses on simulating real attacker behavior and quantifying risk in business terms, making it well-suited for enterprise environments where threat modeling must feed into risk management decisions.
 
@@ -152,7 +153,7 @@ PASTA (Process for Attack Simulation and Threat Analysis) is a seven-stage, risk
     - Risk and Impact Analysis
       > Quantify residual risk, prioritize threats by business impact, and recommend countermeasures.
 
-#### 4.2.3. DREAD
+#### 3.2.3. DREAD
 
 DREAD is a qualitative risk-scoring framework used to rank threats by assigning scores across five dimensions. It is commonly used alongside STRIDE to prioritize the threats identified in a model.
 
@@ -169,7 +170,7 @@ DREAD is a qualitative risk-scoring framework used to rank threats by assigning 
     | Affected Users  | What proportion of users or systems are affected if the threat is realized?  |
     | Discoverability | How easily can an attacker detect and locate the vulnerability?              |
 
-#### 4.2.4. LINDDUN
+#### 3.2.4. LINDDUN
 
 LINDDUN is a privacy-focused threat modeling framework that categorizes threats against privacy requirements. It mirrors the structure of STRIDE but applies to privacy properties, making it applicable to systems processing personal data under regulations such as GDPR or CCPA.
 
@@ -185,7 +186,7 @@ LINDDUN is a privacy-focused threat modeling framework that categorizes threats 
     | Unawareness               | Transparency              | Limiting a subject's knowledge of how their data is collected and used.                  |
     | Non-compliance            | Compliance                | Failing to adhere to privacy policies, regulations, or user consent agreements.          |
 
-#### 4.2.5. OCTAVE
+#### 3.2.5. OCTAVE
 
 OCTAVE (Operationally Critical Threat, Asset, and Vulnerability Evaluation) is an organizational risk assessment framework developed by Carnegie Mellon University's CERT. It focuses on operational risk from a business perspective rather than purely technical threats, making it suitable for enterprise-wide security assessments.
 
@@ -200,7 +201,7 @@ OCTAVE (Operationally Critical Threat, Asset, and Vulnerability Evaluation) is a
     - OCTAVE Allegro
       > A simplified, asset-centric variant that focuses on information assets in their operational context without requiring extensive infrastructure analysis.
 
-#### 4.2.6. Attack Trees
+#### 3.2.6. Attack Trees
 
 Attack trees are a formal, hierarchical model for representing how an attacker can achieve a specific goal. The root node represents the attacker's objective, and child nodes represent sub-goals or conditions that must be met. Nodes are decomposed until they reach atomic attack steps.
 
@@ -215,7 +216,7 @@ Attack trees are a formal, hierarchical model for representing how an attacker c
     - Leaf Node
       > Represents an atomic attack step that cannot be further decomposed.
 
-#### 4.2.7. TARA
+#### 3.2.7. TARA
 
 TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that identifies threat agents — individuals or groups with the motivation and capability to attack a system — and assesses the risk posed by each agent against specific assets. It focuses on the human dimension of threats and aligns risk analysis with realistic attacker profiles.
 
@@ -233,9 +234,9 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
     - Select Countermeasures
       > Prioritize controls based on which threat agents pose the greatest risk to each asset.
 
-#### 4.2.8. MITRE ATT&CK
+#### 3.2.8. MITRE ATT&CK
 
-MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) is a globally accessible knowledge base of real-world adversary tactics and techniques based on observed cyberattacks. It provides a structured taxonomy that can be used in threat modeling to map realistic attack paths against system components.
+[MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge)](https://attack.mitre.org/) is a globally accessible knowledge base of real-world adversary tactics and techniques based on observed cyberattacks. It provides a structured taxonomy that can be used in threat modeling to map realistic attack paths against system components.
 
 1. Domains and Categories
 
@@ -250,16 +251,52 @@ MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) is a global
 
 2. Concepts and Components
 
-    - Tactic
+    - [Matrix](https://attack.mitre.org/matrices/ics/)
+      > A tabular representation of tactics (columns) and techniques (rows) that allows users to explore how specific techniques are used to achieve tactical objectives.
+
+    - [Tactics](https://attack.mitre.org/tactics/ics/)
       > The adversary's tactical goal or objective, such as initial access, persistence, or exfiltration.
 
-    - Technique
+    - [Techniques](https://attack.mitre.org/techniques/ics/)
       > A specific method used by adversaries to achieve a tactic, such as spearphishing, credential dumping, or data staging.
 
-    - Sub-technique
-      > A more granular method that falls under a broader technique, providing additional detail on how an attack is executed.
+#### 3.2.9. MITRE EMB3D
 
-### 4.3. Terminology
+[MITRE EMB3D (Embedded Device Threat Model)](https://emb3d.mitre.org/) is a knowledge base of cyber threats and associated mitigations for embedded devices developed by MITRE in critical infrastructure, IoT, automotive, healthcare, and manufacturing environments. EMB3D aligns with MITRE ATT&CK, CWE, and CVE to provide a property-based threat model that maps device features to specific threats and recommends mitigations tiered by implementation maturity.
+
+1. Concepts and Components
+
+    - [Device Properties](https://emb3d.mitre.org/properties-list/)
+      > Describe the hardware and software features of a device, including physical hardware, network services and protocols, software, and firmware. Each property is mapped to a set of threats, enabling enumeration of threat exposure based on known device features.
+
+    - [Threats](https://emb3d.mitre.org/threats)
+      > Embedded-device threat entries identify how a threat actor can achieve a specific objective or effect on the device. Each threat entry describes the targeted technical features, the required threat actions, the resulting impact, and the associated CWE weaknesses.
+
+      - [Hardware](https://emb3d.mitre.org/threats/hardware)
+        > Threats targeting physical hardware components such as processors, memory, and interfaces.
+
+      - [System Software](https://emb3d.mitre.org/threats/system-software)
+        > Threats targeting operating systems, firmware, and bootloaders.
+
+      - [Application Software](https://emb3d.mitre.org/threats/application-software)
+        > Threats targeting application-layer software running on the device.
+
+      - [Networking](https://emb3d.mitre.org/threats/networking)
+        > Threats targeting network services, protocols, and communication interfaces of the device.
+
+    - [Mitigations](https://emb3d.mitre.org/mitigations)
+      > Security mechanisms for each threat, categorized by maturity level. Mitigations target device vendors for design-time security and asset owners for acquisition evaluation and compensating control decisions.
+
+      - [Foundational](https://emb3d.mitre.org/mitigations/foundational)
+        > Foundational (baseline controls) mitigations that should be implemented in all devices to address common threats.
+
+      - [Intermediate](https://emb3d.mitre.org/mitigations/intermediate)
+        > Intermediate (enhanced controls) mitigations that may require moderate design changes or additional resources.
+
+      - [Leading](https://emb3d.mitre.org/mitigations/leading)
+        > Leading (advanced controls) mitigations that may require significant design changes or emerging technologies.
+
+### 3.3. Terminology
 
 - Threat Modeling
   > A structured process for identifying, analyzing, and prioritizing security threats to a system with the goal of defining appropriate mitigations.
@@ -347,14 +384,17 @@ MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge) is a global
 
 - MITRE ATT&CK
   > A knowledge base of real-world adversary tactics, techniques, and procedures (TTPs) used to model and communicate realistic attack scenarios.
-
-## 5. References
+- MITRE EMB3D
+  > A knowledge base of cyber threats and associated mitigations for embedded devices, organized by device properties and threat categories, and aligned with MITRE ATT&CK, CWE, and CVE.
+>
+## 4. References
 
 - OWASP [Threat Modeling](https://owasp.org/www-community/Application_Threat_Modeling) page.
 - OWASP [Threat Modeling Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html) page.
 - Microsoft [Threat Modeling](https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling) page.
 - Microsoft [Threat Modeling Fundamentals](https://learn.microsoft.com/en-us/training/paths/tm-threat-modeling-fundamentals/) page.
 - MITRE [ATT&CK](https://attack.mitre.org/) page.
+- MITRE [EMB3D](https://emb3d.mitre.org/) page.
 - NIST [SP 800-30 Rev. 1](https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final) page.
 - Carnegie Mellon SEI [OCTAVE](https://www.sei.cmu.edu/our-work/projects/display.cfm?customel_datapageid_4050=21274) page.
 - ISO/IEC [27005](https://www.iso.org/standard/80585.html) page.

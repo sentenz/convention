@@ -1,5 +1,6 @@
 [codespell]
 skip = *.json,*.txt,*.log,.git,.spelling,*/node_modules,*/vendor,package-lock.json,package.json
+ignore-words-list = ot
 quiet-level = 3
 check-filenames =
 check-hidden =

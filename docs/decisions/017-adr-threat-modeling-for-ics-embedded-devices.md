@@ -14,7 +14,7 @@ Architectural Decision Records (ADR) on implementing Threat Modeling for Industr
   - [4.2. MITRE EMB3D](#42-mitre-emb3d)
   - [4.3. TARA](#43-tara)
   - [4.4. IEC 62443](#44-iec-62443)
-  - [4.5. STRIDE (adapted for ICS)](#45-stride-adapted-for-ics)
+  - [4.5. STRIDE](#45-stride)
   - [4.6. Attack Trees](#46-attack-trees)
   - [4.7. CVSS](#47-cvss)
   - [4.8. OCTAVE Allegro](#48-octave-allegro)

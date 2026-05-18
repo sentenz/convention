@@ -58,8 +58,6 @@ A Git hooks manager automates tasks during the Git workflow, such as linting, fo
 
 Lefthook is selected as the Git hooks manager due to its language-agnostic design, fast parallel execution, cross-platform support, and YAML-based declarative configuration that aligns with our existing toolchain conventions.
 
-The decision was reviewed after adding CaptainHook as a considered option, and Lefthook remains the best fit for our multi-language repository requirements.
-
 1. Rationale
 
     - Ease of Use
@@ -75,7 +73,7 @@ The decision was reviewed after adding CaptainHook as a considered option, and L
       > Lefthook requires no specific runtime (e.g., Node.js or Python) and integrates with any tool or script available in the shell environment, making it suitable for our multi-language repository.
 
     - Scope Fit
-      > CaptainHook is strong for PHP-centric workflows, but Lefthook better fits this repository scope by providing one baseline for all contributors without requiring PHP/Composer setup.
+      > Lefthook fits into the repository scope by providing one baseline for all contributors without requiring language-specific setup (e.g., PHP/Composer)
 
     - Configuration
       > The YAML-based `lefthook.yml` is declarative, version-controlled, and easy to read and update, consistent with other configuration files in the project.

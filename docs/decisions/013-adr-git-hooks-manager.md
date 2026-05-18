@@ -40,6 +40,9 @@ A Git hooks manager automates tasks during the Git workflow, such as linting, fo
     - Language Agnostic
       > The tool should not be tied to a specific programming language or runtime, supporting our multi-language environment.
 
+    - Scope Fit
+      > The tool should align with a polyglot repository baseline and avoid introducing language-specific onboarding requirements.
+
     - Configuration
       > The configuration should be declarative, human-readable, and easy to maintain.
 
@@ -71,6 +74,9 @@ The decision was reviewed after adding CaptainHook as a considered option, and L
     - Language Agnostic
       > Lefthook requires no specific runtime (e.g., Node.js or Python) and integrates with any tool or script available in the shell environment, making it suitable for our multi-language repository.
 
+    - Scope Fit
+      > CaptainHook is strong for PHP-centric workflows, but Lefthook better fits this repository scope by providing one baseline for all contributors without requiring PHP/Composer setup.
+
     - Configuration
       > The YAML-based `lefthook.yml` is declarative, version-controlled, and easy to read and update, consistent with other configuration files in the project.
 
@@ -79,9 +85,6 @@ The decision was reviewed after adding CaptainHook as a considered option, and L
 
     - Community and Ecosystem
       > Lefthook is actively maintained by Evil Martians, has comprehensive documentation, and supports a growing ecosystem of integrations.
-
-    - Scope Fit
-      > CaptainHook provides strong workflows for PHP projects, but Lefthook remains a better fit for our polyglot repository because it avoids coupling to a language-specific runtime.
 
 ## 4. Considered
 

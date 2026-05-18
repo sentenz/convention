@@ -10,7 +10,8 @@ Architectural Decision Records (ADR) on implementing a Git Hooks Manager for Sof
   - [4.1. Git Hooks](#41-git-hooks)
   - [4.2. Husky](#42-husky)
   - [4.3. Lefthook](#43-lefthook)
-  - [4.4. Pre-commit](#44-pre-commit)
+  - [4.4. CaptainHook](#44-captainhook)
+  - [4.5. Pre-commit](#45-pre-commit)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -54,6 +55,8 @@ A Git hooks manager automates tasks during the Git workflow, such as linting, fo
 
 Lefthook is selected as the Git hooks manager due to its language-agnostic design, fast parallel execution, cross-platform support, and YAML-based declarative configuration that aligns with our existing toolchain conventions.
 
+The decision was reviewed after adding CaptainHook as a considered option, and Lefthook remains the best fit for our multi-language repository requirements.
+
 1. Rationale
 
     - Ease of Use
@@ -76,6 +79,9 @@ Lefthook is selected as the Git hooks manager due to its language-agnostic desig
 
     - Community and Ecosystem
       > Lefthook is actively maintained by Evil Martians, has comprehensive documentation, and supports a growing ecosystem of integrations.
+
+    - Scope Fit
+      > CaptainHook provides strong workflows for PHP projects, but Lefthook remains a better fit for our polyglot repository because it avoids coupling to a language-specific runtime.
 
 ## 4. Considered
 
@@ -209,7 +215,45 @@ commit-msg:
   - Adoption
     > Less established than Husky in the JavaScript ecosystem.
 
-### 4.4. Pre-commit
+### 4.4. CaptainHook
+
+[CaptainHook](https://github.com/captainhook-git/captainhook) is a Git hooks manager focused on PHP projects, distributed as a Composer package with hook orchestration, local actions, and optional CI integration.
+
+```json
+{
+  "require-dev": {
+    "captainhook/captainhook": "^5.0"
+  }
+}
+```
+
+```sh
+vendor/bin/captainhook install
+```
+
+- Pros
+
+  - Workflow Features
+    > Provides rich hook orchestration, including local actions and conditional execution support.
+
+  - Configuration
+    > Offers a dedicated JSON configuration with reusable actions and plugin extension points.
+
+  - PHP Ecosystem Integration
+    > Integrates naturally with Composer-based PHP projects and tooling.
+
+- Cons
+
+  - Runtime Dependency
+    > Requires a PHP and Composer runtime, which does not align with a language-agnostic baseline for all contributors.
+
+  - Scope Fit
+    > Primary ecosystem focus is PHP projects, while this repository spans multiple languages and toolchains.
+
+  - Onboarding
+    > Adds language-specific setup steps for contributors who do not otherwise need PHP in their development environment.
+
+### 4.5. Pre-commit
 
 [Pre-commit](https://pre-commit.com/) is a framework for managing and maintaining multi-language pre-commit hooks, configured via a `.pre-commit-config.yaml` file and pulling hook definitions from remote repositories.
 
@@ -305,4 +349,5 @@ repos:
 - Lefthook [Official Documentation](https://lefthook.dev/) page.
 - Lefthook [GitHub Repository](https://github.com/evilmartians/lefthook) page.
 - Husky [Official Documentation](https://typicode.github.io/husky/) page.
+- CaptainHook [GitHub Repository](https://github.com/captainhook-git/captainhook) page.
 - Pre-commit [Official Documentation](https://pre-commit.com/) page.

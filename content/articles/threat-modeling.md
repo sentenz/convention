@@ -10,7 +10,7 @@ Threat modeling is a structured process for identifying, analyzing, and prioriti
     - [3.1.2. Insider Threats](#312-insider-threats)
     - [3.1.3. Cybercriminals](#313-cybercriminals)
     - [3.1.4. Hacktivists](#314-hacktivists)
-    - [3.1.5. Script Kiddies](#315-script-kiddies)
+    - [3.1.5. Thrill Seekers](#315-thrill-seekers)
   - [3.2. Threat Frameworks](#32-threat-frameworks)
     - [3.2.1. STRIDE](#321-stride)
     - [3.2.2. PASTA](#322-pasta)
@@ -76,7 +76,7 @@ Threat actors are individuals, groups, or organizations with the motivation and 
 | 2   | Insider Threat     | Low–High    | Low–High  | Low–High    | Very High            | Greed, Grievance, Coercion, or Negligence / Human Error | Employer's Sensitive Systems & Data                                       | Data Exfiltration, Sabotage, Privilege Abuse, Misconfiguration, Unauthorized Data Transfer |
 | 3   | Cybercriminal      | Low–High    | Low–High  | Low–High    | Low–High             | Financial Gain                                          | Individuals, SMBs, Enterprises, Banks, Healthcare                         | Ransomware-as-a-Service, Phishing, BEC, Carding, Credential Theft, Identity Fraud          |
 | 4   | Hacktivist         | Low–Medium  | Low       | Low–Medium  | Low–Medium           | Political, Social, or Ideological Cause                 | Governments, Corporations, Media Outlets                                  | DDoS, Website Defacement, Doxing, Data Leaks                                               |
-| 5   | Script Kiddie      | Low–Medium  | Low       | Low         | Low                  | Curiosity, Notoriety, Thrill, or Mischief               | Random / Opportunistic Systems                                            | Pre-built Exploit Kits, DDoS-for-Hire, Unauthorized Vulnerability Discovery, Defacement    |
+| 5   | Thrill Seekers     | Low–Medium  | Low       | Low         | Low                  | Curiosity, Notoriety, Thrill, or Mischief               | Random / Opportunistic Systems                                            | Pre-built Exploit Kits, DDoS-for-Hire, Unauthorized Vulnerability Discovery, Defacement    |
 
 #### 3.1.1. Nation-State Actors / Advanced Persistent Threats (APTs)
 
@@ -103,9 +103,9 @@ Cybercriminals are financially motivated threat actors who pursue illicit profit
 
 Hacktivists are ideologically motivated threat actors who target organizations to promote a cause or agenda, often through defacement, DDoS attacks, or data leaks.
 
-#### 3.1.5. Script Kiddies
+#### 3.1.5. Thrill Seekers
 
-Script kiddies are low-skill threat actors who rely on pre-built exploit kits, publicly available scripts, and automated tools to conduct opportunistic attacks, typically motivated by curiosity, notoriety, or the thrill of unauthorized access rather than targeted objectives.
+Thrill seekers, also known as script kiddies, are low-skill threat actors who rely on pre-built exploit kits, publicly available scripts, and automated tools to conduct opportunistic attacks, typically motivated by curiosity, notoriety, or the thrill of unauthorized access rather than targeted objectives.
 
 ### 3.2. Threat Frameworks
 
@@ -226,7 +226,7 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
       > Enumerate the critical assets that require protection.
 
     - Identify Threat Agents
-      > Define known threat agent archetypes such as nation-states, cybercriminals, insiders, hacktivists, and script kiddies.
+      > Define known threat agent archetypes such as nation-states, cybercriminals, insiders, hacktivists, and thrill seekers.
 
     - Assess Threat Agent Risk
       > Evaluate each agent's motivation and capability against each asset to determine relative risk.
@@ -392,9 +392,10 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
 
 - MITRE ATT&CK
   > A knowledge base of real-world adversary tactics, techniques, and procedures (TTPs) used to model and communicate realistic attack scenarios.
+
 - MITRE EMB3D
   > A knowledge base of cyber threats and associated mitigations for embedded devices, organized by device properties and threat categories, and aligned with MITRE ATT&CK, CWE, and CVE.
->
+
 ## 4. References
 
 - OWASP [Threat Modeling](https://owasp.org/www-community/Application_Threat_Modeling) page.
@@ -406,3 +407,4 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
 - NIST [SP 800-30 Rev. 1](https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final) page.
 - Carnegie Mellon SEI [OCTAVE](https://www.sei.cmu.edu/our-work/projects/display.cfm?customel_datapageid_4050=21274) page.
 - ISO/IEC [27005](https://www.iso.org/standard/80585.html) page.
+- IBM [Cybersecurity](https://www.ibm.com/think/cybersecurity) page.

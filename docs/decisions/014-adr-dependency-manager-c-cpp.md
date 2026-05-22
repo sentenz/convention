@@ -1,6 +1,6 @@
-# 014-ADR: C/C++ Dependency Manager
+# 014-ADR: Dependency Manager for C/C++
 
-Architectural Decision Records (ADR) on selecting a dependency manager for C/C++ projects.
+Architectural Decision Records (ADR) on adopting a dependency manager for C and C++ projects to manage third-party and internal libraries, ensuring reproducible builds, consistent dependency resolution, and seamless integration with the CMake build system.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)

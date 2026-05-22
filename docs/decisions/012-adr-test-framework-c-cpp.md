@@ -1,4 +1,6 @@
-# 012-ADR: C/C++ Test Framework for TDD
+# 012-ADR: Test Framework for C/C++
+
+Architectural Decision Records (ADR) on adopting a test framework for C/C++ to support Test-Driven Development (TDD) and related testing practices.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)

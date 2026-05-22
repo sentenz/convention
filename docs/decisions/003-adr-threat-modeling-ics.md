@@ -1,4 +1,4 @@
-# 003-ADR: Threat Modeling for ICS/Embedded Devices
+# 003-ADR: Threat Modeling for ICS
 
 Architectural Decision Records (ADR) on implementing Threat Modeling for Industrial Control Systems (ICS) and Embedded Devices.
 

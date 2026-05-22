@@ -1,4 +1,4 @@
-# License Guide
+# License Guidance
 
 The licenses are classified according to the [Google License Classification](https://opensource.google/documentation/reference/thirdparty/licenses). For a deeper understanding, please refer to the link.
 

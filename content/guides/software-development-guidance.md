@@ -186,7 +186,7 @@ Features of Test:
 
 Features of Release:
 
-1. [Code Review](../guides/code-review-guide.md)
+1. [Code Review](../guides/code-review-guidance.md)
 
     Code review is used to ensure the overall health of the codebase over time. Code Review is a measure to ensure software quality through the exchange of knowledge, experience and opinions. Collaborative code review and pull requests that plug into the code review process.
 

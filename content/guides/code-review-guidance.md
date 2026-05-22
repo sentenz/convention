@@ -1,4 +1,4 @@
-# Code Review Guide
+# Code Review Guidance
 
 The code review guide contains suggestions on how to conduct code reviews effectively.
 

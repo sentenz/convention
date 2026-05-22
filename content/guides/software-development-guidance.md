@@ -1,4 +1,4 @@
-# Software Development Guide
+# Software Development Guidance
 
 Software development refers to the design, documentation, programming, testing, and maintenance of a software deliverable. The combination of these steps are used to create a workflow pipeline, a sequence of stages that when followed produce high-quality software deliverables. This pipeline is known as the Software Development Life Cycle (SDLC).
 

@@ -1,4 +1,4 @@
-# Branching Strategies Guide
+# Branching Strategies Guidance
 
 - [1. Category](#1-category)
   - [1.1. Git Flow](#11-git-flow)

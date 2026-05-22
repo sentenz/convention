@@ -1,4 +1,4 @@
-# Project Layout Guide
+# Project Layout Guidance
 
 - [1. Category](#1-category)
   - [1.1. C/C++](#11-cc)

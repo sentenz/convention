@@ -5,10 +5,13 @@ Architectural Decision Records (ADR) on selecting a TLS Pre-Shared Key (PSK) han
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
-  - [3.1. TLS-PSK with 1-RTT and Nonce](#31-tls-psk-with-1-rtt-and-nonce)
+  - [3.1. TLS 1.3 DHE-PSK with 1-RTT and Nonce](#31-tls-13-dhe-psk-with-1-rtt-and-nonce)
 - [4. Considered](#4-considered)
-  - [4.1. TLS-PSK with 0-RTT and Nonce](#41-tls-psk-with-0-rtt-and-nonce)
-  - [4.2. TLS-PSK with 1-RTT and Nonce](#42-tls-psk-with-1-rtt-and-nonce)
+  - [4.1. TLS 1.2 PSK](#41-tls-12-psk)
+  - [4.2. TLS 1.2 ECDHE-PSK](#42-tls-12-ecdhe-psk)
+  - [4.3. TLS 1.3 PSK](#43-tls-13-psk)
+  - [4.4. TLS 1.3 DHE-PSK](#44-tls-13-dhe-psk)
+  - [4.5. TLS 1.3 PSK with 0-RTT and Nonce](#45-tls-13-psk-with-0-rtt-and-nonce)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -21,7 +24,9 @@ Architectural Decision Records (ADR) on selecting a TLS Pre-Shared Key (PSK) han
 
 ## 2. Context
 
-TLS 1.3 (RFC 8446) introduces Pre-Shared Key (PSK) authentication as a first-class handshake mode, enabling session establishment without a full certificate exchange. PSK is particularly relevant in resource-constrained environments (e.g., IoT, embedded systems) and session-resumption scenarios where repeated full handshakes are undesirable. Two primary PSK handshake modes are defined: 0-RTT (early data) and 1-RTT (standard PSK handshake). Both modes rely on a per-record nonce constructed by XORing the 64-bit sequence number with the static write IV (RFC 8446 §5.3) to ensure AEAD uniqueness within a session. The choice between modes introduces trade-offs across latency, forward secrecy, and replay-attack exposure.
+TLS supports PSK authentication across TLS 1.2 and TLS 1.3, but the security properties differ materially by protocol version and key-exchange mode. In TLS 1.2, the cipher suite name encodes authentication, key exchange, AEAD, and hash selection. In TLS 1.3, cipher suites only select the symmetric AEAD and hash; PSK authentication and Diffie-Hellman participation are negotiated with the `pre_shared_key` and `psk_key_exchange_modes` extensions.
+
+This ADR evaluates legacy TLS 1.2 PSK modes for compatibility, TLS 1.3 PSK-only mode for constrained environments, TLS 1.3 DHE-PSK for forward secrecy, and TLS 1.3 0-RTT early data as a latency-optimized operational variant. All evaluated modes rely on AEAD record protection and a per-record nonce constructed by XORing the 64-bit sequence number with the static write IV (RFC 8446 §5.3). The choice introduces trade-offs across latency, forward secrecy, replay-attack exposure, implementation complexity, and operational key management.
 
 1. Decision Drivers
 
@@ -45,14 +50,16 @@ TLS 1.3 (RFC 8446) introduces Pre-Shared Key (PSK) authentication as a first-cla
 
 ## 3. Decision
 
-### 3.1. TLS-PSK with 1-RTT and Nonce
+### 3.1. TLS 1.3 DHE-PSK with 1-RTT and Nonce
 
-TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as the standard PSK handshake mode. The PSK-DHE combination provides authentication from the PSK and forward secrecy from the ephemeral Diffie-Hellman exchange. The per-record nonce (sequence counter XOR static write IV, per RFC 8446 §5.3) guarantees AEAD uniqueness without requiring external nonce synchronization. RFC 9257 explicitly recommends `psk_dhe_ke` over `psk_ke` for external PSKs to gain this forward-secrecy property.
+TLS 1.3 DHE-PSK 1-RTT mode (`psk_dhe_ke`) with per-record nonce is selected as the standard PSK handshake mode. The PSK authenticates the communicating endpoints, and the ephemeral Diffie-Hellman exchange contributes fresh key material for each session. This combination provides forward secrecy while retaining PSK-based authentication and avoiding certificate-chain validation in constrained deployments.
+
+Application data is sent only after the TLS 1.3 Finished messages complete. The per-record nonce (sequence counter XOR static write IV, per RFC 8446 §5.3) is provided by the TLS record layer and does not require external nonce synchronization. RFC 9257 recommends `psk_dhe_ke` over `psk_ke` for external PSKs because `psk_dhe_ke` prevents later PSK disclosure from being sufficient to reconstruct past traffic keys.
 
 1. Rationale
 
     - Latency
-      > One round trip is required before application data is exchanged; this is acceptable for the target use cases and avoids the security constraints imposed by 0-RTT mode.
+      > One round trip is required before application data is exchanged; this is acceptable for the target use cases and avoids the replay constraints imposed by 0-RTT mode.
 
     - Forward Secrecy
       > The ephemeral DHE key exchange combined with the PSK ensures that session keys cannot be derived from the PSK alone, protecting recorded traffic even if the PSK is later compromised.
@@ -71,17 +78,201 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
 
 ## 4. Considered
 
-### 4.1. TLS-PSK with 0-RTT and Nonce
+### 4.1. TLS 1.2 PSK
 
-[TLS-PSK 0-RTT](https://www.rfc-editor.org/rfc/rfc8446#section-2.3) transmits application data in the first client flight before receiving any server response, using keys derived solely from the PSK and a ticket nonce established in a prior session.
+TLS 1.2 PSK relies on a pre-shared key for authentication and key establishment. It is lightweight and avoids certificates, but it does not provide forward secrecy: if the PSK is compromised later, recorded sessions protected by that PSK can be decrypted.
+
+```text
+TLS 1.2
++ TLS_PSK_WITH_AES_128_GCM_SHA256
++ AEAD = AES-128-GCM
++ PRF hash = SHA-256
++ Pure PSK authentication
++ RSA/DHE key exchange omitted
++ No Forward Secrecy
+```
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    C->>S: ClientHello
+    S->>C: ServerHello<br/>ServerKeyExchange (PSK Identity Hint)<br/>ServerHelloDone
+    C->>S: ClientKeyExchange (PSK Identity)<br/>ChangeCipherSpec<br/>Finished
+    S->>C: ChangeCipherSpec<br/>Finished
+
+    Note over C,S: Application Data Begins (2-RTT)
+```
+
+- Pros
+
+  - Resource Constraints
+    > Avoids certificate processing and asymmetric key exchange, making it inexpensive for deeply constrained devices.
+
+  - Operational Simplicity
+    > Uses a single pre-provisioned secret and a compact TLS 1.2 handshake profile.
+
+- Cons
+
+  - Forward Secrecy
+    > Session keys are derived from the PSK without an ephemeral Diffie-Hellman contribution; later PSK compromise can expose recorded traffic.
+
+  - Protocol Longevity
+    > TLS 1.2 PSK cipher suites are legacy compatibility mechanisms and do not provide the cleaner extension-based PSK model used by TLS 1.3.
+
+  - Authentication Strength
+    > Security depends heavily on PSK entropy, uniqueness, provisioning, and storage; reuse across endpoints expands the blast radius of a single key leak.
+
+### 4.2. TLS 1.2 ECDHE-PSK
+
+TLS 1.2 ECDHE-PSK combines PSK authentication with an ephemeral Elliptic Curve Diffie-Hellman exchange. It provides forward secrecy relative to TLS 1.2 pure PSK, but it retains TLS 1.2 cipher-suite complexity and should be treated as a compatibility option rather than the preferred profile for new deployments.
+
+```text
+TLS 1.2
++ TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256
++ AEAD = AES-128-GCM
++ PRF hash = SHA-256
++ PSK authentication
++ Ephemeral ECDH key exchange
++ Perfect Forward Secrecy (PFS)
+```
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    C->>S: ClientHello
+    S->>C: ServerHello<br/>ServerKeyExchange (ECDH Params + PSK Hint)<br/>ServerHelloDone
+    C->>S: ClientKeyExchange (ECDH PubKey + PSK Identity)<br/>ChangeCipherSpec<br/>Finished
+    S->>C: ChangeCipherSpec<br/>Finished
+
+    Note over C,S: Application Data Begins (2-RTT)
+```
+
+- Pros
+
+  - Forward Secrecy
+    > Ephemeral ECDH contributes fresh key material so recorded traffic is not recoverable from the PSK alone.
+
+  - Legacy Interoperability
+    > Supports peers that cannot negotiate TLS 1.3 but still require PSK-authenticated sessions with forward secrecy.
+
+- Cons
+
+  - Latency
+    > Requires the TLS 1.2 handshake flight pattern before application data is established.
+
+  - Implementation Complexity
+    > Keeps TLS 1.2 cipher-suite-specific behaviour, PSK identity hints, and legacy handshake semantics in scope.
+
+  - Preferred Protocol
+    > TLS 1.3 DHE-PSK offers the same design intent with a simpler PSK extension model and modern key schedule.
+
+### 4.3. TLS 1.3 PSK
+
+TLS 1.3 PSK-only mode (`psk_ke`) uses the `pre_shared_key` extension and PSK binder validation. The selected TLS 1.3 cipher suite, such as `TLS_AES_128_GCM_SHA256`, defines only the AEAD and hash. No Diffie-Hellman key share is exchanged, so the session key schedule depends on the PSK and transcript but lacks forward secrecy.
+
+```text
+TLS 1.3
++ TLS_AES_128_GCM_SHA256
++ AEAD = AES-128-GCM
++ HKDF hash = SHA-256
++ pre_shared_key extension
++ psk_key_exchange_modes: psk_ke
++ PSK binder validation
++ No Forward Secrecy
+```
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    C->>S: ClientHello<br/>(+ pre_shared_key, psk_key_exchange_modes)
+    S->>C: ServerHello<br/>(+ pre_shared_key)<br/>EncryptedExtensions<br/>Finished
+    C->>S: Finished
+
+    Note over C,S: Application Data Begins (1-RTT)
+```
 
 - Pros
 
   - Latency
-    > Reduces connection establishment to zero round trips for the application payload, offering the lowest possible latency for connection-oriented request-response protocols.
+    > Completes the standard TLS 1.3 PSK handshake in one round trip without the computational cost of a Diffie-Hellman exchange.
 
   - Resource Constraints
-    > Minimizes active processing and radio time on constrained devices by eliminating the server-response wait before data transmission.
+    > Minimizes public-key computation and may be attractive for severely constrained devices with hardware AEAD support but limited scalar-multiplication capacity.
+
+- Cons
+
+  - Forward Secrecy
+    > A later PSK compromise can be sufficient to reconstruct traffic keys for recorded sessions because no ephemeral DH secret contributes to the key schedule.
+
+  - Security Margin
+    > RFC 9257 recommends `psk_dhe_ke` for external PSKs, making PSK-only mode unsuitable as the default profile.
+
+### 4.4. TLS 1.3 DHE-PSK
+
+TLS 1.3 DHE-PSK (`psk_dhe_ke`) binds PSK authentication to an ephemeral Diffie-Hellman exchange. Even if the PSK is exposed later, recorded traffic remains protected because past session keys also depend on ephemeral key material that is not retained.
+
+```text
+TLS 1.3
++ TLS_AES_128_GCM_SHA256
++ AEAD = AES-128-GCM
++ HKDF hash = SHA-256
++ pre_shared_key extension
++ psk_key_exchange_modes: psk_dhe_ke
++ Ephemeral Diffie-Hellman (PFS)
++ PSK binder validation
+```
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    C->>S: ClientHello<br/>(+ key_share, pre_shared_key, psk_key_exchange_modes)
+    S->>C: ServerHello<br/>(+ key_share, pre_shared_key)<br/>EncryptedExtensions<br/>Finished
+    C->>S: Finished
+
+    Note over C,S: Application Data Begins (1-RTT)
+```
+
+- Pros
+
+  - Forward Secrecy
+    > Derives session keys from both the PSK and an ephemeral DH shared secret, protecting past sessions after PSK compromise.
+
+  - Replay Attack Protection
+    > Standard 1-RTT application data is exchanged only after binder validation and Finished-message authentication.
+
+  - Nonce Uniqueness
+    > Per-record nonces are derived by the TLS 1.3 record layer from the sequence counter and static write IV; distinct traffic keys isolate nonce spaces across sessions.
+
+  - Authentication Strength
+    > The PSK binder cryptographically binds the offered PSK identity to the handshake transcript, reducing PSK confusion risk.
+
+- Cons
+
+  - Computational Overhead
+    > The ephemeral DH exchange adds CPU and memory overhead relative to PSK-only mode.
+
+  - Implementation Requirement
+    > Both peers must support TLS 1.3 PSK authentication, `psk_dhe_ke`, and compatible key-share groups such as X25519 or secp256r1.
+
+### 4.5. TLS 1.3 PSK with 0-RTT and Nonce
+
+TLS 1.3 0-RTT transmits early application data in the first client flight before receiving any server response. Early data is encrypted under keys derived from PSK material established in a previous connection. It can reduce application latency, but it is replayable and does not receive forward secrecy from the new session's ephemeral DH exchange.
+
+- Pros
+
+  - Latency
+    > Reduces connection establishment to zero round trips for the early application payload, offering the lowest possible latency for selected request-response protocols.
+
+  - Resource Constraints
+    > Minimizes active wait time on constrained devices by avoiding a server-response dependency before the first payload is transmitted.
 
 - Cons
 
@@ -89,33 +280,10 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
     > Early data is inherently replayable; an adversary can retransmit captured ClientHello and early-data records to any server instance that does not maintain per-ticket anti-replay state, as detailed in RFC 8446 §8.
 
   - Forward Secrecy
-    > Data sent in the first flight is encrypted under keys derived only from the PSK and ticket nonce; no DHE exchange is performed for early data, so compromise of the PSK retroactively exposes all 0-RTT records.
+    > Early data is encrypted under keys derived from the PSK and prior-session resumption state; the fresh DHE exchange of the new connection does not protect those records.
 
-  - Nonce Uniqueness
-    > Two separate sessions using the same PSK both initialize their sequence counters at zero; without per-session key diversification via DHE, nonce reuse is possible if the PSK is reused across connections, violating AEAD security requirements.
-
-### 4.2. TLS-PSK with 1-RTT and Nonce
-
-[TLS-PSK 1-RTT](https://www.rfc-editor.org/rfc/rfc8446#section-2.3) performs a standard TLS 1.3 handshake authenticated by the PSK, optionally combined with an ephemeral Diffie-Hellman exchange (`psk_dhe_ke` mode) for forward secrecy. The per-record nonce is constructed per RFC 8446 §5.3.
-
-- Pros
-
-  - Forward Secrecy
-    > `psk_dhe_ke` mode derives session keys from both the PSK and an ephemeral DH share, ensuring that past sessions remain confidential even after PSK compromise.
-
-  - Replay Attack Protection
-    > Application data is exchanged only after the server has verified the PSK binder and sent its Finished message, removing the replay window present in 0-RTT.
-
-  - Nonce Uniqueness
-    > Per-record nonces are derived from the sequence counter XOR the static write IV (RFC 8446 §5.3); distinct session keys per connection guarantee nonce uniqueness across sessions.
-
-  - Authentication Strength
-    > The PSK binder cryptographically binds the PSK identity to the handshake transcript; RFC 9257 mandates a single hash algorithm per PSK to prevent cross-protocol confusion.
-
-- Cons
-
-  - Latency
-    > Requires one full round trip before application data can be sent, introducing higher latency compared to 0-RTT mode.
+  - Operational Complexity
+    > Safe use requires strict idempotency constraints, bounded payload handling, and server-side anti-replay controls, which are outside the default target profile.
 
 ## 5. Consequences
 
@@ -129,6 +297,9 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
 
   - Reduced Attack Surface
     > Eliminating 0-RTT early data removes the replay-attack class described in RFC 8446 §8, simplifying server-side anti-replay logic.
+
+  - Modern PSK Semantics
+    > TLS 1.3 separates cipher-suite selection from key-exchange mode selection, making the selected PSK-DHE profile clearer than TLS 1.2 cipher-suite-specific negotiation.
 
 - Negative
 
@@ -145,6 +316,9 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
 
   - PSK Reuse Across Contexts
     > Reusing the same PSK across multiple endpoints or hash algorithms may enable cross-protocol attacks. Mitigation: follow RFC 9257 guidance to bind each external PSK to a single TLS hash algorithm and assign a unique PSK identity per communicating endpoint pair.
+
+  - Legacy Downgrade
+    > Permitting TLS 1.2 PSK compatibility can unintentionally reintroduce weaker negotiation paths. Mitigation: disable TLS 1.2 PSK by default and allow it only through an explicit compatibility profile with telemetry and sunset criteria.
 
 ## 6. Implementation
 
@@ -168,19 +342,23 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
 
     Configure the TLS 1.3 stack to advertise only `psk_dhe_ke` in the `psk_key_exchange_modes` extension of the ClientHello, disabling `psk_ke` (PSK-only without DHE) to enforce forward secrecy on all PSK-authenticated sessions.
 
-6. Nonce Derivation
+6. Configure Cipher Suites
+
+    Prefer TLS 1.3 cipher suites such as `TLS_AES_128_GCM_SHA256` or `TLS_AES_256_GCM_SHA384`. Do not configure TLS 1.2 PSK cipher suites unless a documented compatibility requirement exists; when compatibility is required, prefer ECDHE-PSK over pure PSK and define a deprecation path.
+
+7. Nonce Derivation
 
     Rely on the TLS 1.3 record-layer nonce construction defined in RFC 8446 §5.3: pad the 64-bit sequence number to the IV length and XOR it with the static write IV derived during the handshake. Do not implement custom nonce logic outside of the TLS stack.
 
-7. Disable 0-RTT
+8. Disable 0-RTT
 
     Disable 0-RTT early data at the server configuration level unless a bounded, idempotent use case with server-side anti-replay state (per RFC 8446 §8) explicitly justifies its activation.
 
-8. PSK Rotation
+9. PSK Rotation
 
     Define a rotation policy that bounds PSK lifetime by time or connection count. Deliver the replacement PSK via the same secure channel used for initial provisioning, write it alongside the active PSK in protected storage, and atomically promote the replacement only after the device confirms successful storage. Revoke and securely erase the superseded PSK immediately after promotion.
 
-9. Validate
+10. Validate
 
     Verify that all TLS sessions use `psk_dhe_ke` by inspecting captured handshakes with a TLS 1.3-capable analyser (e.g., Wireshark with a TLS secrets log file) and confirm that a `key_share` extension is present in both ClientHello and ServerHello. Additionally, verify that PSK storage satisfies the hardware security requirements by reviewing the secure element or TEE integration test results.
 
@@ -191,3 +369,8 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
 - IETF [RFC 8446 §2.3 – TLS 1.3 PSK Handshake Modes](https://www.rfc-editor.org/rfc/rfc8446#section-2.3) section.
 - IETF [RFC 8446 §5.3 – Per-Record Nonce](https://datatracker.ietf.org/doc/html/rfc8446#section-5.3) section.
 - IETF [RFC 8446 §8 – 0-RTT and Anti-Replay](https://datatracker.ietf.org/doc/html/rfc8446#section-8) section.
+- IETF [RFC 4279 – Pre-Shared Key Ciphersuites for Transport Layer Security (TLS)](https://www.rfc-editor.org/rfc/rfc4279) standard.
+- IETF [RFC 5487 – Pre-Shared Key Cipher Suites for TLS with SHA-256/384 and AES Galois Counter Mode](https://www.rfc-editor.org/rfc/rfc5487) standard.
+- IETF [RFC 5489 – ECDHE_PSK Cipher Suites for Transport Layer Security (TLS)](https://www.rfc-editor.org/rfc/rfc5489) standard.
+- IETF [RFC 8442 – ECDHE_PSK with AES-GCM and AES-CCM Cipher Suites for TLS 1.2 and DTLS 1.2](https://www.rfc-editor.org/rfc/rfc8442) standard.
+- IANA [Transport Layer Security (TLS) Parameters](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml) registry.

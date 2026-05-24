@@ -1,22 +1,6 @@
 # 015-ADR: TLS-PSK
 
-Architectural Decision Records (ADR) on selecting a TLS Pre-Shared Key (PSK) handshake mode for secure session establishment, conceptually expressed as:
-
-```plaintext
-TLS 1.3
-+ TLS_AES_128_GCM_SHA256
-+ PSK authentication
-+ psk_dhe_ke
-```
-
-or
-
-```plaintext
-TLS_AES_128_GCM_SHA256
-+ pre_shared_key extension
-+ psk_key_exchange_modes extension
-+ PSK binder validation
-```
+Architectural Decision Records (ADR) on selecting a TLS Pre-Shared Key (PSK) handshake mode for secure session establishment.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)
@@ -91,6 +75,14 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
 
 [TLS-PSK 0-RTT](https://www.rfc-editor.org/rfc/rfc8446#section-2.3) transmits application data in the first client flight before receiving any server response, using keys derived solely from the PSK and a ticket nonce established in a prior session.
 
+```plaintext
+TLS_AES_128_GCM_SHA256
++ pre_shared_key extension
++ psk_key_exchange_modes extension
++ PSK binder validation
++ early_data extension (0-RTT)
+```
+
 - Pros
 
   - Latency
@@ -113,6 +105,13 @@ TLS-PSK 1-RTT mode with DHE (`psk_dhe_ke`) and per-record nonce is selected as t
 ### 4.2. TLS-PSK with 1-RTT and Nonce
 
 [TLS-PSK 1-RTT](https://www.rfc-editor.org/rfc/rfc8446#section-2.3) performs a standard TLS 1.3 handshake authenticated by the PSK, optionally combined with an ephemeral Diffie-Hellman exchange (`psk_dhe_ke` mode) for forward secrecy. The per-record nonce is constructed per RFC 8446 §5.3.
+
+```plaintext
+TLS 1.3
++ TLS_AES_128_GCM_SHA256
++ PSK authentication
++ psk_dhe_ke
+```
 
 - Pros
 

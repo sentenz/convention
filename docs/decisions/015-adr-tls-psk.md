@@ -1,6 +1,22 @@
 # 015-ADR: TLS-PSK
 
-Architectural Decision Records (ADR) on selecting a TLS Pre-Shared Key (PSK) handshake mode for secure session establishment.
+Architectural Decision Records (ADR) on selecting a TLS Pre-Shared Key (PSK) handshake mode for secure session establishment, conceptually expressed as:
+
+```plaintext
+TLS 1.3
++ TLS_AES_128_GCM_SHA256
++ PSK authentication
++ psk_dhe_ke
+```
+
+or
+
+```plaintext
+TLS_AES_128_GCM_SHA256
++ pre_shared_key extension
++ psk_key_exchange_modes extension
++ PSK binder validation
+```
 
 - [1. State](#1-state)
 - [2. Context](#2-context)

@@ -215,8 +215,7 @@ sequenceDiagram
 
 ### 4.4. TLS 1.3 PSK with 0-RTT Early Data
 
-TLS 1.3 Pre-Shared Key (PSK) with 0-RTT Early Data utilizes the `psk_dhe_ke` exchange mode. The `ClientHello` message carries the `pre_shared_key`, `psk_key_exchange_modes`, `key_share`, and `early_data` extensions, allowing early application data and a fresh ephemeral Diffie-Hellman (DH) exchange within the same handshake. Because the 0-RTT early application data is encrypted using keys derived from the **Early Secret** (which depends solely on the PSK), it remains vulnerable to replay attacks and lacks Perfect Forward Secrecy (PFS). Once the `ServerHello` (carrying the server's `key_share`) and the `Finished` messages are processed, the TLS 1.3 key schedule incorporates the DH shared secret into the **Master Secret**. Consequently, all subsequent 1-RTT application data gains full forward secrecy.
-
+TLS 1.3 Pre-Shared Key (PSK) with 0-RTT Early Data utilizes the `psk_dhe_ke` exchange mode. The `ClientHello` message carries the `pre_shared_key`, `psk_key_exchange_modes`, `key_share`, and `early_data` extensions, allowing early application data and a fresh ephemeral Diffie-Hellman (DH) exchange within the same handshake. Because the 0-RTT early application data is encrypted using keys derived from the **Early Secret** (which depends solely on the PSK), it remains vulnerable to replay attacks and lacks Perfect Forward Secrecy (PFS). Upon receiving `ServerHello` (carrying the server's `key_share`), the TLS 1.3 key schedule immediately incorporates the ephemeral DH shared secret to derive the **Handshake Secret** and subsequently the **Master Secret**. The `Finished` messages authenticate the handshake transcript and gate the start of 1-RTT application data, which is protected by full forward secrecy.
 
 ```text
 TLS 1.3

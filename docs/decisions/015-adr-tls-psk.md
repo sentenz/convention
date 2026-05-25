@@ -10,8 +10,8 @@ Architectural Decision Records (ADR) on selecting a TLS Pre-Shared Key (PSK) han
   - [4.1. TLS 1.2 PSK](#41-tls-12-psk)
   - [4.2. TLS 1.2 ECDHE-PSK](#42-tls-12-ecdhe-psk)
   - [4.3. TLS 1.3 PSK](#43-tls-13-psk)
-  - [4.4. TLS 1.3 DHE-PSK](#44-tls-13-dhe-psk)
-  - [4.5. TLS 1.3 PSK with 0-RTT Early Data](#45-tls-13-psk-with-0-rtt-early-data)
+  - [4.4. TLS 1.3 PSK with 0-RTT Early Data](#44-tls-13-psk-with-0-rtt-early-data)
+  - [4.5. TLS 1.3 DHE-PSK](#45-tls-13-dhe-psk)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -213,7 +213,30 @@ sequenceDiagram
   - Security Margin
     > RFC 9257 recommends `psk_dhe_ke` for external PSKs, making PSK-only mode unsuitable as the default profile.
 
-### 4.4. TLS 1.3 DHE-PSK
+### 4.4. TLS 1.3 PSK with 0-RTT Early Data
+
+TLS 1.3 0-RTT transmits early application data in the first client flight before receiving any server response. Early data is encrypted under keys derived from PSK material established in a previous connection. It can reduce application latency, but it is replayable and does not receive forward secrecy from the new session's ephemeral DH exchange.
+
+- Pros
+
+  - Latency
+    > Reduces connection establishment to zero round trips for the early application payload, offering the lowest possible latency for selected request-response protocols.
+
+  - Resource Constraints
+    > Minimizes active wait time on constrained devices by avoiding a server-response dependency before the first payload is transmitted.
+
+- Cons
+
+  - Replay Attack Protection
+    > Early data is inherently replayable; an adversary can retransmit captured ClientHello and early-data records to any server instance that does not maintain per-ticket anti-replay state, as detailed in RFC 8446 §8.
+
+  - Forward Secrecy
+    > Early data is encrypted under keys derived from the PSK and prior-session resumption state; the fresh DHE exchange of the new connection does not protect those records.
+
+  - Operational Complexity
+    > Safe use requires strict idempotency constraints, bounded payload handling, and server-side anti-replay controls, which are outside the default target profile.
+
+### 4.5. TLS 1.3 DHE-PSK
 
 TLS 1.3 DHE-PSK (`psk_dhe_ke`) binds PSK authentication to an ephemeral Diffie-Hellman exchange. Even if the PSK is exposed later, recorded traffic remains protected because past session keys also depend on ephemeral key material that is not retained.
 
@@ -261,29 +284,6 @@ sequenceDiagram
 
   - Implementation Requirement
     > Both peers must support TLS 1.3 PSK authentication, `psk_dhe_ke`, and compatible key-share groups such as X25519 or secp256r1.
-
-### 4.5. TLS 1.3 PSK with 0-RTT Early Data
-
-TLS 1.3 0-RTT transmits early application data in the first client flight before receiving any server response. Early data is encrypted under keys derived from PSK material established in a previous connection. It can reduce application latency, but it is replayable and does not receive forward secrecy from the new session's ephemeral DH exchange.
-
-- Pros
-
-  - Latency
-    > Reduces connection establishment to zero round trips for the early application payload, offering the lowest possible latency for selected request-response protocols.
-
-  - Resource Constraints
-    > Minimizes active wait time on constrained devices by avoiding a server-response dependency before the first payload is transmitted.
-
-- Cons
-
-  - Replay Attack Protection
-    > Early data is inherently replayable; an adversary can retransmit captured ClientHello and early-data records to any server instance that does not maintain per-ticket anti-replay state, as detailed in RFC 8446 §8.
-
-  - Forward Secrecy
-    > Early data is encrypted under keys derived from the PSK and prior-session resumption state; the fresh DHE exchange of the new connection does not protect those records.
-
-  - Operational Complexity
-    > Safe use requires strict idempotency constraints, bounded payload handling, and server-side anti-replay controls, which are outside the default target profile.
 
 ## 5. Consequences
 

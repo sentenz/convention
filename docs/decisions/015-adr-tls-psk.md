@@ -215,7 +215,7 @@ sequenceDiagram
 
 ### 4.4. TLS 1.3 DHE-PSK
 
-TLS 1.3 DHE-PSK (`psk_dhe_ke`) binds PSK authentication to an ephemeral Diffie-Hellman exchange. Even if the PSK is exposed later, recorded traffic remains protected because past session keys also depend on ephemeral key material that is not retained.
+TLS 1.3 DHE-PSK (`psk_dhe_ke`) binds PSK authentication to an ephemeral Diffie-Hellman exchange and completes in the standard TLS 1.3 1-RTT flow. It uses mandatory handshake nonces (`ClientHello.random`, `ServerHello.random`) for freshness and replay resistance, and relies on mandatory AEAD record nonces derived from the sequence number and traffic secrets (RFC 8446 §5.3). Even if the PSK is exposed later, recorded traffic remains protected because past session keys also depend on ephemeral key material that is not retained.
 
 ```text
 TLS 1.3
@@ -224,6 +224,8 @@ TLS 1.3
 + HKDF hash = SHA-256
 + pre_shared_key extension
 + psk_key_exchange_modes: psk_dhe_ke
++ Handshake Nonces (ClientHello/ServerHello randoms)
++ AEAD Nonces (implicit record-layer nonce construction)
 + Ephemeral Diffie-Hellman (PFS)
 + PSK binder validation
 ```
@@ -233,11 +235,12 @@ sequenceDiagram
     participant C as Client
     participant S as Server
 
+    Note over C,S: Handshake Nonces exchanged in Hellos
     C->>S: ClientHello<br/>(+ key_share, pre_shared_key, psk_key_exchange_modes)
     S->>C: ServerHello<br/>(+ key_share, pre_shared_key)<br/>EncryptedExtensions<br/>Finished
     C->>S: Finished
 
-    Note over C,S: Application Data Begins (1-RTT)
+    Note over C,S: Application Data Begins (1-RTT, AEAD Nonces in record layer)
 ```
 
 - Pros

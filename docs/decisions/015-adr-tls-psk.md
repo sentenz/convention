@@ -215,7 +215,35 @@ sequenceDiagram
 
 ### 4.4. TLS 1.3 PSK with 0-RTT Early Data
 
-TLS 1.3 0-RTT transmits early application data in the first client flight before receiving any server response. Early data is encrypted under keys derived from PSK material established in a previous connection. It can reduce application latency, but it is replayable and does not receive forward secrecy from the new session's ephemeral DH exchange.
+TLS 1.3 Pre-Shared Key (PSK) with 0-RTT Early Data utilizes the `psk_dhe_ke` exchange mode. The `ClientHello` message carries the `pre_shared_key`, `psk_key_exchange_modes`, `key_share`, and `early_data` extensions, allowing early application data and a fresh ephemeral Diffie-Hellman (DH) exchange within the same handshake. The 0-RTT early application data is encrypted using keys derived from the **Early Secret** (which depends solely on the PSK), it remains vulnerable to replay attacks and lacks Perfect Forward Secrecy (PFS). Upon receiving `ServerHello` (carrying the server's `key_share`), the TLS 1.3 key schedule immediately incorporates the ephemeral DH shared secret to derive the **Handshake Secret** and subsequently the **Master Secret**. The `Finished` messages authenticate the handshake transcript and gate the start of 1-RTT application data, which is protected by full forward secrecy.
+
+```text
+TLS 1.3
++ TLS_AES_128_GCM_SHA256
++ AEAD = AES-128-GCM
++ HKDF hash = SHA-256
++ pre_shared_key extension
++ key_share extension (for 1-RTT Forward Secrecy)
++ early_data extension
++ psk_key_exchange_modes: psk_dhe_ke
++ PSK resumption required
++ 0-RTT early application data
++ Replayable early data
++ No Forward Secrecy for 0-RTT data (PFS applies only to 1-RTT data)
+```
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    C->>S: ClientHello<br/>(+ pre_shared_key, psk_key_exchange_modes, key_share, early_data)
+    C-)S: EarlyData (0-RTT App Data)
+    S->>C: ServerHello<br/>(+ pre_shared_key, key_share)<br/>EncryptedExtensions<br/>Finished
+    C->>S: EndOfEarlyData<br/>Finished
+
+    Note over C,S: Early Data lacked PFS and was replayable.<br/>All subsequent 1-RTT data is protected by Ephemeral DH (PFS).
+```
 
 - Pros
 

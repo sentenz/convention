@@ -215,7 +215,7 @@ sequenceDiagram
 
 ### 4.4. TLS 1.3 PSK with 0-RTT Early Data
 
-TLS 1.3 0-RTT transmits early application data in the first client flight before receiving any server response. Early data is encrypted under keys derived from PSK material established in a previous connection. It can reduce application latency, but it is replayable and does not receive forward secrecy from the new session's ephemeral DH exchange.
+TLS 1.3 PSK with 0-RTT Early Data in this ADR uses `psk_dhe_ke`: the ClientHello carries `pre_shared_key`, `psk_key_exchange_modes`, `key_share`, and `early_data`, allowing early data and a fresh ephemeral DH exchange in the same handshake. The early payload is encrypted from PSK-derived early secrets, so it remains replayable and has no forward secrecy. After ServerHello and Finished, traffic keys incorporate the DH shared secret, so subsequent 1-RTT application data gains forward secrecy.
 
 ```text
 TLS 1.3

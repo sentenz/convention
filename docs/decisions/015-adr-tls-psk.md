@@ -217,6 +217,32 @@ sequenceDiagram
 
 TLS 1.3 0-RTT transmits early application data in the first client flight before receiving any server response. Early data is encrypted under keys derived from PSK material established in a previous connection. It can reduce application latency, but it is replayable and does not receive forward secrecy from the new session's ephemeral DH exchange.
 
+```text
+TLS 1.3
++ TLS_AES_128_GCM_SHA256
++ AEAD = AES-128-GCM
++ HKDF hash = SHA-256
++ pre_shared_key extension
++ early_data extension
++ PSK resumption required
++ 0-RTT early application data
++ Replayable early data
++ No Forward Secrecy for 0-RTT data
+```
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant S as Server
+
+    C->>S: ClientHello<br/>(+ pre_shared_key, psk_key_exchange_modes, early_data)
+    C->>S: EarlyData (0-RTT App Data)
+    S->>C: ServerHello<br/>(+ pre_shared_key)<br/>EncryptedExtensions<br/>Finished
+    C->>S: EndOfEarlyData<br/>Finished
+
+    Note over C,S: Early Data Starts at 0-RTT; 1-RTT Data Continues After Finished
+```
+
 - Pros
 
   - Latency

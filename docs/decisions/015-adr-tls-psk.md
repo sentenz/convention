@@ -5,13 +5,13 @@ Architectural Decision Records (ADR) on selecting a TLS Pre-Shared Key (PSK) han
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
-  - [3.1. TLS 1.3 DHE-PSK](#31-tls-13-dhe-psk)
+  - [3.1. TLS 1.3 PSK with (EC)DHE](#31-tls-13-psk-with-ecdhe)
 - [4. Considered](#4-considered)
   - [4.1. TLS 1.2 PSK](#41-tls-12-psk)
   - [4.2. TLS 1.2 ECDHE-PSK](#42-tls-12-ecdhe-psk)
-  - [4.3. TLS 1.3 PSK](#43-tls-13-psk)
-  - [4.4. TLS 1.3 PSK with 0-RTT Early Data](#44-tls-13-psk-with-0-rtt-early-data)
-  - [4.5. TLS 1.3 DHE-PSK](#45-tls-13-dhe-psk)
+  - [4.3. TLS 1.3 PSK-only](#43-tls-13-psk-only)
+  - [4.4. TLS 1.3 PSK with (EC)DHE and 0-RTT Early Data](#44-tls-13-psk-with-ecdhe-and-0-rtt-early-data)
+  - [4.5. TLS 1.3 PSK with (EC)DHE](#45-tls-13-psk-with-ecdhe)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -50,9 +50,9 @@ This ADR evaluates legacy TLS 1.2 PSK modes for compatibility, TLS 1.3 PSK-only 
 
 ## 3. Decision
 
-### 3.1. TLS 1.3 DHE-PSK
+### 3.1. TLS 1.3 PSK with (EC)DHE
 
-TLS 1.3 DHE-PSK (`psk_dhe_ke`) is selected as the standard PSK handshake mode. In TLS 1.3, this mode uses the regular 1-RTT handshake, and the per-record nonce is a protocol inherent record-layer construction. The PSK authenticates the communicating endpoints, and the ephemeral Diffie-Hellman exchange contributes fresh key material for each session. This combination provides forward secrecy while retaining PSK-based authentication and avoiding certificate-chain validation in constrained deployments.
+TLS 1.3 PSK with (EC)DHE (`psk_dhe_ke`) is selected as the standard PSK handshake mode. In TLS 1.3, this mode uses the regular 1-RTT handshake, and the per-record nonce is a protocol inherent record-layer construction. The PSK authenticates the communicating endpoints, and the ephemeral Diffie-Hellman exchange contributes fresh key material for each session. This combination provides forward secrecy while retaining PSK-based authentication and avoiding certificate-chain validation in constrained deployments.
 
 Application data is sent only after the TLS 1.3 Finished messages complete. The per-record nonce (sequence counter XOR static write IV, per RFC 8446 §5.3) is provided by the TLS record layer and does not require external nonce synchronization. RFC 9257 recommends `psk_dhe_ke` over `psk_ke` for external PSKs because `psk_dhe_ke` prevents later PSK disclosure from being sufficient to reconstruct past traffic keys.
 
@@ -170,7 +170,7 @@ sequenceDiagram
   - Preferred Protocol
     > TLS 1.3 DHE-PSK offers the same design intent with a simpler PSK extension model and modern key schedule.
 
-### 4.3. TLS 1.3 PSK
+### 4.3. TLS 1.3 PSK-only
 
 TLS 1.3 PSK-only mode (`psk_ke`) uses the `pre_shared_key` extension and PSK binder validation. The selected TLS 1.3 cipher suite, such as `TLS_AES_128_GCM_SHA256`, defines only the AEAD and hash. No Diffie-Hellman key share is exchanged, so the session key schedule depends on the PSK and transcript but lacks forward secrecy.
 
@@ -213,9 +213,9 @@ sequenceDiagram
   - Security Margin
     > RFC 9257 recommends `psk_dhe_ke` for external PSKs, making PSK-only mode unsuitable as the default profile.
 
-### 4.4. TLS 1.3 PSK with 0-RTT Early Data
+### 4.4. TLS 1.3 PSK with (EC)DHE and 0-RTT Early Data
 
-TLS 1.3 Pre-Shared Key (PSK) with 0-RTT Early Data utilizes the `psk_dhe_ke` exchange mode. The `ClientHello` message carries the `pre_shared_key`, `psk_key_exchange_modes`, `key_share`, and `early_data` extensions, allowing early application data and a fresh ephemeral Diffie-Hellman (DH) exchange within the same handshake. The 0-RTT early application data is encrypted using keys derived from the **Early Secret** (which depends solely on the PSK), it remains vulnerable to replay attacks and lacks Perfect Forward Secrecy (PFS). Upon receiving `ServerHello` (carrying the server's `key_share`), the TLS 1.3 key schedule immediately incorporates the ephemeral DH shared secret to derive the **Handshake Secret** and subsequently the **Master Secret**. The `Finished` messages authenticate the handshake transcript and gate the start of 1-RTT application data, which is protected by full forward secrecy.
+TLS 1.3 PSK with (EC)DHE and 0-RTT Early Data utilizes the `psk_dhe_ke` exchange mode. The `ClientHello` message carries the `pre_shared_key`, `psk_key_exchange_modes`, `key_share`, and `early_data` extensions, allowing early application data and a fresh ephemeral Diffie-Hellman (DH) exchange within the same handshake. The 0-RTT early application data is encrypted using keys derived from the **Early Secret** (which depends solely on the PSK), it remains vulnerable to replay attacks and lacks Perfect Forward Secrecy (PFS). Upon receiving `ServerHello` (carrying the server's `key_share`), the TLS 1.3 key schedule immediately incorporates the ephemeral DH shared secret to derive the **Handshake Secret** and subsequently the **Master Secret**. The `Finished` messages authenticate the handshake transcript and gate the start of 1-RTT application data, which is protected by full forward secrecy.
 
 ```text
 TLS 1.3
@@ -264,9 +264,9 @@ sequenceDiagram
   - Operational Complexity
     > Safe use requires strict idempotency constraints, bounded payload handling, and server-side anti-replay controls, which are outside the default target profile.
 
-### 4.5. TLS 1.3 DHE-PSK
+### 4.5. TLS 1.3 PSK with (EC)DHE
 
-TLS 1.3 DHE-PSK (`psk_dhe_ke`) binds PSK authentication to an ephemeral Diffie-Hellman exchange. Even if the PSK is exposed later, recorded traffic remains protected because past session keys also depend on ephemeral key material that is not retained.
+TLS 1.3 PSK with (EC)DHE (`psk_dhe_ke`) binds PSK authentication to an ephemeral Diffie-Hellman exchange. Even if the PSK is exposed later, recorded traffic remains protected because past session keys also depend on ephemeral key material that is not retained.
 
 ```text
 TLS 1.3
@@ -393,12 +393,9 @@ sequenceDiagram
 ## 7. References
 
 - IETF [RFC 9257 – Guidance for External PSK Usage in TLS](https://www.rfc-editor.org/rfc/rfc9257.html) standard.
-- IETF [RFC 8446 – The Transport Layer Security (TLS) Protocol Version 1.3](https://www.rfc-editor.org/rfc/rfc8446) standard.
-- IETF [RFC 8446 §2.3 – TLS 1.3 PSK Handshake Modes](https://www.rfc-editor.org/rfc/rfc8446#section-2.3) section.
-- IETF [RFC 8446 §5.3 – Per-Record Nonce](https://datatracker.ietf.org/doc/html/rfc8446#section-5.3) section.
-- IETF [RFC 8446 §8 – 0-RTT and Anti-Replay](https://datatracker.ietf.org/doc/html/rfc8446#section-8) section.
-- IETF [RFC 4279 – Pre-Shared Key Ciphersuites for Transport Layer Security (TLS)](https://www.rfc-editor.org/rfc/rfc4279) standard.
-- IETF [RFC 5487 – Pre-Shared Key Cipher Suites for TLS with SHA-256/384 and AES Galois Counter Mode](https://www.rfc-editor.org/rfc/rfc5487) standard.
-- IETF [RFC 5489 – ECDHE_PSK Cipher Suites for Transport Layer Security (TLS)](https://www.rfc-editor.org/rfc/rfc5489) standard.
-- IETF [RFC 8442 – ECDHE_PSK with AES-GCM and AES-CCM Cipher Suites for TLS 1.2 and DTLS 1.2](https://www.rfc-editor.org/rfc/rfc8442) standard.
-- IANA [Transport Layer Security (TLS) Parameters](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml) registry.
+- IETF [RFC 8446 – TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446) standard.
+- IETF [RFC 4279 – Pre-Shared Key Cipher Suites for TLS](https://www.rfc-editor.org/rfc/rfc4279) standard.
+- IETF [RFC 5487 – Pre-Shared Key Cipher Suites for TLS with SHA-256/384 and AES-GCM](https://www.rfc-editor.org/rfc/rfc5487) standard.
+- IETF [RFC 5489 – ECDHE_PSK Cipher Suites for TLS](https://www.rfc-editor.org/rfc/rfc5489) standard.
+- IETF [RFC 8442 – ECDHE_PSK Cipher Suites for TLS 1.2 and DTLS 1.2 with AES-GCM and AES-CCM](https://www.rfc-editor.org/rfc/rfc8442) standard.
+- IANA [TLS Parameters](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml) registry.

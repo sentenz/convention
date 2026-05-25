@@ -340,7 +340,7 @@ sequenceDiagram
 - Risks
 
   - PSK Compromise
-    > If the pre-shared key is leaked through insecure provisioning or storage, all sessions authenticated by that PSK are compromised. Mitigation: enforce secure out-of-band PSK provisioning, rotate PSKs regularly, and use distinct PSKs per device pair as recommended by RFC 9257.
+    > If the Pre-Shared Key (PSK) is leaked through insecure provisioning or storage, all sessions authenticated by that PSK are compromised. Mitigation: enforce secure out-of-band PSK provisioning, rotate PSKs regularly, and use distinct PSKs per device pair as recommended by RFC 9257.
 
   - PSK Reuse Across Contexts
     > Reusing the same PSK across multiple endpoints or hash algorithms may enable cross-protocol attacks. Mitigation: follow RFC 9257 guidance to bind each external PSK to a single TLS hash algorithm and assign a unique PSK identity per communicating endpoint pair.
@@ -394,8 +394,8 @@ sequenceDiagram
 
 - IETF [RFC 9257 – Guidance for External PSK Usage in TLS](https://www.rfc-editor.org/rfc/rfc9257.html) standard.
 - IETF [RFC 8446 – TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446) standard.
-- IETF [RFC 4279 – Pre-Shared Key Cipher Suites for TLS](https://www.rfc-editor.org/rfc/rfc4279) standard.
-- IETF [RFC 5487 – Pre-Shared Key Cipher Suites for TLS with SHA-256/384 and AES-GCM](https://www.rfc-editor.org/rfc/rfc5487) standard.
+- IETF [RFC 4279 – PSK Cipher Suites for TLS](https://www.rfc-editor.org/rfc/rfc4279) standard.
+- IETF [RFC 5487 – PSK Cipher Suites for TLS with SHA-256/384 and AES-GCM](https://www.rfc-editor.org/rfc/rfc5487) standard.
 - IETF [RFC 5489 – ECDHE_PSK Cipher Suites for TLS](https://www.rfc-editor.org/rfc/rfc5489) standard.
 - IETF [RFC 8442 – ECDHE_PSK Cipher Suites for TLS 1.2 and DTLS 1.2 with AES-GCM and AES-CCM](https://www.rfc-editor.org/rfc/rfc8442) standard.
 - IANA [TLS Parameters](https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml) registry.

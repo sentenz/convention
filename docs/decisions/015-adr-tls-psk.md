@@ -215,7 +215,8 @@ sequenceDiagram
 
 ### 4.4. TLS 1.3 PSK with 0-RTT Early Data
 
-TLS 1.3 PSK with 0-RTT early data can be combined with `psk_dhe_ke`; the ClientHello carries `pre_shared_key`, `psk_key_exchange_modes`, `key_share`, and `early_data`, allowing early data and an ephemeral DH exchange within the same handshake. Early data is encrypted under the `client_early_traffic_secret`, which is derived solely from the PSK-seeded `early_secret` (RFC 8446 §7.1); it is therefore replayable and has no forward secrecy. Once the server completes the DHE exchange, the `handshake_secret` and subsequently the `master_secret` incorporate the DHE shared secret via HKDF-Extract, so application traffic keys derived after the Finished exchange gain forward secrecy.
+TLS 1.3 Pre-Shared Key (PSK) with 0-RTT Early Data utilizes the `psk_dhe_ke` exchange mode. The `ClientHello` message carries the `pre_shared_key`, `psk_key_exchange_modes`, `key_share`, and `early_data` extensions, allowing early application data and a fresh ephemeral Diffie-Hellman (DH) exchange within the same handshake. Because the 0-RTT early application data is encrypted using keys derived from the **Early Secret** (which depends solely on the PSK), it remains vulnerable to replay attacks and lacks Perfect Forward Secrecy (PFS). Once the `ServerHello` (carrying the server's `key_share`) and the `Finished` messages are processed, the TLS 1.3 key schedule incorporates the DH shared secret into the **Master Secret**. Consequently, all subsequent 1-RTT application data gains full forward secrecy.
+
 
 ```text
 TLS 1.3

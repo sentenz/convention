@@ -52,7 +52,7 @@ This ADR evaluates legacy TLS 1.2 PSK modes for compatibility, TLS 1.3 PSK-only 
 
 ### 3.1. TLS 1.3 DHE-PSK
 
-TLS 1.3 DHE-PSK (`psk_dhe_ke`) is selected as the standard PSK handshake mode. In TLS 1.3, this mode uses the regular 1-RTT handshake, and the per-record nonce is an inherent record-layer construction rather than a separate protocol variant. The PSK authenticates the communicating endpoints, and the ephemeral Diffie-Hellman exchange contributes fresh key material for each session. This combination provides forward secrecy while retaining PSK-based authentication and avoiding certificate-chain validation in constrained deployments.
+TLS 1.3 DHE-PSK (`psk_dhe_ke`) is selected as the standard PSK handshake mode. In TLS 1.3, this mode uses the regular 1-RTT handshake, and the per-record nonce is a protocol inherent record-layer construction. The PSK authenticates the communicating endpoints, and the ephemeral Diffie-Hellman exchange contributes fresh key material for each session. This combination provides forward secrecy while retaining PSK-based authentication and avoiding certificate-chain validation in constrained deployments.
 
 Application data is sent only after the TLS 1.3 Finished messages complete. The per-record nonce (sequence counter XOR static write IV, per RFC 8446 §5.3) is provided by the TLS record layer and does not require external nonce synchronization. RFC 9257 recommends `psk_dhe_ke` over `psk_ke` for external PSKs because `psk_dhe_ke` prevents later PSK disclosure from being sufficient to reconstruct past traffic keys.
 

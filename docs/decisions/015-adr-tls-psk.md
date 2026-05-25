@@ -223,11 +223,13 @@ TLS 1.3
 + AEAD = AES-128-GCM
 + HKDF hash = SHA-256
 + pre_shared_key extension
++ key_share extension (for 1-RTT Forward Secrecy)
 + early_data extension
++ psk_key_exchange_modes: psk_dhe_ke
 + PSK resumption required
 + 0-RTT early application data
 + Replayable early data
-+ No Forward Secrecy for 0-RTT data
++ No Forward Secrecy for 0-RTT data (PFS applies only to 1-RTT data)
 ```
 
 ```mermaid
@@ -235,12 +237,12 @@ sequenceDiagram
     participant C as Client
     participant S as Server
 
-    C->>S: ClientHello<br/>(+ pre_shared_key, psk_key_exchange_modes, early_data)
-    C->>S: EarlyData (0-RTT App Data)
-    S->>C: ServerHello<br/>(+ pre_shared_key)<br/>EncryptedExtensions<br/>Finished
+    C->>S: ClientHello<br/>(+ pre_shared_key, psk_key_exchange_modes, key_share, early_data)
+    C-)S: EarlyData (0-RTT App Data)
+    S->>C: ServerHello<br/>(+ pre_shared_key, key_share)<br/>EncryptedExtensions<br/>Finished
     C->>S: EndOfEarlyData<br/>Finished
 
-    Note over C,S: Early Data Starts at 0-RTT; 1-RTT Data Continues After Finished
+    Note over C,S: Early Data lacked PFS and was replayable.<br/>All subsequent 1-RTT data is protected by Ephemeral DH (PFS).
 ```
 
 - Pros

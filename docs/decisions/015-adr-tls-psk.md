@@ -208,7 +208,7 @@ sequenceDiagram
 - Cons
 
   - Forward Secrecy
-    > A later PSK compromise can be sufficient to reconstruct traffic keys for recorded sessions because no ephemeral DH secret contributes to the key schedule.
+    > No Forward Secrecy. All traffic keys for the entire session depend solely on the static PSK. A PSK compromise can be sufficient to reconstruct traffic keys for recorded sessions because no ephemeral DH secret contributes to the key schedule. An attacker who records traffic today and steals the PSK later can completely decrypt sessions.
 
   - Security Margin
     > RFC 9257 recommends `psk_dhe_ke` for external PSKs, making PSK-only mode unsuitable as the default profile.

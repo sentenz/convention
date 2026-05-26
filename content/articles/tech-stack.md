@@ -125,7 +125,7 @@ A Tech Stack (Technology Stack) refers to the combination of languages, framewor
 
 15. Conventions & Style Guides
 
-    - [x] [Zero Trust Architecture (ZTA)](https://csrc.nist.gov/publications/detail/sp/800-207/final)
+    - [x] [Zero Trust Architecture (ZTA)](../articles/zero-trust-architecture.md)
       > Zero Trust Architecture (ZTA) is a security model that requires strict identity verification, enforces continuous verification, least-privilege access, strong identity and device posture checks, and microsegmentation of the network perimeter.
 
 ### 1.2. Go

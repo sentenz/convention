@@ -20,11 +20,11 @@ Cross-compilation separates the machine that performs compilation from the machi
 - Build Platform
   > The machine where source code is configured and compiled.
 
-- Host Platform
-  > The machine where the compiler toolchain itself runs.
+- Host Platform (`--host` in Autoconf)
+  > The machine where the compiled package runs. In application cross-compilation, this is the runtime system for the built software, not the build machine.
 
-- Target Platform
-  > The machine or CPU/OS environment for which the output binary is generated.
+- Target Platform (`--target` in Autoconf)
+  > Meaningful mainly when building a compiler or binutils: it identifies the system that the produced toolchain will generate code for.
 
 ### 2. Target Triplet
 
@@ -100,7 +100,7 @@ For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floati
 2. Examples and Explanations
 
 - `arm-linux-gnueabi-gcc`
-  > Commonly associated with `softfp`-oriented ARM EABI distributions.
+  > Uses the ARM EABI soft-float calling convention, floating-point arguments passed in core registers. The default `-mfloat-abi` mode may be `soft` or `softfp` depending on toolchain and CPU/FPU configuration.
 
 - `arm-linux-gnueabihf-gcc`
   > Uses hard-float ABI conventions (`hard`) and generally provides better floating-point performance where hardware support exists.

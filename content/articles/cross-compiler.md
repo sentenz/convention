@@ -17,7 +17,7 @@ A cross compiler is a compiler toolchain that runs on one platform (host) and pr
 
 Cross-compilation separates the machine that performs compilation from the machine that executes the output binary.
 
-- Build Platform
+- Build Platform (`--build` in Autoconf)
   > The machine where source code is configured and compiled.
 
 - Host Platform (`--host` in Autoconf)

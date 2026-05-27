@@ -28,17 +28,15 @@ Cross-compilation separates the machine that performs compilation from the machi
 
 ### 2. Target Triplet
 
-GNU-style compiler/toolchain platform identifier use a canonical target naming format schema.
-
 1. Structure and Schema 
 
-
+GNU-style compiler/toolchain platform identifier use a canonical target naming format schema.
 
 ```text
 <architecture>-<vendor>-<os>
 ```
 
-with a common extended form:
+With a common extended form.
 
 ```text
 <architecture>-<vendor>-<os>-<environment>

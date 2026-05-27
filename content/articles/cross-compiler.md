@@ -1,82 +1,126 @@
 # Cross Compiler
 
-A cross compiler is a compiler capable of creating executable code for a platform other than the one on which the compiler is running. For example, a compiler that runs on a PC but generates code that runs on Android smartphone is a cross compiler.
+A cross compiler is a compiler toolchain that runs on one platform (host) and produces binaries for another platform (target). It is a core building block for embedded systems, mobile platforms, and any workflow where the runtime environment differs from the build environment.
 
-- [1. Naming Convention](#1-naming-convention)
-- [2. Glossary](#2-glossary)
-- [3. References](#3-references)
+- [1. Overview](#1-overview)
+- [2. Naming Convention](#2-naming-convention)
+  - [2.1. Target Tuple Components](#21-target-tuple-components)
+  - [2.2. Common Target Names](#22-common-target-names)
+  - [2.3. Compiler Binary Suffixes](#23-compiler-binary-suffixes)
+- [3. ARM Floating-Point ABI Variants](#3-arm-floating-point-abi-variants)
+  - [3.1. ABI Modes](#31-abi-modes)
+  - [3.2. Toolchain Defaults](#32-toolchain-defaults)
+- [4. Glossary](#4-glossary)
+- [5. References](#5-references)
 
-## 1. Naming Convention
+## 1. Overview
 
-The naming rule of the cross-compilation toolchain is: `[arch]-[vendor]-[os]-[abi]`.
+Cross-compilation separates the machine that performs compilation from the machine that executes the output binary.
+
+- Build Platform
+  > The machine where source code is configured and compiled.
+
+- Host Platform
+  > The machine where the compiler toolchain itself runs.
+
+- Target Platform
+  > The machine or CPU/OS environment for which the output binary is generated.
+
+## 2. Naming Convention
+
+Most GNU-style cross toolchains use a canonical target naming format:
+
+`[arch]-[vendor]-[os]-[abi]`
+
+### 2.1. Target Tuple Components
 
 - `arch`
-  > Refers to target architecture: arm, mips, x86, i686.
+  > Target CPU architecture, such as `arm`, `aarch64`, `mips`, `x86_64`, or `i686`.
 
 - `vendor`
-  > Refers to toolchain supplier: apple.
+  > Toolchain or platform vendor identifier, such as `apple`, `pc`, or `none`.
 
 - `os`
-  > Refers to the target operating system: darwin, linux, none (bare metal systems).
+  > Target operating system, such as `linux`, `darwin`, or `none` for bare-metal systems.
 
-- `eabi`
-  > Refers to Embedded Application Binary Interface: eabi, gnueabi, gnueabihf.
+- `abi`
+  > Application Binary Interface, such as `eabi`, `gnueabi`, or `gnueabihf`.
 
-Illustrations as follows:
+### 2.2. Common Target Names
 
-- arm-none-eabi
+- `arm-none-eabi`
+  > Bare-metal ARM target using the Embedded ABI; typically used for microcontrollers (for example Cortex-M and Cortex-R).
 
-  This tool chain targets for ARM architecture (including ARM Linux boot and kernel), has no vendor (generic), does not target an operating system and complies with the ARM EABI.
-  
-  Generally suitable for ARM7, Cortex-M and Cortex-R core chips.
+- `arm-none-linux-gnueabi` / `arm-linux-gnueabi`
+  > ARM Linux target using GNU EABI; commonly used for user space, bootloader, and kernel-related builds on ARM Linux systems.
 
-- arm-none-linux-gnueabi, arm-linux-gnueabi
+- `aarch64-linux-gnu`
+  > 64-bit ARM Linux target for ARMv8-A and newer platforms.
 
-  This toolchain targets the ARM architecture, has no vendor (generic), creates binaries that run on the Linux operating system, and uses the GNU EABI. It is used to target ARM-based Linux systems.
+- `i686-apple-darwin10`
+  > 32-bit Intel target for macOS/Darwin toolchains.
 
-  Used for Linux systems based on ARM architecture, and can be used to compile u-boot, Linux kernel, linux applications of ARM architecture, etc. arm-none-linux-gnueabi is based on GCC, uses the Glibc library, and is a compiler optimized. Generally, ARM9, ARM11, Cortex-A kernels and Linux operating system.
+- `arm-ostl-linux-gnueabi`
+  > ARM Linux target tuple used in some OpenSTLinux/STMicroelectronics toolchain distributions.
 
-- i686-apple-darwin10-gcc-4.2.1
+- `arm-eabi`
+  > Compact target name commonly seen in Android and embedded toolchain contexts.
 
-  This toolchain targets the Intel i686 architecture, the vendor is Apple, and the target OS is Darwin version 10 with the  of GCC version 4.2.1.
+### 2.3. Compiler Binary Suffixes
 
-- arm-ostl-linux-gnueabi
+The toolchain tuple is often followed by a compiler frontend executable name.
 
-  This toolchain targets the ARM architecture, the vendor is STMicroelectronics for OpenSTLinux in STM32MP, creates binaries that run on the Linux operating system, and uses the GNU EABI. It is used to target ARM-based Linux systems.
+- `arm-linux-gnueabi-gcc`
+  > GCC frontend for the `arm-linux-gnueabi` target.
 
-- arm-eabi
+- `arm-linux-gnueabihf-gcc`
+  > GCC frontend for the `arm-linux-gnueabihf` target.
 
-  Android  ARM compiler.
+## 3. ARM Floating-Point ABI Variants
 
-- arm-linux-gnueabi-gcc and arm-linux-gnueabihf-gcc
+For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floating-point ABI behavior.
 
-  The two cross-compilers are applicable to two different architectures of armel and armhf. The two architectures of armel and armhf adopt different strategies for floating-point operations (arms with fpu can support these two floating-point operations strategies).
+### 3.1. ABI Modes
 
-  In fact, these two cross-compilers are just different default values ​​of the gcc option -mfloat-abi. The gcc option -mfloat-abi has three values, soft, softfp, and hard (the latter two of which require the fpu floating point unit in the arm, soft and the latter two are compatible, but the two modes of softfp and hard are not compatible with each other ): soft: FPU is not used for floating point calculation, even if there is an FPU floating point unit, it is not used, but the software mode is used.
+`-mfloat-abi` controls how floating-point operations and parameter passing are handled.
 
-  softfp: The default value adopted by the armel architecture (corresponding compiler is arm-linux-gnueabi-gcc) is calculated by fpu, but the parameters are passed by ordinary registers, so that when interrupting, only ordinary registers need to be saved, and the interrupt load is small. But the parameters need to be converted to floating point and then calculated.
+- `soft`
+  > Uses software emulation for floating-point computation and passes parameters in core integer registers. This mode offers broad compatibility but lower floating-point performance.
 
-  hard: The default value adopted by the armhf architecture (corresponding compiler arm-linux-gnueabihf-gcc) is calculated by fpu, and the parameters are also passed by the floating-point register in the fpu, eliminating the need for conversion. The performance is the best, but the interrupt load high.
+- `softfp`
+  > Uses hardware FPU instructions when available but still passes parameters in core integer registers. This mode is commonly interoperable with `soft` in many ABI contexts.
 
-## 2. Glossary
+- `hard`
+  > Uses hardware FPU for computation and passes parameters in FPU registers. This provides better floating-point performance but is not binary-compatible with `softfp` objects.
 
-Definitions of terms.
+### 3.2. Toolchain Defaults
+
+- `arm-linux-gnueabi-gcc`
+  > Commonly associated with `softfp`-oriented ARM EABI distributions.
+
+- `arm-linux-gnueabihf-gcc`
+  > Uses hard-float ABI conventions (`hard`) and generally provides better floating-point performance where hardware support exists.
+
+## 4. Glossary
 
 - ABI
-  > Application Binary Interface (ABI) for the ARM Architecture. In the computer, the application binary interface describes the low-level interface between the application (or other types) and the operating system or other applications.
+  > Application Binary Interface: a low-level contract defining calling conventions, binary formats, and interoperability rules between compiled components.
 
 - EABI
-  > Embedded Application Binary Interface (EABI). The embedded application binary interface specifies the file format, data type, register usage, stack organization optimization, and standard conventions of parameters in an embedded software. Developers using their own assembly language can also use EABI as an interface with the assembly language generated by a compatible compiler. The main difference with ABI is that ABI is used on the computer and EABI is used on the embedded platform (e.g. ARM, MIPS).
+  > Embedded Application Binary Interface: ABI conventions tailored for embedded targets such as ARM and MIPS.
 
 - amd64
-  > AMD64 is AMD’s 64-bit extension of Intel’s x86 architecture, and is also referred to as x86_64 (or x86-64).
+  > AMD's 64-bit extension of x86; commonly referred to as `x86_64`.
 
 - arm64
-  > ARM64 is the 64-bit extension of the ARM CPU architecture.
+  > 64-bit ARM architecture, also known as AArch64.
 
 - x86_64
-  > x86_64 (or x86-64) refers to a 64-bit instruction set invented by AMD as an extension of Intel’s x86 architecture. AMD calls its x86_64 architecture, AMD64, and Intel calls its implementation, Intel 64.
+  > 64-bit x86 instruction set architecture implemented by both AMD and Intel.
 
-## 3. References
+## 5. References
 
+- GNU [Configure Terms](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Specifying-Target-Triplets.html) page.
+- ARM [Procedure Call Standard for the Arm Architecture (AAPCS)](https://github.com/ARM-software/abi-aa/releases) page.
+- GCC [ARM Options](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html) page.
 - Actorsfit [arm cross compiler](https://blog.actorsfit.com/a?ID=01700-1ce8edc2-d16c-4135-9abc-fd37ff641c25) article.

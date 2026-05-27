@@ -13,7 +13,7 @@ A cross compiler is a compiler toolchain that runs on one platform (host) and pr
 - [4. Glossary](#4-glossary)
 - [5. References](#5-references)
 
-## 1. Overview
+## 1. Category
 
 Cross-compilation separates the machine that performs compilation from the machine that executes the output binary.
 
@@ -26,13 +26,17 @@ Cross-compilation separates the machine that performs compilation from the machi
 - Target Platform
   > The machine or CPU/OS environment for which the output binary is generated.
 
-## 2. Naming Convention
+### 2. Target Triplet
 
-Most GNU-style cross toolchains use a canonical target naming format:
+GNU-style cross toolchains use a canonical target naming format.
 
-`[arch]-[vendor]-[os]-[abi]`
+1. Structure and TODO 
 
-### 2.1. Target Tuple Components
+```plaintext
+[arch]-[vendor]-[os]-[abi]
+```
+
+2. Components and TODO
 
 - `arch`
   > Target CPU architecture, such as `arm`, `aarch64`, `mips`, `x86_64`, or `i686`.
@@ -46,7 +50,7 @@ Most GNU-style cross toolchains use a canonical target naming format:
 - `abi`
   > Application Binary Interface, such as `eabi`, `gnueabi`, or `gnueabihf`.
 
-### 2.2. Common Target Names
+3. Examples and Explanations
 
 - `arm-none-eabi`
   > Bare-metal ARM target using the Embedded ABI; typically used for microcontrollers (such as Cortex-M and Cortex-R).
@@ -68,7 +72,7 @@ Most GNU-style cross toolchains use a canonical target naming format:
 
 ### 2.3. Compiler Binary Suffixes
 
-The toolchain tuple is often followed by a compiler frontend executable name.
+The toolchain triplets is often followed by a compiler frontend executable name.
 
 - `arm-linux-gnueabi-gcc`
   > GCC frontend for the `arm-linux-gnueabi` target.
@@ -76,13 +80,13 @@ The toolchain tuple is often followed by a compiler frontend executable name.
 - `arm-linux-gnueabihf-gcc`
   > GCC frontend for the `arm-linux-gnueabihf` target.
 
-## 3. ARM floating-point ABI variants
+### 3. ARM floating-point ABI variants
+
+ABI modes `-mfloat-abi` controls how floating-point operations and parameter passing are handled.
 
 For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floating-point ABI behavior.
 
-### 3.1. ABI Modes
-
-`-mfloat-abi` controls how floating-point operations and parameter passing are handled.
+1. Components and TODO 
 
 - `soft`
   > Uses software emulation for floating-point computation and passes parameters in core integer registers. This mode offers broad compatibility but lower floating-point performance.
@@ -93,7 +97,7 @@ For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floati
 - `hard`
   > Uses hardware FPU for computation and passes parameters in FPU registers. This provides better floating-point performance but is not binary-compatible with `softfp` objects.
 
-### 3.2. Toolchain Defaults
+2. Examples and Explanations
 
 - `arm-linux-gnueabi-gcc`
   > Commonly associated with `softfp`-oriented ARM EABI distributions.
@@ -101,7 +105,7 @@ For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floati
 - `arm-linux-gnueabihf-gcc`
   > Uses hard-float ABI conventions (`hard`) and generally provides better floating-point performance where hardware support exists.
 
-## 4. Glossary
+## 2. Terminology
 
 - ABI
   > Application Binary Interface: a low-level contract defining calling conventions, binary formats, and interoperability rules between compiled components.
@@ -118,7 +122,7 @@ For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floati
 - x86_64
   > 64-bit x86 instruction set architecture implemented by both AMD and Intel.
 
-## 5. References
+## 3. References
 
 - GNU [Configure terms](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Specifying-Target-Triplets.html) page.
 - ARM [Procedure call standard for the Arm architecture (AAPCS)](https://github.com/ARM-software/abi-aa/releases) page.

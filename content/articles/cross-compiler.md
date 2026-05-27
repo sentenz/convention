@@ -28,13 +28,28 @@ Cross-compilation separates the machine that performs compilation from the machi
 
 ### 2. Target Triplet
 
-GNU-style cross toolchains use a canonical target naming format.
+GNU-style compiler/toolchain platform identifier use a canonical target naming format schema.
 
-1. Structure and TODO 
+1. Structure and Schema 
 
-```plaintext
-[arch]-[vendor]-[os]-[abi]
+
+
+```text
+<architecture>-<vendor>-<os>
 ```
+
+with a common extended form:
+
+```text
+<architecture>-<vendor>-<os>-<environment/abi>
+```
+
+| Field          |                                             Required | Meaning                                        | Examples                                          |
+| -------------- | ---------------------------------------------------: | ---------------------------------------------- | ------------------------------------------------- |
+| `architecture` |                                                  Yes | CPU / ISA target                               | `x86_64`, `aarch64`, `armv7`, `riscv64`, `wasm32` |
+| `vendor`       | Yes in canonical triplets, often `unknown` or `none` | Platform vendor or placeholder                 | `pc`, `apple`, `unknown`, `none`                  |
+| `os`           |                                                  Yes | Operating system, kernel, or bare-metal target | `linux`, `darwin`, `windows`, `none`, `elf`       |
+| `environment`  |                                             Optional | ABI, libc, runtime environment                 | `gnu`, `musl`, `eabi`, `gnueabihf`, `msvc`        |
 
 2. Components and TODO
 

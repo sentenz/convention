@@ -41,7 +41,7 @@ GNU-style compiler/toolchain platform identifier use a canonical target naming f
 with a common extended form:
 
 ```text
-<architecture>-<vendor>-<os>-<environment/abi>
+<architecture>-<vendor>-<os>-<environment>
 ```
 
 | Field          |                                             Required | Meaning                                        | Examples                                          |

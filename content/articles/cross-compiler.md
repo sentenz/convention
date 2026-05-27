@@ -108,13 +108,13 @@ For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floati
 ## 2. Terminology
 
 - ABI
-  > Application Binary Interface: a low-level contract defining calling conventions, binary formats, and interoperability rules between compiled components.
+  > Application Binary Interface (ABI) is a low-level contract defining calling conventions, binary formats, and interoperability rules between compiled components.
 
 - EABI
-  > Embedded Application Binary Interface: ABI conventions tailored for embedded targets such as ARM and MIPS.
+  > Embedded Application Binary Interface (EABI) conventions tailored for embedded targets such as ARM and MIPS.
 
 - amd64
-  > AMD's 64-bit extension of x86; commonly referred to as `x86_64`.
+  > AMD's 64-bit extension of x86, commonly referred to as `x86_64`.
 
 - arm64
   > 64-bit ARM architecture, also known as AArch64.

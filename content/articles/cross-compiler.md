@@ -120,7 +120,7 @@ For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floati
 
 ## 5. References
 
-- GNU [Configure Terms](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Specifying-Target-Triplets.html) page.
-- ARM [Procedure Call Standard for the Arm Architecture (AAPCS)](https://github.com/ARM-software/abi-aa/releases) page.
-- GCC [ARM Options](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html) page.
+- GNU [Configure terms](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Specifying-Target-Triplets.html) page.
+- ARM [Procedure call standard for the Arm architecture (AAPCS)](https://github.com/ARM-software/abi-aa/releases) page.
+- GCC [ARM options](https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html) page.
 - Actorsfit [arm cross compiler](https://blog.actorsfit.com/a?ID=01700-1ce8edc2-d16c-4135-9abc-fd37ff641c25) article.

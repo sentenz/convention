@@ -72,7 +72,7 @@ GNU-style cross toolchains use a canonical target naming format.
 
 ### 2.3. Compiler Binary Suffixes
 
-The toolchain triplets is often followed by a compiler frontend executable name.
+The toolchain triplet is often followed by a compiler frontend executable name.
 
 - `arm-linux-gnueabi-gcc`
   > GCC frontend for the `arm-linux-gnueabi` target.
@@ -82,11 +82,11 @@ The toolchain triplets is often followed by a compiler frontend executable name.
 
 ### 3. ARM floating-point ABI variants
 
-ABI modes `-mfloat-abi` controls how floating-point operations and parameter passing are handled.
+ABI mode `-mfloat-abi` controls how floating-point operations and parameter passing are handled.
 
 For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floating-point ABI behavior.
 
-1. Components and TODO 
+1. Modes
 
 - `soft`
   > Uses software emulation for floating-point computation and passes parameters in core integer registers. This mode offers broad compatibility but lower floating-point performance.

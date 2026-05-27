@@ -7,7 +7,7 @@ A cross compiler is a compiler toolchain that runs on one platform (host) and pr
   - [2.1. Target Tuple Components](#21-target-tuple-components)
   - [2.2. Common Target Names](#22-common-target-names)
   - [2.3. Compiler Binary Suffixes](#23-compiler-binary-suffixes)
-- [3. ARM Floating-Point ABI Variants](#3-arm-floating-point-abi-variants)
+- [3. ARM floating-point ABI variants](#3-arm-floating-point-abi-variants)
   - [3.1. ABI Modes](#31-abi-modes)
   - [3.2. Toolchain Defaults](#32-toolchain-defaults)
 - [4. Glossary](#4-glossary)
@@ -49,7 +49,7 @@ Most GNU-style cross toolchains use a canonical target naming format:
 ### 2.2. Common Target Names
 
 - `arm-none-eabi`
-  > Bare-metal ARM target using the Embedded ABI; typically used for microcontrollers (for example Cortex-M and Cortex-R).
+  > Bare-metal ARM target using the Embedded ABI; typically used for microcontrollers (such as Cortex-M and Cortex-R).
 
 - `arm-none-linux-gnueabi` / `arm-linux-gnueabi`
   > ARM Linux target using GNU EABI; commonly used for user space, bootloader, and kernel-related builds on ARM Linux systems.
@@ -76,7 +76,7 @@ The toolchain tuple is often followed by a compiler frontend executable name.
 - `arm-linux-gnueabihf-gcc`
   > GCC frontend for the `arm-linux-gnueabihf` target.
 
-## 3. ARM Floating-Point ABI Variants
+## 3. ARM floating-point ABI variants
 
 For ARM toolchains, `gnueabi` and `gnueabihf` typically differ by default floating-point ABI behavior.
 

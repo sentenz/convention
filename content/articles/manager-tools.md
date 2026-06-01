@@ -198,7 +198,7 @@ Manages sensitive information and secrets at rest, in transit, and in use.
 
 Manages cryptographic keys for encryption, decryption, and signing operations.
 
-1. Cloud Key Management Service (KMS)
+1. Cloud Key Management Service
 
     Managed cloud services for creating, storing, and controlling access to cryptographic keys.
 

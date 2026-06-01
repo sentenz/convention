@@ -196,9 +196,9 @@ Manages sensitive information and secrets at rest, in transit, and in use.
 
 ### 1.11. Key Manager
 
-Manages cryptographic keys for encryption, decryption, and signing operations.
+Manages cryptographic keys, certificates, and credentials for encryption, decryption, and signing operations.
 
-1. Cloud Key Management Service
+1. Cloud Key Management Service (KMS)
 
     Managed cloud services for creating, storing, and controlling access to cryptographic keys.
 
@@ -206,27 +206,29 @@ Manages cryptographic keys for encryption, decryption, and signing operations.
     - [Google Cloud Key Management](https://cloud.google.com/kms)
     - [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/)
 
-2. Self-Hosted Key Management
+2. Hardware Security Module (HSM)
 
-    On-premises or self-hosted solutions for key and secrets management.
+    Hardware-based or emulated devices for secure key generation, storage, and cryptographic operations.
+
+    - [AWS CloudHSM](https://aws.amazon.com/cloudhsm/)
+    - [YubiHSM 2](https://www.yubico.com/products/yubihsm/)
+    - [OpenSC](https://github.com/OpenSC/OpenSC)
+    - [SoftHSM](https://github.com/softhsm/SoftHSMv2)
+
+3. Key & Secret Management
+
+    Tools for managing secrets and keys in various environments, including self-hosted and open-source solutions.
 
     - [HashiCorp Vault](https://developer.hashicorp.com/vault)
     - [Bitwarden](https://bitwarden.com/)
     - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
 
-3. Certificate Manager
+4. Certificate Management
 
-    Manages the creation, distribution, and lifecycle of X.509 and TLS certificates.
+    Manages the creation, issuance, distribution, and lifecycle of X.509 and TLS certificates.
 
     - [Canonical Notary](https://github.com/canonical/notary)
-
-4. Hardware Security Module (HSM)
-
-    Hardware-based devices for secure key generation, storage, and cryptographic operations.
-
-    - [AWS CloudHSM](https://aws.amazon.com/cloudhsm/)
-    - [SoftHSM](https://github.com/softhsm/SoftHSMv2)
-    - [OpenSC](https://github.com/OpenSC/OpenSC)
+    - [cert-manager](https://cert-manager.io/)
 
 5. Artifact Signing & Verification
 
@@ -235,9 +237,9 @@ Manages cryptographic keys for encryption, decryption, and signing operations.
     - [Sigstore](https://www.sigstore.dev/)
     - [Notation](https://notaryproject.dev/)
 
-6. Encryption Tools
+6. File & Data Encryption
 
-    Lightweight tools for file and data encryption using modern cryptographic algorithms.
+    Lightweight CLI tools for manual or automated file and data encryption using modern cryptographic algorithms.
 
     - [Age](https://age-encryption.org/)
     - [GnuPG](https://gnupg.org/)

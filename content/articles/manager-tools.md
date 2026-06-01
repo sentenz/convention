@@ -216,7 +216,7 @@ Manages cryptographic keys for encryption, decryption, and signing operations.
 
 3. Certificate Manager
 
-    Manages the creation, distribution, and lifecycle of x509 and TLS certificates.
+    Manages the creation, distribution, and lifecycle of X.509 and TLS certificates.
 
     - [Canonical Notary](https://github.com/canonical/notary)
 

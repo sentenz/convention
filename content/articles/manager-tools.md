@@ -225,7 +225,7 @@ Manages cryptographic keys for encryption, decryption, and signing operations.
     Hardware-based devices for secure key generation, storage, and cryptographic operations.
 
     - [AWS CloudHSM](https://aws.amazon.com/cloudhsm/)
-    - [SoftHSM](https://www.opendnssec.org/softhsm/)
+    - [SoftHSM](https://github.com/softhsm/SoftHSMv2)
     - [OpenSC](https://github.com/OpenSC/OpenSC)
 
 5. Artifact Signing & Verification

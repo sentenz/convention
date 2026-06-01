@@ -233,7 +233,6 @@ Manages cryptographic keys for encryption, decryption, and signing operations.
     Tools for signing and verifying software artifacts, container images, and supply chain components.
 
     - [Sigstore](https://www.sigstore.dev/)
-    - [Notary](https://github.com/notaryproject/notary)
     - [Notation](https://notaryproject.dev/)
 
 6. Encryption Tools

@@ -214,7 +214,13 @@ Manages cryptographic keys for encryption, decryption, and signing operations.
     - [Bitwarden](https://bitwarden.com/)
     - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
 
-3. Hardware Security Module (HSM)
+3. Certificate Manager
+
+    Manages the creation, distribution, and lifecycle of x509 and TLS certificates.
+
+    - [Canonical Notary](https://github.com/canonical/notary)
+
+4. Hardware Security Module (HSM)
 
     Hardware-based devices for secure key generation, storage, and cryptographic operations.
 
@@ -222,7 +228,7 @@ Manages cryptographic keys for encryption, decryption, and signing operations.
     - [SoftHSM](https://www.opendnssec.org/softhsm/)
     - [OpenSC](https://github.com/OpenSC/OpenSC)
 
-4. Artifact Signing & Verification
+5. Artifact Signing & Verification
 
     Tools for signing and verifying software artifacts, container images, and supply chain components.
 
@@ -230,14 +236,14 @@ Manages cryptographic keys for encryption, decryption, and signing operations.
     - [Notary](https://github.com/notaryproject/notary)
     - [Notation](https://notaryproject.dev/)
 
-5. Encryption Tools
+6. Encryption Tools
 
     Lightweight tools for file and data encryption using modern cryptographic algorithms.
 
     - [Age](https://age-encryption.org/)
     - [GnuPG](https://gnupg.org/)
 
-6. Identity & Access Management
+7. Identity & Access Management
 
     Identity and authentication platforms that integrate with key-based access controls.
 

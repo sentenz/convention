@@ -198,14 +198,55 @@ Manages sensitive information and secrets at rest, in transit, and in use.
 
 Manages cryptographic keys for encryption, decryption, and signing operations.
 
-- [AWS KMS](https://aws.amazon.com/kms/)
-- [HashiCorp Vault](https://developer.hashicorp.com/vault)
-- [Google Cloud Key Management](https://cloud.google.com/kms)
-- [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/)
-- [Age](https://age-encryption.org/)
-- [Keycloak](https://www.keycloak.org/)
-- [Bitwarden](https://bitwarden.com/)
-- [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+1. Cloud Key Management Service
+
+    Managed cloud services for creating, storing, and controlling access to cryptographic keys.
+
+    - [AWS KMS](https://aws.amazon.com/kms/)
+    - [Google Cloud Key Management](https://cloud.google.com/kms)
+    - [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/)
+
+2. Self-Hosted Key Management
+
+    On-premises or self-hosted solutions for key and secrets management.
+
+    - [HashiCorp Vault](https://developer.hashicorp.com/vault)
+    - [Bitwarden](https://bitwarden.com/)
+    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+
+3. Certificate Manager
+
+    Manages the creation, distribution, and lifecycle of X.509 and TLS certificates.
+
+    - [Canonical Notary](https://github.com/canonical/notary)
+
+4. Hardware Security Module (HSM)
+
+    Hardware-based devices for secure key generation, storage, and cryptographic operations.
+
+    - [AWS CloudHSM](https://aws.amazon.com/cloudhsm/)
+    - [SoftHSM](https://github.com/softhsm/SoftHSMv2)
+    - [OpenSC](https://github.com/OpenSC/OpenSC)
+
+5. Artifact Signing & Verification
+
+    Tools for signing and verifying software artifacts, container images, and supply chain components.
+
+    - [Sigstore](https://www.sigstore.dev/)
+    - [Notation](https://notaryproject.dev/)
+
+6. Encryption Tools
+
+    Lightweight tools for file and data encryption using modern cryptographic algorithms.
+
+    - [Age](https://age-encryption.org/)
+    - [GnuPG](https://gnupg.org/)
+
+7. Identity & Access Management
+
+    Identity and authentication platforms that integrate with key-based access controls.
+
+    - [Keycloak](https://www.keycloak.org/)
 
 ### 1.12. Cache Manager
 

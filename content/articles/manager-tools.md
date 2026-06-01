@@ -198,14 +198,50 @@ Manages sensitive information and secrets at rest, in transit, and in use.
 
 Manages cryptographic keys for encryption, decryption, and signing operations.
 
-- [AWS KMS](https://aws.amazon.com/kms/)
-- [HashiCorp Vault](https://developer.hashicorp.com/vault)
-- [Google Cloud Key Management](https://cloud.google.com/kms)
-- [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/)
-- [Age](https://age-encryption.org/)
-- [Keycloak](https://www.keycloak.org/)
-- [Bitwarden](https://bitwarden.com/)
-- [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+1. Cloud Key Management Service (KMS)
+
+    Managed cloud services for creating, storing, and controlling access to cryptographic keys.
+
+    - [AWS KMS](https://aws.amazon.com/kms/)
+    - [Google Cloud Key Management](https://cloud.google.com/kms)
+    - [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/)
+
+2. Self-Hosted Key Management
+
+    On-premises or self-hosted solutions for key and secrets management.
+
+    - [HashiCorp Vault](https://developer.hashicorp.com/vault)
+    - [Bitwarden](https://bitwarden.com/)
+    - [Vaultwarden](https://github.com/dani-garcia/vaultwarden)
+
+3. Hardware Security Module (HSM)
+
+    Hardware-based devices for secure key generation, storage, and cryptographic operations.
+
+    - [AWS CloudHSM](https://aws.amazon.com/cloudhsm/)
+    - [SoftHSM](https://www.opendnssec.org/softhsm/)
+    - [OpenSC](https://github.com/OpenSC/OpenSC)
+
+4. Artifact Signing & Verification
+
+    Tools for signing and verifying software artifacts, container images, and supply chain components.
+
+    - [Sigstore](https://www.sigstore.dev/)
+    - [Notary](https://github.com/notaryproject/notary)
+    - [Notation](https://notaryproject.dev/)
+
+5. Encryption Tools
+
+    Lightweight tools for file and data encryption using modern cryptographic algorithms.
+
+    - [Age](https://age-encryption.org/)
+    - [GnuPG](https://gnupg.org/)
+
+6. Identity & Access Management
+
+    Identity and authentication platforms that integrate with key-based access controls.
+
+    - [Keycloak](https://www.keycloak.org/)
 
 ### 1.12. Cache Manager
 

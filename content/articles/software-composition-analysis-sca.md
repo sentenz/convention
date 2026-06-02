@@ -158,7 +158,7 @@ Processes, standards, and scoring mechanisms used to identify, assess, and prior
 
 CVE (Common Vulnerabilities and Exposures) is the globally catalog of publicly disclosed cybersecurity vulnerabilities. A CVE entry provides a unique identifier (CVE ID) and a standardized description of a specific vulnerability in software, hardware, or firmware.
 
-1. Components and Features
+1. Concepts and Components
 
     - Vulnerability Databases
       > Access well-known vulnerability databases, such as the `NVD`, `CVE`, or vendor-specific databases. These databases contain information about known vulnerabilities, including their severity, impact, and affected versions.

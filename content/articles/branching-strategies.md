@@ -19,7 +19,7 @@ Branching strategies are methodologies for managing code changes in version cont
 
 [Trunk-Based Development (TBD)](https://trunkbaseddevelopment.com/) is a branching strategy that emphasizes a single shared branch, called `trunk` or `main`. All developers commit their changes directly to the trunk branch, ensuring that all changes are integrated and tested regularly. TBD promotes continuous integration and delivery, enabling teams to release software quickly and reliably.
 
-1. Components and Features
+1. Concepts and Components
 
     - Base Branches
 
@@ -55,7 +55,7 @@ Branching strategies are methodologies for managing code changes in version cont
 
 [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/) is a branching strategy for Git that helps teams manage the lifecycle of code changes.
 
-1. Components and Features
+1. Concepts and Components
 
     - Base Branches
 
@@ -135,7 +135,7 @@ Branching strategies are methodologies for managing code changes in version cont
 
 [GitHub Flow](https://githubflow.github.io/) is a simplified branching strategy that focuses on a single main branch and short-lived feature branches. It is designed for teams that want to release software frequently and emphasizes continuous integration and delivery.
 
-1. Components and Features
+1. Concepts and Components
 
     - Base Branches
 
@@ -175,7 +175,7 @@ Branching strategies are methodologies for managing code changes in version cont
 
 [GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html) is a branching strategy that combines the best practices of Git Flow and GitHub Flow. It emphasizes a single main branch for production-ready code and short-lived feature branches for development. GitLab Flow also incorporates environment-specific branches for staging and production, allowing for a more flexible and efficient development workflow.
 
-1. Components and Features
+1. Concepts and Components
 
     - Base Branches
 
@@ -236,7 +236,7 @@ Branching strategies are methodologies for managing code changes in version cont
 
 [Release Flow](http://releaseflow.org/) is a branching strategy that focuses on managing releases and hotfixes. It emphasizes a single main branch for production-ready code and short-lived branches for development, release preparation, and hotfixes.
 
-1. Components and Features
+1. Concepts and Components
 
     - Base Branches
 

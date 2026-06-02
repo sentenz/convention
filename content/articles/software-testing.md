@@ -1060,10 +1060,10 @@ Table-Driven Testing is a software testing pattern that involves organizing test
 
 2. Features and Benefits
 
-    - Consitency
-      > Concise and readable representation of test cases and  test coverage.
+    - Consistency
+      > Concise and readable representation of test cases and test coverage.
 
-    - Maintenability
+    - Maintainability
       > Easy to add or modify test cases without affecting the test implementation.
 
     - Clarity

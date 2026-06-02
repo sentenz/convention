@@ -50,7 +50,7 @@ By adhering to this convention, teams can maintain a well-organized, readable, a
       - create Indonesian translation (#321)
       ```
 
-2. Components and Features
+2. Concepts and Components
 
     - Version Header
       > Each version entry starts with a header containing the version number and release date. The version header in a changelog typically follows the Semantic Versioning (SemVer) format.

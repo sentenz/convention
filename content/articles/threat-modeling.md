@@ -157,7 +157,7 @@ PASTA (Process for Attack Simulation and Threat Analysis) is a seven-stage, risk
 
 DREAD is a qualitative risk-scoring framework used to rank threats by assigning scores across five dimensions. It is commonly used alongside STRIDE to prioritize the threats identified in a model.
 
-1. Workflow and Scoring
+1. Dimensions and Scoring
 
     > [!NOTE]
     > Each dimension is scored on a scale of 1–10. The overall DREAD score is the average of all five dimensions, with higher scores indicating higher priority threats.

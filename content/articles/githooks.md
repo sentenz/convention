@@ -55,7 +55,7 @@ Parameters:
 
 ### 1.3. commit-msg
 
-The [commit-msg](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_commit_msg) hook takes one parameter, which again is the path to a temporary file that contains the commit message written by the developer. If this script exits non-zero, Git aborts the commit process, so use it to validate your project state or commit message before allowing a commit to go through according to the [Conventional Commits](../convention/conventional-commits.md).
+The [commit-msg](https://sentenz.github.io/backup-service/website/git-scm.com/docs/githooks#_commit_msg) hook takes one parameter, which again is the path to a temporary file that contains the commit message written by the developer. If this script exits non-zero, Git aborts the commit process, so use it to validate your project state or commit message before allowing a commit to go through according to the [Commit](../articles/commit.md).
 
 Hook is invoked by `git-commit` and `git-merge`.
 

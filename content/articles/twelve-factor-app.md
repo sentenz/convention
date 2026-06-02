@@ -26,7 +26,7 @@ The `Codebase` factor in the Twelve-Factor App methodology states that each app 
 > [!NOTE]
 > Separate codebases for a single app, or splitting one app across multiple repositories, does not adhere to this factor. The intent is one version-controlled codebase per app that can be deployed across environments.
 
-1. Components and Features
+1. Concepts and Components
 
     - Single Codebase
       > A codebase is the source code for a service or application. In the Twelve-Factor methodology, there should be exactly one codebase per app. If there are multiple codebases, it is a distributed system whose components are separate Twelve-Factor apps.
@@ -44,7 +44,7 @@ The `Dependencies` factor focuses on managing software dependencies by explicitl
 > [!NOTE]
 > Adhering to the `Dependencies` principle improves portability, scalability, and maintainability. It also makes development setup easier, supports consistent deployment across environments, and simplifies scaling.
 
-1. Components and Features
+1. Concepts and Components
 
     - Explicit Declaration
       > The application should declare all dependencies by using a dependency management tool such as pip for Python (`requirements.txt`) or npm for Node.js (`package.json`).
@@ -118,7 +118,7 @@ The `Config` factor advocates strict separation of configuration from code.
 > [!NOTE]
 > Adhering to the `Config` principle makes applications easier to configure and deploy across environments, improving developer productivity and system robustness.
 
-1. Components and Features
+1. Concepts and Components
 
     - Configuration
       > Any aspect of the application that can vary between deployments (staging, production, developer environments) should be extracted as configuration. This can include database handles, credentials for external services, and per-deploy values such as canonical hostnames.
@@ -171,7 +171,7 @@ The `Backing Services` factor treats all services an application relies on as at
 > [!NOTE]
 > Adhering to the `Backing Services` principle improves flexibility, portability across environments, and scalability under load.
 
-1. Components and Features
+1. Concepts and Components
 
     - Backing Services
       > Backing services are network-accessed services that an application uses. Examples include databases (like MySQL or MongoDB), messaging/queueing systems (like RabbitMQ or SQS), SMTP services for outgoing email, and caches (like Memcached or Redis).
@@ -225,7 +225,7 @@ The `Backing Services` factor treats all services an application relies on as at
 > [!NOTE]
 > These stages should be strictly separated to ensure reliable, reproducible, and consistent deployments. Any change to the application moves back through these stages, creating a new release before entering the run stage. This workflow supports version tracking, problem diagnosis, and rollback.
 
-1. Components and Features
+1. Concepts and Components
 
     - Build Stage
       > Converts the code repository into an executable bundle. This might involve compiling code, packaging dependencies.
@@ -243,7 +243,7 @@ The `Processes` factor emphasizes that applications should run as stateless, sha
 > [!NOTE]
 > Adhering to the `Processes` principle improves scalability and resilience. Processes can be replicated to handle load, and a crash usually affects only a single request.
 
-1. Components and Features
+1. Concepts and Components
 
     - Stateless Processes
       > Application processes should be stateless and share-nothing. Data that needs to persist should be stored in a stateful backing service such as a database.
@@ -306,7 +306,7 @@ The `Port Binding` factor in the Twelve-Factor App methodology emphasizes that a
 
 Port binding aligns with the principles of the Twelve-Factor App methodology, promoting portability, flexibility, and scalability. The application can run independently in a variety of environments, making it easier to manage and deploy.
 
-1. Components and Features
+1. Concepts and Components
 
     - Self-Contained Services
       > The application should be self-contained and expose services by binding to a port. For web applications, this means running an HTTP server inside the application (e.g., using Express in Node.js or Gunicorn in Python).
@@ -365,7 +365,7 @@ The `Concurrency` factor advocates scaling out through the process model.
 > [!NOTE]
 > Adhering to the `Concurrency` principle helps applications handle varying load, increase fault tolerance, and improve overall performance.
 
-1. Components and Features
+1. Concepts and Components
 
     - Process Model
       > Scale out the application by running multiple processes or instances of the application. This can be achieved by leveraging process management tools or orchestrators like Kubernetes.
@@ -432,7 +432,7 @@ The `Disposability` factor emphasizes maximum robustness through fast startup an
 
 Applications that adhere to this factor improve robustness and resilience. They can handle unexpected changes in system state, such as sudden load increases or crashes. They are also more amenable to rapid scaling because new instances can start quickly.
 
-1. Components and Features
+1. Concepts and Components
 
     - Fast Startup
       > Applications should start quickly to facilitate rapid deployment and scaling.
@@ -509,7 +509,7 @@ The `Dev/Prod Parity` factor emphasizes keeping the gap between development and 
 > [!NOTE]
 > Minimizing this gap increases consistency between environments, reduces unexpected deployment issues, and improves reliability.
 
-1. Components and Features
+1. Concepts and Components
 
     - Time Gap
       > Minimize the time gap between writing code and deploying it to production, e.g. by using Continuous Integration/Continuous Deployment (CI/CD) pipelines.
@@ -555,7 +555,7 @@ Applications should not manage routing and storage of their output streams. Inst
 > [!NOTE]
 > Treating logs as event streams and decoupling log management from the application creates systems that are easier to observe, debug, and maintain.
 
-1. Components and Features
+1. Concepts and Components
 
     - Event Streams
       > Treat logs as continuous event streams. Write logs to stdout (standard output) and let the environment handle the aggregation, storage, and analysis.
@@ -638,7 +638,7 @@ One-off admin processes run in the same environment as the app and are managed a
 > [!NOTE]
 > Adhering to the `Admin Processes` principle ensures that regular and administrative tasks are subject to the same environmental conditions, reducing discrepancies and risk.
 
-1. Components and Features
+1. Concepts and Components
 
     - One-Off Tasks
       > Administrative tasks such as database migrations, maintenance scripts, or debugging tasks should be run as one-off processes in an environment identical to the application’s runtime.

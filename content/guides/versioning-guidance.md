@@ -1,22 +1,22 @@
-# Versioning Guide
+# Versioning Guidance
 
 - [1. Category](#1-category)
-  - [Semantic Versioning (SemVer)](#semantic-versioning-semver)
-    - [1.1. Release](#11-release)
-    - [1.2. Pre-release](#12-pre-release)
+  - [1.1. Semantic Versioning (SemVer)](#11-semantic-versioning-semver)
+    - [1.1.1. Release](#111-release)
+    - [1.1.2. Pre-release](#112-pre-release)
 - [2. References](#2-references)
 
 ## 1. Category
 
-### Semantic Versioning (SemVer)
+### 1.1. Semantic Versioning (SemVer)
 
 [Semantic Versioning (SemVer)](../articles/versioning.md#11-semantic-versioning-semver) and [Conventional Commits](../articles/commit.md#11-conventional-commits) are commonly combined to automate `version tags` and `CHANGELOG.md` updates in release pipelines.
 
-#### 1.1. Release
+#### 1.1.1. Release
 
 [Semantic Versioning (SemVer)](../articles/versioning.md#11-semantic-versioning-semver) uses a three-component version format `MAJOR.MINOR.PATCH`.
 
-1. Components and Features
+1. Concepts and Components
 
     - `MAJOR`
       > Increments when incompatible changes are introduced.
@@ -39,11 +39,11 @@
     2. Versioning should follow the `MAJOR.MINOR.PATCH` format, incrementing according to the nature of changes introduced in the release.
     3. The release workflow should create a version tag and update `CHANGELOG.md`.
 
-#### 1.2. Pre-release
+#### 1.1.2. Pre-release
 
 Pre-release identifiers can be appended to the next target version to indicate that the release is not yet stable.
 
-1. Components and Features
+1. Concepts and Components
 
     - `rc`
       > Release candidate identifier.

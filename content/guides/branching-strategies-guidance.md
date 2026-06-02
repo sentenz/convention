@@ -11,7 +11,7 @@
 
 [Git Flow](../articles/branching-strategies.md#12-git-flow) is a lightweight branch-based workflow that separates integration and release activities.
 
-1. Components and Features
+1. Concepts and Components
 
     - Base Branches
 
@@ -57,7 +57,7 @@
 
 [Scaled Trunk-Based Development](../articles/branching-strategies.md#11-trunk-based-development-tbd) uses short-lived feature branches, pull-request reviews, and CI/CD automation before integrating into `main`.
 
-1. Components and Features
+1. Concepts and Components
 
     - Base Branches
 

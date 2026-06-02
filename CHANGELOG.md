@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.26.0](https://github.com/sentenz/convention/compare/2.25.0...2.26.0) (2026-06-02)
+
+
+### Features
+
+* create an article about Cryptography Guidance ([c587a11](https://github.com/sentenz/convention/commit/c587a11127bee2f27cdebe2ffc98b969410c2733))
+
 # [2.25.0](https://github.com/sentenz/convention/compare/2.24.0...2.25.0) (2026-05-06)
 
 

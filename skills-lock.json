@@ -4,7 +4,12 @@
     "adr": {
       "source": "sentenz/skills",
       "sourceType": "github",
-      "computedHash": "ca3153b5b32cacb07ce7c165fc57c31497dfa3f48e9d0c249b2895ce39ed98ee"
+      "computedHash": "ebe04467fa9daf7adac6d7cd3ed2d4ae3e379616eceaa99b789cc0731c97683b"
+    },
+    "threat-modeling-ics": {
+      "source": "sentenz/skills",
+      "sourceType": "github",
+      "computedHash": "12d9bd953ed84dc0d81673c82285298d492d8c3c167f82c2b24b8225b78cffa7"
     }
   }
 }

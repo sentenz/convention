@@ -1,8 +1,8 @@
 ---
 name: adr
-description: Creates and maintains Architecture Decision Records (ADRs) following a structured format with State, Context, Decision, Considered, Consequences, Implementation, and References sections. Use when creating, updating, or reviewing architectural decisions, or when the user mentions ADR, architecture decisions, technical decisions, or design records.
+description: Creates and maintains Architecture Decision Records (ADRs) following a structured format with State, Context, Decision, Considered, Consequences, Implementation, and References sections. Supports single-option decisions, multi-option decisions within one decision scope, multiple complementary decisions, and deferred decisions. Use when creating, updating, or reviewing architectural decisions, or when the user mentions ADR, architecture decisions, technical decisions, or design records.
 metadata:
-  version: "1.0.3"
+  version: "1.0.5"
   activation:
     implicit: true
     priority: 1
@@ -74,7 +74,7 @@ Instructions for AI agents on creating and maintaining Architecture Decision Rec
 ADRs should embody the following characteristics to maximize their value.
 
 - Atomic
-  > Each ADR addresses a single, clearly scoped decision. Avoid bundling multiple unrelated decisions in one record.
+  > Each ADR addresses one clearly scoped decision concern. A single ADR may select one option or multiple complementary options from Considered, but it must not bundle unrelated decision concerns in one record.
 
 - Immutable
   > Once an ADR reaches `Accepted` status, its content should not be altered retroactively. Changes in direction require a new ADR that supersedes the old one.
@@ -131,17 +131,20 @@ The Context section describes the circumstances that necessitated the decision.
 
 ### 3.3. Decision
 
-The Decision section records the chosen option and explains why it was selected.
+The Decision section records the decision outcome from the Considered options. The decision may take one of three forms:
 
-- Chosen Option
-  > State clearly which option was selected. Use a subsection heading named after the chosen tool, pattern, or approach.
+- Single Selection
+  > One option from Considered is selected as the solution to the problem described in Context.
+- Multiple Selection
+  > Multiple options from Considered are selected and may be complementary or interdependent, collectively forming the decision.
+- Deferred
+  > No options from Considered are selected at this time. The decision is deferred until more information is available or conditions change.
 
-- Rationale
-  > For each decision driver listed in Context, provide a concise explanation of how the chosen option satisfies that criterion.
+For each selected option, create a subsection with the option name and explain the rationale for its selection, referencing the decision drivers from Context. For deferred decisions, document the reason for deferral and the next steps to resolve it.
 
 ### 3.4. Considered
 
-The Considered section enumerates all options evaluated before reaching the decision.
+The Considered section enumerates all options evaluated during the decision process. Each option may be selected (wholly or partially), combined with others, or rejected in the Decision section.
 
 - Option Description
   > Briefly describe each option, including a link to its official documentation or repository.
@@ -191,62 +194,80 @@ The References section lists all external and internal resources cited in the AD
 
     Identify a significant architectural or technical decision that needs to be made or documented (e.g., choice of framework, library, pattern, toolchain, or process).
 
-2. Number and Name
+2. Issue/Merge Request Creation
 
-    Assign the next sequential three-digit number and create a descriptive kebab-case file name following the convention:
+    Create an issue or merge request in the relevant repository to propose the ADR. Use a descriptive title that follows the canonical ADR title schema (see Style Guide).
 
+3. Number and Name
+
+    Assign the next sequential three-digit number and create a descriptive kebab-case file name derived from the canonical ADR title context following the convention:
+
+    ```plaintext
+    NNN-adr-<topic>[-<scope>].md
     ```
-    NNN-adr-<short-descriptive-title>.md
-    ```
 
-    Example: `013-adr-logging-framework.md`
+    Examples:
 
-3. Place
+    - Title with scope
+      > An `ADR on Dependency Manager for C/C++` would have the file name `015-adr-dependency-manager-c-cpp.md`.
+    - Title without scope
+      > An `ADR on Git Hooks Manager` would have the file name `016-adr-git-hooks-manager.md`.
+
+4. Place
 
     Create the ADR file in the designated decisions directory:
 
-    ```
-    docs/decisions/NNN-adr-<short-descriptive-title>.md
+    ```plaintext
+    docs/decisions/NNN-adr-<topic>[-<scope>].md
     ```
 
-4. Draft
+5. Draft
 
     Fill in all sections using the [ADR File Template](#61-adr-file-template). Set the status to `Proposed`.
 
-5. Review
+6. Review
 
     Submit the ADR for peer review via a pull request. Address feedback and update the content as needed.
 
-6. Accept or Reject
+7. Accept or Reject
 
     Update the status to `Accepted` or `Rejected` once a decision is reached. Document the rationale for rejection if applicable.
 
-7. Supersede
+8. Supersede
 
     When a decision changes, create a new ADR and set its status to `Accepted`. Update the old ADR's status to `Superseded` and add a link to the new ADR.
 
 ## 5. Style Guide
 
+- Issue/Merge Request (MR) Title Refinement
+  > When drafting or reviewing an issue or merge request that introduces or updates an ADR, refine the issue/MR title to match the canonical ADR title schema `ADR on <Topic> [for <Scope>]`. Prefer consistency between issue title, merge request title, and ADR H1 title.
+
+  - `<Topic>`
+    > Should be a concise, specific technical concern, tool, or practice.
+  - `<Scope>`
+    > Optional. Include `for <Scope>` only when it meaningfully narrows the decision applicability.
+
 - File Naming
-  > Use the pattern `NNN-adr-<short-descriptive-title>.md` with lowercase kebab-case for the title segment. The prefix `NNN` is a zero-padded three-digit sequence number (e.g., `001`, `012`).
+  > Use the pattern `NNN-adr-<topic>[-<scope>].md` with lowercase kebab-case for the title segment. The prefix `NNN` is a zero-padded three-digit sequence number (e.g., `001`, `012`). The `-<scope>` segment is optional and must be omitted when scope is not present (do not leave a trailing dash). Derive the slug from the canonical ADR title.
 
 - Heading Levels
-  > Use H1 (`#`) for the ADR title, H2 (`##`) for top-level sections (State, Context, etc.), and H3 (`###`) for subsections (individual options under Considered or Decision).
+  > Use H1 (`#`) for the ADR title, H2 (`##`) for top-level sections (State, Context, Decision, Considered, etc.), and H3 (`###`) for subsections (individual options or decisions under Decision or options under Considered). Support multiple decisions by using multiple H3 subsections under Decision (e.g., 3.1, 3.2, 3.3) when applicable.
 
 - Decision Drivers
   > Group decision drivers under a single numbered list item (`1. Decision Drivers`). List each driver as a bullet (`-`) with a blockquote (`>`) providing a one-sentence description.
 
 - Alternatives
-  > Each considered option should be a H3 subsection using the option's proper name. Use `- Pros` / `- Cons` with nested blockquote descriptions for each point.
+  > Each considered option should be an H3 subsection using the option's proper name. Use `- Pros` / `- Cons` with nested blockquote descriptions for each point. Not all considered options must be selected in the Decision section; some may be documented here as rejected or deferred.
 
 - Status Field
   > Always include exactly one of the defined statuses: `Proposed`, `Accepted`, `Rejected`, `Deprecated`, or `Superseded`.
 
 - Superseded Link
   > When status is `Superseded`, append a link to the superseding ADR in the State section:
-  > ```
-  > - Superseded by: [NNN-adr-new-title](NNN-adr-new-title.md)
-  > ```
+
+  ```markdown
+  - Superseded by: [NNN-adr-new-title](NNN-adr-new-title.md)
+  ```
 
 - Language
   > Write in clear, formal English. Use present tense for the Decision section and past tense only when describing historical context.
@@ -261,14 +282,15 @@ Use this template for new ADRs. Replace all `<placeholder>` values with actual c
 ### 6.1. ADR File Template
 
 ```markdown
-# ADR <Short Descriptive Title>
+# NNN-ADR: <Topic> [for <Scope>]
 
 Architectural Decision Records (ADR) on <brief one-sentence description of the decision topic>.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
-  - [3.1. <Chosen Option Name>](#31-<chosen-option-anchor>)
+  - [3.1. <Option or Decision Name 1>](#31-<option-or-decision-anchor>)
+  - [3.2. <Option or Decision Name 2>](#32-<option-or-decision-anchor>)
 - [4. Considered](#4-considered)
   - [4.1. <Option 1 Name>](#41-<option-1-anchor>)
   - [4.2. <Option 2 Name>](#42-<option-2-anchor>)
@@ -299,20 +321,29 @@ Architectural Decision Records (ADR) on <brief one-sentence description of the d
 
 ## 3. Decision
 
-### 3.1. <Chosen Option Name>
+### 3.1. <Option Name 1>
 
-<Explain why this option was selected over the alternatives. Reference the decision drivers to justify the choice.>
+<Brief explanation of why this option was selected or how it contributes to the overall decision. Reference the decision drivers.>
 
 1. Rationale
 
     - <Driver 1>
-      > <How the chosen option satisfies this driver.>
+      > <How this option satisfies this driver.>
 
     - <Driver 2>
-      > <How the chosen option satisfies this driver.>
+      > <How this option satisfies this driver.>
 
-    - <Driver 3>
-      > <How the chosen option satisfies this driver.>
+### 3.2. <Option Name 2>
+
+<If multiple options are selected, include additional subsections for each chosen option. If no options are selected, document the deferral reason and next steps.>
+
+1. Rationale
+
+    - <Driver 1>
+      > <How this option satisfies this driver.>
+
+    - <Driver 2>
+      > <How this option satisfies this driver.>
 
 ## 4. Considered
 
@@ -401,5 +432,4 @@ Architectural Decision Records (ADR) on <brief one-sentence description of the d
 - Architecture Decision Records [overview](https://adr.github.io/) page.
 - Michael Nygard's original [ADR proposal](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) article.
 - MADR (Markdown Architectural Decision Records) [specification](https://adr.github.io/madr/) page.
-- Sentenz convention ADR [examples](https://github.com/sentenz/convention/tree/main/docs/decisions) repository.
 - ADR GitHub [organization](https://github.com/adr) page.

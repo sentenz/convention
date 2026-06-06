@@ -124,4 +124,4 @@ Core team types define the distinct responsibilities, boundaries, and mandates a
 ## 3. References
 
 - Team Topologies [Official Key Concepts](https://teamtopologies.com/key-concepts) page.
-- Martin Fowler [Team Topologies](https://martinfowler.com/articles/team-topologies.html) article.
+- Martin Fowler [Team Topologies](https://martinfowler.com/bliki/TeamTopologies.html) article.

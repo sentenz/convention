@@ -116,7 +116,7 @@ Core team types define the distinct responsibilities, boundaries, and mandates a
   > Optimize all organization and system design choices to accelerate the end-to-end delivery of value, minimizing wait times, handoffs, and external blockers.
 
 - Team-First Approach
-  > Treat the team—not the individual—as the fundamental unit of delivery. Foster long-lived, high-trust teams with stable membership to maximize collaboration efficiency and domain expertise.
+  > Treat the team, not the individual, as the fundamental unit of delivery. Foster long-lived, high-trust teams with stable membership to maximize collaboration efficiency and domain expertise.
 
 - Loose Coupling
   > Design teams and software systems to be loosely coupled but highly aligned, minimizing cross-team dependencies and unlocking independent, decentralized deployment paths.

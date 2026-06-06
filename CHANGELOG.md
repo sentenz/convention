@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.27.1](https://github.com/sentenz/convention/compare/2.27.0...2.27.1) (2026-06-06)
+
+
+### Bug Fixes
+
+* resolve broken link in team-topologies.md ([6537768](https://github.com/sentenz/convention/commit/6537768be5e315afbd7a7f07e620ce380bc5df34))
+
 # [2.27.0](https://github.com/sentenz/convention/compare/2.26.0...2.27.0) (2026-06-06)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+# [2.27.0](https://github.com/sentenz/convention/compare/2.26.0...2.27.0) (2026-06-06)
+
+
+### Features
+
+* create an article about `Team Topologies` ([#482](https://github.com/sentenz/convention/issues/482)) ([057a692](https://github.com/sentenz/convention/commit/057a6920aef10ed5cf3d8c94e4bccb0e47f1098f)), closes [#351](https://github.com/sentenz/convention/issues/351)
+
 # [2.26.0](https://github.com/sentenz/convention/compare/2.25.0...2.26.0) (2026-06-02)
 
 

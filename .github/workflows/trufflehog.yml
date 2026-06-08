@@ -19,13 +19,13 @@ jobs:
         shell: bash
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 0
 
       - name: Run TruffleHog
         id: trufflehog
-        uses: trufflesecurity/trufflehog@v3.95.3
+        uses: trufflesecurity/trufflehog@v3.95.5
         continue-on-error: true
         with:
           path: ./

@@ -11,17 +11,20 @@ Threat modeling is a structured process for identifying, analyzing, and prioriti
     - [3.1.3. Cybercriminals](#313-cybercriminals)
     - [3.1.4. Hacktivists](#314-hacktivists)
     - [3.1.5. Thrill Seekers](#315-thrill-seekers)
-  - [3.2. Threat Frameworks](#32-threat-frameworks)
-    - [3.2.1. STRIDE](#321-stride)
-    - [3.2.2. PASTA](#322-pasta)
-    - [3.2.3. DREAD](#323-dread)
-    - [3.2.4. LINDDUN](#324-linddun)
-    - [3.2.5. OCTAVE](#325-octave)
-    - [3.2.6. Attack Trees](#326-attack-trees)
-    - [3.2.7. TARA](#327-tara)
-    - [3.2.8. MITRE ATT\&CK](#328-mitre-attck)
-    - [3.2.9. MITRE EMB3D](#329-mitre-emb3d)
-  - [3.3. Terminology](#33-terminology)
+  - [3.2. Threat Layers](#32-threat-layers)
+    - [3.2.1. Depth Layers](#321-depth-layers)
+    - [3.2.2. Diagram Layers](#322-diagram-layers)
+  - [3.3. Threat Frameworks](#33-threat-frameworks)
+    - [3.3.1. STRIDE](#331-stride)
+    - [3.3.2. PASTA](#332-pasta)
+    - [3.3.3. DREAD](#333-dread)
+    - [3.3.4. LINDDUN](#334-linddun)
+    - [3.3.5. OCTAVE](#335-octave)
+    - [3.3.6. Attack Trees](#336-attack-trees)
+    - [3.3.7. TARA](#337-tara)
+    - [3.3.8. MITRE ATT\&CK](#338-mitre-attck)
+    - [3.3.9. MITRE EMB3D](#339-mitre-emb3d)
+  - [3.4. Terminology](#34-terminology)
 - [4. References](#4-references)
 
 ## 1. Benefits
@@ -107,11 +110,122 @@ Hacktivists are ideologically motivated threat actors who target organizations t
 
 Thrill seekers, also known as script kiddies, are low-skill threat actors who rely on pre-built exploit kits, publicly available scripts, and automated tools to conduct opportunistic attacks, typically motivated by curiosity, notoriety, or the thrill of unauthorized access rather than targeted objectives.
 
-### 3.2. Threat Frameworks
+### 3.2. Threat Layers
+
+#### 3.2.1. Depth Layers
+
+| Depth Layer | Title       | Components                                                               | Description                                                                                                                                                                                                                                                                    |
+| :---------- | :---------- | :----------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Layer 0     | System      | PLC, UPS, Debugger Probe, USB, HMI                                       | Starting point for the entire system. Shows the embedded device as a single black box exchanging data with external entities. Establishes the overall context and trust boundary.                                                                                              |
+| Layer 1     | Process     | MCU, Actuators, Sensors, RS-232, RS-485, RJ-12                           | Decomposition of the device into its major functional blocks and board‑level interfaces. Used to identify threats on the attack surface of all communication ports and physical I/O.                                                                                           |
+| Layer 2     | Subprocess  | Secure Firmware Update, Bootloader, Secure Boot, JTAG/SWD, Flash, EEPROM | Detailed breakdown of critical sub‑processes, e.g. inside the MCU. Focuses on boot integrity, secure updates, debug access, and non‑volatile memory, essential for analysing highly sensitive firmware and data protection.                                                    |
+| Layer 3     | Lower‑Level | GPIO, UART, SPI, I2C                                                     | Minute, hardware‑level detail. Models on‑chip peripherals, internal buses, and gate‑level Integrated Circuits (ICs) internals. Used only for the most critical, kernel‑level systems where micro‑architectural threats (e.g., side‑channel, fault injection) must be analysed. |
+
+#### 3.2.2. Diagram Layers
+
+- Layer 0
+  > The embedded device is treated as a single system element within its wider operational technology (OT) network context. The diagram shows the device major interfaces, trust boundaries, and data flows with external entities.
+
+  ```mermaid
+  flowchart TD
+      %% Layer 0 (System)
+      subgraph External_Entities [External Entities]
+          PLC[PLC]
+          HMI[HMI]
+          USER[Operator]
+          DEBUGGER[Debugger Probe]
+          UPS[UPS]
+      end
+
+      %% Device Boundary
+      subgraph Device_Boundary [Trust Boundary]
+          DEVICE((Device Node))
+      end
+
+      %% External Data Flows (Layer 0)
+      DEBUGGER <--> |"JTAG / SWD"| DEVICE
+      PLC <--> |"Modbus RTU (RS-485)"| DEVICE
+      HMI <--> |"Modbus (RS-232)"| DEVICE
+      USER --> |"Pushbuttons / LCD"| DEVICE
+      UPS --> |"Power Supply"| DEVICE
+
+      %% Styling
+      classDef deviceBoundary stroke:#ff0000,stroke-width:2px;
+
+      class Device_Boundary deviceBoundary;
+  ```
+
+- Layer 0-2
+  > The embedded device is decomposed into its major functional blocks (processes) and critical sub‑processes. The diagram shows internal data flows, trust boundaries, and interfaces between components, enabling detailed threat analysis of the device's attack surface and internal architecture.
+
+  ```mermaid
+  graph TB
+      %% Layer 0 (System)
+      subgraph External_Entities ["Layer 0 (System) - External Entities"]
+          PLC[PLC]
+          HMI[HMI]
+          USER[Operator]
+          DEBUGGER[Debugger Probe]
+          UPS[UPS]
+      end
+
+      %% Layer 1 (Processes)
+      subgraph Device_Boundary ["Layer 1 (Process) - Device Node (Trust Boundary)"]
+          RS485[RS-485]
+          RS232[RS-232]
+          PowerMng[Power Supply Monitor]
+          Actuators[Actuators]
+
+          %% Layer 2 (Sub‑processes)
+          subgraph MCU ["Layer 2 (Subprocess) - MCU (Critical Decomposition)"]
+              style MCU stroke-dasharray: 5 5
+              Bootloader[Bootloader]
+              SecureBoot[Secure Boot]
+              SecureUpdate[Secure Firmware Update]
+              JTAG_SWD[JTAG / SWD Debug Port]
+              Flash[(Flash)]
+              EEPROM[(EEPROM)]
+              AppCore[Application Firmware]
+          end
+      end
+
+      %% External Data Flows (Layer 0)
+      PLC <-->|"Modbus RTU (RS-485)"| RS485
+      HMI <-->|"Modbus (RS-232)"| RS232
+      UPS -->|"Power Supply"| PowerMng
+      DEBUGGER <-->|"JTAG / SWD"| JTAG_SWD
+      USER -->|"Pushbuttons / LCD"| AppCore
+
+      %% Internal Data Flows (Layer 1)
+      RS485 <-->|"SPI"| AppCore
+      RS232 <-->|"UART"| AppCore
+      PowerMng -->|"I2C"| AppCore
+      AppCore -->|"Control"| Actuators
+
+      %% Internal Data Flows (Layer 2)
+      Bootloader <-->|"Read/Write"| Flash
+      Bootloader <-->|"Read/Write"| EEPROM
+      SecureBoot -->|"Verify"| Bootloader
+      SecureUpdate -->|"New Image"| Bootloader
+      JTAG_SWD <-->|"Debug Access"| AppCore
+
+      %% Styling
+      classDef deviceBoundary stroke:#ff0000,stroke-width:2px;
+      classDef process fill:#bbf7,stroke:#333,stroke-width:1px;
+      classDef datastore fill:#bfb7,stroke:#333,stroke-width:1px;
+      classDef critical fill:#fbb7,stroke:#333,stroke-width:1px;
+
+      class Device_Boundary deviceBoundary;
+      class RS485,RS232,PowerMng,Actuators,AppCore process;
+      class Flash,EEPROM datastore;
+      class Bootloader,SecureBoot,SecureUpdate,JTAG_SWD critical;
+  ```
+
+### 3.3. Threat Frameworks
 
 Threat modeling provides structured methodologies for systematically identifying, categorizing, and analyzing threats. The choice of framework depends on the system type, team expertise, and desired level of rigor.
 
-#### 3.2.1. STRIDE
+#### 3.3.1. STRIDE
 
 STRIDE is a threat categorization model developed by Microsoft that classifies threats into six categories mapped to violated security properties. It is widely used during design reviews and is well-suited for analyzing individual components and trust boundaries in a Data Flow Diagram.
 
@@ -126,7 +240,7 @@ STRIDE is a threat categorization model developed by Microsoft that classifies t
     | Denial of Service      | Availability      | Disrupting system availability by exhausting resources or crashing services.                             |
     | Elevation of Privilege | Authorization     | Gaining capabilities beyond those which were intended or authorized.                                     |
 
-#### 3.2.2. PASTA
+#### 3.3.2. PASTA
 
 PASTA (Process for Attack Simulation and Threat Analysis) is a seven-stage, risk-centric threat modeling methodology that aligns threat analysis with business objectives. It focuses on simulating real attacker behavior and quantifying risk in business terms, making it well-suited for enterprise environments where threat modeling must feed into risk management decisions.
 
@@ -153,7 +267,7 @@ PASTA (Process for Attack Simulation and Threat Analysis) is a seven-stage, risk
     - Risk and Impact Analysis
       > Quantify residual risk, prioritize threats by business impact, and recommend countermeasures.
 
-#### 3.2.3. DREAD
+#### 3.3.3. DREAD
 
 DREAD is a qualitative risk-scoring framework used to rank threats by assigning scores across five dimensions. It is commonly used alongside STRIDE to prioritize the threats identified in a model.
 
@@ -170,7 +284,7 @@ DREAD is a qualitative risk-scoring framework used to rank threats by assigning 
     | Affected Users  | What proportion of users or systems are affected if the threat is realized?  |
     | Discoverability | How easily can an attacker detect and locate the vulnerability?              |
 
-#### 3.2.4. LINDDUN
+#### 3.3.4. LINDDUN
 
 LINDDUN is a privacy-focused threat modeling framework that categorizes threats against privacy requirements. It mirrors the structure of STRIDE but applies to privacy properties, making it applicable to systems processing personal data under regulations such as GDPR or CCPA.
 
@@ -186,7 +300,7 @@ LINDDUN is a privacy-focused threat modeling framework that categorizes threats 
     | Unawareness               | Transparency              | Limiting a subject's knowledge of how their data is collected and used.                  |
     | Non-compliance            | Compliance                | Failing to adhere to privacy policies, regulations, or user consent agreements.          |
 
-#### 3.2.5. OCTAVE
+#### 3.3.5. OCTAVE
 
 OCTAVE (Operationally Critical Threat, Asset, and Vulnerability Evaluation) is an organizational risk assessment framework developed by Carnegie Mellon University's CERT. It focuses on operational risk from a business perspective rather than purely technical threats, making it suitable for enterprise-wide security assessments.
 
@@ -201,7 +315,7 @@ OCTAVE (Operationally Critical Threat, Asset, and Vulnerability Evaluation) is a
     - OCTAVE Allegro
       > A simplified, asset-centric variant that focuses on information assets in their operational context without requiring extensive infrastructure analysis.
 
-#### 3.2.6. Attack Trees
+#### 3.3.6. Attack Trees
 
 Attack trees are a formal, hierarchical model for representing how an attacker can achieve a specific goal. The root node represents the attacker's objective, and child nodes represent sub-goals or conditions that must be met. Nodes are decomposed until they reach atomic attack steps.
 
@@ -216,7 +330,7 @@ Attack trees are a formal, hierarchical model for representing how an attacker c
     - Leaf Node
       > Represents an atomic attack step that cannot be further decomposed.
 
-#### 3.2.7. TARA
+#### 3.3.7. TARA
 
 TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that identifies threat agents — individuals or groups with the motivation and capability to attack a system — and assesses the risk posed by each agent against specific assets. It focuses on the human dimension of threats and aligns risk analysis with realistic attacker profiles.
 
@@ -234,7 +348,7 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
     - Select Countermeasures
       > Prioritize controls based on which threat agents pose the greatest risk to each asset.
 
-#### 3.2.8. MITRE ATT&CK
+#### 3.3.8. MITRE ATT&CK
 
 [MITRE ATT&CK (Adversarial Tactics, Techniques, and Common Knowledge)](https://attack.mitre.org/) is a knowledge base of real-world adversary tactics and techniques based on observed cyberattacks. It provides a structured taxonomy that can be used in threat modeling to map realistic attack paths against system components.
 
@@ -260,10 +374,10 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
     - [Techniques](https://attack.mitre.org/techniques/ics/)
       > A specific method used by adversaries to achieve a tactic, such as spearphishing, credential dumping, or data staging.
 
-      - Sub-technique
-        > A granular method that falls under a broader technique, providing additional detail on how a specific attack action is executed.
+    - [Mitigations](https://attack.mitre.org/mitigations/ics/)
+      > Security controls that can prevent or detect techniques, such as multi-factor authentication, network segmentation, or data loss prevention.
 
-#### 3.2.9. MITRE EMB3D
+#### 3.3.9. MITRE EMB3D
 
 [MITRE EMB3D (Embedded Device Threat Model)](https://emb3d.mitre.org/) is a MITRE-developed knowledge base of cyber threats and associated mitigations for embedded devices found in critical infrastructure, IoT, automotive, healthcare, and manufacturing environments. EMB3D aligns with MITRE ATT&CK, CWE, and CVE to provide a property-based threat model that maps device features to specific threats and recommends mitigations tiered by implementation maturity.
 
@@ -304,7 +418,7 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
       - [Leading](https://emb3d.mitre.org/mitigations/leading)
         > Advanced controls targeting sophisticated threats, potentially requiring significant design changes or emerging security technologies.
 
-### 3.3. Terminology
+### 3.4. Terminology
 
 - Threat Modeling
   > A structured process for identifying, analyzing, and prioritizing security threats to a system with the goal of defining appropriate mitigations.

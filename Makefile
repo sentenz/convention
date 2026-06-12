@@ -70,10 +70,21 @@ policy-regal-lint:
 		exit 1; \
 	fi
 
-	@mkdir -p logs/analysis
+	@mkdir -p logs/policy
 
-	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(POLICY_IMAGE_REGAL)" regal lint "$(filter-out $@,$(MAKECMDGOALS))" --format json > logs/analysis/regal.json 2>&1
+	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(POLICY_IMAGE_REGAL)" regal lint "$(filter-out $@,$(MAKECMDGOALS))" --format json > logs/policy/regal.json 2>&1
 .PHONY: policy-regal-lint
+
+# ── Static Analysis ──────────────────────────────────────────────────────────────────────────────
+LINT_IMAGE_MARKDOWNLINT ?= davidanson/markdownlint-cli2:0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+MARKDOWNLINT_FILES ?= "**/*.md"
+
+## Lint Markdown files using markdownlint and generate a report
+lint-markdown:
+	@mkdir -p logs/lint
+
+	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(LINT_IMAGE_MARKDOWNLINT)" $(MARKDOWNLINT_FILES) > logs/lint/markdownlint 2>&1
+.PHONY: lint-markdown
 
 # ── SAST Manager ─────────────────────────────────────────────────────────────────────────────────
 

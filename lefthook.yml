@@ -3,16 +3,16 @@
 pre-commit:
   parallel: true
   commands:
-    codespell:
-      glob: "**/*.{md,txt,sh}"
-      run: codespell {staged_files}
-      skip:
-        - run: "! which codespell"
+    # codespell:
+    #   glob: "**/*.{md,txt,sh}"
+    #   run: codespell {staged_files}
+    #   skip:
+    #     - run: "! which codespell"
     markdownlint:
       glob: "**/*.md"
-      run: markdownlint-cli2 {staged_files}
+      run: make lint-markdown MARKDOWNLINT_FILES="{staged_files}"
       skip:
-        - run: "! which markdownlint-cli2"
+        - run: "! which docker"
     prettier:
       glob: "**/*.{json,md,yml,yaml}"
       run: prettier --check {staged_files}

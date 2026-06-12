@@ -326,5 +326,10 @@ pages-mkdocs-build:
 
 ## Serve documentation pages locally with MkDocs
 pages-mkdocs-serve:
-	@. $(PIP_VENV)/activate; mkdocs serve --dev-addr 127.0.0.1:8000
+	@. $(PIP_VENV)/activate; mkdocs serve --livereload --dev-addr 127.0.0.1:8000
 .PHONY: pages-mkdocs-serve
+
+### Clean MkDocs build artifacts
+pages-mkdocs-clean:
+	@rm -rf public/ .venv/
+.PHONY: pages-mkdocs-clean

@@ -12,7 +12,7 @@ hooks:
   - themes/hooks/mkdocs_hooks.py
 
 extra_css:
-  - theme/css/style.css
+  - themes/css/style.css
 
 plugins:
   - search

@@ -429,8 +429,8 @@ def on_page_markdown(markdown: str, **_kwargs: Any) -> str:
 def on_pre_build(**_kwargs: Any) -> None:
     """Mirror theme assets into the documentation tree before MkDocs scans files."""
     repo_root = Path(__file__).resolve().parents[2]
-    source = repo_root / "theme" / "css" / "style.css"
-    target = repo_root / "content" / "theme" / "css" / "style.css"
+    source = repo_root / "themes" / "css" / "style.css"
+    target = repo_root / "content" / "themes" / "css" / "style.css"
 
     if not source.exists():
         return

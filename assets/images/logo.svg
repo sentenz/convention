@@ -1,44 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="249" height="50" viewBox="0 0 2490 500" preserveAspectRatio="xMidYMid meet">
-  <style>
-    :root {
-      --m3-logo-surface: #100a2c;
-      --m3-logo-onsurface: #3df0d0;
-      --m3-logo-primary: #3df0d0;
-      --m3-logo-outline: rgba(201, 191, 240, 0.12);
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --m3-logo-surface: #fdf8fd;
-        --m3-logo-onsurface: #3df0d0;
-        --m3-logo-primary: #6a3fbe;
-        --m3-logo-outline: rgba(28, 27, 31, 0.12);
-      }
-    }
-  </style>
-  <defs>
-    <linearGradient id="se" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#1f1654"/>
-      <stop offset="100%" stop-color="#100a2c"/>
-    </linearGradient>
-    <filter id="e1" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000" flood-opacity="0.35"/>
-    </filter>
-    <filter id="g1" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="10" result="b"/>
-      <feMerge>
-        <feMergeNode in="b"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
-
-  <!-- M3 Surface Container background (optional, for context) -->
-  <rect x="0" y="0" width="2490" height="500" rx="60" ry="60"
-        fill="url(#se)" opacity="0" id="bg"/>
-
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 2500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
   <!-- Wordmark: MATERIAL -->
-  <g id="layer101" fill="currentColor" stroke="none" transform="scale(0.7 0.7) translate(525 100)"
-     filter="url(#e1)" style="color: var(--m3-logo-onsurface, #3df0d0);">
+  <g id="layer101" fill="currentColor" stroke="none"
+     filter="url(#e1)" style="color: #3df0d0;">
 
     <!-- M -->
     <path d="M35 489 c-4 -6 3 -21 16 -35 21 -23 29 -24 136 -24 l114 0 -3 -46 -3 -46 -115 -53 c-187 -87 -170 -70 -170 -173 0 -55 4 -92 12 -100 16 -16 338 -17 338 -2 0 6 -12 22 -27 35 -26 23 -36 24 -141 25 l-113 0 3 45 3 46 130 60 c72 34 136 66 143 71 16 14 17 179 0 196 -16 16 -314 17 -323 1z"/>

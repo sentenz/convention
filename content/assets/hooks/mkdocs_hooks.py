@@ -424,16 +424,3 @@ def _convert_github_alerts(markdown: str) -> str:
 def on_page_markdown(markdown: str, **_kwargs: Any) -> str:
     """Pre-process markdown while keeping MkDocs markdown extension pipeline."""
     return _convert_github_alerts(markdown)
-
-
-def on_pre_build(**_kwargs: Any) -> None:
-    """Mirror theme assets into the documentation tree before MkDocs scans files."""
-    repo_root = Path(__file__).resolve().parents[2]
-    source = repo_root / "themes" / "css" / "style.css"
-    target = repo_root / "content" / "themes" / "css" / "style.css"
-
-    if not source.exists():
-        return
-
-    target.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(source, target)

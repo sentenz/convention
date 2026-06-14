@@ -40,7 +40,7 @@ The Convention is a collection of general articles, conventions, and guides for 
       > Navigation is managed by the [mkdocs-awesome-nav](https://lukasgeiter.github.io/mkdocs-awesome-nav/) plugin.
 
     - CommonMark Flavored Markdown
-      > A custom MkDocs hook in [mkdocs_hooks.py](themes/hooks/mkdocs_hooks.py) normalizes markdown rendering behavior for CommonMark-style content and GitHub Flavored Markdown.
+      > A custom MkDocs hook in [mkdocs_hooks.py](content/assets/hooks/mkdocs_hooks.py) normalizes markdown rendering behavior for CommonMark-style content and GitHub Flavored Markdown.
 
     - Configuration
       > The [mkdocs.yml](mkdocs.yml) file contains the configuration for the MkDocs site, including theme, plugins, and markdown extensions.

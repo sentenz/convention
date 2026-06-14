@@ -11,10 +11,10 @@ exclude_docs: |
   decisions/draft/
 
 hooks:
-  - themes/hooks/mkdocs_hooks.py
+  - content/assets/hooks/mkdocs_hooks.py
 
 extra_css:
-  - themes/css/style.css
+  - assets/css/style.css
 
 plugins:
   - search

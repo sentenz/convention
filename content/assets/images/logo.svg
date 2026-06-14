@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2500 500" preserveAspectRatio="xMidYMid meet">
   <style>
     :root {
-      --m3-logo-onsurface: #3df0d0;
+      --m3-logo-onsurface: #6a3fbe;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --m3-logo-onsurface: #e6e0f0;
+        --m3-logo-onsurface: #3df0d0;
       }
     }
   </style>

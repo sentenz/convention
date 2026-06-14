@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2500 500" preserveAspectRatio="xMidYMid meet">
   <style>
     :root {
-      --m3-logo-onsurface: #6a3fbe;
+      --m3-logo-onsurface: #e6e0f0;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --m3-logo-onsurface: #3df0d0;
+        --m3-logo-onsurface: #e6e0f0;
       }
     }
   </style>
   <!-- Wordmark: SENTENZ -->
-  <g id="layer101" fill="currentColor" stroke="none" filter="url(#e1)" style="color: var(--m3-logo-onsurface,#3df0d0);">
+  <g id="layer101" fill="currentColor" stroke="none" filter="url(#e1)" style="color: var(--m3-logo-onsurface,#e6e0f0);">
     <!-- S -->
     <path d="M35 489 c-4 -6 3 -21 16 -35 21 -23 29 -24 136 -24 l114 0 -3 -46 -3 -46 -115 -53 c-187 -87 -170 -70 -170 -173 0 -55 4 -92 12 -100 16 -16 338 -17 338 -2 0 6 -12 22 -27 35 -26 23 -36 24 -141 25 l-113 0 3 45 3 46 130 60 c72 34 136 66 143 71 16 14 17 179 0 196 -16 16 -314 17 -323 1z"/>
     <!-- E -->

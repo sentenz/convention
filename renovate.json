@@ -21,6 +21,20 @@
     "**/vendors/**",
     "**/charts/**"
   ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update container images in Makefile variables",
+      "managerFilePatterns": [
+        "**/[Mm]akefile"
+      ],
+      "matchStrings": [
+        "(?<depName>(?:(?:docker\\.io|ghcr\\.io|quay\\.io|gcr\\.io|mcr\\.microsoft\\.com|registry\\.gitlab\\.com|cgr\\.dev|oci\\.io)/)?[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+):(?<currentValue>[^@\\s]+)@sha256:(?<currentDigest>[a-f0-9]{64})"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
+  ],
   "packageRules": [
     {
       "description": "Introduces breaking changes or require code adjustments due to changes in public APIs.",

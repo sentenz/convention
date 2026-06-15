@@ -59,7 +59,7 @@ policy-conftest-test:
 	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(POLICY_IMAGE_CONFTEST)" test "$(filter-out $@,$(MAKECMDGOALS))" > logs/policy/conftest-report.json 2>&1
 .PHONY: policy-conftest-test
 
-POLICY_IMAGE_REGAL ?= ghcr.io/openpolicyagent/regal:0.37.0@sha256:a09884658f3c8c9cc30de136b664b3afdb7927712927184ba891a155a9676050
+POLICY_IMAGE_REGAL ?= ghcr.io/open-policy-agent/regal:0.41.1@sha256:31cbb4cde63a4191feb42f69844cf32b8e5559df05cd265fcb83b95f608114d5
 
 # Usage: make policy-regal-lint <filepath>
 #
@@ -72,7 +72,7 @@ policy-regal-lint:
 
 	@mkdir -p logs/policy
 
-	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(POLICY_IMAGE_REGAL)" regal lint "$(filter-out $@,$(MAKECMDGOALS))" --format json > logs/policy/regal.json 2>&1
+	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(POLICY_IMAGE_REGAL)" lint "$(filter-out $@,$(MAKECMDGOALS))" --format json > logs/policy/regal.json 2>&1
 .PHONY: policy-regal-lint
 
 # ── Static Analysis ──────────────────────────────────────────────────────────────────────────────
@@ -346,3 +346,34 @@ pages-mkdocs-serve:
 pages-mkdocs-clean:
 	@rm -rf public/ .venv/
 .PHONY: pages-mkdocs-clean
+
+# ── Dependency Manager ─────────────────────────────────────────────────────────────────────────────
+
+MANAGER_IMAGE_RENOVATE ?= docker.io/renovate/renovate:43.224.1@sha256:30f9649325c10631acfd483264f857b791b1c291a72abd5bfd75ff73136fc9a8
+
+manager-dependency-renovate:
+	@mkdir -p logs/manager
+
+	@# If RENOVATE_TOKEN or GITHUB_TOKEN is provided, run against GitHub; otherwise run locally
+	@if [ -n "$(RENOVATE_TOKEN)" ] || [ -n "$(GITHUB_TOKEN)" ]; then \
+		PLATFORM=github; \
+		echo "Using platform=$$PLATFORM (token provided)"; \
+	else \
+		PLATFORM=local; \
+		echo "Using platform=$$PLATFORM (no token)"; \
+	fi; \
+
+	@# Use a GitHub-compatible token for authenticated ghcr.io lookups when available
+	GHCR_AUTH_TOKEN="$(GHCR_TOKEN)"; \
+	if [ -z "$$GHCR_AUTH_TOKEN" ]; then \
+		GHCR_AUTH_TOKEN="$(GITHUB_TOKEN)"; \
+	fi; \
+	if [ -z "$$GHCR_AUTH_TOKEN" ]; then \
+		GHCR_AUTH_TOKEN="$(RENOVATE_TOKEN)"; \
+	fi; \
+
+	@# Forward tokens, host rules, and optional LOG_LEVEL into the container
+	docker run --rm -v "${PWD}:/workspace" -w /workspace \
+		-e RENOVATE_TOKEN="$(RENOVATE_TOKEN)" -e GITHUB_TOKEN="$(GITHUB_TOKEN)" -e LOG_LEVEL="$(LOG_LEVEL)" \
+		"$(MANAGER_IMAGE_RENOVATE)" renovate --dry-run --platform=$$PLATFORM > logs/manager/renovate.log 2>&1
+.PHONY: manager-dependency-renovate

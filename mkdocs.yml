@@ -50,7 +50,7 @@ markdown_extensions:
 theme:
   name: material
   logo: assets/images/logo.svg
-  favicon: assets/images/logo.png
+  favicon: assets/images/logo.svg
   features:
     - navigation.top
     - navigation.tabs
@@ -60,6 +60,8 @@ theme:
     - search.share
   palette:
     - media: "(prefers-color-scheme)"
+      primary: custom
+      accent: custom
       toggle:
         icon: material/link
         name: Switch to light mode
@@ -70,7 +72,6 @@ theme:
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: custom

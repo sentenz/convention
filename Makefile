@@ -76,20 +76,20 @@ policy-regal-lint:
 .PHONY: policy-regal-lint
 
 # ── Static Analysis ──────────────────────────────────────────────────────────────────────────────
+
 LINT_IMAGE_MARKDOWNLINT ?= davidanson/markdownlint-cli2:0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
-MARKDOWNLINT_FILES ?= "**/*.md"
+LINT_FILES_MARKDOWNLINT ?= "**/*.md"
 
 ## Lint Markdown files using markdownlint and generate a report
 lint-markdown:
 	@mkdir -p logs/lint
 
-	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(LINT_IMAGE_MARKDOWNLINT)" $(MARKDOWNLINT_FILES) > logs/lint/markdownlint 2>&1
+	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(LINT_IMAGE_MARKDOWNLINT)" $(LINT_FILES_MARKDOWNLINT) > logs/lint/markdownlint 2>&1
 .PHONY: lint-markdown
 
 # ── SAST Manager ─────────────────────────────────────────────────────────────────────────────────
 
 SAST_IMAGE_TRIVY ?= aquasec/trivy:0.68.2@sha256:05d0126976bdedcd0782a0336f77832dbea1c81b9cc5e4b3a5ea5d2ec863aca7
-SAST_IMAGE_COSIGN ?= cgr.dev/chainguard/cosign:3.0.0@sha256:b6bc266358e9368be1b3d01fca889b78d5ad5a47832986e14640c34a237ef638
 
 ## Scan Infrastructure-as-Code (IaC) files for misconfigurations using Trivy and generate a report
 sast-trivy-misconfig:
@@ -255,6 +255,8 @@ sast-trivy-kubernetes:
 
 	docker run --rm -v "${HOME}/.kube/config:/root/.kube/config" -v "${PWD}:/workspace" -w /workspace "$(SAST_IMAGE_TRIVY)" kubernetes --output logs/sast/trivy-kubernetes.json $(if $(filter-out $@,$(MAKECMDGOALS)),$(filter-out $@,$(MAKECMDGOALS)),cluster) 2>&1
 .PHONY: sast-trivy-kubernetes
+
+SAST_IMAGE_COSIGN ?= cgr.dev/chainguard/cosign:3.0.0@sha256:b6bc266358e9368be1b3d01fca889b78d5ad5a47832986e14640c34a237ef638
 
 ## Generate Cosign key pair
 sast-cosign-generate-key-pair:

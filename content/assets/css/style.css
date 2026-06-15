@@ -370,9 +370,9 @@
 [data-md-color-scheme="default"] {
   /* --- M3 Primary ------------------------------------------------------- */
   --md-primary-fg-color:        #1f1654;
-  --md-primary-fg-color--light:#2c2068;
-  --md-primary-fg-color--dark:#100a2c;
-  --md-primary-bg-color:      #ffffff;
+  --md-primary-fg-color--light: #2c2068;
+  --md-primary-fg-color--dark:  #100a2c;
+  --md-primary-bg-color:        #ffffff;
 
   /* --- M3 Secondary ----------------------------------------------------- */
   --md-secondary-fg-color:        #e8def8;
@@ -598,11 +598,11 @@
 /* --- Light: Search ---------------------------------------------------- */
 
 [data-md-color-scheme="default"] .md-search__form {
-  background: #f0ecf4;
+  background: #100a2c;
 }
 
 [data-md-color-scheme="default"] .md-search__form:hover {
-  background: #e8def8;
+  background: #2c2068;
 }
 
 [data-md-color-scheme="default"] .md-search-result__meta {

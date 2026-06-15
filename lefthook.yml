@@ -10,7 +10,7 @@ pre-commit:
     #     - run: "! which codespell"
     markdownlint:
       glob: "**/*.md"
-      run: make lint-markdown MARKDOWNLINT_FILES="{staged_files}"
+      run: make lint-markdown LINT_FILES_MARKDOWNLINT="{staged_files}"
       skip:
         - run: "! which docker"
     prettier:

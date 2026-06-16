@@ -347,33 +347,12 @@ pages-mkdocs-clean:
 	@rm -rf public/ .venv/
 .PHONY: pages-mkdocs-clean
 
-# ── Dependency Manager ─────────────────────────────────────────────────────────────────────────────
+# ── Manager Tools ────────────────────────────────────────────────────────────────────────────────
 
 MANAGER_IMAGE_RENOVATE ?= docker.io/renovate/renovate:43.224.1@sha256:30f9649325c10631acfd483264f857b791b1c291a72abd5bfd75ff73136fc9a8
 
 manager-dependency-renovate:
 	@mkdir -p logs/manager
 
-	@# If RENOVATE_TOKEN or GITHUB_TOKEN is provided, run against GitHub; otherwise run locally
-	@if [ -n "$(RENOVATE_TOKEN)" ] || [ -n "$(GITHUB_TOKEN)" ]; then \
-		PLATFORM=github; \
-		echo "Using platform=$$PLATFORM (token provided)"; \
-	else \
-		PLATFORM=local; \
-		echo "Using platform=$$PLATFORM (no token)"; \
-	fi; \
-
-	@# Use a GitHub-compatible token for authenticated ghcr.io lookups when available
-	GHCR_AUTH_TOKEN="$(GHCR_TOKEN)"; \
-	if [ -z "$$GHCR_AUTH_TOKEN" ]; then \
-		GHCR_AUTH_TOKEN="$(GITHUB_TOKEN)"; \
-	fi; \
-	if [ -z "$$GHCR_AUTH_TOKEN" ]; then \
-		GHCR_AUTH_TOKEN="$(RENOVATE_TOKEN)"; \
-	fi; \
-
-	@# Forward tokens, host rules, and optional LOG_LEVEL into the container
-	docker run --rm -v "${PWD}:/workspace" -w /workspace \
-		-e RENOVATE_TOKEN="$(RENOVATE_TOKEN)" -e GITHUB_TOKEN="$(GITHUB_TOKEN)" -e LOG_LEVEL="$(LOG_LEVEL)" \
-		"$(MANAGER_IMAGE_RENOVATE)" renovate --dry-run --platform=$$PLATFORM > logs/manager/renovate.log 2>&1
+	docker run --rm -v "${PWD}:/workspace" -w /workspace -e LOG_LEVEL=debug "$(MANAGER_IMAGE_RENOVATE)" renovate --platform=local --repository-cache=reset > logs/manager/renovate.log 2>&1
 .PHONY: manager-dependency-renovate

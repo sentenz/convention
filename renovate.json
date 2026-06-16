@@ -69,7 +69,7 @@
       "matchManagers": [
         "dockerfile",
         "containerfile",
-        "regex"
+        "custom.regex"
       ],
       "matchDatasources": [
         "docker"

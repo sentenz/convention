@@ -31,7 +31,7 @@
       "matchStrings": [
         "(?<depName>(?:(?:docker\\.io|ghcr\\.io|quay\\.io|gcr\\.io|mcr\\.microsoft\\.com|registry\\.gitlab\\.com|cgr\\.dev|oci\\.io)/)?[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+):(?<currentValue>[^@\\s]+)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?"
       ],
-      "autoReplaceStringTemplate": "{{depName}}:{{newValue}}{{#if newDigest}}@{{newDigest}}{{/if}}",
+      "autoReplaceStringTemplate": "{{depName}}:{{newValue}}{{#if newDigest}}@{{newDigest}}{{else}}{{#if currentDigest}}@{{currentDigest}}{{/if}}{{/if}}",
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
     }

@@ -5,32 +5,33 @@
   ],
   "rebaseWhen": "behind-base-branch",
   "dependencyDashboard": false,
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/charts/**"
+  ],
   "labels": [
     "dependencies"
   ],
   "vulnerabilityAlerts": {
     "labels": [
-      "dependencies",
       "security"
     ],
-    "automerge": true
+    "automerge": false
   },
-  "ignorePaths": [
-    "**/node_modules/**",
-    "**/bower_components/**",
-    "**/vendors/**",
-    "**/charts/**"
-  ],
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update container images in Makefile variables",
+      "description": "Safely update container images in Makefile variables (handles tag-only or tag@sha256)",
       "managerFilePatterns": [
         "**/[Mm]akefile"
       ],
       "matchStrings": [
-        "(?<depName>(?:(?:docker\\.io|ghcr\\.io|quay\\.io|gcr\\.io|mcr\\.microsoft\\.com|registry\\.gitlab\\.com|cgr\\.dev|oci\\.io)/)?[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+):(?<currentValue>[^@\\s]+)@sha256:(?<currentDigest>[a-f0-9]{64})"
+        "(?<depName>(?:(?:docker\\.io|ghcr\\.io|quay\\.io|gcr\\.io|mcr\\.microsoft\\.com|registry\\.gitlab\\.com|cgr\\.dev|oci\\.io)/)?[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+):(?<currentValue>[^@\\s]+)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?"
       ],
+      "autoReplaceStringTemplate": "{{depName}}:{{newValue}}{{#if newDigest}}@{{newDigest}}{{else}}{{#if currentDigest}}@{{currentDigest}}{{/if}}{{/if}}",
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
     }
@@ -64,10 +65,11 @@
       "automerge": false
     },
     {
-      "description": "Docker base image digest bumps (pinned).",
+      "description": "Docker base image digest bumps across Dockerfiles, Containerfiles, and Makefiles.",
       "matchManagers": [
         "dockerfile",
-        "containerfile"
+        "containerfile",
+        "custom.regex"
       ],
       "matchDatasources": [
         "docker"

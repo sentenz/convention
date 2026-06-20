@@ -1,4 +1,4 @@
-# 003-ADR: Threat Modeling for ICS
+# NNN-ADR: Threat Modeling for ICS
 
 Architectural Decision Records (ADR) on implementing Threat Modeling for Industrial Control Systems (ICS) and Embedded Devices.
 
@@ -64,7 +64,7 @@ Selecting appropriate threat modeling frameworks is critical to identifying, ass
       > Frameworks should support quantitative or qualitative scoring of identified threats to enable prioritized mitigation planning aligned with the operational and safety risk profile of each ICS zone and embedded device.
 
     - Adversary-Centric Approach
-      > Frameworks should incorporate threat actor profiling — including nation-state APTs, insiders, and supply chain adversaries — to ensure threat identification reflects the motivations and capabilities of realistic ICS attackers.
+      > Frameworks should incorporate threat actor profiling including nation-state APTs, insiders, and supply chain adversaries to ensure threat identification reflects the motivations and capabilities of realistic ICS attackers.
 
     - TTP-Based Approach (Tactics, Techniques, Procedures)
       > Frameworks should map identified threats to structured TTP taxonomies, enabling teams to reason about how adversaries operate within ICS and embedded environments and to detect or block specific attack steps.
@@ -73,7 +73,7 @@ Selecting appropriate threat modeling frameworks is critical to identifying, ass
 
 ### 3.1. STRIDE
 
-Selected for its systematic, category-driven threat classification that enables structured enumeration of threats across all ICS components, data flows, and trust boundaries using Data Flow Diagrams (DFDs). STRIDE provides a foundational threat identification methodology — covering Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege — that integrates naturally with the IEC 62443 zones-and-conduits architecture model and serves as the primary threat classification layer for all subsequent risk-scoring and TTP-mapping activities.
+Selected for its systematic, category-driven threat classification that enables structured enumeration of threats across all ICS components, data flows, and trust boundaries using Data Flow Diagrams (DFDs). STRIDE provides a foundational threat identification methodology, covering Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, and Elevation of Privilege, that integrates naturally with the IEC 62443 zones-and-conduits architecture model and serves as the primary threat classification layer for all subsequent risk-scoring and TTP-mapping activities.
 
 1. Rationale
 
@@ -313,7 +313,7 @@ Selected as the governing compliance and architectural framework for securing In
 
 ### 4.3. TARA
 
-[TARA (Threat Agent Risk Assessment)](https://www.intel.com/content/www/us/en/developer/articles/technical/threat-agent-risk-assessment.html) is a methodology developed by Intel for identifying threat agents and assessing the risk each agent poses to specific assets based on motivation and capability.
+TARA (Threat Analysis and Risk Assessment) is a methodology developed by Intel for identifying threat agents and assessing the risk each agent poses to specific assets based on motivation and capability.
 
 - Pros
 
@@ -453,7 +453,7 @@ Selected as the governing compliance and architectural framework for securing In
 
 ### 4.10. DREAD
 
-[DREAD](https://owasp.org/www-community/Threat_Modeling_Process) is a qualitative risk-scoring framework that ranks threats by assigning scores across five dimensions — Damage, Reproducibility, Exploitability, Affected Users, and Discoverability — to prioritize identified threats.
+[DREAD](https://owasp.org/www-community/Threat_Modeling_Process) is a qualitative risk-scoring framework that ranks threats by assigning scores across five dimensions: Damage, Reproducibility, Exploitability, Affected Users, and Discoverability, to prioritize identified threats.
 
 - Pros
 

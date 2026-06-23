@@ -20,7 +20,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
 
       - name: Run Renovate
         uses: sentenz/actions/renovate@1.1.4

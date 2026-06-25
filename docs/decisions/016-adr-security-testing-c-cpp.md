@@ -46,7 +46,7 @@ C/C++ embedded products present unique challenges due to their lack of inherent 
       > CRA Annex II requires a complete, auditable SBOM of all third-party and open-source dependencies, including known CVE exposure mappings, to ensure supply chain security.
 
     - Evidence-based Retention
-      > Systematic security testing must produce machine-parseable artifacts that are versioned and archived for a minimum of 10 years to satisfy CRA Article 13(5) documentation requirements.
+      > Systematic security testing must produce machine-parseable artifacts that are versioned and archived for a minimum of 10 years to satisfy CRA Article 13(13) documentation requirements.
 
     - Memory Safety
       > C/C++'s lack of inherent memory safety requires systematic detection of buffer overflows, use-after-free, and undefined behavior to prevent exploitable vulnerabilities.

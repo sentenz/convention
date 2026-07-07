@@ -155,7 +155,7 @@
       "automerge": false,
       "semanticCommits": "enabled",
       "semanticCommitType": "ci",
-      "semanticCommitScope": "actions"
+      "semanticCommitScope": "deps"
     }
   ]
 }

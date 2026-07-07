@@ -1,9 +1,16 @@
 # https://www.toptal.com/developers/gitignore/
 
 ### Miscellaneous ###
-logs/
-*.log
+logs/*
+*.log.*
 public/
+
+### Dotenv ###
+# Ignore dotenv files (unencrypted), allow encrypted files with .enc
+.env
+.env.*
+!.env.enc
+!.env.*.enc
 
 ### VisualStudioCode ###
 .vscode/*

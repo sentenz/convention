@@ -3,31 +3,43 @@
 pre-commit:
   parallel: true
   commands:
-    # codespell:
-    #   glob: "**/*.{md,txt,sh}"
-    #   run: codespell {staged_files}
-    #   skip:
-    #     - run: "! which codespell"
+    gitleaks:
+      run: make sast-gitleaks-staged
+      skip:
+        - run: "! which docker"
+    semgrep:
+      run: make sast-semgrep-scan SAST_FILES_SEMGREP="{staged_files}"
+      skip:
+        - run: "! which docker"
+    trivy:
+      run: make sast-trivy-misconfig SAST_FILES_TRIVY="{staged_files}"
+      skip:
+        - run: "! which docker"
     markdownlint:
       glob: "**/*.md"
       run: make lint-markdown LINT_FILES_MARKDOWNLINT="{staged_files}"
       skip:
         - run: "! which docker"
-    prettier:
-      glob: "**/*.{json,md,yml,yaml}"
-      run: prettier --check {staged_files}
-      skip:
-        - run: "! which prettier"
-    shellcheck:
-      glob: "**/*.sh"
-      run: shellcheck {staged_files}
-      skip:
-        - run: "! which shellcheck"
-    yamllint:
-      glob: "**/*.{yml,yaml}"
-      run: yamllint {staged_files}
-      skip:
-        - run: "! which yamllint"
+    # codespell:
+    #   glob: "**/*.{md,txt,sh}"
+    #   run: codespell {staged_files}
+    #   skip:
+    #     - run: "! which codespell"
+    # prettier:
+    #   glob: "**/*.{json,md,yml,yaml}"
+    #   run: prettier --check {staged_files}
+    #   skip:
+    #     - run: "! which prettier"
+    # shellcheck:
+    #   glob: "**/*.sh"
+    #   run: shellcheck {staged_files}
+    #   skip:
+    #     - run: "! which shellcheck"
+    # yamllint:
+    #   glob: "**/*.{yml,yaml}"
+    #   run: yamllint {staged_files}
+    #   skip:
+    #     - run: "! which yamllint"
 
 commit-msg:
   commands:

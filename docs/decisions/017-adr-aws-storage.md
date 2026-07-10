@@ -469,12 +469,12 @@ A single storage-service standard would require every workload to use one defaul
 
 - AWS Decision Guide [Choosing an AWS storage service](https://docs.aws.amazon.com/decision-guides/latest/storage-on-aws-how-to-choose/choosing-aws-storage-service.html) documentation.
 - AWS [Cloud Storage Services on AWS](https://aws.amazon.com/products/storage/) product overview.
-- Amazon S3 [product page](https://aws.amazon.com/s3/).
-- Amazon EBS [product page](https://aws.amazon.com/ebs/).
-- Amazon EFS [product page](https://aws.amazon.com/efs/).
-- Amazon FSx [product page](https://aws.amazon.com/fsx/).
-- AWS Backup [product page](https://aws.amazon.com/backup/).
-- AWS DataSync [product page](https://aws.amazon.com/datasync/).
-- AWS Storage Gateway [product page](https://aws.amazon.com/storagegateway/).
-- AWS Transfer Family [product page](https://aws.amazon.com/aws-transfer-family/).
-- AWS Snowball [product page](https://aws.amazon.com/snowball/).
+- Amazon [S3](https://aws.amazon.com/s3/) page.
+- Amazon [EBS](https://aws.amazon.com/ebs/) page.
+- Amazon [EFS](https://aws.amazon.com/efs/) page.
+- Amazon FSx [product page](https://aws.amazon.com/fsx/) page.
+- AWS [Backup](https://aws.amazon.com/backup/) page.
+- AWS [DataSync](https://aws.amazon.com/datasync/) page.
+- AWS [Storage Gateway](https://aws.amazon.com/storagegateway/) page.
+- AWS [Transfer Family](https://aws.amazon.com/aws-transfer-family/) page.
+- AWS [Snowball](https://aws.amazon.com/snowball/) page.

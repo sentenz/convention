@@ -472,7 +472,7 @@ A single storage-service standard would require every workload to use one defaul
 - Amazon [S3](https://aws.amazon.com/s3/) page.
 - Amazon [EBS](https://aws.amazon.com/ebs/) page.
 - Amazon [EFS](https://aws.amazon.com/efs/) page.
-- Amazon FSx [product page](https://aws.amazon.com/fsx/) page.
+- Amazon [FSx](https://aws.amazon.com/fsx/) page.
 - AWS [Backup](https://aws.amazon.com/backup/) page.
 - AWS [DataSync](https://aws.amazon.com/datasync/) page.
 - AWS [Storage Gateway](https://aws.amazon.com/storagegateway/) page.

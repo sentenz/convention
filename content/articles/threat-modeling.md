@@ -112,6 +112,21 @@ Thrill seekers, also known as script kiddies, are low-skill threat actors who re
 
 ### 3.2. Threat Layers
 
+[Diagram depth layers](https://learn.microsoft.com/en-us/training/modules/tm-provide-context-with-the-right-depth-layer/1b-depth-layers) are used to decompose a system into hierarchical levels of detail, enabling threat modeling at varying levels of abstraction.
+
+Connection paths are classified as either [direct or indirect, logical or physical data connection to a device or network](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_2), [defining the combinations](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_3) of connection path, connection type, and target.
+
+| Case | Connection Path | Connection Type | Target  | Interpretation                                 |
+| ---- | --------------- | --------------- | ------- | ---------------------------------------------- |
+| C1   | Direct          | Logical         | Device  | Direct logical data connection to a device     |
+| C2   | Direct          | Logical         | Network | Direct logical data connection to a network    |
+| C3   | Direct          | Physical        | Device  | Direct physical data connection to a device    |
+| C4   | Direct          | Physical        | Network | Direct physical data connection to a network   |
+| C5   | Indirect        | Logical         | Device  | Indirect logical data connection to a device   |
+| C6   | Indirect        | Logical         | Network | Indirect logical data connection to a network  |
+| C7   | Indirect        | Physical        | Device  | Indirect physical data connection to a device  |
+| C8   | Indirect        | Physical        | Network | Indirect physical data connection to a network |
+
 #### 3.2.1. Depth Layers
 
 | Depth Layer | Title       | Components                                                               | Description                                                                                                                                                                                                                                                                    |
@@ -159,66 +174,181 @@ Thrill seekers, also known as script kiddies, are low-skill threat actors who re
   > The embedded device is decomposed into its major functional blocks (processes) and critical sub‑processes. The diagram shows internal data flows, trust boundaries, and interfaces between components, enabling detailed threat analysis of the device's attack surface and internal architecture.
 
   ```mermaid
-  graph TB
-      %% Layer 0 (System)
-      subgraph External_Entities ["Layer 0 (System) - External Entities"]
-          PLC[PLC]
-          HMI[HMI]
-          USER[Operator]
-          DEBUGGER[Debugger Probe]
-          UPS[UPS]
+  flowchart TD
+      %% ============================================================
+      %% Threat-model depth: Layer 2 — system subparts
+      %%
+      %% Classification perspective:
+      %% All C1-C8 labels are evaluated relative to the embedded device.
+      %%
+      %% Direct paths    = solid lines
+      %% Indirect paths  = dashed lines
+      %% NC              = not a qualifying device/network data connection
+      %% ============================================================
+
+      %% ------------------------------------------------------------
+      %% Purdue Level 2 — Supervisory and maintenance
+      %% ------------------------------------------------------------
+      subgraph L2["Purdue Level 2 — Supervisory / Maintenance"]
+          MW["Maintenance Workstation"]
+          HMI["HMI / Engineering Station"]
+          USER["Operator"]
+          DEBUGGER["Debugger / Programming Probe"]
       end
 
-      %% Layer 1 (Processes)
-      subgraph Device_Boundary ["Layer 1 (Process) - Device Node (Trust Boundary)"]
-          RS485[RS-485]
-          RS232[RS-232]
-          PowerMng[Power Supply Monitor]
-          Actuators[Actuators]
+      %% ------------------------------------------------------------
+      %% Purdue Level 1 — External controller or intermediary
+      %% ------------------------------------------------------------
+      subgraph L1_EXT["Purdue Level 1 — External Control System"]
+          PLC["PLC / Protocol Gateway"]
+      end
 
-          %% Layer 2 (Sub‑processes)
-          subgraph MCU ["Layer 2 (Subprocess) - MCU (Critical Decomposition)"]
-              style MCU stroke-dasharray: 5 5
-              Bootloader[Bootloader]
-              SecureBoot[Secure Boot]
-              SecureUpdate[Secure Firmware Update]
-              JTAG_SWD[JTAG / SWD Debug Port]
-              Flash[(Flash)]
-              EEPROM[(EEPROM)]
-              AppCore[Application Firmware]
+      %% ------------------------------------------------------------
+      %% Purdue Level 0 — Process and supporting equipment
+      %% ------------------------------------------------------------
+      subgraph L0["Purdue Level 0 — Field / Process"]
+          FIELD["Field Sensors and Actuators"]
+          RIO["Remote I/O Module<br/>Signal Conditioner"]
+          UPS["UPS"]
+      end
+
+      %% ============================================================
+      %% Product with Digital Elements boundary
+      %% ============================================================
+      subgraph DEVICE["TB-1: Embedded Product with Digital Elements"]
+
+          %% --------------------------------------------------------
+          %% External interface trust boundary
+          %% --------------------------------------------------------
+          subgraph INTERFACES["TB-1A: External Interface Boundary"]
+              RS485["RS-485 Transceiver"]
+              RS232["RS-232 Transceiver"]
+              UPSIF["UPS Management Interface<br/>RS-232 / RS-485"]
+              JTAG["JTAG / SWD Interface"]
+              LOCALIO["Buttons / Local Display"]
+              DIO["GPIO / Digital I/O Interface"]
+              AIO["Analog Front End<br/>4–20 mA / 0–10 V"]
+              POWER["Power Input / Power Monitoring"]
+          end
+
+          %% --------------------------------------------------------
+          %% Firmware and privileged execution boundary
+          %% --------------------------------------------------------
+          subgraph FIRMWARE["TB-1B: Firmware Execution Boundary"]
+              MODBUS["Modbus RTU Protocol Stack"]
+              UARTDRV["UART Driver"]
+              GPIODRV["GPIO / Digital I/O Driver"]
+              ANALOGDRV["ADC / DAC Driver"]
+              SPIDRV["SPI Driver"]
+              I2CDRV["I²C Driver"]
+              APP["Application Firmware<br/>Control Logic"]
+              BOOT["Bootloader / Update Agent"]
+              DEBUGCTRL["Debug Access Control"]
+          end
+
+          %% --------------------------------------------------------
+          %% Persistent-data trust boundary
+          %% --------------------------------------------------------
+          subgraph STORAGE["TB-1C: Persistent Storage Boundary"]
+              FLASH[("Flash<br/>Firmware and Configuration")]
+              EEPROM[("EEPROM<br/>Calibration and Parameters")]
           end
       end
 
-      %% External Data Flows (Layer 0)
-      PLC <-->|"Modbus RTU (RS-485)"| RS485
-      HMI <-->|"Modbus (RS-232)"| RS232
-      UPS -->|"Power Supply"| PowerMng
-      DEBUGGER <-->|"JTAG / SWD"| JTAG_SWD
-      USER -->|"Pushbuttons / LCD"| AppCore
+      %% ============================================================
+      %% Indirect external paths
+      %% ============================================================
 
-      %% Internal Data Flows (Layer 1)
-      RS485 <-->|"SPI"| AppCore
-      RS232 <-->|"UART"| AppCore
-      PowerMng -->|"I2C"| AppCore
-      AppCore -->|"Control"| Actuators
+      MW -.->|"C5, C7 — indirect logical and physical device path via PLC"| PLC
+      PLC -.->|"C5, C7 — indirect response path to maintenance workstation"| MW
 
-      %% Internal Data Flows (Layer 2)
-      Bootloader <-->|"Read/Write"| Flash
-      Bootloader <-->|"Read/Write"| EEPROM
-      SecureBoot -->|"Verify"| Bootloader
-      SecureUpdate -->|"New Image"| Bootloader
-      JTAG_SWD <-->|"Debug Access"| AppCore
+      HMI -.->|"C6, C8 — indirect logical and physical path to RS-485 network via PLC"| PLC
+      PLC -.->|"C6, C8 — indirect network response path to HMI"| HMI
 
-      %% Styling
-      classDef deviceBoundary stroke:#ff0000,stroke-width:2px;
-      classDef process fill:#bbf7,stroke:#333,stroke-width:1px;
-      classDef datastore fill:#bfb7,stroke:#333,stroke-width:1px;
-      classDef critical fill:#fbb7,stroke:#333,stroke-width:1px;
+      FIELD -.->|"C7 — indirect physical device path through remote I/O"| RIO
 
-      class Device_Boundary deviceBoundary;
-      class RS485,RS232,PowerMng,Actuators,AppCore process;
-      class Flash,EEPROM datastore;
-      class Bootloader,SecureBoot,SecureUpdate,JTAG_SWD critical;
+      %% ============================================================
+      %% Direct industrial communication paths
+      %% ============================================================
+
+      PLC <-->|"C3, C4 — direct RS-485 physical device and multidrop-bus connection"| RS485
+      RIO <-->|"C4 — direct physical connection to the RS-485 field network"| RS485
+
+      RS485 <-->|"C1, C2 — Modbus RTU logical device and network data flow"| MODBUS
+
+      HMI <-->|"C1, C3 — direct logical and physical device connection over RS-232"| RS232
+
+      UPS <-->|"C1, C3 — direct UPS status and control data, when management is implemented"| UPSIF
+
+      DEBUGGER <-->|"C1, C3 — direct debug commands and physical JTAG/SWD connection"| JTAG
+
+      %% ============================================================
+      %% Direct field-I/O paths
+      %% ============================================================
+
+      FIELD <-->|"C3 — direct digital data or control signal"| DIO
+      FIELD <-->|"C3 — direct 4–20 mA or 0–10 V process-data signal"| AIO
+
+      %% Human action is not itself a device/network data connection.
+      USER -->|"NC — human mechanical action"| LOCALIO
+
+      %% Power-only delivery is not a qualifying data connection.
+      UPS -->|"NC — electrical power only"| POWER
+
+      %% ============================================================
+      %% Interface-to-driver flows
+      %% ============================================================
+
+      RS232 <-->|"C1, C3 — UART frames and electrical serial signals"| UARTDRV
+      UPSIF <-->|"C1, C3 — UPS protocol frames and serial signals"| UARTDRV
+
+      LOCALIO <-->|"C1, C3 — sampled button state and display-control data"| GPIODRV
+      DIO <-->|"C1, C3 — binary field data and electrical signals"| GPIODRV
+      AIO <-->|"C1, C3 — sampled or generated analog process data"| ANALOGDRV
+
+      JTAG <-->|"C1, C3 — privileged debug data and electrical debug signals"| DEBUGCTRL
+
+      %% ============================================================
+      %% Internal logical flows
+      %% ============================================================
+
+      MODBUS <-->|"C1 — parsed commands, responses and telemetry"| APP
+      UARTDRV <-->|"C1 — serial maintenance and management data"| APP
+      GPIODRV <-->|"C1 — digital input state and output commands"| APP
+      ANALOGDRV <-->|"C1 — measurements, setpoints and output values"| APP
+
+      APP <-->|"C1 — boot state, update request and image metadata"| BOOT
+      APP <-->|"C1 — SPI operations"| SPIDRV
+      APP <-->|"C1 — I²C operations"| I2CDRV
+
+      DEBUGCTRL <-->|"C1 — privileged execution and memory access"| APP
+
+      %% ============================================================
+      %% Persistent-storage flows
+      %% ============================================================
+
+      BOOT <-->|"C1, C3 — firmware verification, read and write operations"| FLASH
+      SPIDRV <-->|"C1, C3 — SPI firmware or configuration storage access"| FLASH
+      I2CDRV <-->|"C1, C3 — I²C calibration and parameter access"| EEPROM
+
+      DEBUGCTRL <-->|"C1, C3 — direct debug read, erase or programming access"| FLASH
+      DEBUGCTRL <-->|"C1, C3 — direct debug access to persistent parameters"| EEPROM
+
+      %% ============================================================
+      %% Visual classification
+      %% ============================================================
+
+      classDef external stroke:#475569,stroke-width:1.5px;
+      classDef interface stroke:#92400e,stroke-width:1.5px;
+      classDef process stroke:#075985,stroke-width:1.5px;
+      classDef datastore stroke:#5b21b6,stroke-width:1.5px;
+      classDef intermediary stroke:#334155,stroke-width:2px;
+
+      class MW,HMI,USER,DEBUGGER,FIELD,RIO,UPS external;
+      class PLC intermediary;
+      class RS485,RS232,UPSIF,JTAG,LOCALIO,DIO,AIO,POWER interface;
+      class MODBUS,UARTDRV,GPIODRV,ANALOGDRV,SPIDRV,I2CDRV,APP,BOOT,DEBUGCTRL process;
+      class FLASH,EEPROM datastore;
   ```
 
 ### 3.3. Threat Frameworks

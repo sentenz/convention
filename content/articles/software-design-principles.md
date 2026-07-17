@@ -5816,111 +5816,111 @@ These principles are not mutually exclusive and often overlap with one another. 
   > A good design should be easy to understand and maintain by other developers who may have to work on the codebase in the future.
 
 - Modularity
-  >  A good design should be modular, with each module having a clear, single responsibility. This makes the code easier to read, understand, and modify.
+  > A good design should be modular, with each module having a clear, single responsibility. This makes the code easier to read, understand, and modify.
 
 - Reusability
-  >  A good design should be reusable, with each module being independent and able to be used in other parts of the system or in other projects.
+  > A good design should be reusable, with each module being independent and able to be used in other parts of the system or in other projects.
 
 - Testability
-  >  A good design should be testable, with each module being able to be tested independently of other modules. This allows for easier debugging and reduces the risk of introducing bugs into the system.
+  > A good design should be testable, with each module being able to be tested independently of other modules. This allows for easier debugging and reduces the risk of introducing bugs into the system.
 
 - Maintainability
-  >  A good design should be maintainable, with each module being easy to modify and extend without introducing new bugs or breaking existing functionality.
+  > A good design should be maintainable, with each module being easy to modify and extend without introducing new bugs or breaking existing functionality.
 
 - Scalability
-  >  A good design should be scalable, able to handle increasing amounts of data, traffic, or users without sacrificing performance or reliability.
+  > A good design should be scalable, able to handle increasing amounts of data, traffic, or users without sacrificing performance or reliability.
 
 - Extensibility
-  >  A good design should be extensible, allowing for the addition of new features or functionality without breaking existing code.
+  > A good design should be extensible, allowing for the addition of new features or functionality without breaking existing code.
 
 - Performance
-  >  A good design should be designed with performance in mind, using appropriate algorithms and data structures to minimize processing time and memory usage.
+  > A good design should be designed with performance in mind, using appropriate algorithms and data structures to minimize processing time and memory usage.
 
 - Security
-  >  A good design should be designed with security in mind, using appropriate security protocols and practices to protect sensitive data and prevent unauthorized access.
+  > A good design should be designed with security in mind, using appropriate security protocols and practices to protect sensitive data and prevent unauthorized access.
 
 - Usability
-  >  A good design should be usable, with the user interface being intuitive and easy to navigate, and the system being responsive and reliable.
+  > A good design should be usable, with the user interface being intuitive and easy to navigate, and the system being responsive and reliable.
 
 ## 3. Best Practice
 
 - Start with the user
-  >  Always keep the user and their needs in mind when designing software. This will help to create a product that is intuitive, user-friendly, and meets the user's requirements.
+  > Always keep the user and their needs in mind when designing software. This will help to create a product that is intuitive, user-friendly, and meets the user's requirements.
 
 - Use multiple principles
-  >  No single principle can solve all  problems. Instead, try to use multiple principles in conjunction to create a software design that is flexible, maintainable, and scalable.
+  > No single principle can solve all  problems. Instead, try to use multiple principles in conjunction to create a software design that is flexible, maintainable, and scalable.
 
 - Follow a design process
-  >  Don't jump straight into coding. Follow a structured design process that involves identifying requirements, creating a design, and testing and iterating on that design.
+  > Don't jump straight into coding. Follow a structured design process that involves identifying requirements, creating a design, and testing and iterating on that design.
 
 - Emphasize simplicity
-  >  Keep the design as simple as possible. A simple design is easier to understand, maintain, and extend than a complex one.
+  > Keep the design as simple as possible. A simple design is easier to understand, maintain, and extend than a complex one.
 
 - Prioritize flexibility
-  >  The design should be flexible enough to accommodate future changes and enhancements. This will avoid costly rework in the future.
+  > The design should be flexible enough to accommodate future changes and enhancements. This will avoid costly rework in the future.
 
 - Strive for modularity
-  >  Divide the software into smaller, more manageable modules. This will achieve greater flexibility and maintainability.
+  > Divide the software into smaller, more manageable modules. This will achieve greater flexibility and maintainability.
 
 - Use design patterns
-  >  Design patterns are time-tested solutions to common software design problems. Familiarize with common patterns and use them where appropriate.
+  > Design patterns are time-tested solutions to common software design problems. Familiarize with common patterns and use them where appropriate.
 
 - Continuously refine the design
-  >  Don't consider the design to be set in stone. Continuously refine and improve it based on feedback from users and stakeholders.
+  > Don't consider the design to be set in stone. Continuously refine and improve it based on feedback from users and stakeholders.
 
 - Document the design
-  >  Create documentation that describes the design and how it works. This will help to understand and maintain the software over time.
+  > Create documentation that describes the design and how it works. This will help to understand and maintain the software over time.
 
 - Test the design
-  >  Test the software design to ensure it meets the requirements and performs as expected. This will catch issues early on and avoid costly rework down the line.
+  > Test the software design to ensure it meets the requirements and performs as expected. This will catch issues early on and avoid costly rework down the line.
 
 ## 4. Terminology
 
 - Abstraction
-  >  The process of hiding implementation details and exposing only the necessary features or functionalities.
+  > The process of hiding implementation details and exposing only the necessary features or functionalities.
 
 - Coupling
-  >  The degree to which one component or module of a system is dependent on another component or module.
+  > The degree to which one component or module of a system is dependent on another component or module.
 
 - Cohesion
-  >  The degree to which the elements within a module or component are related to each other and contribute to a single purpose or responsibility.
+  > The degree to which the elements within a module or component are related to each other and contribute to a single purpose or responsibility.
 
 - Inheritance
-  >  A mechanism that allows a new class to be based on an existing class, inheriting its properties and methods.
+  > A mechanism that allows a new class to be based on an existing class, inheriting its properties and methods.
 
 - Polymorphism
-  >  The ability of an object or method to take on multiple forms or behaviors depending on the context in which it is used.
+  > The ability of an object or method to take on multiple forms or behaviors depending on the context in which it is used.
 
 - Interface
-  >  A set of methods or functions that define the expected behavior of a component or module.
+  > A set of methods or functions that define the expected behavior of a component or module.
 
 - Dependency
-  >  The relationship between two components or modules where one module relies on the other to perform a specific function or behavior.
+  > The relationship between two components or modules where one module relies on the other to perform a specific function or behavior.
 
 - Encapsulation
-  >  The practice of bundling data and methods within a single unit or class, and restricting access to the internal workings of that unit.
+  > The practice of bundling data and methods within a single unit or class, and restricting access to the internal workings of that unit.
 
 - Modularity
-  >  The practice of dividing a system into smaller, more manageable components or modules.
+  > The practice of dividing a system into smaller, more manageable components or modules.
 
 - Design Patterns
-  >  Reusable solutions to common software design problems that have been proven to be effective in practice. Examples include Singleton, Factory Method, and Observer.
+  > Reusable solutions to common software design problems that have been proven to be effective in practice. Examples include Singleton, Factory Method, and Observer.
 
 - SOLID
-  >  An acronym for a set of five principles of software design
-  >  Single Responsibility Principle, Open-Closed Principle, Liskov Substitution Principle, Interface Segregation Principle, and Dependency Inversion Principle.
+  > An acronym for a set of five principles of software design
+  > Single Responsibility Principle, Open-Closed Principle, Liskov Substitution Principle, Interface Segregation Principle, and Dependency Inversion Principle.
 
 - GRASP
-  >  An acronym for a set of nine patterns of software design, each of which focuses on a specific aspect of responsibility assignment or object creation.
+  > An acronym for a set of nine patterns of software design, each of which focuses on a specific aspect of responsibility assignment or object creation.
 
 - YAGNI
-  >  An acronym for `You Ain't Gonna Need It`, a principle that advocates for avoiding the inclusion of unnecessary or premature features in a system.
+  > An acronym for `You Ain't Gonna Need It`, a principle that advocates for avoiding the inclusion of unnecessary or premature features in a system.
 
 - KISS
-  >  An acronym for `Keep It Simple, Stupid`, a principle that advocates for simplicity in design, avoiding unnecessary complexity or over-engineering.
+  > An acronym for `Keep It Simple, Stupid`, a principle that advocates for simplicity in design, avoiding unnecessary complexity or over-engineering.
 
 - Convention over Configuration
-  >  A practice of adopting a set of sensible defaults and conventions for a system's configuration and behavior, rather than requiring explicit configuration for every detail.
+  > A practice of adopting a set of sensible defaults and conventions for a system's configuration and behavior, rather than requiring explicit configuration for every detail.
 
 ## 5. References
 

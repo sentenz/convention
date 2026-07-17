@@ -1,6 +1,6 @@
-# Twelve-Factor App
+# Twelve-Factor
 
-The Twelve-Factor App is a methodology for building software-as-a-service applications to improve portability, scalability, and maintainability by adhering to twelve principles.
+The [Twelve-Factor](https://github.com/twelve-factor/twelve-factor) methodology is a set of best practices for building modern, scalable, and maintainable web applications.
 
 - [1. Category](#1-category)
   - [1.1. Codebase](#11-codebase)
@@ -21,7 +21,7 @@ The Twelve-Factor App is a methodology for building software-as-a-service applic
 
 ### 1.1. Codebase
 
-The `Codebase` factor in the Twelve-Factor App methodology states that each app should have exactly one codebase. That codebase is tracked in version control and can be deployed to multiple environments.
+The `Codebase` factor in the Twelve-Factor methodology states that each app should have exactly one codebase. That codebase is tracked in version control and can be deployed to multiple environments.
 
 > [!NOTE]
 > Separate codebases for a single app, or splitting one app across multiple repositories, does not adhere to this factor. The intent is one version-controlled codebase per app that can be deployed across environments.
@@ -29,7 +29,7 @@ The `Codebase` factor in the Twelve-Factor App methodology states that each app 
 1. Concepts and Components
 
     - Single Codebase
-      > A codebase is the source code for a service or application. In the Twelve-Factor methodology, there should be exactly one codebase per app. If there are multiple codebases, it is a distributed system whose components are separate Twelve-Factor apps.
+      > A codebase is the source code for a service or application. In the Twelve-Factor methodology, there should be exactly one codebase per app. If there are multiple codebases, it is a distributed system whose components are separate Twelve-Factors.
 
     - Multiple Deployments
       > The same codebase can be deployed to different environments, e.g. production, staging, and development. Each deployment can run a different release. The codebase remains the single source of truth for the app.
@@ -124,7 +124,7 @@ The `Config` factor advocates strict separation of configuration from code.
       > Any aspect of the application that can vary between deployments (staging, production, developer environments) should be extracted as configuration. This can include database handles, credentials for external services, and per-deploy values such as canonical hostnames.
 
     - Environment Variables
-      > The Twelve-Factor App encourages storing configuration in environment variables. Environment variables are easy to change between deploys without code changes. Unlike config files, they are less likely to be committed accidentally, and unlike language-specific mechanisms (such as Java system properties), they are language- and OS-agnostic.
+      > The Twelve-Factor encourages storing configuration in environment variables. Environment variables are easy to change between deploys without code changes. Unlike config files, they are less likely to be committed accidentally, and unlike language-specific mechanisms (such as Java system properties), they are language- and OS-agnostic.
 
 2. Examples and Explanations
 
@@ -302,9 +302,9 @@ The `Processes` factor emphasizes that applications should run as stateless, sha
 
 ### 1.7. Port Binding
 
-The `Port Binding` factor in the Twelve-Factor App methodology emphasizes that applications should be self-contained and make services available to the outside world by binding to a specified port.
+The `Port Binding` factor in the Twelve-Factor methodology emphasizes that applications should be self-contained and make services available to the outside world by binding to a specified port.
 
-Port binding aligns with the principles of the Twelve-Factor App methodology, promoting portability, flexibility, and scalability. The application can run independently in a variety of environments, making it easier to manage and deploy.
+Port binding aligns with the principles of the Twelve-Factor methodology, promoting portability, flexibility, and scalability. The application can run independently in a variety of environments, making it easier to manage and deploy.
 
 1. Concepts and Components
 
@@ -374,7 +374,7 @@ The `Concurrency` factor advocates scaling out through the process model.
       > Different process types (web servers, background workers) can handle different workloads and improve concurrency. For instance, long-running tasks can be handled by workers, while short request/response tasks can be handled by web processes.
 
     - Scaling Out
-      > The Twelve-Factor App methodology emphasizes scaling out (horizontal scaling), rather than scaling up (vertical scaling). Scaling out means increasing the number of processes to handle more tasks simultaneously. This allows the application to distribute the load across multiple processes, making it more resilient and adaptable to changes in load. It contrasts with scaling up, which involves increasing the computational resources of an individual component.
+      > The Twelve-Factor methodology emphasizes scaling out (horizontal scaling), rather than scaling up (vertical scaling). Scaling out means increasing the number of processes to handle more tasks simultaneously. This allows the application to distribute the load across multiple processes, making it more resilient and adaptable to changes in load. It contrasts with scaling up, which involves increasing the computational resources of an individual component.
 
 2. Examples and Explanations
 
@@ -695,4 +695,5 @@ One-off admin processes run in the same environment as the app and are managed a
 
 ## 2. References
 
-- The [Twelve-Factor App](https://12factor.net/) page.
+- The [Twelve-Factor](https://12factor.net/) page.
+- GitHub [Twelve-Factor](https://github.com/twelve-factor/twelve-factor) repository.

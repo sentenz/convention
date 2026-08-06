@@ -138,18 +138,17 @@ Connection paths are classified as either [direct or indirect, logical or physic
 
 Mitigation levels classify the extent and sophistication of mitigations applied to an identified threat, ranging from no implemented mitigation to comprehensive and adaptive mitigation across the relevant architectural layers.
 
-| Maturity Level | General Interpretation                                                                                                | NIST CSF 2.0           | NIST SP 800-53B   | MITRE EMB3D Mitigation Level | IEC 62443 Security Level (SL) |
-| -------------: | --------------------------------------------------------------------------------------------------------------------- | ---------------------- | ----------------- | ---------------------------- | ----------------------------- |
-|        Basic 0 | Controls are not established, undocumented, or not evaluated.                                                         | N/A                    | N/A               | N/A                          | SL 0                          |
-| Foundational 1 | Controls address casual, accidental, or low-complexity threats.                                                       | Tier 1 (Partial)       | Low Baseline      | Foundational                 | SL 1                          |
-| Intermediate 2 | Controls address intentional attacks using simple methods and limited resources.                                      | Tier 2 (Risk-Informed) | Moderate Baseline | Intermediate                 | SL 2                          |
-| Intermediate 3 | Controls are standardized, consistently implemented, and validated against sophisticated threats.                     | Tier 3 (Repeatable)    | Moderate Baseline | Intermediate                 | SL 3                          |
-|      Leading 4 | Controls continuously adapt to threat intelligence and are engineered for highly capable, well-resourced adversaries. | Tier 4 (Adaptive)      | High Baseline     | Leading                      | SL 4                          |
+| Maturity Level | General Interpretation                                                                                                | MITRE EMB3D Mitigation Level | IEC 62443 Security Level (SL) |
+| -------------: | --------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------- |
+|        Basic 0 | Controls are not established, undocumented, or not evaluated.                                                         | N/A                          | SL 0                          |
+| Foundational 1 | Controls address casual, accidental, or low-complexity threats.                                                       | Foundational                 | SL 1                          |
+| Intermediate 2 | Controls address intentional attacks using simple methods and limited resources.                                      | Intermediate                 | SL 2                          |
+| Intermediate 3 | Controls are standardized, consistently implemented, and validated against sophisticated threats.                     | Intermediate                 | SL 3                          |
+|      Leading 4 | Controls continuously adapt to threat intelligence and are engineered for highly capable, well-resourced adversaries. | Leading                      | SL 4                          |
 
 > [!NOTE]
 >
 > - **ISO/IEC 62443 (OT/ICS)** measures mitigation based on adversary capability and resources (from simple mistakes to APTs).
-> - [NIST SP 800-53 (Enterprise IT)](https://csrc.nist.gov/pubs/sp/800/53/b/upd1/final) measures mitigation based on business/mission impact of a potential compromise (CIA triad loss severity).
 > - [MITRE EMB3D (Embedded Systems)](https://emb3d.mitre.org/) measures mitigation based on hardware/firmware architecture depth and implementation complexity.
 
 #### 3.2.3. Depth Layers

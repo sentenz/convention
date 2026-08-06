@@ -118,7 +118,7 @@ Thrill seekers, also known as script kiddies, are low-skill threat actors who re
 
 #### 3.2.1. Connection Paths
 
-Connection paths are classified as either [direct or indirect, logical or physical data connection to a device or network](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_2) and [definitions](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_3) of connection path, connection type, and target.
+Connection paths are classified as either [direct or indirect, logical or physical data connection to a device or network](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_2) with [definitions](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_3) for connection path, connection type, and target.
 
 > [!NOTE]
 > A **logical connection** describes the software interface, protocol session, addressing relationship or other virtual representation through which data is exchanged. A **physical connection** describes the physical means implementing the connection, including electrical, optical or mechanical interfaces, wires and radio waves. An **indirect connection** reaches the target through a larger system that is itself directly connectable to the device or network. A **direct connection** reaches the target without passing through any other directly connectable system.

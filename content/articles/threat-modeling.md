@@ -12,8 +12,12 @@ Threat modeling is a structured process for identifying, analyzing, and prioriti
     - [3.1.4. Hacktivists](#314-hacktivists)
     - [3.1.5. Thrill Seekers](#315-thrill-seekers)
   - [3.2. Threat Layers](#32-threat-layers)
-    - [3.2.1. Depth Layers](#321-depth-layers)
-    - [3.2.2. Diagram Layers](#322-diagram-layers)
+    - [3.2.1. Connection Paths](#321-connection-paths)
+    - [3.2.2. Mitigation Levels](#322-mitigation-levels)
+    - [3.2.3. Depth Layers](#323-depth-layers)
+    - [3.2.4. Diagram Layers](#324-diagram-layers)
+      - [3.2.4.1. Depth Layer 0](#3241-depth-layer-0)
+      - [3.2.4.2. Depth Layer 2](#3242-depth-layer-2)
   - [3.3. Threat Frameworks](#33-threat-frameworks)
     - [3.3.1. STRIDE](#331-stride)
     - [3.3.2. PASTA](#332-pasta)
@@ -21,7 +25,7 @@ Threat modeling is a structured process for identifying, analyzing, and prioriti
     - [3.3.4. LINDDUN](#334-linddun)
     - [3.3.5. OCTAVE](#335-octave)
     - [3.3.6. Attack Trees](#336-attack-trees)
-    - [3.3.7. TARA](#337-tara)
+    - [3.3.7. BSI Likelihood of Exploit](#337-bsi-likelihood-of-exploit)
     - [3.3.8. MITRE ATT\&CK](#338-mitre-attck)
     - [3.3.9. MITRE EMB3D](#339-mitre-emb3d)
   - [3.4. Terminology](#34-terminology)
@@ -73,13 +77,13 @@ Threat modeling is a structured process for identifying, analyzing, and prioriti
 
 Threat actors are individuals, groups, or organizations with the motivation and capability to carry out attacks against systems, data, or infrastructure.
 
-| #   | Threat Actor       | Skill Level | Resources | Persistence | Detection Difficulty | Primary Motivation                                      | Common Targets                                                            | Typical TTPs                                                                               |
-| --- | ------------------ | ----------- | --------- | ----------- | -------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| 1   | Nation-State / APT | Very High   | Very High | Very High   | Very High            | Espionage, Geopolitical Dominance, Strategic Objectives | Government, Defense, Critical Infrastructure, Research, Financial Systems | Zero-days, Supply Chain Attacks, Living-off-the-Land (LOTL), Lateral Movement, SIGINT      |
-| 2   | Insider Threat     | Low–High    | Low–High  | Low–High    | Very High            | Greed, Grievance, Coercion, or Negligence / Human Error | Employer's Sensitive Systems & Data                                       | Data Exfiltration, Sabotage, Privilege Abuse, Misconfiguration, Unauthorized Data Transfer |
-| 3   | Cybercriminal      | Low–High    | Low–High  | Low–High    | Low–High             | Financial Gain                                          | Individuals, SMBs, Enterprises, Banks, Healthcare                         | Ransomware-as-a-Service, Phishing, BEC, Carding, Credential Theft, Identity Fraud          |
-| 4   | Hacktivist         | Low–Medium  | Low       | Low–Medium  | Low–Medium           | Political, Social, or Ideological Cause                 | Governments, Corporations, Media Outlets                                  | DDoS, Website Defacement, Doxing, Data Leaks                                               |
-| 5   | Thrill Seeker      | Low–Medium  | Low       | Low         | Low                  | Curiosity, Notoriety, Thrill, or Mischief               | Random / Opportunistic Systems                                            | Pre-built Exploit Kits, DDoS-for-Hire, Unauthorized Vulnerability Discovery, Defacement    |
+| Threat Actor       | Typical Capability Boundary                                                                                                       |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------- |
+| Thrill Seeker      | Opportunistic use of public tooling, default credentials, or exposed services.                                                    |
+| Hacktivist         | Public-facing OT access used for symbolic disruption, defacement, or proof-of-access.                                             |
+| Cybercriminal      | Financially motivated compromise, ransomware, extortion, credential theft, or scalable supply-chain abuse.                        |
+| Insider Threat     | Trusted local, physical, engineering, maintenance, or privileged plant access.                                                    |
+| Nation-State Actor | State-sponsored actors with significant resources, custom tooling, and long-duration campaigns targeting critical infrastructure. |
 
 #### 3.1.1. Nation-State Actors / Advanced Persistent Threats (APTs)
 
@@ -112,144 +116,202 @@ Thrill seekers, also known as script kiddies, are low-skill threat actors who re
 
 ### 3.2. Threat Layers
 
+#### 3.2.1. Connection Paths
+
+Connection paths are classified as either [direct or indirect, logical or physical data connection to a device or network](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_2) with [definitions](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_3) for connection path, connection type, and target.
+
+> [!NOTE]
+> A **logical connection** describes the software interface, protocol session, addressing relationship or other virtual representation through which data is exchanged. A **physical connection** describes the physical means implementing the connection, including electrical, optical or mechanical interfaces, wires and radio waves. An **indirect connection** reaches the target through a larger system that is itself directly connectable to the device or network. A **direct connection** reaches the target without passing through any other directly connectable system.
+
+| Case | Connection Path | Connection Type | Target  | Interpretation                                 | Representative                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ---- | --------------- | --------------- | ------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C1   | Direct          | Logical         | Device  | Direct logical data connection to a device     | A software or protocol interaction addressed directly to a particular device or component: a Modbus RTU request/response addressed to one slave; an RS-232 or UART console session; a JTAG/SWD debug session directed to a target MCU; a managed UPS command session; a local bootloader command channel; or an SPI/I²C transaction addressed to a specific EEPROM, Flash device or peripheral. The classification concerns the commands, addressing and software-visible interface rather than the underlying pins, traces, cable or radio bearer.                                                                    |
+| C2   | Direct          | Logical         | Network | Direct logical data connection to a network    | A software interaction directed to, or operating on, a shared network rather than exclusively to one device: a Modbus broadcast on an RS-485 segment; network-wide discovery, enumeration or diagnostic functions; maintenance software interacting with a shared serial bus; or a network-management interface operating on an Ethernet, WLAN or fieldbus network. The logical network interaction may be carried over copper wiring, optical fibre or radio waves.                                                                                                                                                   |
+| C3   | Direct          | Physical        | Device  | Direct physical data connection to a device    | A point-to-point physical attachment between the connecting system and the target device. **Electrical or wired:** an RS-232/UART cable, USB service cable, JTAG/SWD probe and ribbon cable, GPIO or discrete digital-I/O wiring, SPI/I²C traces, or a board-to-board electrical connection. **Optical:** a point-to-point fibre-optic or infrared service link. **Mechanical-interface:** a mated plug and receptacle, docking interface, card slot or board connector through which the data connection is established. **Radio-wave:** a direct NFC, Bluetooth or proprietary point-to-point RF link to the device. |
+| C4   | Direct          | Physical        | Network | Direct physical data connection to a network   | Direct attachment of the product to a shared physical network medium. **Electrical or wired:** an RS-485 multidrop bus, CAN bus, wired Ethernet LAN, USB bus or industrial backplane. **Optical:** fibre Ethernet or an optical fieldbus. **Mechanical-interface:** an Ethernet jack, fieldbus coupler, backplane slot, hub port or other mating network connector. **Radio-wave:** direct attachment through the products own Wi-Fi, Bluetooth Mesh, Zigbee, Thread, cellular or other network radio interface.                                                                                                       |
+| C5   | Indirect        | Logical         | Device  | Indirect logical data connection to a device   | A device-specific software or protocol interaction relayed or mediated by a larger system: a maintenance workstation sending commands through a PLC or gateway to an embedded device; an HMI request relayed by a controller; a firmware-update command passed through application software to a bootloader; EEPROM or Flash access mediated by application firmware; or a remote management session entering through a gateway before invoking a device-specific command interface.                                                                                                                                   |
+| C6   | Indirect        | Logical         | Network | Indirect logical data connection to a network  | Software-level access to a network through an intermediary system or service: a maintenance application using a VPN, remote desktop session or site gateway to reach a field network; a virtual COM-port or TCP-to-serial service providing access to a Modbus RTU segment; an HMI reaching a CAN or RS-485 network through a PLC acting as a protocol gateway; or diagnostic software accessing a WLAN or fieldbus through a router, serial server or network-management appliance.                                                                                                                                   |
+| C7   | Indirect        | Physical        | Device  | Indirect physical data connection to a device  | A physical path to a device that passes through one or more intermediate components or a larger directly connectable system: a laptop connected through a USB cable, debug probe and ribbon cable to a target MCU; a workstation connected through a USB-to-RS-232 adapter to a device; a sensor or actuator connected through remote I/O, an isolator, signal conditioner or transmitter; a connection through a fibre-to-copper media converter or wireless bridge; or an internal component connected through an adapter board, backplane or product-level external connector.                                      |
+| C8   | Indirect        | Physical        | Network | Indirect physical data connection to a network | A physical path to a network implemented through an intermediate system or conversion stage: a maintenance workstation connected through a USB-to-RS-485 adapter or serial server to an RS-485 bus; an internal MCU connected through isolation, an RS-485 transceiver and a board connector to an external multidrop network; a device connected through a copper-to-fibre media converter to an optical network; an electrically connected device reaching a WLAN through an Ethernet-to-Wi-Fi bridge; or a module connected through an industrial backplane and network coupler to a fieldbus.                      |
+
+#### 3.2.2. Mitigation Levels
+
+Mitigation levels classify the extent and sophistication of mitigations applied to an identified threat, ranging from no implemented mitigation to comprehensive and adaptive mitigation across the relevant architectural layers.
+
+| Maturity Level | General Interpretation                                                                                                | MITRE EMB3D Mitigation Level | IEC 62443 Security Level (SL) |
+| -------------: | --------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------- |
+|        Basic 0 | Controls are not established, undocumented, or not evaluated.                                                         | N/A                          | SL 0                          |
+| Foundational 1 | Controls address casual, accidental, or low-complexity threats.                                                       | Foundational                 | SL 1                          |
+| Intermediate 2 | Controls address intentional attacks using simple methods and limited resources.                                      | Intermediate                 | SL 2                          |
+| Intermediate 3 | Controls are standardized, consistently implemented, and validated against sophisticated threats.                     | Intermediate                 | SL 3                          |
+|      Leading 4 | Controls continuously adapt to threat intelligence and are engineered for highly capable, well-resourced adversaries. | Leading                      | SL 4                          |
+
+> [!NOTE]
+>
+> - **ISO/IEC 62443 (OT/ICS)** measures mitigation based on adversary capability and resources (from simple mistakes to APTs).
+> - [MITRE EMB3D (Embedded Systems)](https://emb3d.mitre.org/) measures mitigation based on hardware/firmware architecture depth and implementation complexity.
+
+#### 3.2.3. Depth Layers
+
 [Diagram depth layers](https://learn.microsoft.com/en-us/training/modules/tm-provide-context-with-the-right-depth-layer/1b-depth-layers) are used to decompose a system into hierarchical levels of detail, enabling threat modeling at varying levels of abstraction.
 
-Connection paths are classified as either [direct or indirect, logical or physical data connection to a device or network](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_2), [defining the combinations](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847#art_3) of connection path, connection type, and target.
+| Layer | Title       | Components                                                                                                                                                                                                                                                                          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| ----- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 0     | System      | Embedded Device, PLC, HMI/Engineering Station, Maintenance Workstation, Debug/Flash Probe, Managed UPS, Sensors, Actuators, Remote I/O, Protocol Gateway/Serial Server, USB Host or Service Laptop                                                                                  | Mandatory initial view of the systems major parts. Represents the Embedded Device as a single process within its trust boundary and shows all relevant external entities, intermediary systems, data flows, and physical or logical connection paths. Establishes the system context and identifies the Layer 0 processes that may require further decomposition.  ([Microsoft Layer 0][1])                                                                                                                                                                     |
+| 1     | Process     | Controller/MCU, RS-485 Transceiver, RS-232 Transceiver, USB Interface, JTAG/SWD Interface, RJ-12/RJ-45 Connectors, GPIO Interface, Digital I/O, Analog I/O, Power Monitoring, Flash, EEPROM                                                                                         | Decomposes the Embedded Device process from Layer 0 into its principal board-level processes, interfaces, data stores, and trust boundaries. Identifies the products external physical and logical attack surfaces while retaining the Controller/MCU as a single process. Generally the appropriate minimum decomposition for evaluating an embedded products communication ports, field I/O, debug interface, storage, and service interfaces.  ([Microsoft Layer 1][2])                                                                                      |
+| 2     | Subprocess  | Application and Control Logic, Modbus RTU Stack, GPIO Driver, UART Driver, SPI Driver, I²C Driver, Digital-I/O Driver, ADC/DAC Driver, Scheduler/Interrupt Dispatch, Configuration Manager, Bootloader, Secure Boot, Firmware-Update Manager, Debug-Access Control, Memory Manager  | Decomposes the Controller/MCU process from Layer 1 into security-relevant firmware subprocesses and data flows. Focuses on protocol parsing, control decisions, privilege boundaries, interrupt handling, secure startup, firmware updates, debug authorization, configuration processing, and non-volatile-memory access. Appropriate where compromise of an internal controller function could affect device integrity, availability, process control, or connected systems.  ([Microsoft Layer 2][3])                                                        |
+| 3     | Lower-Level | Modbus RTU Frame Parser and Function Handlers, Boot Verification Chain, Firmware-Update State Machine, Signature Verification, Anti-Rollback Logic, UART ISR/DMA and Buffers, GPIO Interrupt/Debounce Logic, SPI/I²C Transaction State Machines, MPU Regions, Key-Handling Routines | Provides minute implementation detail for a selected critical Layer 2 subprocess rather than automatically decomposing the entire controller. Examines parser memory safety, input-validation branches, state transitions, buffer ownership, concurrency, cryptographic verification, privilege changes, key exposure, fault injection, and side-channel behavior. Reserved for security-critical, kernel-level, privileged, cryptographic, or timing-sensitive functions where Layer 2 does not provide sufficient analytical depth.  ([Microsoft Layer 3][4]) |
 
-| Case | Connection Path | Connection Type | Target  | Interpretation                                 |
-| ---- | --------------- | --------------- | ------- | ---------------------------------------------- |
-| C1   | Direct          | Logical         | Device  | Direct logical data connection to a device     |
-| C2   | Direct          | Logical         | Network | Direct logical data connection to a network    |
-| C3   | Direct          | Physical        | Device  | Direct physical data connection to a device    |
-| C4   | Direct          | Physical        | Network | Direct physical data connection to a network   |
-| C5   | Indirect        | Logical         | Device  | Indirect logical data connection to a device   |
-| C6   | Indirect        | Logical         | Network | Indirect logical data connection to a network  |
-| C7   | Indirect        | Physical        | Device  | Indirect physical data connection to a device  |
-| C8   | Indirect        | Physical        | Network | Indirect physical data connection to a network |
+[1]: https://learn.microsoft.com/en-us/training/modules/tm-provide-context-with-the-right-depth-layer/2-layer-0-the-system-layer "Layer 0 | The System Layer Training | Microsoft Learn"
+[2]: https://learn.microsoft.com/en-us/training/modules/tm-provide-context-with-the-right-depth-layer/3-layer-1-the-process-layer "Layer 1 | The Process Layer Training | Microsoft Learn"
+[3]: https://learn.microsoft.com/en-us/training/modules/tm-provide-context-with-the-right-depth-layer/4-layer-2-the-sub-process-layer "Layer 2 | The Subprocess Layer Training | Microsoft Learn"
+[4]: https://learn.microsoft.com/en-us/training/modules/tm-provide-context-with-the-right-depth-layer/5-layer-3-the-lower-level-layer "Layer 3 | The Lower-Level Layer Training | Microsoft Learn"
 
-#### 3.2.1. Depth Layers
+#### 3.2.4. Diagram Layers
 
-| Depth Layer | Title       | Components                                                               | Description                                                                                                                                                                                                                                                                    |
-| :---------- | :---------- | :----------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Layer 0     | System      | PLC, UPS, Debugger Probe, USB, HMI                                       | Starting point for the entire system. Shows the embedded device as a single black box exchanging data with external entities. Establishes the overall context and trust boundary.                                                                                              |
-| Layer 1     | Process     | MCU, Actuators, Sensors, RS-232, RS-485, RJ-12                           | Decomposition of the device into its major functional blocks and board‑level interfaces. Used to identify threats on the attack surface of all communication ports and physical I/O.                                                                                           |
-| Layer 2     | Subprocess  | Secure Firmware Update, Bootloader, Secure Boot, JTAG/SWD, Flash, EEPROM | Detailed breakdown of critical sub‑processes, e.g. inside the MCU. Focuses on boot integrity, secure updates, debug access, and non‑volatile memory, essential for analysing highly sensitive firmware and data protection.                                                    |
-| Layer 3     | Lower‑Level | GPIO, UART, SPI, I2C                                                     | Minute, hardware‑level detail. Models on‑chip peripherals, internal buses, and gate‑level Integrated Circuits (ICs) internals. Used only for the most critical, kernel‑level systems where micro‑architectural threats (e.g., side‑channel, fault injection) must be analysed. |
+##### 3.2.4.1. Depth Layer 0
 
-#### 3.2.2. Diagram Layers
+At depth layer 0, the embedded product is represented as a single system node. Internal elements such as the bootloader, Flash, EEPROM, protocol stack, drivers, and application firmware are intentionally omitted.
 
-- Layer 0
-  > The embedded device is treated as a single system element within its wider operational technology (OT) network context. The diagram shows the device major interfaces, trust boundaries, and data flows with external entities.
+```mermaid
+flowchart TD
+    %% ============================================================
+    %% Threat-model depth: Layer 0 — System context
+    %% ------------------------------------------------------------
+    %% The embedded product is represented as one process.
+    %% Internal firmware, storage, buses, and components are omitted.
+    %% ------------------------------------------------------------
+    %% C1-C8 are engineering labels, not CRA statutory categories.
+    %% ============================================================
 
-  ```mermaid
-  flowchart TD
-      %% Layer 0 (System)
-      subgraph External_Entities [External Entities]
-          PLC[PLC]
-          HMI[HMI]
-          USER[Operator]
-          DEBUGGER[Debugger Probe]
-          UPS[UPS]
-      end
+    %% ------------------------------------------------------------
+    %% External entities
+    %% ------------------------------------------------------------
+    subgraph EXT["External Entities and Systems"]
+        SCADA["SCADA"]
+        PLC["PLC / Gateway"]
+        HMI["HMI / Engineering Station"]
+        PROBE["Debugger / Programming Probe"]
+        RIO["Remote I/O Module"]
+        FIELD["Field Sensors and Actuators"]
+        USER["Operator"]
+        UPS["UPS"]
+    end
 
-      %% Device Boundary
-      subgraph Device_Boundary [Trust Boundary]
-          DEVICE((Device Node))
-      end
+    %% ------------------------------------------------------------
+    %% Product boundary
+    %% ------------------------------------------------------------
+    subgraph TB["TB: Product with Digital Elements"]
+        DEVICE(("Embedded Device"))
+    end
 
-      %% External Data Flows (Layer 0)
-      DEBUGGER <--> |"JTAG / SWD"| DEVICE
-      PLC <--> |"Modbus RTU (RS-485)"| DEVICE
-      HMI <--> |"Modbus (RS-232)"| DEVICE
-      USER --> |"Pushbuttons / LCD"| DEVICE
-      UPS --> |"Power Supply"| DEVICE
+    %% ============================================================
+    %% Direct logical and physical connections
+    %% ============================================================
 
-      %% Styling
-      classDef deviceBoundary stroke:#ff0000,stroke-width:2px;
+    PLC <-->|"C1, C4<br/>Modbus RTU over multidrop RS-485<br/>Direct logical device connection<br/>Direct physical network connection"| DEVICE
 
-      class Device_Boundary deviceBoundary;
-  ```
+    HMI <-->|"C1, C3<br/>Maintenance protocol over RS-232<br/>Direct logical and physical device connection"| DEVICE
 
-- Layer 0-2
-  > The embedded device is decomposed into its major functional blocks (processes) and critical sub‑processes. The diagram shows internal data flows, trust boundaries, and interfaces between components, enabling detailed threat analysis of the device's attack surface and internal architecture.
+    PROBE <-->|"C1, C3<br/>JTAG / SWD<br/>Direct privileged logical access<br/>Direct physical device connection"| DEVICE
 
-  ```mermaid
-  flowchart TD
-      %% ============================================================
-      %% Threat-model depth: Layer 2 — system subparts
-      %%
-      %% Classification perspective:
-      %% All C1-C8 labels are evaluated relative to the embedded device.
-      %%
-      %% Direct paths    = solid lines
-      %% Indirect paths  = dashed lines
-      %% NC              = not a qualifying device/network data connection
-      %% ============================================================
+    FIELD <-->|"C3<br/>Digital I/O, Analog I/O 4–20 mA / 0–10 V<br/>Direct physical process data connection"| DEVICE
 
-      %% ------------------------------------------------------------
-      %% Purdue Level 2 — Supervisory and maintenance
-      %% ------------------------------------------------------------
-      subgraph L2["Purdue Level 2 — Supervisory / Maintenance"]
-          MW["Maintenance Workstation"]
-          HMI["HMI / Engineering Station"]
-          USER["Operator"]
-          DEBUGGER["Debugger / Programming Probe"]
-      end
+    %% ============================================================
+    %% Indirect logical and physical connections
+    %% ============================================================
 
-      %% ------------------------------------------------------------
-      %% Purdue Level 1 — External controller or intermediary
-      %% ------------------------------------------------------------
-      subgraph L1_EXT["Purdue Level 1 — External Control System"]
-          PLC["PLC / Protocol Gateway"]
-      end
+    SCADA <-.->|"C5, C7<br/>Indirect logical and physical device path via PLC"| PLC
 
-      %% ------------------------------------------------------------
-      %% Purdue Level 0 — Process and supporting equipment
-      %% ------------------------------------------------------------
-      subgraph L0["Purdue Level 0 — Field / Process"]
-          FIELD["Field Sensors and Actuators"]
-          RIO["Remote I/O Module<br/>Signal Conditioner"]
-          UPS["UPS"]
+    PLC <-.->|"C4<br/>Direct physical connection to network"| RIO
+
+    RIO <-.->|"C7<br/>Indirect physical device path through remote I/O"| FIELD
+
+    %% ============================================================
+    %% Non-qualifying interactions
+    %% ============================================================
+
+    USER -->|"N/A<br/>Operation (Buttons / Display)<br/>Human mechanical/visual interaction<br/>No data connection"| DEVICE
+
+    UPS -->|"N/A<br/>Power supply only<br/>No data connection"| DEVICE
+
+    %% ============================================================
+    %% Visual classification
+    %% ============================================================
+
+    classDef external stroke:#475569;
+    classDef product stroke:#075985;
+
+    class PLC,RIO,HMI,SCADA,PROBE,FIELD,USER,UPS external;
+    class DEVICE product;
+```
+
+##### 3.2.4.2. Depth Layer 2
+
+At depth layer 2, the embedded device is decomposed into its major functional blocks (processes) and critical sub‑processes. Internal data flows, trust boundaries, and interfaces between components are shown, enabling detailed threat analysis of the device's attack surface and internal architecture.
+
+```mermaid
+flowchart TD
+    %% ============================================================
+    %% Threat-model depth: Layer 2 — system subparts
+    %% --------------------------------------------------------
+    %% Classification perspective:
+    %% All C1-C8 labels are evaluated relative to the embedded device.
+    %% --------------------------------------------------------
+    %% Solid external paths = direct connections
+    %% Dashed paths         = indirect end-to-end reachability
+    %% N/A (Not Applicable) = not a device/network data connection
+    %% ============================================================
+
+    %% ============================================================
+    %% External environment
+    %% ============================================================
+    subgraph EXTERNAL["External Environment"]
+        SCADA["SCADA"]
+        HMI["HMI / Engineering Station"]
+        PLC["PLC / Gateway"]
+        PROBE["Debugger / Programming Probe"]
+        USER["Operator"]
+        RIO["Remote I/O Module"]
+        FIELD["Field Sensors and Actuators"]
+        UPS["UPS"]
       end
 
       %% ============================================================
       %% Product with Digital Elements boundary
       %% ============================================================
-      subgraph DEVICE["TB-1: Embedded Product with Digital Elements"]
-
+      subgraph DEVICE["TB: Product with Digital Elements"]
           %% --------------------------------------------------------
           %% External interface trust boundary
           %% --------------------------------------------------------
-          subgraph INTERFACES["TB-1A: External Interface Boundary"]
+          subgraph INTERFACES["TB-A: External Interface Boundary"]
               RS485["RS-485 Transceiver"]
               RS232["RS-232 Transceiver"]
-              UPSIF["UPS Management Interface<br/>RS-232 / RS-485"]
               JTAG["JTAG / SWD Interface"]
-              LOCALIO["Buttons / Local Display"]
-              DIO["GPIO / Digital I/O Interface"]
-              AIO["Analog Front End<br/>4–20 mA / 0–10 V"]
-              POWER["Power Input / Power Monitoring"]
+              OPERATION["Buttons / Display"]
+              DIO["Digital I/O Interface"]
+              AIO["Analog I/O Interface<br/>4–20 mA / 0–10 V"]
+              POWER["Power Input"]
           end
 
           %% --------------------------------------------------------
           %% Firmware and privileged execution boundary
           %% --------------------------------------------------------
-          subgraph FIRMWARE["TB-1B: Firmware Execution Boundary"]
-              MODBUS["Modbus RTU Protocol Stack"]
+          subgraph FIRMWARE["TB-B: Firmware Execution Boundary"]
               UARTDRV["UART Driver"]
-              GPIODRV["GPIO / Digital I/O Driver"]
+              GPIODRV["GPIO Driver"]
               ANALOGDRV["ADC / DAC Driver"]
               SPIDRV["SPI Driver"]
               I2CDRV["I²C Driver"]
-              APP["Application Firmware<br/>Control Logic"]
-              BOOT["Bootloader / Update Agent"]
+              APP(("Application Firmware<br/>Control Logic"))
+              BOOT["Bootloader / Secure Boot"]
               DEBUGCTRL["Debug Access Control"]
           end
 
           %% --------------------------------------------------------
           %% Persistent-data trust boundary
           %% --------------------------------------------------------
-          subgraph STORAGE["TB-1C: Persistent Storage Boundary"]
+          subgraph STORAGE["TB-C: Persistent Storage Boundary"]
               FLASH[("Flash<br/>Firmware and Configuration")]
               EEPROM[("EEPROM<br/>Calibration and Parameters")]
           end
@@ -259,97 +321,86 @@ Connection paths are classified as either [direct or indirect, logical or physic
       %% Indirect external paths
       %% ============================================================
 
-      MW -.->|"C5, C7 — indirect logical and physical device path via PLC"| PLC
-      PLC -.->|"C5, C7 — indirect response path to maintenance workstation"| MW
+      SCADA <-.->|"C5, C7<br/>Indirect logical and physical device path via PLC"| PLC
 
-      HMI -.->|"C6, C8 — indirect logical and physical path to RS-485 network via PLC"| PLC
-      PLC -.->|"C6, C8 — indirect network response path to HMI"| HMI
+      PLC <-.->|"C4<br/>Direct physical connection to network"| RIO
 
-      FIELD -.->|"C7 — indirect physical device path through remote I/O"| RIO
+      RIO -.->|"C7<br/>Indirect physical device path through remote I/O"| FIELD
 
       %% ============================================================
       %% Direct industrial communication paths
       %% ============================================================
 
-      PLC <-->|"C3, C4 — direct RS-485 physical device and multidrop-bus connection"| RS485
-      RIO <-->|"C4 — direct physical connection to the RS-485 field network"| RS485
+      PLC <-->|"C1, C4<br/>Modbus RTU over multidrop RS-485<br/>Direct logical device connection<br/>Direct physical network connection"| RS485
 
-      RS485 <-->|"C1, C2 — Modbus RTU logical device and network data flow"| MODBUS
+      RS485 <-->|"C1, C2<br/>Modbus RTU logical device and network data flow"| UARTDRV
 
-      HMI <-->|"C1, C3 — direct logical and physical device connection over RS-232"| RS232
+      HMI <-->|"C1, C3<br/>Direct logical and physical device connection over RS-232"| RS232
 
-      UPS <-->|"C1, C3 — direct UPS status and control data, when management is implemented"| UPSIF
-
-      DEBUGGER <-->|"C1, C3 — direct debug commands and physical JTAG/SWD connection"| JTAG
+      PROBE <-->|"C1, C3<br/>Direct debug commands and physical JTAG/SWD connection"| JTAG
 
       %% ============================================================
       %% Direct field-I/O paths
       %% ============================================================
 
-      FIELD <-->|"C3 — direct digital data or control signal"| DIO
-      FIELD <-->|"C3 — direct 4–20 mA or 0–10 V process-data signal"| AIO
+      FIELD <-->|"C3<br/>Direct digital data or control signal"| DIO
+      FIELD <-->|"C3<br/>Direct 4–20 mA / 0–10 V process data signal"| AIO
 
-      %% Human action is not itself a device/network data connection.
-      USER -->|"NC — human mechanical action"| LOCALIO
+      USER -->|"N/A<br/>Operation (Buttons / Display)<br/>Human mechanical/visual interaction<br/>No data connection"| OPERATION
 
-      %% Power-only delivery is not a qualifying data connection.
-      UPS -->|"NC — electrical power only"| POWER
+      UPS -->|"N/A<br/>Power supply only<br/>No data connection"| POWER
 
       %% ============================================================
       %% Interface-to-driver flows
       %% ============================================================
 
-      RS232 <-->|"C1, C3 — UART frames and electrical serial signals"| UARTDRV
-      UPSIF <-->|"C1, C3 — UPS protocol frames and serial signals"| UARTDRV
+      RS232 <-->|"C1, C3<br/>UART frames and electrical serial signals"| UARTDRV
 
-      LOCALIO <-->|"C1, C3 — sampled button state and display-control data"| GPIODRV
-      DIO <-->|"C1, C3 — binary field data and electrical signals"| GPIODRV
-      AIO <-->|"C1, C3 — sampled or generated analog process data"| ANALOGDRV
+      OPERATION <-->|"C1, C3<br/>Sampled button state and display-control data"| GPIODRV
+      DIO <-->|"C1, C3<br/>Binary field data and electrical signals"| GPIODRV
+      AIO <-->|"C1, C3<br/>Sampled or generated analog process data"| ANALOGDRV
 
-      JTAG <-->|"C1, C3 — privileged debug data and electrical debug signals"| DEBUGCTRL
+      JTAG <-->|"C1, C3<br/>Privileged debug data and electrical debug signals"| DEBUGCTRL
 
       %% ============================================================
       %% Internal logical flows
       %% ============================================================
 
-      MODBUS <-->|"C1 — parsed commands, responses and telemetry"| APP
-      UARTDRV <-->|"C1 — serial maintenance and management data"| APP
-      GPIODRV <-->|"C1 — digital input state and output commands"| APP
-      ANALOGDRV <-->|"C1 — measurements, setpoints and output values"| APP
+      UARTDRV <-->|"C1<br/>Parsed commands, responses and telemetry<br/>serial maintenance and management data"| APP
+      GPIODRV <-->|"C1<br/>Digital input state and output commands"| APP
+      ANALOGDRV <-->|"C1<br/>Measurements, setpoints and output values"| APP
 
-      APP <-->|"C1 — boot state, update request and image metadata"| BOOT
-      APP <-->|"C1 — SPI operations"| SPIDRV
-      APP <-->|"C1 — I²C operations"| I2CDRV
+      APP <-->|"C1<br/>Boot state, update request and image metadata"| BOOT
+      APP <-->|"C1<br/>SPI operations"| SPIDRV
+      APP <-->|"C1<br/>I²C operations"| I2CDRV
 
-      DEBUGCTRL <-->|"C1 — privileged execution and memory access"| APP
+      DEBUGCTRL <-->|"C1<br/>Privileged execution and memory access"| APP
 
       %% ============================================================
       %% Persistent-storage flows
       %% ============================================================
 
-      BOOT <-->|"C1, C3 — firmware verification, read and write operations"| FLASH
-      SPIDRV <-->|"C1, C3 — SPI firmware or configuration storage access"| FLASH
-      I2CDRV <-->|"C1, C3 — I²C calibration and parameter access"| EEPROM
+      BOOT <-->|"C1, C3<br/>Firmware verification, read and write operations"| FLASH
+      SPIDRV <-->|"C1, C3<br/>SPI firmware or configuration storage access"| FLASH
+      I2CDRV <-->|"C1, C3<br/>I²C calibration and parameter access"| EEPROM
 
-      DEBUGCTRL <-->|"C1, C3 — direct debug read, erase or programming access"| FLASH
-      DEBUGCTRL <-->|"C1, C3 — direct debug access to persistent parameters"| EEPROM
+      DEBUGCTRL <-->|"C1, C3<br/>Direct debug read, erase or programming access"| FLASH
+      DEBUGCTRL <-->|"C1, C3<br/>Direct debug access to persistent parameters"| EEPROM
 
       %% ============================================================
       %% Visual classification
       %% ============================================================
 
-      classDef external stroke:#475569,stroke-width:1.5px;
-      classDef interface stroke:#92400e,stroke-width:1.5px;
-      classDef process stroke:#075985,stroke-width:1.5px;
-      classDef datastore stroke:#5b21b6,stroke-width:1.5px;
-      classDef intermediary stroke:#334155,stroke-width:2px;
+      classDef external stroke:#475569;
+      classDef interface stroke:#92400e;
+      classDef process stroke:#075985;
+      classDef datastore stroke:#5b21b6;
 
-      class MW,HMI,USER,DEBUGGER,FIELD,RIO,UPS external;
-      class PLC intermediary;
-      class RS485,RS232,UPSIF,JTAG,LOCALIO,DIO,AIO,POWER interface;
-      class MODBUS,UARTDRV,GPIODRV,ANALOGDRV,SPIDRV,I2CDRV,APP,BOOT,DEBUGCTRL process;
+      class PLC,SCADA,HMI,USER,PROBE,FIELD,RIO,UPS external;
+      class RS485,RS232,JTAG,OPERATION,DIO,AIO,POWER interface;
+      class UARTDRV,GPIODRV,ANALOGDRV,SPIDRV,I2CDRV,APP,BOOT,DEBUGCTRL process;
       class FLASH,EEPROM datastore;
-  ```
+```
 
 ### 3.3. Threat Frameworks
 
@@ -460,23 +511,30 @@ Attack trees are a formal, hierarchical model for representing how an attacker c
     - Leaf Node
       > Represents an atomic attack step that cannot be further decomposed.
 
-#### 3.3.7. TARA
+#### 3.3.7. BSI Likelihood of Exploit
 
-TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that identifies threat agents — individuals or groups with the motivation and capability to attack a system — and assesses the risk posed by each agent against specific assets. It focuses on the human dimension of threats and aligns risk analysis with realistic attacker profiles.
+The [BSI Dringlichkeit / Eintrittspotenzial](https://www.bsi.bund.de/DE/Service-Navi/Abonnements/Newsletter/Buerger-CERT-Abos/Buerger-CERT-Sicherheitshinweise/Risikostufen/risikostufen.html) estimates the likelihood of exploitation. The assessment considers the method required to perform the exploitation and the current maturity and availability of the exploit.
 
-1. Workflow and Stages
+- Exploitation Method
 
-    - Identify Assets
-      > Enumerate the critical assets that require protection.
+  > The exploitation method describes the degree of attacker interaction and automation required to perform the attack.
 
-    - Identify Threat Agents
-      > Define known threat agent archetypes such as nation-states, cybercriminals, insiders, hacktivists, and thrill seekers.
+  | Method                          | Description                                                                                                |
+  | ------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+  | Manual (Manuell)                | Requires target-specific, non-automatable steps, specialized knowledge, or direct attacker interaction.    |
+  | Automated (Automatisch)         | The exploit be executed repeatedly against eligible targets using a script, tool, or repeatable procedure. |
+  | Self-Replicating (Replizierend) | Propagates autonomously from compromised systems to additional targets without continued attacker action.  |
 
-    - Assess Threat Agent Risk
-      > Evaluate each agent's motivation and capability against each asset to determine relative risk.
+- Vulnerability State
 
-    - Select Countermeasures
-      > Prioritize controls based on which threat agents pose the greatest risk to each asset.
+  > The vulnerability state describes the maturity, availability, and observed use of the exploitation method.
+
+  | Method                                     | Description                                                                                                    |
+  | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+  | Theoretical (Theoretisch)                  | The weakness is conceptually exploitable, but no concrete or reproducible exploitation method is known.        |
+  | Exploitable (Ausnutzbar)                   | A proof of concept, reproducible procedure, or otherwise reliable exploitation method exists.                  |
+  | Active (Aktiv)                             | Credible evidence indicates that the vulnerability or equivalent attack method is being exploited in practice. |
+  | Exploit Published (Exploit Veröffentlicht) | Publicly available exploit code or tooling materially reduces the effort required to perform the attack.       |
 
 #### 3.3.8. MITRE ATT&CK
 
@@ -558,9 +616,6 @@ TARA (Threat Agent Risk Assessment) is a methodology developed by Intel that ide
 
 - Threat
   > A potential adverse event that could exploit a vulnerability and cause harm to an asset. A threat is defined by a threat agent, an attack vector, and a target.
-
-- Threat Agent
-  > An entity — human or automated — that has the intent, motivation, and capability to carry out an attack. Examples include cybercriminals, insiders, nation-states, and automated malware.
 
 - Threat Actor
   > A specific individual, group, or organization that is responsible for a particular attack or set of attacks. Threat actors are often categorized by their motivations, capabilities, and typical targets.

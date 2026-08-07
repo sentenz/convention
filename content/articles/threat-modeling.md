@@ -134,22 +134,26 @@ Connection paths are classified as either [direct or indirect, logical or physic
 | C7   | Indirect        | Physical        | Device  | Indirect physical data connection to a device  | A physical path to a device that passes through one or more intermediate components or a larger directly connectable system: a laptop connected through a USB cable, debug probe and ribbon cable to a target MCU; a workstation connected through a USB-to-RS-232 adapter to a device; a sensor or actuator connected through remote I/O, an isolator, signal conditioner or transmitter; a connection through a fibre-to-copper media converter or wireless bridge; or an internal component connected through an adapter board, backplane or product-level external connector.                                      |
 | C8   | Indirect        | Physical        | Network | Indirect physical data connection to a network | A physical path to a network implemented through an intermediate system or conversion stage: a maintenance workstation connected through a USB-to-RS-485 adapter or serial server to an RS-485 bus; an internal MCU connected through isolation, an RS-485 transceiver and a board connector to an external multidrop network; a device connected through a copper-to-fibre media converter to an optical network; an electrically connected device reaching a WLAN through an Ethernet-to-Wi-Fi bridge; or a module connected through an industrial backplane and network coupler to a fieldbus.                      |
 
+Yes, FIPS 140-3 can be mapped into this table because its four security levels scale progressively by physical protection depth, authentication requirements, and resistance to increasingly sophisticated adversaries. However, while IEC 62443 and MITRE EMB3D evaluate full system or OT/embedded architecture security, FIPS 140-3 applies strictly to **cryptographic modules**.
+
 #### 3.2.2. Mitigation Levels
 
 Mitigation levels classify the extent and sophistication of mitigations applied to an identified threat, ranging from no implemented mitigation to comprehensive and adaptive mitigation across the relevant architectural layers.
 
-| Maturity Level | General Interpretation                                                                                                | MITRE EMB3D Mitigation Level | IEC 62443 Security Level (SL) |
-| -------------: | --------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------- |
-|        Basic 0 | Controls are not established, undocumented, or not evaluated.                                                         | N/A                          | SL 0                          |
-| Foundational 1 | Controls address casual, accidental, or low-complexity threats.                                                       | Foundational                 | SL 1                          |
-| Intermediate 2 | Controls address intentional attacks using simple methods and limited resources.                                      | Intermediate                 | SL 2                          |
-| Intermediate 3 | Controls are standardized, consistently implemented, and validated against sophisticated threats.                     | Intermediate                 | SL 3                          |
-|      Leading 4 | Controls continuously adapt to threat intelligence and are engineered for highly capable, well-resourced adversaries. | Leading                      | SL 4                          |
+| Level | Maturity     | General Interpretation                                                                                                | MITRE EMB3D Mitigation Level | IEC 62443 Security Level (SL) | FIPS 140-3 Security Level |
+| ----- | ------------ | --------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ----------------------------- | ------------------------- |
+| 0     | Basic        | Controls are not established, undocumented, or not evaluated.                                                         | N/A                          | SL 0                          | N/A                       |
+| 1     | Foundational | Controls address casual, accidental, or low-complexity threats.                                                       | Foundational                 | SL 1                          | Security Level 1          |
+| 2     | Intermediate | Controls address intentional attacks using simple methods and limited resources.                                      | Intermediate                 | SL 2                          | Security Level 2          |
+| 3     | Intermediate | Controls are standardized, consistently implemented, and validated against sophisticated threats.                     | Intermediate                 | SL 3                          | Security Level 3          |
+| 4     | Leading      | Controls continuously adapt to threat intelligence and are engineered for highly capable, well-resourced adversaries. | Leading                      | SL 4                          | Security Level 4          |
 
 > [!NOTE]
+> The security standards and frameworks provide guidance for mapping mitigation levels to specific security properties.
 >
-> - **ISO/IEC 62443 (OT/ICS)** measures mitigation based on adversary capability and resources (from simple mistakes to APTs).
+> - **ISO/IEC 62443 (OT/ICS)** measures mitigation based on adversary capability and resources (from simple mistakes to APTs across entire industrial networks).
 > - [MITRE EMB3D (Embedded Systems)](https://emb3d.mitre.org/) measures mitigation based on hardware/firmware architecture depth and implementation complexity.
+> - **FIPS 140-3 (Cryptographic Modules)** measures physical and logical security specifically surrounding the cryptographic boundary, key management, and cryptographic algorithm implementations.
 
 #### 3.2.3. Depth Layers
 

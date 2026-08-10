@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v7.0.1
 
       - name: Run Regal
-        uses: sentenz/actions/regal@1.4.0
+        uses: sentenz/actions/regal@1.4.1
         with:
           path: "./tests/policy"
           regal-version: "latest"

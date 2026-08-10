@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v7.0.1
 
       - name: Run Renovate
-        uses: sentenz/actions/renovate@1.4.0
+        uses: sentenz/actions/renovate@1.4.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           autodiscover: "true"

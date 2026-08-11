@@ -3,7 +3,7 @@
   "extends": [
     "config:recommended"
   ],
-  "rebaseWhen": "auto",
+  "rebaseWhen": "behind-base-branch",
   "minimumReleaseAge": "1 day",
   "minimumReleaseAgeBehaviour": "timestamp-optional",
   "internalChecksFilter": "strict",
@@ -11,6 +11,7 @@
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "ignorePaths": [
+    "**/vendor/**",
     "**/node_modules/**",
     "**/bower_components/**",
     "**/charts/**",
@@ -36,10 +37,11 @@
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update versioned container image references in GitHub Actions files",
+      "description": "Update versioned Docker image references in GitHub Actions metadata.",
       "managerFilePatterns": [
         "**/action.{yml,yaml}"
       ],
+      "matchStringsStrategy": "any",
       "matchStrings": [
         "(?<depName>(?:(?:[A-Za-z0-9.-]+(?::[0-9]+)?/)?[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*)):(?<currentValue>v?\\d[0-9A-Za-z_.-]*)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?"
       ],
@@ -49,23 +51,50 @@
     },
     {
       "customType": "regex",
-      "description": "Update versioned container image references in Makefiles",
+      "description": "Update versioned Docker image references in Makefiles.",
       "managerFilePatterns": [
         "**/[Mm]akefile",
         "**/GNUMakefile",
         "**/*.mk"
       ],
+      "matchStringsStrategy": "any",
       "matchStrings": [
-        "(?<depName>(?:(?:docker\\.io|ghcr\\.io|quay\\.io|gcr\\.io|mcr\\.microsoft\\.com|registry\\.gitlab\\.com|cgr\\.dev|oci\\.io)/)?[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)+):(?<currentValue>v?\\d[0-9A-Za-z_.-]*)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?"
+        "(?<depName>(?:(?:[A-Za-z0-9.-]+(?::[0-9]+)?/)?[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)+)):(?<currentValue>v?\\d[0-9A-Za-z_.-]*)(?:@(?<currentDigest>sha256:[a-f0-9]{64}))?"
       ],
-      "autoReplaceStringTemplate": "{{depName}}:{{newValue}}{{#if newDigest}}@{{newDigest}}{{else}}{{#if currentDigest}}@{{currentDigest}}{{/if}}{{/if}}",
+      "autoReplaceStringTemplate": "{{{depName}}}:{{{newValue}}}{{#if newDigest}}@{{{newDigest}}}{{else}}{{#if currentDigest}}@{{{currentDigest}}}{{/if}}{{/if}}",
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
     }
   ],
   "packageRules": [
     {
-      "description": "Introduces breaking changes or requires code adjustments due to changes in public APIs.",
+      "description": "Defer repository-based GitHub Actions dependencies to Dependabot.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDepTypes": [
+        "action",
+        "uses-with",
+        "github-runner"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Defer Dev Container feature dependencies to Dependabot.",
+      "matchManagers": [
+        "devcontainer"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Group major updates.",
+      "matchManagers": [
+        "!github-actions",
+        "!devcontainer"
+      ],
+      "matchDatasources": [
+        "!docker"
+      ],
       "matchUpdateTypes": [
         "major"
       ],
@@ -74,7 +103,14 @@
       "automerge": false
     },
     {
-      "description": "Introduces backward-compatible functionality improvements and feature additions.",
+      "description": "Group minor updates.",
+      "matchManagers": [
+        "!github-actions",
+        "!devcontainer"
+      ],
+      "matchDatasources": [
+        "!docker"
+      ],
       "matchUpdateTypes": [
         "minor"
       ],
@@ -83,7 +119,14 @@
       "automerge": false
     },
     {
-      "description": "Introduces backward-compatible bug fixes and small corrections.",
+      "description": "Group patch updates.",
+      "matchManagers": [
+        "!github-actions",
+        "!devcontainer"
+      ],
+      "matchDatasources": [
+        "!docker"
+      ],
       "matchUpdateTypes": [
         "patch"
       ],
@@ -92,10 +135,20 @@
       "automerge": false
     },
     {
-      "description": "Container image digest bumps across Dockerfiles and Containerfiles.",
+      "description": "Pin Dockerfile and Containerfile images to immutable digests.",
       "matchManagers": [
-        "dockerfile",
-        "containerfile"
+        "dockerfile"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "pinDigests": true,
+      "automerge": false
+    },
+    {
+      "description": "Group Dockerfile and Containerfile image updates.",
+      "matchManagers": [
+        "dockerfile"
       ],
       "matchDatasources": [
         "docker"
@@ -106,12 +159,24 @@
         "patch",
         "digest"
       ],
-      "groupName": "container digests",
-      "groupSlug": "container-digests",
+      "pinDigests": true,
+      "groupName": "dockerfile container images",
+      "groupSlug": "dockerfile-container-images",
       "automerge": false
     },
     {
-      "description": "Container image tag and digest updates in Makefiles.",
+      "description": "Pin custom-manager Docker images to immutable digests.",
+      "matchManagers": [
+        "custom.regex"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "pinDigests": true,
+      "automerge": false
+    },
+    {
+      "description": "Group Docker image updates in Makefiles.",
       "matchManagers": [
         "custom.regex"
       ],
@@ -129,12 +194,13 @@
         "patch",
         "digest"
       ],
+      "pinDigests": true,
       "groupName": "makefile container images",
       "groupSlug": "makefile-container-images",
-      "automerge": false
+      "automerge": true
     },
     {
-      "description": "Container image tag and digest updates in GitHub Actions files.",
+      "description": "Group Docker image updates in GitHub Actions metadata.",
       "matchManagers": [
         "custom.regex"
       ],
@@ -150,12 +216,50 @@
         "patch",
         "digest"
       ],
-      "groupName": "github actions container images",
-      "groupSlug": "github-actions-container-images",
-      "automerge": false,
+      "pinDigests": true,
+      "groupName": "github actions metadata container images",
+      "groupSlug": "github-actions-metadata-container-images",
       "semanticCommits": "enabled",
       "semanticCommitType": "ci",
-      "semanticCommitScope": "deps"
+      "semanticCommitScope": "deps",
+      "automerge": false
+    },
+    {
+      "description": "Pin Docker images used by GitHub Actions to immutable digests.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDepTypes": [
+        "docker",
+        "container",
+        "service"
+      ],
+      "pinDigests": true,
+      "automerge": true
+    },
+    {
+      "description": "Group Docker image updates used by GitHub Actions.",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDepTypes": [
+        "docker",
+        "container",
+        "service"
+      ],
+      "matchUpdateTypes": [
+        "major",
+        "minor",
+        "patch",
+        "digest"
+      ],
+      "pinDigests": true,
+      "groupName": "github actions container images",
+      "groupSlug": "github-actions-container-images",
+      "semanticCommits": "enabled",
+      "semanticCommitType": "ci",
+      "semanticCommitScope": "deps",
+      "automerge": true
     }
   ]
 }

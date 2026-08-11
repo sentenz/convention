@@ -8,23 +8,28 @@ on:
     # Run weekly on Sundays at 4:00 AM UTC
     - cron: "0 4 * * 0"
 
+concurrency:
+  group: renovate
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
   renovate:
     name: Renovate Action
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-      issues: write
-      checks: read
-      id-token: write
+    timeout-minutes: 30
     steps:
       - name: Checkout
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Run Renovate
-        uses: sentenz/actions/renovate@1.4.1
+        uses: sentenz/actions/renovate@99935197a6935a691cb151a3e469f1a969bf7714 # 1.4.2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          autodiscover: "true"
-          log-level: "info"
+          token: ${{ secrets.RENOVATE_TOKEN }}
+          autodiscover: "false"
+        env:
+          RENOVATE_CONFIG_VALIDATION_ERROR: "true"

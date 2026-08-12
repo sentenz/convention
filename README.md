@@ -7,7 +7,7 @@ The Convention is a collection of general articles, conventions, and guides for 
 - [1. Details](#1-details)
   - [1.1. Prerequisites](#11-prerequisites)
   - [1.2. Usage](#12-usage)
-- [2. Contribute](#2-contribute)
+- [2. Contribution](#2-contribution)
 - [3. Troubleshoot](#3-troubleshoot)
   - [3.1. TODO](#31-todo)
 - [4. References](#4-references)
@@ -67,9 +67,9 @@ The Convention is a collection of general articles, conventions, and guides for 
       make pages-mkdocs-serve
       ```
 
-## 2. Contribute
+## 2. Contribution 
 
-[CONTRIBUTING.md](CONTRIBUTING.md) provides guidens and instructions for contributing to the project.
+[CONTRIBUTING.md](CONTRIBUTING.md) provides guidance and instructions for contributing to the project.
 
 - [AI Agents](CONTRIBUTING.md#1-ai-agents)
   > Automated tools that assist in various development tasks such as code generation, testing, and documentation.

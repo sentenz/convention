@@ -1,5 +1,7 @@
 # Changelog
 
+## [2.27.2](https://github.com/sentenz/convention/compare/2.27.1...2.27.2) (2026-08-12)
+
 ## [2.27.1](https://github.com/sentenz/convention/compare/2.27.0...2.27.1) (2026-06-06)
 
 

@@ -1397,16 +1397,6 @@ The declarative management of [Kubernetes objects using Kustomize](https://kuber
     - `README.md`
       > Project overview, deployment model, prerequisites, and operating instructions.
 
-3. Design Rules
-
-    - Classify resources by ownership and lifecycle, not by the environment in which they happen to run. Development-only use does not by itself make a resource a platform capability.
-    - Place application-specific dependencies with the application that owns their lifecycle. Use `platform/services/` only when the runtime capability is intentionally platform-managed or shared independently of a single application.
-    - Place operators and controllers under `platform/controllers/`; place custom resources and shared configuration consumed by those controllers under `platform/configs/` when separating installation from configuration improves ownership or reconciliation ordering.
-    - Keep environment specialization beneath the concrete application or platform capability. Do not make `platform/dev`, `platform/stage`, and `platform/prod` the primary ownership hierarchy.
-    - Keep `clusters/<cluster>` thin: cluster directories select and compose deployable application and platform variants rather than accumulating full service definitions.
-    - Prefer overlays and Kustomize components over copying complete manifest sets between environments or clusters.
-    - Use Helm for workload or platform packaging and Kustomize for Kubernetes-level composition and target-specific customization; avoid modeling the same concern in both layers.
-
 4. Examples and Explanations
 
     ```make

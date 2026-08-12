@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.27.3](https://github.com/sentenz/convention/compare/2.27.2...2.27.3) (2026-08-12)
+
+### Bug Fixes
+
+* resolve empty Changelog entries in semantic-release.yml GitHub Actions ([2fba967](https://github.com/sentenz/convention/commit/2fba967eeb1d684e8440e36e067a71e737f99d3d))
+
 ## [2.27.2](https://github.com/sentenz/convention/compare/2.27.1...2.27.2) (2026-08-12)
 
 ## [2.27.1](https://github.com/sentenz/convention/compare/2.27.0...2.27.1) (2026-06-06)

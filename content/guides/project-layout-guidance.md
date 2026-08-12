@@ -1108,11 +1108,11 @@ A structured Terraform project designed to facilitate the management of Terrafor
 
 ### 1.6. Kubernetes
 
-Kubernetes does not prescribe a source-code-style project root such as `src/` or `internal/`. Kubernetes configuration represents declarative desired state, so repositories are commonly organized by deployment responsibility and composition. Helm defines the internal structure of charts, Kustomize defines reusable bases and overlays, and GitOps repositories commonly separate application workloads, platform services, reusable components, and cluster entry points.
+Kubernetes configuration represents declarative desired state, so repositories are commonly organized by deployment responsibility and composition. Helm defines the internal structure of charts, Kustomize defines reusable bases and overlays, and GitOps repositories commonly separate application workloads, platform services, reusable components, and cluster entry points.
 
 #### 1.6.1. Charts
 
-A Helm chart is a package of files that describes a related set of Kubernetes resources. Helm defines the [Chart File Structure](https://helm.sh/docs/topics/charts/#the-chart-file-structure) and reserves specific file and directory names within a chart.
+A Helm [Charts](https://helm.sh/docs/topics/charts/) is a package of files that describes a related set of Kubernetes resources. Helm defines the [Chart File Structure](https://helm.sh/docs/topics/charts/#the-chart-file-structure) and reserves specific file and directory names within a chart.
 
 > [!NOTE]
 > Helm reserves use of the `charts/`, `crds/`, and `templates/` directories, and of the listed file names.
@@ -1240,10 +1240,10 @@ A Helm chart is a package of files that describes a related set of Kubernetes re
 
 #### 1.6.2. Project
 
-A Kubernetes project should organize declarative desired state by deployment responsibility and composition rather than placing all resources under a generic `manifests/` directory. For a dedicated Kubernetes or GitOps repository, the primary domains can be exposed directly at the repository root.
+The declarative management of [Kubernetes objects using Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/) involves organizing resources into reusable and composable configurations.
 
 > [!TIP]
-> If Kubernetes configuration is one concern in a broader application repository, place the same structure under a repository-specific boundary such as `deploy/kubernetes/` or `k8s/`. For a dedicated Kubernetes or GitOps repository, keep the domains at the repository root.
+> Flux recommendations for [repository-structure](https://fluxcd.io/flux/guides/repository-structure/) for organising Kustomize resources to align with the project’s deployment model and operational requirements.
 
 1. Layout and Structure
 
@@ -1346,16 +1346,7 @@ A Kubernetes project should organize declarative desired state by deployment res
     - `README.md`
       > Project overview, deployment model, prerequisites, and operating instructions.
 
-3. Design Rules
-
-    - Keep reusable definitions separate from deployment entry points. Application and platform bases should not know which clusters consume them.
-    - Prefer overlays and components over copying complete manifest sets between environments.
-    - Use Helm for application or platform packaging and Kustomize for Kubernetes-level composition and target-specific customization; avoid modeling the same concern in both layers.
-    - Reference third-party Helm charts by an exact version from a trusted repository or OCI registry by default. Vendor chart source only when an explicit hermetic or air-gapped requirement justifies the additional maintenance.
-    - Keep generated render output, kubeconfig files, credentials, and other runtime state outside the declarative desired-state directories.
-    - Never commit plaintext production secrets. Reference externally managed secrets or use an encrypted secret workflow appropriate to the GitOps controller.
-
-4. Examples and Explanations
+3. Examples and Explanations
 
     ```make
     K8S_CLUSTER ?= dev
@@ -1383,7 +1374,4 @@ A Kubernetes project should organize declarative desired state by deployment res
 
 ## 2. References
 
-- Kubernetes [Declarative Management of Kubernetes Objects Using Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/) documentation.
-- Flux [Ways of structuring your repositories](https://fluxcd.io/flux/guides/repository-structure/) guide.
-- Helm [Charts](https://helm.sh/docs/topics/charts/) documentation.
 - Sentenz [Project Layout](../articles/project-layout.md) article.

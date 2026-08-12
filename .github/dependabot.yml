@@ -1,33 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: github-actions
-    directory: /
-    schedule:
-      interval: weekly
-      day: monday
-      time: "03:00"
-    labels:
-      - dependencies
-      - github-actions
-    commit-message:
-      prefix: chore
-      include: scope
-    open-pull-requests-limit: 10
-    allow:
-      - dependency-type: direct
-
-    # Group updates by semantic version type
-    groups:
-      github-actions-patch:
-        update-types:
-          - patch
-      github-actions-minor:
-        update-types:
-          - minor
-      github-actions-major:
-        update-types:
-          - major
-
   - package-ecosystem: devcontainers
     directory: /
     schedule:

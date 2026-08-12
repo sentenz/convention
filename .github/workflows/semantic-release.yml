@@ -35,7 +35,7 @@ jobs:
 
       - name: Run SBOM Generation (CycloneDX)
         if: steps.release.outputs.new-release-published == 'true'
-        uses: sentenz/actions/trivy@1.4.1
+        uses: sentenz/actions/trivy@1.4.2
         with:
           scan-type: sbom-generate
           scan-target: "."
@@ -44,7 +44,7 @@ jobs:
 
       - name: Run SBOM Generation (SPDX)
         if: steps.release.outputs.new-release-published == 'true'
-        uses: sentenz/actions/trivy@1.4.1
+        uses: sentenz/actions/trivy@1.4.2
         with:
           scan-type: sbom-generate
           scan-target: "."

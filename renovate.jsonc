@@ -68,18 +68,6 @@
   ],
   "packageRules": [
     {
-      "description": "Defer repository-based GitHub Actions dependencies to Dependabot.",
-      "matchManagers": [
-        "github-actions"
-      ],
-      "matchDepTypes": [
-        "action",
-        "uses-with",
-        "github-runner"
-      ],
-      "enabled": false
-    },
-    {
       "description": "Defer Dev Container feature dependencies to Dependabot.",
       "matchManagers": [
         "devcontainer"

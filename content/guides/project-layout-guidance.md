@@ -1108,7 +1108,7 @@ A structured Terraform project designed to facilitate the management of Terrafor
 
 ### 1.6. Kubernetes
 
-Kubernetes configuration represents declarative desired state, so repositories are commonly organized by deployment responsibility and composition. Helm defines the internal structure of charts, Kustomize defines reusable bases and overlays, and GitOps repositories commonly separate application workloads, platform services, reusable components, and cluster entry points.
+Kubernetes configuration represents declarative desired state, so repositories are commonly organized by deployment responsibility and composition. Helm defines the internal structure of charts, Kustomize defines reusable bases and overlays, and GitOps repositories commonly separate application workloads, platform capabilities, reusable components, and cluster entry points.
 
 #### 1.6.1. Charts
 
@@ -1278,16 +1278,37 @@ The declarative management of [Kubernetes objects using Kustomize](https://kuber
     │           └── prod/
     │
     ├── platform/
-    │   ├── <service-a>/
-    │   │   ├── base/
-    │   │   │   └── kustomization.yaml
-    │   │   └── overlays/
-    │   │       ├── dev/
-    │   │       ├── stage/
-    │   │       └── prod/
-    │   └── <service-b>/
-    │       ├── base/
-    │       └── overlays/
+    │   ├── controllers/
+    │   │   ├── <controller-a>/
+    │   │   │   ├── base/
+    │   │   │   │   └── kustomization.yaml
+    │   │   │   └── overlays/
+    │   │   │       ├── dev/
+    │   │   │       ├── stage/
+    │   │   │       └── prod/
+    │   │   └── <controller-b>/
+    │   │
+    │   ├── services/
+    │   │   ├── <service-a>/
+    │   │   │   ├── base/
+    │   │   │   │   └── kustomization.yaml
+    │   │   │   └── overlays/
+    │   │   │       ├── dev/
+    │   │   │       ├── stage/
+    │   │   │       └── prod/
+    │   │   └── <service-b>/
+    │   │
+    │   ├── configs/
+    │   │   ├── <capability-a>/
+    │   │   │   ├── base/
+    │   │   │   │   └── kustomization.yaml
+    │   │   │   └── overlays/
+    │   │   │       ├── dev/
+    │   │   │       ├── stage/
+    │   │   │       └── prod/
+    │   │   └── <capability-b>/
+    │   │
+    │   └── README.md
     │
     ├── components/
     │   └── <component>/
@@ -1329,10 +1350,40 @@ The declarative management of [Kubernetes objects using Kustomize](https://kuber
           > OPTIONAL Kustomize patch containing Kubernetes-level changes that should not be expressed as Helm values.
 
     - `platform/`
-      > Shared cluster services and controllers such as ingress, observability, certificate management, databases, or other platform capabilities. Platform services follow the same base and overlay composition model as applications.
+      > Shared cluster capabilities whose lifecycle is independent of any single application. Organize platform resources by responsibility rather than by environment or by an undifferentiated list of services.
+
+      - `controllers/`
+        > Controllers, operators, admission components, networking controllers, and other software that extends or operates the Kubernetes cluster. Examples include Traefik, cert-manager, External Secrets Operator, and database operators.
+
+        - `<controller>/base/`
+          > Stable installation resources for the controller.
+
+        - `<controller>/overlays/<env>/`
+          > Target-specific controller configuration such as Helm values, patches, or feature differences.
+
+      - `services/`
+        > Shared runtime capabilities consumed by multiple workloads and managed as part of the platform. Examples include observability, logging, shared databases, shared caches, or artifact services.
+
+        - `<service>/base/`
+          > Stable resources for the shared service.
+
+        - `<service>/overlays/<env>/`
+          > Target-specific service configuration and deployment differences.
+
+      - `configs/`
+        > Shared Kubernetes configuration consumed by platform controllers or services, kept separate from installation of the capability itself. Examples include certificate issuers, ingress or gateway policy, shared SecretStores, and controller-specific custom resources.
+
+        - `<capability>/base/`
+          > Stable shared configuration for the capability.
+
+        - `<capability>/overlays/<env>/`
+          > OPTIONAL target-specific configuration when the shared capability requires environment or cluster specialization.
+
+      - `README.md`
+        > Platform ownership rules and guidance for classifying new controllers, services, and configuration.
 
     - `components/`
-      > OPTIONAL reusable Kustomize components or cross-cutting configuration shared by multiple applications or platform services. Components should represent composable behavior rather than complete deployable environments.
+      > OPTIONAL reusable Kustomize components or cross-cutting configuration shared by multiple applications or platform capabilities. Components should represent composable behavior rather than complete deployable environments.
 
     - `clusters/`
       > Canonical deployable desired-state entry points. Each cluster directory contains a `kustomization.yaml` that composes the selected application and platform overlays for that cluster.
@@ -1346,7 +1397,17 @@ The declarative management of [Kubernetes objects using Kustomize](https://kuber
     - `README.md`
       > Project overview, deployment model, prerequisites, and operating instructions.
 
-3. Examples and Explanations
+3. Design Rules
+
+    - Classify resources by ownership and lifecycle, not by the environment in which they happen to run. Development-only use does not by itself make a resource a platform capability.
+    - Place application-specific dependencies with the application that owns their lifecycle. Use `platform/services/` only when the runtime capability is intentionally platform-managed or shared independently of a single application.
+    - Place operators and controllers under `platform/controllers/`; place custom resources and shared configuration consumed by those controllers under `platform/configs/` when separating installation from configuration improves ownership or reconciliation ordering.
+    - Keep environment specialization beneath the concrete application or platform capability. Do not make `platform/dev`, `platform/stage`, and `platform/prod` the primary ownership hierarchy.
+    - Keep `clusters/<cluster>` thin: cluster directories select and compose deployable application and platform variants rather than accumulating full service definitions.
+    - Prefer overlays and Kustomize components over copying complete manifest sets between environments or clusters.
+    - Use Helm for workload or platform packaging and Kustomize for Kubernetes-level composition and target-specific customization; avoid modeling the same concern in both layers.
+
+4. Examples and Explanations
 
     ```make
     K8S_CLUSTER ?= dev

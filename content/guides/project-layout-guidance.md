@@ -56,7 +56,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     │   ├── <third-party>/
     │   └── README.md
     │
-    ├── test/
+    ├── tests/
     │   ├── performance/
     │   │   ├── benchmark_test.cc
     │   │   └── CMakeLists.txt
@@ -119,7 +119,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     - `external/`
       > Third-party dependencies vendored into the project.
 
-    - `test/`
+    - `tests/`
       > Additional tests that are not co-located with the source, such as performance benchmarks.
 
       - `performance/`

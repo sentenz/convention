@@ -1240,7 +1240,7 @@ A Helm [Charts](https://helm.sh/docs/topics/charts/) is a package of files that 
 
 #### 1.6.2. Project
 
-The declarative management of [Kubernetes objects using Kustomize](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/) involves organizing resources into reusable and composable configurations.
+The declarative management of [Kubernetes objects using Kustomize](https://kubectl.docs.kubernetes.io/references/kustomize/glossary/#kustomization-root) involves organizing resources into reusable and composable configurations.
 
 > [!TIP]
 > Flux recommendations for [repository-structure](https://fluxcd.io/flux/guides/repository-structure/) for organising Kustomize resources to align with the project’s deployment model and operational requirements.

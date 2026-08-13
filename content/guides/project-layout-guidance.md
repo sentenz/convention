@@ -209,8 +209,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     │
     ├── docs/
     │   ├── decisions/
-    │   │   ├── adr-xxx-merging-strategy.md
-    │   │   └── adr-xxx-branching-strategy.md
+    │   │   └── NNN-adr-<topic>.md
     │   ├── api.md
     │   └── README.md
     │
@@ -417,7 +416,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     │
     ├── docs/
     │   ├── decisions/
-    │   │   └── adr-<topic>.md
+    │   │   └── NNN-adr-<topic>.md
     │   └── README.md
     │
     ├── tools/

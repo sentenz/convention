@@ -39,7 +39,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     │
     . `Hierarchical Structure`
     │
-    ├── inc/
+    ├── include/
     │   └── <library>/
     │       └── file.h
     │
@@ -81,8 +81,8 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     │       └── lib/
     │           └── libproject.a
     │
-    ├── /tools
-    │   ├── /cmake
+    ├── tools/
+    │   ├── cmake/
     │   └── README.md
     │
     ├── scripts/
@@ -101,7 +101,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 2. Files and Folders
 
-    - `inc/<library>/`
+    - `include/<library>/`
       > Public header files for the library, organized under the library name to avoid name collisions when installed system-wide.
 
     - `src/`
@@ -164,65 +164,65 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     │
     . `Hierarchical Structure`
     │
-    ├── /internal
+    ├── internal/
     │   │
     │   . `Layered Structure`
     │   │
-    │   ├── /presentation
+    │   ├── presentation/
     │   │   └── README.md
     │   │
-    │   ├── /application
+    │   ├── application/
     │   │   ├── CMakeLists.txt
     │   │   └── README.md
     │   │
-    │   ├── /domain
+    │   ├── domain/
     │   │   ├── CMakeLists.txt
     │   │   └── README.md
     │   │
-    │   ├── /infrastructure
+    │   ├── infrastructure/
     │   │   ├── CMakeLists.txt
     │   │   └── README.md
     │   │
     │   ├── CMakeLists.txt
     │   └── README.md
     │
-    ├── /external
+    ├── external/
     │   └── README.md
     │
-    ├── /test
-    │   ├── /performance
+    ├── tests/
+    │   ├── performance/
     │   │   ├── benchmark_test.cc
     │   │   └── CMakeLists.txt
-    │   ├── /integration
+    │   ├── integration/
     │   │   ├── top_down_test.cc
     │   │   └── CMakeLists.txt
-    │   ├── /e2e
+    │   ├── e2e/
     │   │   ├── scenario_test.cc
     │   │   └── CMakeLists.txt
     │   ├── CMakeLists.txt
     │   └── README.md
     │
-    ├── /examples
+    ├── examples/
     │   ├── example.c
     │   ├── CMakeLists.txt
     │   └── README.md
     │
-    ├── /docs
-    │   ├── /adr
-    │   │   ├── merging-strategy-adr.md
-    │   │   └── branching-strategy-adr.md
+    ├── docs/
+    │   ├── decisions/
+    │   │   ├── adr-xxx-merging-strategy.md
+    │   │   └── adr-xxx-branching-strategy.md
     │   ├── api.md
     │   └── README.md
     │
-    ├── /build
-    │   ├── /bin
+    ├── build/
+    │   ├── bin/
     │   │   └── project.exe
-    │   ├── /lib
+    │   ├── lib/
     │   │   └── project.a
-    │   └── /cmake
+    │   └── cmake/
     │
-    ├── /tools
-    │   ├── /cmake
+    ├── tools/
+    │   ├── cmake/
     │   └── README.md
     │
     ├── scripts/
@@ -233,7 +233,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     │   ├── teardown
     │   └── README.md
     │
-    ├── /data
+    ├── assets/
     │   ├── dataset.csv
     │   └── README.md
     │
@@ -244,52 +244,52 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 2. Files and Folders
 
-    - `/internal`
+    - `internal/`
       > Private application code organized using a `Layered Structure`. Code placed here cannot be imported by external packages.
 
-      - `/presentation`
+      - `presentation/`
         > Presentation layer handling user interface and API endpoints.
 
-      - `/application`
+      - `application/`
         > Application layer orchestrating use cases and business workflows.
 
-      - `/domain`
+      - `domain/`
         > Domain layer containing business logic, entities, and domain services.
 
-      - `/infrastructure`
+      - `infrastructure/`
         > Infrastructure layer for persistence, messaging, and external service integrations.
 
-    - `/external`
+    - `external/`
       > Third-party dependencies and vendored libraries.
 
-    - `/test`
+    - `tests/`
       > Tests that are not co-located with the source, including performance benchmarks, integration tests, and end-to-end tests.
 
-      - `/performance`
+      - `performance/`
         > Benchmark tests for measuring application performance.
 
-      - `/integration`
+      - `integration/`
         > Integration tests exercising multiple components together.
 
-      - `/e2e`
+      - `e2e/`
         > End-to-end tests validating full application scenarios.
 
-    - `/examples`
+    - `examples/`
       > Standalone example programs demonstrating application usage.
 
-    - `/docs`
+    - `docs/`
       > Project documentation and Architecture Decision Records (ADRs).
 
-    - `/build`
+    - `build/`
       > Build output artifacts, including binaries and libraries.
 
-    - `/tools`
+    - `tools/`
       > Supporting development tools such as CMake helper scripts.
 
     - `scripts/`
       > Shell and Python scripts for bootstrapping, setup, and teardown of the development environment.
 
-    - `/data`
+    - `assets/`
       > Data files such as datasets, fixtures, and static assets.
 
     - `CMakeLists.txt`
@@ -1397,7 +1397,7 @@ The declarative management of [Kubernetes objects using Kustomize](https://kuber
     - `README.md`
       > Project overview, deployment model, prerequisites, and operating instructions.
 
-4. Examples and Explanations
+3. Examples and Explanations
 
     ```make
     K8S_CLUSTER ?= dev

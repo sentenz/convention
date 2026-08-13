@@ -1253,6 +1253,12 @@ The declarative management of [Kubernetes objects using Kustomize](https://kubec
     ```markdown
     k8s-<project>/
     │
+    . `Modular Structure`
+    │
+    ├── charts/
+    │   ├── <charts-a>/
+    │   └── <charts-b>/
+    │
     . `Responsibility-based Structure`
     │
     ├── apps/

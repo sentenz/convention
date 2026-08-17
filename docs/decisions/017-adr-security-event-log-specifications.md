@@ -68,33 +68,100 @@ Adopt a layered security-event logging architecture. OpenTelemetry is the canoni
 
 Only events classified as security relevant require OCSF normalization. Ordinary diagnostic logs may remain OpenTelemetry LogRecords when they do not support a security detection, investigation, response, or audit use case.
 
-A representative first-party realization of the decision is:
+A representative mapping core for one decoded OTLP LogRecord is:
 
-```yaml
-security_event_pipeline:
-  collect:
-    specification: OpenTelemetry Logs
-    representation: LogRecord
-    protocol: OTLP
+```python
+from collections.abc import Callable
+from datetime import datetime, timezone
+from typing import Any
 
-  classify:
-    security_relevant:
-      normalize:
-        specification: OCSF
-        schema_version: 1.9.0
-      destination: security_analytics
+SECURITY_EVENT_NAMES = {"example.security.authentication"}
 
-    diagnostic_only:
-      retain: OpenTelemetry LogRecord
-      destination: observability
 
-  interoperate:
-    when: syslog_boundary_required
-    message_format: RFC 5424
-    transport: RFC 5425
+def string_attributes(items: list[dict[str, Any]]) -> dict[str, str]:
+    return {
+        item["key"]: item["value"]["stringValue"]
+        for item in items
+    }
+
+
+def structured_data_value(value: str) -> str:
+    return value.replace("\\", "\\\\").replace('"', '\\"').replace("]", "\\]")
+
+
+def rfc3339(epoch_ms: int) -> str:
+    instant = datetime.fromtimestamp(epoch_ms / 1000, tz=timezone.utc)
+    return instant.isoformat(timespec="milliseconds").replace("+00:00", "Z")
+
+
+def route_log_record(
+    resource_attributes: list[dict[str, Any]],
+    record: dict[str, Any],
+    *,
+    validate_ocsf: Callable[[dict[str, Any]], None],
+    syslog_boundary: bool = False,
+) -> dict[str, Any]:
+    resource = string_attributes(resource_attributes)
+    attributes = string_attributes(record["attributes"])
+
+    if record.get("eventName") not in SECURITY_EVENT_NAMES:
+        return {
+            "observability": {
+                "resource": resource_attributes,
+                "log_record": record,
+            }
+        }
+
+    class_uid = 3002
+    activity_id = 1
+    outcome = attributes["example.security.authentication.outcome"]
+    metadata = {
+        "version": "1.9.0",
+        "product": {
+            "name": resource["service.name"],
+            "vendor_name": "Example",
+            "version": resource["service.version"],
+        },
+        "processed_time": int(record["observedTimeUnixNano"]) // 1_000_000,
+    }
+    if trace_id := record.get("traceId"):
+        metadata["correlation_uid"] = trace_id
+
+    ocsf = {
+        "metadata": metadata,
+        "category_uid": 3,
+        "class_uid": class_uid,
+        "activity_id": activity_id,
+        "type_uid": class_uid * 100 + activity_id,
+        "time": int(record["timeUnixNano"]) // 1_000_000,
+        "severity_id": 3,  # WARN maps to Medium in this mapping profile.
+        "status_id": {"success": 1, "failure": 2}.get(outcome, 0),
+        "user": {"uid": attributes["example.user.id"]},
+        "service": {"name": resource["service.name"]},
+        "src_endpoint": {"ip": attributes["client.address"]},
+        "message": record["body"]["stringValue"],
+    }
+    if error_type := attributes.get("error.type"):
+        ocsf["status_detail"] = error_type.upper()
+
+    validate_ocsf(ocsf)
+    outputs = {"security_analytics": ocsf}
+
+    if syslog_boundary:
+        sd = structured_data_value
+        outputs["rfc5424_over_tls"] = (
+            f'<132>1 {rfc3339(ocsf["time"])} {resource["host.name"]} '
+            f'{resource["service.name"]} - AUTHN '
+            f'[exampleSDID@32473 class_uid="{ocsf["class_uid"]}" '
+            f'activity_id="{ocsf["activity_id"]}" type_uid="{ocsf["type_uid"]}" '
+            f'user_id="{sd(ocsf["user"]["uid"])}" outcome="{sd(outcome)}" '
+            f'trace_id="{sd(record.get("traceId", ""))}"] {ocsf["message"]}'
+        )
+
+    return outputs
 ```
 
-This YAML is an architectural contract rather than a vendor-specific collector configuration. Versioned mappings define the exact field, timestamp, severity, provenance, and failure-handling behavior between representations.
+The function operates on the resource attributes and LogRecord decoded from an OTLP request. The injected validator MUST enforce the pinned OCSF 1.9.0 Authentication schema before delivery. Durable adapters send `security_analytics` to the normalized store and, only when required, send `rfc5424_over_tls` using RFC 5425. Production export profiles replace the documentation enterprise ID `32473` with the organization's registered value.
 
 ### 3.1. OpenTelemetry Logs and Events
 

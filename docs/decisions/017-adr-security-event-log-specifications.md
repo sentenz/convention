@@ -2,6 +2,53 @@
 
 Architectural Decision Records (ADR) on standardizing the creation, collection, normalization, and exchange of security event logs.
 
+A representative authentication failure illustrates the selected layered mapping. Field names and versions are illustrative; production mappings pin their supported schema versions and replace the RFC 5424 example enterprise ID with a registered private enterprise number.
+
+```yaml
+opentelemetry:
+  EventName: example.security.authentication
+  Timestamp: "1786996800000000000"
+  ObservedTimestamp: "1786996800250000000"
+  SeverityNumber: 13
+  SeverityText: WARN
+  TraceId: 4bf92f3577b34da6a3ce929d0e0e4736
+  SpanId: 00f067aa0ba902b7
+  Resource:
+    service.name: identity-api
+    service.version: 2.4.0
+    host.name: auth.example
+  Attributes:
+    example.user.id: user-123
+    client.address: 192.0.2.10
+    example.security.authentication.outcome: failure
+    error.type: invalid_credentials
+  Body: Authentication failed
+
+ocsf:
+  metadata:
+    version: 1.9.0
+    product:
+      name: identity-api
+      vendor_name: Example
+      version: 2.4.0
+  category_uid: 3
+  class_uid: 3002
+  activity_id: 1
+  type_uid: 300201
+  time: 1786996800000
+  severity_id: 3
+  status_id: 2
+  user:
+    uid: user-123
+  service:
+    name: identity-api
+  src_endpoint:
+    ip: 192.0.2.10
+  message: Authentication failed
+
+rfc5424: '<132>1 2026-08-17T20:00:00.000Z auth.example identity-api 4321 AUTHN [exampleSDID@32473 class_uid="3002" activity_id="1" type_uid="300201" trace_id="4bf92f3577b34da6a3ce929d0e0e4736"] Authentication failed'
+```
+
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)

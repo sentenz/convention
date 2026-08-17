@@ -2,53 +2,6 @@
 
 Architectural Decision Records (ADR) on standardizing the creation, collection, normalization, and exchange of security event logs.
 
-A representative authentication failure illustrates the selected layered mapping. Field names and versions are illustrative; production mappings pin their supported schema versions and replace the RFC 5424 example enterprise ID with a registered private enterprise number.
-
-```yaml
-opentelemetry:
-  EventName: example.security.authentication
-  Timestamp: "1786996800000000000"
-  ObservedTimestamp: "1786996800250000000"
-  SeverityNumber: 13
-  SeverityText: WARN
-  TraceId: 4bf92f3577b34da6a3ce929d0e0e4736
-  SpanId: 00f067aa0ba902b7
-  Resource:
-    service.name: identity-api
-    service.version: 2.4.0
-    host.name: auth.example
-  Attributes:
-    example.user.id: user-123
-    client.address: 192.0.2.10
-    example.security.authentication.outcome: failure
-    error.type: invalid_credentials
-  Body: Authentication failed
-
-ocsf:
-  metadata:
-    version: 1.9.0
-    product:
-      name: identity-api
-      vendor_name: Example
-      version: 2.4.0
-  category_uid: 3
-  class_uid: 3002
-  activity_id: 1
-  type_uid: 300201
-  time: 1786996800000
-  severity_id: 3
-  status_id: 2
-  user:
-    uid: user-123
-  service:
-    name: identity-api
-  src_endpoint:
-    ip: 192.0.2.10
-  message: Authentication failed
-
-rfc5424: '<132>1 2026-08-17T20:00:00.000Z auth.example identity-api 4321 AUTHN [exampleSDID@32473 class_uid="3002" activity_id="1" type_uid="300201" trace_id="4bf92f3577b34da6a3ce929d0e0e4736"] Authentication failed'
-```
-
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
@@ -250,6 +203,14 @@ Maintain mappings as versioned, testable artifacts rather than undocumented coll
 
 [RFC 5424](https://www.rfc-editor.org/rfc/rfc5424) standardizes a widely supported syslog message format with an extensible structured-data field and transport mappings.
 
+A representative authentication failure in the RFC 5424 wire format is:
+
+```text
+<132>1 2026-08-17T20:00:00.000Z auth.example identity-api 4321 AUTHN [exampleSDID@32473 userId="user-123" sourceIp="192.0.2.10" outcome="failure" errorType="invalid_credentials" traceId="4bf92f3577b34da6a3ce929d0e0e4736"] Authentication failed
+```
+
+The priority value `<132>` combines the `local0` facility with `warning` severity. The structured-data identifier uses the documentation enterprise ID from RFC 5424; a production profile MUST replace `32473` with the organization's registered IANA Private Enterprise Number.
+
 - Pros
 
   - Interoperability
@@ -275,6 +236,41 @@ Maintain mappings as versioned, testable artifacts rather than undocumented coll
 ### 4.2. OCSF as the Sole Specification
 
 [OCSF](https://github.com/ocsf/ocsf-schema) provides a vendor-neutral taxonomy, event classes, reusable objects, profiles, and normalized attributes for cybersecurity data.
+
+A representative OCSF 1.9.0 Authentication event is:
+
+```json
+{
+  "metadata": {
+    "version": "1.9.0",
+    "product": {
+      "name": "identity-api",
+      "vendor_name": "Example",
+      "version": "2.4.0"
+    }
+  },
+  "category_uid": 3,
+  "class_uid": 3002,
+  "activity_id": 1,
+  "type_uid": 300201,
+  "time": 1786996800000,
+  "severity_id": 3,
+  "status_id": 2,
+  "status_detail": "INVALID_CREDENTIALS",
+  "user": {
+    "uid": "user-123"
+  },
+  "service": {
+    "name": "identity-api"
+  },
+  "src_endpoint": {
+    "ip": "192.0.2.10"
+  },
+  "message": "Authentication failed"
+}
+```
+
+Here `class_uid` `3002` identifies Authentication, `activity_id` `1` identifies Logon, and `type_uid` `300201` combines that class and activity. JSON is the illustrative encoding; OCSF itself is encoding agnostic.
 
 - Pros
 
@@ -302,6 +298,89 @@ Maintain mappings as versioned, testable artifacts rather than undocumented coll
 
 [OpenTelemetry Logs](https://opentelemetry.io/docs/specs/otel/logs/) provides a common telemetry data model, APIs, SDKs, collection pipelines, trace correlation, and export mechanisms.
 
+A representative OTLP/HTTP JSON `ExportLogsServiceRequest` sent to `/v1/logs` is:
+
+```json
+{
+  "resourceLogs": [
+    {
+      "resource": {
+        "attributes": [
+          {
+            "key": "service.name",
+            "value": {
+              "stringValue": "identity-api"
+            }
+          },
+          {
+            "key": "service.version",
+            "value": {
+              "stringValue": "2.4.0"
+            }
+          },
+          {
+            "key": "host.name",
+            "value": {
+              "stringValue": "auth.example"
+            }
+          }
+        ]
+      },
+      "scopeLogs": [
+        {
+          "scope": {
+            "name": "example.security",
+            "version": "1.0.0"
+          },
+          "logRecords": [
+            {
+              "timeUnixNano": "1786996800000000000",
+              "observedTimeUnixNano": "1786996800250000000",
+              "severityNumber": 13,
+              "severityText": "WARN",
+              "body": {
+                "stringValue": "Authentication failed"
+              },
+              "attributes": [
+                {
+                  "key": "example.user.id",
+                  "value": {
+                    "stringValue": "user-123"
+                  }
+                },
+                {
+                  "key": "client.address",
+                  "value": {
+                    "stringValue": "192.0.2.10"
+                  }
+                },
+                {
+                  "key": "example.security.authentication.outcome",
+                  "value": {
+                    "stringValue": "failure"
+                  }
+                },
+                {
+                  "key": "error.type",
+                  "value": {
+                    "stringValue": "invalid_credentials"
+                  }
+                }
+              ],
+              "traceId": "4bf92f3577b34da6a3ce929d0e0e4736",
+              "spanId": "00f067aa0ba902b7",
+              "eventName": "example.security.authentication"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+OTLP/JSON uses lower-camel-case protobuf field names, integer enum values, decimal strings for 64-bit integers, and hexadecimal trace and span identifiers. This differs from the title-case logical field names used by the OpenTelemetry Logs Data Model.
+
 - Pros
 
   - Correlation
@@ -327,6 +406,16 @@ Maintain mappings as versioned, testable artifacts rather than undocumented coll
 ### 4.4. Layered OpenTelemetry, OCSF, and RFC 5424
 
 Use each specification for the layer it defines best: OpenTelemetry for emission and collection, OCSF for security normalization, and RFC 5424 for syslog interoperability.
+
+The selected option realizes the three representations as stages of one event flow:
+
+```mermaid
+flowchart LR
+    producer["Application"] -->|OTLP| collector["OpenTelemetry Collector"]
+    collector -->|normalize| ocsf["OCSF Authentication event"]
+    ocsf --> analytics["Security analytics"]
+    ocsf -->|optional profile| syslog["RFC 5424 over TLS"]
+```
 
 - Pros
 

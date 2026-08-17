@@ -68,100 +68,21 @@ Adopt a layered security-event logging architecture. OpenTelemetry is the canoni
 
 Only events classified as security relevant require OCSF normalization. Ordinary diagnostic logs may remain OpenTelemetry LogRecords when they do not support a security detection, investigation, response, or audit use case.
 
-A representative mapping core for one decoded OTLP LogRecord is:
+A representative authentication failure is provided as a file-based fixture bundle:
 
-```python
-from collections.abc import Callable
-from datetime import datetime, timezone
-from typing import Any
-
-SECURITY_EVENT_NAMES = {"example.security.authentication"}
-
-
-def string_attributes(items: list[dict[str, Any]]) -> dict[str, str]:
-    return {
-        item["key"]: item["value"]["stringValue"]
-        for item in items
-    }
-
-
-def structured_data_value(value: str) -> str:
-    return value.replace("\\", "\\\\").replace('"', '\\"').replace("]", "\\]")
-
-
-def rfc3339(epoch_ms: int) -> str:
-    instant = datetime.fromtimestamp(epoch_ms / 1000, tz=timezone.utc)
-    return instant.isoformat(timespec="milliseconds").replace("+00:00", "Z")
-
-
-def route_log_record(
-    resource_attributes: list[dict[str, Any]],
-    record: dict[str, Any],
-    *,
-    validate_ocsf: Callable[[dict[str, Any]], None],
-    syslog_boundary: bool = False,
-) -> dict[str, Any]:
-    resource = string_attributes(resource_attributes)
-    attributes = string_attributes(record["attributes"])
-
-    if record.get("eventName") not in SECURITY_EVENT_NAMES:
-        return {
-            "observability": {
-                "resource": resource_attributes,
-                "log_record": record,
-            }
-        }
-
-    class_uid = 3002
-    activity_id = 1
-    outcome = attributes["example.security.authentication.outcome"]
-    metadata = {
-        "version": "1.9.0",
-        "product": {
-            "name": resource["service.name"],
-            "vendor_name": "Example",
-            "version": resource["service.version"],
-        },
-        "processed_time": int(record["observedTimeUnixNano"]) // 1_000_000,
-    }
-    if trace_id := record.get("traceId"):
-        metadata["correlation_uid"] = trace_id
-
-    ocsf = {
-        "metadata": metadata,
-        "category_uid": 3,
-        "class_uid": class_uid,
-        "activity_id": activity_id,
-        "type_uid": class_uid * 100 + activity_id,
-        "time": int(record["timeUnixNano"]) // 1_000_000,
-        "severity_id": 3,  # WARN maps to Medium in this mapping profile.
-        "status_id": {"success": 1, "failure": 2}.get(outcome, 0),
-        "user": {"uid": attributes["example.user.id"]},
-        "service": {"name": resource["service.name"]},
-        "src_endpoint": {"ip": attributes["client.address"]},
-        "message": record["body"]["stringValue"],
-    }
-    if error_type := attributes.get("error.type"):
-        ocsf["status_detail"] = error_type.upper()
-
-    validate_ocsf(ocsf)
-    outputs = {"security_analytics": ocsf}
-
-    if syslog_boundary:
-        sd = structured_data_value
-        outputs["rfc5424_over_tls"] = (
-            f'<132>1 {rfc3339(ocsf["time"])} {resource["host.name"]} '
-            f'{resource["service.name"]} - AUTHN '
-            f'[exampleSDID@32473 class_uid="{ocsf["class_uid"]}" '
-            f'activity_id="{ocsf["activity_id"]}" type_uid="{ocsf["type_uid"]}" '
-            f'user_id="{sd(ocsf["user"]["uid"])}" outcome="{sd(outcome)}" '
-            f'trace_id="{sd(record.get("traceId", ""))}"] {ocsf["message"]}'
-        )
-
-    return outputs
+```text
+fixtures/017-security-event-log-specifications/authentication.otlp.jsonl
+fixtures/017-security-event-log-specifications/authentication.ocsf.jsonl
+fixtures/017-security-event-log-specifications/authentication.rfc5424.log
 ```
 
-The function operates on the resource attributes and LogRecord decoded from an OTLP request. The injected validator MUST enforce the pinned OCSF 1.9.0 Authentication schema before delivery. Durable adapters send `security_analytics` to the normalized store and, only when required, send `rfc5424_over_tls` using RFC 5425. Production export profiles replace the documentation enterprise ID `32473` with the organization's registered value.
+- [authentication.otlp.jsonl](fixtures/017-security-event-log-specifications/authentication.otlp.jsonl) contains the canonical first-party OpenTelemetry `LogsData` record.
+
+- [authentication.ocsf.jsonl](fixtures/017-security-event-log-specifications/authentication.ocsf.jsonl) contains the validated OCSF 1.9.0 Authentication event produced by normalization.
+
+- [authentication.rfc5424.log](fixtures/017-security-event-log-specifications/authentication.rfc5424.log) contains the optional RFC 5424 boundary message for replay and interoperability tests.
+
+The files describe the same event occurrence and serve as versioned conformance fixtures for mapping tests, schema validation, replay, and review. The OpenTelemetry fixture follows the OTLP File Exporter JSON Lines representation. JSON Lines is only an illustrative encoding for OCSF, and the line-oriented syslog fixture does not make RFC 5424 a storage specification.
 
 ### 3.1. OpenTelemetry Logs and Events
 
@@ -298,7 +219,7 @@ Maintain mappings as versioned, testable artifacts rather than undocumented coll
 
 [RFC 5424](https://www.rfc-editor.org/rfc/rfc5424) standardizes a widely supported syslog message format with an extensible structured-data field and transport mappings.
 
-A representative authentication failure in the RFC 5424 wire format is:
+The [authentication.rfc5424.log](fixtures/017-security-event-log-specifications/authentication.rfc5424.log) fixture contains one complete RFC 5424 message:
 
 ```text
 <132>1 2026-08-17T20:00:00.000Z auth.example identity-api 4321 AUTHN [exampleSDID@32473 userId="user-123" sourceIp="192.0.2.10" outcome="failure" errorType="invalid_credentials" traceId="4bf92f3577b34da6a3ce929d0e0e4736"] Authentication failed
@@ -332,7 +253,7 @@ The priority value `<132>` combines the `local0` facility with `warning` severit
 
 [OCSF](https://github.com/ocsf/ocsf-schema) provides a vendor-neutral taxonomy, event classes, reusable objects, profiles, and normalized attributes for cybersecurity data.
 
-A representative OCSF 1.9.0 Authentication event is:
+The [authentication.ocsf.jsonl](fixtures/017-security-event-log-specifications/authentication.ocsf.jsonl) fixture contains one OCSF 1.9.0 Authentication event, expanded below for readability:
 
 ```json
 {
@@ -342,7 +263,9 @@ A representative OCSF 1.9.0 Authentication event is:
       "name": "identity-api",
       "vendor_name": "Example",
       "version": "2.4.0"
-    }
+    },
+    "processed_time": 1786996800250,
+    "correlation_uid": "4bf92f3577b34da6a3ce929d0e0e4736"
   },
   "category_uid": 3,
   "class_uid": 3002,
@@ -393,7 +316,7 @@ Here `class_uid` `3002` identifies Authentication, `activity_id` `1` identifies 
 
 [OpenTelemetry Logs](https://opentelemetry.io/docs/specs/otel/logs/) provides a common telemetry data model, APIs, SDKs, collection pipelines, trace correlation, and export mechanisms.
 
-A representative OTLP/HTTP JSON `ExportLogsServiceRequest` sent to `/v1/logs` is:
+The [authentication.otlp.jsonl](fixtures/017-security-event-log-specifications/authentication.otlp.jsonl) fixture contains one OTLP `LogsData` JSON value, expanded below for readability:
 
 ```json
 {
@@ -474,7 +397,7 @@ A representative OTLP/HTTP JSON `ExportLogsServiceRequest` sent to `/v1/logs` is
 }
 ```
 
-OTLP/JSON uses lower-camel-case protobuf field names, integer enum values, decimal strings for 64-bit integers, and hexadecimal trace and span identifiers. This differs from the title-case logical field names used by the OpenTelemetry Logs Data Model.
+The OpenTelemetry File Exporter stores UTF-8 JSON Lines with one valid JSON value per line. OTLP/JSON uses lower-camel-case protobuf field names, integer enum values, decimal strings for 64-bit integers, and hexadecimal trace and span identifiers. This differs from the title-case logical field names used by the OpenTelemetry Logs Data Model.
 
 - Pros
 
@@ -629,4 +552,5 @@ flowchart LR
 - OpenTelemetry [Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/) specification.
 - OpenTelemetry [Semantic Conventions for Events](https://opentelemetry.io/docs/specs/semconv/general/events/) specification.
 - OpenTelemetry [OTLP Specification](https://opentelemetry.io/docs/specs/otlp/) specification.
+- OpenTelemetry [Protocol File Exporter](https://opentelemetry.io/docs/specs/otel/protocol/file-exporter/) specification.
 - OpenTelemetry [RFC 5424 Syslog Data Model Mapping](https://opentelemetry.io/docs/specs/otel/logs/data-model-appendix/#rfc5424-syslog) appendix.

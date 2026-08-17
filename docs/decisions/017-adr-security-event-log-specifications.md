@@ -1,18 +1,19 @@
 # 017-ADR: Security Event Log Specifications
 
-Architectural Decision Records (ADR) on standardizing the creation, collection, normalization, and exchange of security event logs.
+Architectural Decision Record (ADR) on adopting OpenTelemetry as the canonical specification for security event logs.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
-  - [3.1. OpenTelemetry Logs and Events](#31-opentelemetry-logs-and-events)
-  - [3.2. Open Cybersecurity Schema Framework](#32-open-cybersecurity-schema-framework)
-  - [3.3. RFC 5424 Syslog](#33-rfc-5424-syslog)
-  - [3.4. Versioned Mapping and Security Controls](#34-versioned-mapping-and-security-controls)
+  - [3.1. OpenTelemetry Logs Data Model and Events](#31-opentelemetry-logs-data-model-and-events)
+  - [3.2. Project Security Semantic Conventions](#32-project-security-semantic-conventions)
+  - [3.3. Collection and File Representation](#33-collection-and-file-representation)
+  - [3.4. Optional Boundary Adapters](#34-optional-boundary-adapters)
+  - [3.5. Security Controls](#35-security-controls)
 - [4. Considered](#4-considered)
-  - [4.1. RFC 5424 as the Sole Specification](#41-rfc-5424-as-the-sole-specification)
-  - [4.2. OCSF as the Sole Specification](#42-ocsf-as-the-sole-specification)
-  - [4.3. OpenTelemetry as the Sole Specification](#43-opentelemetry-as-the-sole-specification)
+  - [4.1. OpenTelemetry Semantic Conventions and Logs Data Model](#41-opentelemetry-semantic-conventions-and-logs-data-model)
+  - [4.2. Open Cybersecurity Schema Framework as the Canonical Specification](#42-open-cybersecurity-schema-framework-as-the-canonical-specification)
+  - [4.3. RFC 5424 as the Canonical Specification](#43-rfc-5424-as-the-canonical-specification)
   - [4.4. Layered OpenTelemetry, OCSF, and RFC 5424](#44-layered-opentelemetry-ocsf-and-rfc-5424)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
@@ -26,297 +27,187 @@ Architectural Decision Records (ADR) on standardizing the creation, collection, 
 
 ## 2. Context
 
-Security-relevant activity is produced by first-party applications, operating systems, network devices, identity providers, cloud services, and security controls. These sources use different event names, field structures, severity scales, clocks, and transport protocols. A message that is sufficient for local troubleshooting is not necessarily suitable for detection, investigation, cross-product correlation, or audit evidence.
+First-party applications produce security-relevant occurrences such as authentication attempts, authorization decisions, configuration changes, and access to protected data. Free-form application messages do not provide a stable contract for detection, investigation, correlation, or audit because their names, fields, timestamps, severity, and wording can change independently.
 
-No single specification considered here covers the complete lifecycle:
+This decision defines the canonical logical representation, semantic conventions, collection contract, and representative file fixture for first-party security event logs. It does not require every downstream analytics system or legacy integration to use the same physical encoding.
 
-- [OpenTelemetry](https://opentelemetry.io/docs/specs/otel/logs/) defines APIs, an SDK, a logical Logs Data Model, event semantics, trace correlation, collection, processing, and export for telemetry.
-- [OCSF](https://github.com/ocsf/ocsf-schema) defines a vendor-neutral taxonomy and normalized schema for cybersecurity events, but is agnostic to collection, transport, and storage.
-- [RFC 5424](https://www.rfc-editor.org/rfc/rfc5424) defines an interoperable syslog message format and a transport-independent architecture, but does not define a storage format or a comprehensive security-event taxonomy.
+The [OpenTelemetry Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/) provides a stable, general-purpose event and log envelope. The [Semantic Conventions for Events](https://opentelemetry.io/docs/specs/semconv/general/events/) define an event as a LogRecord with an event name and specify how its name, timestamps, severity, attributes, and body are defined. The [General Logs Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/general/logs/) provide reusable log attributes. OpenTelemetry does not yet define a comprehensive security-event catalogue, so project-specific security semantics remain necessary.
 
-The architecture therefore needs an explicit division of responsibility and a governed mapping between specifications. Without that contract, producers may emit free-form messages, transformations may silently discard evidence, severity values may be compared incorrectly, and downstream systems may be unable to distinguish an event-time value from an ingestion-time value.
+The decision is whether to adopt those OpenTelemetry specifications and extend them with governed project conventions, or to require additional canonical representations such as OCSF and RFC 5424 for every security event.
 
 1. Decision Drivers
 
+    - Single Source of Truth
+      > Define one canonical event contract so producers, collectors, tests, and consumers do not disagree about which representation is authoritative.
+
     - Security Semantics
-      > Represent authentication, authorization, configuration, data-access, detection, finding, and remediation activity with stable machine-readable meaning.
+      > Represent security-relevant occurrences with stable event names, typed attributes, documented outcomes, and explicit sensitivity classifications.
 
     - Correlation
-      > Correlate security activity with services, hosts, users, processes, and distributed traces without parsing display messages.
+      > Correlate security events with services, hosts, users, processes, and distributed traces without parsing display messages.
 
-    - Interoperability
-      > Accept and produce standards-based syslog where established infrastructure or external integrations require it.
+    - Practicality
+      > Reuse the telemetry data model, libraries, collectors, and transport already applicable to application logs rather than operating a mandatory normalization layer.
 
     - Fidelity and Provenance
-      > Preserve source values, event time, observation time, transformation history, and schema versions so that normalization remains explainable.
+      > Preserve event time, observation time, source identity, original severity labels, and semantic-convention versions.
 
     - Confidentiality and Data Minimization
       > Prevent credentials, tokens, cryptographic material, and unnecessary personal data from entering telemetry pipelines.
 
     - Integrity and Availability
-      > Detect malformed or dropped records, protect events in transit and at rest, and avoid delivery modes that silently weaken security evidence.
+      > Detect malformed or dropped records, protect events in transit and at rest, and make delivery failures observable.
 
     - Evolvability
-      > Permit independent, controlled upgrades of OpenTelemetry semantic conventions, OCSF schemas, and boundary mappings.
+      > Version project conventions independently while following OpenTelemetry compatibility and naming guidance.
 
     - Vendor Neutrality
-      > Keep the source contract and normalized security model portable across collectors, security analytics platforms, and storage backends.
+      > Keep the canonical event contract portable across OpenTelemetry-compatible collectors, processors, and storage backends.
 
 ## 3. Decision
 
-Adopt a layered security-event logging architecture. OpenTelemetry is the canonical representation for first-party emission and collection, OCSF is the canonical normalized representation for security analytics, and RFC 5424 is an interoperability format at syslog boundaries. These specifications complement one another and MUST NOT be treated as interchangeable schemas.
+Adopt the OpenTelemetry Logs Data Model, Semantic Conventions for Events, and General Logs Semantic Conventions as the sole canonical specification for first-party security event logs. Extend them with a versioned project security-event catalogue; do not fork or redefine OpenTelemetry fields. OCSF and RFC 5424 are optional boundary adapters, not required representations of every event.
 
-Only events classified as security relevant require OCSF normalization. Ordinary diagnostic logs may remain OpenTelemetry LogRecords when they do not support a security detection, investigation, response, or audit use case.
-
-A representative authentication failure is provided as a file-based fixture bundle:
+A representative authentication failure is maintained as a file-based OpenTelemetry fixture:
 
 ```text
 fixtures/017-security-event-log-specifications/authentication.otlp.jsonl
-fixtures/017-security-event-log-specifications/authentication.ocsf.jsonl
-fixtures/017-security-event-log-specifications/authentication.rfc5424.log
 ```
 
-- [authentication.otlp.jsonl](fixtures/017-security-event-log-specifications/authentication.otlp.jsonl) contains the canonical first-party OpenTelemetry `LogsData` record.
+The [authentication.otlp.jsonl](fixtures/017-security-event-log-specifications/authentication.otlp.jsonl) fixture contains one complete OTLP `LogsData` JSON value. It is a security log event example for conformance, replay, and review rather than application implementation code.
 
-- [authentication.ocsf.jsonl](fixtures/017-security-event-log-specifications/authentication.ocsf.jsonl) contains the validated OCSF 1.9.0 Authentication event produced by normalization.
+### 3.1. OpenTelemetry Logs Data Model and Events
 
-- [authentication.rfc5424.log](fixtures/017-security-event-log-specifications/authentication.rfc5424.log) contains the optional RFC 5424 boundary message for replay and interoperability tests.
-
-The files describe the same event occurrence and serve as versioned conformance fixtures for mapping tests, schema validation, replay, and review. The OpenTelemetry fixture follows the OTLP File Exporter JSON Lines representation. JSON Lines is only an illustrative encoding for OCSF, and the line-oriented syslog fixture does not make RFC 5424 a storage specification.
-
-### 3.1. OpenTelemetry Logs and Events
-
-Use the [OpenTelemetry Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/) for first-party security-event emission and for the internal collection envelope. A security event is represented as an OpenTelemetry LogRecord with a non-empty `EventName`; unstructured diagnostic text remains a LogRecord without an event name.
+Represent each structured security event as an OpenTelemetry EventRecord: a LogRecord with a non-empty `EventName`.
 
 1. Event Contract
 
-    - Set `EventName` to a stable, low-cardinality, domain-specific name that uniquely identifies the record structure. Dynamic values such as user IDs, resource IDs, and outcomes belong in attributes.
+    - Set `EventName` to a stable, low-cardinality, fully qualified name that uniquely identifies the event structure. Dynamic values such as identifiers and outcomes belong in attributes.
 
-    - Set `Timestamp` to the time the activity occurred. Collection components set `ObservedTimestamp` when they first observe the record; they MUST NOT overwrite the source event time.
+    - Set `Timestamp` to the time the security-relevant occurrence happened. An SDK, collector, or other observing component sets `ObservedTimestamp`; it MUST NOT replace a known source timestamp.
 
-    - Set `SeverityNumber` according to OpenTelemetry semantics and preserve the source label in `SeverityText`. Severity is independent of outcome: a successful privileged action may still be security significant.
+    - Set `SeverityNumber` according to the OpenTelemetry severity ranges. Preserve a source-provided label in `SeverityText`, but do not define a fixed `SeverityText` in the semantic convention. Severity describes impact and is independent of outcome.
 
-    - Put source identity in `Resource`, emitter identity in `InstrumentationScope`, occurrence-specific structured data in `Attributes`, and an optional concise display message in `Body`.
+    - Put occurrence-specific, machine-readable facts in `Attributes`. Use `Body` only for an optional concise display message.
 
-    - Populate `TraceId`, `SpanId`, and `TraceFlags` when valid trace context exists. A security event MUST NOT depend on a sampled span event for durable recording; it is emitted as a LogRecord even when it is also associated with a span.
+    - Put the identity of the entity that generated the event in `Resource` and the identity and version of the emitter in `InstrumentationScope`.
 
-    - Use documented OpenTelemetry semantic-convention attributes where they fit. Custom attributes MUST use a project-owned namespace and have documented types, cardinality, sensitivity, and lifecycle.
+    - Populate `TraceId`, `SpanId`, and `TraceFlags` when valid trace context exists. Emit the security event as a LogRecord even when it is associated with a span so its retention does not depend on trace sampling.
 
-2. Collection
+    - Retain unstructured diagnostic messages as ordinary LogRecords without an `EventName`; do not misclassify every application log as a security event.
 
-    - Send LogRecords through an OpenTelemetry SDK or compatible log appender to an OpenTelemetry Collector using OTLP where supported.
+2. Versioning
 
-    - Receive legacy and third-party formats at collector or gateway boundaries, parse them without changing source semantics, and populate the OpenTelemetry envelope before normalization.
+    - Pin the supported OpenTelemetry specification, semantic-convention, SDK, and collector versions.
 
-    - Apply enrichment, redaction, routing, and batching in observable pipeline stages. Each stage MUST expose rejected-record, dropped-record, retry, queue-capacity, and export-failure metrics.
+    - Record the project security-event catalogue version in `InstrumentationScope.version` and publish a Schema URL when a versioned OpenTelemetry schema is available for the project conventions.
 
-OpenTelemetry event semantic conventions currently have `Development` status. Each implementation MUST pin the semantic-convention and SDK versions it supports, record the applicable Schema URL where the SDK supports it, and validate upgrades before deployment.
+    - Validate migrations before changing an event name, attribute name, type, requirement level, or enumerated value.
 
-### 3.2. Open Cybersecurity Schema Framework
+The Logs Data Model is stable. The general Events and Logs semantic conventions currently have `Development` status, so their versions and compatibility requirements require explicit governance.
 
-Normalize security-relevant OpenTelemetry Events to the [Open Cybersecurity Schema Framework (OCSF)](https://schema.ocsf.io/) at a collector, stream processor, or security-ingestion boundary. Producers SHOULD emit source-domain facts rather than construct OCSF records directly unless they are purpose-built security products with a validated native OCSF implementation.
+### 3.2. Project Security Semantic Conventions
 
-1. Normalized Event Contract
+Maintain a project security-event catalogue that applies OpenTelemetry's semantic-convention rules to the security domain.
 
-    - Select the most specific applicable OCSF event class and activity. Populate required classification fields including `category_uid`, `class_uid`, `activity_id`, and `type_uid`; compute `type_uid` according to the selected OCSF schema.
+1. Reuse Before Extension
 
-    - Populate the OCSF event `time` from the OpenTelemetry `Timestamp` using an explicit, tested precision conversion. Preserve observation and processing times in semantically equivalent OCSF metadata fields; do not substitute them for a known event time.
+    - Reuse existing OpenTelemetry attributes such as `service.name`, `service.version`, `host.name`, `enduser.id`, `client.address`, and `error.type` when their documented meaning applies.
 
-    - Populate `metadata.product` with the source product identity and `metadata.version` with the exact OCSF schema version used for normalization.
+    - Define a custom attribute only when an existing OpenTelemetry attribute cannot express the required fact without changing its meaning.
 
-    - Map actors, users, processes, services, devices, source endpoints, destination endpoints, status, and observables to their typed OCSF fields. Do not flatten typed objects into a free-form message.
+2. Owned Namespaces
 
-    - Map severity by documented meaning, not by copying an integer. OpenTelemetry, OCSF, and syslog use different numeric domains and severity semantics.
+    - Put custom events and attributes in a collision-resistant project-owned namespace. The fixture uses `example.security.*` as a documentation namespace; deployed systems MUST replace it with their governed project or reverse-domain namespace.
 
-    - Preserve a concise human-readable summary in `message` when useful. Retain source records in `raw_data` only when forensic value, access controls, retention policy, and data classification justify the additional exposure.
+    - Do not introduce project attributes under the reserved `otel.*` namespace or an existing OpenTelemetry namespace.
 
-    - Use `unmapped` only as a temporary, monitored compatibility mechanism. Repeated or detection-critical source fields require a governed mapping or an OCSF extension.
+3. Catalogue Entry
 
-2. Validation
+    Each event definition MUST specify:
 
-    - Validate every normalized event against the pinned OCSF schema and applicable profiles before it enters the security analytics store.
+    - The event name and the precise condition under which it is recorded.
 
-    - Route invalid events to a restricted dead-letter path with validation diagnostics. The pipeline MUST raise an operational alert and MUST NOT silently discard or coerce invalid fields.
+    - The source of `Timestamp` and the default `SeverityNumber`, including conditions that change severity.
 
-    - Test mappings with valid, missing, malformed, boundary, and forward-version fixtures. Round-trip preservation is required for fields designated as evidentiary in the mapping contract.
+    - Required, recommended, conditionally required, and opt-in attributes with their types, meanings, cardinality, and enumerated values.
 
-### 3.3. RFC 5424 Syslog
+    - Required resource identity and trace-correlation behavior.
 
-Use [RFC 5424](https://www.rfc-editor.org/rfc/rfc5424) only at boundaries that require syslog interoperability, including operating-system and network-device ingress and integrations with established syslog collectors. RFC 5424 is not the canonical internal security schema and is not a storage specification.
+    - Whether each field contains personal, credential-adjacent, high-cardinality, or otherwise sensitive data.
 
-1. Ingress
+    - Display-message guidance for `Body`, compatibility guarantees, deprecation policy, and representative valid and invalid records.
 
-    - Parse `PRI`, `VERSION`, `TIMESTAMP`, `HOSTNAME`, `APP-NAME`, `PROCID`, `MSGID`, `STRUCTURED-DATA`, and `MSG` as distinct fields.
+For an authentication failure, the canonical facts include the stable `example.security.authentication` event name, the standard `enduser.id`, `client.address`, and `error.type` attributes, and the project-defined `example.security.authentication.outcome` attribute.
 
-    - Map the source `TIMESTAMP` to OpenTelemetry `Timestamp` and the receiver time to `ObservedTimestamp`. Preserve timestamp quality information when the `timeQuality` structured-data element is present.
+### 3.3. Collection and File Representation
 
-    - Preserve original facility and severity codes as attributes and map severity to OpenTelemetry by meaning. Preserve unrecognized structured-data elements under a namespaced attribute structure.
+1. Emission and Collection
 
-    - Map `HOSTNAME` and `APP-NAME` to resource identity only after applying trusted-source and relay rules. An asserted header value alone is not proof of origin.
+    - Emit first-party events through an OpenTelemetry Logs API, SDK, or compatible logging bridge and send them to an OpenTelemetry Collector using OTLP where supported.
 
-    - Preserve the original message under the restricted raw-event policy when required for forensics; use the parsed `MSG` as the OpenTelemetry `Body` rather than as the source of normalized fields when structured fields are available.
+    - Map legacy and third-party records into the OpenTelemetry Logs Data Model at an ingestion boundary without changing known source semantics. Preserve the original record under a restricted policy when forensic or compatibility requirements justify it.
 
-2. Egress
+    - Apply enrichment, redaction, validation, routing, batching, and retry in observable stages. Each stage MUST expose rejected-record, dropped-record, queue-capacity, retry, and export-failure telemetry.
 
-    - Define a versioned RFC 5424 export profile for every consuming integration. The profile specifies header derivation, facility and severity mapping, structured-data IDs, maximum message size, truncation behavior, and treatment of fields that have no lossless representation.
+2. File Fixture
 
-    - Put machine-readable fields in `STRUCTURED-DATA` and reserve `MSG` for a concise human-readable summary. Private extensions MUST use an SD-ID associated with a registered private enterprise number.
+    - Store representative events using the [OpenTelemetry Protocol File Exporter](https://opentelemetry.io/docs/specs/otel/protocol/file-exporter/) JSON Lines representation.
 
-    - Place the highest-priority routing and correlation fields early enough to survive receiver size limits. Exporters MUST measure oversize, truncated, rejected, and dropped messages.
+    - Treat OTLP/JSON as the concrete fixture encoding and the OpenTelemetry Logs Data Model as the canonical logical contract. A file fixture does not prescribe the production storage backend.
 
-3. Transport
+    - Keep each line independently parseable as one complete OTLP `LogsData` JSON value and validate its protobuf JSON field names, numeric encodings, trace identifiers, and semantic attributes.
 
-    - Use TLS transport as specified by [RFC 5425](https://www.rfc-editor.org/rfc/rfc5425) for network delivery unless a documented threat model approves another protected transport.
+### 3.4. Optional Boundary Adapters
 
-    - Do not use UDP for security events when loss, reordering, or source spoofing would impair detection or audit evidence.
+Additional specifications are introduced only for a demonstrated integration requirement and do not change the canonical OpenTelemetry record.
 
-    - Because RFC 5424 itself provides no delivery acknowledgement, gateways MUST use durable queues, bounded retry, backpressure, and delivery monitoring appropriate to the required assurance level.
+1. OCSF
 
-### 3.4. Versioned Mapping and Security Controls
+    - Map selected security-relevant events to [OCSF](https://github.com/ocsf/ocsf-schema) only when a security analytics consumer requires OCSF or when heterogeneous sources require a shared cybersecurity taxonomy.
 
-Maintain mappings as versioned, testable artifacts rather than undocumented collector expressions. A mapping is identified by source schema and version, OpenTelemetry semantic-convention version, OCSF schema version, and destination profile version.
+    - Maintain the mapping as a separately versioned adapter, validate the output against the pinned OCSF schema, and retain enough OpenTelemetry provenance to explain the transformation.
 
-1. Minimum Mapping Contract
+2. RFC 5424
 
-    | Concern | Source/OpenTelemetry | OCSF | RFC 5424 boundary |
-    | --- | --- | --- | --- |
-    | Event identity | `EventName` and source event code | `class_uid`, `activity_id`, `type_uid` | `MSGID` and profile-defined structured data |
-    | Event time | `Timestamp` | `time` | `TIMESTAMP` |
-    | Observation time | `ObservedTimestamp` | Applicable processing metadata | Receiver timestamp; never overwrite source time |
-    | Source identity | `Resource` | Typed product, device, service, and endpoint objects | `HOSTNAME`, `APP-NAME`, and `origin` structured data |
-    | Correlation | `TraceId`, `SpanId`, and stable event identifiers | Governed correlation mapping or extension | Profile-defined structured data |
-    | Severity | `SeverityNumber` and `SeverityText` | `severity_id` and `severity` | `PRI` severity plus preserved facility |
-    | Details | Typed `Attributes` | Typed class and profile attributes | `STRUCTURED-DATA` |
-    | Display text | `Body` | `message` | `MSG` |
-    | Schema provenance | Schema URL and instrumentation version | `metadata.version` and mapping version | `VERSION` plus export-profile identifier |
+    - Parse or produce [RFC 5424](https://www.rfc-editor.org/rfc/rfc5424) only at an actual syslog ingress or egress boundary.
 
-2. Security Controls
+    - Keep RFC 5424 out of the internal event contract and storage model. Define timestamp, severity, structured-data, size, truncation, and transport behavior in a versioned integration profile.
 
-    - Data Minimization
-      > Never record passwords, session secrets, API keys, private keys, raw authorization headers, or complete authentication tokens. Redact at the earliest controlled stage and test redaction with adversarial fixtures.
+    - Use the TLS transport defined by [RFC 5425](https://www.rfc-editor.org/rfc/rfc5425) unless a documented threat model approves another transport.
 
-    - Access and Encryption
-      > Encrypt security events in transit and at rest, separate producer, pipeline, analyst, and administrator permissions, and audit access to restricted raw records.
+When no consumer or source requires either format, no OCSF or RFC 5424 adapter is implemented.
 
-    - Integrity and Provenance
-      > Record source identity, collector identity, mapping version, and processing timestamps. Use append-only or tamper-evident storage where the threat model or compliance requirements demand evidentiary integrity; transport protection alone is insufficient.
+### 3.5. Security Controls
 
-    - Availability
-      > Do not sample security events by default. Any aggregation, rate limit, or sampling policy requires explicit approval, a documented loss budget, and metrics that expose the discarded volume.
+- Data Minimization
+  > Never record passwords, session secrets, API keys, private keys, raw authorization headers, or complete authentication tokens. Collect personal data only when its security value and retention policy are explicit.
 
-    - Resource Safety
-      > Bound attribute counts, value sizes, nesting, queue usage, and exporter retries. High-cardinality values belong in attributes, never in event names or metric labels.
+- Access and Encryption
+  > Encrypt security events in transit and at rest, separate producer, pipeline, analyst, and administrator permissions, and audit access to restricted raw records.
 
-    - Clock Quality
-      > Synchronize source and collector clocks, retain both event and observation times, preserve supplied offsets or time-quality metadata, and alert on material clock skew.
+- Integrity and Provenance
+  > Record source identity, instrumentation scope and version, collector identity, and processing timestamps. Use append-only or tamper-evident storage when required by the threat model or compliance obligations.
 
-    - Failure Handling
-      > Define whether each producer buffers, blocks, or degrades when the pipeline is unavailable. Security-control decisions MUST NOT depend on a telemetry export succeeding unless that dependency is explicitly designed and tested.
+- Availability
+  > Do not sample security events by default. Any aggregation, rate limit, or sampling policy requires an approved loss budget and telemetry that exposes discarded volume.
+
+- Resource Safety
+  > Bound attribute counts, value sizes, nesting, queue usage, and retry behavior. High-cardinality values belong in attributes, never in event names or metric labels.
+
+- Clock Quality
+  > Synchronize source and collector clocks, retain event and observation times, and alert on material clock skew.
+
+- Failure Handling
+  > Define whether each producer buffers, blocks, or degrades when the pipeline is unavailable. Security-control decisions MUST NOT depend on successful telemetry export unless that dependency is explicitly designed and tested.
 
 ## 4. Considered
 
-### 4.1. RFC 5424 as the Sole Specification
+### 4.1. OpenTelemetry Semantic Conventions and Logs Data Model
 
-[RFC 5424](https://www.rfc-editor.org/rfc/rfc5424) standardizes a widely supported syslog message format with an extensible structured-data field and transport mappings.
+The selected option combines the [OpenTelemetry Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/), [Semantic Conventions for Events](https://opentelemetry.io/docs/specs/semconv/general/events/), and [General Logs Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/general/logs/) with a project-owned security-event catalogue.
 
-The [authentication.rfc5424.log](fixtures/017-security-event-log-specifications/authentication.rfc5424.log) fixture contains one complete RFC 5424 message:
-
-```text
-<132>1 2026-08-17T20:00:00.000Z auth.example identity-api 4321 AUTHN [exampleSDID@32473 userId="user-123" sourceIp="192.0.2.10" outcome="failure" errorType="invalid_credentials" traceId="4bf92f3577b34da6a3ce929d0e0e4736"] Authentication failed
-```
-
-The priority value `<132>` combines the `local0` facility with `warning` severity. The structured-data identifier uses the documentation enterprise ID from RFC 5424; a production profile MUST replace `32473` with the organization's registered IANA Private Enterprise Number.
-
-- Pros
-
-  - Interoperability
-    > Integrates with operating systems, appliances, and existing syslog infrastructure.
-
-  - Simplicity
-    > Provides a compact envelope with familiar facility, severity, source, and message fields.
-
-- Cons
-
-  - Security Semantics
-    > Does not provide a comprehensive cross-vendor cybersecurity taxonomy or typed domain objects.
-
-  - Correlation
-    > Has no standard trace-correlation model equivalent to OpenTelemetry's trace and resource fields.
-
-  - Reliability and Storage
-    > Defines neither delivery acknowledgement nor a storage format; transport and persistence guarantees require additional specifications and controls.
-
-  - Fidelity
-    > Receiver size limits permit truncation or discard, and vendor-specific structured data does not by itself create semantic interoperability.
-
-### 4.2. OCSF as the Sole Specification
-
-[OCSF](https://github.com/ocsf/ocsf-schema) provides a vendor-neutral taxonomy, event classes, reusable objects, profiles, and normalized attributes for cybersecurity data.
-
-The [authentication.ocsf.jsonl](fixtures/017-security-event-log-specifications/authentication.ocsf.jsonl) fixture contains one OCSF 1.9.0 Authentication event, expanded below for readability:
-
-```json
-{
-  "metadata": {
-    "version": "1.9.0",
-    "product": {
-      "name": "identity-api",
-      "vendor_name": "Example",
-      "version": "2.4.0"
-    },
-    "processed_time": 1786996800250,
-    "correlation_uid": "4bf92f3577b34da6a3ce929d0e0e4736"
-  },
-  "category_uid": 3,
-  "class_uid": 3002,
-  "activity_id": 1,
-  "type_uid": 300201,
-  "time": 1786996800000,
-  "severity_id": 3,
-  "status_id": 2,
-  "status_detail": "INVALID_CREDENTIALS",
-  "user": {
-    "uid": "user-123"
-  },
-  "service": {
-    "name": "identity-api"
-  },
-  "src_endpoint": {
-    "ip": "192.0.2.10"
-  },
-  "message": "Authentication failed"
-}
-```
-
-Here `class_uid` `3002` identifies Authentication, `activity_id` `1` identifies Logon, and `type_uid` `300201` combines that class and activity. JSON is the illustrative encoding; OCSF itself is encoding agnostic.
-
-- Pros
-
-  - Security Semantics
-    > Enables consistent detection and investigation across heterogeneous products and event sources.
-
-  - Vendor Neutrality
-    > Separates normalized security meaning from a specific analytics or storage vendor.
-
-  - Extensibility
-    > Supports profiles and extensions while retaining a common core schema.
-
-- Cons
-
-  - Collection
-    > Is intentionally agnostic to instrumentation, collection, transport, and storage.
-
-  - Producer Complexity
-    > Requiring every application to construct OCSF records would duplicate mapping logic and couple business code to a security analytics schema.
-
-  - General Observability
-    > Does not replace OpenTelemetry's cross-signal resource and trace-correlation model for application telemetry.
-
-### 4.3. OpenTelemetry as the Sole Specification
-
-[OpenTelemetry Logs](https://opentelemetry.io/docs/specs/otel/logs/) provides a common telemetry data model, APIs, SDKs, collection pipelines, trace correlation, and export mechanisms.
-
-The [authentication.otlp.jsonl](fixtures/017-security-event-log-specifications/authentication.otlp.jsonl) fixture contains one OTLP `LogsData` JSON value, expanded below for readability:
+The [authentication.otlp.jsonl](fixtures/017-security-event-log-specifications/authentication.otlp.jsonl) fixture contains the following event, expanded for readability:
 
 ```json
 {
@@ -361,7 +252,7 @@ The [authentication.otlp.jsonl](fixtures/017-security-event-log-specifications/a
               },
               "attributes": [
                 {
-                  "key": "example.user.id",
+                  "key": "enduser.id",
                   "value": {
                     "stringValue": "user-123"
                   }
@@ -397,148 +288,195 @@ The [authentication.otlp.jsonl](fixtures/017-security-event-log-specifications/a
 }
 ```
 
-The OpenTelemetry File Exporter stores UTF-8 JSON Lines with one valid JSON value per line. OTLP/JSON uses lower-camel-case protobuf field names, integer enum values, decimal strings for 64-bit integers, and hexadecimal trace and span identifiers. This differs from the title-case logical field names used by the OpenTelemetry Logs Data Model.
+OTLP/JSON uses lower-camel-case protobuf field names, integer enum values, decimal strings for 64-bit integers, and hexadecimal trace and span identifiers. These concrete names differ from the title-case logical fields in the Logs Data Model.
 
 - Pros
 
-  - Correlation
-    > Relates logs and events to resources, traces, spans, and instrumentation scopes.
+  - Single Source of Truth
+    > Uses one logical event representation throughout first-party emission, collection, processing, testing, and storage integration.
 
-  - Collection
-    > Supports first-party instrumentation, existing logging libraries, legacy log ingestion, processing, and OTLP export.
+  - Correlation
+    > Relates security events to resources, traces, spans, and instrumentation scopes without custom envelopes.
+
+  - Practicality
+    > Reuses OpenTelemetry APIs, SDKs, collectors, OTLP, and existing application telemetry operations.
+
+  - Extensibility
+    > Reuses standard attributes while allowing governed project security conventions where the upstream registry has no equivalent.
 
   - Portability
-    > Decouples producers from a specific telemetry backend.
+    > Decouples producers from a specific security analytics platform or storage backend.
+
+- Cons
+
+  - Security Taxonomy
+    > The project must govern security event names, outcomes, requirement levels, and sensitive-data classifications that OpenTelemetry does not standardize.
+
+  - Maturity
+    > The general Events and Logs semantic conventions have `Development` status and require pinned versions and compatibility review.
+
+  - Boundary Translation
+    > Consumers that require OCSF or syslog still need separately governed adapters.
+
+### 4.2. Open Cybersecurity Schema Framework as the Canonical Specification
+
+[OCSF](https://github.com/ocsf/ocsf-schema) provides a vendor-neutral cybersecurity taxonomy, event classes, reusable objects, profiles, and normalized attributes.
+
+- Pros
+
+  - Security Semantics
+    > Enables consistent detection and investigation across heterogeneous security products and event sources.
+
+  - Vendor Neutrality
+    > Separates normalized security meaning from a specific analytics or storage vendor.
+
+  - Extensibility
+    > Supports profiles and extensions while retaining a common core schema.
+
+- Cons
+
+  - Collection
+    > Is intentionally agnostic to application instrumentation, collection, transport, trace correlation, and storage.
+
+  - Producer Complexity
+    > Requiring every application to construct OCSF records duplicates mapping logic and couples business code to a downstream analytics taxonomy.
+
+  - Dual Contract
+    > General application telemetry would still require another envelope, making OCSF an additional canonical representation rather than the single source of truth.
+
+### 4.3. RFC 5424 as the Canonical Specification
+
+[RFC 5424](https://www.rfc-editor.org/rfc/rfc5424) standardizes a widely supported syslog message format with extensible structured data.
+
+- Pros
+
+  - Interoperability
+    > Integrates with operating systems, appliances, and established syslog infrastructure.
+
+  - Simplicity
+    > Provides a compact envelope with familiar facility, severity, source, and message fields.
 
 - Cons
 
   - Security Semantics
-    > Its general-purpose attributes and events do not provide OCSF's comprehensive security taxonomy, event classes, and typed security objects.
+    > Does not provide a comprehensive cybersecurity taxonomy or standardized event catalogue.
 
-  - Maturity
-    > Event semantic conventions are still evolving and require pinned versions and upgrade governance.
+  - Correlation
+    > Has no native resource and trace-correlation model equivalent to OpenTelemetry.
 
-  - Interoperability
-    > Does not eliminate the need to support syslog-speaking devices and external systems.
+  - Reliability and Storage
+    > Defines neither delivery acknowledgement nor a storage format; transport and persistence guarantees require additional specifications.
+
+  - Extension Governance
+    > Vendor-specific structured data does not by itself create semantic interoperability.
 
 ### 4.4. Layered OpenTelemetry, OCSF, and RFC 5424
 
-Use each specification for the layer it defines best: OpenTelemetry for emission and collection, OCSF for security normalization, and RFC 5424 for syslog interoperability.
-
-The selected option realizes the three representations as stages of one event flow:
-
-```mermaid
-flowchart LR
-    producer["Application"] -->|OTLP| collector["OpenTelemetry Collector"]
-    collector -->|normalize| ocsf["OCSF Authentication event"]
-    ocsf --> analytics["Security analytics"]
-    ocsf -->|optional profile| syslog["RFC 5424 over TLS"]
-```
+This option makes OpenTelemetry canonical for emission and collection, OCSF canonical for security analytics, and RFC 5424 a standard exchange representation.
 
 - Pros
 
-  - Complete Lifecycle
-    > Covers instrumentation, correlation, collection, normalization, and established system boundaries without forcing one specification outside its intended scope.
+  - Heterogeneous Analytics
+    > Supplies a shared security taxonomy when multiple unrelated products and sources must be normalized before analysis.
 
-  - Fidelity
-    > A governed mapping preserves source values and exposes transformations rather than relying on free-form messages.
-
-  - Evolvability
-    > Versioned adapters allow each specification to advance independently.
+  - Established Boundaries
+    > Accommodates consumers and devices that mandate OCSF or syslog.
 
 - Cons
 
   - Complexity
-    > Requires mapping artifacts, validators, schema registries, compatibility tests, and operational monitoring.
+    > Requires mapping registries, validators, schema-version coordination, replay tests, failure paths, and operational monitoring even when no current integration needs them.
 
-  - Storage and Processing Cost
-    > Preserving both source and normalized representations can increase pipeline and retention costs.
+  - Multiple Sources of Truth
+    > Calling both OpenTelemetry and OCSF canonical makes ownership of event meaning and compatibility ambiguous.
 
-  - Semantic Conflict
-    > Timestamp, severity, identity, and extension fields require deliberate mappings because similarly named fields do not always have identical meaning.
+  - Fidelity and Cost
+    > Transformations can lose or reinterpret data, while retaining multiple forms increases processing, storage, privacy, and access-control obligations.
+
+This option is rejected as the default. Its OCSF and RFC 5424 components may be implemented independently under [Optional Boundary Adapters](#34-optional-boundary-adapters) when concrete requirements justify their cost.
 
 ## 5. Consequences
 
 - Positive
 
-  - Security events have stable names, typed fields, explicit schema versions, and trace and resource correlation at collection time.
+  - First-party security events use one canonical logical model from emission through collection.
 
-  - Security analytics receives normalized OCSF records across first-party, third-party, system, and device sources.
+  - Event names, attributes, timestamps, severity, resource identity, instrumentation version, and trace correlation are machine-readable and testable.
 
-  - Existing syslog integrations remain supported without making syslog the internal application schema.
+  - The event pipeline remains compatible with OpenTelemetry tooling and independent of a specific security analytics or storage vendor.
 
-  - Mapping tests, dead-letter handling, and loss metrics make transformation failures visible and auditable.
+  - OCSF and RFC 5424 complexity is introduced only at boundaries that demonstrate a need for it.
 
-  - Versioned boundaries reduce vendor lock-in and permit staged specification upgrades.
+  - One representative fixture is sufficient to validate the selected contract without implying that transformed representations are mandatory.
 
 - Negative
 
-  - Teams must operate and maintain collectors, normalization rules, schema validators, queues, and restricted failure paths.
+  - The project owns the security-event catalogue and must govern its definitions, compatibility, and sensitive-data classifications.
 
-  - Some fields cannot be mapped losslessly; preserving source values and documenting extensions increases record size and governance work.
+  - Cross-vendor security analytics does not receive an OCSF taxonomy unless a normalization adapter is implemented.
 
-  - Dual retention of source and normalized records may increase storage, privacy, and access-control obligations.
+  - Syslog-only sources and consumers require explicit ingress or egress profiles.
 
-  - OCSF and OpenTelemetry schema evolution can require coordinated mapping migrations and replay tests.
+  - Changes in developing OpenTelemetry Events and Logs conventions may require controlled migrations.
 
 - Risks
 
   - Sensitive Data Leakage
-    > Structured attributes can expose secrets or personal data at scale. Mitigate with source-side allowlists, redaction, classification, restricted raw storage, and automated tests.
+    > Structured attributes can expose secrets or personal data at scale. Mitigate with source-side allowlists, data classification, redaction, restricted access, and adversarial fixture tests.
+
+  - Semantic Drift
+    > Independently defined events can diverge in naming, outcome, identity, or severity. Mitigate with a reviewed catalogue, reusable attributes, schema versions, and CI validation.
 
   - Silent Event Loss
-    > Queue overflow, sampling, malformed input, receiver truncation, or exporter failure can create false confidence. Mitigate with durable buffering, loss metrics, alerts, dead-letter handling, and reconciliation tests.
+    > Queue overflow, sampling, malformed records, or exporter failure can create false confidence. Mitigate with durable buffering where required, loss telemetry, alerts, dead-letter handling, and reconciliation tests.
 
-  - Incorrect Normalization
-    > A plausible but incorrect class, actor, outcome, timestamp, or severity can mislead detections. Mitigate with reviewed mapping specifications, representative fixtures, schema validation, and provenance fields.
-
-  - Schema Drift
-    > Unpinned dependencies or implicit collector changes can alter event meaning. Mitigate with version locks, compatibility gates, canary deployments, and replayable fixtures.
+  - Schema Collision
+    > Project attributes may conflict with future upstream conventions. Mitigate with an owned namespace, versioned migrations, and periodic review of the OpenTelemetry registry.
 
   - Source Spoofing
-    > Syslog header fields and application-supplied resource attributes may be forged. Mitigate with authenticated transport, trusted receiver metadata, workload identity, and explicit conflict-resolution rules.
+    > Application-supplied resource attributes may be forged. Mitigate with authenticated transport, collector-supplied workload identity, trusted-source metadata, and explicit conflict-resolution rules.
 
 ## 6. Implementation
 
 1. Inventory Security Events
 
-    Catalogue events needed for detection, investigation, incident response, and audit. Record the source, threat or control objective, required fields, sensitivity, expected volume, retention class, and loss tolerance.
+    Catalogue events required for detection, investigation, incident response, and audit. Record each source, control objective, sensitivity, expected volume, retention class, and loss tolerance.
 
-2. Define the OpenTelemetry Event Catalogue
+2. Define the Security-Event Catalogue
 
-    For each first-party event, define a stable `EventName`, occurrence conditions, timestamp source, default severity, required and optional attributes, resource requirements, trace-correlation behavior, sensitivity, and examples. Generate or test language-specific emitters against this catalogue.
+    Define each event using the OpenTelemetry semantic-convention model. Record its stable name, occurrence condition, timestamp source, default severity, attributes and requirement levels, resource requirements, trace behavior, sensitivity, examples, and lifecycle.
 
-3. Establish a Versioned Mapping Registry
+3. Reuse and Namespace Attributes
 
-    Store source-to-OpenTelemetry, OpenTelemetry-to-OCSF, and boundary export mappings as reviewed artifacts. Pin OpenTelemetry semantic-convention, OCSF schema, collector component, and export-profile versions.
+    Review the current OpenTelemetry registry before adding a field. Replace custom duplicates with existing attributes and place necessary extensions in the governed project namespace.
 
-4. Build the Collection Pipeline
+4. Instrument Producers
 
-    Configure OpenTelemetry SDKs or appenders for first-party services and deploy collectors or gateways for OTLP and RFC 5424 inputs. Apply trusted-source enrichment, redaction, size limits, durable buffering, and routing before normalization.
+    Configure OpenTelemetry Logs APIs, SDKs, or compatible bridges for first-party services. Emit structured EventRecords independently of trace sampling and pin instrumentation-scope versions.
 
-5. Normalize and Validate OCSF
+5. Build the Collection Pipeline
 
-    Select OCSF classes and profiles per event catalogue entry, transform records, attach schema and mapping provenance, validate against the pinned schema, and route failures to the restricted dead-letter path.
+    Send events over OTLP to collectors that apply trusted-source enrichment, redaction, validation, size limits, buffering, and routing. Monitor rejected, dropped, retried, and failed records.
 
-6. Implement Syslog Profiles
+6. Add Conformance Gates
 
-    Create per-integration RFC 5424 ingress and egress profiles. Use RFC 5425 TLS transport, test framing and message-size limits with the actual peer, and monitor truncation, rejection, retry, and loss.
+    Validate the JSON Lines fixture as OTLP/JSON and test event names, attribute types, requirement levels, prohibited-data rules, severity, timestamps, trace identifiers, and backward compatibility in CI.
 
-7. Apply Storage and Access Controls
+7. Add Boundary Adapters on Demand
 
-    Define normalized and raw retention separately. Encrypt both, restrict raw-event access, audit privileged queries, and enable append-only or tamper-evident controls where required by the threat model or compliance obligations.
+    Introduce and separately version an OpenTelemetry-to-OCSF mapping or an RFC 5424 profile only after documenting the source or consumer that requires it, the fields that cannot be represented losslessly, and its validation and monitoring obligations.
 
-8. Add Conformance Gates
+8. Apply Storage and Access Controls
 
-    CI validates event definitions, naming and cardinality constraints, prohibited-data rules, schema conformance, mapping fixtures, severity conversions, timestamp precision, and backward compatibility. Release gates fail on undocumented mapping or schema-version changes.
+    Define retention by event class and sensitivity. Encrypt stored records, restrict access, audit privileged queries, and enable append-only or tamper-evident controls where required.
 
 9. Exercise Failure Modes
 
-    Test malformed input, unavailable collectors, queue exhaustion, duplicate delivery, clock skew, oversized syslog messages, schema upgrades, and replay. Verify alerts and recovery without losing the provenance needed to explain each record.
+    Test malformed input, unavailable collectors, queue exhaustion, duplicate delivery, clock skew, oversized attributes, schema upgrades, and replay. Verify alerts and recovery without losing provenance.
 
-10. Review Periodically
+10. Review Compatibility
 
-    Review the event catalogue, mapping coverage, dead-letter volume, sensitive-data findings, specification versions, and detection usefulness at least once per release cycle that changes security telemetry.
+    Review the event catalogue and pinned OpenTelemetry versions whenever a release changes security telemetry. Treat event or attribute incompatibilities as schema migrations rather than incidental logging changes.
 
 ## 7. References
 
@@ -546,11 +484,13 @@ flowchart LR
 - IETF [RFC 5424: The Syslog Protocol](https://www.rfc-editor.org/rfc/rfc5424) standard.
 - IETF [RFC 5425: Transport Layer Security (TLS) Transport Mapping for Syslog](https://www.rfc-editor.org/rfc/rfc5425) standard.
 - OCSF [schema repository](https://github.com/ocsf/ocsf-schema) repository.
-- OCSF [schema browser](https://schema.ocsf.io/) documentation.
-- OCSF [Understanding the Open Cybersecurity Schema Framework](https://github.com/ocsf/ocsf-docs/blob/main/overview/understanding-ocsf.md) documentation.
 - OpenTelemetry [Logging](https://opentelemetry.io/docs/specs/otel/logs/) specification.
 - OpenTelemetry [Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/) specification.
+- OpenTelemetry [Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/) specification.
 - OpenTelemetry [Semantic Conventions for Events](https://opentelemetry.io/docs/specs/semconv/general/events/) specification.
+- OpenTelemetry [General Logs Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/general/logs/) specification.
+- OpenTelemetry [Semantic Convention Naming](https://opentelemetry.io/docs/specs/semconv/general/naming/) guidance.
+- OpenTelemetry [How to Write Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/how-to-write-conventions/) guidance.
 - OpenTelemetry [OTLP Specification](https://opentelemetry.io/docs/specs/otlp/) specification.
 - OpenTelemetry [Protocol File Exporter](https://opentelemetry.io/docs/specs/otel/protocol/file-exporter/) specification.
 - OpenTelemetry [RFC 5424 Syslog Data Model Mapping](https://opentelemetry.io/docs/specs/otel/logs/data-model-appendix/#rfc5424-syslog) appendix.

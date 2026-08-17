@@ -68,6 +68,34 @@ Adopt a layered security-event logging architecture. OpenTelemetry is the canoni
 
 Only events classified as security relevant require OCSF normalization. Ordinary diagnostic logs may remain OpenTelemetry LogRecords when they do not support a security detection, investigation, response, or audit use case.
 
+A representative first-party realization of the decision is:
+
+```yaml
+security_event_pipeline:
+  collect:
+    specification: OpenTelemetry Logs
+    representation: LogRecord
+    protocol: OTLP
+
+  classify:
+    security_relevant:
+      normalize:
+        specification: OCSF
+        schema_version: 1.9.0
+      destination: security_analytics
+
+    diagnostic_only:
+      retain: OpenTelemetry LogRecord
+      destination: observability
+
+  interoperate:
+    when: syslog_boundary_required
+    message_format: RFC 5424
+    transport: RFC 5425
+```
+
+This YAML is an architectural contract rather than a vendor-specific collector configuration. Versioned mappings define the exact field, timestamp, severity, provenance, and failure-handling behavior between representations.
+
 ### 3.1. OpenTelemetry Logs and Events
 
 Use the [OpenTelemetry Logs Data Model](https://opentelemetry.io/docs/specs/otel/logs/data-model/) for first-party security-event emission and for the internal collection envelope. A security event is represented as an OpenTelemetry LogRecord with a non-empty `EventName`; unstructured diagnostic text remains a LogRecord without an event name.

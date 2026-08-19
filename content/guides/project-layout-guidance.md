@@ -489,7 +489,9 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 [Python Project Layout](https://github.com/johnthagen/python-blueprint) using best practices.
 
-#### 1.3.1. Module
+#### 1.3.1. Package
+
+[Python Package layout](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
 
 1. Layout and Structure
 

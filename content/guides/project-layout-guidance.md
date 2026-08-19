@@ -8,7 +8,7 @@
     - [1.2.1. Package](#121-package)
     - [1.2.2. Application](#122-application)
   - [1.3. Python](#13-python)
-    - [1.3.1. Module](#131-module)
+    - [1.3.1. Package](#131-package)
     - [1.3.2. Application](#132-application)
   - [1.4. Ansible](#14-ansible)
     - [1.4.1. Collection](#141-collection)
@@ -304,6 +304,8 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 #### 1.2.1. Package
 
+Go Package layout is a standard structure for organizing Go code, tests, and resources to facilitate maintainability, scalability, and collaboration.
+
 1. Layout and Structure
 
     > [!NOTE]
@@ -360,7 +362,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 #### 1.2.2. Application
 
-[Go Project Layout](https://github.com/golang-standards/project-layout) for applications. It is a set of common historical and emerging project layout patterns in the Go.
+[Go Project Layout](https://github.com/golang-standards/project-layout) is a standard structure for organizing Go code, tests, and resources to facilitate maintainability, scalability, and collaboration.
 
 > [!NOTE]
 > It's not an official standard defined by the core Go dev team.
@@ -487,14 +489,12 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 ### 1.3. Python
 
-[Python Project Layout](https://github.com/johnthagen/python-blueprint) using best practices.
-
 #### 1.3.1. Package
 
-[Python Package layout](https://packaging.python.org/en/latest/tutorials/packaging-projects/) based on a [flat or src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
+[Python Package layout](https://packaging.python.org/en/latest/tutorials/packaging-projects/) is a standard structure for organizing Python code, tests, and metadata to facilitate packaging, distribution, and installation based on a [flat or src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
 
 > [!TIP]
-> [pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
+> [pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) is the modern standard for Python packaging, organizing build, project, dependency, and tool configuration.
 
 1. Layout and Structure
 
@@ -502,18 +502,18 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
     > Replace `<...>` brackets with the module-specific information.
 
     ```markdown
-    <module>/
+    <package>/
     │
     . `Hierarchical Structure`
     │
     ├── src/
-    │   └── <module>/
+    │   └── <package>/
     │       ├── __init__.py
-    │       └── <module>.py
+    │       └── <package>.py
     │
     ├── tests/
     │   ├── __init__.py
-    │   └── test_<module>.py
+    │   └── test_<package>.py
     │
     ├── docs/
     │   └── README.md
@@ -525,14 +525,14 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 2. Files and Folders
 
-    - `src/<module>/`
-      > Source code for the module, placed under `src/` to prevent accidental imports from the project root during development.
+    - `src/<package>/`
+      > Source code for the package, placed under `src/` to prevent accidental imports from the project root during development.
 
       - `__init__.py`
         > Marks the directory as a Python package and defines the public API of the module.
 
-      - `<module>.py`
-        > Module implementation file.
+      - `<package>.py`
+        > Package implementation file.
 
     - `tests/`
       > Unit and integration tests for the module.
@@ -985,7 +985,7 @@ Terraform modules define self-contained, reusable resources of Infrastructure-as
 
 #### 1.5.2. Project
 
-A structured Terraform project for [multiple environments](https://developer.hashicorp.com/terraform/language/style#multiple-environments) designed to facilitate the management of Terraform configurations, reusable modules, and environment-specific settings.
+A Terraform project for [structured multiple environments](https://developer.hashicorp.com/terraform/language/style#multiple-environments) designed to facilitate the management of Terraform configurations, reusable modules, and environment-specific settings.
 
 > [!TIP]
 > The layout promotes separation of concerns and enables scalable management across multiple environments.

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.28.0](https://github.com/sentenz/convention/compare/2.27.3...2.28.0) (2026-08-19)
+
+### Features
+
+* create an ADR on Security Event Log Specifications ([#527](https://github.com/sentenz/convention/issues/527)) ([ee33ec5](https://github.com/sentenz/convention/commit/ee33ec5bae5400f5f961f392e02394a60cb652c0)), closes [#526](https://github.com/sentenz/convention/issues/526)
+
 ## [2.27.3](https://github.com/sentenz/convention/compare/2.27.2...2.27.3) (2026-08-12)
 
 ### Bug Fixes

@@ -980,7 +980,7 @@ Terraform modules define self-contained, reusable resources of Infrastructure-as
 
 #### 1.5.2. Project
 
-A structured Terraform project designed to facilitate the management of Terraform configurations, reusable modules, and environment-specific settings.
+A structured Terraform project for [multiple environments](https://developer.hashicorp.com/terraform/language/style#multiple-environments) designed to facilitate the management of Terraform configurations, reusable modules, and environment-specific settings.
 
 > [!TIP]
 > The layout promotes separation of concerns and enables scalable management across multiple environments.

@@ -491,7 +491,7 @@ The [Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https:/
 
 #### 1.3.1. Package
 
-[Python Package layout](https://packaging.python.org/en/latest/tutorials/packaging-projects/)
+[Python Package layout](https://packaging.python.org/en/latest/tutorials/packaging-projects/) based on a [flat or src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
 
 1. Layout and Structure
 

@@ -1,1 +1,0 @@
-<132>1 2026-08-17T20:00:00.000Z auth.example identity-api 4321 AUTHN [exampleSDID@32473 userId="user-123" sourceIp="192.0.2.10" outcome="failure" errorType="invalid_credentials" traceId="4bf92f3577b34da6a3ce929d0e0e4736"] Authentication failed

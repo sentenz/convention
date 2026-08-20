@@ -1,6 +1,6 @@
 # 017-ADR: Security Event Log Specifications
 
-Architectural Decision Records (ADR) on standardizing Security Event Log Specifications using RFC 5424, OCSF, and OpenTelemetry.
+Architectural Decision Records (ADR) on standardizing Security Event Log Specifications.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)

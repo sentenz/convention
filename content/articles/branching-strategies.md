@@ -8,9 +8,9 @@ Branching strategies are methodologies for managing code changes in version cont
   - [1.3. GitHub Flow](#13-github-flow)
   - [1.4. GitLab Flow](#14-gitlab-flow)
   - [1.5. Release Flow](#15-release-flow)
+  - [1.6. Conventional Branch](#16-conventional-branch)
 - [2. Principles](#2-principles)
 - [3. Best Practice](#3-best-practice)
-  - [3.1. Conventional Branch](#31-conventional-branch)
 - [4. Terminology](#4-terminology)
 - [5. References](#5-references)
 
@@ -293,44 +293,7 @@ Branching strategies are methodologies for managing code changes in version cont
         commit
     ```
 
-## 2. Principles
-
-- Separation of Concerns
-  > Branching strategies should clearly distinguish between different stages of the development process, such as development, testing, and release. This separation helps maintain a clean codebase, reduces the risk of merge conflicts, and ensures that stable code is deployed to production.
-
-- Isolation of Changes
-  > Branching should isolate changes to specific features or bug fixes, preventing them from affecting other parts of the codebase. This isolation minimizes the risk of introducing regressions or breaking existing functionality.
-
-- Consistency and Standardization
-  > Consistent branching naming conventions, branching rules, and review processes promote clarity and predictability across the development team. Standardization ensures that everyone follows a common approach, reducing confusion and errors.
-
-- Integration and Merging
-  > Branching strategies should facilitate efficient integration and merging of changes. Clear guidelines should be established for merging branches, ensuring that conflicts are resolved effectively and that the codebase remains stable.
-
-- Continuous Integration and Delivery (CI/CD)
-  > Effective branching strategies should align with CI/CD practices. Branches should be integrated regularly into a central repository to enable continuous testing and feedback. This integration should be automated to streamline the development process.
-
-- Adaptability and Flexibility
-  > Branching strategies should be adaptable to the specific needs and size of the project. As the project evolves, the branching strategy may need to be adjusted to accommodate changing requirements, team size, and release cadence.
-
-- Documentation and Communication
-  > Clear documentation of the branching strategy, including naming conventions, branching rules, and review processes, is crucial for team communication and knowledge sharing.
-
-## 3. Best Practice
-
-- Committing
-  > Follow a consistent format for commit messages, e.g. `Conventional Commits`.
-
-- Branch Naming Conventions
-  > Adopt consistent, machine-readable rules for naming branches, e.g. `feature/issue-name` or `release/1.0.x`.
-
-- Versioning
-  > Establish a versioning scheme for releases, e.g. `Semantic Versioning`.
-
-- Code Review Guidelines
-  > Clearly define what makes a pull request ready for review and merging.
-
-### 3.1. Conventional Branch
+### 1.6. Conventional Branch
 
 [Conventional Branch](https://github.com/conventional-branch/conventional-branch) complements a branching strategy by standardizing the names of trunk and support branches. Its human-readable, machine-parseable format makes branch intent explicit and enables consistent validation in local development tools, repository rules, and CI/CD pipelines.
 
@@ -371,6 +334,43 @@ Branching strategies are methodologies for managing code changes in version cont
 
     - Validation Points
       > Enforce the convention when a branch is created, before a push, and in CI/CD or repository rules so invalid names receive feedback before merge workflows begin.
+
+## 2. Principles
+
+- Separation of Concerns
+  > Branching strategies should clearly distinguish between different stages of the development process, such as development, testing, and release. This separation helps maintain a clean codebase, reduces the risk of merge conflicts, and ensures that stable code is deployed to production.
+
+- Isolation of Changes
+  > Branching should isolate changes to specific features or bug fixes, preventing them from affecting other parts of the codebase. This isolation minimizes the risk of introducing regressions or breaking existing functionality.
+
+- Consistency and Standardization
+  > Consistent branching naming conventions, branching rules, and review processes promote clarity and predictability across the development team. Standardization ensures that everyone follows a common approach, reducing confusion and errors.
+
+- Integration and Merging
+  > Branching strategies should facilitate efficient integration and merging of changes. Clear guidelines should be established for merging branches, ensuring that conflicts are resolved effectively and that the codebase remains stable.
+
+- Continuous Integration and Delivery (CI/CD)
+  > Effective branching strategies should align with CI/CD practices. Branches should be integrated regularly into a central repository to enable continuous testing and feedback. This integration should be automated to streamline the development process.
+
+- Adaptability and Flexibility
+  > Branching strategies should be adaptable to the specific needs and size of the project. As the project evolves, the branching strategy may need to be adjusted to accommodate changing requirements, team size, and release cadence.
+
+- Documentation and Communication
+  > Clear documentation of the branching strategy, including naming conventions, branching rules, and review processes, is crucial for team communication and knowledge sharing.
+
+## 3. Best Practice
+
+- Committing
+  > Follow a consistent format for commit messages, e.g. `Conventional Commits`.
+
+- Branch Naming Conventions
+  > Adopt consistent, machine-readable rules for naming branches, e.g. `feature/issue-name` or `release/1.0.x`.
+
+- Versioning
+  > Establish a versioning scheme for releases, e.g. `Semantic Versioning`.
+
+- Code Review Guidelines
+  > Clearly define what makes a pull request ready for review and merging.
 
 ## 4. Terminology
 

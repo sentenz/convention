@@ -463,6 +463,6 @@ Branching strategies are methodologies for managing code changes in version cont
 
 ## 5. References
 
-- Conventional Branch [Specification](https://github.com/conventional-branch/conventional-branch).
+- Conventional Branch [Specification](https://github.com/conventional-branch/conventional-branch) page.
 - Sentenz [Commits](../articles/commit.md) article.
 - Sentenz [Versioning](../articles/versioning.md) article.

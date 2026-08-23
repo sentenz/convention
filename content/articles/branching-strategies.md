@@ -10,6 +10,7 @@ Branching strategies are methodologies for managing code changes in version cont
   - [1.5. Release Flow](#15-release-flow)
 - [2. Principles](#2-principles)
 - [3. Best Practice](#3-best-practice)
+  - [3.1. Conventional Branch](#31-conventional-branch)
 - [4. Terminology](#4-terminology)
 - [5. References](#5-references)
 
@@ -321,13 +322,55 @@ Branching strategies are methodologies for managing code changes in version cont
   > Follow a consistent format for commit messages, e.g. `Conventional Commits`.
 
 - Branch Naming Conventions
-  > Define rules for naming branches, ensuring clarity, e.g. `feature/issue-name` or `release/1.0.x`.
+  > Adopt consistent, machine-readable rules for naming branches, e.g. `feature/issue-name` or `release/1.0.x`.
 
 - Versioning
   > Establish a versioning scheme for releases, e.g. `Semantic Versioning`.
 
 - Code Review Guidelines
   > Clearly define what makes a pull request ready for review and merging.
+
+### 3.1. Conventional Branch
+
+[Conventional Branch](https://github.com/conventional-branch/conventional-branch) complements a branching strategy by standardizing the names of trunk and support branches. Its human-readable, machine-parseable format makes branch intent explicit and enables consistent validation in local development tools, repository rules, and CI/CD pipelines.
+
+1. Syntax
+
+    ```plaintext
+    <type>/<description>
+    ```
+
+    > The `type` identifies the purpose or origin of the branch, while the `description` provides a concise summary. The trunk branches `main`, `master`, and `develop` are valid without a prefix.
+
+2. Types
+
+    | Category        | Types                                             | Purpose                         | Example                       |
+    | --------------- | ------------------------------------------------- | ------------------------------- | ----------------------------- |
+    | Change purpose  | `feature`, `feat`                                 | New feature                     | `feature/add-login-page`      |
+    | Change purpose  | `bugfix`, `fix`                                   | Bug fix                         | `fix/header-bug`              |
+    | Change purpose  | `hotfix`                                          | Urgent production fix           | `hotfix/security-patch`       |
+    | Change purpose  | `release`                                         | Release preparation             | `release/v1.2.0`              |
+    | Change purpose  | `chore`                                           | Non-code task                   | `chore/update-dependencies`   |
+    | AI agent source | `ai`, `claude`, `codex`, `copilot`, and `cursor`  | AI coding agent source          | `codex/optimize-query`        |
+
+3. Naming Rules
+
+    - Use lowercase letters for textual elements; digits are also permitted.
+    - Separate the type and description with exactly one forward slash (`/`).
+    - Separate words with single hyphens (`-`); dots (`.`) may delimit version components.
+    - Keep every hyphen- or dot-delimited description component nonempty and alphanumeric.
+    - Do not use spaces, underscores, consecutive separators, or additional path segments.
+
+4. Automated Enforcement
+
+    - Machine-Readable Specification
+      > Use the versioned [`spec.json`](https://conventionalbranch.org/v1.1.0/spec.json) as the authoritative source for supported types, trunk branches, grammar, and the validation regular expression. Pinning a published version prevents specification updates from changing validation behavior unexpectedly.
+
+    - Conformance Fixtures
+      > Use the repository's language-independent [`tests/fixtures.json`](https://github.com/conventional-branch/conventional-branch/blob/main/tests/fixtures.json) to verify validators against canonical valid and invalid branch names.
+
+    - Validation Points
+      > Enforce the convention when a branch is created, before a push, and in CI/CD or repository rules so invalid names receive feedback before merge workflows begin.
 
 ## 4. Terminology
 
@@ -375,5 +418,6 @@ Branching strategies are methodologies for managing code changes in version cont
 
 ## 5. References
 
+- Conventional Branch [Specification](https://github.com/conventional-branch/conventional-branch).
 - Sentenz [Commits](../articles/commit.md) article.
 - Sentenz [Versioning](../articles/versioning.md) article.

@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.29.0](https://github.com/sentenz/convention/compare/2.28.0...2.29.0) (2026-08-23)
+
+### Features
+
+* **article:** add Conventional Branch to Branching Strategies ([#530](https://github.com/sentenz/convention/issues/530)) ([aab2ecc](https://github.com/sentenz/convention/commit/aab2ecc9e92bc2e56ff2eaab1e7e5c082a11d31f))
+
 ## [2.28.0](https://github.com/sentenz/convention/compare/2.27.3...2.28.0) (2026-08-19)
 
 ### Features

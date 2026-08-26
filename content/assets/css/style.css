@@ -1,6 +1,6 @@
 /* ========================================================================== */
 /* MkDocs Material — Material Design 3 token adapter                          */
-/* Palette: Cobalt primary · Lilac accent · Cool neutral surfaces             */
+/* Palette: Aurora teal · Periwinkle accent · Graphite neutral surfaces       */
 /* Static light/dark schemes for a CSS-only MkDocs implementation.            */
 /* ========================================================================== */
 
@@ -38,41 +38,41 @@
 [data-md-color-scheme="default"] {
   color-scheme: light;
 
-  --md-sys-color-primary: #005ac1;
+  --md-sys-color-primary: #006a6a;
   --md-sys-color-on-primary: #ffffff;
-  --md-sys-color-primary-container: #d8e2ff;
-  --md-sys-color-on-primary-container: #001a41;
+  --md-sys-color-primary-container: #9cf1ef;
+  --md-sys-color-on-primary-container: #002020;
 
-  --md-sys-color-secondary: #575e71;
+  --md-sys-color-secondary: #4a6267;
   --md-sys-color-on-secondary: #ffffff;
-  --md-sys-color-secondary-container: #dbe2f9;
-  --md-sys-color-on-secondary-container: #141b2c;
+  --md-sys-color-secondary-container: #cce7ec;
+  --md-sys-color-on-secondary-container: #051f23;
 
-  --md-sys-color-tertiary: #715573;
+  --md-sys-color-tertiary: #5a5d92;
   --md-sys-color-on-tertiary: #ffffff;
-  --md-sys-color-tertiary-container: #fbd7fc;
-  --md-sys-color-on-tertiary-container: #29132d;
+  --md-sys-color-tertiary-container: #e0e0ff;
+  --md-sys-color-on-tertiary-container: #161a4b;
 
   --md-sys-color-error: #ba1a1a;
   --md-sys-color-on-error: #ffffff;
   --md-sys-color-error-container: #ffdad6;
   --md-sys-color-on-error-container: #410002;
 
-  --md-sys-color-surface: #faf8ff;
-  --md-sys-color-surface-dim: #dad9e0;
-  --md-sys-color-surface-bright: #faf8ff;
+  --md-sys-color-surface: #f7faf9;
+  --md-sys-color-surface-dim: #d7dbda;
+  --md-sys-color-surface-bright: #f7faf9;
   --md-sys-color-surface-container-lowest: #ffffff;
-  --md-sys-color-surface-container-low: #f4f3fa;
-  --md-sys-color-surface-container: #eeedf4;
-  --md-sys-color-surface-container-high: #e8e7ee;
-  --md-sys-color-surface-container-highest: #e2e2e9;
-  --md-sys-color-on-surface: #1a1b20;
-  --md-sys-color-on-surface-variant: #44474f;
-  --md-sys-color-outline: #74777f;
-  --md-sys-color-outline-variant: #c4c6d0;
-  --md-sys-color-inverse-surface: #2f3036;
-  --md-sys-color-inverse-on-surface: #f1f0f7;
-  --md-sys-color-inverse-primary: #aec6ff;
+  --md-sys-color-surface-container-low: #f1f5f4;
+  --md-sys-color-surface-container: #ebefee;
+  --md-sys-color-surface-container-high: #e5e9e8;
+  --md-sys-color-surface-container-highest: #dfe3e2;
+  --md-sys-color-on-surface: #191c1c;
+  --md-sys-color-on-surface-variant: #3f4948;
+  --md-sys-color-outline: #6f7979;
+  --md-sys-color-outline-variant: #bec9c8;
+  --md-sys-color-inverse-surface: #2e3131;
+  --md-sys-color-inverse-on-surface: #eff1f0;
+  --md-sys-color-inverse-primary: #80d5d3;
   --md-sys-color-scrim: #000000;
   --md-sys-color-shadow: #000000;
 
@@ -85,61 +85,65 @@
   --md-custom-color-on-warning-container: #261900;
 
   /* M3 state-layer opacity levels over primary. */
-  --md-sys-state-hover: rgba(0, 90, 193, 0.08);
-  --md-sys-state-focus: rgba(0, 90, 193, 0.12);
-  --md-sys-state-pressed: rgba(0, 90, 193, 0.12);
-  --md-sys-state-dragged: rgba(0, 90, 193, 0.16);
+  --md-sys-state-hover: rgba(0, 106, 106, 0.08);
+  --md-sys-state-focus: rgba(0, 106, 106, 0.12);
+  --md-sys-state-pressed: rgba(0, 106, 106, 0.12);
+  --md-sys-state-dragged: rgba(0, 106, 106, 0.16);
 
-  /* App chrome preserves the established brand treatment. */
+  /* App chrome and search use separate semantic contrast roles. */
   --md-app-bar-color: var(--md-sys-color-primary);
   --md-app-bar-on-color: var(--md-sys-color-on-primary);
-  --md-app-bar-field-color: #004eaa;
-  --md-app-bar-field-hover-color: #00418f;
   --md-app-bar-accent-color: var(--md-sys-color-tertiary-container);
+  --md-search-field-color: var(--md-sys-color-surface-container-lowest);
+  --md-search-field-hover-color: var(--md-sys-color-surface-container-low);
+  --md-search-field-text-color: var(--md-sys-color-on-surface);
+  --md-search-field-placeholder-color: var(--md-sys-color-on-surface-variant);
+  --md-app-bar-field-color: var(--md-search-field-color);
+  --md-app-bar-field-hover-color: var(--md-search-field-hover-color);
 
   /* MkDocs Material adapter. */
   --md-primary-fg-color: var(--md-app-bar-color);
   --md-primary-fg-color--light: var(--md-sys-color-primary-container);
-  --md-primary-fg-color--dark: #004494;
+  --md-primary-fg-color--dark: #004f4f;
   --md-primary-bg-color: var(--md-app-bar-on-color);
 
   --md-accent-fg-color: var(--md-sys-color-tertiary);
-  --md-accent-fg-color--transparent: rgba(113, 85, 115, 0.12);
+  --md-accent-fg-color--transparent: rgba(90, 93, 146, 0.12);
   --md-accent-bg-color: var(--md-sys-color-on-tertiary);
 
   --md-default-bg-color: var(--md-sys-color-surface);
   --md-default-bg-color--light: var(--md-sys-color-surface-container-low);
   --md-default-bg-color--lighter: var(--md-sys-color-surface-container);
-  --md-default-bg-color--lightest: rgba(26, 27, 32, 0.12);
+  --md-default-bg-color--lightest: rgba(25, 28, 28, 0.12);
 
   --md-default-fg-color: var(--md-sys-color-on-surface);
   --md-default-fg-color--light: var(--md-sys-color-on-surface-variant);
   --md-default-fg-color--lighter: var(--md-sys-color-outline);
-  --md-default-fg-color--lightest: rgba(26, 27, 32, 0.12);
+  --md-default-fg-color--lightest: rgba(25, 28, 28, 0.12);
 
   --md-typeset-a-color: var(--md-sys-color-primary);
   --md-code-bg-color: var(--md-sys-color-surface-container);
   --md-code-fg-color: var(--md-sys-color-on-surface);
 
-  --md-code-hl-keyword-color: #6f3d91;
+  --md-code-hl-keyword-color: #6c3f8f;
   --md-code-hl-function-color: var(--md-sys-color-primary);
   --md-code-hl-string-color: var(--md-custom-color-info);
   --md-code-hl-comment-color: var(--md-sys-color-outline);
   --md-code-hl-name-color: var(--md-sys-color-on-surface);
-  --md-code-hl-special-color: #9a354a;
+  --md-code-hl-special-color: #a23b53;
   --md-code-hl-number-color: var(--md-custom-color-warning);
   --md-code-hl-operator-color: var(--md-sys-color-on-surface-variant);
   --md-code-hl-punctuation-color: var(--md-sys-color-outline);
   --md-code-hl-generic-color: var(--md-sys-color-on-surface);
   --md-code-hl-variable-color: var(--md-sys-color-tertiary);
-  --md-code-hl-constant-color: #6f3d91;
+  --md-code-hl-constant-color: #6c3f8f;
 
   --md-error-fg-color: var(--md-sys-color-error);
   --md-error-bg-color: var(--md-sys-color-error-container);
   --md-error-bg-color--light: rgba(186, 26, 26, 0.1);
 
   --md-footer-bg-color: var(--md-sys-color-inverse-surface);
-  --md-footer-bg-color--dark: #1f2026;
+  --md-footer-bg-color--dark: #202424;
 
   /* Compatibility aliases for existing local naming. */
   --md-outline-color: var(--md-sys-color-outline);
@@ -157,41 +161,41 @@
 [data-md-color-scheme="slate"] {
   color-scheme: dark;
 
-  --md-sys-color-primary: #aec6ff;
-  --md-sys-color-on-primary: #002e69;
-  --md-sys-color-primary-container: #004494;
-  --md-sys-color-on-primary-container: #d8e2ff;
+  --md-sys-color-primary: #80d5d3;
+  --md-sys-color-on-primary: #003737;
+  --md-sys-color-primary-container: #004f4f;
+  --md-sys-color-on-primary-container: #9cf1ef;
 
-  --md-sys-color-secondary: #bfc6dc;
-  --md-sys-color-on-secondary: #293041;
-  --md-sys-color-secondary-container: #3f4759;
-  --md-sys-color-on-secondary-container: #dbe2f9;
+  --md-sys-color-secondary: #b0cbd0;
+  --md-sys-color-on-secondary: #1b3438;
+  --md-sys-color-secondary-container: #324b4f;
+  --md-sys-color-on-secondary-container: #cce7ec;
 
-  --md-sys-color-tertiary: #debcdf;
-  --md-sys-color-on-tertiary: #402843;
-  --md-sys-color-tertiary-container: #583e5b;
-  --md-sys-color-on-tertiary-container: #fbd7fc;
+  --md-sys-color-tertiary: #c2c4ff;
+  --md-sys-color-on-tertiary: #2b2e61;
+  --md-sys-color-tertiary-container: #424477;
+  --md-sys-color-on-tertiary-container: #e0e0ff;
 
   --md-sys-color-error: #ffb4ab;
   --md-sys-color-on-error: #690005;
   --md-sys-color-error-container: #93000a;
   --md-sys-color-on-error-container: #ffdad6;
 
-  --md-sys-color-surface: #121318;
-  --md-sys-color-surface-dim: #121318;
-  --md-sys-color-surface-bright: #38393f;
-  --md-sys-color-surface-container-lowest: #0d0e13;
-  --md-sys-color-surface-container-low: #1a1b20;
-  --md-sys-color-surface-container: #1e1f25;
-  --md-sys-color-surface-container-high: #282a2f;
-  --md-sys-color-surface-container-highest: #33353a;
-  --md-sys-color-on-surface: #e3e2e9;
-  --md-sys-color-on-surface-variant: #c4c6d0;
-  --md-sys-color-outline: #8e9099;
-  --md-sys-color-outline-variant: #44474f;
-  --md-sys-color-inverse-surface: #e3e2e9;
-  --md-sys-color-inverse-on-surface: #2f3036;
-  --md-sys-color-inverse-primary: #005ac1;
+  --md-sys-color-surface: #101414;
+  --md-sys-color-surface-dim: #101414;
+  --md-sys-color-surface-bright: #363a39;
+  --md-sys-color-surface-container-lowest: #0b0f0f;
+  --md-sys-color-surface-container-low: #181c1c;
+  --md-sys-color-surface-container: #1c2020;
+  --md-sys-color-surface-container-high: #272b2a;
+  --md-sys-color-surface-container-highest: #313635;
+  --md-sys-color-on-surface: #e1e3e2;
+  --md-sys-color-on-surface-variant: #bec9c8;
+  --md-sys-color-outline: #899392;
+  --md-sys-color-outline-variant: #3f4948;
+  --md-sys-color-inverse-surface: #e1e3e2;
+  --md-sys-color-inverse-on-surface: #2e3131;
+  --md-sys-color-inverse-primary: #006a6a;
   --md-sys-color-scrim: #000000;
   --md-sys-color-shadow: #000000;
 
@@ -202,59 +206,63 @@
   --md-custom-color-warning-container: #5d4200;
   --md-custom-color-on-warning-container: #ffdea6;
 
-  --md-sys-state-hover: rgba(174, 198, 255, 0.08);
-  --md-sys-state-focus: rgba(174, 198, 255, 0.12);
-  --md-sys-state-pressed: rgba(174, 198, 255, 0.12);
-  --md-sys-state-dragged: rgba(174, 198, 255, 0.16);
+  --md-sys-state-hover: rgba(128, 213, 211, 0.08);
+  --md-sys-state-focus: rgba(128, 213, 211, 0.12);
+  --md-sys-state-pressed: rgba(128, 213, 211, 0.12);
+  --md-sys-state-dragged: rgba(128, 213, 211, 0.16);
 
   --md-app-bar-color: var(--md-sys-color-primary-container);
   --md-app-bar-on-color: var(--md-sys-color-on-primary-container);
-  --md-app-bar-field-color: #003b81;
-  --md-app-bar-field-hover-color: #00346f;
   --md-app-bar-accent-color: var(--md-sys-color-tertiary);
+  --md-search-field-color: var(--md-sys-color-surface-container-high);
+  --md-search-field-hover-color: var(--md-sys-color-surface-container-highest);
+  --md-search-field-text-color: var(--md-sys-color-on-surface);
+  --md-search-field-placeholder-color: var(--md-sys-color-on-surface-variant);
+  --md-app-bar-field-color: var(--md-search-field-color);
+  --md-app-bar-field-hover-color: var(--md-search-field-hover-color);
 
   --md-primary-fg-color: var(--md-app-bar-color);
-  --md-primary-fg-color--light: #2a5ba8;
-  --md-primary-fg-color--dark: #00346f;
+  --md-primary-fg-color--light: #2f6665;
+  --md-primary-fg-color--dark: #003b3b;
   --md-primary-bg-color: var(--md-app-bar-on-color);
 
   --md-accent-fg-color: var(--md-sys-color-tertiary);
-  --md-accent-fg-color--transparent: rgba(222, 188, 223, 0.12);
+  --md-accent-fg-color--transparent: rgba(194, 196, 255, 0.12);
   --md-accent-bg-color: var(--md-sys-color-on-tertiary);
 
   --md-default-bg-color: var(--md-sys-color-surface);
   --md-default-bg-color--light: var(--md-sys-color-surface-container-low);
   --md-default-bg-color--lighter: var(--md-sys-color-surface-container);
-  --md-default-bg-color--lightest: rgba(227, 226, 233, 0.12);
+  --md-default-bg-color--lightest: rgba(225, 227, 226, 0.12);
 
   --md-default-fg-color: var(--md-sys-color-on-surface);
   --md-default-fg-color--light: var(--md-sys-color-on-surface-variant);
   --md-default-fg-color--lighter: var(--md-sys-color-outline);
-  --md-default-fg-color--lightest: rgba(227, 226, 233, 0.12);
+  --md-default-fg-color--lightest: rgba(225, 227, 226, 0.12);
 
   --md-typeset-a-color: var(--md-sys-color-primary);
   --md-code-bg-color: var(--md-sys-color-surface-container);
   --md-code-fg-color: var(--md-sys-color-on-surface);
 
-  --md-code-hl-keyword-color: #d8b9ff;
+  --md-code-hl-keyword-color: #d4b5f5;
   --md-code-hl-function-color: var(--md-sys-color-primary);
   --md-code-hl-string-color: var(--md-custom-color-info);
   --md-code-hl-comment-color: var(--md-sys-color-outline);
   --md-code-hl-name-color: var(--md-sys-color-on-surface);
-  --md-code-hl-special-color: #ffb1c3;
+  --md-code-hl-special-color: #ffb1c8;
   --md-code-hl-number-color: var(--md-custom-color-warning);
   --md-code-hl-operator-color: var(--md-sys-color-on-surface-variant);
   --md-code-hl-punctuation-color: var(--md-sys-color-outline);
   --md-code-hl-generic-color: var(--md-sys-color-on-surface);
   --md-code-hl-variable-color: var(--md-sys-color-tertiary);
-  --md-code-hl-constant-color: #d8b9ff;
+  --md-code-hl-constant-color: #d4b5f5;
 
   --md-error-fg-color: var(--md-sys-color-error);
   --md-error-bg-color: var(--md-sys-color-error-container);
   --md-error-bg-color--light: rgba(255, 180, 171, 0.12);
 
   --md-footer-bg-color: var(--md-sys-color-surface-container-lowest);
-  --md-footer-bg-color--dark: #08090e;
+  --md-footer-bg-color--dark: #070b0b;
 
   --md-outline-color: var(--md-sys-color-outline);
   --md-outline-color--light: var(--md-sys-color-outline-variant);
@@ -329,19 +337,29 @@ body {
 }
 
 .md-search__form {
-  background: var(--md-app-bar-field-color);
+  background: var(--md-search-field-color);
   border-radius: var(--md-sys-shape-corner-full);
   transition: background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
 }
 
 .md-search__form:hover,
 .md-search__form:focus-within {
-  background: var(--md-app-bar-field-hover-color);
+  background: var(--md-search-field-hover-color);
 }
 
-.md-search__input,
+.md-search__input {
+  color: var(--md-search-field-text-color);
+  caret-color: var(--md-sys-color-primary);
+  opacity: 1;
+}
+
+.md-search__input::placeholder {
+  color: var(--md-search-field-placeholder-color);
+  opacity: 1;
+}
+
 .md-search__icon {
-  color: var(--md-app-bar-on-color);
+  color: var(--md-search-field-placeholder-color);
 }
 
 .md-search-result__meta {
@@ -696,14 +714,14 @@ body {
 
 @media print {
   [data-md-color-scheme] {
-    --md-sys-color-primary: #005ac1;
+    --md-sys-color-primary: #006a6a;
     --md-sys-color-on-primary: #ffffff;
     --md-sys-color-primary-container: #ffffff;
-    --md-sys-color-on-primary-container: #001a41;
-    --md-sys-color-tertiary: #715573;
+    --md-sys-color-on-primary-container: #002020;
+    --md-sys-color-tertiary: #5a5d92;
     --md-sys-color-on-tertiary: #ffffff;
     --md-sys-color-tertiary-container: #ffffff;
-    --md-sys-color-on-tertiary-container: #29132d;
+    --md-sys-color-on-tertiary-container: #161a4b;
     --md-sys-color-error: #8c1d18;
     --md-sys-color-error-container: #ffffff;
     --md-sys-color-on-error-container: #410002;
@@ -718,8 +736,8 @@ body {
     --md-sys-color-outline-variant: #cccccc;
     --md-code-bg-color: #f5f5f5;
     --md-code-fg-color: #000000;
-    --md-typeset-a-color: #005ac1;
-    --md-accent-fg-color: #715573;
+    --md-typeset-a-color: #006a6a;
+    --md-accent-fg-color: #5a5d92;
     --md-primary-fg-color: #ffffff;
     --md-primary-bg-color: #000000;
     --md-footer-bg-color: #ffffff;

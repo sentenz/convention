@@ -1,5 +1,6 @@
 /* ========================================================================== */
 /* MkDocs Material — Material Design 3 token adapter                          */
+/* Palette: Cobalt primary · Lilac accent · Cool neutral surfaces             */
 /* Static light/dark schemes for a CSS-only MkDocs implementation.            */
 /* ========================================================================== */
 
@@ -37,108 +38,108 @@
 [data-md-color-scheme="default"] {
   color-scheme: light;
 
-  --md-sys-color-primary: #5d3aab;
+  --md-sys-color-primary: #005ac1;
   --md-sys-color-on-primary: #ffffff;
-  --md-sys-color-primary-container: #eaddff;
-  --md-sys-color-on-primary-container: #21005d;
+  --md-sys-color-primary-container: #d8e2ff;
+  --md-sys-color-on-primary-container: #001a41;
 
-  --md-sys-color-secondary: #625b71;
+  --md-sys-color-secondary: #575e71;
   --md-sys-color-on-secondary: #ffffff;
-  --md-sys-color-secondary-container: #e8def8;
-  --md-sys-color-on-secondary-container: #1d192b;
+  --md-sys-color-secondary-container: #dbe2f9;
+  --md-sys-color-on-secondary-container: #141b2c;
 
-  --md-sys-color-tertiary: #006c52;
+  --md-sys-color-tertiary: #715573;
   --md-sys-color-on-tertiary: #ffffff;
-  --md-sys-color-tertiary-container: #b5f5e0;
-  --md-sys-color-on-tertiary-container: #002019;
+  --md-sys-color-tertiary-container: #fbd7fc;
+  --md-sys-color-on-tertiary-container: #29132d;
 
   --md-sys-color-error: #ba1a1a;
   --md-sys-color-on-error: #ffffff;
   --md-sys-color-error-container: #ffdad6;
   --md-sys-color-on-error-container: #410002;
 
-  --md-sys-color-surface: #fdf8fd;
-  --md-sys-color-surface-dim: #ded8e1;
-  --md-sys-color-surface-bright: #fdf8fd;
+  --md-sys-color-surface: #faf8ff;
+  --md-sys-color-surface-dim: #dad9e0;
+  --md-sys-color-surface-bright: #faf8ff;
   --md-sys-color-surface-container-lowest: #ffffff;
-  --md-sys-color-surface-container-low: #f7f2fa;
-  --md-sys-color-surface-container: #f3edf7;
-  --md-sys-color-surface-container-high: #ece6f0;
-  --md-sys-color-surface-container-highest: #e6e0e9;
-  --md-sys-color-on-surface: #1c1b1f;
-  --md-sys-color-on-surface-variant: #49454f;
-  --md-sys-color-outline: #79747e;
-  --md-sys-color-outline-variant: #cac4d0;
-  --md-sys-color-inverse-surface: #313033;
-  --md-sys-color-inverse-on-surface: #f4eff4;
-  --md-sys-color-inverse-primary: #d0bcff;
+  --md-sys-color-surface-container-low: #f4f3fa;
+  --md-sys-color-surface-container: #eeedf4;
+  --md-sys-color-surface-container-high: #e8e7ee;
+  --md-sys-color-surface-container-highest: #e2e2e9;
+  --md-sys-color-on-surface: #1a1b20;
+  --md-sys-color-on-surface-variant: #44474f;
+  --md-sys-color-outline: #74777f;
+  --md-sys-color-outline-variant: #c4c6d0;
+  --md-sys-color-inverse-surface: #2f3036;
+  --md-sys-color-inverse-on-surface: #f1f0f7;
+  --md-sys-color-inverse-primary: #aec6ff;
   --md-sys-color-scrim: #000000;
   --md-sys-color-shadow: #000000;
 
   /* Documentation-specific semantic extensions. */
-  --md-custom-color-info: #1a5c9e;
-  --md-custom-color-info-container: #d5e3ff;
-  --md-custom-color-on-info-container: #001b3d;
-  --md-custom-color-warning: #7f5617;
+  --md-custom-color-info: #006875;
+  --md-custom-color-info-container: #9eeffd;
+  --md-custom-color-on-info-container: #001f24;
+  --md-custom-color-warning: #7b5800;
   --md-custom-color-warning-container: #ffdea6;
-  --md-custom-color-on-warning-container: #291800;
+  --md-custom-color-on-warning-container: #261900;
 
   /* M3 state-layer opacity levels over primary. */
-  --md-sys-state-hover: rgba(93, 58, 171, 0.08);
-  --md-sys-state-focus: rgba(93, 58, 171, 0.12);
-  --md-sys-state-pressed: rgba(93, 58, 171, 0.12);
-  --md-sys-state-dragged: rgba(93, 58, 171, 0.16);
+  --md-sys-state-hover: rgba(0, 90, 193, 0.08);
+  --md-sys-state-focus: rgba(0, 90, 193, 0.12);
+  --md-sys-state-pressed: rgba(0, 90, 193, 0.12);
+  --md-sys-state-dragged: rgba(0, 90, 193, 0.16);
 
   /* App chrome preserves the established brand treatment. */
   --md-app-bar-color: var(--md-sys-color-primary);
   --md-app-bar-on-color: var(--md-sys-color-on-primary);
-  --md-app-bar-field-color: #4f2f96;
-  --md-app-bar-field-hover-color: #43287f;
+  --md-app-bar-field-color: #004eaa;
+  --md-app-bar-field-hover-color: #00418f;
   --md-app-bar-accent-color: var(--md-sys-color-tertiary-container);
 
   /* MkDocs Material adapter. */
   --md-primary-fg-color: var(--md-app-bar-color);
   --md-primary-fg-color--light: var(--md-sys-color-primary-container);
-  --md-primary-fg-color--dark: #3f277d;
+  --md-primary-fg-color--dark: #004494;
   --md-primary-bg-color: var(--md-app-bar-on-color);
 
   --md-accent-fg-color: var(--md-sys-color-tertiary);
-  --md-accent-fg-color--transparent: rgba(0, 108, 82, 0.12);
+  --md-accent-fg-color--transparent: rgba(113, 85, 115, 0.12);
   --md-accent-bg-color: var(--md-sys-color-on-tertiary);
 
   --md-default-bg-color: var(--md-sys-color-surface);
   --md-default-bg-color--light: var(--md-sys-color-surface-container-low);
   --md-default-bg-color--lighter: var(--md-sys-color-surface-container);
-  --md-default-bg-color--lightest: rgba(28, 27, 31, 0.12);
+  --md-default-bg-color--lightest: rgba(26, 27, 32, 0.12);
 
   --md-default-fg-color: var(--md-sys-color-on-surface);
   --md-default-fg-color--light: var(--md-sys-color-on-surface-variant);
   --md-default-fg-color--lighter: var(--md-sys-color-outline);
-  --md-default-fg-color--lightest: rgba(28, 27, 31, 0.12);
+  --md-default-fg-color--lightest: rgba(26, 27, 32, 0.12);
 
   --md-typeset-a-color: var(--md-sys-color-primary);
   --md-code-bg-color: var(--md-sys-color-surface-container);
   --md-code-fg-color: var(--md-sys-color-on-surface);
 
-  --md-code-hl-keyword-color: #7f1d8e;
-  --md-code-hl-function-color: var(--md-sys-color-tertiary);
+  --md-code-hl-keyword-color: #6f3d91;
+  --md-code-hl-function-color: var(--md-sys-color-primary);
   --md-code-hl-string-color: var(--md-custom-color-info);
   --md-code-hl-comment-color: var(--md-sys-color-outline);
   --md-code-hl-name-color: var(--md-sys-color-on-surface);
-  --md-code-hl-special-color: #9c27b0;
+  --md-code-hl-special-color: #9a354a;
   --md-code-hl-number-color: var(--md-custom-color-warning);
   --md-code-hl-operator-color: var(--md-sys-color-on-surface-variant);
   --md-code-hl-punctuation-color: var(--md-sys-color-outline);
   --md-code-hl-generic-color: var(--md-sys-color-on-surface);
   --md-code-hl-variable-color: var(--md-sys-color-tertiary);
-  --md-code-hl-constant-color: #7f1d8e;
+  --md-code-hl-constant-color: #6f3d91;
 
   --md-error-fg-color: var(--md-sys-color-error);
   --md-error-bg-color: var(--md-sys-color-error-container);
   --md-error-bg-color--light: rgba(186, 26, 26, 0.1);
 
   --md-footer-bg-color: var(--md-sys-color-inverse-surface);
-  --md-footer-bg-color--dark: #211f22;
+  --md-footer-bg-color--dark: #1f2026;
 
   /* Compatibility aliases for existing local naming. */
   --md-outline-color: var(--md-sys-color-outline);
@@ -156,104 +157,104 @@
 [data-md-color-scheme="slate"] {
   color-scheme: dark;
 
-  --md-sys-color-primary: #d0bcff;
-  --md-sys-color-on-primary: #381e72;
-  --md-sys-color-primary-container: #4f378b;
-  --md-sys-color-on-primary-container: #eaddff;
+  --md-sys-color-primary: #aec6ff;
+  --md-sys-color-on-primary: #002e69;
+  --md-sys-color-primary-container: #004494;
+  --md-sys-color-on-primary-container: #d8e2ff;
 
-  --md-sys-color-secondary: #ccc2dc;
-  --md-sys-color-on-secondary: #332d41;
-  --md-sys-color-secondary-container: #4a4458;
-  --md-sys-color-on-secondary-container: #e8def8;
+  --md-sys-color-secondary: #bfc6dc;
+  --md-sys-color-on-secondary: #293041;
+  --md-sys-color-secondary-container: #3f4759;
+  --md-sys-color-on-secondary-container: #dbe2f9;
 
-  --md-sys-color-tertiary: #9ef5e0;
-  --md-sys-color-on-tertiary: #00382d;
-  --md-sys-color-tertiary-container: #005143;
-  --md-sys-color-on-tertiary-container: #b5f5e0;
+  --md-sys-color-tertiary: #debcdf;
+  --md-sys-color-on-tertiary: #402843;
+  --md-sys-color-tertiary-container: #583e5b;
+  --md-sys-color-on-tertiary-container: #fbd7fc;
 
   --md-sys-color-error: #ffb4ab;
   --md-sys-color-on-error: #690005;
   --md-sys-color-error-container: #93000a;
   --md-sys-color-on-error-container: #ffdad6;
 
-  --md-sys-color-surface: #141218;
-  --md-sys-color-surface-dim: #141218;
-  --md-sys-color-surface-bright: #3b383e;
-  --md-sys-color-surface-container-lowest: #0f0d13;
-  --md-sys-color-surface-container-low: #1d1b20;
-  --md-sys-color-surface-container: #211f26;
-  --md-sys-color-surface-container-high: #2b2930;
-  --md-sys-color-surface-container-highest: #36343b;
-  --md-sys-color-on-surface: #e6e0e9;
-  --md-sys-color-on-surface-variant: #cac4d0;
-  --md-sys-color-outline: #938f99;
-  --md-sys-color-outline-variant: #49454f;
-  --md-sys-color-inverse-surface: #e6e0e9;
-  --md-sys-color-inverse-on-surface: #322f35;
-  --md-sys-color-inverse-primary: #6750a4;
+  --md-sys-color-surface: #121318;
+  --md-sys-color-surface-dim: #121318;
+  --md-sys-color-surface-bright: #38393f;
+  --md-sys-color-surface-container-lowest: #0d0e13;
+  --md-sys-color-surface-container-low: #1a1b20;
+  --md-sys-color-surface-container: #1e1f25;
+  --md-sys-color-surface-container-high: #282a2f;
+  --md-sys-color-surface-container-highest: #33353a;
+  --md-sys-color-on-surface: #e3e2e9;
+  --md-sys-color-on-surface-variant: #c4c6d0;
+  --md-sys-color-outline: #8e9099;
+  --md-sys-color-outline-variant: #44474f;
+  --md-sys-color-inverse-surface: #e3e2e9;
+  --md-sys-color-inverse-on-surface: #2f3036;
+  --md-sys-color-inverse-primary: #005ac1;
   --md-sys-color-scrim: #000000;
   --md-sys-color-shadow: #000000;
 
-  --md-custom-color-info: #a8c7fa;
-  --md-custom-color-info-container: #254777;
-  --md-custom-color-on-info-container: #d5e3ff;
-  --md-custom-color-warning: #f5bd6f;
-  --md-custom-color-warning-container: #5d4100;
+  --md-custom-color-info: #82d3e0;
+  --md-custom-color-info-container: #004f58;
+  --md-custom-color-on-info-container: #9eeffd;
+  --md-custom-color-warning: #e8c16c;
+  --md-custom-color-warning-container: #5d4200;
   --md-custom-color-on-warning-container: #ffdea6;
 
-  --md-sys-state-hover: rgba(208, 188, 255, 0.08);
-  --md-sys-state-focus: rgba(208, 188, 255, 0.12);
-  --md-sys-state-pressed: rgba(208, 188, 255, 0.12);
-  --md-sys-state-dragged: rgba(208, 188, 255, 0.16);
+  --md-sys-state-hover: rgba(174, 198, 255, 0.08);
+  --md-sys-state-focus: rgba(174, 198, 255, 0.12);
+  --md-sys-state-pressed: rgba(174, 198, 255, 0.12);
+  --md-sys-state-dragged: rgba(174, 198, 255, 0.16);
 
   --md-app-bar-color: var(--md-sys-color-primary-container);
   --md-app-bar-on-color: var(--md-sys-color-on-primary-container);
-  --md-app-bar-field-color: #3f2d72;
-  --md-app-bar-field-hover-color: #46357b;
+  --md-app-bar-field-color: #003b81;
+  --md-app-bar-field-hover-color: #00346f;
   --md-app-bar-accent-color: var(--md-sys-color-tertiary);
 
   --md-primary-fg-color: var(--md-app-bar-color);
-  --md-primary-fg-color--light: #634fa0;
-  --md-primary-fg-color--dark: #35245f;
+  --md-primary-fg-color--light: #2a5ba8;
+  --md-primary-fg-color--dark: #00346f;
   --md-primary-bg-color: var(--md-app-bar-on-color);
 
   --md-accent-fg-color: var(--md-sys-color-tertiary);
-  --md-accent-fg-color--transparent: rgba(158, 245, 224, 0.12);
+  --md-accent-fg-color--transparent: rgba(222, 188, 223, 0.12);
   --md-accent-bg-color: var(--md-sys-color-on-tertiary);
 
   --md-default-bg-color: var(--md-sys-color-surface);
   --md-default-bg-color--light: var(--md-sys-color-surface-container-low);
   --md-default-bg-color--lighter: var(--md-sys-color-surface-container);
-  --md-default-bg-color--lightest: rgba(230, 224, 233, 0.12);
+  --md-default-bg-color--lightest: rgba(227, 226, 233, 0.12);
 
   --md-default-fg-color: var(--md-sys-color-on-surface);
   --md-default-fg-color--light: var(--md-sys-color-on-surface-variant);
   --md-default-fg-color--lighter: var(--md-sys-color-outline);
-  --md-default-fg-color--lightest: rgba(230, 224, 233, 0.12);
+  --md-default-fg-color--lightest: rgba(227, 226, 233, 0.12);
 
   --md-typeset-a-color: var(--md-sys-color-primary);
   --md-code-bg-color: var(--md-sys-color-surface-container);
-  --md-code-fg-color: #f3f0ff;
+  --md-code-fg-color: var(--md-sys-color-on-surface);
 
-  --md-code-hl-keyword-color: #d0bcff;
-  --md-code-hl-function-color: var(--md-sys-color-tertiary);
+  --md-code-hl-keyword-color: #d8b9ff;
+  --md-code-hl-function-color: var(--md-sys-color-primary);
   --md-code-hl-string-color: var(--md-custom-color-info);
   --md-code-hl-comment-color: var(--md-sys-color-outline);
   --md-code-hl-name-color: var(--md-sys-color-on-surface);
-  --md-code-hl-special-color: #ff9de6;
+  --md-code-hl-special-color: #ffb1c3;
   --md-code-hl-number-color: var(--md-custom-color-warning);
   --md-code-hl-operator-color: var(--md-sys-color-on-surface-variant);
   --md-code-hl-punctuation-color: var(--md-sys-color-outline);
   --md-code-hl-generic-color: var(--md-sys-color-on-surface);
   --md-code-hl-variable-color: var(--md-sys-color-tertiary);
-  --md-code-hl-constant-color: #d0bcff;
+  --md-code-hl-constant-color: #d8b9ff;
 
   --md-error-fg-color: var(--md-sys-color-error);
   --md-error-bg-color: var(--md-sys-color-error-container);
   --md-error-bg-color--light: rgba(255, 180, 171, 0.12);
 
   --md-footer-bg-color: var(--md-sys-color-surface-container-lowest);
-  --md-footer-bg-color--dark: #09070b;
+  --md-footer-bg-color--dark: #08090e;
 
   --md-outline-color: var(--md-sys-color-outline);
   --md-outline-color--light: var(--md-sys-color-outline-variant);
@@ -695,14 +696,14 @@ body {
 
 @media print {
   [data-md-color-scheme] {
-    --md-sys-color-primary: #1f1654;
+    --md-sys-color-primary: #005ac1;
     --md-sys-color-on-primary: #ffffff;
     --md-sys-color-primary-container: #ffffff;
-    --md-sys-color-on-primary-container: #1f1654;
-    --md-sys-color-tertiary: #006c52;
+    --md-sys-color-on-primary-container: #001a41;
+    --md-sys-color-tertiary: #715573;
     --md-sys-color-on-tertiary: #ffffff;
     --md-sys-color-tertiary-container: #ffffff;
-    --md-sys-color-on-tertiary-container: #00382d;
+    --md-sys-color-on-tertiary-container: #29132d;
     --md-sys-color-error: #8c1d18;
     --md-sys-color-error-container: #ffffff;
     --md-sys-color-on-error-container: #410002;
@@ -717,8 +718,8 @@ body {
     --md-sys-color-outline-variant: #cccccc;
     --md-code-bg-color: #f5f5f5;
     --md-code-fg-color: #000000;
-    --md-typeset-a-color: #1f1654;
-    --md-accent-fg-color: #006c52;
+    --md-typeset-a-color: #005ac1;
+    --md-accent-fg-color: #715573;
     --md-primary-fg-color: #ffffff;
     --md-primary-bg-color: #000000;
     --md-footer-bg-color: #ffffff;

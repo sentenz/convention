@@ -396,17 +396,23 @@ body {
   border-radius: var(--md-sys-shape-corner-full) var(--md-sys-shape-corner-full) 0 0;
 }
 
-/* Navigation drawer: active destinations use an M3 pill indicator. */
+/* Navigation drawer: active destinations use a flat filled tonal highlight. */
 
 .md-nav__link {
-  border-radius: var(--md-sys-shape-corner-full);
+  border-radius: var(--md-sys-shape-corner-none);
   transition:
     color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
-    background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+    background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
+    box-shadow var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+
+.md-nav__link:focus-visible {
+  border-radius: var(--md-sys-shape-corner-none);
 }
 
 .md-nav__link:hover {
-  background: var(--md-sys-state-hover);
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
 }
 
 .md-nav__link--active,
@@ -417,7 +423,8 @@ body {
 
 .md-nav__link.md-nav__link--active {
   background: var(--md-sys-color-secondary-container);
-  padding-left: 0.6rem;
+  box-shadow: inset 0.2rem 0 0 var(--md-sys-color-primary);
+  padding-left: 0.8rem;
   padding-right: 0.6rem;
 }
 

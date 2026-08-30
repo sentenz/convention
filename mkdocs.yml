@@ -49,7 +49,7 @@ markdown_extensions:
 
 theme:
   name: material
-  logo: assets/images/logo.svg
+  logo: assets/images/logo-wordmark.svg
   favicon: assets/images/logo.svg
   features:
     - navigation.top

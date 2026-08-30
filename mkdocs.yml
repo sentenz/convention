@@ -15,6 +15,7 @@ hooks:
 
 extra_css:
   - assets/css/style.css
+  - assets/css/material3-refinement.css
 
 plugins:
   - search

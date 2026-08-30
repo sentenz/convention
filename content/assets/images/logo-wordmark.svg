@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1184 240" role="img" aria-labelledby="wordmark-title wordmark-description">
+  <title id="wordmark-title">SENTENZ</title>
+  <desc id="wordmark-description">SENTENZ wordmark with rounded Material 3 geometry, subtle chamfered rails, split N diagonals, and a pink terminal point.</desc>
+  <style>
+    :root {
+      --md-sys-color-primary: #6442d6;
+      --md-sys-color-tertiary: #81427c;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --md-sys-color-primary: #cbbeff;
+        --md-sys-color-tertiary: #f1b5ec;
+      }
+    }
+    .letter,
+    .rail {
+      fill: none;
+      stroke: var(--md-sys-color-primary, #6442d6);
+      stroke-width: 28;
+    }
+    .letter {
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .rail {
+      stroke-linecap: square;
+      stroke-linejoin: bevel;
+    }
+    .terminal {
+      fill: var(--md-sys-color-tertiary, #81427c);
+    }
+  </style>
+
+  <!-- S: rounded and expressive, carried forward from the current monogram language. -->
+  <path class="letter" d="M128 72C108 54 84 48 56 48C30 48 16 60 16 78C16 96 30 105 62 111L92 117C122 123 138 136 138 158C138 180 118 194 84 194C56 194 34 187 18 174"/>
+
+  <!-- E: square rail ends subtly echo the historical cut terminals. -->
+  <path class="rail" d="M198 56V184M198 56H306M198 120H290M198 184H306"/>
+
+  <!-- N: a restrained center break references the original split-glyph construction. -->
+  <path class="letter" d="M354 184V56L418 114"/>
+  <path class="letter" d="M434 126L498 184V56"/>
+
+  <!-- T -->
+  <path class="rail" d="M562 56H694M628 56V184"/>
+
+  <!-- E -->
+  <path class="rail" d="M750 56V184M750 56H858M750 120H842M750 184H858"/>
+
+  <!-- N -->
+  <path class="letter" d="M906 184V56L970 114"/>
+  <path class="letter" d="M986 126L1050 184V56"/>
+
+  <!-- Z -->
+  <path class="rail" d="M1104 56H1170L1098 184H1170"/>
+
+  <circle class="terminal" cx="18" cy="174" r="10"/>
+</svg>

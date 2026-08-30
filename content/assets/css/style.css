@@ -5,9 +5,9 @@
 /* ========================================================================== */
 
 :root {
-  /* M3 typeface roles adapted to the supplied Google Sans family. */
-  --md-ref-typeface-brand: "Google Sans", system-ui, sans-serif;
-  --md-ref-typeface-plain: "Google Sans Text", system-ui, sans-serif;
+  /* Prefer Google Sans when installed; MkDocs loads Roboto as its web fallback. */
+  --md-ref-typeface-brand: "Google Sans", "Roboto", system-ui, sans-serif;
+  --md-ref-typeface-plain: "Google Sans Text", "Roboto", system-ui, sans-serif;
 
   /* M3 spacing tokens on the supplied 4px base grid. */
   --md-sys-spacing-base: 4px;
@@ -22,14 +22,14 @@
   /* M3 shape tokens. */
   --md-sys-shape-corner-none: 0;
   --md-sys-shape-corner-extra-small: 4px;
-  --md-sys-shape-corner-small: 4px;
-  --md-sys-shape-corner-medium: 16px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
   --md-sys-shape-corner-large: 16px;
   --md-sys-shape-corner-large-increased: 20px;
-  --md-sys-shape-corner-extra-large: 24px;
+  --md-sys-shape-corner-extra-large: 28px;
   --md-sys-shape-corner-extra-large-increased: 32px;
   --md-sys-shape-corner-extra-extra-large: 48px;
-  --md-sys-shape-corner-full: 48px;
+  --md-sys-shape-corner-full: 9999px;
 
   /* The single shadow level retained for floating UI over page content. */
   --md-sys-elevation-level-1:

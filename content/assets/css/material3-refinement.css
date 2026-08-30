@@ -1,0 +1,63 @@
+/* ========================================================================== */
+/* Material 3 visual refinement                                                */
+/* Keeps the base token adapter intact while tuning contrast and shape for     */
+/* this documentation surface.                                                 */
+/* ========================================================================== */
+
+:root {
+  /* Documentation surfaces use a restrained subset of the MD3 shape scale. */
+  --md-doc-shape-control: var(--md-sys-shape-corner-small);
+  --md-doc-shape-container: var(--md-sys-shape-corner-medium);
+  --md-doc-shape-search: var(--md-sys-shape-corner-large);
+}
+
+/* Align neutral foreground and boundary roles with the standard MD3 tonal
+ * relationship in both schemes. Accent and semantic container colors remain
+ * unchanged so the existing orchid/pink identity is preserved. */
+[data-md-color-scheme="default"] {
+  --md-sys-color-on-surface: #1d1b20;
+  --md-sys-color-on-surface-variant: #49454f;
+  --md-sys-color-outline: #79747e;
+  --md-sys-color-outline-variant: #cac4d0;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-sys-color-on-surface: #e6e1e5;
+  --md-sys-color-on-surface-variant: #cac4d0;
+  --md-sys-color-outline: #938f99;
+  --md-sys-color-outline-variant: #49454f;
+}
+
+/* Search remains visually distinct without the pill-heavy treatment. */
+.md-search__form {
+  border-radius: var(--md-doc-shape-search);
+}
+
+.md-search-result__link {
+  border-radius: var(--md-doc-shape-control);
+}
+
+@media screen and (min-width: 60em) {
+  .md-search__output {
+    border-radius: 0 0 var(--md-doc-shape-container) var(--md-doc-shape-container);
+  }
+}
+
+/* Documentation containers use medium corners; compact controls use small
+ * corners. Full rounding remains reserved for structural indicators and
+ * scroll affordances rather than general-purpose surfaces. */
+.md-typeset pre > code,
+.md-typeset .highlight,
+.md-typeset .highlighttable,
+.md-typeset .admonition,
+.md-typeset details,
+.md-typeset table:not([class]),
+.md-typeset img:not([src$=".svg"]) {
+  border-radius: var(--md-doc-shape-container);
+}
+
+.md-clipboard,
+.md-tag,
+.md-typeset .tabbed-labels > label {
+  border-radius: var(--md-doc-shape-control);
+}

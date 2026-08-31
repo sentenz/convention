@@ -1,58 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1184 240" role="img" aria-labelledby="wordmark-title wordmark-description">
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1280 240"
+  role="img"
+  aria-labelledby="wordmark-title wordmark-description"
+  shape-rendering="geometricPrecision"
+>
   <title id="wordmark-title">SENTENZ</title>
-  <desc id="wordmark-description">SENTENZ wordmark with rounded Material 3 geometry, subtle chamfered rails, split N diagonals, and a pink terminal point.</desc>
+  <desc id="wordmark-description">
+    SENTENZ wordmark with a unified rounded Material 3 stroke system, split N diagonals,
+    and a tertiary terminal point derived from the SENTENZ monogram.
+  </desc>
+
   <style>
     :root {
-      --md-sys-color-primary: #6442d6;
-      --md-sys-color-tertiary: #81427c;
+      --sentenz-wordmark-primary: var(--md-sys-color-primary, #6442d6);
+      --sentenz-wordmark-tertiary: var(--md-sys-color-tertiary, #81427c);
     }
+
     @media (prefers-color-scheme: dark) {
       :root {
-        --md-sys-color-primary: #cbbeff;
-        --md-sys-color-tertiary: #f1b5ec;
+        --sentenz-wordmark-primary: var(--md-sys-color-primary, #cbbeff);
+        --sentenz-wordmark-tertiary: var(--md-sys-color-tertiary, #f1b5ec);
       }
     }
-    .letter,
-    .rail {
+
+    .glyph {
       fill: none;
-      stroke: var(--md-sys-color-primary, #6442d6);
-      stroke-width: 28;
-    }
-    .letter {
+      stroke: var(--sentenz-wordmark-primary);
+      stroke-width: 32;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .rail {
-      stroke-linecap: square;
-      stroke-linejoin: bevel;
-    }
+
     .terminal {
-      fill: var(--md-sys-color-tertiary, #81427c);
+      fill: var(--sentenz-wordmark-tertiary);
     }
   </style>
 
-  <!-- S: rounded and expressive, carried forward from the current monogram language. -->
-  <path class="letter" d="M128 72C108 54 84 48 56 48C30 48 16 60 16 78C16 96 30 105 62 111L92 117C122 123 138 136 138 158C138 180 118 194 84 194C56 194 34 187 18 174"/>
-
-  <!-- E: square rail ends subtly echo the historical cut terminals. -->
-  <path class="rail" d="M198 56V184M198 56H306M198 120H290M198 184H306"/>
-
-  <!-- N: a restrained center break references the original split-glyph construction. -->
-  <path class="letter" d="M354 184V56L418 114"/>
-  <path class="letter" d="M434 126L498 184V56"/>
-
-  <!-- T -->
-  <path class="rail" d="M562 56H694M628 56V184"/>
+  <!-- S: proportions are derived from the primary SENTENZ monogram for brand continuity. -->
+  <path
+    class="glyph"
+    d="M149 68C133 53 112 48 87 48C50 48 24 63 24 85C24 107 44 115 92 119C140 123 160 133 160 154C160 177 133 192 96 192C68 192 45 185 30 170"
+  />
 
   <!-- E -->
-  <path class="rail" d="M750 56V184M750 56H858M750 120H842M750 184H858"/>
+  <path class="glyph" d="M208 56V184M208 56H328M208 120H312M208 184H328" />
+
+  <!-- N: center break remains legible at compact sizes. -->
+  <path class="glyph" d="M376 184V56L433 107" />
+  <path class="glyph" d="M463 133L520 184V56" />
+
+  <!-- T -->
+  <path class="glyph" d="M576 56H704M640 56V184" />
+
+  <!-- E -->
+  <path class="glyph" d="M760 56V184M760 56H880M760 120H864M760 184H880" />
 
   <!-- N -->
-  <path class="letter" d="M906 184V56L970 114"/>
-  <path class="letter" d="M986 126L1050 184V56"/>
+  <path class="glyph" d="M928 184V56L985 107" />
+  <path class="glyph" d="M1015 133L1072 184V56" />
 
   <!-- Z -->
-  <path class="rail" d="M1104 56H1170L1098 184H1170"/>
+  <path class="glyph" d="M1120 56H1248L1120 184H1248" />
 
-  <circle class="terminal" cx="18" cy="174" r="10"/>
+  <circle class="terminal" cx="30" cy="170" r="12" />
 </svg>

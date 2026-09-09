@@ -1,7 +1,10 @@
 /* ========================================================================== */
 /* MkDocs Material — Material Design 3 token adapter                          */
 /* Palette: Orchid purple · Soft pink accent · Warm neutral surfaces          */
-/* Static light/dark schemes for a CSS-only MkDocs implementation.            */
+/* Static HCT palettes: @material/material-color-utilities 0.3.0.              */
+/* Primary/neutral: CorePalette.of(#6442d6); tertiary: #81427c tonal palette.   */
+/* Warning: #7b5800; success: #386a3c harmonized to the primary seed.           */
+/* M3 tones: accents 40/80, on-accents 100/20, containers 90/30, on 10/90.      */
 /* ========================================================================== */
 
 :root {
@@ -66,130 +69,68 @@
 }
 
 /* -------------------------------------------------------------------------- */
-/* Light scheme — semantic M3 roles                                           */
+/* Light scheme — HCT tonal roles */
 /* -------------------------------------------------------------------------- */
 
 [data-md-color-scheme="default"] {
   color-scheme: light;
 
-  --md-sys-color-primary: #6442d6;
+  --md-sys-color-primary: #6341d5;
   --md-sys-color-on-primary: #ffffff;
-  --md-sys-color-primary-container: #f1d3f9;
-  --md-sys-color-on-primary-container: #2c1038;
+  --md-sys-color-primary-container: #e7deff;
+  --md-sys-color-on-primary-container: #1e0061;
 
-  --md-sys-color-secondary: #4d4256;
+  --md-sys-color-secondary: #605b71;
   --md-sys-color-on-secondary: #ffffff;
-  --md-sys-color-secondary-container: #ebdeef;
-  --md-sys-color-on-secondary-container: #1c1b1d;
+  --md-sys-color-secondary-container: #e6dff9;
+  --md-sys-color-on-secondary-container: #1d192b;
 
-  --md-sys-color-tertiary: #81427c;
+  --md-sys-color-tertiary: #874781;
   --md-sys-color-on-tertiary: #ffffff;
-  --md-sys-color-tertiary-container: #f1d3f9;
-  --md-sys-color-on-tertiary-container: #351032;
+  --md-sys-color-tertiary-container: #ffd7f6;
+  --md-sys-color-on-tertiary-container: #380038;
 
   --md-sys-color-error: #ba1a1a;
   --md-sys-color-on-error: #ffffff;
   --md-sys-color-error-container: #ffdad6;
   --md-sys-color-on-error-container: #410002;
 
-  --md-sys-color-surface: #fefbff;
-  --md-sys-color-surface-dim: #ded8df;
-  --md-sys-color-surface-bright: #fefbff;
+  --md-sys-color-surface: #fdf8fd;
+  --md-sys-color-surface-dim: #ddd9dd;
+  --md-sys-color-surface-bright: #fdf8fd;
   --md-sys-color-surface-container-lowest: #ffffff;
-  --md-sys-color-surface-container-low: #fbf7fb;
-  --md-sys-color-surface-container: #f8f1f6;
-  --md-sys-color-surface-container-high: #f2ebf1;
-  --md-sys-color-surface-container-highest: #ece5eb;
-  --md-sys-color-on-surface: #1d1b20;
-  --md-sys-color-on-surface-variant: #4d4256;
-  --md-sys-color-outline: #766b79;
-  --md-sys-color-outline-variant: #c8bec7;
-  --md-sys-color-inverse-surface: #303030;
-  --md-sys-color-inverse-on-surface: #f8f1f6;
-  --md-sys-color-inverse-primary: #cfbdff;
+  --md-sys-color-surface-container-low: #f7f2f7;
+  --md-sys-color-surface-container: #f1ecf1;
+  --md-sys-color-surface-container-high: #ebe7ec;
+  --md-sys-color-surface-container-highest: #e6e1e6;
+  --md-sys-color-on-surface: #1c1b1e;
+  --md-sys-color-inverse-surface: #313033;
+  --md-sys-color-inverse-on-surface: #f4eff4;
+  --md-sys-color-on-surface-variant: #48454e;
+  --md-sys-color-outline: #79757f;
+  --md-sys-color-outline-variant: #c9c4cf;
+  --md-sys-color-inverse-primary: #cbbeff;
   --md-sys-color-scrim: #000000;
   --md-sys-color-shadow: #000000;
 
   /* Documentation-specific semantic extensions. */
-  --md-custom-color-info: var(--md-sys-color-primary);
-  --md-custom-color-info-container: var(--md-sys-color-primary-container);
-  --md-custom-color-on-info-container: var(--md-sys-color-on-primary-container);
   --md-custom-color-warning: #7b5800;
   --md-custom-color-warning-container: #ffdea6;
-  --md-custom-color-on-warning-container: #261900;
+  --md-custom-color-on-warning-container: #271900;
 
-  /* M3 state-layer opacity levels over primary. */
-  --md-sys-state-hover: rgb(100 66 214 / 8%);
-  --md-sys-state-focus: rgb(100 66 214 / 12%);
-  --md-sys-state-pressed: rgb(100 66 214 / 12%);
-  --md-sys-state-dragged: rgb(100 66 214 / 16%);
+  --md-custom-color-success: #226a4b;
+  --md-custom-color-success-container: #aaf2c9;
+  --md-custom-color-on-success-container: #002113;
 
-  /* App chrome and search use separate semantic contrast roles. */
-  --md-app-bar-color: var(--md-sys-color-surface-container);
-  --md-app-bar-on-color: var(--md-sys-color-on-surface);
-  --md-app-bar-accent-color: var(--md-sys-color-primary);
   --md-search-field-color: var(--md-sys-color-surface-container-lowest);
   --md-search-field-hover-color: var(--md-sys-color-surface-container-low);
-  --md-search-field-text-color: var(--md-sys-color-on-surface);
-  --md-search-field-placeholder-color: var(--md-sys-color-on-surface-variant);
-  --md-app-bar-field-color: var(--md-search-field-color);
-  --md-app-bar-field-hover-color: var(--md-search-field-hover-color);
-
-  /* MkDocs Material adapter. */
-  --md-primary-fg-color: var(--md-app-bar-color);
-  --md-primary-fg-color--light: var(--md-sys-color-primary-container);
-  --md-primary-fg-color--dark: #4c22bd;
-  --md-primary-bg-color: var(--md-app-bar-on-color);
-
-  --md-accent-fg-color: var(--md-sys-color-primary);
-  --md-accent-fg-color--transparent: rgb(100 66 214 / 12%);
-  --md-accent-bg-color: var(--md-sys-color-on-primary);
-
-  --md-default-bg-color: var(--md-sys-color-surface);
-  --md-default-bg-color--light: var(--md-sys-color-surface-container-low);
-  --md-default-bg-color--lighter: var(--md-sys-color-surface-container);
-  --md-default-bg-color--lightest: rgb(29 27 32 / 12%);
-
-  --md-default-fg-color: var(--md-sys-color-on-surface);
-  --md-default-fg-color--light: var(--md-sys-color-on-surface-variant);
-  --md-default-fg-color--lighter: var(--md-sys-color-outline);
-  --md-default-fg-color--lightest: rgb(29 27 32 / 12%);
-
-  --md-typeset-a-color: var(--md-sys-color-primary);
-  --md-code-bg-color: var(--md-sys-color-surface-container);
-  --md-code-fg-color: var(--md-sys-color-on-surface);
-
-  --md-code-hl-keyword-color: #6d3a89;
-  --md-code-hl-function-color: var(--md-sys-color-primary);
-  --md-code-hl-string-color: var(--md-custom-color-info);
-  --md-code-hl-comment-color: var(--md-sys-color-outline);
-  --md-code-hl-name-color: var(--md-sys-color-on-surface);
-  --md-code-hl-special-color: #9e365b;
-  --md-code-hl-number-color: var(--md-custom-color-warning);
-  --md-code-hl-operator-color: var(--md-sys-color-on-surface-variant);
-  --md-code-hl-punctuation-color: var(--md-sys-color-outline);
-  --md-code-hl-generic-color: var(--md-sys-color-on-surface);
-  --md-code-hl-variable-color: var(--md-sys-color-tertiary);
-  --md-code-hl-constant-color: #6d3a89;
-
-  --md-error-fg-color: var(--md-sys-color-error);
-  --md-error-bg-color: var(--md-sys-color-error-container);
-  --md-error-bg-color--light: rgb(186 26 26 / 10%);
-
   --md-footer-bg-color: var(--md-sys-color-inverse-surface);
-  --md-footer-bg-color--dark: #1c1b1d;
-
-  /* Compatibility aliases for existing local naming. */
-  --md-outline-color: var(--md-sys-color-outline);
-  --md-outline-color--light: var(--md-sys-color-outline-variant);
-  --md-state-hover: var(--md-sys-state-hover);
-  --md-state-focus: var(--md-sys-state-focus);
-  --md-state-pressed: var(--md-sys-state-pressed);
-  --md-state-dragged: var(--md-sys-state-dragged);
+  --md-footer-bg-color--dark: var(--md-sys-color-on-surface);
+  --md-footer-fg-color: var(--md-sys-color-inverse-on-surface);
 }
 
 /* -------------------------------------------------------------------------- */
-/* Dark scheme — semantic M3 roles                                            */
+/* Dark scheme — HCT tonal roles */
 /* -------------------------------------------------------------------------- */
 
 [data-md-color-scheme="slate"] {
@@ -197,107 +138,141 @@
 
   --md-sys-color-primary: #cbbeff;
   --md-sys-color-on-primary: #340098;
-  --md-sys-color-primary-container: #6442d6;
-  --md-sys-color-on-primary-container: #ded4ff;
+  --md-sys-color-primary-container: #4b21bd;
+  --md-sys-color-on-primary-container: #e7deff;
 
-  --md-sys-color-secondary: #d0c1d5;
-  --md-sys-color-on-secondary: #382d3e;
-  --md-sys-color-secondary-container: #4d4256;
-  --md-sys-color-on-secondary-container: #f8f1f6;
+  --md-sys-color-secondary: #cac3dc;
+  --md-sys-color-on-secondary: #322e41;
+  --md-sys-color-secondary-container: #484458;
+  --md-sys-color-on-secondary-container: #e6dff9;
 
-  --md-sys-color-tertiary: #f1b5ec;
-  --md-sys-color-on-tertiary: #52124d;
-  --md-sys-color-tertiary-container: #73356e;
-  --md-sys-color-on-tertiary-container: #f1d3f9;
+  --md-sys-color-tertiary: #faadef;
+  --md-sys-color-on-tertiary: #521750;
+  --md-sys-color-tertiary-container: #6c2f68;
+  --md-sys-color-on-tertiary-container: #ffd7f6;
 
   --md-sys-color-error: #ffb4ab;
   --md-sys-color-on-error: #690005;
   --md-sys-color-error-container: #93000a;
   --md-sys-color-on-error-container: #ffdad6;
 
-  --md-sys-color-surface: #141218;
-  --md-sys-color-surface-dim: #141218;
-  --md-sys-color-surface-bright: #3b383e;
-  --md-sys-color-surface-container-lowest: #0f0d13;
-  --md-sys-color-surface-container-low: #1d1b20;
-  --md-sys-color-surface-container: #211f26;
-  --md-sys-color-surface-container-high: #2b2930;
-  --md-sys-color-surface-container-highest: #36343b;
-  --md-sys-color-on-surface: #e8e0e8;
-  --md-sys-color-on-surface-variant: #c4b9c5;
-  --md-sys-color-outline: #928895;
-  --md-sys-color-outline-variant: #493f52;
-  --md-sys-color-inverse-surface: #e8e0e8;
-  --md-sys-color-inverse-on-surface: #303030;
-  --md-sys-color-inverse-primary: #6442d6;
+  --md-sys-color-surface: #141316;
+  --md-sys-color-surface-dim: #141316;
+  --md-sys-color-surface-bright: #3a383c;
+  --md-sys-color-surface-container-lowest: #0f0e11;
+  --md-sys-color-surface-container-low: #1c1b1e;
+  --md-sys-color-surface-container: #201f23;
+  --md-sys-color-surface-container-high: #2b292d;
+  --md-sys-color-surface-container-highest: #363438;
+  --md-sys-color-on-surface: #e6e1e6;
+  --md-sys-color-inverse-surface: #e6e1e6;
+  --md-sys-color-inverse-on-surface: #313033;
+  --md-sys-color-on-surface-variant: #c9c4cf;
+  --md-sys-color-outline: #938f99;
+  --md-sys-color-outline-variant: #48454e;
+  --md-sys-color-inverse-primary: #6341d5;
   --md-sys-color-scrim: #000000;
   --md-sys-color-shadow: #000000;
 
-  --md-custom-color-info: var(--md-sys-color-primary);
-  --md-custom-color-info-container: var(--md-sys-color-primary-container);
-  --md-custom-color-on-info-container: var(--md-sys-color-on-primary-container);
-  --md-custom-color-warning: #e8c16c;
+  /* Documentation-specific semantic extensions. */
+  --md-custom-color-warning: #efbf65;
   --md-custom-color-warning-container: #5d4200;
   --md-custom-color-on-warning-container: #ffdea6;
 
-  --md-sys-state-hover: rgb(203 190 255 / 8%);
-  --md-sys-state-focus: rgb(203 190 255 / 12%);
-  --md-sys-state-pressed: rgb(203 190 255 / 12%);
-  --md-sys-state-dragged: rgb(203 190 255 / 16%);
+  --md-custom-color-success: #8ed6ae;
+  --md-custom-color-success-container: #005235;
+  --md-custom-color-on-success-container: #aaf2c9;
+
+  --md-search-field-color: var(--md-sys-color-surface-container-high);
+  --md-search-field-hover-color: var(--md-sys-color-surface-container-highest);
+  --md-footer-bg-color: var(--md-sys-color-surface-container-lowest);
+  --md-footer-bg-color--dark: var(--md-sys-color-surface-container-lowest);
+  --md-footer-fg-color: var(--md-sys-color-on-surface);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Shared MkDocs Material adapter — aliases resolve in the selected scheme. */
+/* -------------------------------------------------------------------------- */
+
+[data-md-color-scheme="default"],
+[data-md-color-scheme="slate"] {
+  --md-custom-color-info: var(--md-sys-color-primary);
+  --md-custom-color-info-container: var(--md-sys-color-primary-container);
+  --md-custom-color-on-info-container: var(--md-sys-color-on-primary-container);
+
+  /* State layers follow the active palette, including contrast and print overrides. */
+  --md-sys-state-hover: color-mix(in srgb, var(--md-sys-color-primary) 8%, transparent);
+  --md-sys-state-focus: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent);
+  --md-sys-state-pressed: color-mix(in srgb, var(--md-sys-color-primary) 12%, transparent);
+  --md-sys-state-dragged: color-mix(in srgb, var(--md-sys-color-primary) 16%, transparent);
 
   --md-app-bar-color: var(--md-sys-color-surface-container);
   --md-app-bar-on-color: var(--md-sys-color-on-surface);
   --md-app-bar-accent-color: var(--md-sys-color-primary);
-  --md-search-field-color: var(--md-sys-color-surface-container-high);
-  --md-search-field-hover-color: var(--md-sys-color-surface-container-highest);
   --md-search-field-text-color: var(--md-sys-color-on-surface);
   --md-search-field-placeholder-color: var(--md-sys-color-on-surface-variant);
   --md-app-bar-field-color: var(--md-search-field-color);
   --md-app-bar-field-hover-color: var(--md-search-field-hover-color);
 
-  --md-primary-fg-color: var(--md-app-bar-color);
-  --md-primary-fg-color--light: #7d5ee9;
-  --md-primary-fg-color--dark: #4c22bd;
-  --md-primary-bg-color: var(--md-app-bar-on-color);
-
+  /* Preserve MkDocs' accent semantics; app chrome consumes its own surface roles. */
+  --md-primary-fg-color: var(--md-sys-color-primary);
+  --md-primary-fg-color--light: var(--md-sys-color-primary-container);
+  --md-primary-fg-color--dark: var(--md-sys-color-primary-container);
+  --md-primary-bg-color: var(--md-sys-color-on-primary);
+  --md-primary-bg-color--light: var(--md-sys-color-on-primary);
   --md-accent-fg-color: var(--md-sys-color-primary);
-  --md-accent-fg-color--transparent: rgb(203 190 255 / 12%);
+  --md-accent-fg-color--transparent: var(--md-sys-state-hover);
   --md-accent-bg-color: var(--md-sys-color-on-primary);
+  --md-accent-bg-color--light: var(--md-sys-color-on-primary);
 
+  /* MkDocs' translucent background aliases are used by fades, not elevation. */
   --md-default-bg-color: var(--md-sys-color-surface);
-  --md-default-bg-color--light: var(--md-sys-color-surface-container-low);
-  --md-default-bg-color--lighter: var(--md-sys-color-surface-container);
-  --md-default-bg-color--lightest: rgb(232 224 232 / 12%);
-
+  --md-default-bg-color--light: color-mix(in srgb, var(--md-sys-color-surface) 70%, transparent);
+  --md-default-bg-color--lighter: color-mix(in srgb, var(--md-sys-color-surface) 30%, transparent);
+  --md-default-bg-color--lightest: color-mix(in srgb, var(--md-sys-color-surface) 12%, transparent);
   --md-default-fg-color: var(--md-sys-color-on-surface);
   --md-default-fg-color--light: var(--md-sys-color-on-surface-variant);
   --md-default-fg-color--lighter: var(--md-sys-color-outline);
-  --md-default-fg-color--lightest: rgb(232 224 232 / 12%);
+  --md-default-fg-color--lightest: color-mix(in srgb, var(--md-sys-color-on-surface) 12%, transparent);
 
+  --md-typeset-color: var(--md-sys-color-on-surface);
   --md-typeset-a-color: var(--md-sys-color-primary);
-  --md-code-bg-color: var(--md-sys-color-surface-container);
-  --md-code-fg-color: var(--md-sys-color-on-surface);
+  --md-typeset-mark-color: var(--md-sys-color-primary-container);
+  --md-typeset-ins-color: var(--md-custom-color-success-container);
+  --md-typeset-del-color: var(--md-sys-color-error-container);
+  --md-typeset-table-color: var(--md-sys-color-outline-variant);
+  --md-typeset-table-color--light: var(--md-sys-state-hover);
 
-  --md-code-hl-keyword-color: #deb7ff;
-  --md-code-hl-function-color: var(--md-sys-color-primary);
-  --md-code-hl-string-color: var(--md-custom-color-info);
-  --md-code-hl-comment-color: var(--md-sys-color-outline);
+  --md-code-bg-color: var(--md-sys-color-surface-container);
+  --md-code-bg-color--light: color-mix(in srgb, var(--md-code-bg-color) 90%, transparent);
+  --md-code-bg-color--lighter: color-mix(in srgb, var(--md-code-bg-color) 54%, transparent);
+  --md-code-fg-color: var(--md-sys-color-on-surface);
+  --md-code-hl-color: var(--md-sys-color-primary);
+  --md-code-hl-color--light: var(--md-sys-state-hover);
+  --md-code-hl-keyword-color: var(--md-sys-color-primary);
+  --md-code-hl-function-color: var(--md-sys-color-tertiary);
+  --md-code-hl-string-color: var(--md-custom-color-success);
+  --md-code-hl-comment-color: var(--md-sys-color-on-surface-variant);
   --md-code-hl-name-color: var(--md-sys-color-on-surface);
-  --md-code-hl-special-color: #ffb1c9;
+  --md-code-hl-special-color: var(--md-sys-color-error);
   --md-code-hl-number-color: var(--md-custom-color-warning);
   --md-code-hl-operator-color: var(--md-sys-color-on-surface-variant);
-  --md-code-hl-punctuation-color: var(--md-sys-color-outline);
+  --md-code-hl-punctuation-color: var(--md-sys-color-on-surface-variant);
   --md-code-hl-generic-color: var(--md-sys-color-on-surface);
-  --md-code-hl-variable-color: var(--md-sys-color-tertiary);
-  --md-code-hl-constant-color: #deb7ff;
+  --md-code-hl-variable-color: var(--md-sys-color-secondary);
+  --md-code-hl-constant-color: var(--md-sys-color-primary);
 
+  --md-admonition-fg-color: var(--md-sys-color-on-surface);
+  --md-admonition-bg-color: var(--md-sys-color-surface-container-low);
   --md-error-fg-color: var(--md-sys-color-error);
   --md-error-bg-color: var(--md-sys-color-error-container);
-  --md-error-bg-color--light: rgb(255 180 171 / 12%);
+  --md-error-bg-color--light: color-mix(in srgb, var(--md-sys-color-error) 12%, transparent);
+  --md-warning-fg-color: var(--md-custom-color-on-warning-container);
+  --md-warning-bg-color: var(--md-custom-color-warning-container);
+  --md-footer-fg-color--light: var(--md-footer-fg-color);
+  --md-footer-fg-color--lighter: color-mix(in srgb, var(--md-footer-fg-color) 80%, var(--md-footer-bg-color--dark));
 
-  --md-footer-bg-color: var(--md-sys-color-surface-container-lowest);
-  --md-footer-bg-color--dark: #0f0d13;
-
+  /* Compatibility aliases for existing local naming. */
   --md-outline-color: var(--md-sys-color-outline);
   --md-outline-color--light: var(--md-sys-color-outline-variant);
   --md-state-hover: var(--md-sys-state-hover);
@@ -404,6 +379,7 @@ body {
 .md-search__input:focus-visible,
 .md-header__button:focus-visible,
 .md-clipboard:focus-visible,
+.md-top:focus-visible,
 .md-typeset summary:focus-visible {
   outline: 3px solid var(--md-sys-color-primary);
   outline-offset: 3px;
@@ -424,14 +400,16 @@ body {
   color: var(--md-app-bar-on-color);
 }
 
-.md-search__form {
+.md-search__form,
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form {
   background: var(--md-search-field-color);
   border-radius: var(--md-sys-shape-corner-small);
   transition: background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
 }
 
 .md-search__form:hover,
-.md-search__form:focus-within {
+.md-search__form:focus-within,
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form:focus-within {
   background: var(--md-search-field-hover-color);
 }
 
@@ -441,16 +419,19 @@ body {
   opacity: 1;
 }
 
-.md-search__input::placeholder {
+.md-search__input::placeholder,
+[data-md-toggle="search"]:checked ~ .md-header .md-search__input::placeholder {
   color: var(--md-search-field-placeholder-color);
   opacity: 1;
 }
 
-.md-search__icon {
+.md-search__icon,
+.md-search__input + .md-search__icon {
   color: var(--md-search-field-placeholder-color);
 }
 
 .md-search-result__meta {
+  background: var(--md-sys-color-surface-container-high);
   color: var(--md-sys-color-on-surface-variant);
 }
 
@@ -463,6 +444,7 @@ body {
   background: var(--md-sys-state-hover);
 }
 
+.md-search-result__link:focus,
 .md-search-result__link[data-md-state="active"] {
   background: var(--md-sys-state-focus);
 }
@@ -477,13 +459,17 @@ body {
 }
 
 .md-tabs__link {
+  color: var(--md-sys-color-on-surface-variant);
+  opacity: 1;
   font-weight: var(--md-sys-typescale-label-large-weight);
   transition:
     color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
     opacity var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
 }
 
+.md-tabs__item--active .md-tabs__link,
 .md-tabs__link--active,
+.md-tabs__link:focus,
 .md-tabs__link:hover {
   color: var(--md-app-bar-accent-color);
 }
@@ -494,6 +480,14 @@ body {
 }
 
 /* Navigation drawer: active destinations use a flat filled tonal highlight. */
+
+@media screen and (max-width: 76.234375em) {
+  .md-nav--primary .md-nav__title[for="__drawer"],
+  .md-nav__source {
+    background: var(--md-app-bar-color);
+    color: var(--md-app-bar-on-color);
+  }
+}
 
 .md-nav__link {
   border-radius: var(--md-sys-shape-corner-none);
@@ -519,7 +513,11 @@ body {
 }
 
 .md-nav__link.md-nav__link--active {
+  --md-typeset-a-color: var(--md-sys-color-on-secondary-container);
+  --md-accent-fg-color: var(--md-sys-color-on-secondary-container);
+
   background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
   box-shadow: inset 0.2rem 0 0 var(--md-sys-color-primary);
   padding-left: 0.8rem;
   padding-right: 0.6rem;
@@ -543,6 +541,7 @@ body {
 }
 
 .md-clipboard {
+  color: var(--md-sys-color-on-surface-variant);
   border-radius: var(--md-sys-shape-corner-full);
   transition:
     color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard),
@@ -555,9 +554,10 @@ body {
 
 /* Admonitions and details. */
 
-.md-typeset .admonition,
+.md-typeset .admonition[class],
+.md-typeset details[class],
 .md-typeset details {
-  --md-admonition-color: var(--md-sys-color-outline);
+  --md-admonition-color: var(--md-sys-color-outline-variant);
   --md-admonition-container: var(--md-sys-color-surface-container-low);
   --md-admonition-on-container: var(--md-sys-color-on-surface);
 
@@ -573,10 +573,23 @@ body {
 }
 
 .md-typeset .admonition > .admonition-title,
+.md-typeset details[class] > summary,
 .md-typeset details > summary {
   background: var(--md-admonition-container);
   color: var(--md-admonition-on-container);
   font-weight: var(--md-sys-typescale-label-large-weight);
+}
+
+.md-typeset .admonition > .admonition-title::before,
+.md-typeset details[class] > summary::before,
+.md-typeset details > summary::before {
+  background-color: var(--md-admonition-on-container);
+}
+
+.md-typeset .admonition > .admonition-title::after,
+.md-typeset details[class] > summary::after,
+.md-typeset details > summary::after {
+  color: var(--md-admonition-on-container);
 }
 
 .md-typeset .admonition.note,
@@ -589,18 +602,25 @@ body {
 }
 
 .md-typeset .admonition.abstract,
-.md-typeset details.abstract,
-.md-typeset .admonition.tip,
-.md-typeset details.tip,
-.md-typeset .admonition.success,
-.md-typeset details.success {
+.md-typeset details.abstract {
   --md-admonition-color: var(--md-sys-color-tertiary);
   --md-admonition-container: var(--md-sys-color-tertiary-container);
   --md-admonition-on-container: var(--md-sys-color-on-tertiary-container);
 }
 
+.md-typeset .admonition.tip,
+.md-typeset details.tip,
+.md-typeset .admonition.success,
+.md-typeset details.success {
+  --md-admonition-color: var(--md-custom-color-success);
+  --md-admonition-container: var(--md-custom-color-success-container);
+  --md-admonition-on-container: var(--md-custom-color-on-success-container);
+}
+
 .md-typeset .admonition.question,
 .md-typeset details.question,
+.md-typeset .admonition.important,
+.md-typeset details.important,
 .md-typeset .admonition.example,
 .md-typeset details.example {
   --md-admonition-color: var(--md-sys-color-secondary);
@@ -628,7 +648,7 @@ body {
 
 .md-typeset .admonition.quote,
 .md-typeset details.quote {
-  --md-admonition-color: var(--md-sys-color-outline);
+  --md-admonition-color: var(--md-sys-color-outline-variant);
   --md-admonition-container: var(--md-sys-color-surface-container-high);
   --md-admonition-on-container: var(--md-sys-color-on-surface-variant);
 }
@@ -702,25 +722,37 @@ body {
 /* Task lists. */
 
 .md-typeset .task-list-control .task-list-indicator::before {
-  background: var(--md-sys-color-surface-container-low);
-  border-color: var(--md-sys-color-outline);
+  /* MkDocs renders a masked icon: its background is the visible stroke. */
+  background: var(--md-sys-color-outline);
 }
 
 .md-typeset .task-list-control [type="checkbox"]:checked + .task-list-indicator::before {
   background: var(--md-sys-color-primary);
-  border-color: var(--md-sys-color-primary);
-}
-
-.md-typeset .task-list-control [type="checkbox"]:checked + .task-list-indicator::after {
-  border-color: var(--md-sys-color-on-primary);
 }
 
 /* Tooltips. */
 
 .md-tooltip {
+  --md-typeset-color: var(--md-sys-color-inverse-on-surface);
+  --md-typeset-a-color: var(--md-sys-color-inverse-primary);
+
   background: var(--md-sys-color-inverse-surface);
   border: 0;
   border-radius: var(--md-sys-shape-corner-extra-small);
+  color: var(--md-sys-color-inverse-on-surface);
+}
+
+/* Current MkDocs tooltips and clipboard notifications use the same inverse pair. */
+.md-tooltip2[role="tooltip"] {
+  --md-default-bg-color: var(--md-sys-color-inverse-surface);
+  --md-default-fg-color: var(--md-sys-color-inverse-on-surface);
+}
+
+.md-dialog {
+  background: var(--md-sys-color-inverse-surface);
+}
+
+.md-dialog__inner {
   color: var(--md-sys-color-inverse-on-surface);
 }
 
@@ -739,21 +771,22 @@ body {
 }
 
 .md-typeset ins {
-  background: var(--md-sys-color-tertiary-container);
-  border-bottom: 1px solid var(--md-sys-color-tertiary);
-  color: var(--md-sys-color-on-tertiary-container);
+  background: var(--md-custom-color-success-container);
+  border-bottom: var(--md-sys-spacing-hairline) solid var(--md-custom-color-success);
+  color: var(--md-custom-color-on-success-container);
   text-decoration: none;
 }
 
 .md-typeset del {
   background: var(--md-sys-color-error-container);
-  border-bottom: 1px solid var(--md-sys-color-error);
+  border-bottom: var(--md-sys-spacing-hairline) solid var(--md-sys-color-error);
   color: var(--md-sys-color-on-error-container);
 }
 
 /* Tags and content tabs. */
 
-.md-tag {
+.md-tag,
+.md-typeset .md-tag {
   background: var(--md-sys-color-secondary-container);
   border-radius: var(--md-sys-shape-corner-small);
   color: var(--md-sys-color-on-secondary-container);
@@ -831,9 +864,16 @@ body {
 /* -------------------------------------------------------------------------- */
 
 @media (prefers-contrast: more) {
+  [data-md-color-scheme] {
+    --md-sys-color-on-surface-variant: var(--md-sys-color-on-surface);
+    --md-sys-color-outline: var(--md-sys-color-on-surface);
+    --md-footer-fg-color--lighter: var(--md-footer-fg-color);
+  }
+
   .md-typeset code,
   .md-typeset pre > code,
-  .md-typeset .admonition,
+  .md-typeset .admonition[class],
+  .md-typeset details[class],
   .md-typeset details,
   .md-typeset table:not([class]),
   .md-typeset kbd,
@@ -863,46 +903,68 @@ body {
 
 @media print {
   [data-md-color-scheme] {
-    --md-sys-color-primary: #6442d6;
+    color-scheme: light;
+
+    --md-sys-color-primary: #6341d5;
     --md-sys-color-on-primary: #ffffff;
     --md-sys-color-primary-container: #ffffff;
-    --md-sys-color-on-primary-container: #2c1038;
-    --md-sys-color-tertiary: #81427c;
+    --md-sys-color-on-primary-container: #1e0061;
+
+    --md-sys-color-secondary: #605b71;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #ffffff;
+    --md-sys-color-on-secondary-container: #1d192b;
+
+    --md-sys-color-tertiary: #874781;
     --md-sys-color-on-tertiary: #ffffff;
     --md-sys-color-tertiary-container: #ffffff;
-    --md-sys-color-on-tertiary-container: #351032;
-    --md-sys-color-error: #8c1d18;
+    --md-sys-color-on-tertiary-container: #380038;
+
+    --md-sys-color-error: #ba1a1a;
+    --md-sys-color-on-error: #ffffff;
     --md-sys-color-error-container: #ffffff;
     --md-sys-color-on-error-container: #410002;
+
+    --md-custom-color-warning: #7b5800;
+    --md-custom-color-warning-container: #ffffff;
+    --md-custom-color-on-warning-container: #271900;
+
+    --md-custom-color-success: #226a4b;
+    --md-custom-color-success-container: #ffffff;
+    --md-custom-color-on-success-container: #002113;
+
     --md-sys-color-surface: #ffffff;
+    --md-sys-color-surface-dim: #ffffff;
+    --md-sys-color-surface-bright: #ffffff;
+    --md-sys-color-surface-container-lowest: #ffffff;
     --md-sys-color-surface-container-low: #ffffff;
     --md-sys-color-surface-container: #f5f5f5;
     --md-sys-color-surface-container-high: #eeeeee;
     --md-sys-color-surface-container-highest: #e8e8e8;
     --md-sys-color-on-surface: #000000;
+    --md-sys-color-inverse-surface: #313033;
+    --md-sys-color-inverse-on-surface: #f4eff4;
     --md-sys-color-on-surface-variant: #1a1a1a;
     --md-sys-color-outline: #4a4a4a;
     --md-sys-color-outline-variant: #cccccc;
-    --md-code-bg-color: #f5f5f5;
-    --md-code-fg-color: #000000;
-    --md-typeset-a-color: #6442d6;
-    --md-accent-fg-color: #81427c;
-    --md-primary-fg-color: #ffffff;
-    --md-primary-bg-color: #000000;
-    --md-footer-bg-color: #ffffff;
-    --md-footer-bg-color--dark: #ffffff;
+    --md-sys-color-inverse-primary: #cbbeff;
+    --md-sys-color-scrim: #000000;
+    --md-sys-color-shadow: #000000;
+    --md-footer-bg-color: var(--md-sys-color-surface);
+    --md-footer-bg-color--dark: var(--md-sys-color-surface);
+    --md-footer-fg-color: var(--md-sys-color-on-surface);
   }
 
   [data-md-color-scheme] .md-header,
   [data-md-color-scheme] .md-tabs,
   [data-md-color-scheme] .md-footer {
-    background: #ffffff;
-    color: #000000;
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-on-surface);
   }
 
   [data-md-color-scheme] .md-typeset img:not([src$=".svg"]) {
     background: none;
-    border: 1px solid #cccccc;
+    border: var(--md-sys-spacing-hairline) solid var(--md-sys-color-outline-variant);
     box-shadow: none;
   }
 }

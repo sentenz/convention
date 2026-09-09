@@ -1,50 +1,69 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
+  class="sentenz-logo"
   viewBox="0 0 512 512"
   role="img"
   aria-labelledby="logo-title logo-description"
 >
   <title id="logo-title">SENTENZ</title>
   <desc id="logo-description">
-    A rounded purple tile with a flowing S and a pink terminal point.
+    A rounded orchid tile with a flowing S and a contrasting pink terminal point,
+    using coordinated Material 3 light and dark colors.
   </desc>
 
   <style>
-    :root {
-      --md-sys-color-primary: #6442d6;
-      --md-sys-color-on-primary: #ffffff;
-      --md-sys-color-tertiary-container: #f1d3f9;
+    /* HCT fallbacks match ../css/style.css; inline SVGs inherit the host's M3 tokens. */
+    .sentenz-logo {
+      --sentenz-logo-primary: var(--md-sys-color-primary, #6341d5);
+      --sentenz-logo-on-primary: var(--md-sys-color-on-primary, #ffffff);
+      --sentenz-logo-tertiary: var(--md-sys-color-tertiary, #874781);
+      --sentenz-logo-on-tertiary: var(--md-sys-color-on-tertiary, #ffffff);
     }
 
-    .logo-container {
-      fill: var(--md-sys-color-primary, #6442d6);
+    /* Embedded images follow the parent's color-scheme; standalone SVGs follow the OS. */
+    @media screen and (prefers-color-scheme: dark) {
+      .sentenz-logo {
+        --sentenz-logo-primary: var(--md-sys-color-primary, #cbbeff);
+        --sentenz-logo-on-primary: var(--md-sys-color-on-primary, #340098);
+        --sentenz-logo-tertiary: var(--md-sys-color-tertiary, #faadef);
+        --sentenz-logo-on-tertiary: var(--md-sys-color-on-tertiary, #521750);
+      }
     }
 
-    .logo-mark {
+    .sentenz-logo .logo-container {
+      fill: var(--sentenz-logo-primary, #6341d5);
+    }
+
+    .sentenz-logo .logo-mark {
       fill: none;
-      stroke: var(--md-sys-color-on-primary, #ffffff);
+      stroke: var(--sentenz-logo-on-primary, #ffffff);
       stroke-linecap: round;
       stroke-linejoin: round;
       stroke-width: 68;
     }
 
-    .logo-terminal {
-      fill: var(--md-sys-color-tertiary-container, #f1d3f9);
+    .sentenz-logo .logo-terminal {
+      fill: var(--sentenz-logo-tertiary, #874781);
+      stroke: var(--sentenz-logo-on-tertiary, #ffffff);
+      stroke-width: 8;
     }
   </style>
 
   <rect class="logo-container" x="32" y="32" width="448" height="448" rx="112" />
-  <path
-    class="logo-mark"
-    d="
-      M 374 150
-      C 340 116 298 104 246 104
-      C 170 104 116 138 116 190
-      C 116 240 158 258 256 268
-      C 354 278 396 300 396 350
-      C 396 404 340 438 264 438
-      C 206 438 160 422 128 388
-    "
-  />
-  <circle class="logo-terminal" cx="128" cy="388" r="24" />
+  <!-- Balance the mark's top and bottom clearance without changing its curves. -->
+  <g transform="translate(0 -16)">
+    <path
+      class="logo-mark"
+      d="
+        M 374 150
+        C 340 116 298 104 246 104
+        C 170 104 116 138 116 190
+        C 116 240 158 258 256 268
+        C 354 278 396 300 396 350
+        C 396 404 340 438 264 438
+        C 206 438 160 422 128 388
+      "
+    />
+    <circle class="logo-terminal" cx="128" cy="388" r="24" />
+  </g>
 </svg>

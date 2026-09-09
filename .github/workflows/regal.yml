@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v7.0.1
 
       - name: Run Regal
+        if: ${{ hashFiles('tests/policy/**/*.rego') != '' }}
         uses: sentenz/actions/regal@1.4.10
         with:
           path: "./tests/policy"

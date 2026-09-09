@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v7.0.1
 
       - name: Run Conftest
+        if: ${{ hashFiles('tests/policy/**/*.rego') != '' }}
         uses: sentenz/actions/conftest@1.4.10
         with:
           policy-path: "./tests/policy"

@@ -1,5 +1,6 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
+  class="sentenz-wordmark"
   viewBox="0 0 1280 240"
   role="img"
   aria-labelledby="wordmark-title wordmark-description"
@@ -8,32 +9,38 @@
   <title id="wordmark-title">SENTENZ</title>
   <desc id="wordmark-description">
     SENTENZ wordmark with a unified rounded Material 3 stroke system, split N diagonals,
-    and a tertiary terminal point derived from the SENTENZ monogram.
+    and a contrasting pink terminal point derived from the SENTENZ monogram.
   </desc>
 
   <style>
-    :root {
-      --sentenz-wordmark-primary: var(--md-sys-color-primary, #6442d6);
-      --sentenz-wordmark-tertiary: var(--md-sys-color-tertiary, #81427c);
+    /* HCT fallbacks match ../css/style.css; inline SVGs inherit the host's M3 tokens. */
+    .sentenz-wordmark {
+      --sentenz-wordmark-primary: var(--md-sys-color-primary, #6341d5);
+      --sentenz-wordmark-tertiary: var(--md-sys-color-tertiary, #874781);
+      --sentenz-wordmark-on-tertiary: var(--md-sys-color-on-tertiary, #ffffff);
     }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
+    /* Embedded images follow the parent's color-scheme; standalone SVGs follow the OS. */
+    @media screen and (prefers-color-scheme: dark) {
+      .sentenz-wordmark {
         --sentenz-wordmark-primary: var(--md-sys-color-primary, #cbbeff);
-        --sentenz-wordmark-tertiary: var(--md-sys-color-tertiary, #f1b5ec);
+        --sentenz-wordmark-tertiary: var(--md-sys-color-tertiary, #faadef);
+        --sentenz-wordmark-on-tertiary: var(--md-sys-color-on-tertiary, #521750);
       }
     }
 
-    .glyph {
+    .sentenz-wordmark .glyph {
       fill: none;
-      stroke: var(--sentenz-wordmark-primary);
+      stroke: var(--sentenz-wordmark-primary, #6341d5);
       stroke-width: 32;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .terminal {
-      fill: var(--sentenz-wordmark-tertiary);
+    .sentenz-wordmark .terminal {
+      fill: var(--sentenz-wordmark-tertiary, #874781);
+      stroke: var(--sentenz-wordmark-on-tertiary, #ffffff);
+      stroke-width: 4;
     }
   </style>
 

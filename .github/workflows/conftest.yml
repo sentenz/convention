@@ -18,6 +18,6 @@ jobs:
 
       - name: Run Conftest
         if: ${{ hashFiles('tests/policy/**/*.rego') != '' }}
-        uses: sentenz/actions/conftest@1.4.10
+        uses: sentenz/actions/conftest@1.5.0
         with:
           policy-path: "./tests/policy"

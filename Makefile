@@ -84,7 +84,7 @@ agent-skills-restore:
 
 # ─── Dependency Manager ──────────────────────────────────────────────────────────────────────────
 
-DEPENDENCY_IMAGE_RENOVATE ?= docker.io/renovate/renovate:44.74.0@sha256:6d08f288cf914b2ee64cb0922083f8c2246bdb94cc1b4af1eaceb64b5fd48992
+DEPENDENCY_IMAGE_RENOVATE ?= docker.io/renovate/renovate:44.82.5@sha256:e93745c01c635c3431de5cddfe3e75f9825aa3bab5995076b9c15e83452c9d7b
 
 ## Update project dependencies locally using Renovate and generate a report
 dependency-renovate-update:
@@ -275,7 +275,7 @@ lint-markdown:
 
 # ─── SAST Manager ────────────────────────────────────────────────────────────────────────────────
 
-SAST_IMAGE_SEMGREP ?= semgrep/semgrep:1.176.1@sha256:34ab619bf1391a24bfda3f05debd0d8a6ce3093c2d5f9d39cfc00f83c1397823
+SAST_IMAGE_SEMGREP ?= semgrep/semgrep:1.177.0@sha256:acaac22ffc7b7cc5926de0751b223bce0b2491c33d18422fa72f632c78d81198
 SAST_FILES_SEMGREP ?= .
 SAST_REGEX_SEMGREP = $(if $(strip $(SAST_FILES_SEMGREP)),$(SAST_FILES_SEMGREP),.)
 

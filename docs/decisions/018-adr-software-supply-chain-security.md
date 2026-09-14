@@ -65,9 +65,9 @@ For products within the EU Cyber Resilience Act (CRA) scope, third-party compone
 
 ## 3. Decision
 
-Adopt the six complementary options below as one supply chain security baseline. Enforce verification at dependency intake, release promotion, and consumption. Reproducible builds provide additional assurance through a pilot.
+Adopt the complementary controls as a unified software supply chain security baseline. Enforce verification at dependency intake, release promotion, and artifact consumption. Introduce reproducible builds as an additional assurance mechanism.
 
-Checksums and vulnerability scanning alone are insufficient because they do not establish trusted source, authorized build provenance, authenticated artifacts, or secure update delivery.
+Basic checksum validation and vulnerability scanning are insufficient for comprehensive software supply chain security. They do not establish source authenticity, authorized build provenance, artifact authenticity and integrity, or secure software update delivery.
 
 ### 3.1. Controlled Source and Dependency Intake
 

@@ -13,8 +13,9 @@
   --md-ref-typeface-plain: "Google Sans Text", "Roboto", system-ui, sans-serif;
 
   /* M3 spacing tokens on the supplied 4px base grid. */
-  --md-sys-spacing-base: 4px;
   --md-sys-spacing-hairline: 1px;
+  --md-sys-spacing-base: 4px;
+  --md-sys-spacing-small: 8px;
   --md-sys-spacing-section-small: 32px;
   --md-sys-spacing-section-medium: 48px;
   --md-sys-spacing-section-large: 56px;
@@ -817,18 +818,18 @@ body {
 /* Responsive reading width and interaction targets follow M3 window classes. */
 
 .md-main__inner {
-  padding-top: var(--md-sys-spacing-section-hairline);
+  padding-top: var(--md-sys-spacing-hairline);
 }
 
 @media (min-width: 600px) {
   .md-main__inner {
-    padding-top: var(--md-sys-spacing-section-hairline);
+    padding-top: var(--md-sys-spacing-base);
   }
 }
 
 @media (min-width: 840px) {
   .md-main__inner {
-    padding-top: var(--md-sys-spacing-section-hairline);
+    padding-top: var(--md-sys-spacing-small);
   }
 }
 

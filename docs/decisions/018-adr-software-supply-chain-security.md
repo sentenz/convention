@@ -34,11 +34,9 @@ Architectural Decision Record (ADR) on adopting complementary controls to protec
 
 Software can be compromised through an upstream dependency, an unauthorized source change, a build tool, or replacement of an otherwise legitimate release. Testing application behavior does not establish who produced the delivered artifact or whether it corresponds to the reviewed source.
 
-This ADR defines a supply chain baseline for product repositories adopting these conventions, including C/C++ embedded software and firmware. The scope covers source, direct and transitive dependencies, build tools, CI/CD services, registries, release evidence, and update clients. It complements the security testing strategy in [issue #476](https://github.com/sentenz/convention/issues/476) and [ADR 016](016-adr-eu-cra-security-testing-and-analysis-for-c-cpp.md). Application security testing remains a separate control.
+This ADR defines a supply chain baseline for product repositories adopting these conventions, including C/C++ embedded software and firmware. The scope covers source, direct and transitive dependencies, build tools, CI/CD services, registries, release evidence, and update clients.
 
-The repository already provides Trivy SBOM and Cosign attestation tasks in its [Makefile](https://github.com/sentenz/convention/blob/main/Makefile). Those tasks are integration starting points; their presence does not establish an enforced release policy. The Conan proposal in [ADR 014](014-adr-dependency-manager-c-cpp.md) informs C/C++ integration without making this baseline dependent on one package manager.
-
-For products within the EU Cyber Resilience Act (CRA) scope, third-party component due diligence and vulnerability handling are relevant obligations. The main requirements apply from 11 December 2027; manufacturer reporting obligations apply from 11 September 2026. This ADR supplies technical evidence for product-specific assessment and does not establish conformity by itself. See the [CRA overview](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act) and [manufacturer guidance](https://digital-strategy.ec.europa.eu/en/policies/cra-manufacturers).
+For products within the EU Cyber Resilience Act (CRA) scope, third-party component due diligence and vulnerability handling are relevant obligations.
 
 1. Decision Drivers
 

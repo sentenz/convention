@@ -1,23 +1,23 @@
-# 016-ADR: EU CRA Security Testing and Security Analysis for C/C++
+# 016-ADR: Security Testing for C/C++ under CRA
 
-Architectural Decision Records (ADR) on adopting an integrated security testing and security analysis strategy for C/C++ software in compliance with the EU Cyber Resilience Act (CRA), Regulation (EU) 2024/2847.
+Architectural Decision Record on selecting a complementary multi-layer security testing strategy for C/C++ embedded products to achieve EU Cyber Resilience Act (CRA) compliance.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)
 - [3. Decision](#3-decision)
-  - [3.1. SAST](#31-sast)
-  - [3.2. SCA and SBOM](#32-sca-and-sbom)
-  - [3.3. DAST](#33-dast)
-  - [3.4. Fuzz Testing](#34-fuzz-testing)
-  - [3.5. Penetration Testing](#35-penetration-testing)
-  - [3.6. Performance Testing](#36-performance-testing)
+  - [3.1. Unit Testing with Sanitizers](#31-unit-testing-with-sanitizers)
+  - [3.2. Fuzz Testing with Sanitizers](#32-fuzz-testing-with-sanitizers)
+  - [3.3. SAST (Static Application Security Testing)](#33-sast-static-application-security-testing)
+  - [3.4. SCA (Software Composition Analysis) \& SBOM Management](#34-sca-software-composition-analysis--sbom-management)
+  - [3.5. Penetration Testing (Binary Exploitation)](#35-penetration-testing-binary-exploitation)
 - [4. Considered](#4-considered)
-  - [4.1. SAST](#41-sast)
-  - [4.2. SCA and SBOM](#42-sca-and-sbom)
-  - [4.3. DAST](#43-dast)
-  - [4.4. Fuzz Testing](#44-fuzz-testing)
-  - [4.5. Penetration Testing](#45-penetration-testing)
-  - [4.6. Performance Testing](#46-performance-testing)
+  - [4.1. Sanitizers](#41-sanitizers)
+  - [4.2. Unit Testing](#42-unit-testing)
+  - [4.3. Fuzz Testing (Fuzzing)](#43-fuzz-testing-fuzzing)
+  - [4.4. SAST (Static Application Security Testing)](#44-sast-static-application-security-testing)
+  - [4.5. DAST (Dynamic Application Security Testing)](#45-dast-dynamic-application-security-testing)
+  - [4.6. SCA (Software Composition Analysis) \& SBOM Management](#46-sca-software-composition-analysis--sbom-management)
+  - [4.7. Penetration Testing (Binary Exploitation)](#47-penetration-testing-binary-exploitation)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -25,390 +25,371 @@ Architectural Decision Records (ADR) on adopting an integrated security testing 
 ## 1. State
 
 - Author(s): Sentenz
-- Date: 2026-05-06
+- Date: 2026-06-24
 - Status: Proposed
 
 ## 2. Context
 
-The EU Cyber Resilience Act (CRA), Regulation (EU) 2024/2847, entered into force on December 10, 2024 and imposes mandatory cybersecurity obligations on manufacturers of products with digital elements (PDEs) sold in the EU market. Vulnerability and incident reporting obligations apply from September 11, 2026, and full conformity requirements are enforceable from December 11, 2027. Article 13 and Annex I of the CRA require manufacturers to design, develop, and maintain PDEs in accordance with essential cybersecurity requirements, including documented security risk assessments, vulnerability management, and evidence of security testing throughout the product lifecycle. Non-compliance can result in market withdrawal, fines of up to €15 million or 2.5 % of global annual turnover, and exclusion from the EU market. C/C++ software presents particular cybersecurity challenges: memory-safety vulnerabilities (buffer overflows, use-after-free, integer overflows, format-string bugs), undefined behaviour, and the absence of a managed runtime make it a frequent source of critical CVEs. Many CRA-covered products are implemented in C/C++, including embedded firmware, industrial control systems, automotive components, and connected devices. To satisfy CRA obligations the project must adopt an integrated, evidence-producing security testing and analysis strategy that addresses the specific vulnerability classes and tooling constraints of the C/C++ ecosystem.
+The EU Cyber Resilience Act (CRA) Regulation mandates strict security baselines for hardware and software products entering the EU market. The CRA requires that manufacturers implement active vulnerability identification, maintain complete software transparency, and offer continuous verification throughout the software development lifecycle (SDLC).
+
+C/C++ embedded products present unique challenges due to their lack of inherent memory safety, resource-constrained execution environments, and complex supply chain dependencies. A multi-layered security testing strategy is necessary to satisfy CRA requirements, mitigate risks, and provide auditable evidence of systematic security testing.
 
 1. Decision Drivers
 
-    - CRA Compliance
-      > Satisfy the essential cybersecurity requirements in CRA Annex I and the manufacturer obligations in Article 13, including documented risk assessments and evidence of security testing at every lifecycle stage.
+    - CRA Regulatory Compliance
+      > The CRA mandates proactive vulnerability identification, security-by-default design, software transparency via SBOM, and documented evidence of systematic security testing throughout the entire product lifecycle per CRA Article 13 and CRA Annex I.
 
-    - Vulnerability Management
-      > Detect and remediate security vulnerabilities in first-party code and third-party dependencies continuously, not only at release time, to meet CRA Annex I Part II requirements for ongoing vulnerability handling.
+    - Attack Surface Minimization
+      > Systematic security testing must identify and remediate unsafe coding patterns, memory safety violations, and undefined behavior in C/C++ code paths to minimize the attack surface before integration per CRA Annex I Part I (2)(j).
 
-    - SBOM Transparency
-      > Maintain a machine-readable Software Bill of Materials (SBOM) for each release to fulfil CRA transparency and supply-chain due-diligence obligations.
+    - Supply Chain Transparency
+      > CRA Annex I requires a complete, auditable SBOM of all third-party and open-source dependencies, including known CVE exposure mappings, to ensure supply chain security.
 
-    - SSDLC Integration
-      > Embed security testing and analysis into the CI/CD pipeline so that every code change is evaluated automatically, minimising the cost of late-stage remediation.
+    - Evidence-based Retention
+      > Systematic security testing must produce machine-parseable artifacts that are versioned and archived for a minimum of 10 years to satisfy CRA Article 13(13) documentation requirements.
 
-    - Auditability
-      > Produce artefacts—scan reports, SBOM, risk-assessment results, penetration-test summaries—that can be presented to conformity-assessment bodies and market-surveillance authorities on request.
+    - Developer Experience
+      > Seamlessly integrate into existing developer workflows and Editor/IDE setup without extensive configuration.
 
-    - Attack Surface Reduction
-      > Identify and eliminate vulnerabilities across code, runtime, and dependency layers to reduce the effective attack surface of the product, as required by CRA Annex I Part I.
+    - CI/CD Compliance
+      > Integrate security testing into CI/CD pipelines to provide automated, repeatable, and auditable evidence of systematic security testing.
 
 ## 3. Decision
 
-Adopt an integrated, multi-layer security testing and analysis strategy for C/C++ software to achieve EU Cyber Resilience Act (CRA) compliance (Regulation (EU) 2024/2847).
+Adopt a multi-layered security testing strategy for C/C++ embedded products to satisfy CRA compliance requirements.
 
-### 3.1. SAST
+### 3.1. Unit Testing with Sanitizers
 
-Selected for its ability to detect insecure code patterns and potential vulnerabilities directly in C/C++ source code, before any code is executed or deployed. For C/C++, SAST encompasses compile-time analysis tools (SonarQube with C/C++ analysis plugins, Semgrep with C/C++ rulesets) and standalone checkers (cppcheck, clang-tidy) that identify memory-safety vulnerabilities, undefined behaviour, insecure API usage, and CWE-enumerated vulnerability classes. Integrating SAST as a mandatory quality gate on every pull request ensures that security issues are identified at the earliest possible stage of the development lifecycle.
-
-1. Rationale
-
-    - CRA Compliance
-      > SAST produces documented evidence of source-code security evaluation required by CRA Annex I Part I (security by design, elimination of known vulnerability classes) and supports conformity-assessment documentation under CRA Article 13.
-
-    - Vulnerability Management
-      > Automated static analysis on every commit detects memory-corruption patterns, buffer overflows, use-after-free, integer overflows, format-string vulnerabilities, and unsafe API calls at the point of introduction, enabling immediate remediation before code reaches production.
-
-    - SSDLC Integration
-      > SonarQube and Semgrep integrate natively into CI/CD pipelines; cppcheck and clang-tidy integrate with CMake and build systems as additional compilation steps, enforcing security checks at the earliest development stage without disrupting developer productivity.
-
-    - Auditability
-      > Structured SAST reports stored as versioned pipeline artefacts constitute technical documentation demonstrating security evaluation of each code change, as required by CRA Article 13(3).
-
-    - Attack Surface Reduction
-      > Detection of memory-safety vulnerabilities, unsafe pointer arithmetic, unchecked buffer sizes, and insecure system API usage reduces the number of exploitable weaknesses in the codebase before deployment.
-
-### 3.2. SCA and SBOM
-
-Selected for its role in identifying vulnerabilities in third-party dependencies and vendored libraries and producing a machine-readable Software Bill of Materials (SBOM) per release. For C/C++ projects using Conan, vcpkg, or vendored source trees, SCA must analyse dependency manifests and lock files to detect components with known CVEs and licence violations. SBOM generation fulfils CRA transparency obligations and enables downstream consumers to assess component risk.
+Adopt automated security Unit Testing with Sanitizer instrumentation to detect memory safety violations and undefined behavior in C/C++ code paths.
 
 1. Rationale
 
-    - CRA Compliance
-      > SCA identifies third-party and vendored C/C++ components with known CVEs, satisfying CRA Annex I Part II obligations for monitoring and addressing vulnerabilities in dependencies. SBOM generation fulfils CRA transparency and supply-chain due-diligence requirements.
+    - CRA Regulatory Compliance
+      > Unit Testing with Sanitizers satisfies CRA Annex I Part I (2)(a) proactive vulnerability identification with structured Sanitizer output.
 
-    - Vulnerability Management
-      > Continuous dependency scanning against NVD, OSV, and vendor advisory databases detects newly disclosed vulnerabilities in third-party C/C++ libraries and vendored components and triggers remediation before release.
+    - Attack Surface Minimization
+      > Unit tests with Sanitizers detect and remediate unsafe coding patterns, memory safety violations, and undefined behavior in C/C++ code paths, significantly reducing the attack surface before integration.
 
-    - SBOM Transparency
-      > SCA tooling generates a machine-readable SBOM in CycloneDX or SPDX format for every release, providing a complete inventory of C/C++ components, their versions, licence status, and known vulnerabilities.
+    - Developer Experience
+      > Unit tests run under Sanitizer instrumentation provide immediate feedback to developers, enabling rapid remediation of memory safety issues without requiring specialized hardware or external test runners.
 
-    - SSDLC Integration
-      > SCA runs automatically within the CI/CD pipeline on every build, scanning Conan and vcpkg lock files and vendored directories, providing continuous visibility into dependency health without requiring manual inventory management.
+    - CI/CD Compliance
+      > Unit tests with Sanitizers executed in CI pipelines, providing automated detection of memory safety violations and undefined behavior, ensuring continuous security assurance.
 
-    - Auditability
-      > SBOM files and SCA scan reports stored per release serve as evidence of supply-chain due diligence and support conformity-assessment body requests for technical documentation.
+### 3.2. Fuzz Testing with Sanitizers
 
-### 3.3. DAST
-
-Selected for its capacity to identify runtime vulnerabilities that are not detectable through static analysis alone. For C/C++ components that expose network interfaces, DAST tools simulate real-world attack patterns against the running service. For binary components without HTTP endpoints, compiler-instrumented runtime sanitizers — AddressSanitizer (ASan), UndefinedBehaviorSanitizer (UBSan), MemorySanitizer (MSan), and ThreadSanitizer (TSan) — serve as the dynamic analysis layer, detecting memory-safety violations, undefined behaviour, data races, and use-after-free errors during test execution.
+Adopt coverage-guided fuzz testing with Sanitizer instrumentation to discover memory corruption, integer overflows, and parsing errors in C/C++ code paths not exercised by unit tests.
 
 1. Rationale
 
-    - CRA Compliance
-      > DAST and runtime sanitizers provide evidence of dynamic security evaluation required by CRA Annex I Part I, complementing SAST and SCA to achieve the multi-layer testing coverage expected under CRA Article 13.
+    - CRA Regulatory Compliance
+      > Fuzz testing with Sanitizers satisfies CRA Annex I Part I (2)(a) proactive vulnerability identification with fuzzing campaign results and crash reproducers.
 
-    - Vulnerability Management
-      > Runtime sanitizers detect memory-corruption bugs, undefined behaviour, and race conditions in C/C++ code that are not reliably identified by static analysis. For network-facing components, black-box scanning detects authentication flaws and injection vulnerabilities that only appear during execution.
+    - Attack Surface Minimization
+      > Fuzz testing discovers hidden edge-case crashes, boundary violations, and deeply nested logical flaws in C/C++ code paths that are not exercised by unit tests, significantly reducing the exploitable attack surface before integration.
 
-    - SSDLC Integration
-      > Sanitizers are enabled by compiler flags (`-fsanitize=address,undefined,thread`) and integrate into the existing test suite with zero instrumentation overhead on development builds. DAST tools execute against a running service instance in the integration-test stage of the CI/CD pipeline.
+    - Developer Experience
+      > Fuzz testing campaigns run under Sanitizer instrumentation provide immediate feedback to developers, enabling rapid remediation of memory safety issues without requiring specialized hardware or external test runners.
 
-    - Auditability
-      > Sanitizer crash reports and DAST scan reports generated per build are stored as pipeline artefacts, providing documented evidence of dynamic security testing for conformity assessments.
+    - CI/CD Compliance
+      > Fuzz testing campaigns executed in CI pipelines, providing automated discovery of memory safety violations and undefined behavior, ensuring continuous security assurance.
 
-    - Attack Surface Reduction
-      > Runtime sanitizers surface exploitable memory-safety vulnerabilities under test conditions before they reach production; DAST scanning exposes runtime-exploitable weaknesses in network-facing interfaces.
+### 3.3. SAST (Static Application Security Testing)
 
-### 3.4. Fuzz Testing
-
-Selected for its ability to discover unexpected input-handling vulnerabilities and memory-safety issues that evade both static and dynamic analysis. Fuzz testing is particularly effective for C/C++ components: Google FuzzTest integrates directly with the C/C++ build system and generates high volumes of malformed and edge-case inputs to exercise parsers, protocol handlers, and deserialization routines, uncovering crashes, memory-corruption bugs, and assertion failures that represent potential security vulnerabilities.
+Adopt SAST tools to perform source-level vulnerability detection and enforce secure coding standards in C/C++ code.
 
 1. Rationale
 
-    - CRA Compliance
-      > Fuzz testing demonstrates adversarial input-handling robustness required by CRA Annex I Part I for attack surface minimisation and contributes to the documented security testing evidence required under CRA Article 13.
+    - CRA Regulatory Compliance
+      > SAST satisfies CRA Annex I Part I (2)(a) proactive vulnerability identification with SAST reports and rule violation logs.
 
-    - Vulnerability Management
-      > Automated fuzz campaigns detect memory-corruption bugs, heap/stack buffer overflows, integer overflows, and input-validation failures in C/C++ code that static analysis and sanitizers do not reliably identify, reducing the residual vulnerability surface.
+    - Attack Surface Minimization
+      > SAST detects unsafe coding patterns, tainted data flows, and rule violations in C/C++ code, providing early detection of exploitable vulnerabilities before integration.
 
-    - SSDLC Integration
-      > Fuzz testing runs in a dedicated scheduled pipeline stage targeting C/C++ components that process untrusted input, compiled with sanitizer instrumentation (`-fsanitize=address,fuzzer`) to maximise crash-detection sensitivity.
+    - Developer Experience
+      > SAST tools provide immediate feedback to developers, enabling rapid remediation of security issues without requiring specialized hardware.
 
-    - Attack Surface Reduction
-      > Exercising C/C++ parsers, protocol handlers, and deserialization routines with high volumes of malformed input identifies and enables remediation of memory-safety edge cases before they can be exploited in production.
+    - CI/CD Compliance
+      > SAST executed in CI pipelines, providing automated detection of security weaknesses and unsafe patterns, ensuring continuous security assurance.
 
-### 3.5. Penetration Testing
+### 3.4. SCA (Software Composition Analysis) & SBOM Management
 
-Selected for its ability to validate the overall security posture through independent adversarial assessment. For C/C++ products — particularly embedded firmware, connected devices, and industrial components — penetration testing includes both application-level and binary-level assessment: binary analysis (Ghidra, binwalk) to inspect firmware structure and extract embedded secrets, and protocol-level adversarial testing to validate that runtime defences hold under real-world attack conditions.
-
-1. Rationale
-
-    - CRA Compliance
-      > An independent penetration test provides evidence of adversarial security validation required by CRA Annex I Part I and supports the technical documentation package for conformity assessments under CRA Article 13(3).
-
-    - Vulnerability Management
-      > Penetration testing identifies systemic weaknesses, firmware-level attack paths, and attack-chain scenarios that automated tools cannot replicate, validating that the cumulative effect of SAST, DAST, SCA, and fuzz testing mitigations is sufficient.
-
-    - Auditability
-      > Penetration-test reports documenting findings, remediation actions, and retesting outcomes constitute formal security evaluation evidence for conformity-assessment bodies and market-surveillance authorities.
-
-    - Attack Surface Reduction
-      > Independent expert assessment of the full system — including binary interfaces, firmware update mechanisms, and hardware-facing APIs — identifies residual systemic weaknesses that automated pipeline tooling does not cover.
-
-### 3.6. Performance Testing
-
-Selected for its ability to uncover security-relevant failure modes that only emerge under load, such as resource exhaustion, denial-of-service susceptibility, and latency-amplifying vulnerabilities. For C/C++ software, performance testing encompasses two complementary disciplines: load and stress testing for components with network interfaces, and benchmark testing using C/C++ native tooling (Google Benchmark, perf, Valgrind) to measure the execution time, CPU cycles, and memory footprint of individual components to detect performance regressions and resource-exhaustion conditions within the codebase itself.
+Adopt SCA tools to generate and manage SBOMs, identify third-party dependencies, and match components against vulnerability databases for known CVE exposure.
 
 1. Rationale
 
-    - CRA Compliance
-      > Performance testing provides evidence that the product maintains operational availability and resilience under load, supporting CRA Annex I Part I requirements for protection against availability attacks and contributing to conformity-assessment documentation under CRA Article 13.
+    - CRA Regulatory Compliance
+      > SCA satisfies CRA Annex I Part II (1) transparency requirements with SBOM generation and vulnerability matching reports.
 
-    - Vulnerability Management
-      > Load, stress, and benchmark tests expose resource-exhaustion vulnerabilities, memory leaks, heap fragmentation, and regression-inducing code changes in C/C++ components that SAST, DAST, and fuzz testing do not cover, enabling remediation before they can be exploited as denial-of-service vectors.
+    - Attack Surface Minimization
+      > SCA helps reduce the attack surface by identifying and mitigating potential vulnerabilities in third-party dependencies before they are integrated into the product.
 
-    - SSDLC Integration
-      > C/C++ native tooling integrates into the CI/CD pipeline: Google Benchmark for microbenchmarking, perf for Linux CPU and cache profiling, Valgrind (Callgrind for CPU profiling, Massif for heap profiling), and Heaptrack for heap memory analysis. Benchmark tests run on every pull request to catch regressions at the point of introduction; load tests run in a dedicated scheduled or pre-release stage.
+    - Supply Chain Transparency
+      > SCA generates standardized CycloneDX/SPDX SBOMs of all third-party libraries, providing visibility into the software supply chain and enabling proactive vulnerability management.
 
-    - Auditability
-      > Benchmark result sets, Valgrind reports, and load test reports recording baseline thresholds, memory profiles, and regression deltas are stored as versioned pipeline artefacts, providing documented evidence of availability and resilience validation.
+    - CI/CD Compliance
+      > SCA executed in CI pipelines, providing automated identification of known vulnerabilities in third-party dependencies, ensuring continuous security assurance.
 
-    - Attack Surface Reduction
-      > Identifying and remediating memory-allocation hotspots, resource-exhaustion paths, heap fragmentation, and unthrottled interfaces reduces the attack surface available to denial-of-service and memory-exhaustion attacks.
+    - Evidence-based Retention
+      > SBOMs and vulnerability matching reports are archived as versioned CI artifact uploads, providing auditable evidence of systematic security testing and vulnerability identification for CRA compliance.
+
+### 3.5. Penetration Testing (Binary Exploitation)
+
+Adopt periodic penetration testing on production binaries to validate that residual vulnerabilities are not practically exploitable and that compiler hardening mitigations resist bypass.
+
+1. Rationale
+
+    - CRA Regulatory Compliance
+      > Penetration testing satisfies CRA Annex I Part I (2)(a) proactive vulnerability identification with penetration test reports and exploitability assessments.
+
+    - Attack Surface Minimization
+      > Penetration testing identifies exploitable vulnerabilities in the compiled binary, providing insight into potential attack vectors and ensuring that security controls are effective against exploitation attempts.
+
+    - CI/CD Compliance
+      > Penetration testing conducted as a periodic pre-release gate, providing automated validation of residual risk in production binaries, ensuring continuous security assurance.
 
 ## 4. Considered
 
-### 4.1. SAST
+### 4.1. Sanitizers
 
-[SAST (Static Application Security Testing)](https://owasp.org/www-community/Source_Code_Analysis_Tools) for C/C++ analyses source code using tools such as SonarQube (with C/C++ analysis plugins), Semgrep (with C/C++ rulesets), cppcheck, and clang-tidy to identify memory-safety vulnerabilities, undefined behaviour, insecure API usage, CWE-enumerated vulnerability classes, and compliance violations without executing the program.
+Sanitizers instrument the binary at compile time to detect active memory violations during runtime execution.
 
-- Pros
-
-  - CRA Compliance
-    > Produces documented evidence of source-code security evaluation that supports CRA conformity-assessment requirements.
-
-  - Vulnerability Management
-    > Detects a broad range of C/C++ vulnerability classes (buffer overflows, use-after-free, integer overflows, format-string bugs, unsafe API calls) at commit time, before deployment.
-
-  - SSDLC Integration
-    > SonarQube and Semgrep integrate natively into CI/CD pipelines; cppcheck and clang-tidy integrate with CMake and build systems, enabling security checks at the earliest development stage.
-
-- Cons
-
-  - Coverage
-    > Cannot detect vulnerabilities that only manifest at runtime, such as race conditions, memory-corruption bugs triggered by specific execution paths, or vulnerabilities introduced by linking against vulnerable shared libraries.
-
-  - False Positives
-    > High false-positive rates for certain C/C++ rule sets require ongoing triage effort and careful tuning to avoid alert fatigue.
-
-### 4.2. SCA and SBOM
-
-[SCA (Software Composition Analysis)](https://owasp.org/www-community/Component_Analysis) for C/C++ identifies open-source and third-party components managed via Conan, vcpkg, or vendored source trees, checks them against vulnerability databases, and generates a machine-readable SBOM documenting the software supply chain. Dependency-Track provides continuous monitoring of the published SBOM against the NVD, OSV, and GitHub Advisory databases, enabling ongoing vulnerability alerting between release cycles.
+> [!TIP]
+> [LLVM Sanitizers](https://clang.llvm.org/docs/index.html) (ASan, UBSan, LSan, MSan, TSan) provide compile-time runtime instrumentation for host-mode test execution, detecting defect classes (memory errors, undefined behavior, data races).
 
 - Pros
 
-  - SBOM Transparency
-    > Generates a machine-readable SBOM in CycloneDX or SPDX format that fulfils CRA supply-chain transparency and due-diligence requirements.
+  - Precise Diagnostics
+    > Provides precise diagnostic feedback (with stack traces) for execution flaws like buffer overflows and data races with near-zero false-positive rates.
 
-  - Vulnerability Management
-    > Continuously monitors third-party C/C++ libraries and vendored components for newly disclosed CVEs and licence violations, enabling timely remediation.
+  - Memory Safety
+    > Detects memory corruption, use-after-free, and undefined behavior in C/C++ code paths, e.g., exercised by unit tests and fuzzing campaigns.
 
-  - Auditability
-    > SBOM files and scan reports stored per release provide auditable supply-chain evidence for conformity-assessment bodies.
+  - Native Integration
+    > Built-in compiler support for Clang and GCC, enabling seamless integration into CMake/CTest pipelines without additional toolchain dependencies.
+
+  - Test Suite Synergy
+    > Works in conjunction with unit tests and fuzzing suites, providing high-fidelity memory error detection across exercised code paths.
 
 - Cons
 
-  - Coverage
-    > Limited to vulnerabilities with public CVE or OSV database entries; zero-day vulnerabilities and supply-chain tampering in vendored source are not reliably detected. Statically linked libraries may not be identified if no package-manager metadata is present.
+  - Significant Resource Overhead
+    > Induces up to 2x to 4x execution slowdowns and increased memory consumption.
 
-  - Noise
-    > Transitive dependency graphs in C/C++ projects can generate a high volume of findings, requiring prioritisation to manage remediation effort.
+  - Multi-sanitizer Mutual Exclusivity
+    > Some Sanitizers cannot be combined in a single binary (e.g., ASan/UBSan with MSan or TSan), requiring multiple builds to cover all defect classes.
 
-### 4.3. DAST
+### 4.2. Unit Testing
 
-[DAST (Dynamic Application Security Testing)](https://owasp.org/www-community/Vulnerability_Scanning_Tools) tests running C/C++ software by simulating external attacks. For components with network interfaces, DAST tools (OWASP ZAP, Nuclei) probe the running service for runtime-exploitable vulnerabilities. For binary components without HTTP endpoints, compiler-instrumented runtime sanitizers — AddressSanitizer (ASan), UndefinedBehaviorSanitizer (UBSan), MemorySanitizer (MSan), ThreadSanitizer (TSan) — detect memory-safety violations and undefined behaviour during test execution.
+Unit Testing Frameworks isolate and execute individual functional blocks within deterministic execution contexts.
+
+> [!TIP]
+> [Google Test (GTest)](https://github.com/google/googletest) with [SEGGER J-Run](https://www.segger.com/products/debug-probes/j-link/tools/j-run/) provides on-host and on-target C++ unit testing for embedded systems, integrating with CMake/CTest for CI-native execution and bare-metal hardware-in-the-loop testing via J-Link SWD and RTT output.
 
 - Pros
 
-  - CRA Compliance
-    > Provides runtime vulnerability evidence that complements SAST, satisfying the multi-layer testing coverage expected by CRA Annex I.
+  - Deterministic Regression Baseline
+    > Provides a deterministic regression baseline for functional correctness, enabling early detection of logic errors and regressions in C/C++ code paths.
 
-  - Attack Surface Reduction
-    > Runtime sanitizers surface memory-corruption, undefined behaviour, and race conditions under test conditions; DAST scanning identifies runtime-exploitable weaknesses in network-facing C/C++ interfaces.
+  - On-target Validation
+    > SEGGER J-Run executes CTest-registered binaries on bare-metal Cortex-M via J-Link SWD with SEGGER RTT output, exposing hardware-specific faults (MPU violations, peripheral misuse) that are invisible in host-mode execution.
+
+  - Sanitizer Synergy
+    > Unit tests executed under Sanitizer instrumentation detect memory corruption and undefined behavior in exercised code paths.
 
 - Cons
 
-  - Pipeline Complexity
-    > Sanitizer-instrumented builds require separate compilation profiles; DAST scanning requires a running service instance, adding test-environment provisioning overhead.
+  - Mock Divergence
+    > Host-mode HAL mocks may diverge from real hardware behavior over time, masking target-specific vulnerabilities and generating false assurance from green host-mode test results.
 
-  - Coverage
-    > Sanitizers only detect bugs exercised by the test suite; DAST black-box scanning cannot reach all application code paths in deeply embedded or non-HTTP components.
+  - Path Coverage Ceiling
+    > Unit tests exercise only developer-specified paths, no automated discovery of unknown vulnerabilities occurs without complementary fuzz testing or property-based test generation.
 
-### 4.4. Fuzz Testing
+### 4.3. Fuzz Testing (Fuzzing)
 
-[Fuzz testing (fuzzing)](https://owasp.org/www-community/Fuzzing) for C/C++ uses Google FuzzTest — compiled with sanitizer instrumentation — to generate large volumes of malformed and boundary-condition inputs targeting C/C++ components, uncovering crashes, memory-safety violations, heap/stack corruptions, and assertion failures that indicate potential security vulnerabilities.
+Coverage-guided fuzz testing performs mutation of structured and unstructured inputs, automatically discovering memory corruption, integer overflows, and parsing errors in C/C++ code paths.
+
+> [!TIP]
+> [Google FuzzTest](https://github.com/google/fuzztest) perform automated input generation guided by branch coverage feedback, discovering memory corruption, integer overflows, and protocol parsing errors in code paths not exercised by hand-crafted tests.
 
 - Pros
 
-  - Vulnerability Management
-    > Discovers novel input-handling vulnerabilities—memory corruption, integer overflows, parser bugs—that neither SAST nor DAST reliably identifies.
+  - Coverage-Guided
+    > Discovers hidden edge-case crashes, boundary violations, and deeply nested logical flaws by combining code-coverage feedback with input mutation.
 
-  - Attack Surface Reduction
-    > Exercises high-risk interfaces (parsers, protocol handlers, deserialisers) under adversarial input conditions, reducing residual input-handling vulnerabilities.
+  - Sanitizer Synergy
+    > Fuzz testing executed under Sanitizer instrumentation detect memory corruption and undefined behavior in exercised code paths.
 
 - Cons
 
-  - Execution Time
-    > Thorough fuzz campaigns require long run times, making them unsuitable for standard per-commit CI pipelines and better suited to scheduled or nightly builds.
+  - Heavy Compute Footprint
+    > Demands dedicated continuous processing cycles to build and mutate test cases efficiently. Introduces specialized pipeline infrastructure requirements, e.g. extended scheduled campaigns to achieve sufficient coverage.
 
-  - Applicability
-    > Most effective for components processing untrusted input; limited value for business-logic or UI layers with few external input surfaces.
+  - Limited Determinism
+    > Fuzzing is inherently non-deterministic. Reproducing discovered crashes requires careful corpus management and may be sensitive to compiler optimizations, build flags, and runtime environment.
 
-### 4.5. Penetration Testing
+### 4.4. SAST (Static Application Security Testing)
 
-[Penetration testing](https://owasp.org/www-project-web-security-testing-guide/) for C/C++ products is a structured, adversarial security assessment conducted by independent experts who perform application-level and binary-level testing — including binary analysis with Ghidra or binwalk for firmware and embedded components — to identify exploitable vulnerabilities, attack chains, and systemic security weaknesses.
+SAST analyzes source code without executing the program to identify security weaknesses, unsafe patterns, tainted data flows, and rule violations.
+
+> [!TIP]
+> [SonarQube](https://www.sonarsource.com/) and [Semgrep](https://semgrep.dev/) perform source-level and interprocedural semantic static analysis, providing rapid vulnerability feedback without requiring code execution or hardware availability.
 
 - Pros
 
-  - CRA Compliance
-    > Provides independent evidence of adversarial security evaluation that supports conformity-assessment documentation requirements under CRA Article 13(3).
-
-  - Auditability
-    > Produces formal reports documenting findings, risk ratings, remediation guidance, and retesting results that satisfy market-surveillance authority requests.
+  - Shift-Left Execution
+    > Flags critical memory safety and semantic errors directly during development without requiring code execution or target hardware.
 
 - Cons
 
-  - Point-in-Time
-    > Assessments are conducted at discrete intervals rather than continuously; vulnerabilities introduced between engagements accumulate undetected until the next test.
+  - False Positive Overhead
+    > Static analysis report high rates of false positives, which demands careful filtering configurations to preserve developer experience.
 
-  - Cost
-    > Independent penetration testing requires significant financial and scheduling investment, limiting feasibility to annual or pre-release engagements.
+### 4.5. DAST (Dynamic Application Security Testing)
 
-### 4.6. Performance Testing
+DAST analyzes the application during runtime, simulating malicious input to identify exploitable vulnerabilities in applications.
 
-[Performance testing](https://github.com/google/benchmark) for C/C++ evaluates how a system behaves under normal and peak conditions, measuring throughput, latency, CPU cycles, and memory footprint to identify bottlenecks, denial-of-service susceptibility, heap fragmentation, and availability risks. It covers two complementary disciplines: load and stress testing (external, black-box) for C/C++ components with network interfaces, and benchmark testing (internal, white-box) using C/C++ native tooling. Tooling includes: [Google Benchmark](https://github.com/google/benchmark) for microbenchmarking C/C++ functions; [perf](https://perf.wiki.kernel.org/) for Linux CPU and cache profiling; [Valgrind](https://valgrind.org/) with Callgrind (CPU profiling) and Massif (heap profiling) for memory and execution analysis; and [Heaptrack](https://github.com/KDE/heaptrack) for heap memory profiling. For C/C++ services with network interfaces, k6 provides load and stress testing.
+> [!TIP]
+> [OWASP ZAP](https://www.zaproxy.org/) and [Burp Suite](https://portswigger.net/burp) perform black-box dynamic application security testing, simulating malicious input to identify exploitable vulnerabilities in applications.
 
 - Pros
 
-  - CRA Compliance
-    > Demonstrates that the product maintains availability and resilience under load, complementing security-layer testing to satisfy CRA Annex I Part I availability and attack-resistance requirements.
-
-  - Vulnerability Management
-    > Detects resource-exhaustion vulnerabilities, memory leaks, heap fragmentation, and performance regressions in C/C++ components that only appear under load or targeted benchmarking, which SAST, DAST, and fuzz testing do not cover.
-
-  - C/C++ Native Coverage
-    > C/C++ native tooling (Google Benchmark, perf, Valgrind, Heaptrack) provides accurate, low-overhead profiling that directly measures binary behaviour at the component level, yielding more precise results than generic testing tools on low-level code.
-
-  - Auditability
-    > Benchmark result sets and Valgrind/Heaptrack reports with defined baseline thresholds and pass/fail criteria provide documented evidence of availability and memory-safety validation for conformity-assessment bodies.
+  - Behavioral Validation
+    > Evaluates the application surface against malicious payloads from a black-box perspective.
 
 - Cons
 
-  - Environment Dependency
-    > Meaningful load and stress testing requires a production-representative environment with realistic data volumes and network conditions, increasing infrastructure cost and setup complexity.
+  - Limited Visibility & Applicability
+    > Limited to externally visible interfaces and may not cover internal code paths or embedded systems without network-facing services. It is less applicable to C/C++ embedded products that lack a network interface or user-facing application layer in compiled binaries.
 
-  - Maintenance Overhead
-    > Benchmark baselines and load profiles must be updated as the C/C++ codebase evolves; stale benchmarks produce misleading results and erode confidence in the test suite.
+  - False Positive Overhead
+    > Generate a high number of false positives, requiring manual verification and triage to determine the validity of reported vulnerabilities.
+
+### 4.6. SCA (Software Composition Analysis) & SBOM Management
+
+SCA identifies third-party and open-source dependencies, matching components against Vulnerability Databases to identify known vulnerabilities, supports SBOM generation and license compliance governance.
+
+> [!TIP]
+> [Trivy](https://github.com/aquasecurity/trivy) generate and scan Software Bill of Materials (SBOM) artifacts in CycloneDX and SPDX formats. OWASP [Dependency-Track](https://dependencytrack.org/) provides continuous monitoring of SBOMs against NVD, OSV, and EUVD vulnerability databases, triggering policy violations when new CVEs affect released product SBOMs.
+
+- Pros
+
+  - Automated SBOM Validation
+    > Generates, validates, and uploads SBOM artifacts in CycloneDX/SPDX format. Tracks software components, licenses compliance, and vulnerabilities across products.
+
+  - Automated Vulnerability Scanning
+    > Scans SBOMs against NVD, OSV, and EUVD vulnerability databases to identify known vulnerabilities in third-party libraries. Covering CVSS severity levels, EPSS risk scoring and CWE classifications, enabling proactive vulnerability management.
+
+  - Vulnerability Lifecycle Monitoring
+    > Provides vulnerability monitoring throughout the 5-year CRA support period, triggering policy violations when newly disclosed CVEs affect released product SBOMs without requiring manual re-scanning.
+
+- Cons
+
+  - Context Insensitivity
+    > Identifies vulnerable dependencies based on version numbers regardless of whether the specific vulnerable function is compiled or reachable in our configuration.
+
+  - SBOM Incompleteness
+    > C/C++ lacks a standardized package manager. Dependencies may be statically linked, header-only, submodules or vendor-supplied binary blobs. SCA tools may miss vendored components, requiring manual SBOM exception documentation for regulatory submission completeness.
+
+  - Vulnerability Database Latency
+    > CVE enrichment in NVD/EUVD delays between public vulnerability disclosure and vulnerability database availability. May allow newly disclosed vulnerabilities to pass CI gates before the database reflects the advisory.
+
+### 4.7. Penetration Testing (Binary Exploitation)
+
+Penetration testing on security assessments and reverse-engineering validation mapped against common attacker Tactics, Techniques, and Procedures (TTPs).
+
+> [!TIP]
+> [Ghidra](https://github.com/NationalSecurityAgency/ghidra) and [GDB](https://www.gnu.org/software/gdb/) with [pwndbg](https://github.com/pwndbg/pwndbg) perform binary-level exploitation assessment as a periodic pre-release gate, validating that residual vulnerabilities are not practically exploitable and that compiler hardening mitigations resist bypass.
+
+- Pros
+
+  - Exploitability Assessment
+    > Identifies exploitable vulnerabilities in the compiled binary, providing insight into potential attack vectors (e.g., secure boot, cryptography, authentication, and authorization).
+
+  - Real-World Attacker Perspective
+    > Simulates realistic attacker TTPs against the production binary, coordinating complex vulnerabilities into meaningful exploit chains.
+
+  - Compiler Hardening
+    > Validates that compiler hardening mitigations resist bypass, ensuring that security controls are effective against exploitation attempts.
+
+- Cons
+
+  - Remediation Lag
+    > Penetration testing is a periodic pre-release gate. Vulnerabilities discovered may require significant remediation time, potentially delaying release schedules if critical or high-severity findings are identified.
 
 ## 5. Consequences
 
 - Positive
 
-  - CRA Market Access
-    > Documented security testing evidence and a maintained SBOM satisfy CRA Article 13 and Annex I requirements, enabling lawful placement and maintenance of the product on the EU market from December 11, 2027.
+  - Multi-layer Assurance
+    > Provides a multi-layered security testing strategy that combines static analysis, dynamic analysis, component analysis, software testing, and binary exploitation assessment to ensure comprehensive vulnerability identification and mitigation.
 
-  - Reduced Security Debt
-    > Continuous automated scanning detects vulnerabilities at the point of introduction, reducing the cost and effort of remediation compared to periodic manual reviews.
+  - Audit-Ready Export Packages
+    > Generate audit-ready technical file bundles with all required documentation. Ready for regulators and market surveillance.
 
-  - Supply-Chain Transparency
-    > A machine-readable SBOM generated per release enables customers and downstream integrators to assess third-party component risk and comply with their own CRA obligations.
+  - Continuous Vulnerability Tracking
+    > SCA and SBOM management provide continuous monitoring of third-party dependencies against vulnerability databases, enabling proactive identification and mitigation of known vulnerabilities throughout the product lifecycle.
 
-  - Improved Security Posture
-    > Layered testing across static, dynamic, dependency, and adversarial dimensions provides defence-in-depth assurance aligned with CRA Annex I Part I attack-surface minimisation requirements.
+  - Proactive Hardening
+    > Significantly minimizes the attack surface by forcing remediation of unsafe coding patterns, memory safety violations, and undefined behavior in the development lifecycle.
 
 - Negative
 
-  - Increased Pipeline Duration
-    > Integrating DAST and fuzz testing into the CI/CD pipeline extends build and test execution time, which may affect developer feedback cycles and release cadence.
+  - CI/CD Complexity
+    > Integrating multiple security testing layers into CI/CD pipelines increases complexity and may extend build and test durations, requiring careful pipeline design, strategy and resource allocation.
 
-  - Tooling and Maintenance Overhead
-    > Configuring, updating, and triaging findings from multiple security tools requires sustained engineering effort and increases the operational burden on development and security teams.
+  - Maintenance & Operational Overhead
+    > Maintaining and updating multiple security testing tools, frameworks, and dependencies requires dedicated effort to ensure compatibility, effectiveness, and alignment with evolving security standards.
+
+  - Storage Footprint Extension
+    > Retaining deterministic test results and historical compliance matrices for the mandated multi-year window creates storage overhead.
 
 - Risks
 
-  - False-Positive Fatigue
-    > High false-positive rates from SAST or DAST tools may desensitise teams to genuine findings and erode trust in the pipeline. Mitigation: establish a baseline, tune tool configurations iteratively, and enforce a triage policy that gates releases on unresolved high-severity findings.
+  - False Sense of Security
+    > Security testing is not a guarantee of vulnerability absence. A green CI pipeline does not imply the absence of exploitable vulnerabilities, especially in untested code paths or third-party dependencies.
 
-  - Evolving CRA Guidance
-    > CRA implementing acts and harmonised standards are still being finalised; conformity requirements may change before the December 2027 deadline. Mitigation: monitor ENISA publications and harmonised standard updates quarterly and revise the testing strategy accordingly.
+  - Mock Divergence
+    > Host-mode HAL mocks may diverge from real hardware behavior over time, masking target-specific vulnerabilities and generating false assurance from green host-mode test results. Schedule periodic on-target hardware-in-the-loop (HIL) integration tests to validate against real hardware behavior.
 
-  - Coverage Gaps
-    > No single tool or combination guarantees complete vulnerability detection. Residual unknown vulnerabilities may remain after all automated scans pass. Mitigation: conduct annual penetration tests by an independent party, maintain a coordinated vulnerability disclosure policy, and apply CRA Annex I Part II post-market monitoring obligations.
+  - SBOM Incompleteness
+    > C/C++ lacks a standardized package manager. Dependencies may be statically linked, header-only, submodules or vendor-supplied. SCA tools may miss vendored components, requiring manual SBOM exception documentation for regulatory submission completeness.
 
 ## 6. Implementation
 
 1. Integrate SAST
 
-    Add SAST tooling for C/C++ to the CI/CD pipeline as a mandatory quality gate on every pull request and main-branch push: configure SonarQube with C/C++ analysis plugins and Semgrep with C/C++ security rulesets for CI scanning; integrate cppcheck and clang-tidy into the CMake build system or as pre-commit checks to surface issues during development. Enforce a policy that blocks merging on high-severity findings. Store scan reports as versioned pipeline artefacts.
+    - Integrate SAST tools (e.g., SonarQube, Semgrep) into the CI pipeline to perform source-level vulnerability detection and enforce secure coding standards.
 
-2. Integrate SCA and SBOM Generation
+2. Integrate SCA & SBOM Management
 
-    Add Trivy or the OSS Review Toolkit to the CI/CD pipeline to scan Conan and vcpkg lock files and vendored source directories, producing a machine-readable SBOM in CycloneDX or SPDX format on every release build. Configure the tool to flag C/C++ components with known CVEs against the NVD and OSV databases and block releases on critical or high-severity dependency findings. Publish the SBOM alongside each release artefact.
+    - Integrate SCA tools (e.g., Trivy, OWASP Dependency-Track) into the CI pipeline to generate and manage SBOMs, identify third-party dependencies, and match components against vulnerability databases for known CVE exposure.
+    - Generate VEX (Vulnerability Exploitability eXchange) statements from triage assessment on SBOM components to document whether known vulnerabilities in third-party dependencies are exploitable in the specific product.
+    - Configure SCA to generate CycloneDX/SPDX SBOMs and vulnerability matching reports for archiving as versioned CI artifacts.
 
-3. Integrate DAST
+3. Integrate Unit Testing with Sanitizers
 
-    For C/C++ components with network interfaces, deploy OWASP ZAP or Nuclei in the integration-test stage to scan a running service instance against the OWASP Top 10 and CWE Top 25 attack patterns. For all C/C++ components, enable compiler-instrumented runtime sanitizers in the test build profile (`-fsanitize=address,undefined` for ASan and UBSan; `-fsanitize=memory` for MSan; `-fsanitize=thread` for TSan) and run the full test suite with each sanitizer to detect memory-safety violations and undefined behaviour. Store sanitizer crash reports and DAST scan results as pipeline artefacts for auditability.
+    - Integrate unit testing frameworks (e.g., Google Test with SEGGER J-Run) into the CI pipeline to execute unit tests under Sanitizer instrumentation.
 
-4. Integrate Fuzz Testing
+4. Integrate Fuzz Testing with Sanitizers
 
-    Introduce fuzz testing with Google FuzzTest for C/C++ components that process untrusted input, such as parsers, protocol handlers, and deserialization routines. Compile fuzz targets with sanitizer and coverage instrumentation (`-fsanitize=address,fuzzer`). Run fuzz campaigns in a dedicated nightly or scheduled pipeline stage, triage identified crashes promptly, and document confirmed findings in the project vulnerability register.
+    - Integrate fuzz testing frameworks (e.g., Google FuzzTest) into the CI pipeline to perform coverage-guided fuzz testing under Sanitizer instrumentation.
 
-5. Conduct Periodic Penetration Testing
+5. Integrate Penetration Testing
 
-    Schedule at least one independent penetration test annually and after significant architectural changes. For C/C++ firmware and embedded products, require binary-level analysis (Ghidra, binwalk) and protocol-level adversarial testing in addition to application-layer assessment. Document findings, remediation actions, and retesting outcomes as part of the technical documentation required by CRA Article 13(3).
+    - Schedule periodic penetration testing on production binaries using tools (e.g., Ghidra, GDB with pwndbg) to validate that residual vulnerabilities are not practically exploitable and that compiler hardening mitigations resist bypass.
 
-6. Integrate Performance Testing
+6. Establish Evidence-based Retention Bundle
 
-    Integrate C/C++ native performance and benchmark tooling into the CI/CD pipeline: use Google Benchmark for microbenchmarking individual C/C++ functions and run benchmarks on every pull request to detect regressions at the point of introduction; use perf for CPU and cache profiling on Linux; use Valgrind (Callgrind for CPU profiling, Massif for heap profiling) and Heaptrack for memory footprint analysis in scheduled pipeline stages. For C/C++ components with network interfaces, add k6 for load and stress testing against a production-representative environment. Define baseline thresholds for execution time, memory consumption, and error rate and configure the pipeline to fail on threshold regressions. Store benchmark result sets, Valgrind reports, and load test reports as versioned pipeline artefacts.
-
-7. Establish Vulnerability Management Process
-
-    Define a vulnerability management policy specifying severity classifications, remediation SLAs (e.g., critical within 24 hours of confirmed identification to meet CRA reporting obligations from September 11, 2026), and coordinated disclosure procedures. Maintain a vulnerability register updated by automated scan results and manual findings.
-
-8. Compile and Maintain Technical Documentation
-
-    Aggregate SAST reports, DAST reports, SCA findings, SBOM files, fuzz-test results, penetration-test summaries, and performance test reports into a versioned technical documentation package per release. Ensure this package is accessible to conformity-assessment bodies and market-surveillance authorities on request, as required by CRA Article 13(3).
-
-9. Validate
-
-    Verify pipeline integration by confirming that each tool executes and produces a structured report on every CI run. Perform a quarterly review of tool configurations, rule sets, and false-positive rates. Annually assess the overall strategy against published ENISA guidance and updated CRA harmonised standards to ensure continued compliance.
+    - Implement a audit-ready versioned artifact storage strategy to retain deterministic test results, SBOMs, vulnerability matching reports, and penetration testing reports to satisfy CRA documentation requirements.
 
 ## 7. References
 
-- EU [Cyber Resilience Act – Regulation (EU) 2024/2847](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202402847) regulation.
-- European Commission [Cyber Resilience Act overview](https://digital-strategy.ec.europa.eu/en/policies/cyber-resilience-act) page.
-- ENISA [EU CRA Mapping](https://www.enisa.europa.eu/publications/cyber-resilience-act-requirements-standards-mapping) page.
-- OWASP [Top 10 Web Application Security Risks](https://owasp.org/www-project-top-ten/) project.
-- OWASP [ZAP Dynamic Application Security Testing](https://www.zaproxy.org/) tool.
-- NIST [National Vulnerability Database (NVD)](https://nvd.nist.gov/) database.
-- OSV [Open Source Vulnerability database](https://osv.dev/) database.
-- CycloneDX [SBOM standard specification](https://cyclonedx.org/) page.
-- SPDX [Software Package Data Exchange specification](https://spdx.dev/) page.
-- SonarQube [C/C++ static analysis](https://www.sonarsource.com/c/) tool.
-- Semgrep [static analysis](https://semgrep.dev/) tool.
-- cppcheck [C/C++ static analysis](https://cppcheck.sourceforge.io/) tool.
-- LLVM [clang-tidy linter](https://clang.llvm.org/extra/clang-tidy/) tool.
-- Trivy [vulnerability and SBOM scanner](https://aquasecurity.github.io/trivy/) tool.
-- OWASP [Dependency-Track](https://dependencytrack.org/) continuous SBOM monitoring platform.
-- LLVM [AddressSanitizer](https://clang.llvm.org/docs/AddressSanitizer.html) runtime memory-safety checker.
-- LLVM [UndefinedBehaviorSanitizer](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html) runtime checker.
-- LLVM [MemorySanitizer](https://clang.llvm.org/docs/MemorySanitizer.html) runtime checker.
-- LLVM [ThreadSanitizer](https://clang.llvm.org/docs/ThreadSanitizer.html) runtime race-condition checker.
-- Google [FuzzTest C/C++ fuzzing framework](https://github.com/google/fuzztest) tool.
-- NSA [Ghidra binary analysis](https://ghidra-sre.org/) tool.
-- Google [Benchmark C++ microbenchmarking](https://github.com/google/benchmark) library.
-- Linux [perf CPU profiling](https://perf.wiki.kernel.org/) tool.
-- Valgrind [Callgrind CPU profiler and Massif heap profiler](https://valgrind.org/) suite.
-- KDE [Heaptrack heap memory profiler](https://github.com/KDE/heaptrack) tool.
-- k6 [performance testing](https://k6.io/docs/) tool.
-- Sentenz convention [002-ADR: Software Security](002-adr-software-security.md) record.
+- EU Cyber Resilience Act (CRA) [Regulation (EU) 2024/2847](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R2847) legislative text EUR-Lex.
+- EU Cyber Resilience Act (CRA) [Annex I](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R2847#anx_I) requirements.
+- IEC 62443-4-1 [Secure product development lifecycle requirements](https://webstore.iec.ch/en/publication/33615) standard.
+- IEC 62443-4-2 [Technical security requirements for IACS components](https://webstore.iec.ch/en/publication/34421) standard.
+- NIST SP 800-218 [Secure Software Development Framework (SSDF)](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf) publication.
+- MITRE [CWE (Common Weakness Enumeration)](https://cwe.mitre.org/) database.
+- SBOM [CycloneDX](https://cyclonedx.org/) standard.
+- SBOM [SPDX](https://spdx.dev/) standard.

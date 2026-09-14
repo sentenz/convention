@@ -174,7 +174,10 @@ Pilot independent rebuilds of a representative release using a recorded source r
 
 ### 4.1. Controlled Source and Dependency Intake
 
-[NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final) provides secure development and supplier communication practices; [Conan lockfiles](https://docs.conan.io/2/tutorial/versioning/lockfiles.html) support controlled dependency resolution. Selected.
+Controlled source and dependency intake establishes reviewed source changes, approved component origins, and immutable dependency records before build execution.
+
+> [!TIP]
+> [NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final) provides secure development and supplier communication practices. [Conan lockfiles](https://docs.conan.io/2/tutorial/versioning/lockfiles.html) record dependency versions and revisions to support controlled dependency resolution in C/C++ projects.
 
 - Pros
 
@@ -194,7 +197,10 @@ Pilot independent rebuilds of a representative release using a recorded source r
 
 ### 4.2. Isolated Builds and Least Privilege
 
-[GitHub Actions security controls](https://docs.github.com/en/actions/reference/security/secure-use) and [SLSA build requirements](https://slsa.dev/spec/v1.2/build-requirements) guide separation of build execution and trusted services. Selected.
+Isolated builds separate execution environments, while least privilege limits access to repository data, credentials, and release services.
+
+> [!TIP]
+> [GitHub Actions security controls](https://docs.github.com/en/actions/reference/security/secure-use) and [SLSA build requirements](https://slsa.dev/spec/v1.2/build-requirements) guide workflow permissions, build isolation, and separation of build execution from trusted services.
 
 - Pros
 
@@ -211,7 +217,10 @@ Pilot independent rebuilds of a representative release using a recorded source r
 
 ### 4.3. SCA and SBOM Management
 
-[Trivy](https://trivy.dev/docs/latest/target/sbom/) scans supported inventories; [Dependency-Track](https://docs.dependencytrack.org/) monitors CycloneDX portfolios; [VEX](https://cyclonedx.org/capabilities/vex/) records product-specific vulnerability assessments. Selected.
+Software Composition Analysis (SCA) identifies third-party components and known vulnerabilities, while Software Bill of Materials (SBOM) management maintains component inventories for released products.
+
+> [!TIP]
+> [Trivy](https://trivy.dev/docs/latest/target/sbom/) scans supported SBOM inventories for known vulnerabilities. OWASP [Dependency-Track](https://docs.dependencytrack.org/) monitors CycloneDX portfolios, and [CycloneDX VEX](https://cyclonedx.org/capabilities/vex/) records product-specific vulnerability assessments.
 
 - Pros
 
@@ -231,7 +240,10 @@ Pilot independent rebuilds of a representative release using a recorded source r
 
 ### 4.4. SLSA Build Provenance
 
-[SLSA v1.2](https://slsa.dev/spec/v1.2/build-track-basics) defines increasing build assurance and a provenance model. Selected with staged adoption.
+Build provenance records the source, inputs, producer, and build process associated with an artifact, supporting verification against expected release inputs.
+
+> [!TIP]
+> [SLSA v1.2](https://slsa.dev/spec/v1.2/build-track-basics) defines increasing levels of build assurance. Its [Build provenance specification](https://slsa.dev/spec/v1.2/build-provenance) provides a structured format for recording artifact digests, builder identity, build definitions, and resolved inputs.
 
 - Pros
 
@@ -251,7 +263,10 @@ Pilot independent rebuilds of a representative release using a recorded source r
 
 ### 4.5. Artifact Signing and Verification
 
-[Sigstore Cosign](https://docs.sigstore.dev/cosign/verifying/verify/) verifies signatures on images and arbitrary files, supporting identity-based and key-based trust. Selected.
+Artifact signing binds release content to a signing identity, while verification checks its integrity and authorization against a defined trust policy.
+
+> [!TIP]
+> [Sigstore Cosign](https://docs.sigstore.dev/cosign/verifying/verify/) verifies signatures on container images and arbitrary files, including software archives and firmware binaries, using identity-based or key-based trust.
 
 - Pros
 
@@ -271,7 +286,10 @@ Pilot independent rebuilds of a representative release using a recorded source r
 
 ### 4.6. Authenticated Update Delivery
 
-[TUF](https://theupdateframework.github.io/specification/latest/) uses signed, versioned, expiring metadata and separated roles to protect update delivery. Selected where the client requirements are met.
+Authenticated update delivery verifies release metadata and payloads before installation, protecting the path from the release repository to the product.
+
+> [!TIP]
+> [The Update Framework (TUF)](https://theupdateframework.github.io/specification/latest/) uses signed, versioned, expiring metadata and separated roles to protect update delivery against rollback, freeze, and metadata substitution attacks.
 
 - Pros
 
@@ -288,7 +306,10 @@ Pilot independent rebuilds of a representative release using a recorded source r
 
 ### 4.7. Reproducible Builds
 
-[Reproducible builds](https://reproducible-builds.org/docs/definition/) allow independent parties to produce identical artifacts from specified source, environment, and instructions. Selected for a pilot; deferred as a universal release gate.
+Reproducible builds allow independent parties to produce identical artifacts from specified source code, build environments, and instructions.
+
+> [!TIP]
+> [Reproducible Builds](https://reproducible-builds.org/docs/definition/) defines reproducibility and provides guidance on [recording build environments](https://reproducible-builds.org/docs/recording/) and handling [embedded signatures](https://reproducible-builds.org/docs/embedded-signatures/) when comparing independently rebuilt artifacts.
 
 - Pros
 
@@ -305,7 +326,10 @@ Pilot independent rebuilds of a representative release using a recorded source r
 
 ### 4.8. Checksums and Scanning Alone
 
-[NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final) describes release integrity practices, while [Trivy](https://trivy.dev/docs/latest/target/sbom/) supports known-vulnerability scanning. Using only published checksums and scan results is rejected as the overall baseline.
+Checksums compare artifact content with a published digest, while vulnerability scanning compares component inventories with known vulnerability data.
+
+> [!TIP]
+> [NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final) describes release integrity practices, and [Trivy](https://trivy.dev/docs/latest/target/sbom/) supports known-vulnerability scanning. These checks contribute evidence but do not establish complete supply chain assurance on their own.
 
 - Pros
 

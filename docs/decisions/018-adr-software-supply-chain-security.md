@@ -20,7 +20,6 @@ Architectural Decision Record (ADR) on adopting complementary controls to protec
   - [4.5. Artifact Signing and Verification](#45-artifact-signing-and-verification)
   - [4.6. Authenticated Update Delivery](#46-authenticated-update-delivery)
   - [4.7. Reproducible Builds](#47-reproducible-builds)
-  - [4.8. Checksums and Scanning Alone](#48-checksums-and-scanning-alone)
 - [5. Consequences](#5-consequences)
 - [6. Implementation](#6-implementation)
 - [7. References](#7-references)
@@ -66,7 +65,9 @@ For products within the EU Cyber Resilience Act (CRA) scope, third-party compone
 
 ## 3. Decision
 
-Adopt the six complementary options below as one supply chain security baseline. Enforce verification at dependency intake, release promotion, and consumption. Reproducible builds provide additional assurance through a pilot; checksums and vulnerability scanning alone are rejected as the baseline.
+Adopt the six complementary options below as one supply chain security baseline. Enforce verification at dependency intake, release promotion, and consumption. Reproducible builds provide additional assurance through a pilot.
+
+Checksums and vulnerability scanning alone are insufficient because they do not establish trusted source, authorized build provenance, authenticated artifacts, or secure update delivery.
 
 ### 3.1. Controlled Source and Dependency Intake
 
@@ -323,26 +324,6 @@ Reproducible builds allow independent parties to produce identical artifacts fro
 
   - Comparison Scope
     > Embedded signatures may vary, requiring a precisely defined payload comparison and separate verification of the distributed signature.
-
-### 4.8. Checksums and Scanning Alone
-
-Checksums compare artifact content with a published digest, while vulnerability scanning compares component inventories with known vulnerability data.
-
-> [!TIP]
-> [NIST SSDF](https://csrc.nist.gov/pubs/sp/800/218/final) describes release integrity practices, and [Trivy](https://trivy.dev/docs/latest/target/sbom/) supports known-vulnerability scanning. These checks contribute evidence but do not establish complete supply chain assurance on their own.
-
-- Pros
-
-  - Low Entry Cost
-    > Teams can detect accidental corruption and known dependency findings with limited integration.
-
-- Cons
-
-  - Missing Authorization
-    > An attacker who replaces an artifact and its untrusted checksum can preserve a matching comparison.
-
-  - Missing Build Evidence
-    > Clean scan results do not establish approved source, an authorized build, or an uncompromised update channel.
 
 ## 5. Consequences
 

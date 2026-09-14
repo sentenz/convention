@@ -18,7 +18,7 @@ jobs:
 
       - name: Run Regal
         if: ${{ hashFiles('tests/policy/**/*.rego') != '' }}
-        uses: sentenz/actions/regal@1.4.10
+        uses: sentenz/actions/regal@1.5.0
         with:
           path: "./tests/policy"
           regal-version: "latest"

@@ -61,14 +61,26 @@ githooks-lefthook-deinitialize:
 # ─── Skills Manager ──────────────────────────────────────────────────────────────────────────────
 
 ## Provision new Agent Skills into the project environment
-skills-agent-add:
-	skills add sentenz/skills
-.PHONY: skills-agent-add
+agent-skills-add:
+	DISABLE_TELEMETRY=1 \
+	npx skills@1.5.15 add sentenz/skills
+.PHONY: agent-skills-add
 
 ## Synchronize and update existing Agent Skills in the project environment
-skills-agent-update:
-	skills update sentenz/skills
-.PHONY: skills-agent-update
+agent-skills-update:
+	DISABLE_TELEMETRY=1 \
+	npx skills@1.5.15 update sentenz/skills \
+		--skill adr \
+		--skill material-3 \
+		--skill technical-article \
+		-y
+.PHONY: agent-skills-update
+
+## Restore Agent Skills in the project environment to a previous state
+agent-skills-restore:
+	DISABLE_TELEMETRY=1 \
+	npx skills@1.5.15 experimental_install
+.PHONY: agent-skills-restore
 
 # ─── Dependency Manager ──────────────────────────────────────────────────────────────────────────
 

@@ -4,7 +4,20 @@
     "adr": {
       "source": "sentenz/skills",
       "sourceType": "github",
+      "skillPath": "skills/adr/SKILL.md",
       "computedHash": "ebe04467fa9daf7adac6d7cd3ed2d4ae3e379616eceaa99b789cc0731c97683b"
+    },
+    "material-3": {
+      "source": "sentenz/skills",
+      "sourceType": "github",
+      "skillPath": "skills/material-3/SKILL.md",
+      "computedHash": "72d56347fae33c9b1763e16d0bffb781da382aa3be316b9252dcd35fd050c6bc"
+    },
+    "technical-article": {
+      "source": "sentenz/skills",
+      "sourceType": "github",
+      "skillPath": "skills/technical-article/SKILL.md",
+      "computedHash": "179f29cac7c79900caaab4cbf5745453c57b904da812bc0142154ca22b937ee2"
     },
     "threat-modeling-ics": {
       "source": "sentenz/skills",

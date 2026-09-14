@@ -1,10 +1,10 @@
 /* ========================================================================== */
 /* MkDocs Material — Material Design 3 token adapter                          */
 /* Palette: Orchid purple · Soft pink accent · Warm neutral surfaces          */
-/* Static HCT palettes: @material/material-color-utilities 0.3.0.              */
-/* Primary/neutral: CorePalette.of(#6442d6); tertiary: #81427c tonal palette.   */
-/* Warning: #7b5800; success: #386a3c harmonized to the primary seed.           */
-/* M3 tones: accents 40/80, on-accents 100/20, containers 90/30, on 10/90.      */
+/* Static HCT palettes: @material/material-color-utilities 0.3.0.             */
+/* Primary/neutral: CorePalette.of(#6442d6); tertiary: #81427c tonal palette. */
+/* Warning: #7b5800; success: #386a3c harmonized to the primary seed.         */
+/* M3 tones: accents 40/80, on-accents 100/20, containers 90/30, on 10/90.    */
 /* ========================================================================== */
 
 :root {
@@ -51,12 +51,12 @@
   /* Type roles measured from the supplied Material Design reference. */
   --md-sys-typescale-display-large-font: var(--md-ref-typeface-brand);
   --md-sys-typescale-display-large-weight: 475;
-  --md-sys-typescale-display-large-size: 88px;
-  --md-sys-typescale-display-large-line-height: 96px;
+  --md-sys-typescale-display-large-size: 58px;
+  --md-sys-typescale-display-large-line-height: 64px;
   --md-sys-typescale-display-medium-font: var(--md-ref-typeface-brand);
   --md-sys-typescale-display-medium-weight: 475;
-  --md-sys-typescale-display-medium-size: 45px;
-  --md-sys-typescale-display-medium-line-height: 52px;
+  --md-sys-typescale-display-medium-size: 36px;
+  --md-sys-typescale-display-medium-line-height: 44px;
   --md-sys-typescale-title-large-weight: 475;
   --md-sys-typescale-title-medium-weight: 500;
   --md-sys-typescale-title-small-size: 14px;
@@ -299,7 +299,7 @@ body {
 
 .md-typeset h1 {
   color: var(--md-sys-color-on-surface);
-  max-inline-size: 18ch;
+  max-inline-size: clamp(18ch, 64vw, 36ch);
   margin-bottom: var(--md-sys-spacing-section-large);
   font-family: var(--md-sys-typescale-display-large-font);
   font-size: clamp(
@@ -817,18 +817,18 @@ body {
 /* Responsive reading width and interaction targets follow M3 window classes. */
 
 .md-main__inner {
-  padding-top: var(--md-sys-spacing-section-small);
+  padding-top: var(--md-sys-spacing-section-hairline);
 }
 
 @media (min-width: 600px) {
   .md-main__inner {
-    padding-top: var(--md-sys-spacing-section-medium);
+    padding-top: var(--md-sys-spacing-section-hairline);
   }
 }
 
 @media (min-width: 840px) {
   .md-main__inner {
-    padding-top: var(--md-sys-spacing-section-extra-large);
+    padding-top: var(--md-sys-spacing-section-hairline);
   }
 }
 

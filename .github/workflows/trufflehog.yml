@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+
 name: TruffleHog
 
 on:
@@ -6,33 +8,23 @@ on:
       - main
   pull_request:
 
+permissions: {}
+
 jobs:
   trufflehog:
-    runs-on: ubuntu-latest
+    name: TruffleHog Action
     permissions:
       contents: read
-      id-token: write
-      issues: write
-      pull-requests: write
-    defaults:
-      run:
-        shell: bash
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Run TruffleHog
-        id: trufflehog
-        uses: trufflesecurity/trufflehog@v3.97.4
-        continue-on-error: true
+        uses: sentenz/actions/trufflehog@c600775dda21753455e72c46d37d32b452c35817 # 1.5.0
         with:
           path: ./
-          base: ${{ github.event.before }}
-          head: ${{ github.sha }}
-          extra_args: --debug
-
-      - name: Results Status
-        if: steps.trufflehog.outcome == 'failure'
-        run: exit 1
+          extra-args: --debug

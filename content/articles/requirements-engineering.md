@@ -1,827 +1,384 @@
-# Requirements Engineering
-
-Requirements Engineering is a systematic approach to eliciting, analyzing, documenting, and managing requirements throughout the software development lifecycle. In the context of the Cyber Resilience Act (CRA), requirements engineering plays a critical role in ensuring that products with digital elements meet cybersecurity and compliance standards.
-
-- [1. Cyber Resilience Act (CRA)](#1-cyber-resilience-act-cra)
-  - [1.1. Market Requirements Document (MRD)](#11-market-requirements-document-mrd)
-    - [1.1.1. Risk Management](#111-risk-management)
-      - [1.1.1.1. Risk Assessment](#1111-risk-assessment)
-      - [1.1.1.2. Threat Modeling](#1112-threat-modeling)
-      - [1.1.1.3. Risk Estimation](#1113-risk-estimation)
-      - [1.1.1.4. Risk Evaluation](#1114-risk-evaluation)
-      - [1.1.1.5. Risk Treatment](#1115-risk-treatment)
-      - [1.1.1.6. Risk Communication](#1116-risk-communication)
-      - [1.1.1.7. Risk Monitoring and Review](#1117-risk-monitoring-and-review)
-    - [1.1.2. Vulnerability Management](#112-vulnerability-management)
-      - [1.1.2.1. Vulnerability Identification and Discovery](#1121-vulnerability-identification-and-discovery)
-      - [1.1.2.2. Vulnerability Triage and Prioritization](#1122-vulnerability-triage-and-prioritization)
-      - [1.1.2.3. Vulnerability Mitigation and Remediation](#1123-vulnerability-mitigation-and-remediation)
-      - [1.1.2.4. Vulnerability Reporting and Disclosure](#1124-vulnerability-reporting-and-disclosure)
-      - [1.1.2.5. Vulnerability Monitoring](#1125-vulnerability-monitoring)
-      - [1.1.2.6. Security Updates](#1126-security-updates)
-    - [1.1.3. Software Supply Chain Security](#113-software-supply-chain-security)
-      - [1.1.3.1. Supply Chain Risk Management](#1131-supply-chain-risk-management)
-      - [1.1.3.2. Software Bill of Materials (SBOM)](#1132-software-bill-of-materials-sbom)
-      - [1.1.3.3. Software Composition Analysis (SCA)](#1133-software-composition-analysis-sca)
-      - [1.1.3.4. Integrity and Attestation](#1134-integrity-and-attestation)
-    - [1.1.4. Incident Management](#114-incident-management)
-      - [1.1.4.1. Incident Response](#1141-incident-response)
-      - [1.1.4.2. Incident Detection](#1142-incident-detection)
-      - [1.1.4.3. Incident Recovery](#1143-incident-recovery)
-      - [1.1.4.4. Incident Reporting](#1144-incident-reporting)
-    - [1.1.5. Documentation](#115-documentation)
-      - [1.1.5.1. Technical Documentation](#1151-technical-documentation)
-      - [1.1.5.2. User Documentation](#1152-user-documentation)
-    - [1.1.6. Secure Software Development Lifecycle (SSDLC)](#116-secure-software-development-lifecycle-ssdlc)
-      - [1.1.6.1. Cybersecurity Planning](#1161-cybersecurity-planning)
-      - [1.1.6.2. Cybersecurity Requirements](#1162-cybersecurity-requirements)
-      - [1.1.6.3. Cybersecurity Architecture and Design](#1163-cybersecurity-architecture-and-design)
-      - [1.1.6.4. Secure Implementation](#1164-secure-implementation)
-      - [1.1.6.5. Cybersecurity Verification and Validation](#1165-cybersecurity-verification-and-validation)
-      - [1.1.6.6. Secure Production and Distribution](#1166-secure-production-and-distribution)
-      - [1.1.6.7. Secure Decommissioning](#1167-secure-decommissioning)
-      - [1.1.6.8. Third-party Components](#1168-third-party-components)
-  - [1.2. References](#12-references)
+# Cyber Resilience Act Requirements Engineering
 
-## 1. Cyber Resilience Act (CRA)
+Requirements engineering for the Cyber Resilience Act (CRA) translates applicable product cybersecurity and vulnerability-handling obligations into traceable requirements, design constraints, verification evidence, and lifecycle records. This article focuses on manufacturers of products with digital elements, including manufacturers integrating third-party software and hardware.
 
-The Cyber Resilience Act (CRA) is a European Union regulation aimed at establishing cybersecurity requirements for products with digital elements. It ensures that manufacturers implement security measures throughout the product lifecycle, from design to decommissioning, to protect against cyber threats and vulnerabilities.
+[Regulation (EU) 2024/2847](https://eur-lex.europa.eu/eli/reg/2024/2847/oj/eng) is the authoritative legal source. The European Commission's [Commission guidance on the application of Regulation (EU) 2024/2847 (Cyber Resilience Act)](https://digital-strategy.ec.europa.eu/en/library/commission-publishes-new-guidance-support-timely-cyber-resilience-act-implementation), C(2026) 5252 final, Annex, 27 July 2026, is the principal interpretive reference, cited below as Commission guidance. The guidance is non-binding; authoritative interpretation rests with the Court of Justice of the European Union (Commission guidance, Section 1.2, paragraph 8).
 
-### 1.1. Market Requirements Document (MRD)
+- [1. Scope and Source Interpretation](#1-scope-and-source-interpretation)
+  - [1.1. Legal Requirements and Engineering Practices](#11-legal-requirements-and-engineering-practices)
+  - [1.2. Product Boundary and Application Dates](#12-product-boundary-and-application-dates)
+  - [1.3. Free and Open-Source Software Roles](#13-free-and-open-source-software-roles)
+- [2. Cybersecurity Risk Assessment and Treatment](#2-cybersecurity-risk-assessment-and-treatment)
+  - [2.1. Assessment and Traceability](#21-assessment-and-traceability)
+  - [2.2. Appropriate Cybersecurity and Residual Risk](#22-appropriate-cybersecurity-and-residual-risk)
+  - [2.3. Responsibility and Operating Assumptions](#23-responsibility-and-operating-assumptions)
+- [3. Product Cybersecurity Requirements](#3-product-cybersecurity-requirements)
+- [4. Integrated Components and Software Supply Chains](#4-integrated-components-and-software-supply-chains)
+  - [4.1. Component Due Diligence](#41-component-due-diligence)
+  - [4.2. Software Bill of Materials and Vulnerability Analysis](#42-software-bill-of-materials-and-vulnerability-analysis)
+  - [4.3. Integrity Evidence and Security Attestation](#43-integrity-evidence-and-security-attestation)
+- [5. Vulnerability Handling and Security Review](#5-vulnerability-handling-and-security-review)
+  - [5.1. Known Exploitable Vulnerabilities](#51-known-exploitable-vulnerabilities)
+  - [5.2. Triage, Remediation, and Coordinated Disclosure](#52-triage-remediation-and-coordinated-disclosure)
+  - [5.3. Upstream Reporting and Security Fixes](#53-upstream-reporting-and-security-fixes)
+  - [5.4. Effective and Regular Testing](#54-effective-and-regular-testing)
+- [6. Security Updates and Support Period](#6-security-updates-and-support-period)
+  - [6.1. Support-Period Determination](#61-support-period-determination)
+  - [6.2. Update Delivery and Availability](#62-update-delivery-and-availability)
+  - [6.3. Software Versions and Substantial Modifications](#63-software-versions-and-substantial-modifications)
+- [7. Actively Exploited Vulnerabilities and Severe Incidents](#7-actively-exploited-vulnerabilities-and-severe-incidents)
+  - [7.1. Reporting Triggers and Awareness](#71-reporting-triggers-and-awareness)
+  - [7.2. Separate Notification Timelines](#72-separate-notification-timelines)
+  - [7.3. User Communication and Recovery](#73-user-communication-and-recovery)
+- [8. Technical Documentation and User Information](#8-technical-documentation-and-user-information)
+  - [8.1. Technical and Conformity Documentation](#81-technical-and-conformity-documentation)
+  - [8.2. User Information and Instructions](#82-user-information-and-instructions)
+- [9. Lifecycle Evidence and Requirement Examples](#9-lifecycle-evidence-and-requirement-examples)
+- [10. References](#10-references)
 
-A Market Requirements Document (MRD) defines the high-level requirements for a product based on market needs and regulatory compliance. In the context of CRA, the MRD outlines cybersecurity requirements that must be addressed throughout the product lifecycle.
+## 1. Scope and Source Interpretation
 
-#### 1.1.1. Risk Management
+Applicability determines the product boundary, responsible actors, and lifecycle obligations from which engineering requirements are derived. A requirements baseline should record these decisions before selecting security controls.
 
-Risk management is a critical aspect of requirements engineering, particularly in the context of CRA compliance. It involves identifying, assessing, and mitigating risks associated with product development and deployment.
+### 1.1. Legal Requirements and Engineering Practices
 
-The management of risks applies to all phases of the product lifecycle, including design, development, production and maintenance to ensure an appropriate level of cybersecurity.
+The article distinguishes four categories:
 
-1. References
+- CRA Requirement
+  > A mandatory obligation under the Regulation, subject to its scope, applicability conditions, and application dates. Article and Annex references identify the legal basis.
 
-    - DIN 40000 (6)
+- Commission Interpretation
+  > The Commission's non-binding explanation of how a CRA provision applies. Guidance references identify the relevant section or paragraphs.
 
-##### 1.1.1.1. Risk Assessment
+- Engineering Practice
+  > A recommended method of implementing or demonstrating an obligation. The CRA does not prescribe the particular workflow, artifact name, framework, or tool unless expressly stated.
 
-Risk assessment is the process of identifying potential risks and evaluating their impact on the project to ensure CRA compliance.
+- Implementation Example
+  > An illustrative technical choice or requirement that needs adaptation to the product and its risks. It is not a universal CRA requirement.
 
-- Conduct a thorough risk assessment to identify potential risks and their impact on the project. - CRA Article 13(2)
+A Market Requirements Document (MRD) can record market and regulatory constraints, but the CRA does not mandate an MRD or a particular secure software development lifecycle. Such engineering artifacts support, rather than replace, the cybersecurity risk assessment and technical documentation required by CRA Articles 13 and 31.
 
-- Secure by Design - CRA Recital (32), CRA Article 13(1)
-  > Incorporate security measures from the initial design phase to ensure robust protection against threats.
-  - Cybersecurity level must be proportional to identified risks based on the Risk-Based Design. - CRA Annex I Part I(1)
-  - No known exploitable vulnerabilities at market entry, requiring pre-launch vulnerability scanning, penetration testing, and remediation. - CRA Annex I Part I(2)(a)
-  - Minimise the negative impact by the products themselves or connected devices on the availability of services provided by other devices or networks - CRA Annex I Part I(2)(i)
+### 1.2. Product Boundary and Application Dates
 
-- Secure by Default - CRA Recital (32), Recital (64)
-  > Products must be configured securely out-of-the-box to minimize vulnerabilities.
-  - Hardened configurations (e.g., no default passwords, disabled unnecessary services), reset capability mandatory. - CRA Annex I Part I(2)(b)
+**CRA requirement.** CRA Article 2(1) covers products with digital elements made available on the market whose intended purpose or reasonably foreseeable use includes a direct or indirect logical or physical data connection to a device or network. Making available includes commercial supply for payment or free of charge; placing on the market is the first such supply in the Union (CRA Article 3(21) and (22)). Assess applicable exclusions and sector-specific rules under CRA Article 2 rather than assuming that all software is covered.
 
-- Principle of Least Privilege (PoLP)
-  > Limit access rights for users, applications, and systems to the minimum necessary to perform their functions.
-  - Attack surface reduction, disable unused ports/protocols, minimize APIs. - CRA Annex I Part I(2)(j)
+A product includes its remote data processing solutions and components placed on the market separately. Remote data processing falls within the product boundary where the software is designed and developed by the manufacturer or under its responsibility, and its absence would prevent the product from performing one of its functions (CRA Article 3(1) and (2); Commission guidance, Sections 2 and 8). A dependency on an external service does not, by itself, make that service part of the product; associated risks still belong in the product risk assessment (Commission guidance, Section 7.3, paragraphs 167-173).
 
-- Information Security (InfoSec) - CRA Article 3(44), CRA Article 14(5)(a)
-  > Data Protection by applying the CIA Triad (Confidentiality, Integrity, Availability) throughout the product lifecycle.
-  - State-of-the-Art encryption with AES-256, TLS 1.3+, secure key management, apply to data at rest, in transit, in use where relevant. - CRA Annex I Part I(2)(e)
-  - Use hashing, digital signatures, tamper-evident logging, alert on detected corruption. - CRA Annex I Part I(2)(f)
-  - Cyber attack resilience with rate limiting, traffic filtering, failover mechanisms for essential functions. - CRA Annex I Part I(2)(h)
+The CRA generally applies from 11 December 2027. Article 14 reporting applies from 11 September 2026, including to in-scope products placed on the market before 11 December 2027. Products placed before that date are otherwise subject to the Regulation if substantially modified from that date (CRA Articles 69(2) and (3), and 71(2)). The guidance distinguishes an existing design from individual products newly placed on the market: an old design does not exempt newly placed products (Commission guidance, Section 2.7).
 
-- Identity & Access
-  > Ensure robust identity verification and access controls to prevent unauthorized access.
-  - Establish Access Control & Anomaly Reporting, implement MFA, RBAC, IAM, log and alert on unauthorized access attempts. - CRA Annex I Part I(2)(d)
+**Engineering practice.** Record the product's intended purpose, reasonably foreseeable use, operating conditions, interfaces, integrated components, remote functions, commercial supply model, responsible manufacturer, and relevant dates. Identify important or critical product categories and the applicable conformity assessment route early, using CRA Articles 7, 8, and 32 and Annexes III and IV, with Commission guidance, Section 6.
 
-- Privacy by Design
-  > Incorporate privacy considerations into the design and architecture of products.
-  - Collect and process only the data strictly necessary for the intended purpose, avoid processing beyond that purpose and enforce data minimisation. - CRA Annex I Part I(2)(g)
-  - Giving users control over their data, including the ability to erase, secure delete or safe data export to other systems. - CRA Annex I Part I(2)(m)
-  - Secure decommissioning of the product, including securely removing information of user data. - CRA Annex II (8)(d)
+### 1.3. Free and Open-Source Software Roles
 
-1. References
+Free and open-source software (FOSS) has openly shared source code and a license granting rights to access, use, modify, and redistribute it freely (CRA Article 3(48)). Open source does not mean that every participant has the same CRA obligations.
 
-    - CRA Article 13
-    - CRA Annex I Part I
-    - CRA Annex II
-    - CRA Recital
-    - DIN 40000 (5)
-    - DIN 40000 (6.4)
+| Actor or activity | CRA basis and Commission interpretation | Requirements-engineering consequence |
+| --- | --- | --- |
+| Manufacturer integrating FOSS | CRA Article 13(5) covers integrated components, including FOSS supplied outside commercial activity. Commission guidance, Section 3.4, paragraphs 86-88, distinguishes conformity of the integrated product from the component's individual status. | Assess the component and its integration; retain responsibility for conformity of the resulting product. |
+| Person supplying FOSS commercially under its name or trademark | Manufacturer and market definitions in CRA Article 3(13), (21), and (22), interpreted in Commission guidance, Sections 3.1 and 3.2. A zero price alone does not determine commercial status. | Assess responsibility for publication and supply, monetization, and the actual circumstances before assigning manufacturer obligations. |
+| Developer or contributor to FOSS outside its responsibility | CRA Recital (18); Commission guidance, Sections 3.1 and 3.4. Contributing code or having commit access does not alone establish responsibility for publication and release decisions. | Do not assign manufacturer duties merely because code is contributed or later used commercially downstream. |
+| Publisher of FOSS outside commercial activity | CRA Recital (18); Commission guidance, Sections 3.2-3.4. Development funding alone does not determine commercial supply. | Assess separately whether the publisher meets the definition of an open-source software steward. |
+| Open-source software steward | CRA Article 3(14) defines a legal person, other than a manufacturer, systematically supporting specific FOSS intended for commercial activities and ensuring its viability. CRA Article 24 sets a distinct regime. | Record the role for each FOSS project; an entity can be a manufacturer for one product and a steward for another. |
 
-##### 1.1.1.2. Threat Modeling
+**CRA requirement.** Stewards document a verifiable cybersecurity policy and cooperate with market surveillance authorities under CRA Article 24(1) and (2). Article 24(3) applies Article 14(1) reporting to the extent that a steward is involved in development, and Article 14(3) and (8) to the extent that relevant severe incidents affect the network and information systems it provides for development. Commission guidance, Section 3.3.1, paragraphs 79-82, explains how non-technical support, infrastructure provision, and engineering involvement affect those duties. These conditions should not be generalized to every FOSS developer or foundation.
 
-Threat modeling is a proactive approach to identifying and addressing potential security threats during the design and development phases. It helps in understanding the attack surface and implementing appropriate security controls.
+## 2. Cybersecurity Risk Assessment and Treatment
 
-- Conduct threat modeling sessions during the design phase to identify potential threats and vulnerabilities.
-- Utilize established frameworks (e.g., STRIDE, DREAD) to systematically analyze threats.
-- Document identified threats and corresponding mitigation strategies.
+The CRA assessment concerns risks associated with the product, rather than only project delivery risk or organizational exposure. It establishes the basis for selecting and justifying cybersecurity requirements.
 
-1. References
+### 2.1. Assessment and Traceability
 
-    - DIN 40000 (6.4.3)
-    - IEC 62443-4-1:2018
-    - CRA Annex I Part I(2)(a)
+**CRA requirement.** Manufacturers assess product cybersecurity risks and use the results during planning, design, development, production, delivery, and maintenance (CRA Article 13(2)). The documented assessment is updated as appropriate during the support period and addresses intended purpose, reasonably foreseeable use, conditions of use, the operating environment, protected assets, and expected use time (CRA Article 13(3)).
 
-##### 1.1.1.3. Risk Estimation
+The assessment explains which CRA Annex I, Part I, point (2) requirements apply and how they are implemented, how point (1) is met, and how Part II vulnerability-handling requirements are applied. It forms part of the technical documentation; non-applicability of an essential requirement needs a clear justification (CRA Article 13(3) and (4)).
 
-Risk estimation involves quantifying the likelihood and potential impact of identified risks to prioritize mitigation efforts.
+**Engineering practice.** Maintain traceability from each identified risk to its relevant CRA provision, derived requirement, design decision, verification result, and lifecycle owner. Threat modeling, attack-surface analysis, likelihood and impact estimates, and structured risk registers can support this assessment. No particular scoring method or threat-modeling framework is prescribed by these provisions. The repository's [Threat Modeling](../articles/threat-modeling.md) article supplies general methods; its organizational risk-acceptance concepts remain subject to the CRA constraints below.
 
-1. References
+### 2.2. Appropriate Cybersecurity and Residual Risk
 
-    - DIN 40000 (6.4.4)
+**CRA requirement.** CRA Annex I, Part I, point (1) requires design, development, and production to ensure an appropriate level of cybersecurity based on the risks. Performing a risk assessment is a distinct obligation; the assessment alone does not establish that the product meets this requirement.
 
-##### 1.1.1.4. Risk Evaluation
+**Commission interpretation.** Section 7.2, paragraphs 164-166, explains that point (1) also addresses risks not adequately covered by implementing the other Part I requirements. Where such risks remain, appropriate product measures are needed. Conformity is therefore not simply a checklist of the other requirements.
 
-Risk evaluation is the process of comparing estimated risks against risk criteria to determine their significance and prioritize response actions.
+Residual risk is evaluated against the essential requirements, intended purpose, reasonably foreseeable use, operating conditions, protected assets, and expected use time. Internal risk appetite, commercial strategy, or cost alone cannot justify insufficiently addressed risks. Residual risk is possible, but an internal decision to accept it is not a substitute for sufficiently addressing it through the essential requirements (Commission guidance, Section 7.1, paragraphs 156-163; CRA Article 13(2) and (3)).
 
-1. References
+**Engineering practice.** Record the risk before and after treatment, implemented safeguards, supporting evidence, operating assumptions, and the rationale for concluding that the essential requirements are met. If evidence is insufficient, revise the design, functionality, or intended purpose and reassess reasonably foreseeable use. A named risk owner or approval record supports accountability but does not waive a CRA obligation.
 
-    - DIN 40000 (6.4.5)
+### 2.3. Responsibility and Operating Assumptions
 
-##### 1.1.1.5. Risk Treatment
+**Commission interpretation.** Responsibility cannot be transferred to users or third parties to compensate for deficient product design or untreated risks (Section 7.1, paragraph 161). Supplier contracts, outsourcing, or insurance do not discharge the manufacturer's product-security obligations.
 
-Risk treatment involves selecting and implementing measures to modify risk levels through various strategies.
+User instructions can support secure deployment and communicate residual risks, including justified restrictions to trusted environments. Such restrictions need to be consistent with the risk assessment, intended users, and reasonably foreseeable use; they are not a general exemption from the CRA (Commission guidance, Section 7.1, paragraphs 160-163).
 
-###### 1.1.1.5.1. Risk Avoidance
+External infrastructure risks also need assessment and, where relevant, product-level mitigation. The CRA does not thereby require the manufacturer to control or govern that external environment (Commission guidance, Section 7.3, paragraphs 168-173).
 
-Risk avoidance involves eliminating activities or conditions that give rise to risk, thereby preventing the risk from occurring.
+**Implementation example.** A product relying on a remote service can define requirements for rejecting unauthorized commands and maintaining a secure state during service failure. Verify those behaviors under the relevant failure and attack conditions; document deployment assumptions and integration instructions. These are illustrative treatments, not prescribed architectures.
 
-1. References
+## 3. Product Cybersecurity Requirements
 
-    - DIN 40000 (6.5.1.2)
+**CRA requirement.** CRA Annex I, Part I, point (2) applies on the basis of the cybersecurity risk assessment and where applicable. The following mapping summarizes its outcomes; the engineering column gives examples rather than additional legal mandates. Applicability decisions remain documented under CRA Article 13(3) and (4).
 
-###### 1.1.1.5.2. Risk Mitigation
+| CRA provision | Required outcome, subject to applicability | Illustrative requirement or verification evidence |
+| --- | --- | --- |
+| Annex I, Part I, point (2)(a) | Make the product available without known exploitable vulnerabilities. | Product-specific applicability and exploitability analysis; release decision evidence. See Section 5.1. |
+| Annex I, Part I, point (2)(b) | Secure default configuration, including reset to the original state; the stated exception concerns an agreement with a business user for a tailor-made product. | Review initial configuration and reset behavior; verify exposure of interfaces and credentials. |
+| Annex I, Part I, point (2)(c) | Address vulnerabilities through security updates; where applicable, automatic updates enabled by default within an appropriate timeframe, easy opt-out, update notification, and temporary postponement. | Update, notification, opt-out, and postponement tests. |
+| Annex I, Part I, point (2)(d) | Protect against unauthorized access through appropriate controls and report possible unauthorized access. | Authorization tests and evidence that relevant access attempts are reported. |
+| Annex I, Part I, point (2)(e) | Protect confidentiality of stored, transmitted, or otherwise processed data, for example through state-of-the-art encryption of relevant data at rest or in transit or other technical means. | Identify sensitive flows and storage; verify the chosen confidentiality controls and key management. |
+| Annex I, Part I, point (2)(f) | Protect data, commands, programs, and configuration against manipulation or modification not authorized by the user; report corruption. | Tampering tests and corruption-reporting evidence. |
+| Annex I, Part I, point (2)(g) | Limit processing to data adequate, relevant, and necessary for the intended purpose. | Data inventory and tests of collection, processing, and retention behavior. |
+| Annex I, Part I, point (2)(h) | Protect availability of essential and basic functions, including after an incident, with resilience and denial-of-service mitigation. | Resource-exhaustion and recovery tests against product-specific criteria. |
+| Annex I, Part I, point (2)(i) | Minimize negative effects on the availability of other devices' or networks' services. | Verify behavior under overload, failure, and compromised-input conditions. |
+| Annex I, Part I, point (2)(j) | Limit attack surfaces, including external interfaces. | Interface inventory and justification for exposed functionality. |
+| Annex I, Part I, point (2)(k) | Reduce incident impact through appropriate exploitation-mitigation mechanisms and techniques. | Verify isolation and mitigation measures selected for identified attack paths. |
+| Annex I, Part I, point (2)(l) | Record and monitor relevant internal activity to provide security information, with user opt-out. | Tests of relevant event recording, monitoring, and opt-out behavior. |
+| Annex I, Part I, point (2)(m) | Enable secure, easy, permanent removal of all data and settings; secure transfer where transfer to other products or systems is possible. | Deletion and reset evidence; transfer-security tests where applicable. This does not establish a universal data-export feature requirement. |
 
-Risk mitigation involves implementing strategies to reduce the likelihood or impact of identified risks.
+**Engineering practice.** Specify measurable product behavior and acceptance criteria derived from the risk assessment. Least privilege, defense in depth, secure coding, protected build environments, and integrity checks can support these outcomes. The CRA provisions above do not prescribe a particular encryption algorithm, protocol version, authentication product, testing tool, or build platform.
 
-- Develop exploit mitigation plans for high-priority risks, including technical and procedural controls. - CRA Annex I Part I(2)(k)
-- Allocate resources for risk mitigation activities, such as training or tool implementation.
-- Regularly review and update mitigation strategies based on new threats or changes in the environment.
+## 4. Integrated Components and Software Supply Chains
 
-1. References
+Component assurance establishes whether externally supplied software or hardware can safely perform its role in the product. It complements the product-level analysis of component interactions and external dependencies.
 
-    - CRA Annex I Part I
-    - DIN 40000 (6.5.1.3)
+### 4.1. Component Due Diligence
 
-###### 1.1.1.5.3. Risk Acceptance
+**CRA requirement.** CRA Article 13(5) requires due diligence when integrating third-party components so that they do not compromise product cybersecurity, including FOSS components supplied outside commercial activity.
 
-Risk acceptance is the decision to accept a risk as is, typically when the cost of mitigation exceeds the potential impact or when operating in trusted environments.
+**Commission interpretation.** Product cybersecurity risk assessment under Article 13(2) and component due diligence under Article 13(5) are distinct, complementary obligations. Identify the security properties needed from each component and verify them in a risk-based manner. Evidence may include technical specifications, security documentation, relevant assurance or conformity documentation, and appropriate testing (Section 7.3, paragraphs 167-173; CRA Recital (34)).
 
-> [!NOTE]
-> Trusted Environments: Scope limitations may apply when products are explicitly restricted to controlled or trusted environments. - CRA Recital (55)
+**Engineering practice.** A component due-diligence record can include:
 
-1. References
+- Component identity, version, origin, integration context, and required security properties.
+- Evidence reviewed, its scope and limitations, and relevant vulnerability history.
+- Verification of the properties relied upon, including integration behavior and configuration.
+- Upstream maintenance and support arrangements, update capability, and a plan for unsupported dependencies.
+- Identified gaps, mitigation decisions, and links to product requirements and test results.
 
-    - DIN 40000 (6.3)
-    - DIN 40000 (6.5.1.4)
-    - CRA Annex I Part I(2)(b)
-    - CRA Annex I Part II(8)
+A supplier's conformity evidence or security claim can support the assessment but does not demonstrate conformity of the integrated product by itself. Supplier agreements and audit activities are possible engineering measures, selected according to risk; Article 13(5) does not mandate a named supplier framework or identical audits for every dependency.
 
-###### 1.1.1.5.4. Risk Transfer
+### 4.2. Software Bill of Materials and Vulnerability Analysis
 
-Risk transfer involves shifting the risk to another party, such as through insurance, contracts, or outsourcing.
+**CRA requirement.** CRA Annex I, Part II, point (1) requires identification and documentation of vulnerabilities and components, including a Software Bill of Materials (SBOM) in a commonly used, machine-readable format covering at least top-level dependencies. The CRA does not impose general public publication of the SBOM (CRA Recital (77)). CRA Annex VII, point (8), addresses provision following a reasoned market-surveillance request where necessary to check compliance; CRA Article 13(25) also permits requests for specified product categories in a Union-wide dependency assessment. Disclosure is therefore not limited to a single request scenario.
 
-1. References
+**Engineering practice.** Link each SBOM to the corresponding released artifact and maintain component/version records through changes. Capture transitive dependencies where needed to understand product risk. Software Composition Analysis (SCA) can support inventory generation and vulnerability matching; a database match alone does not establish that a vulnerability is exploitable in the product.
 
-    - DIN 40000 (6.5.1.5)
+**Implementation examples.** [CycloneDX](https://cyclonedx.org/specification/overview/) and [SPDX](https://spdx.dev/use/specifications/) are candidate SBOM formats. Neither is mandated by the cited Annex I requirement. Select a format and level of detail appropriate to the product and any applicable implementing measures under CRA Article 13(24).
 
-##### 1.1.1.6. Risk Communication
+### 4.3. Integrity Evidence and Security Attestation
 
-Risk communication ensures that information about risks is effectively shared with all relevant stakeholders throughout the organization.
+**CRA requirement.** Product integrity protection is addressed by CRA Annex I, Part I, point (2)(f); secure update distribution by Part II, point (7). These outcomes are distinct from the component due-diligence obligation and from voluntary attestation programs.
 
-1. References
+**Engineering practice.** Integrity and provenance evidence can support component selection, build protection, release verification, and update validation. Bind evidence to the exact artifact; verify the issuer and trust basis; protect signing keys and verification policies; retain results and investigate failures. Authentic provenance alone does not establish absence of vulnerabilities or suitability for the intended integration.
 
-    - DIN 40000 (6.6)
+**Implementation examples.** Digital signatures, authenticated distribution channels, reproducible builds, [Supply-chain Levels for Software Artifacts (SLSA)](https://slsa.dev/spec/), [Sigstore](https://docs.sigstore.dev/), and [in-toto](https://in-toto.io/) may support integrity or provenance checks. These mechanisms and frameworks are not CRA mandates, and a signed build statement is not automatically an Article 25 security attestation.
 
-##### 1.1.1.7. Risk Monitoring and Review
+**CRA provision.** CRA Article 25 empowers the Commission to establish voluntary FOSS security-attestation programs to support Article 13(5) due diligence. CRA Recital (21) describes possible initiators and funders. Such attestation is supporting evidence within its assessed scope; voluntary participation does not replace the manufacturer's due diligence, product risk assessment, vulnerability handling, or conformity obligations.
 
-Risk monitoring ensures ongoing oversight of risks to detect changes and ensure mitigation effectiveness.
+## 5. Vulnerability Handling and Security Review
 
-- Establish key risk indicators (KRIs) to monitor risk levels continuously.
-- Conduct periodic risk reviews and audits to assess the status of identified risks.
-- Report on risk status to stakeholders and adjust strategies as needed for CRA compliance.
-- Log access/modification events, provide user-accessible logs and opt-out. - CRA Annex I Part I(2)(l)
+**CRA requirement.** Manufacturers handle product and component vulnerabilities effectively at market placement and throughout the support period, using appropriate procedures for reports from internal and external sources (CRA Article 13(8); Annex I, Part II). Relevant cybersecurity information, including vulnerabilities and third-party information, is documented proportionately under CRA Article 13(7).
 
-1. References
+### 5.1. Known Exploitable Vulnerabilities
 
-    - DIN 40000 (6.5.1.5)
-    - DIN 40000 (6.7)
-    - CRA Annex I Part II(3)
+**CRA requirement.** CRA Annex I, Part I, point (2)(a) requires products to be made available without known exploitable vulnerabilities, on the basis of the risk assessment and where applicable. An exploitable vulnerability can effectively be used by an adversary under practical operational conditions (CRA Article 3(41)). This differs from an actively exploited vulnerability, for which reliable evidence of unauthorized exploitation by a malicious actor exists (CRA Article 3(42)).
 
-#### 1.1.2. Vulnerability Management
+**Commission interpretation.** Knowledge can arise from public vulnerability databases, private disclosures, internal testing, or prominent reliable reporting. Discovery or publication alone does not establish veracity, practical exploitability, or applicability to the particular product. Prompt investigation may require a limited confirmation period (Section 9.2.2, paragraphs 230-235).
 
-Vulnerability management is the activity ensuring that cybersecurity issues can be identified, handled and resolved for the product.
+For vulnerabilities discovered close to release, the Commission describes a risk-based decision about whether secure market placement in conformity with the CRA is possible or a fix is needed first. Relevant considerations include severity, exploitability, potential impact, in-use risks, and risks of delaying a release that fixes other exploitable vulnerabilities or supports critical systems. This is not a blanket permission to accept known exploitable vulnerabilities for commercial convenience. Vulnerability-handling duties continue after placement (Commission guidance, Section 9.2.2, paragraphs 236-237; Section 7.1).
 
-Vulnerability management as specified by the CRA, includes guidelines for identifying, reporting, and remediation vulnerabilities in products to ensure ongoing compliance and security.
+**Engineering practice.** Preserve the report, affected versions, reachability and configuration analysis, exploitability evidence, investigation dates, mitigations, and release rationale. A clean scanner result or an unreviewed vulnerability-score threshold is insufficient evidence by itself.
 
-1. References
+### 5.2. Triage, Remediation, and Coordinated Disclosure
 
-    - DIN 40000 (7.8)
-    - JT013090:2026
-    - CRA Annex I Part I(2)(c)
-    - CRA Annex I Part II(2)
-    - CRA Annex I Part II(4)
-    - CRA Annex I Part II(8)
+**CRA requirement.** Vulnerabilities are addressed and remediated without delay in relation to the risks posed, including through security updates (CRA Annex I, Part II, point (2)). Manufacturers put in place and enforce a Coordinated Vulnerability Disclosure (CVD) policy and facilitate sharing of potential vulnerability information, including through a reporting contact address (points (5) and (6)). CRA Article 13(17) requires an identifiable single point of contact that does not restrict communication to automated tools.
 
-##### 1.1.2.1. Vulnerability Identification and Discovery
+Once a security update is available, information about fixed vulnerabilities is shared and publicly disclosed, covering the vulnerability, affected product identification, impact, severity, and accessible remediation information. In duly justified cases, publication can be delayed until users have had an opportunity to apply the patch where publication risks outweigh its security benefits (CRA Annex I, Part II, point (4)). This is separate from Article 14 notification deadlines.
 
-Vulnerability identification is crucial for maintaining product security and CRA compliance. Involves systematic processes to discover potential security weaknesses in products based on databases (e.g., CVE), security advisories (e.g., NVD), and internal testing.
+**Engineering practice.** Define intake, prompt assessment, assignment, remediation, verification, disclosure coordination, and escalation responsibilities. Internal response targets should support the statutory duties; Article 14's 24-hour and 72-hour deadlines are not general deadlines for acknowledging every researcher report.
 
-- Implement continuous monitoring tools to detect vulnerabilities. - CRA Annex I Part II(1)
-- Conduct regular security assessments and penetration testing, fuzzing, SAST/DAST, and vulnerability scanning to uncover potential weaknesses. - CRA Annex I Part II(3), CRA Article 10(a)
-- Maintain a vulnerability database for tracking identified issues, including severity levels and affected components.
+**Implementation examples.** The [Common Vulnerability Scoring System (CVSS)](https://www.first.org/cvss/) and [Exploit Prediction Scoring System (EPSS)](https://www.first.org/epss/) can inform triage alongside product exposure and impact. Neither is mandated by the CRA or substitutes for assessing exploitability, remediation duties, or reporting triggers. A dedicated email address or reporting portal can support vulnerability intake; a bug-bounty program is an optional practice.
 
-1. References
+### 5.3. Upstream Reporting and Security Fixes
 
-    - CRA Annex I Part II
-    - CRA Article 10
+**CRA requirement.** On identifying a vulnerability in an integrated component, the manufacturer reports it to the person or entity manufacturing or maintaining that component and addresses it under Annex I, Part II. If a software or hardware modification is developed to address the component vulnerability, the relevant code or documentation is shared upstream, where appropriate in machine-readable form (CRA Article 13(6)).
 
-##### 1.1.2.2. Vulnerability Triage and Prioritization
+**Commission interpretation.** Section 9.2.1, paragraphs 222-229, explains the boundaries:
 
-Prioritizing vulnerabilities is essential to effectively manage and mitigate risks.
+- Upstream reporting concerns the integrated version and vulnerabilities in the component itself. An integration-only flaw is distinguished from a component flaw; sharing relevant integration findings is encouraged.
+- Duplicate reporting is unnecessary where the manufacturer confirms that the upstream party already knows of the vulnerability. Established security-reporting channels and coordinated disclosure practices should be respected.
+- Reporting upstream is not required where no maintainer remains or the manufacturer no longer relies on the original maintainer for versions or fixes. Alternative communication to component users is encouraged; this does not remove responsibility for the manufacturer's own product.
+- Security fixes should be verifiable and, where appropriate, machine-readable, with FOSS license compatibility and maintainer guidelines considered. The CRA does not require upstream acceptance or merging of a contributed fix.
+- A change to another part of the system, used as an alternative mitigation, is distinguished from a fix to the affected component itself.
 
-###### 1.1.2.2.1. Vulnerability Triage
+**Engineering practice.** Retain upstream reports, evidence of prior upstream knowledge where relied upon, shared fixes, coordination records, and the product's own remediation and verification results. Monitoring vulnerability databases is useful, but there is no general CRA obligation to report every discovered vulnerability to the European Vulnerability Database. CRA Article 15 provides voluntary notification routes; mandatory Article 14 reporting and Article 13(6) upstream reporting have their own conditions.
 
-Vulnerability triage is the process of evaluating and categorizing vulnerabilities to determine their validity and relevance.
+### 5.4. Effective and Regular Testing
 
-###### 1.1.2.2.2. Vulnerability Prioritization
+**CRA requirement.** CRA Annex I, Part II, point (3) requires effective and regular tests and reviews of product security.
 
-Prioritizing vulnerabilities involves evaluating the severity (e.g., CVSS score) and potential impact (e.g., data loss, reputational damage) of identified vulnerabilities to allocate resources efficiently.
+**Commission interpretation.** Section 9.2.3, paragraphs 238-240, explains that regular testing does not mean mechanically repeating an unchanged campaign at fixed intervals. Review frequency, depth, and content reflect product risk, product evolution, and the threat landscape. Review new threats, vulnerabilities, product changes, and other relevant input; update and execute tests accordingly. Existing tests may need repetition after changes. Where no relevant new input is identified, additional tests need not be devised; other vulnerability-handling duties continue.
 
-- Assess vulnerabilities based on potential impact, exploitability. - CRA Annex I Part II(2)
-- Utilize automated tools to assist in vulnerability scoring and prioritization (e.g., CVSS, EPSS scoring).
-- Develop a risk-based approach (e.g., risk matrices, threat modeling) to address high-priority vulnerabilities first, ensuring resources are allocated efficiently. - CRA Annex I Part II(4)
+**Engineering practice.** Record review inputs, scope decisions, test selection, results, defects, and verification of corrective measures. Link results to affected product versions, risks, and requirements. Penetration testing, fuzzing, Static Application Security Testing (SAST), Dynamic Application Security Testing (DAST), code review, and regression testing are possible techniques, not universally prescribed campaigns. See the [Software Testing](../articles/software-testing.md) article for technique descriptions.
 
-##### 1.1.2.3. Vulnerability Mitigation and Remediation
+## 6. Security Updates and Support Period
 
-Vulnerability mitigation and remediation are critical components of maintaining product security and CRA compliance. This involves addressing identified vulnerabilities through structured processes. - CRA Annex I Part II(2)
+Support planning connects expected product use with vulnerability-handling capacity, component maintenance, secure delivery, and user information. Distinguish the support period from update availability, documentation retention, and reporting obligations.
 
-1. References
+### 6.1. Support-Period Determination
 
-    - CRA Annex I Part II
+**CRA requirement.** CRA Article 13(8) requires a support period reflecting expected use time, taking account particularly of reasonable user expectations, the product's nature and intended purpose, and relevant Union law determining its lifetime. It is at least five years unless expected use is shorter, in which case it corresponds to that shorter expected use time.
 
-###### 1.1.2.3.1. Vulnerability Mitigation
+**Commission interpretation.** Five years is a safeguard, not a default for every product. Products reasonably expected to be used longer should have correspondingly longer support (Section 5, paragraphs 125-126; CRA Recital (60)).
 
-Mitigate identified vulnerabilities to reduce their impact and likelihood of exploitation.
+Article 13(8) also permits consideration of support periods for comparable products, availability of the operating environment, support of third-party components providing core functions, and relevant guidance from the administrative cooperation group (ADCO) and the Commission. The factors are considered proportionately. Record the information used in the technical documentation (CRA Article 13(8); Annex VII, point (4); Commission guidance, Section 5, paragraph 125 and footnote 17).
 
-- Develop and deploy security patches within defined SLAs, prioritizing critical systems.
-- Maintain a documented process for vulnerability remediation, including testing and validation steps.
-- Conduct post-mitigation reviews to ensure effectiveness and prevent recurrence.
+The support end date, including at least month and year, is clearly specified at purchase. Where technically feasible for the product, users receive a notification when support ends (CRA Article 13(19); Commission guidance, Section 5, paragraph 127).
 
-###### 1.1.2.3.2. Vulnerability Remediation
+**Engineering practice.** Maintain a support rationale connecting expected deployment life, user expectations, component maintenance, and operating-environment availability to a funded vulnerability-handling plan. Identify replacement, maintenance, or migration measures where dependencies end support earlier; a supplier's shorter commitment does not by itself determine the product's lawful support period.
 
-Remediate identified vulnerabilities to eliminate their impact and likelihood of exploitation.
+### 6.2. Update Delivery and Availability
 
-- Implement a structured process for vulnerability remediation, including root cause analysis and impact assessment.
-- Prioritize vulnerabilities based on risk and impact.
-- Allocate resources for timely remediation efforts, including cross-functional teams.
-- Document remediation actions and track progress, with regular audits for CRA compliance.
+**CRA requirement.** Security updates are separated from functionality updates where technically feasible; distribution mechanisms ensure secure, timely fixing or mitigation and, where applicable, automatic delivery. Available security updates are disseminated without delay and free of charge, except where otherwise agreed with a business user for a tailor-made product, and accompanied by relevant advisory information (CRA Annex I, Part II, points (2), (7), and (8)). Applicable product update controls are set out in Part I, point (2)(c).
 
-###### 1.1.2.3.3. Patch Management
+Each security update made available during support remains available for at least ten years after issuance or for the remainder of the support period, whichever is longer (CRA Article 13(9)). This availability obligation does not mean that the support period is universally ten years.
 
-The specific process of applying software updates and patches to permanently fix known vulnerabilities.
+**Engineering practice.** Verify update authenticity and integrity, compatibility, installation behavior, and safe recovery from interrupted or failed updates. Retain release identifiers, verification results, distribution records, advisories, and evidence of continued availability. Cryptographic signatures and authenticated transport are possible implementation choices; the cited provisions do not mandate a named protocol or tool.
 
-- Establish a centralized patch management system to track and deploy patches across all systems and components.
-- Conduct thorough testing of patches in staging environments before production deployment to avoid disruptions.
-- Define patch deployment schedules and SLAs based on vulnerability severity and business impact.
-- Monitor patch compliance and effectiveness through regular audits and reporting.
-- Maintain rollback procedures for patches that cause issues, ensuring quick recovery.
+### 6.3. Software Versions and Substantial Modifications
 
-##### 1.1.2.4. Vulnerability Reporting and Disclosure
+**CRA provision.** Where subsequent substantially modified software versions are placed on the market, CRA Article 13(10) permits remediation under Annex I, Part II, point (2), to focus on the latest version only if earlier-version users have access to it free of charge without additional costs to adjust their hardware or software environment.
 
-Effective vulnerability reporting and disclosure are critical for maintaining transparency and trust with stakeholders, including customers, partners, and regulatory bodies.
+**Commission interpretation.** Section 5, paragraphs 129-131, distinguishes reasonable operational effort, such as routine testing or configuration adjustments, from additional costs such as compulsory hardware purchases or fundamental infrastructure changes. This flexibility concerns remediation under point (2); it does not remove other applicable vulnerability-handling or Article 14 reporting obligations.
 
-###### 1.1.2.4.1. Vulnerability Reporting
+A substantial modification is a post-placement change that affects conformity with Part I essential requirements or modifies the assessed intended purpose (CRA Article 3(30)). The guidance calls for case-by-case assessment of changed risks and their coverage in the existing risk assessment. An update is not automatically substantial merely because it changes software or adds a feature (Commission guidance, Section 4.3).
 
-Report identified vulnerabilities to relevant stakeholders, including internal teams, customers, and regulatory bodies (e.g. CSIRT or ENISA), in accordance with CRA guidelines.
+Where a substantially modified product is made available on the market, the guidance treats it as a new placing on the market with corresponding conformity obligations. CRA Articles 21 and 22 address modifications by other actors; Article 22(2) distinguishes the affected part from the whole product where its overall cybersecurity is affected (Commission guidance, Section 4.4).
 
-- Establish a responsible disclosure program for external researchers, including clear guidelines and incentives.
-- Define clear communication channels for reporting vulnerabilities, such as dedicated email or portals (e.g., security.txt). - CRA Annex I Part II(6)
-- Ensure timely acknowledgment and response to reported vulnerabilities within CRA-specified timelines. - CRA Article 14(2) & (4)
-- Comply with CRA reporting requirements for significant vulnerabilities, including mandatory notifications to authorities (CSIRT or ENISA). - CRA Article 14(1)
-- A detailed description of the incident, including its severity and impact. - CRA Article 14(4)(c)(i)
-- The type of threat or root cause that is likely to have triggered the incident. - CRA Article 14(4)(c)(ii)
+The support period is reassessed against Article 13(8), rather than automatically reset or extended. Where a modification leaves the factors determining expected use unchanged, the remaining original support period can remain appropriate; changed expected use calls for recalculation (Commission guidance, Section 5.1, paragraphs 132-135).
 
-1. References
+**Engineering practice.** Include change-impact analysis, updated risks and requirements, regression evidence, version eligibility for updates, support rationale, and the conformity-assessment decision in each relevant release record.
 
-    - CRA Article 14
-    - CRA Annex I Part II
-    - CRA Recital (65)
+## 7. Actively Exploited Vulnerabilities and Severe Incidents
 
-###### 1.1.2.4.2. Vulnerability Disclosure
+Article 14 notification is separate from routine vulnerability intake, upstream reporting, public disclosure of fixed vulnerabilities, and internal incident-management priorities.
 
-Disclose details of vulnerabilities to affected stakeholders, including customers, partners, and regulatory bodies, in accordance with CRA guidelines.
+### 7.1. Reporting Triggers and Awareness
 
-- Establish a clear process for disclosing vulnerabilities to affected parties, minimizing exposure risks.
-- Provide guidance on responsible disclosure practices, such as coordinated releases with vendors. - CRA Annex I Part II(8)
-- Ensure timely communication of vulnerability details to stakeholders, including patches and workarounds.
+**CRA requirement.** A manufacturer notifies any actively exploited vulnerability contained in its product that it becomes aware of, and any severe incident affecting product security that it becomes aware of. Notifications go simultaneously to the designated coordinating Computer Security Incident Response Team (CSIRT) and the European Union Agency for Cybersecurity (ENISA), via the single reporting platform. Select the CSIRT endpoint under CRA Article 14(7), rather than choosing either CSIRT or ENISA (CRA Article 14(1) and (3); Article 16).
 
-###### 1.1.2.4.3. Coordinated Vulnerability Disclosure (CVD)
+Vulnerability reporting has no additional internal severity threshold such as "significant" or a particular CVSS score. For severe incidents, CRA Article 14(5)(a) addresses actual or potential negative effects on the product's ability to protect the availability, authenticity, integrity, or confidentiality of sensitive or important data or functions. Article 14(5)(b) separately covers actual or potential introduction or execution of malicious code in the product or a user's network and information systems. Either condition suffices.
 
-CVD is a process that brings together multiple stakeholders to coordinate the disclosure of vulnerabilities. This approach helps to ensure that all parties are prepared to address the issue simultaneously, minimizing the risk of exploitation.
+**Commission interpretation.** Awareness arises when an immediate initial assessment provides a reasonable degree of certainty that the statutory condition is met. Assessment should be prompt, and progressive reporting permits incomplete early information to be supplemented; completion of a full investigation is not a prerequisite (Section 9.1, paragraphs 211-215).
 
-- Implementation of a public and structured vulnerability disclosure, including mechanisms to facilitate sharing of potential vulnerabilities. - CRA Annex I Part II(4), CRA Article 13(8), CRA Article 15
-- Identify key stakeholders, including affected customers, partners, and internal teams.
-- Establish a timeline for disclosure, including embargo periods if necessary.
-- Coordinate communication efforts to ensure consistent messaging across all channels.
-- Develop vulnerability advisory templates covering all required elements. - CRA Annex I Part II(8)
-- Establish public disclosure channels (security advisories page, CVE database entries)
-- Implement severity rating systems (e.g., CVSS).
-- Create remediation guidance for end-users.
-- Design user notification mechanisms for patch availability
+For third-party components, paragraph 218 distinguishes a vulnerability actively exploited in the manufacturer's product from a component vulnerability that cannot be exploited there or has not been exploited there. The latter does not trigger mandatory reporting for that manufacturer merely because exploitation exists elsewhere; applicable vulnerability handling and upstream reporting continue. Record the product-specific evidence underlying this conclusion.
 
-1. References
+The guidance explains that Article 14 reporting continues after support ends and applies to in-scope products placed before 11 December 2027 (Section 9.1, paragraph 210; CRA Articles 69(3) and 71(2)). Paragraph 217 distinguishes pre-11 September 2026 awareness of active exploitation from later awareness; mere prior knowledge of a vulnerability does not exempt later awareness of its active exploitation.
 
-    - CRA Annex I Part II
-    - CRA Article 13(8)
-    - CRA Article 15
+### 7.2. Separate Notification Timelines
 
-###### 1.1.2.4.4. Vulnerability Disclosure Policy (VDP)
+**CRA requirement.** The two reporting schedules have different final-report triggers. The 24-hour and 72-hour periods both start at awareness, not at the preceding notification (CRA Article 14(2) and (4); Commission guidance, Section 9.1, paragraph 215).
 
-A Vulnerability Disclosure Policy (VDP) outlines the process for reporting and disclosing vulnerabilities. It establishes clear guidelines for both internal and external stakeholders or security researchers, ensuring a consistent and effective approach to vulnerability management.
+| Report | Actively exploited vulnerability | Severe incident affecting product security |
+| --- | --- | --- |
+| Early warning | Without undue delay and within 24 hours of awareness; CRA Article 14(2)(a). | Without undue delay and within 24 hours of awareness; CRA Article 14(4)(a). |
+| Subsequent notification | Without undue delay and within 72 hours of awareness; CRA Article 14(2)(b). | Without undue delay and within 72 hours of awareness; CRA Article 14(4)(b). |
+| Complete or final report | Within 14 days after a corrective or mitigating measure becomes available; CRA Article 14(2)(c). | Within one month after submission of the 72-hour incident notification; CRA Article 14(4)(c). |
 
-- A formal, published CVD policy defining intake, triage, communication, and collaboration practices with external researchers are handled. - CRA Annex I Part II(5)
-- Definition of what constitutes a vulnerability and the scope of the policy.
-- Clear reporting channels (e.g., email, web portal like security.txt) for internal and external stakeholders.
-- Guidelines for responsible disclosure, including timelines and communication protocols.
-- Procedures for acknowledging and responding to reported vulnerabilities.
-- Commitment to protecting the identity and confidentiality of reporters.
+Article 14(2)(b) and (c) and (4)(b) and (c) qualify subsequent submissions where the relevant information has already been provided. The vulnerability final report covers severity, impact, available malicious-actor information, and corrective measures. The severe-incident final report covers severity, impact, likely threat or root cause, and applied and ongoing mitigation. An intermediate status report may be requested under CRA Article 14(6).
 
-1. References
+**Engineering practice.** Preserve detection and awareness timestamps, initial-assessment reasoning, affected product/version evidence, reporting-clock triggers, notification receipts, and the availability date of corrective or mitigating measures. Define escalation and backup responsibilities so that internal approvals do not delay statutory reporting.
 
-    - CRA Annex I Part II
+### 7.3. User Communication and Recovery
 
-##### 1.1.2.5. Vulnerability Monitoring
+**CRA requirement.** After awareness, inform impacted users and, where appropriate, all users, including necessary mitigation and corrective measures (CRA Article 14(8)).
 
-Vulnerability monitoring involves continuously tracking and assessing vulnerabilities to ensure they are managed effectively over time.
+**Commission interpretation.** User communication is proportionate and risk-based; it does not entail indiscriminate public disclosure of sensitive technical details. Information may be targeted to relevant users, particularly in sensitive environments. This coexists with public disclosure of fixed vulnerabilities under Annex I, Part II, point (4) (Section 9.1, paragraphs 219-221).
 
-1. References
+**Engineering practice.** Prepare audience-specific advisories, recovery instructions, incident records, and post-incident reviews. Feed lessons into the risk assessment, requirements, and testing. Monitoring and incident-response tools are implementation choices rather than universal CRA product requirements.
 
-    - DIN 40000 (7.9)
-    - CRA Annex I Part I(2)(d)
-    - CRA Annex I Part I(2)(e)
-    - CRA Annex I Part I(2)(f)
+## 8. Technical Documentation and User Information
 
-##### 1.1.2.6. Security Updates
+Documentation connects the product's cybersecurity argument with reproducible evidence and information needed for secure use. An organized evidence set supports conformity assessment and subsequent maintenance.
 
-Security updates encompass the release and application of updates, including patches, hotfixes, and firmware updates, to address security vulnerabilities and enhance product resilience.
+### 8.1. Technical and Conformity Documentation
 
-- Develop a process for creating and releasing security updates based on identified vulnerabilities and risk assessments.
-- Ensure updates are tested for compatibility, performance, and security before distribution.
-- Provide clear communication to users about available updates, including installation instructions and potential impacts.
-- Automate update deployment where possible to ensure timely application across all affected systems.
-- Track update adoption rates and provide support for users facing issues during update processes.
-- Separate security updates where feasible, decouple security patches from feature updates to enable rapid deployment. - CRA Annex I Part II(2)
-- Updates must be distributed securely, cryptographically signed updates, secure channels (HTTPS/TLS), integrity verification, and where applicable support for automatic security updates. - CRA Annex I Part II(7)
-- Security updates must be provided free of charge and without delay. Business users with tailor-made products agreement. - CRA Annex I Part II(8)
+**CRA requirement.** Technical documentation is prepared before market placement and updated as appropriate at least throughout support (CRA Articles 13(12) and 31(1) and (2)). CRA Annex VII specifies its contents, as applicable:
 
-1. References
+| CRA Annex VII provision | Documentation content |
+| --- | --- |
+| Point (1) | Product description, intended purpose, software versions affecting conformity, hardware illustrations where relevant, and Annex II user information. |
+| Point (2) | Design, development, architecture, production and monitoring processes; vulnerability-handling specifications, including SBOM, CVD policy, reporting contact evidence, and secure update distribution. |
+| Point (3) | Cybersecurity risk assessment and applicability of Part I essential requirements. |
+| Point (4) | Information used to determine the support period. |
+| Point (5) | Applied harmonized standards, common specifications or relevant certification schemes; applied parts; alternative solutions and technical specifications where these are not applied. |
+| Point (6) | Test reports verifying the product and vulnerability-handling processes against applicable essential requirements. |
+| Point (7) | Copy of the EU declaration of conformity. |
+| Point (8) | SBOM following a reasoned market-surveillance request where necessary to check compliance. See also Section 4.2. |
 
-    - CRA Annex I Part II
-    - CRA Article 13
+Conformity assessment, the EU declaration of conformity, and CE marking are governed by CRA Article 13(12) and Articles 28, 30, and 32. A security-tool result or industry certification alone does not replace the applicable procedure.
 
-#### 1.1.3. Software Supply Chain Security
+Harmonized standards whose references are published in the Official Journal can confer a presumption of conformity only for the essential requirements they cover (CRA Article 27(1); Commission guidance, Section 6.3). Standards and frameworks are implementation guidance, not an independent source of CRA duties. The route and evidence still depend on the product category and applicable Article 32 procedure; this article makes no claim that a named industry standard has been harmonized under the CRA.
 
-Ensuring the security of the software supply chain is vital for CRA compliance. Involves managing risks associated with third-party suppliers and components used in products, securing the development, build, and deployment of software artifacts (including source code, dependencies, and CI/CD pipelines) against compromises like malicious updates or dependency confusion.
+Technical documentation and the EU declaration of conformity are retained for at least ten years after placement on the market or for the support period, whichever is longer (CRA Article 13(13)).
 
-##### 1.1.3.1. Supply Chain Risk Management
+**Engineering practice.** Index requirements, component due diligence, threat/risk analyses, test and review results, vulnerability records, upstream coordination, security updates, and support decisions by product version. Keep conclusions traceable to the evidence and its limitations. The CRA does not prescribe this particular indexing scheme.
 
-Establish processes to identify, assess, and mitigate risks associated with third-party suppliers and components.
+### 8.2. User Information and Instructions
 
-- Due Diligence: When integrating third-party components, manufacturers must exercise due diligence so that those components do not compromise the cybersecurity of the product with digital elements. - CRA Article 13(5), CRA Recital (34)
+**CRA requirement.** CRA Article 13(18) requires clear, understandable, intelligible, and legible information and instructions in paper or electronic form, in a language easily understood by users and market surveillance authorities. The information enables secure installation, operation, and use.
 
-- Identify and assess risks associated with third-party suppliers and components.
-- Implement security requirements for suppliers, including regular audits and assessments.
-- Maintain a Software Bill of Materials (SBOM) to track all third-party components and their security status.
-- Establish contractual obligations for suppliers to adhere to security standards and CRA compliance (e.g., Supply Chain Levels for Software Artifacts (SLSA)).
-- Establish automatic security updates as the default setting, ensuring products remain secure without user intervention, while providing flexibility to opt out (e.g. Renovate). - CRA Annex I Part I(2)(c)
-  - Security updates must be provided for the entire duration of the defined Support Period (minimum 5 years, or longer based on product type). - CRA Article 13(8)
-  - Complements automated secure updates and disclosure requirements. - CRA Annex I Part II
+CRA Annex II requires manufacturer and product identification; a single reporting contact and the location of the CVD policy; intended purpose, essential functions and security properties; known or foreseeable circumstances creating significant cybersecurity risks; the declaration-of-conformity address where applicable; and the support offered and its end date (points (1)-(7)).
 
-1. References
+Instructions cover secure commissioning and lifetime use, effects of changes on data security, installation of security updates, secure decommissioning and data removal, disabling applicable automatic updates, and integration information where the product is intended for integration into another product (CRA Annex II, point (8)(a)-(f)). If the manufacturer makes an SBOM available to users, its location is included (point (9)); publication itself is not generally required.
 
-    - CRA Recital (34)
-    - CRA Article 25
-    - CRA Article 13
-    - CRA Annex I
+User information and instructions remain available for at least ten years after market placement or for the support period, whichever is longer; online instructions have corresponding accessibility and availability obligations (CRA Article 13(18)). Product identification, manufacturer contacts, the single contact point, support-end information, and the accompanying full or simplified declaration are further addressed by CRA Article 13(15)-(20).
 
-##### 1.1.3.2. Software Bill of Materials (SBOM)
+**Engineering practice.** Validate instructions against the shipped configuration, tested operating assumptions, update workflow, and decommissioning behavior. Do not use warnings to compensate for inadequate design. Broader privacy notices and license-compliance records may be necessary under other rules but should not be attributed to CRA Annex II without a supporting provision.
 
-A comprehensive inventory of all software components, including open-source and proprietary libraries, used in an application.
+## 9. Lifecycle Evidence and Requirement Examples
 
-- Must maintain an up-to-date SBOM (minimum top-level dependencies) in a standard format (e.g., CycloneDX, SPDX) - CRA Annex I Part II(1)
-- Establish component tracking systems throughout the software supply chain.
-- Deploy vulnerability scanning and identification capabilities.
-- Ensure SBOM updates with each product release or significant component change.
-- Manufacturers should not be obliged to make the SBOM public. - CRA Recital (77)
+A traceable engineering workflow connects legal obligations and their interpretation to product-specific decisions. The following is a recommended organization of evidence, not a prescribed CRA document taxonomy.
 
-1. References
+| Engineering activity | Requirement or decision | Evidence and lifecycle connection |
+| --- | --- | --- |
+| Scope and planning | Product boundary, actor roles, applicability, conformity route, and support commitment. | Scope rationale, product/version identification, support-period determination, assigned responsibilities. |
+| Risk analysis and requirements | Applicable essential requirements, external risks, component needs, and residual-risk conclusions. | Cybersecurity risk assessment, threat analysis, traceable requirements, applicability justifications. |
+| Architecture and implementation | Product safeguards, secure defaults, dependency controls, and secure build/release measures. | Design rationale, implementation review, due-diligence records, SBOM, integrity evidence. |
+| Verification and release | Demonstrate applicable outcomes and assess known vulnerabilities before market placement. | Test reports, review decisions, vulnerability dispositions, technical documentation, conformity records. |
+| Support and incident response | Handle vulnerabilities, review changing risks, distribute updates, coordinate upstream, and report qualifying events. | Updated assessments, CVD and handling records, test updates, security advisories, notification receipts. |
+| Modification and end of support | Assess substantial changes, version transitions, support rationale, secure decommissioning, and continuing duties. | Change-impact analysis, revised conformity evidence, support notices, retained updates and documentation, reporting capability. |
 
-    - CRA Article 31
-    - CRA Recital (77)
-    - CRA Annex I
-    - CRA Annex I Part II(4)
-    - DIN 40000 (7.11)
+**Implementation example.** A connected industrial controller identifies unauthorized configuration changes as a product risk:
 
-##### 1.1.3.3. Software Composition Analysis (SCA)
+1. Obligation and Interpretation
 
-The automated process of scanning and analyzing code to identify open-source components and their known vulnerabilities or license issues.
+    CRA Annex I, Part I, point (2)(f) addresses integrity and corruption reporting; Commission guidance, Section 7.3, explains treatment of external-service risks and verification of integrated components.
 
-Ensure the security of open-source components used in products by implementing Software Composition Analysis (SCA) practices.
+2. Derived Requirement
 
-- Implement Software Composition Analysis (SCA) tools to identify and manage open-source components and their vulnerabilities.
-- Maintain an inventory of all open-source components used in the product, including version information and licensing details.
-- Monitor for vulnerabilities in open-source components and ensure timely updates and patches.
-- Establish processes for evaluating and approving new open-source components before use.
-- Ensure License Compliance of all third-party components comply with their respective licenses.
+    The controller rejects configuration changes that fail the selected authorization and integrity checks and reports detected corruption through its defined security-event interface. The requirement identifies the protected configuration, interfaces, failure behavior, and verifiable acceptance criteria.
 
-1. References
+3. Design and Implementation
 
-    - CRA Annex I Part II
+    An authenticated management channel and artifact-integrity verification are possible controls. If supplied by a third-party component, record the needed properties and risk-based due diligence. No named algorithm or protocol is mandated by this example.
 
-##### 1.1.3.4. Integrity and Attestation
+4. Verification Evidence
 
-Integrity assurance and security attestation provide complementary evidence for software supply chain security. The CRA requires applicable products with digital elements to protect the integrity of stored, transmitted, or otherwise processed data, commands, programs, and configuration against unauthorized manipulation or modification, and to report corruptions. - CRA Annex I Part I(2)(f)
+    Test unauthorized, altered, and replayed inputs under relevant operating conditions. Record expected and observed behavior, product/component versions, test limitations, and remaining risks.
 
-For third-party components, manufacturers must exercise due diligence so that integrated components do not compromise product cybersecurity. This obligation includes free and open-source software that has not been made available on the market in the course of a commercial activity. - CRA Article 13(5)
+5. Lifecycle Evidence
 
-1. Integrity Controls
+    Link new vulnerabilities, upstream reports and fixes, regression results, update releases, support commitments, and any Article 14 notifications to the requirement. Reassess the control when product changes or new threat information affect the original assumptions.
 
-    - Verify component and artifact integrity using appropriate technical controls such as cryptographic hashes, digital signatures, authenticated distribution channels, and reproducible or otherwise verifiable build evidence.
-    - Bind integrity evidence to an immutable artifact identifier or digest and verify the evidence before integration, release, installation, and update.
-    - Protect signing keys, provenance metadata, attestation records, and verification policies against unauthorized modification.
-    - Record integrity verification failures and define a response path for quarantining, rejecting, or remediating affected artifacts.
+## 10. References
 
-2. Security Attestation
-
-    Security attestations provide structured evidence about a component, build, or product and can support component due diligence. Attestation mechanisms may include signed provenance statements, build attestations, software transparency records, or equivalent evidence produced by systems such as Sigstore or in-toto.
-
-    - Validate the identity or trust anchor of the attestation issuer and bind each attestation to the exact artifact being evaluated.
-    - Define policy for accepted attestation predicates, issuers, build environments, and verification status.
-    - Retain attestation evidence and verification results as traceable compliance records for integrated third-party components.
-    - Treat attestation as supporting evidence rather than as a substitute for manufacturer risk assessment, vulnerability handling, or other CRA obligations.
-
-3. Voluntary FOSS Security Attestation Programmes
-
-    Article 25 empowers the European Commission to establish voluntary security attestation programmes for products with digital elements qualifying as free and open-source software. These programmes are intended to facilitate the Article 13(5) due-diligence obligation by enabling developers, users, manufacturers integrating FOSS, and other third parties to assess conformity with some or all applicable CRA requirements.
-
-    Recital (21) further explains that voluntary attestation may be initiated or financed by FOSS developers or contributors, integrating manufacturers, users, or Union and national public administrations. Participation in such a programme is voluntary; an attestation can support due diligence but does not by itself discharge the manufacturer's obligations under the CRA.
-
-4. References
-
-    - CRA Article 13(5)
-    - CRA Article 25
-    - CRA Annex I Part I(2)(f)
-    - CRA Recital (21)
-    - CRA Recital (34)
-
-#### 1.1.4. Incident Management
-
-Incident management ensures timely detection, response, and recovery from cyber incidents to minimize impact and meet regulatory reporting obligations.
-
-1. References
-
-    - DIN 40000 (5)
-
-##### 1.1.4.1. Incident Response
-
-Incident response is essential for CRA compliance, ensuring timely detection, response, and recovery from cyber incidents to minimize impact and meet regulatory reporting obligations.
-
-- Establish a coordinated response capability with strict reporting timelines in cooperation with CSIRT or ENISA. Manufacturers must notify actively exploited vulnerabilities or serious incidents affecting product security. - CRA Recital (65), CRA Article 14(1)
-- Notification Timeline
-  - Initial warning notification within 24 hours. - CRA Article 14(2)(a), CRA Article 14(4)(a)
-  - Vulnerability notification within 72 hours. - CRA Article 14(2)(b), CRA Article 14(4)(b)
-  - Final incident report within 14 days. - CRA Article 14(2)(c), CRA Article 14(4)(c)
-
-1. References
-
-    - CRA Article 14
-    - CRA Recital (65)
-    - DIN 40000 (7.8)
-
-##### 1.1.4.2. Incident Detection
-
-Implement mechanisms to detect security incidents promptly.
-
-- Deploy intrusion detection systems (IDS) and security information and event management (SIEM) tools.
-- Establish monitoring for unusual activities, such as unauthorized access or data exfiltration.
-- Train personnel to recognize and report potential incidents.
-
-##### 1.1.4.3. Incident Recovery
-
-Focus on restoring systems and learning from incidents to prevent future occurrences.
-
-- Conduct post-incident analysis to identify root causes and lessons learned.
-- Implement recovery procedures to restore affected systems and data.
-- Update security measures based on incident insights and comply with CRA follow-up reporting.
-
-##### 1.1.4.4. Incident Reporting
-
-Report incidents to relevant authorities and stakeholders in accordance with CRA requirements.
-
-1. References
-
-    - CRA Article 14
-    - CRA Recital (65)
-
-#### 1.1.5. Documentation
-
-Documentation is essential for demonstrating CRA compliance and providing guidance to users on secure product usage.
-
-##### 1.1.5.1. Technical Documentation
-
-The technical documentation shall contain at least the following elements, as applicable to the product.
-
-> [!NOTE]
-> Trusted Environments: Scope limitations may apply when products are explicitly restricted to controlled or trusted environments. - CRA Recital (55)
-
-1. General
-
-    Technical files must clearly articulate product purpose, scope of use, and applicable cybersecurity-relevant configurations.
-
-    - (a) Intended Purpose: Intended use case and application domain of the product.
-    - (b) Version Control: Software versions of cybersecurity compliance.
-    - (c) Hardware Documentation: Images or illustrations of external features, marking and internal layout.
-    - (d) User Documentation: User information and instructions. - CRA Annex II
-
-2. Process Phases
-
-    Design, Development, and Production
-
-    - (a) Design and development info (drawings, schemes, system architecture)
-
-    - (b) Vulnerability Management
-
-      Document vulnerability management processes including SBOM generation, Vulnerability Disclosure Policy (VDP), public reporting channel, and secure update infrastructure.
-
-    - (c) Production and Monitoring
-
-3. Cybersecurity Risk Assessment
-
-    Conduct and document comprehensive risk assessments throughout the product lifecycle, explicitly mapping to Annex I essential cybersecurity requirements per Article 13. Risk analyses must be structured, traceable, and maintained across lifecycle phases.
-
-4. Support Period
-
-    Document the rationale and factors considered in determining product support periods, including security update commitments. Lifecycle support duration must be based on product risk and intended deployment context.
-
-    - Must justify the defined support duration, minimum 5 years or product lifecycle based on risk/use. - CRA Article 13(8)
-    - Indicative support periods via ADCO guidance. - CRA Article 52(16)
-    - Security updates for latest versions. - CRA Recital (40)
-
-5. Standards Compliance
-
-    Document use of harmonised standards or justify alternatives.
-
-    - Harmonised Standards: Full, partial, or alternative compliance paths allowed, but must be fully documented.
-    - Common Specifications - CRA Article 27
-    - European cybersecurity certification schemes (Regulation (EU) 2019/881)
-
-6. Conformity Test Reports
-
-    - Reports verifying conformity of the product and vulnerability handling processes. - CRA Annex I
-
-7. EU Declaration of Conformity
-
-    - Copy of the signed EU declaration of conformity.
-
-8. Software Bill of Materials (SBOM)
-
-    > [!IMPORTANT]
-    > Conditional Disclosure: Provided only upon reasoned request from a market surveillance authority, if necessary to verify compliance. -  Annex I
-
-    - Generate and maintain SBOMs that can be provided to market surveillance authorities upon request for compliance verification purposes.
-
-9. References
-
-    - CRA Article 31
-    - CRA Annex I
-    - CRA Annex VII
-    - CRA Recital (40)
-    - CRA Recital (55)
-    - DIN 40000 (6.2)
-
-##### 1.1.5.2. User Documentation
-
-The Cyber Resilience Act (CRA) mandates minimum information and instructions that must accompany every product with digital elements at the point of sale and throughout its lifecycle. This ensures transparency, secure use, and user awareness of cybersecurity properties, support, and risks.
-
-> [!NOTE]
-> Accessibility & Clarity: User information and instructions in official EU language(s) of the target market, digital or printed; user-friendly (avoid jargon). - CRA Recital (18)
-
-1. Manufacturer Contact
-
-    - Contact information for reporting vulnerabilities and incidents
-    - Single point of contact for security-related communications
-
-2. Product Identification
-
-    - Product name, model, version
-    - Unique product identifier
-    - CE marking and identification number (if applicable)
-
-3. Security Properties
-
-    - Description of security features and capabilities
-    - Intended use and limitations
-    - Known constraints and environmental requirements
-
-4. Support Period
-
-    - End-of-support date or duration of security updates
-    - Policy for end-of-life and decommissioning
-
-5. Secure Configuration and Usage
-
-    - Instructions for secure installation and configuration
-    - Guidance on secure use and maintenance
-    - Information about available security controls
-
-6. Vulnerability Reporting
-
-    - How to report security vulnerabilities
-    - Expected response times
-    - Coordinated disclosure process
-
-7. Update Management
-
-    - How to receive and install security updates
-    - Automatic update capabilities and configuration
-    - Notification mechanisms for available updates
-
-8. Data Protection
-
-    - Information about data collection and processing
-    - User rights regarding personal data
-    - Data deletion and export capabilities
-
-9. References
-
-    - CRA Article 13
-    - CRA Annex II
-    - CRA Recital (18)
-
-#### 1.1.6. Secure Software Development Lifecycle (SSDLC)
-
-The Secure Software Development Lifecycle (SSDLC) integrates security practices throughout the entire software development process, from planning to decommissioning.
-
-##### 1.1.6.1. Cybersecurity Planning
-
-Establish a comprehensive cybersecurity plan that defines security objectives, requirements, and strategies for the product lifecycle.
-
-- Define security objectives aligned with business goals and CRA requirements.
-- Identify security stakeholders and their responsibilities.
-- Establish security governance and oversight mechanisms.
-- Allocate resources for security activities throughout the lifecycle.
-
-##### 1.1.6.2. Cybersecurity Requirements
-
-Define and document cybersecurity requirements based on risk assessment, regulatory compliance, and industry best practices.
-
-- Elicit security requirements from stakeholders, regulations, and standards.
-- Document functional and non-functional security requirements.
-- Establish traceability between requirements and security controls.
-- Review and validate requirements with stakeholders.
-
-##### 1.1.6.3. Cybersecurity Architecture and Design
-
-Design security architecture and controls that address identified security requirements and threats.
-
-- Develop security architecture aligned with system architecture.
-- Apply security design principles (defense in depth, least privilege, etc.).
-- Design security controls for identified threats and vulnerabilities.
-- Document security design decisions and rationale.
-
-##### 1.1.6.4. Secure Implementation
-
-Implement security controls and practices during software development to ensure code quality and security.
-
-###### 1.1.6.4.1. Secure Development
-
-Apply secure coding practices and standards to minimize vulnerabilities in code.
-
-- Follow secure coding guidelines and standards.
-- Conduct code reviews with security focus.
-- Use static analysis tools to detect security issues.
-- Implement input validation and output encoding.
-
-###### 1.1.6.4.2. Secure Development Environment
-
-Establish a secure development environment to protect source code and build processes.
-
-- Implement access controls for development tools and repositories.
-- Use secure configuration management practices.
-- Protect credentials and secrets.
-- Monitor and log development environment activities.
-
-##### 1.1.6.5. Cybersecurity Verification and Validation
-
-Verify and validate that security controls are correctly implemented and effective.
-
-###### 1.1.6.5.1. Cybersecurity Analysis and Testing
-
-Conduct security analysis and testing to identify and address vulnerabilities before release.
-
-###### 1.1.6.5.2. Security Testing
-
-Perform various types of security testing to validate security controls.
-
-- Conduct penetration testing to identify exploitable vulnerabilities.
-- Perform vulnerability scanning and assessment.
-- Execute security-focused test cases.
-- Conduct fuzzing and dynamic analysis.
-
-###### 1.1.6.5.3. Security Analysis
-
-Analyze security properties and behavior of the system.
-
-- Conduct security code reviews.
-- Perform threat modeling and attack surface analysis.
-- Execute static application security testing (SAST).
-- Analyze security architecture and design.
-
-##### 1.1.6.6. Secure Production and Distribution
-
-Ensure security during production and distribution of software products.
-
-###### 1.1.6.6.1. Secure Production
-
-Implement security controls during the production phase.
-
-- Protect production environments and processes.
-- Implement code signing and integrity verification.
-- Secure build and release pipelines.
-- Conduct final security verification before release.
-
-###### 1.1.6.6.2. Secure Distribution
-
-Ensure secure distribution of software products to end users.
-
-- Use secure distribution channels (HTTPS/TLS).
-- Implement cryptographic signatures for software packages.
-- Provide integrity verification mechanisms.
-- Establish secure update mechanisms.
-
-##### 1.1.6.7. Secure Decommissioning
-
-Plan and execute secure decommissioning of products at end-of-life.
-
-- Develop decommissioning procedures and timelines.
-- Ensure secure deletion of user data.
-- Provide migration paths or data export capabilities.
-- Communicate end-of-life plans to users.
-- Archive relevant documentation and records.
-
-##### 1.1.6.8. Third-party Components
-
-Manage security risks associated with third-party components and dependencies.
-
-- Maintain inventory of third-party components (SBOM).
-- Assess security risks of third-party components.
-- Monitor for vulnerabilities in dependencies.
-- Establish processes for updating third-party components.
-
-###### 1.1.6.8.1. European Vulnerability Database
-
-The European Vulnerability Database provides a centralized source of vulnerability information relevant to CRA compliance.
-
-- Utilize the European Vulnerability Database for vulnerability information.
-- Monitor database for vulnerabilities affecting products.
-- Integrate database into vulnerability management processes.
-- Report discovered vulnerabilities to the database.
-
-### 1.2. References
-
-- European Union [Regulation (EU) 2024/2847 (Cyber Resilience Act)](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R2847) regulation.
-
-This article references various CRA provisions and supporting standards:
-
-1. Cyber Resilience Act (CRA)
-
-    - CRA Articles: 3, 10, 13, 14, 15, 25, 27, 31, 52
-    - CRA Annexes: I, II, VII
-    - CRA Recitals: 18, 21, 32, 34, 40, 55, 64, 65, 77
-
-2. Standards
-
-    - DIN 40000 (multiple sections)
-    - IEC 62443-4-1:2018
-    - JT013090:2026
-    - ISO 31000 (Risk Management)
-    - Regulation (EU) 2019/881 (Cybersecurity Act)
-
-3. Frameworks and Tools
-
-    - STRIDE, DREAD (Threat Modeling)
-    - CVSS, EPSS (Vulnerability Scoring)
-    - CycloneDX, SPDX (SBOM Formats)
-    - SLSA (Supply Chain Security)
-    - Sigstore, in-toto (Attestation)
-
-4. Related Concepts
-
-    - CIA Triad (Confidentiality, Integrity, Availability)
-    - MFA (Multi-Factor Authentication)
-    - RBAC (Role-Based Access Control)
-    - IAM (Identity and Access Management)
-    - SAST/DAST (Static/Dynamic Application Security Testing)
-    - CSIRT (Computer Security Incident Response Team)
-    - ENISA (European Union Agency for Cybersecurity)
-    - CVE (Common Vulnerabilities and Exposures)
-    - NVD (National Vulnerability Database)
+- European Union [Regulation (EU) 2024/2847 (Cyber Resilience Act)](https://eur-lex.europa.eu/eli/reg/2024/2847/oj/eng) regulation. Authoritative legal source; precise provisions are cited inline.
+- European Commission [Commission guidance on the application of Regulation (EU) 2024/2847 (Cyber Resilience Act)](https://digital-strategy.ec.europa.eu/en/library/commission-publishes-new-guidance-support-timely-cyber-resilience-act-implementation) guidance, C(2026) 5252 final, Annex, 27 July 2026. Principal non-binding interpretive reference, particularly Sections 2-5, 6.3, 7, 8, 9.1, and 9.2.
+- Sentenz [Threat Modeling](../articles/threat-modeling.md) article. General engineering methods, subject to the CRA-specific treatment of residual risk explained here.
+- Sentenz [Software Testing](../articles/software-testing.md) article. Engineering techniques rather than CRA-mandated tools or campaigns.
+- OWASP [CycloneDX](https://cyclonedx.org/specification/overview/) specification. Illustrative SBOM format.
+- Linux Foundation [SPDX](https://spdx.dev/use/specifications/) specification. Illustrative SBOM format.
+- OpenSSF [SLSA](https://slsa.dev/spec/) specification. Supporting software supply-chain practices.
+- Sigstore [Documentation](https://docs.sigstore.dev/) documentation. Illustrative signing and verification mechanisms.
+- in-toto [in-toto](https://in-toto.io/) project page. Illustrative supply-chain integrity mechanisms.
+- FIRST [Common Vulnerability Scoring System](https://www.first.org/cvss/) specification and [Exploit Prediction Scoring System](https://www.first.org/epss/) documentation. Optional triage inputs.

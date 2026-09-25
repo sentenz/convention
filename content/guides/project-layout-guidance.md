@@ -1263,7 +1263,7 @@ The declarative management of [Kubernetes objects using Kustomize](https://kubec
     ├── Makefile
     ├── CODEOWNERS
     │
-    ├── services/                               #Optional application source
+    ├── services/                               # Optional application source
     │   ├── <app-a>/
     │   │   ├── src/
     │   │   ├── tests/
@@ -1310,10 +1310,9 @@ The declarative management of [Kubernetes objects using Kustomize](https://kubec
     │   │           └── values.yaml
     │   └── <app-b>/
     │
-    ├── infrastructure/                         # Platform ownership and lifecycle
-    │
     . `Responsibility-based Structure`
     │
+    ├── infrastructure/                         # Platform ownership and lifecycle
     │   ├── controllers/
     │   │   ├── ingress-controller/
     │   │   │   ├── README.md

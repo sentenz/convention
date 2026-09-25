@@ -1247,7 +1247,7 @@ A Helm [Charts](https://helm.sh/docs/topics/charts/) is a package of files that 
 The declarative management of [Kubernetes objects using Kustomize](https://kubectl.docs.kubernetes.io/references/kustomize/glossary/#kustomization-root) involves organizing resources into reusable and composable configurations.
 
 > [!TIP]
-> Flux recommendations for [repository-structure](https://fluxcd.io/flux/guides/repository-structure/) for organising Kustomize resources to align with the project’s deployment model and operational requirements.
+> The Flux CD [template repository](https://github.com/fluxcd/flux2-kustomize-helm-example) follows the [repository-structure](https://fluxcd.io/flux/guides/repository-structure/) recommendations for organising Kustomize resources with Helm charts in alignment with the project’s deployment model and operational requirements.
 
 1. Layout and Structure
 
@@ -1255,183 +1255,281 @@ The declarative management of [Kubernetes objects using Kustomize](https://kubec
     > Replace `<...>` brackets with the project-specific information.
 
     ```markdown
-    k8s-<project>/
+    <project>/
     │
-    . `Modular Structure`
+    . `Modular Monolith`
     │
-    ├── charts/
-    │   ├── <charts-a>/
-    │   └── <charts-b>/
+    ├── README.md
+    ├── Makefile
+    ├── CODEOWNERS
+    │
+    ├── services/                               # Optional application source
+    │   ├── <app-a>/
+    │   │   ├── src/
+    │   │   ├── tests/
+    │   │   └── Dockerfile
+    │   └── <app-b>/
+    │
+    ├── charts/                                 # Versioned Helm packages
+    │   ├── <app-a>/
+    │   │   ├── Chart.yaml                      # Chart metadata and dependencies
+    │   │   ├── Chart.lock                      # Present when dependencies exist
+    │   │   ├── values.yaml                     # Portable defaults
+    │   │   ├── values.schema.json              # Configuration contract
+    │   │   ├── README.md
+    │   │   ├── .helmignore
+    │   │   ├── charts/                         # Dependencies restored during packaging
+    │   │   └── templates/
+    │   │       ├── `_helpers.tpl`
+    │   │       ├── deployment.yaml
+    │   │       ├── service.yaml
+    │   │       ├── serviceaccount.yaml
+    │   │       ├── configmap.yaml
+    │   │       ├── ingress.yaml                # Optional chart capability
+    │   │       ├── hpa.yaml                    # Optional autoscaling
+    │   │       ├── pdb.yaml                    # Optional disruption budget
+    │   │       └── tests/
+    │   │           └── smoke-test.yaml
+    │   └── <app-b>/
+    │
+    ├── apps/                                   # Desired application deployments
+    │   ├── <app-a>/
+    │   │   ├── README.md
+    │   │   ├── base/
+    │   │   │   ├── kustomization.yaml
+    │   │   │   └── networkpolicy.yaml          # Shared application-specific resources
+    │   │   └── overlays/
+    │   │       ├── dev/
+    │   │       │   ├── kustomization.yaml      # Pinned chart reference and namespace: app-a-dev
+    │   │       │   └── values.yaml             # Image digest, hostname, resources
+    │   │       ├── stage/
+    │   │       │   ├── kustomization.yaml      # Pinned chart reference and namespace: app-a-stage
+    │   │       │   └── values.yaml
+    │   │       └── prod/
+    │   │           ├── kustomization.yaml      # Pinned chart reference and namespace: app-a-prod
+    │   │           └── values.yaml
+    │   └── <app-b>/
     │
     . `Responsibility-based Structure`
     │
-    ├── apps/
-    │   ├── <app-a>/
-    │   │   ├── base/
-    │   │   │   ├── kustomization.yaml
-    │   │   │   └── namespace.yaml
-    │   │   └── overlays/
-    │   │       ├── dev/
-    │   │       │   ├── kustomization.yaml
-    │   │       │   ├── values.yaml
-    │   │       │   └── patch.yaml
-    │   │       ├── stage/
+    ├── infrastructure/                         # Platform ownership and lifecycle
+    │   ├── controllers/
+    │   │   ├── ingress-controller/
+    │   │   │   ├── README.md
+    │   │   │   ├── base/
+    │   │   │   │   └── kustomization.yaml
+    │   │   │   └── overlays/
+    │   │   │       ├── dev/
+    │   │   │       │   ├── kustomization.yaml
+    │   │   │       │   └── values.yaml
+    │   │   │       ├── stage/
+    │   │   │       │   ├── kustomization.yaml
+    │   │   │       │   └── values.yaml
+    │   │   │       └── prod/
+    │   │   │           ├── kustomization.yaml
+    │   │   │           └── values.yaml
+    │   │   └── secret-controller/
+    │   │       ├── README.md
+    │   │       ├── base/
     │   │       │   └── kustomization.yaml
-    │   │       └── prod/
-    │   │           └── kustomization.yaml
-    │   └── <app-b>/
+    │   │       └── overlays/
+    │   │           ├── dev/
+    │   │           │   ├── kustomization.yaml
+    │   │           │   └── values.yaml
+    │   │           ├── stage/
+    │   │           │   ├── kustomization.yaml
+    │   │           │   └── values.yaml
+    │   │           └── prod/
+    │   │               ├── kustomization.yaml
+    │   │               └── values.yaml
+    │   └── configs/
     │       ├── base/
-    │       │   └── kustomization.yaml
+    │       │   ├── kustomization.yaml
+    │       │   └── policies/
+    │       │       └── kustomization.yaml
     │       └── overlays/
     │           ├── dev/
+    │           │   ├── kustomization.yaml
+    │           │   ├── namespaces.yaml         # app-a-dev, app-b-dev
+    │           │   ├── rbac.yaml
+    │           │   ├── quotas.yaml
+    │           │   └── networkpolicies.yaml
     │           ├── stage/
+    │           │   ├── kustomization.yaml
+    │           │   ├── namespaces.yaml         # app-a-stage, app-b-stage
+    │           │   ├── rbac.yaml
+    │           │   ├── quotas.yaml
+    │           │   └── networkpolicies.yaml
     │           └── prod/
+    │               ├── kustomization.yaml
+    │               ├── namespaces.yaml         # app-a-prod, app-b-prod
+    │               ├── rbac.yaml
+    │               ├── quotas.yaml
+    │               └── networkpolicies.yaml
     │
-    ├── platform/
-    │   ├── controllers/
-    │   │   ├── <controller-a>/
-    │   │   │   ├── base/
-    │   │   │   │   └── kustomization.yaml
-    │   │   │   └── overlays/
-    │   │   │       ├── dev/
-    │   │   │       ├── stage/
-    │   │   │       └── prod/
-    │   │   └── <controller-b>/
-    │   │
-    │   ├── services/
-    │   │   ├── <service-a>/
-    │   │   │   ├── base/
-    │   │   │   │   └── kustomization.yaml
-    │   │   │   └── overlays/
-    │   │   │       ├── dev/
-    │   │   │       ├── stage/
-    │   │   │       └── prod/
-    │   │   └── <service-b>/
-    │   │
-    │   ├── configs/
-    │   │   ├── <capability-a>/
-    │   │   │   ├── base/
-    │   │   │   │   └── kustomization.yaml
-    │   │   │   └── overlays/
-    │   │   │       ├── dev/
-    │   │   │       ├── stage/
-    │   │   │       └── prod/
-    │   │   └── <capability-b>/
-    │   │
+    ├── components/                             # Optional reusable Kustomize components
     │   └── README.md
     │
-    ├── components/
-    │   └── <component>/
-    │       └── kustomization.yaml
-    │
-    ├── clusters/
+    ├── clusters/                               # Desired composition per independent cluster
     │   ├── dev/
-    │   │   └── kustomization.yaml
+    │   │   ├── README.md                       # Target identity and prerequisites
+    │   │   ├── kustomization.yaml              # Complete composition for rendering
+    │   │   ├── controllers/
+    │   │   │   └── kustomization.yaml          # References controller dev overlays
+    │   │   ├── configs/
+    │   │   │   └── kustomization.yaml          # References infrastructure configs/dev
+    │   │   └── apps/
+    │   │       └── kustomization.yaml          # References both application dev overlays
     │   ├── stage/
-    │   │   └── kustomization.yaml
+    │   │   ├── README.md
+    │   │   ├── kustomization.yaml
+    │   │   ├── controllers/
+    │   │   │   └── kustomization.yaml
+    │   │   ├── configs/
+    │   │   │   └── kustomization.yaml
+    │   │   └── apps/
+    │   │       └── kustomization.yaml
     │   └── prod/
-    │       └── kustomization.yaml
+    │       ├── README.md
+    │       ├── kustomization.yaml
+    │       ├── controllers/
+    │       │   └── kustomization.yaml
+    │       ├── configs/
+    │       │   └── kustomization.yaml
+    │       └── apps/
+    │           └── kustomization.yaml
     │
-    ├── docs/
-    │   └── decisions/
-    │       └── adr-<topic>.md
+    ├── tests/
+    │   ├── manifests/
+    │   │   ├── <app-a>/
+    │   │   └── <app-b>/
+    │   └── integration/
+    │       ├── <app-a>/
+    │       └── <app-b>/
     │
-    └── README.md
+    └── docs/
+        ├── architecture.md
+        ├── project-layout.md
+        ├── configuration.md
+        ├── reconciliation.md                   # Delivery-system integration contract
+        ├── applications/
+        │   ├── <app-a>.md
+        │   └── <app-b>.md
+        └── runbooks/
+            ├── bootstrap.md
+            ├── promotion.md
+            ├── rollback.md
+            └── disaster-recovery.md
     ```
 
 2. Files and Folders
 
-    - `apps/`
-      > Application workload deployment contracts. Each application owns its reusable Kubernetes configuration and environment or cluster specializations.
-
-      - `<app>/base/`
-        > Stable Kustomize resources shared by the application's overlays. A base contains a `kustomization.yaml` and should not depend on a specific overlay.
-
-      - `<app>/overlays/<env>/`
-        > Environment-specific composition and customization. Overlays reference the base and contain only the differences required for that target, such as Kustomize patches or Helm values.
-
-        - `kustomization.yaml`
-          > Kustomize configuration composing the base and declaring target-specific generators, patches, image changes, or Helm chart configuration.
-
-        - `values.yaml`
-          > OPTIONAL Helm values used when the overlay renders a Helm chart through Kustomize.
-
-        - `patch.yaml`
-          > OPTIONAL Kustomize patch containing Kubernetes-level changes that should not be expressed as Helm values.
-
-    - `platform/`
-      > Shared cluster capabilities whose lifecycle is independent of any single application. Organize platform resources by responsibility rather than by environment or by an undifferentiated list of services.
-
-      - `controllers/`
-        > Controllers, operators, admission components, networking controllers, and other software that extends or operates the Kubernetes cluster. Examples include Traefik, cert-manager, External Secrets Operator, and database operators.
-
-        - `<controller>/base/`
-          > Stable installation resources for the controller.
-
-        - `<controller>/overlays/<env>/`
-          > Target-specific controller configuration such as Helm values, patches, or feature differences.
-
-      - `services/`
-        > Shared runtime capabilities consumed by multiple workloads and managed as part of the platform. Examples include observability, logging, shared databases, shared caches, or artifact services.
-
-        - `<service>/base/`
-          > Stable resources for the shared service.
-
-        - `<service>/overlays/<env>/`
-          > Target-specific service configuration and deployment differences.
-
-      - `configs/`
-        > Shared Kubernetes configuration consumed by platform controllers or services, kept separate from installation of the capability itself. Examples include certificate issuers, ingress or gateway policy, shared SecretStores, and controller-specific custom resources.
-
-        - `<capability>/base/`
-          > Stable shared configuration for the capability.
-
-        - `<capability>/overlays/<env>/`
-          > OPTIONAL target-specific configuration when the shared capability requires environment or cluster specialization.
-
-      - `README.md`
-        > Platform ownership rules and guidance for classifying new controllers, services, and configuration.
-
-    - `components/`
-      > OPTIONAL reusable Kustomize components or cross-cutting configuration shared by multiple applications or platform capabilities. Components should represent composable behavior rather than complete deployable environments.
-
-    - `clusters/`
-      > Canonical deployable desired-state entry points. Each cluster directory contains a `kustomization.yaml` that composes the selected application and platform overlays for that cluster.
-
-      - `<cluster>/kustomization.yaml`
-        > Top-level Kustomize composition for a single cluster target. Environment names such as `dev`, `stage`, and `prod` are suitable for simple topologies; multi-cluster installations should use identifiers that distinguish concrete cluster targets, for example `prod-eu-central-1-01`.
-
-    - `docs/`
-      > Project documentation and Architecture Decision Records (ADRs) describing deployment and platform decisions.
-
-    - `README.md`
-      > Project overview, deployment model, prerequisites, and operating instructions.
+    | Path                          | Responsibility and Convention                                                                                                                                              |
+    | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `services/<app>/`             | Application source and unit tests. Omit this directory in a deployment-only repository.                                                                                    |
+    | `charts/<app>/`               | Reusable Helm package source. Keep defaults portable; publish a new chart version when chart content changes.                                                              |
+    | `apps/<app>/base/`            | Shared Kubernetes resources not already owned by the chart. Omit an unused base instead of creating placeholder resources.                                                 |
+    | `apps/<app>/overlays/<env>/`  | Independent environment configuration, including an exact chart version and image digest. Each overlay references the shared base; stage and prod do not inherit from dev. |
+    | `infrastructure/controllers/` | Installation of operators and controllers, including their installation namespaces and required CRDs.                                                                      |
+    | `infrastructure/configs/`     | Platform configuration, application namespaces, RBAC, quotas, and policies. Controller-dependent custom resources also belong here.                                        |
+    | `components/`                 | Optional, explicitly selected Kustomize components for reusable behavior. Introduce these only when composition removes meaningful duplication.                            |
+    | `clusters/<cluster>/`         | Selects application and platform overlays for one concrete cluster. Contains composition, not copied workload manifests.                                                   |
+    | `tests/`                      | Assertions on rendered resources and integration tests, distinct from application unit tests.                                                                              |
+    | `docs/`                       | Architecture, configuration contracts, delivery integration, and operational runbooks.                                                                                     |
 
 3. Examples and Explanations
 
-    ```make
-    K8S_CLUSTER ?= dev
-    K8S_CLUSTER_PATH ?= clusters/$(K8S_CLUSTER)
-    K8S_RENDER_FILE ?= render/kustomize/$(K8S_CLUSTER).yaml
+    Helm defines application packaging and templates. Kustomize assembles a target environment and applies Kubernetes-level customizations. The [Kubernetes Kustomize guide](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/) supports reusable bases and overlays.
 
-    ## Render the complete desired state for a cluster
-    k8s-render:
-      mkdir -p "$(dir $(K8S_RENDER_FILE))"
-      kustomize build "$(K8S_CLUSTER_PATH)" --enable-helm > "$(K8S_RENDER_FILE)"
-    .PHONY: k8s-render
+    > [!TIP]
+    > Store shared application defaults in the chart's `values.yaml`, place only environment differences in overlay values. Prefer a chart value over a patch when the chart exposes the intended setting.
 
-    ## Deploy the complete desired state for a cluster
-    k8s-deploy:
-      kustomize build "$(K8S_CLUSTER_PATH)" --enable-helm \
-        | kubectl apply -f -
-    .PHONY: k8s-deploy
+    - `apps/app-a/overlays/dev/kustomization.yaml`
+      > Kustomize overlay for the development environment of `app-a`.
 
-    ## Destroy the complete desired state for a cluster
-    k8s-destroy:
-      kustomize build "$(K8S_CLUSTER_PATH)" --enable-helm \
-        | kubectl delete -f -
-    .PHONY: k8s-destroy
-    ```
+      ```yaml
+      apiVersion: kustomize.config.k8s.io/v1beta1
+      kind: Kustomization
+
+      namespace: app-a-dev
+
+      resources:
+        - ../../base
+
+      helmCharts:
+        - name: app-a
+          repo: https://charts.example.com
+          version: 1.4.2
+          releaseName: app-a
+          namespace: app-a-dev
+          valuesFile: values.yaml
+          skipTests: true
+      ```
+
+    - `clusters/dev/apps/kustomization.yaml`
+      > Kustomize overlay for the development environment of the cluster.
+
+      ```yaml
+      apiVersion: kustomize.config.k8s.io/v1beta1
+      kind: Kustomization
+      resources:
+        - ../../../apps/app-a/overlays/dev
+        - ../../../apps/app-b/overlays/dev
+      ```
+
+    - `clusters/dev/kustomization.yaml`
+      > Kustomize overlay for the development environment of the cluster.
+
+      ```yaml
+      apiVersion: kustomize.config.k8s.io/v1beta1
+      kind: Kustomization
+      resources:
+        - controllers
+        - configs
+        - apps
+      ```
+
+4. Tasks and Instructions
+
+    - Render
+      > Render the complete desired state for a cluster.
+
+      ```make
+      k8s-render:
+        mkdir -p "$(dir $(K8S_RENDER_FILE))"
+        kustomize build "$(K8S_CLUSTER_PATH)" --enable-helm > "$(K8S_RENDER_FILE)"
+      .PHONY: k8s-render
+      ```
+
+      ```sh
+      make k8s-render
+      ```
+
+    - Deploy
+      > Deploy the complete desired state for a cluster.
+
+      ```make
+      k8s-deploy:
+        kustomize build "$(K8S_CLUSTER_PATH)" --enable-helm | kubectl apply -f -
+      .PHONY: k8s-deploy
+      ```
+
+      ```sh
+      make k8s-deploy
+      ```
+
+    - Destroy
+      > Destroy the complete desired state for a cluster.
+
+      ```make
+      k8s-destroy:
+        kustomize build "$(K8S_CLUSTER_PATH)" --enable-helm | kubectl delete -f -
+      .PHONY: k8s-destroy
+      ```
+
+      ```sh
+      make k8s-destroy
+      ```
 
 ## 2. References
 

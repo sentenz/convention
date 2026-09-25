@@ -9,10 +9,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
   build:
     name: MkDocs Action - Build
@@ -33,9 +29,14 @@ jobs:
 
   deploy:
     name: MkDocs Action - Deploy
-    if: github.ref == 'refs/heads/main'
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     needs: build
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     permissions:
       pages: write
       id-token: write

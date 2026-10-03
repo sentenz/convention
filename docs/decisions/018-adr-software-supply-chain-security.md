@@ -416,11 +416,6 @@ Reproducible builds allow independent parties to produce identical artifacts fro
 
 ## 7. References
 
-- Sentenz convention [issue #556](https://github.com/sentenz/convention/issues/556), originating request.
-- Sentenz convention [issue #476](https://github.com/sentenz/convention/issues/476), structural orientation and complementary security testing.
-- Sentenz convention [ADR 014: Dependency Manager for C/C++](014-adr-dependency-manager-c-cpp.md).
-- Sentenz convention [ADR 016: EU CRA Security Testing and Analysis for C/C++](016-adr-eu-cra-security-testing-and-analysis-for-c-cpp.md).
-- Sentenz convention [Makefile](https://github.com/sentenz/convention/blob/main/Makefile), existing Trivy and Cosign task definitions.
 - NIST [SP 800-218: Secure Software Development Framework](https://csrc.nist.gov/pubs/sp/800/218/final).
 - SLSA v1.2 [Build track basics](https://slsa.dev/spec/v1.2/build-track-basics), [build requirements](https://slsa.dev/spec/v1.2/build-requirements), [Build provenance](https://slsa.dev/spec/v1.2/build-provenance), and [artifact verification](https://slsa.dev/spec/v1.2/verifying-artifacts).
 - GitHub Actions [Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use).

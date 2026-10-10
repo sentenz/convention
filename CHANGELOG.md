@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.29.1](https://github.com/sentenz/convention/compare/2.29.0...2.29.1) (2026-10-10)
+
+### Bug Fixes
+
+* **assets:** refine Material 3 typography and optimize SVG logos ([#567](https://github.com/sentenz/convention/issues/567)) ([f1282cd](https://github.com/sentenz/convention/commit/f1282cd02f26ed66fd3eb824cba6c5bed8f124eb))
+
 ## [2.29.0](https://github.com/sentenz/convention/compare/2.28.0...2.29.0) (2026-08-23)
 
 ### Features

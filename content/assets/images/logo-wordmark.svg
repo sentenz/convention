@@ -1,6 +1,8 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
   class="sentenz-wordmark"
+  width="1280"
+  height="240"
   viewBox="0 0 1280 240"
   role="img"
   aria-labelledby="wordmark-title wordmark-description"
@@ -13,14 +15,14 @@
   </desc>
 
   <style>
-    /* HCT fallbacks match ../css/style.css; inline SVGs inherit the host's M3 tokens. */
+    /* Match the host M3 palette when inline, or use HCT fallback colors. */
     .sentenz-wordmark {
       --sentenz-wordmark-primary: var(--md-sys-color-primary, #6341d5);
       --sentenz-wordmark-tertiary: var(--md-sys-color-tertiary, #874781);
       --sentenz-wordmark-on-tertiary: var(--md-sys-color-on-tertiary, #ffffff);
     }
 
-    /* Embedded images follow the parent's color-scheme; standalone SVGs follow the OS. */
+    /* Embedded images follow color-scheme; standalone images follow the OS. */
     @media screen and (prefers-color-scheme: dark) {
       .sentenz-wordmark {
         --sentenz-wordmark-primary: var(--md-sys-color-primary, #cbbeff);
@@ -31,43 +33,27 @@
 
     .sentenz-wordmark .glyph {
       fill: none;
-      stroke: var(--sentenz-wordmark-primary, #6341d5);
+      stroke: var(--sentenz-wordmark-primary);
       stroke-width: 32;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
     .sentenz-wordmark .terminal {
-      fill: var(--sentenz-wordmark-tertiary, #874781);
-      stroke: var(--sentenz-wordmark-on-tertiary, #ffffff);
+      fill: var(--sentenz-wordmark-tertiary);
+      stroke: var(--sentenz-wordmark-on-tertiary);
       stroke-width: 4;
     }
   </style>
 
-  <!-- S: proportions are derived from the primary SENTENZ monogram for brand continuity. -->
-  <path
-    class="glyph"
-    d="M149 68C133 53 112 48 87 48C50 48 24 63 24 85C24 107 44 115 92 119C140 123 160 133 160 154C160 177 133 192 96 192C68 192 45 185 30 170"
-  />
-
-  <!-- E -->
+  <path class="glyph" d="M149 68C133 53 112 48 87 48C50 48 24 63 24 85C24 107 44 115 92 119C140 123 160 133 160 154C160 177 133 192 96 192C68 192 45 185 30 170" />
   <path class="glyph" d="M208 56V184M208 56H328M208 120H312M208 184H328" />
-
-  <!-- N: center break remains legible at compact sizes. -->
   <path class="glyph" d="M376 184V56L433 107" />
   <path class="glyph" d="M463 133L520 184V56" />
-
-  <!-- T -->
   <path class="glyph" d="M576 56H704M640 56V184" />
-
-  <!-- E -->
   <path class="glyph" d="M760 56V184M760 56H880M760 120H864M760 184H880" />
-
-  <!-- N -->
   <path class="glyph" d="M928 184V56L985 107" />
   <path class="glyph" d="M1015 133L1072 184V56" />
-
-  <!-- Z -->
   <path class="glyph" d="M1120 56H1248L1120 184H1248" />
 
   <circle class="terminal" cx="30" cy="170" r="12" />

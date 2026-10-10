@@ -16,6 +16,7 @@
   --md-sys-spacing-hairline: 1px;
   --md-sys-spacing-base: 4px;
   --md-sys-spacing-small: 8px;
+  --md-sys-spacing-medium: 16px;
   --md-sys-spacing-section-small: 32px;
   --md-sys-spacing-section-medium: 48px;
   --md-sys-spacing-section-large: 56px;
@@ -49,16 +50,22 @@
   --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
   --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
 
-  /* Type roles measured from the supplied Material Design reference. */
+  /* M3 type roles; pixel sizes preserve the scale with MkDocs' 20px rem base. */
   --md-sys-typescale-display-large-font: var(--md-ref-typeface-brand);
-  --md-sys-typescale-display-large-weight: 475;
-  --md-sys-typescale-display-large-size: 58px;
+  --md-sys-typescale-display-large-weight: 400;
+  --md-sys-typescale-display-large-size: 57px;
   --md-sys-typescale-display-large-line-height: 64px;
-  --md-sys-typescale-display-medium-font: var(--md-ref-typeface-brand);
-  --md-sys-typescale-display-medium-weight: 475;
-  --md-sys-typescale-display-medium-size: 36px;
-  --md-sys-typescale-display-medium-line-height: 44px;
-  --md-sys-typescale-title-large-weight: 475;
+  --md-sys-typescale-display-small-font: var(--md-ref-typeface-brand);
+  --md-sys-typescale-display-small-weight: 400;
+  --md-sys-typescale-display-small-size: 36px;
+  --md-sys-typescale-display-small-line-height: 44px;
+  --md-sys-typescale-headline-small-size: 24px;
+  --md-sys-typescale-headline-small-line-height: 32px;
+  --md-sys-typescale-title-large-size: 22px;
+  --md-sys-typescale-title-large-line-height: 28px;
+  --md-sys-typescale-title-large-weight: 400;
+  --md-sys-typescale-title-medium-size: 16px;
+  --md-sys-typescale-title-medium-line-height: 24px;
   --md-sys-typescale-title-medium-weight: 500;
   --md-sys-typescale-title-small-size: 14px;
   --md-sys-typescale-title-small-line-height: 20px;
@@ -67,6 +74,9 @@
   --md-sys-typescale-body-large-line-height: 24px;
   --md-sys-typescale-label-large-weight: 500;
   --md-sys-typescale-label-medium-weight: 500;
+
+  --md-custom-reading-width: 80ch;
+  --md-custom-touch-target: 48px;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -304,13 +314,13 @@ body {
   margin-bottom: var(--md-sys-spacing-section-large);
   font-family: var(--md-sys-typescale-display-large-font);
   font-size: clamp(
-    var(--md-sys-typescale-display-medium-size),
+    var(--md-sys-typescale-display-small-size),
     7vw,
     var(--md-sys-typescale-display-large-size)
   );
   font-weight: var(--md-sys-typescale-display-large-weight);
   line-height: clamp(
-    var(--md-sys-typescale-display-medium-line-height),
+    var(--md-sys-typescale-display-small-line-height),
     7.5vw,
     var(--md-sys-typescale-display-large-line-height)
   );
@@ -321,10 +331,10 @@ body {
 .md-typeset h2 {
   color: var(--md-sys-color-on-surface);
   margin-top: var(--md-sys-spacing-page-small);
-  font-family: var(--md-sys-typescale-display-medium-font);
-  font-size: clamp(32px, 4vw, var(--md-sys-typescale-display-medium-size));
-  font-weight: var(--md-sys-typescale-display-medium-weight);
-  line-height: clamp(40px, 4.6vw, var(--md-sys-typescale-display-medium-line-height));
+  font-family: var(--md-sys-typescale-display-small-font);
+  font-size: clamp(32px, 4vw, var(--md-sys-typescale-display-small-size));
+  font-weight: var(--md-sys-typescale-display-small-weight);
+  line-height: clamp(40px, 4.6vw, var(--md-sys-typescale-display-small-line-height));
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
@@ -332,9 +342,9 @@ body {
 .md-typeset h3 {
   margin-top: var(--md-sys-spacing-section-medium);
   font-family: var(--md-ref-typeface-plain);
-  font-size: var(--md-sys-typescale-title-small-size);
-  font-weight: var(--md-sys-typescale-title-medium-weight);
-  line-height: var(--md-sys-typescale-title-small-line-height);
+  font-size: var(--md-sys-typescale-headline-small-size);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  line-height: var(--md-sys-typescale-headline-small-line-height);
   letter-spacing: 0.01em;
 }
 
@@ -346,18 +356,29 @@ body {
 }
 
 .md-typeset h4 {
+  font-size: var(--md-sys-typescale-title-large-size);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  line-height: var(--md-sys-typescale-title-large-line-height);
+}
+
+.md-typeset h5 {
+  font-size: var(--md-sys-typescale-title-medium-size);
+  line-height: var(--md-sys-typescale-title-medium-line-height);
+  text-transform: none;
+}
+
+.md-typeset h6 {
   font-size: var(--md-sys-typescale-title-small-size);
   line-height: var(--md-sys-typescale-title-small-line-height);
 }
 
-.md-typeset h5,
-.md-typeset h6 {
-  font-size: 12px;
-  line-height: 16px;
+.md-content__inner {
+  max-inline-size: var(--md-custom-reading-width);
+  margin-bottom: var(--md-sys-spacing-page-small);
 }
 
-.md-content__inner {
-  margin-bottom: var(--md-sys-spacing-page-small);
+.md-typeset :is(h1, h2, h3, h4, h5, h6) {
+  overflow-wrap: anywhere;
 }
 
 .md-typeset a {
@@ -378,6 +399,10 @@ body {
 .md-nav__link:focus-visible,
 .md-tabs__link:focus-visible,
 .md-search__input:focus-visible,
+.md-search__icon:focus-visible,
+.md-search-result__link:focus-visible,
+.md-source:focus-visible,
+.md-footer__link:focus-visible,
 .md-header__button:focus-visible,
 .md-clipboard:focus-visible,
 .md-top:focus-visible,
@@ -387,12 +412,27 @@ body {
   border-radius: var(--md-sys-shape-corner-extra-small);
 }
 
+/* Summary outlines stay inside the clipped details container. */
+.md-typeset summary:focus-visible {
+  outline-offset: -3px;
+}
+
+.md-footer__link:focus-visible {
+  outline-color: var(--md-footer-fg-color);
+}
+
 ::selection {
   background: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-primary-container);
 }
 
 /* Header, tabs, and search. */
+
+/* Reserve the wordmark ratio while retaining MkDocs' header and drawer sizes. */
+.md-header__button.md-logo img,
+.md-nav__title .md-nav__button.md-logo img {
+  aspect-ratio: 16 / 3;
+}
 
 .md-header,
 .md-tabs {
@@ -593,67 +633,49 @@ body {
   color: var(--md-admonition-on-container);
 }
 
-.md-typeset .admonition.note,
-.md-typeset details.note,
-.md-typeset .admonition.info,
-.md-typeset details.info {
+.md-typeset :is(.admonition, details):is(.note, .info) {
   --md-admonition-color: var(--md-custom-color-info);
   --md-admonition-container: var(--md-custom-color-info-container);
   --md-admonition-on-container: var(--md-custom-color-on-info-container);
 }
 
-.md-typeset .admonition.abstract,
-.md-typeset details.abstract {
+.md-typeset :is(.admonition, details).abstract {
   --md-admonition-color: var(--md-sys-color-tertiary);
   --md-admonition-container: var(--md-sys-color-tertiary-container);
   --md-admonition-on-container: var(--md-sys-color-on-tertiary-container);
 }
 
-.md-typeset .admonition.tip,
-.md-typeset details.tip,
-.md-typeset .admonition.success,
-.md-typeset details.success {
+.md-typeset :is(.admonition, details):is(.tip, .success) {
   --md-admonition-color: var(--md-custom-color-success);
   --md-admonition-container: var(--md-custom-color-success-container);
   --md-admonition-on-container: var(--md-custom-color-on-success-container);
 }
 
-.md-typeset .admonition.question,
-.md-typeset details.question,
-.md-typeset .admonition.example,
-.md-typeset details.example {
+.md-typeset :is(.admonition, details):is(.question, .example) {
   --md-admonition-color: var(--md-sys-color-secondary);
   --md-admonition-container: var(--md-sys-color-secondary-container);
   --md-admonition-on-container: var(--md-sys-color-on-secondary-container);
 }
 
-.md-typeset .admonition.important,
-.md-typeset details.important {
+.md-typeset :is(.admonition, details).important {
   --md-admonition-color: var(--md-sys-color-tertiary);
   --md-admonition-container: var(--md-sys-color-tertiary-container);
   --md-admonition-on-container: var(--md-sys-color-on-tertiary-container);
 }
 
-.md-typeset .admonition.warning,
-.md-typeset details.warning {
+.md-typeset :is(.admonition, details).warning {
   --md-admonition-color: var(--md-custom-color-warning);
   --md-admonition-container: var(--md-custom-color-warning-container);
   --md-admonition-on-container: var(--md-custom-color-on-warning-container);
 }
 
-.md-typeset .admonition.failure,
-.md-typeset details.failure,
-.md-typeset .admonition.danger,
-.md-typeset details.danger,
-.md-typeset .admonition.bug,
-.md-typeset details.bug {
+.md-typeset :is(.admonition, details):is(.failure, .danger, .bug) {
   --md-admonition-color: var(--md-sys-color-error);
   --md-admonition-container: var(--md-sys-color-error-container);
   --md-admonition-on-container: var(--md-sys-color-on-error-container);
 }
 
-.md-typeset .admonition.quote,
-.md-typeset details.quote {
+.md-typeset :is(.admonition, details).quote {
   --md-admonition-color: var(--md-sys-color-outline-variant);
   --md-admonition-container: var(--md-sys-color-surface-container-high);
   --md-admonition-on-container: var(--md-sys-color-on-surface-variant);
@@ -708,7 +730,7 @@ body {
 
 /* Scrollbars. */
 
-[data-md-color-scheme] * {
+[data-md-color-scheme] {
   scrollbar-color: var(--md-sys-color-outline-variant) transparent;
 }
 
@@ -813,7 +835,12 @@ body {
 
 /* Images use shape and outline rather than persistent elevation shadows. */
 
-.md-typeset img:not([src$=".svg"]) {
+.md-typeset img {
+  max-inline-size: 100%;
+  height: auto;
+}
+
+.md-typeset img:not([src*=".svg" i]) {
   background: var(--md-sys-color-surface-container-low);
   border: var(--md-sys-spacing-hairline) solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-sys-shape-corner-medium);
@@ -844,7 +871,6 @@ body {
   }
 
   .md-content__inner {
-    max-width: 65rem;
     margin-bottom: var(--md-sys-spacing-page-large);
     margin-inline: auto;
   }
@@ -858,10 +884,39 @@ body {
 
 @media (pointer: coarse) {
   .md-header__button,
+  .md-clipboard,
+  .md-top {
+    min-width: var(--md-custom-touch-target);
+    min-height: var(--md-custom-touch-target);
+  }
+
+  .md-header__button {
+    margin: 0;
+  }
+
   .md-nav__link,
+  .md-tabs__link,
+  .md-typeset .tabbed-labels > label,
+  .md-typeset summary {
+    min-height: var(--md-custom-touch-target);
+    align-items: center;
+  }
+
   .md-tabs__link {
-    min-width: 48px;
-    min-height: 48px;
+    margin-top: 0;
+  }
+
+  .md-typeset summary {
+    padding-block: var(--md-sys-spacing-medium);
+  }
+
+  .md-typeset summary::before,
+  .md-typeset summary::after {
+    top: var(--md-sys-spacing-medium);
+  }
+
+  .md-typeset pre > code {
+    padding-inline-end: calc(var(--md-custom-touch-target) + var(--md-sys-spacing-small));
   }
 }
 
@@ -883,7 +938,7 @@ body {
   .md-typeset details,
   .md-typeset table:not([class]),
   .md-typeset kbd,
-  .md-typeset img:not([src$=".svg"]) {
+  .md-typeset img:not([src*=".svg" i]) {
     border-color: var(--md-sys-color-outline);
   }
 
@@ -968,7 +1023,7 @@ body {
     color: var(--md-sys-color-on-surface);
   }
 
-  [data-md-color-scheme] .md-typeset img:not([src$=".svg"]) {
+  [data-md-color-scheme] .md-typeset img:not([src*=".svg" i]) {
     background: none;
     border: var(--md-sys-spacing-hairline) solid var(--md-sys-color-outline-variant);
     box-shadow: none;

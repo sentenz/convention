@@ -27,7 +27,7 @@ jobs:
           persist-credentials: false
 
       - name: Run Renovate
-        uses: sentenz/actions/renovate@c600775dda21753455e72c46d37d32b452c35817 # 1.5.0
+        uses: sentenz/actions/renovate@1f71880fdb530642b617b45d42caa289c9d6d042 # 1.5.1
         with:
           token: ${{ secrets.RENOVATE_TOKEN }}
           autodiscover: "false"

@@ -8,7 +8,7 @@ Architectural Decision Record on selecting a complementary multi-layer security 
   - [3.1. Unit Testing with Sanitizers](#31-unit-testing-with-sanitizers)
   - [3.2. Fuzz Testing with Sanitizers](#32-fuzz-testing-with-sanitizers)
   - [3.3. SAST (Static Application Security Testing)](#33-sast-static-application-security-testing)
-  - [3.4. SCA (Software Composition Analysis) \& SBOM Management](#34-sca-software-composition-analysis--sbom-management)
+  - [3.4. SCA (Software Composition Analysis)](#34-sca-software-composition-analysis)
   - [3.5. Penetration Testing (Binary Exploitation)](#35-penetration-testing-binary-exploitation)
 - [4. Considered](#4-considered)
   - [4.1. Sanitizers](#41-sanitizers)
@@ -112,7 +112,7 @@ Adopt SAST tools to perform source-level vulnerability detection and enforce sec
     - CI/CD Compliance
       > SAST executed in CI pipelines, providing automated detection of security weaknesses and unsafe patterns, ensuring continuous security assurance.
 
-### 3.4. SCA (Software Composition Analysis) & SBOM Management
+### 3.4. SCA (Software Composition Analysis)
 
 Adopt SCA tools to generate and manage SBOMs, identify third-party dependencies, and match components against vulnerability databases for known CVE exposure.
 
@@ -265,7 +265,7 @@ DAST analyzes the application during runtime, simulating malicious input to iden
   - False Positive Overhead
     > Generate a high number of false positives, requiring manual verification and triage to determine the validity of reported vulnerabilities.
 
-### 4.6. SCA (Software Composition Analysis) & SBOM Management
+### 4.6. SCA (Software Composition Analysis)
 
 SCA identifies third-party and open-source dependencies, matching components against Vulnerability Databases to identify known vulnerabilities, supports SBOM generation and license compliance governance.
 
@@ -328,7 +328,7 @@ Penetration testing on security assessments and reverse-engineering validation m
     > Generate audit-ready technical file bundles with all required documentation. Ready for regulators and market surveillance.
 
   - Continuous Vulnerability Tracking
-    > SCA and SBOM management provide continuous monitoring of third-party dependencies against vulnerability databases, enabling proactive identification and mitigation of known vulnerabilities throughout the product lifecycle.
+    > SCA and SBOM scanning provide monitoring of third-party dependencies against vulnerability databases, enabling proactive identification and mitigation of known vulnerabilities.
 
   - Proactive Hardening
     > Significantly minimizes the attack surface by forcing remediation of unsafe coding patterns, memory safety violations, and undefined behavior in the development lifecycle.
@@ -361,7 +361,7 @@ Penetration testing on security assessments and reverse-engineering validation m
 
     - Integrate SAST tools (e.g., SonarQube, Semgrep) into the CI pipeline to perform source-level vulnerability detection and enforce secure coding standards.
 
-2. Integrate SCA & SBOM Management
+2. Integrate SCA & SBOM
 
     - Integrate SCA tools (e.g., Trivy, OWASP Dependency-Track) into the CI pipeline to generate and manage SBOMs, identify third-party dependencies, and match components against vulnerability databases for known CVE exposure.
     - Generate VEX (Vulnerability Exploitability eXchange) statements from triage assessment on SBOM components to document whether known vulnerabilities in third-party dependencies are exploitable in the specific product.

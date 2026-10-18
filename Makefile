@@ -84,7 +84,7 @@ agent-skills-restore:
 
 # ─── Dependency Manager ──────────────────────────────────────────────────────────────────────────
 
-DEPENDENCY_IMAGE_RENOVATE ?= docker.io/renovate/renovate:44.149.3@sha256:11431b10c52c306bb280171f80d409e1fb482e5a61a845cfef93f34b4d649d5d
+DEPENDENCY_IMAGE_RENOVATE ?= docker.io/renovate/renovate:44.166.0@sha256:510b885a90cd70437816c5c2da1d0c3beff513d3979497b2db1d37c84adfbc2b
 
 ## Update project dependencies locally using Renovate and generate a report
 dependency-renovate-update:
@@ -263,7 +263,7 @@ policy-regal-lint:
 
 # ─── Static Analysis ─────────────────────────────────────────────────────────────────────────────
 
-LINT_IMAGE_MARKDOWNLINT ?= davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+LINT_IMAGE_MARKDOWNLINT ?= davidanson/markdownlint-cli2:v0.23.3@sha256:d5f3f3f04b2e285dcbcdcd13b4454d119e273e3c393a9dabd163dba4abad526d
 LINT_FILES_MARKDOWNLINT ?= "**/*.md"
 
 ## Lint Markdown files using markdownlint and generate a report
@@ -275,7 +275,7 @@ lint-markdown:
 
 # ─── SAST Manager ────────────────────────────────────────────────────────────────────────────────
 
-SAST_IMAGE_SEMGREP ?= semgrep/semgrep:1.180.0@sha256:529ee8a277ec8adc5b534d7c74eea0a47e9de21d62852b6ba7ac6ba9566845c3
+SAST_IMAGE_SEMGREP ?= semgrep/semgrep:1.181.0@sha256:81474464c1f07483ba0682a44787fd93c91397419762a04abe2bafaae396304b
 SAST_FILES_SEMGREP ?= .
 SAST_REGEX_SEMGREP = $(if $(strip $(SAST_FILES_SEMGREP)),$(SAST_FILES_SEMGREP),.)
 
@@ -286,7 +286,7 @@ sast-semgrep-scan:
 	docker run --rm -v "${PWD}:/workspace" -w /workspace "$(SAST_IMAGE_SEMGREP)" semgrep scan --config auto --error --json --output logs/sast/semgrep.json $(SAST_REGEX_SEMGREP) 2> logs/sast/semgrep.log
 .PHONY: sast-semgrep-scan
 
-SAST_IMAGE_TRIVY ?= aquasec/trivy:0.75.0@sha256:af6acf9a6b85dfe389a1941505c0ce9efef52a4719635e1a962f022a3d855daa
+SAST_IMAGE_TRIVY ?= aquasec/trivy:0.76.0@sha256:2416d1f74045b57274df1a340eee6b510cacd73c66a6ccb8da092b117eb7d222
 SAST_FILES_TRIVY ?= .
 
 ## Scan Infrastructure-as-Code (IaC) files for misconfigurations using Trivy and generate a report

@@ -37,7 +37,7 @@ The Convention is a collection of general articles, conventions, and guides for 
 1. Insights and Details
 
     - Navigation
-      > Navigation is generated from the existing `content/` hierarchy. Draft decisions remain excluded.
+      > Navigation is generated from the existing `content/` hierarchy.
 
     - CommonMark Flavored Markdown
       > A Python Markdown extension in [docs_markdown.py](scripts/docs_markdown.py) normalizes markdown rendering behavior for CommonMark-style content and GitHub Flavored Markdown.
@@ -66,8 +66,6 @@ The Convention is a collection of general articles, conventions, and guides for 
       ```bash
       make pages-zensical-serve
       ```
-
-Python 3.12 is required. Dependency pins are shared with CI in [requirements-docs.txt](requirements-docs.txt). See [contributor instructions](CONTRIBUTING.md#132-zensical) for tests, deployment, and migration limitations.
 
 ## 2. Contribution 
 

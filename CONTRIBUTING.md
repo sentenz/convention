@@ -437,6 +437,11 @@ AI Agents are automated tools that assist in various development tasks such as c
       uses: ./.github/actions/zensical
       ```
 
+      > [!NOTE]
+      > Deployment
+      >
+      > The [Zensical workflow](.github/workflows/zensical.yml) validates pull requests and uploads a site artifact. Pushes to `main` and manual runs on `main` deploy to GitHub Pages. Enable **Settings → Pages → Build and deployment → Source: GitHub Actions** before the first deployment. The site URL is `https://sentenz.github.io/convention/`.
+
     - Tasks
 
       ```bash
@@ -444,19 +449,20 @@ AI Agents are automated tools that assist in various development tasks such as c
       ```
 
       ```bash
+      make pages-zensical-test
+      ```
+
+      ```bash
       make pages-zensical-build
+      ```
+
+      ```bash
+      make pages-zensical-validate
       ```
 
       ```bash
       make pages-zensical-serve
       ```
 
-Documentation builds use Python 3.12 and the shared pins in [requirements-docs.txt](requirements-docs.txt). Run `make pages-zensical-test` to check Markdown compatibility, then `make pages-zensical-build` for a clean build into `public/`. Run these commands from the repository root so the local Markdown extension can be imported. Restart preview after changing the Python extension; use a clean build to invalidate cached rendering.
-
-The [Zensical workflow](.github/workflows/zensical.yml) builds pull requests and deploys only pushes or manual runs on `main`. GitHub Pages must use **GitHub Actions** as its deployment source. The published site remains <https://sentenz.github.io/convention/>.
-
-The migration follows [sentenz/skills](https://github.com/sentenz/skills/tree/108ae2ca08adc1e464212be52c3a74db0a075873): Zensical's classic theme, shared dependency pins, and Markdown preprocessing replace Material for MkDocs and its hooks. Search uses Zensical's built-in implementation. The unused awesome-nav plugin is removed; future custom navigation should be configured in `zensical.toml`. Source pages and assets stay in `content/`, preserving their directory URLs.
-
-Builds retain the previous non-strict behavior because existing content contains unresolved page and anchor links. Warnings remain visible. Run `.venv/bin/python -m zensical build -f .zensical.generated.toml --clean --strict` after a normal build to audit them; strict validation currently fails on this content.
-
-The Make targets invoke [scripts/docs.py](scripts/docs.py), which stages `content/` into `.zensical/docs/` and writes `.zensical.generated.toml`. This materializes the `content/decisions` symlink so ADRs retain their published URLs. Preview monitors both regular and symlinked source files. Use the wrapper rather than bare Zensical commands; generated inputs are ignored by Git.
+      > [!NOTE]
+      > The local preview is available at `http://127.0.0.1:8000/convention/`. Builds are written to `public/`. New or removed `content/` files are discovered automatically on rebuild.

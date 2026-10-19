@@ -27,7 +27,7 @@ Contribution guidelines and project management tools.
   - [12.1. Trivy](#121-trivy)
 - [13. Documentation Generators](#13-documentation-generators)
   - [13.1. Doxygen](#131-doxygen)
-  - [13.2. MkDocs](#132-mkdocs)
+  - [13.2. Zensical](#132-zensical)
 
 ## 1. AI Agents
 
@@ -420,33 +420,49 @@ AI Agents are automated tools that assist in various development tasks such as c
       make pages-doxygen-serve
       ```
 
-### 13.2. MkDocs
+### 13.2. Zensical
 
-[MkDocs](https://www.mkdocs.org/) is a Static Site Generator (SSG) designed for building project documentation using Markdown files.
+[Zensical](https://zensical.org/) is a Static Site Generator (SSG) designed for building project documentation using Markdown files.
 
 1. Insights and Details
 
-    - [mkdocs.yml](mkdocs.yml)
-      > Configuration file for MkDocs specifying site settings, theme, plugins, and markdown extensions.
+    - [zensical.toml](zensical.toml)
+      > Configuration file for Zensical specifying site settings, classic theme and Markdown extensions.
 
 2. Usage and Instructions
 
     - CI/CD
 
       ```yaml
-      uses: sentenz/actions/mkdocs@latest
+      uses: ./.github/actions/zensical
       ```
+
+      > [!NOTE]
+      > Deployment
+      >
+      > The [Zensical workflow](.github/workflows/zensical.yml) validates pull requests and uploads a site artifact. Pushes to `main` and manual runs on `main` deploy to GitHub Pages. Enable **Settings → Pages → Build and deployment → Source: GitHub Actions** before the first deployment. The site URL is `https://sentenz.github.io/convention/`.
 
     - Tasks
 
       ```bash
-      make pages-mkdocs-setup
+      make pages-zensical-setup
       ```
 
       ```bash
-      make pages-mkdocs-build
+      make pages-zensical-test
       ```
 
       ```bash
-      make pages-mkdocs-serve
+      make pages-zensical-build
       ```
+
+      ```bash
+      make pages-zensical-validate
+      ```
+
+      ```bash
+      make pages-zensical-serve
+      ```
+
+      > [!NOTE]
+      > The local preview is available at `http://127.0.0.1:8000/convention/`. Builds are written to `public/`. New or removed `content/` files are discovered automatically on rebuild.

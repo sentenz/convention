@@ -1,11 +1,14 @@
-"""MkDocs hooks for markdown compatibility and rendering normalization."""
+"""Markdown compatibility preprocessing adapted from sentenz/convention.
+
+Adapted from sentenz/skills at 108ae2ca08adc1e464212be52c3a74db0a075873.
+"""
 
 from __future__ import annotations
 
 import re
-import shutil
-from pathlib import Path
-from typing import Any
+
+from markdown.extensions import Extension
+from markdown.preprocessors import Preprocessor
 
 _ALERT_TYPE_MAP: dict[str, tuple[str, str]] = {
     "NOTE": ("note", "Note"),
@@ -19,9 +22,6 @@ _ALERT_MARKER_RE = re.compile(
     r"^\[!(?P<type>NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(?P<title>.*)$"
 )
 _LIST_ITEM_RE = re.compile(r"^(?P<indent>\s*)(?P<marker>(?:[-*+]|\d+[.)]))(?P<gap>\s+)")
-_TOC_ITEM_RE = re.compile(
-    r"^(?P<indent>\s*)[-*+]\s+\[[^\]]+\]\(#[-a-zA-Z0-9_:.%]+\)\s*$"
-)
 _FENCE_MARKERS = ("```", "~~~")
 
 
@@ -89,61 +89,70 @@ def _line_indent(line: str) -> int:
     return len(line) - len(line.lstrip(" "))
 
 
-def _normalize_toc_section_block(lines: list[str], start: int, end: int) -> None:
-    """Normalize indentation for one contiguous TOC list block."""
-    toc_indents = sorted(
-        {
-            len(match.group("indent"))
-            for line in lines[start:end]
-            for match in [_TOC_ITEM_RE.match(line)]
-            if match is not None
-        }
-    )
-    indent_to_level = {indent: level for level, indent in enumerate(toc_indents)}
+def _normalize_list_indentation(markdown: str) -> str:
+    """Map source list nesting to Python-Markdown's four-space levels.
 
-    for index in range(start, end):
-        line = lines[index]
-        match = _TOC_ITEM_RE.match(line)
-        if match is None:
-            continue
-        raw_indent = len(match.group("indent"))
-        level = indent_to_level[raw_indent]
-        normalized_indent = " " * (level * 4)
-        lines[index] = f"{normalized_indent}{line.lstrip()}"
-
-
-def _normalize_toc_sections(markdown: str) -> str:
-    """Normalize TOC sections that use internal-anchor list links.
-
-    Dedicated pass for nested TOC lists, so CommonMark-style 2-space nesting
-    is converted into stable 4-space levels for Python-Markdown.
+    Track source indentation separately from output indentation so two- and
+    four-space lists, their continuation blocks, and dedents retain ownership.
+    Fenced examples keep their contents and relative indentation unchanged.
     """
+    output: list[str] = []
+    stack: list[tuple[int, int]] = []
+    active_fence: str | None = None
+    fence_shift = 0
 
-    lines = markdown.splitlines()
-    index = 0
+    for line in markdown.splitlines():
+        stripped = line.lstrip(" ")
+        indent = _line_indent(line)
+        fence = re.match(r"(`{3,}|~{3,})(.*)$", stripped)
 
-    while index < len(lines):
-        if _TOC_ITEM_RE.match(lines[index]) is None:
-            index += 1
+        if active_fence is not None:
+            output.append(" " * fence_shift + line if line else line)
+            if (
+                fence is not None
+                and fence[1][0] == active_fence[0]
+                and len(fence[1]) >= len(active_fence)
+                and not fence[2].strip()
+            ):
+                active_fence = None
             continue
 
-        start = index
-        toc_item_count = 0
-        while index < len(lines):
-            line = lines[index]
-            if not line.strip():
-                index += 1
+        if not stripped:
+            output.append(line)
+            continue
+
+        while stack and indent <= stack[-1][0]:
+            stack.pop()
+
+        item = _LIST_ITEM_RE.match(line)
+        if item is not None:
+            # A standalone indented block is code, not a new list.
+            if not stack and indent >= 4:
+                output.append(line)
                 continue
-            if _TOC_ITEM_RE.match(line) is None:
-                break
-            toc_item_count += 1
-            index += 1
+            # Do not reinterpret an indented code example inside a list as a
+            # child item. Its indentation is relative to the owning item.
+            if stack and indent >= stack[-1][0] + 8:
+                source_indent, target_indent = stack[-1]
+                output.append(" " * (target_indent + indent - source_indent) + stripped)
+                continue
+            normalized = stack[-1][1] + 4 if stack else indent
+            stack.append((indent, normalized))
+            if output and output[-1].lstrip().startswith(">"):
+                output.append("")
+            output.append(" " * normalized + stripped)
+            continue
 
-        end = index
-        if toc_item_count >= 2:
-            _normalize_toc_section_block(lines, start, end)
+        shift = 0
+        if stack:
+            source_indent, target_indent = stack[-1]
+            shift = target_indent - source_indent + max(0, 4 - (indent - source_indent))
+        output.append(" " * shift + line)
+        if fence is not None:
+            active_fence = fence[1]
+            fence_shift = shift
 
-    return "\n".join(lines)
+    return "\n".join(output)
 
 
 def _normalize_list_item_indent_for_nested_block(
@@ -274,7 +283,6 @@ def _set_line_indentation_if_needed(
 def _should_stop_list_continuation_scan(
     active_fence_marker: str | None,
     candidate_line: str,
-    stripped_line: str,
     candidate_indent: int,
     item_indent: int,
     line_fence_marker: str | None,
@@ -286,11 +294,8 @@ def _should_stop_list_continuation_scan(
     if _is_list_break(candidate_line, item_indent):
         return True
 
-    return (
-        candidate_indent <= item_indent
-        and not stripped_line.startswith(">")
-        and line_fence_marker is None
-    )
+    # Peer and parent blockquotes belong outside this list item.
+    return candidate_indent <= item_indent and line_fence_marker is None
 
 
 def _normalize_list_item_continuation_blocks(
@@ -314,7 +319,6 @@ def _normalize_list_item_continuation_blocks(
         if _should_stop_list_continuation_scan(
             active_fence_marker,
             candidate,
-            stripped,
             candidate_indent,
             item_indent,
             line_fence_marker,
@@ -390,21 +394,42 @@ def _normalize_list_blockquote_indentation(markdown: str) -> str:
 
 
 def _convert_github_alerts(markdown: str) -> str:
-    """Convert GitHub alert blockquotes to MkDocs admonition markdown.
+    """Convert GitHub alert blockquotes to Python Markdown admonition syntax.
 
-    This keeps the content as markdown so MkDocs extensions and Material
+    This keeps the content as markdown so Markdown extensions and the theme
     features (TOC/permalinks, code copy, tabs, etc.) still run as usual.
     """
 
-    normalized_markdown = _normalize_toc_sections(markdown)
+    normalized_markdown = _normalize_list_indentation(markdown)
     normalized_markdown = _normalize_list_blockquote_indentation(normalized_markdown)
     lines = normalized_markdown.splitlines()
     converted: list[str] = []
     index = 0
+    active_fence: str | None = None
 
     while index < len(lines):
         raw_line = lines[index]
-        if not raw_line.lstrip().startswith(">"):
+        stripped_line = raw_line.lstrip()
+        fence_match = re.match(r"(`{3,}|~{3,})(.*)$", stripped_line)
+
+        if active_fence is not None:
+            # Only a bare delimiter of the same kind and sufficient length closes
+            # the example; shorter or mismatched fences remain literal content.
+            if (
+                fence_match is not None
+                and fence_match[1][0] == active_fence[0]
+                and len(fence_match[1]) >= len(active_fence)
+                and not fence_match[2].strip()
+            ):
+                active_fence = None
+            converted.append(raw_line)
+            index += 1
+            continue
+
+        if fence_match is not None:
+            active_fence = fence_match[1]
+
+        if not stripped_line.startswith(">"):
             converted.append(raw_line)
             index += 1
             continue
@@ -421,6 +446,23 @@ def _convert_github_alerts(markdown: str) -> str:
     return "\n".join(converted)
 
 
-def on_page_markdown(markdown: str, **_kwargs: Any) -> str:
-    """Pre-process markdown while keeping MkDocs markdown extension pipeline."""
+def prepare_markdown(markdown: str) -> str:
+    """Pre-process Markdown before the Zensical extension pipeline."""
     return _convert_github_alerts(markdown)
+
+
+# Zensical does not execute MkDocs hooks; register a Markdown preprocessor.
+
+
+class ConventionMarkdown(Preprocessor):
+    def run(self, lines):
+        return prepare_markdown("\n".join(lines)).splitlines()
+
+
+class ConventionExtension(Extension):
+    def extendMarkdown(self, md):
+        md.preprocessors.register(ConventionMarkdown(md), "convention_markdown", 35)
+
+
+def makeExtension(**kwargs):
+    return ConventionExtension(**kwargs)

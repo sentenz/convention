@@ -157,7 +157,7 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs documentation
+# Generated documentation
 /site
 
 # mypy
@@ -190,3 +190,9 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
+
+# Zensical output and cache
+/public/
+/.cache/
+/.zensical/
+/.zensical.generated.toml

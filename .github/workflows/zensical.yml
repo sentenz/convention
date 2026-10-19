@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
-name: MkDocs
+name: Zensical
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    name: MkDocs Action - Build
+    name: Zensical Action - Build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -19,8 +19,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
 
-      - name: Build MkDocs
-        uses: ./.github/actions/mkdocs
+      - name: Build Zensical
+        uses: ./.github/actions/zensical
 
       - name: Upload Documentation Artifact
         uses: actions/upload-pages-artifact@v5.0.0
@@ -28,7 +28,7 @@ jobs:
           path: public/
 
   deploy:
-    name: MkDocs Action - Deploy
+    name: Zensical Action - Deploy
     if: >-
       github.ref == 'refs/heads/main' &&
       (github.event_name == 'push' || github.event_name == 'workflow_dispatch')

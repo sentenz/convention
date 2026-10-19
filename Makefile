@@ -535,20 +535,25 @@ sast-cosign-verify:
 
 # ─── Static Site Generator (SSG) ─────────────────────────────────────────────────────────────────
 
-### Setup documentation pages with MkDocs
-pages-mkdocs-setup:
+## Setup documentation pages with Zensical
+pages-zensical-setup:
 	@python3 -m venv .venv && . $(PIP_VENV)/activate && cd ./scripts/ && bash ./setup_pages.sh
-.PHONY: pages-mkdocs-setup
+.PHONY: pages-zensical-setup
 
-## Build documentation pages with MkDocs
-pages-mkdocs-build:
-	@. $(PIP_VENV)/activate; mkdocs build
-.PHONY: pages-mkdocs-build
+## Build documentation pages with Zensical
+pages-zensical-build:
+	@. $(PIP_VENV)/activate; python scripts/docs.py build
+.PHONY: pages-zensical-build
 
-## Serve documentation pages locally with MkDocs
-pages-mkdocs-serve:
-	@. $(PIP_VENV)/activate; mkdocs serve --dev-addr 127.0.0.1:8000 --livereload
-.PHONY: pages-mkdocs-serve
+## Serve documentation pages locally with Zensical
+pages-zensical-serve:
+	@. $(PIP_VENV)/activate; python scripts/docs.py serve --dev-addr 127.0.0.1:8000
+.PHONY: pages-zensical-serve
+
+## Test Markdown compatibility and documentation configuration
+pages-zensical-test:
+	@. $(PIP_VENV)/activate; python -m unittest discover -s tests/docs -v
+.PHONY: pages-zensical-test
 
 # ─── Documentation Generators ────────────────────────────────────────────────────────────────────
 

@@ -1,0 +1,62 @@
+# SPDX-License-Identifier: Apache-2.0
+
+[project]
+site_name = "Convention"
+site_description = "Software development conventions, guides and articles."
+site_url = "https://sentenz.github.io/convention/"
+repo_name = "sentenz/convention"
+repo_url = "https://github.com/sentenz/convention"
+docs_dir = "content"
+exclude_docs = "decisions/draft/"
+site_dir = "public"
+# Keep existing non-strict builds: legacy content contains unresolved links.
+extra_css = ["assets/css/style.css"]
+
+[project.markdown_extensions]
+"scripts.docs_markdown" = {}
+admonition = {}
+attr_list = {}
+"pymdownx.highlight" = { anchor_linenums = true, line_spans = "__span", pygments_lang_class = true }
+"pymdownx.inlinehilite" = {}
+"pymdownx.emoji" = { emoji_index = "zensical.extensions.emoji.twemoji", emoji_generator = "zensical.extensions.emoji.to_svg" }
+"pymdownx.magiclink" = {}
+"pymdownx.superfences" = { custom_fences = [{ name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" }] }
+"pymdownx.tasklist" = { custom_checkbox = true }
+"pymdownx.tabbed" = { alternate_style = true }
+"pymdownx.details" = {}
+"pymdownx.tilde" = {}
+tables = {}
+toc = { permalink = true }
+
+[project.theme]
+variant = "classic"
+logo = "assets/images/logo-wordmark.svg"
+favicon = "assets/images/logo.svg"
+features = [
+    "navigation.top",
+    "navigation.tabs",
+    "content.code.copy",
+    "search.suggest",
+    "search.highlight",
+    "search.share",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+primary = "custom"
+accent = "custom"
+toggle = { icon = "material/link", name = "Switch to light mode" }
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle = { icon = "material/brightness-7", name = "Switch to dark mode" }
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle = { icon = "material/brightness-4", name = "Switch to system preference" }

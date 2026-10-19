@@ -32,40 +32,42 @@ The Convention is a collection of general articles, conventions, and guides for 
 
 ### 1.2. Usage
 
- [MkDocs](https://www.mkdocs.org/) is used as the static site generator for building and serving the documentation site.
+ [Zensical](https://zensical.org/) is used as the static site generator for building and serving the documentation site.
 
 1. Insights and Details
 
     - Navigation
-      > Navigation is managed by the [mkdocs-awesome-nav](https://lukasgeiter.github.io/mkdocs-awesome-nav/) plugin.
+      > Navigation is generated from the existing `content/` hierarchy. Draft decisions remain excluded.
 
     - CommonMark Flavored Markdown
-      > A custom MkDocs hook in [mkdocs_hooks.py](content/assets/hooks/mkdocs_hooks.py) normalizes markdown rendering behavior for CommonMark-style content and GitHub Flavored Markdown.
+      > A Python Markdown extension in [docs_markdown.py](scripts/docs_markdown.py) normalizes markdown rendering behavior for CommonMark-style content and GitHub Flavored Markdown.
 
     - Configuration
-      > The [mkdocs.yml](mkdocs.yml) file contains the configuration for the MkDocs site, including theme, plugins, and markdown extensions.
+      > The [zensical.toml](zensical.toml) file contains the configuration for the Zensical site, including classic theme and Markdown extensions.
 
 2. Usage and Instructions
 
     - CI/CD
 
       ```yaml
-      uses: .github/actions/mkdocs
+      uses: ./.github/actions/zensical
       ```
 
     - Tasks
 
       ```bash
-      make pages-mkdocs-setup
+      make pages-zensical-setup
       ```
 
       ```bash
-      make pages-mkdocs-build
+      make pages-zensical-build
       ```
 
       ```bash
-      make pages-mkdocs-serve
+      make pages-zensical-serve
       ```
+
+Python 3.12 is required. Dependency pins are shared with CI in [requirements-docs.txt](requirements-docs.txt). See [contributor instructions](CONTRIBUTING.md#132-zensical) for tests, deployment, and migration limitations.
 
 ## 2. Contribution 
 
@@ -101,8 +103,8 @@ The Convention is a collection of general articles, conventions, and guides for 
 - [Supply Chain Manager](CONTRIBUTING.md#12-supply-chain-manager)
   > Trivy for security scanning of vulnerabilities, misconfigurations, and compliance issues.
 
-- [Documentation Generators](CONTRIBUTING.md#132-mkdocs)
-  > MkDocs for building and serving the documentation site.
+- [Documentation Generators](CONTRIBUTING.md#132-zensical)
+  > Zensical for building and serving the documentation site.
 
 ## 3. Troubleshoot
 

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
-name: MkDocs
-description: Build MkDocs documentation site with Material theme and CommonMark rendering.
+name: Zensical
+description: Build documentation with Zensical's classic theme and Markdown compatibility extensions.
 author: "sentenz"
 
 inputs:
@@ -21,16 +21,12 @@ runs:
     - name: Install Dependencies
       shell: bash
       run: |
-        pip install --quiet --upgrade pip
-        pip install --quiet \
-          "mkdocs==1.6.1" \
-          "mkdocs-material==9.7.1" \
-          "mkdocs-macros-plugin==1.0.5" \
-          "markdown-it-py==3.0.0" \
-          "pymdown-extensions==10.21.2" \
-          "pygments==2.20.0" \
-          "mkdocs-awesome-nav==3.3.0"
+        python -m pip install --quiet -r requirements-docs.txt
+
+    - name: Test Documentation Publication
+      shell: bash
+      run: python -m unittest discover -s tests/docs -v
 
     - name: Build Site
       shell: bash
-      run: mkdocs build
+      run: python scripts/docs.py build

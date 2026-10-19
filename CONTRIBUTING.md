@@ -27,7 +27,7 @@ Contribution guidelines and project management tools.
   - [12.1. Trivy](#121-trivy)
 - [13. Documentation Generators](#13-documentation-generators)
   - [13.1. Doxygen](#131-doxygen)
-  - [13.2. MkDocs](#132-mkdocs)
+  - [13.2. Zensical](#132-zensical)
 
 ## 1. AI Agents
 
@@ -420,33 +420,43 @@ AI Agents are automated tools that assist in various development tasks such as c
       make pages-doxygen-serve
       ```
 
-### 13.2. MkDocs
+### 13.2. Zensical
 
-[MkDocs](https://www.mkdocs.org/) is a Static Site Generator (SSG) designed for building project documentation using Markdown files.
+[Zensical](https://zensical.org/) is a Static Site Generator (SSG) designed for building project documentation using Markdown files.
 
 1. Insights and Details
 
-    - [mkdocs.yml](mkdocs.yml)
-      > Configuration file for MkDocs specifying site settings, theme, plugins, and markdown extensions.
+    - [zensical.toml](zensical.toml)
+      > Configuration file for Zensical specifying site settings, classic theme and Markdown extensions.
 
 2. Usage and Instructions
 
     - CI/CD
 
       ```yaml
-      uses: sentenz/actions/mkdocs@latest
+      uses: ./.github/actions/zensical
       ```
 
     - Tasks
 
       ```bash
-      make pages-mkdocs-setup
+      make pages-zensical-setup
       ```
 
       ```bash
-      make pages-mkdocs-build
+      make pages-zensical-build
       ```
 
       ```bash
-      make pages-mkdocs-serve
+      make pages-zensical-serve
       ```
+
+Documentation builds use Python 3.12 and the shared pins in [requirements-docs.txt](requirements-docs.txt). Run `make pages-zensical-test` to check Markdown compatibility, then `make pages-zensical-build` for a clean build into `public/`. Run these commands from the repository root so the local Markdown extension can be imported. Restart preview after changing the Python extension; use a clean build to invalidate cached rendering.
+
+The [Zensical workflow](.github/workflows/zensical.yml) builds pull requests and deploys only pushes or manual runs on `main`. GitHub Pages must use **GitHub Actions** as its deployment source. The published site remains <https://sentenz.github.io/convention/>.
+
+The migration follows [sentenz/skills](https://github.com/sentenz/skills/tree/108ae2ca08adc1e464212be52c3a74db0a075873): Zensical's classic theme, shared dependency pins, and Markdown preprocessing replace Material for MkDocs and its hooks. Search uses Zensical's built-in implementation. The unused awesome-nav plugin is removed; future custom navigation should be configured in `zensical.toml`. Source pages and assets stay in `content/`, preserving their directory URLs.
+
+Builds retain the previous non-strict behavior because existing content contains unresolved page and anchor links. Warnings remain visible. Run `.venv/bin/python -m zensical build -f .zensical.generated.toml --clean --strict` after a normal build to audit them; strict validation currently fails on this content.
+
+The Make targets invoke [scripts/docs.py](scripts/docs.py), which stages `content/` into `.zensical/docs/` and writes `.zensical.generated.toml`. This materializes the `content/decisions` symlink so ADRs retain their published URLs. Preview monitors both regular and symlinked source files. Use the wrapper rather than bare Zensical commands; generated inputs are ignored by Git.

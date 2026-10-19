@@ -537,7 +537,8 @@ sast-cosign-verify:
 
 ## Setup documentation pages with Zensical
 pages-zensical-setup:
-	@python3 -m venv .venv && . $(PIP_VENV)/activate && cd ./scripts/ && bash ./setup_pages.sh
+	@python3 -m venv .venv
+	@"$(PIP_VENV)/python" -m pip install -r requirements-docs.txt
 .PHONY: pages-zensical-setup
 
 ## Build documentation pages with Zensical

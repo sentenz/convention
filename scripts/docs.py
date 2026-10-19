@@ -42,6 +42,11 @@ def prepare(config_file: Path) -> Path:
             source = Path(directory) / name
             files[source.relative_to(source_root).as_posix()] = source.read_bytes()
 
+    # Keep public asset URLs stable while storing sources at the repository root.
+    for source in (root / "assets").rglob("*"):
+        if source.is_file():
+            files[source.relative_to(root).as_posix()] = source.read_bytes()
+
     for uri, content in files.items():
         write_changed(docs / uri, content)
     for existing in docs.rglob("*"):
@@ -67,6 +72,7 @@ def snapshot(root: Path, config_file: Path) -> dict:
     source_root = root / config["project"].get("docs_dir", "content")
     for directory, _, names in os.walk(source_root, followlinks=True):
         paths.extend(Path(directory) / name for name in names)
+    paths.extend(path for path in (root / "assets").rglob("*") if path.is_file())
     return {path: (path.stat().st_mtime_ns, path.stat().st_size) for path in paths}
 
 

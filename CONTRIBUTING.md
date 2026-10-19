@@ -466,3 +466,5 @@ AI Agents are automated tools that assist in various development tasks such as c
 
       > [!NOTE]
       > The local preview is available at `http://127.0.0.1:8000/convention/`. Builds are written to `public/`. New or removed `content/` files are discovered automatically on rebuild.
+
+Documentation assets live in the root [assets/](assets/) directory. The build wrapper stages them under `.zensical/docs/assets/`, preserving published `assets/` URLs and the paths in `zensical.toml`. Preview watches asset additions, updates, and removals alongside documentation sources.

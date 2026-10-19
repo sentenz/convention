@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: Apache-2.0
-# Shared dependency pins for local builds and CI, matching sentenz/skills.
 zensical==0.0.71
 pymdown-extensions==12.3
 pygments==2.21.0

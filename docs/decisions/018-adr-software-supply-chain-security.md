@@ -1,6 +1,6 @@
-# 018-ADR: Software Supply Chain Security (SSCS)
+# ADR-018: Software Supply Chain Security (SSCS)
 
-Architectural Decision Record on establishing verifiable release acceptance across the software supply chain.
+Architectural Decision Records (ADR) on controls that protect the integrity, traceability, and transparency of software from source to distribution.
 
 - [1. State](#1-state)
 - [2. Context](#2-context)
@@ -34,314 +34,458 @@ Architectural Decision Record on establishing verifiable release acceptance acro
 ## 1. State
 
 - Author(s): Sentenz
-- Date: 2026-10-21
+- Date: 2026-10-11
 - Status: Proposed
-- Issue: [#566](https://github.com/sentenz/convention/issues/566)
 
 ## 2. Context
 
-Source repositories, dependencies, build infrastructure, signing identities, and distribution services can each become an entry point for unauthorized software changes. A vulnerability scan alone cannot establish where an artifact originated or whether it was substituted after scanning. Consumers need evidence that connects the delivered bytes to an approved source revision and production process.
-
-This ADR proposes one complementary control baseline for producing, releasing, and consuming software artifacts. It covers packages, container images, binaries, and firmware where applicable. It complements [ADR 016](016-adr-security-testing-c-cpp-cra.md); it does not replace product security testing or claim that the controls are already deployed.
+Software production and delivery rely on source repositories, third-party dependencies, build infrastructure, and distribution channels, each of which can introduce vulnerabilities or allow unauthorized modifications. A Software Supply Chain Security (SSCS) approach aims to improve transparency across the software supply chain, preserve traceability from source to distribution, and enable independent verification of artifacts and their provenance.
 
 1. Decision Drivers
 
     - Explicit Trust
-      > Isolation, immutable identifiers, and independent verification limit reliance on implicit trust.
+      > Isolation, least privilege, immutable identifiers, and independent verification reduce the number of systems and credentials that must be trusted implicitly.
 
     - Least Privilege
-      > Identities, tokens, and build steps receive narrowly scoped permissions for the required duration.
+      > Identities, tokens, and build steps receive only the permissions they need, for only as long as they need them.
 
     - Traceability
-      > Released bytes remain attributable to source revisions, dependencies, builders, and release approvals.
+      > Every artifact can be traced back to its source revision, dependencies, build process, and release approval.
 
     - Transparency
-      > Component inventories, provenance, and signing evidence remain available for audit and incident response.
+      > Component inventories, provenance, and signing events are visible and auditable to producers and consumers.
 
     - Integrity
-      > Controls detect or prevent unauthorized changes before artifacts are accepted.
+      > Integrity controls reduce the opportunity for unauthorized source, dependency, build, or release modifications to become accepted software artifacts.
 
     - Compliance
-      > Retained evidence supports NIST SSDF practices and product-specific compliance assessments, including CRA-related work addressed by ADR 016.
+      > Controls support regulatory and framework expectations, such as the EU Cyber Resilience Act (CRA) and the NIST Secure Software Development Framework (SSDF).
 
 ## 3. Decision
 
-Adopt the following controls as a proposed baseline. Acceptance of this ADR authorizes staged implementation; a SLSA level or operational coverage must be demonstrated separately.
+Adopt a layered Software Supply Chain Security (SSCS) posture that combines artifact integrity, Software Composition Analysis (SCA) with SBOM/VEX, provenance and attestation, signing, secure update distribution, and policy-based enforcement.
 
 ### 3.1. Artifact Integrity
 
-Select protected source control, immutable dependency references, isolated builds, and digest-based artifact promotion. Use the approved [SLSA v1.2](https://slsa.dev/spec/v1.2/) Build and Source tracks as the assessment reference. Target Build L2 for release pipelines, with Build L3 as the hardening objective for high-risk products following a documented builder assessment.
+Adopt the SLSA tracks for source, dependency, build environment, and build integrity to ensure that every artifact is produced from verified, integrity-protected inputs in an isolated, auditable build.
 
-Require review of source and release workflow changes, protected release references, locked dependency resolution with integrity checks, and ephemeral build environments. Separate untrusted pull request execution from release credentials and signing authority. Promote the same tested artifact digest between environments instead of rebuilding it.
+1. Rationale
 
-These controls implement explicit trust, least privilege, and traceability. Reproducibility is an additional verification technique, not a property automatically established by adopting SLSA. Draft Dependency and Build Environment tracks remain informative until explicitly adopted through a later review.
+    - Explicit Trust
+      > SLSA tracks replace implicit trust in the build pipeline with verifiable, independently checkable evidence at each stage.
+
+    - Integrity
+      > Signed commits, verified dependencies, and hermetic builds reduce the opportunity for unauthorized modifications to reach accepted artifacts.
+
+    - Traceability
+      > Each track records the source revision, dependency set, and build parameters needed to reconstruct and audit an artifact.
 
 ### 3.2. Software Composition Analysis (SCA)
 
-Select Trivy for supported component discovery, vulnerability scanning, and license detection; CycloneDX JSON as the canonical release SBOM format; and Dependency-Track for continuous portfolio monitoring. Permit SPDX exchange when a consumer requires it, with conversion and information loss assessed.
+Adopt SBOM generation in CycloneDX and SPDX formats, continuous scanning with Trivy, centralized monitoring with Dependency-Track, and VEX/CSAF for vulnerability handling.
 
-Bind each release SBOM to the final artifact digest, include direct and transitive components to the extent discoverable, and document coverage gaps. Require review of unknown or prohibited licenses. Track vulnerability applicability, remediation, ownership, and deadlines; use reviewed VEX statements for justified applicability decisions and CSAF for structured advisories where required.
+1. Rationale
 
-This combination provides transparency and ongoing traceability after release. Scanning and license classification support decisions but do not establish legal compliance or prove absence of vulnerabilities.
+    - Transparency
+      > SBOMs provide a machine-readable, auditable inventory of all components and their relationships.
+
+    - Compliance
+      > SBOM, VEX, and CSAF artifacts support CRA and NIST SSDF expectations for component disclosure and vulnerability communication.
+
+    - Integrity
+      > Continuous scanning against vulnerability databases detects compromised or vulnerable dependencies before release.
 
 ### 3.3. Provenance and Attestation
 
-Select SLSA build provenance represented by an in-toto Statement and signed attestations. Require evidence identifying the artifact digest, source revision, authorized builder, build definition, and relevant inputs and parameters. Record unresolved inputs as coverage limitations.
+Adopt SLSA provenance with in-toto metadata and Cosign attestations to record and cryptographically bind evidence about the origin and build process of each artifact.
 
-Generate provenance through the trusted build platform and protect it from modification by ordinary build steps. Bind SBOM and scan evidence to the same artifact, including scanner and database versions and scan time. This makes release decisions auditable and distinguishes an inventory from evidence about how an artifact was produced.
+1. Rationale
+
+    - Traceability
+      > in-toto records source revisions, builders, inputs, and parameters, enabling end-to-end reconstruction of an artifact's production.
+
+    - Explicit Trust
+      > Signed attestations allow consumers to verify provenance independently rather than trusting the producer.
+
+    - Transparency
+      > Attestations are inspectable evidence that supports audits and incident forensics.
 
 ### 3.4. Signing and Verification
 
-Select Cosign keyless signing for CI environments with approved OIDC identities and acceptable transparency requirements. Use HSM/KMS-backed key-based signing for disconnected or restricted environments through a documented signing profile.
+Adopt keyless signing via Sigstore and Cosign as the default mechanism, with key-based signing (HSM/KMS-backed) available for regulated environments that require long-lived, organization-controlled keys.
 
-Verification must match the artifact digest and authorized signer. For keyless signing, constrain the OIDC issuer and certificate identity to the approved workflow and release context, and validate the certificate and transparency evidence using trusted verification material. For key-based signing, trust only explicitly approved public keys and maintain rotation and compromise-response procedures.
+1. Rationale
 
-This choice limits persistent CI credentials while retaining an alternative for constrained deployments. A valid signature identifies a trusted signing authority only when policy authorizes that identity; it does not prove that the artifact is safe.
+    - Least Privilege
+      > Keyless signing uses short-lived certificates bound to OIDC identities, avoiding long-lived secrets and minimizing credential exposure.
+
+    - Explicit Trust
+      > The Rekor transparency log provides an independent, append-only record of signing events that consumers can verify.
+
+    - Compliance
+      > Key-based signing with HSM/KMS-backed keys satisfies environments that mandate organization-controlled key custody.
 
 ### 3.5. Secure Update Distribution
 
-Select The Update Framework (TUF) for products operating their own update repositories and clients. Require trusted root bootstrapping, role separation, threshold signing where appropriate, metadata expiration, version checks, and target digest verification.
+Adopt The Update Framework (TUF) for secure update distribution, with SUIT for constrained IoT devices.
 
-Defer a SUIT implementation choice for constrained devices until a product-specific assessment covers device capabilities, trust provisioning, recovery, and update installation. RFC 9019 provides architectural guidance, not a ready-made updater.
+1. Rationale
 
-This supports integrity beyond transport encryption. Platforms with an existing update mechanism must document equivalent protection against rollback, freeze, and artifact substitution before receiving an exception from the TUF profile.
+    - Integrity
+      > TUF's role-based signing and metadata verification ensure updates are authentic and untampered in transit.
+
+    - Explicit Trust
+      > TUF separates signing roles (root, timestamp, snapshot, target) so no single compromised key can forge an update.
+
+    - Traceability
+      > Signed update metadata provides an auditable chain from release to deployed version.
 
 ### 3.6. Policy Enforcement
 
-Select OPA/Rego for release acceptance policy, with Conftest for policy testing and CI integration. A trusted verification component first validates signatures and attestations; OPA evaluates the verified claims and scan results. OPA is not assumed to perform Cosign verification or enforce a deployment decision by itself.
+Adopt Open Policy Agent (OPA) with Rego policies to verify signatures, attestations, and SBOM requirements before artifacts are accepted or deployed.
 
-Require gates before publication and again at deployment or installation. Reject missing or invalid mandatory evidence, digest mismatches, unauthorized identities or builders, prohibited licenses, and unresolved findings that violate the approved vulnerability policy. Scanner, verifier, or policy errors must not produce a passing result.
+1. Rationale
 
-Exceptions require a named owner, independent approval, rationale, exact scope, compensating controls, and expiration. The gate enforces those limits and records its policy version and decision. This makes explicit trust enforceable at the point where software is accepted.
+    - Explicit Trust
+      > Policy gates reject unsigned or unverifiable artifacts, enforcing trust decisions rather than assuming them.
+
+    - Least Privilege
+      > Policies can encode fine-grained acceptance criteria per environment, limiting what is permitted to deploy.
+
+    - Compliance
+      > Centralized, version-controlled policies provide a consistent, auditable enforcement point across the supply chain.
 
 ## 4. Considered
 
 ### 4.1. Artifact Integrity
 
-[SLSA](https://slsa.dev/spec/v1.2/) provides versioned requirements for assessing production integrity. [Reproducible Builds](https://reproducible-builds.org/docs/definition/) provides a complementary way to compare independently produced outputs.
-
 #### 4.1.1. Source Integrity
 
-Protect branches and release references, require independent review, restrict administration, and audit changes to workflow definitions. Signed commits or tags add evidence of key control but do not establish reviewer approval or code safety.
+Protect the integrity of the source code by ensuring that changes are attributable, reviewed, and verified through cryptographic methods. Signed commits (GPG/SSH) provide cryptographic assurance of authorship and integrity.
+
+> [!TIP]
+> [SLSA Source Track](https://slsa.dev/spec/draft/#source-track) protects source repositories and commit history through signed commits, protected branches, and required review.
 
 - Pros
-  - Reviewable History
-    > Repository controls make unauthorized source and workflow changes harder to introduce unnoticed.
+
+  - Attributable Revisions
+    > Signed commits bind each revision to an identity.
+
+  - Enforced Review
+    > Protected branches and required review prevent single-identity merges.
+
 - Cons
-  - Trusted Accounts
-    > Compromised authorized accounts and colluding reviewers remain risks; signature verification does not replace access controls.
+
+  - Key or Identity Management
+    > Developers need signing keys or keyless identities configured.
 
 #### 4.1.2. Dependency Integrity
 
-Lock versions and hashes, pin CI actions to commit SHAs and images to digests, restrict dependency sources, and verify upstream signatures or provenance where available. Review automated updates and prevent untrusted caches from contaminating release builds.
+Verify the integrity of dependencies by checking cryptographic digest and lockfiles, and by ensuring that dependencies come from trusted sources.
+
+> [!TIP]
+> [SLSA Dependency Track](https://slsa.dev/spec/draft/#dependency-track) ensures that dependencies are verified and integrity-protected, reducing the risk of supply chain attacks. [Renovate](https://docs.renovatebot.com/) automates dependency updates to maintain integrity and security.
 
 - Pros
-  - Stable Inputs
-    > Immutable references and verified downloads reduce substitution and unexpected dependency resolution.
-- Cons
-  - Upstream Risk
-    > Pinning preserves known bytes, including malicious or vulnerable ones; continuous review and updates remain necessary.
 
-The [SLSA Working Draft](https://slsa.dev/spec/draft/) includes a Dependency track. Its evolving requirements are not treated as an approved conformance baseline here.
+  - Deterministic Resolution
+    > Lockfiles with explicit versions and digests fix direct and transitive dependencies.
+
+  - Tamper Detection
+    > Digest verification rejects modified packages.
+
+- Cons
+
+  - Update Burden
+    > Pinned versions require automated update tooling and regular review.
+
+  - Uneven Ecosystem Support
+    > Dependency managers differ in lockfile and digest support.
 
 #### 4.1.3. Build Environment Integrity
 
-Use ephemeral runners, separate trust domains, pinned toolchains, restricted network access, and short-lived credentials. Protect shared caches, the build control plane, and provenance generation separately from workload execution.
+Build environment integrity ensures that the build and runtime environments are protected against tampering and unauthorized modifications. This includes using hermetic build environments, verifying the integrity of build tools, and isolating builds from untrusted inputs.
+
+> [!TIP]
+> [SLSA Build Environment Track](https://slsa.dev/spec/draft/#build-environment-track) ensures that the build and runtime environments are integrity-protected and verifiable, reducing the risk of tampering and unauthorized modifications.
 
 - Pros
-  - Reduced Persistence
-    > Isolation reduces opportunities for cross-build contamination and credential reuse.
-- Cons
-  - Operational Cost
-    > Isolation, dependency mirrors, and restricted network access require maintenance and may increase build time.
 
-The Working Draft's Build Environment track informs future assessments; it is not evidence of runtime security or a currently claimed assurance level.
+  - Tamper Resistance
+    > Hermetic build environments reduce the risk of unauthorized modifications.
+
+  - Verifiable Builds
+    > The integrity of build tools and processes can be independently verified.
+
+  - Isolation
+    > Builds are isolated from untrusted inputs, minimizing the attack surface.
+
+- Cons
+
+  - Tooling Limitations
+    > Hermetic build environments may require specialized tooling and configuration, which can be a barrier to adoption.
 
 #### 4.1.4. Build Integrity
 
-Use a hosted build platform that produces authenticated provenance and assess its isolation and tamper resistance against the chosen [SLSA Build level](https://slsa.dev/spec/v1.2/build-track-basics). Pursue hermetic builds and reproducibility where practical.
+Build integrity ensures that the build process produces consistent and verifiable outputs, reducing the risk of introducing vulnerabilities or tampering during the build process. This includes using reproducible builds, verifying build artifacts, and maintaining a secure build pipeline.
+
+> [!TIP]
+> [SLSA Build Track](https://slsa.dev/spec/draft/#build-track) enforces reproducible and verifiable builds, ensuring that the resulting artifacts are trustworthy. [Reproducible Builds](https://reproducible-builds.org/) provides guidelines and tools for achieving build integrity across different environments.
 
 - Pros
-  - Independent Evidence
-    > Platform-generated provenance supports checks against the expected production process.
+
+  - Improved Security
+    > Ensures that the build outputs are consistent and have not been tampered with, reducing the risk of introducing vulnerabilities.
+
 - Cons
-  - Residual Trust
-    > The builder remains a trust boundary, and deterministic output can still contain malicious source or compiler behavior.
+
+  - Complexity
+    > Implementing and maintaining build integrity measures can be complex and require specialized knowledge.
+
+  - Tooling Requirements
+    > Ensuring build integrity may necessitate additional tooling and infrastructure, which can increase operational overhead.
 
 ### 4.2. Software Composition Analysis (SCA)
 
-[Trivy](https://github.com/aquasecurity/trivy) and [Dependency-Track](https://docs.dependencytrack.org/) provide complementary scanning and portfolio monitoring.
+Software Composition Analysis (SCA) identifies open source components in a codebase, helping to manage and mitigate risks associated with third-party dependencies, and provides visibility into license compliance.
 
 #### 4.2.1. SBOM Management
 
-[CycloneDX](https://cyclonedx.org/capabilities/sbom/) and [SPDX](https://spdx.dev/) represent component inventories. Choose CycloneDX for the primary pipeline because it aligns with Dependency-Track ingestion. Preserve the original SBOM when generating another format.
+Software Bill of Materials (SBOM) involves creating, maintaining, and consuming SBOMs to improve visibility into software components and their dependencies, enhancing supply chain security. [CycloneDX](https://cyclonedx.org/) and [SPDX](https://spdx.dev/) are formats that provide machine-readable models of the components in a product and their relationships, and centralizes SBOM ingestion for continuous monitoring across an organization.
+
+> [!TIP]
+> [Trivy](https://github.com/aquasecurity/trivy) generates SBOMs for direct and transitive dependencies and scans SBOMs against vulnerability databases. [Dependency-Track](https://dependencytrack.org/) provides centralized SBOM ingestion for continuous monitoring against multiple vulnerability databases across an organization.
 
 - Pros
-  - Continued Visibility
-    > Release inventories support later reassessment when new advisories appear.
+
+  - Improved Visibility
+    > Provides clear insight into the components and dependencies used in the software, aiding in risk management and compliance.
+
 - Cons
+
   - Incomplete Discovery
     > Vendored code, static linking, generated components, and opaque firmware may require additional inventory methods.
 
 #### 4.2.2. License Compliance
 
-Use [Trivy license scanning](https://trivy.dev/docs/latest/scanner/license/) to identify license information and apply a reviewed license policy.
+License compliance ensures that the use of open source and third-party components adheres to legal requirements, helping to mitigate legal and financial risks associated with non-compliance.
+
+> [!TIP]
+> [Trivy](https://github.com/aquasecurity/trivy) automates license compliance management by continuously monitoring dependencies and their licenses, ensuring that open source usage adheres to legal requirements.
 
 - Pros
-  - Repeatable Screening
-    > Automated findings focus manual review on unknown terms, conflicts, and distribution obligations.
+
+  - Legal Risk Mitigation
+    > Helps ensure that the use of open source and third-party components complies with legal requirements, reducing the risk of legal and financial penalties.
+
 - Cons
-  - Interpretation Required
-    > License detection cannot resolve all contractual or distribution-specific obligations.
+
+  - Confidence Limitation
+    > Incomplete or inaccurate license information can lead to incorrect license detection and potential legal risks.
 
 #### 4.2.3. Vulnerability Handling
 
-[OpenVEX](https://github.com/openvex/spec) communicates vulnerability applicability; [CSAF](https://www.csaf.io/) structures security advisories. They complement vulnerability detection. Validate supported formats and product identifiers before integrating [Trivy VEX filtering](https://trivy.dev/docs/latest/supply-chain/vex/); the documented feature is experimental.
+[VEX (Vulnerability Exploitability eXchange)](https://github.com/openvex/spec) provides a standardized format for communicating the exploitability of vulnerabilities in software components, complementing SBOMs by indicating which vulnerabilities are relevant to a particular deployment. [Common Security Advisory Framework (CSAF)](https://www.csaf.io/) provides a standardized format for communicating security advisories and vulnerability information, complementing SBOMs and VEX by providing actionable security guidance.
+
+> [!TIP]
+> [Trivy](https://github.com/aquasecurity/trivy) supports scanning SBOMs, VEX documents, and CSAF advisories to identify vulnerabilities and security issues in software components.
 
 - Pros
-  - Actionable Triage
-    > Product-specific applicability and remediation records help prioritize work and explain justified exclusions.
-- Cons
-  - Suppression Risk
-    > Stale, untrusted, or incorrectly scoped VEX can hide real exposure; preserve raw findings and require review before filtering.
 
-Do not assume general CSAF ingestion by Trivy or interchangeable VEX support across tools. Test the selected tool versions and adapters against representative documents.
+  - Actionable Triage
+    > Provides clear guidance on which vulnerabilities need immediate attention, enabling efficient and effective remediation efforts.
+
+  - Advisory Integration
+    > Integrates with security advisories to provide timely and relevant information about vulnerabilities, enhancing the decision-making process for remediation.
+
+- Cons
+
+  - Suppression Risk
+    > Suppressing or ignoring certain vulnerabilities may lead to unaddressed security risks, potentially compromising the security of the software.
 
 ### 4.3. Provenance and Attestation
 
-[SLSA build provenance](https://slsa.dev/spec/v1.2/build-provenance) describes production evidence. [Cosign attestations](https://docs.sigstore.dev/cosign/verifying/attestation/) support signed in-toto statements.
+Provenance and Attestation provide verifiable evidence about the origin, build process, and integrity of software artifacts, enabling trust and accountability in the supply chain.
+
+> [!TIP]
+> [SLSA Provenance and Attestation](https://slsa.dev/) provide verifiable evidence about the origin, build process, and integrity of software artifacts, enabling trust and accountability in the supply chain. [in-toto](https://in-toto.io/) records verifiable evidence about source revisions, builders, inputs, parameters, and other properties of the software production process. [Cosign Attestations](https://github.com/sigstore/cosign) with built-in support for in-toto provides a mechanism to sign and verify the authenticity of software artifacts.
 
 - Pros
-  - Digest Binding
-    > Signed statements connect claims to specific artifact bytes and an identifiable issuer.
+
+  - Verifiable Trust
+    > Provides cryptographic attestations that link each artifact to its source, builder, and inputs.
+
 - Cons
-  - Claims Need Evaluation
-    > A signature authenticates a statement, not its truth; consumers must assess the builder and expected claim values.
+
+  - Trust Assumptions
+    > The security of provenance and attestation mechanisms relies on the trustworthiness of the signing identity and the platform used to generate and verify the attestations.
 
 ### 4.4. Signing and Verification
 
-[Cosign verification](https://docs.sigstore.dev/cosign/verifying/verify/) supports identity-based and key-based trust models.
-
 #### 4.4.1. Key-Based Signing
 
-Use a controlled asymmetric key, preferably protected by an HSM or KMS, with public-key distribution and explicit authorization.
+Key-Based Signing uses cryptographic keys to sign software artifacts, ensuring that only authorized entities can produce valid signatures.
+
+> [!TIP]
+> [Cosign](https://github.com/sigstore/cosign) signs artifacts with asymmetric keys anchored in a PKI and protected in a Hardware Security Module (HSM) or KMS.
 
 - Pros
-  - Controlled Trust
-    > Suitable for restricted networks and environments with established key custody.
+
+  - Strong Authentication
+    > Ensures that only authorized entities can sign artifacts, providing a robust mechanism for verifying the origin and integrity of software components.
+
+  - Non-Repudiation
+    > Cryptographic signatures provide evidence that a specific entity signed an artifact, preventing denial of authorship and enhancing accountability.
+
+  - Offline Verification
+    > Verification works with a public key and without online services.
+
 - Cons
-  - Key Lifecycle
-    > Rotation, backup, access control, revocation policy, and compromise response create operational responsibilities.
+
+  - Key Management Overhead
+    > Managing cryptographic keys securely requires additional infrastructure and operational effort, including key rotation, storage, and access control.
+
+  - Compromise Impact
+    > A stolen long-lived key undermines every artifact it signed.
 
 #### 4.4.2. Keyless Signing
 
-Use ephemeral keys and short-lived certificates associated with OIDC identities, with transparency evidence in the selected Sigstore deployment.
+Keyless Signing allows signing software artifacts without managing long-lived cryptographic keys, often leveraging ephemeral credentials and identity-based mechanisms.
+
+> [!TIP]
+> [Sigstore](https://www.sigstore.dev/) signs with short-lived certificates bound to OIDC identities and records signing events in the public Rekor transparency log. [Cosign](https://github.com/sigstore/cosign) supports keyless signing using ephemeral keys and identity-based credentials, simplifying the signing process while maintaining security guarantees.
 
 - Pros
-  - Reduced Credential Persistence
-    > CI jobs avoid storing a long-lived artifact-signing private key.
-- Cons
-  - Identity and Service Dependencies
-    > OIDC, certificate issuance, and transparency infrastructure become trust and availability dependencies; public logs may disclose signing metadata.
 
-Retain verification bundles and approved trust material for offline validation. Offline operation still requires a policy for refreshing trust and handling compromise; disabling verification is not a fallback.
+  - Simplified Key Management
+    > Keyless signing eliminates the need for long-lived cryptographic keys, reducing the operational burden and potential risks associated with key management.
+
+  - Transparency Logs
+    > Keyless signing records signing events in public transparency logs, providing an auditable trail of signing activities and enhancing trust.
+
+- Cons
+
+  - Identity and Service Dependencies
+    > Relies on the security and availability of third-party services (e.g., Sigstore), OIDC identity providers, and the underlying infrastructure to issue ephemeral credentials and record signing events.
 
 ### 4.5. Secure Update Distribution
 
-[TUF](https://theupdateframework.io/docs/overview/) secures update metadata and target selection. [SUIT RFC 9019](https://datatracker.ietf.org/doc/html/rfc9019) addresses firmware update architecture for constrained devices.
+Secure Update Distribution ensures that software updates are delivered securely, maintaining integrity and authenticity throughout the distribution process.
+
+> [!TIP]
+> [The Update Framework (TUF)](https://theupdateframework.io/) provides guidelines and best practices for securely distributing software updates, ensuring that updates are authentic and have not been tampered with during transit. [SUIT (Software Updates for Internet of Things)](https://datatracker.ietf.org/doc/rfc9019/) provides a standardized framework for secure software updates in IoT devices.
 
 - Pros
-  - Update-Specific Controls
-    > TUF addresses update freshness and rollback threats beyond individual artifact signatures.
+
+  - Authenticity and Integrity
+    > Secure update distribution ensures that updates are authentic and have not been tampered with during transit.
+
 - Cons
-  - Client Integration
-    > Trusted root provisioning, metadata renewal, persistent client state, and recovery require product engineering; SUIT requires a separate implementation choice.
+
+  - Infrastructure Complexity
+    > Implementing secure update distribution may require additional infrastructure and coordination between update servers and clients.
 
 ### 4.6. Policy Enforcement
 
-[OPA](https://www.openpolicyagent.org/docs) evaluates structured inputs against policy. Integrations must obtain trustworthy verification results and enforce the outcome.
+Policy Enforcement evaluates structured inputs against policy rules to ensure compliance before artifacts are accepted or deployed.
+
+> [!TIP]
+> [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) evaluates policies written in Rego to verify signatures, attestations, and SBOM requirements before artifacts are accepted or deployed.
 
 - Pros
-  - Consistent Acceptance
-    > Versioned policies provide reviewable rules and reproducible decisions across release and deployment gates.
-- Cons
-  - Integration Risk
-    > Untrusted inputs, bypass paths, or permissive error handling can defeat an otherwise correct policy.
 
-A scan-only pipeline and signing without consumer verification are rejected as complete solutions because they leave provenance, substitution, and unauthorized release risks unresolved.
+  - Compliance Assurance
+    > Automatically verifies that artifacts meet security and operational policies, reducing the risk of non-compliant deployments.
+
+- Cons
+
+  - Policy Management Overhead
+    > Maintaining and updating policies across environments can be complex and requires ongoing attention.
 
 ## 5. Consequences
 
 - Positive
-  - Auditable Releases
-    > Source, inventory, production evidence, and release decisions become traceable through artifact digests.
-  - Faster Response
-    > Retained inventories and monitoring help identify affected releases after a new advisory or supplier compromise.
+
+  - End-to-End Trust
+    > Combining integrity, provenance, signing, and policy enforcement yields artifacts whose origin and integrity can be independently verified at every stage.
+
+  - Consumer Trust
+    > Consumers can enforce their own trust policies against signed artifacts and attestations without trusting the producer.
+
+  - Regulatory Compliance
+    > SBOM, VEX, CSAF, and signed provenance directly support EU CRA obligations, reducing compliance effort.
+
+  - Incident Response
+    > Provenance attestations and component inventories accelerate root-cause analysis and impact assessment during supply chain incidents.
+
 - Negative
-  - Operational Overhead
-    > Builders, trust roots, SBOM services, policy adapters, and retained evidence require ownership and maintenance.
-  - Release Friction
-    > Mandatory evidence and fail-closed gates can delay releases when tools fail or findings need review.
+
+  - Operational Complexity
+    > Introducing artifact integrity, SCA, provenance, signing, and policy enforcement adds multiple tools and pipeline stages to operate and maintain.
+
+  - Build Overhead
+    > SBOM generation, scanning, attestation, and signing increase build time and require additional infrastructure (e.g., Dependency-Track, Rekor).
+
+  - Key and Identity Management
+    > Keyless signing depends on OIDC identity providers and the Sigstore infrastructure, while key-based signing requires HSM/KMS management.
+
 - Risks
-  - Authorized Compromise
-    > A compromised trusted builder or signer may produce valid evidence for malicious software; mitigate through isolation, independent approval, monitoring, and compromise exercises.
-  - Incomplete Evidence
-    > Discovery gaps and stale vulnerability data may produce false confidence; record coverage and freshness and retain manual assessment paths.
-  - Availability and Disclosure
-    > External service outages and public signing metadata require continuity and privacy review; use approved offline verification or restricted signing profiles without silently weakening acceptance.
+
+  - Tooling Fragmentation
+    > Multiple tools (Trivy, Dependency-Track, Cosign, OPA) must be kept compatible and consistently configured.
+
+  - Policy Drift
+    > Enforcement policies may diverge across environments over time.
+
+  - False Negatives in Scanning
+    > Vulnerability databases may lag newly disclosed vulnerabilities.
 
 ## 6. Implementation
 
-These steps are follow-up work for consuming projects. This documentation change does not deploy controls or assert conformance.
+1. Harden Source and Dependencies
 
-1. Establish Ownership and Policy
+    - Enforce signed commits, protected branches, and required review on all source repositories to satisfy the SLSA Source Track.
+    - Enable lockfiles and cryptographic digest pinning, and automated dependency updates to CI.
 
-    Product maintainers inventory release artifacts, update channels, and support periods. Security and platform owners define approved builders, signing identities, trust roots, vulnerability thresholds, remediation deadlines, evidence freshness, retention, and exception approval. Record the selected specification and tool versions.
+2. Harden Builds
 
-2. Harden Source, Dependencies, and Builds
+    - Run builds to ephemeral, isolated, least-privilege runners with short-lived credentials.
+    - Pin CI steps and build images by digest, remove network access from build stages, and track reproducibility.
 
-    Apply branch and release protections, review workflow changes, pin dependencies and tools, and isolate untrusted execution. Start with one release pipeline and document evidence against the SLSA Build L2 target; assess L3 separately before claiming it.
+3. Produce and Retain Evidence
 
-3. Produce and Retain Release Evidence
+    - Generate and Ingest SBOMs
+      - Generate the artifact and its SBOM, provenance.
+      - Ingest SBOMs into centralized continuous monitoring platform (e.g. Dependency-Track).
 
-    Generate the artifact and its SBOM, provenance, and scan results. For a container image, use a digest-pinned reference and an explicit Trivy command such as `trivy image --format cyclonedx --output logs/sbom/sbom-image.cdx.json "$IMAGE_REF"` (where `IMAGE_REF` is an image reference including `@sha256:<digest>`). The current [Makefile](../../Makefile) tasks `sast-trivy-sbom-cyclonedx-image`, `sast-trivy-sbom-scan`, and `sast-trivy-sbom-license` accept positional inputs through `MAKECMDGOALS`; Make also interprets those inputs as independent build goals, causing a failure if no corresponding rule exists. Do not use these targets as enforced CI release gates until their input interfaces are corrected and validated. Check scanner exit status and output integrity, supplement missing inventory coverage, retain signed evidence with the immutable release, and ingest the SBOM into Dependency-Track for the support period.
+    - Produce Provenance and Attestations
+      - Emit in-toto metadata during builds and attach SLSA provenance attestations using Cosign.
 
-4. Integrate Verification and Acceptance Gates
+    - Signing Artifacts and Attestation
+      - Sign artifacts and attestations with keyless signing, or with HSM/KMS-backed key-based signing where offline verification is required.
+      - Store signed evidence alongside the immutable release artifacts.
 
-    Platform owners implement signature verification and trusted claim normalization before OPA evaluation. Add protected policy tests through `policy-conftest-test`. Initially observe policy results to resolve integration gaps; switch to enforced release and deployment gates after the acceptance cases below pass.
+4. Enforce Policies
 
-5. Validate Acceptance and Failure Paths
+    - Write OPA policies in Rego that verify signatures, attestations, and SBOM presence before artifacts are accepted or deployed.
 
-    | Case | Required outcome |
-    | --- | --- |
-    | Approved digest, identity, builder, evidence, and policy results | Accept and record the decision and policy version. |
-    | Artifact or SBOM substitution, changed attestation, or digest mismatch | Reject before publication or deployment. |
-    | Wrong issuer, workflow identity, key, source revision, or builder | Reject even when a cryptographic signature is valid. |
-    | Missing evidence, stale scan, unavailable verifier, or malformed policy input | Block acceptance; record the failure. |
-    | Prohibited license or vulnerability exceeding the policy threshold | Block unless an applicable approved exception permits it. |
-    | Untrusted VEX, wrong product version, or expired exception | Preserve the finding and reject the claimed exemption. |
-    | Expired update metadata, rollback, or substituted update target | Reject installation under the update profile. |
-    | Offline verification and signing-key rotation | Accept authorized evidence with provisioned trust; reject unauthorized keys without disabling checks. |
+5. Secure Update Distribution
 
-6. Operate and Reassess
-
-    Security owners triage monitoring results, update reviewed VEX and advisories, and coordinate remediation. Release owners test trust rotation, compromised-key response, artifact quarantine, and update recovery. Review coverage and exceptions periodically; changes to the chosen trust model require a subsequent ADR.
+    - Distribute updates through TUF (and SUIT for IoT), verifying signed metadata on the consumer side.
 
 ## 7. References
 
-- GitHub [Issue #566](https://github.com/sentenz/convention/issues/566), originating proposal.
-- Sentenz [ADR 016: Security Testing for C/C++ under CRA](016-adr-security-testing-c-cpp-cra.md).
-- Sentenz [Makefile](../../Makefile), existing scanning and policy tasks.
-- NIST [Secure Software Development Framework](https://csrc.nist.gov/projects/ssdf).
-- SLSA [v1.2 specification](https://slsa.dev/spec/v1.2/), [Build track](https://slsa.dev/spec/v1.2/build-track-basics), and [build provenance](https://slsa.dev/spec/v1.2/build-provenance).
-- SLSA [Working Draft](https://slsa.dev/spec/draft/), informative future tracks.
-- Reproducible Builds [definition](https://reproducible-builds.org/docs/definition/).
-- Trivy [repository](https://github.com/aquasecurity/trivy), [license scanning](https://trivy.dev/docs/latest/scanner/license/), and [VEX support](https://trivy.dev/docs/latest/supply-chain/vex/).
-- OWASP [CycloneDX SBOM](https://cyclonedx.org/capabilities/sbom/) and [Dependency-Track](https://docs.dependencytrack.org/).
-- Linux Foundation [SPDX](https://spdx.dev/).
-- OpenVEX [specification](https://github.com/openvex/spec).
-- OASIS [Common Security Advisory Framework](https://www.csaf.io/).
-- Sigstore [Cosign verification](https://docs.sigstore.dev/cosign/verifying/verify/) and [in-toto attestations](https://docs.sigstore.dev/cosign/verifying/attestation/).
-- The Update Framework [overview](https://theupdateframework.io/docs/overview/).
-- IETF [RFC 9019: A Firmware Update Architecture for Internet of Things](https://datatracker.ietf.org/doc/html/rfc9019).
-- Open Policy Agent [documentation](https://www.openpolicyagent.org/docs).
+- SLSA [Specification](https://slsa.dev/spec/draft/) page.
+- [Reproducible Builds](https://reproducible-builds.org/) page.
+- [CycloneDX](https://cyclonedx.org/) page.
+- [SPDX](https://spdx.dev/) page.
+- [Trivy](https://github.com/aquasecurity/trivy) repository.
+- [Dependency-Track](https://dependencytrack.org/) page.
+- GitHub [OpenVEX](https://github.com/openvex/spec) specification.
+- [Common Security Advisory Framework (CSAF)](https://www.csaf.io/) page.
+- [in-toto](https://in-toto.io/) page.
+- [Cosign](https://github.com/sigstore/cosign) repository.
+- [Sigstore](https://www.sigstore.dev/) page.
+- [The Update Framework (TUF)](https://theupdateframework.io/) page.
+- IETF [SUIT (RFC 9019)](https://datatracker.ietf.org/doc/rfc9019/) specification.
+- [Open Policy Agent (OPA)](https://www.openpolicyagent.org/) page.

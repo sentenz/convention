@@ -2,7 +2,8 @@
 
 Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a Git Flow release workflow that uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
 
-SemVer specifies version syntax and precedence; commit-message conventions, branch policies, testing stages, and release tooling are separate project decisions.
+> [!NOTE]
+> SemVer specifies version syntax and precedence, commit-message conventions, branch policies, testing stages, and release tooling are separate project decisions.
 
 - [1. Category](#1-category)
   - [1.1. Semantic Versioning (SemVer)](#11-semantic-versioning-semver)
@@ -60,7 +61,7 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
 
 A pre-release appends a hyphen and dot-separated identifiers to a target version, such as `1.1.0-beta.1`. Every pre-release has lower precedence than the corresponding stable version. SemVer defines identifier syntax and ordering, but does not prescribe testing stages or release-readiness criteria.
 
-1. Common Identifiers
+1. Identifiers
 
     - Alpha (`alpha`)
       > A project-defined label commonly used for early integration and exploratory testing.
@@ -125,7 +126,7 @@ Release practices map changes to version identifiers and govern when those ident
 
 [Conventional Commits](../articles/commit.md#11-conventional-commits) provides machine-readable change descriptions that release tooling can map to SemVer increments. This mapping depends on correct commit classification and project-specific tool configuration.
 
-1. Change Classification
+1. Classification
 
     - Breaking Change
       > A commit marked with `!` after its type or scope, or a `BREAKING CHANGE:` footer, signals an incompatible API change and normally leads to a major release.

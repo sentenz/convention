@@ -74,7 +74,7 @@ Pre-release identifiers can be appended to a target version to distinguish a pre
 
 #### 1.1.3. Workflow
 
-Following [Git Flow](../articles/branching-strategies.md#12-git-flow), this workflow illustrates how features are developed, integrated, and verified before the first stable release. Feature integration takes place on `develop`, release stabilization on a `release/*` branch, and stable releases on `main`.
+Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workflow illustrates how features are developed, integrated, and verified before the first stable release. Feature integration takes place on `develop`, release stabilization on a `release/*` branch, and stable releases on `main`.
 
 1. Concepts and Components
 
@@ -87,12 +87,12 @@ Following [Git Flow](../articles/branching-strategies.md#12-git-flow), this work
     - Stable Release
       > Merge the approved release branch into `main`, validate the merge result and final artifact, and publish `1.0.0`. Merge the release branch back into `develop` to retain its fixes in subsequent development.
 
-2. Version Sequence and Diagram
+2. Sequence and Diagram
 
     The following version sequence follows the [SemVer precedence rules](https://semver.org/#spec-item-11):
 
     ```plaintext
-    1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.1 < 1.0.0
+    1.0.0-alpha.0 < 1.0.0-alpha.1 < 1.0.0-alpha.2 < 1.0.0-beta.0 < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.1 < 1.0.0
     ```
 
     ```mermaid

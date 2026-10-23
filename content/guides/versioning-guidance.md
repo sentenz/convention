@@ -96,7 +96,7 @@ Pre-release identifiers can be appended to the next target version to indicate t
     ```
 
     ```mermaid
-    gitGraph:
+    gitGraph TB:
         commit id: "chore(sdk): initialize project"
         branch develop
         checkout develop

@@ -92,11 +92,11 @@ Pre-release identifiers can be appended to the next target version to indicate t
     The diagram follows the [SemVer precedence example](https://semver.org/#spec-item-11):
 
     ```plaintext
-    1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
+    1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.1 < 1.0.0
     ```
 
     ```mermaid
-    gitGraph TB:
+    gitGraph:
         commit id: "chore(sdk): initialize project"
         branch develop
         checkout develop

@@ -4,7 +4,7 @@
   - [1.1. Semantic Versioning (SemVer)](#11-semantic-versioning-semver)
     - [1.1.1. Release](#111-release)
     - [1.1.2. Pre-release](#112-pre-release)
-    - [1.1.3. Git Flow Workflow](#113-git-flow-workflow)
+    - [1.1.3. Workflow](#113-workflow)
 - [2. References](#2-references)
 
 ## 1. Category
@@ -72,9 +72,9 @@ Pre-release identifiers can be appended to the next target version to indicate t
     2. Numeric suffixes (`.1`, `.2`, ...) should increment sequentially per identifier.
     3. Promoting to stable removes the pre-release suffix and publishes the final version.
 
-#### 1.1.3. Git Flow Workflow
+#### 1.1.3. Workflow
 
-[Git Flow](../articles/branching-strategies.md#12-git-flow) separates feature integration on `develop`, release stabilization on a `release/*` branch, and stable releases on `main`. The workflow illustrates a first stable release with features creation and verification.
+Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workflow illustrates feature creation, integration, and verification leading to the first stable release. Feature integration occurs on `develop`, release stabilization takes place on a `release/*` branch, and stable releases are maintained on `main`.
 
 1. Concepts and Components
 

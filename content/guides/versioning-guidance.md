@@ -112,21 +112,19 @@ Pre-release identifiers can be appended to the next target version to indicate t
         branch "release/1.0.0"
         checkout "release/1.0.0"
         commit id: "chore(release): prepare 1.0.0-beta" tag: "v1.0.0-beta"
-        commit id: "fix(payments): prevent duplicate charges on retry" tag: "v1.0.0-beta.2"
-        commit id: "chore(release): prepare 1.0.0-beta.11" tag: "v1.0.0-beta.11"
+        commit id: "fix(payments): prevent duplicate charges" tag: "v1.0.0-beta.1"
+        commit id: "chore(release): prepare 1.0.0-beta.2" tag: "v1.0.0-beta.2"
         commit id: "chore(release): prepare 1.0.0-rc.1" tag: "v1.0.0-rc.1"
 
         checkout main
-        merge "release/1.0.0" id: "chore(release): prepare 1.0.0" tag: "v1.0.0"
+        merge "release/1.0.0" id: "chore(release): version 1.0.0" tag: "v1.0.0"
 
         checkout develop
         merge "release/1.0.0" id: "chore(merge): integrate release fixes"
     ```
 
     > [!NOTE]
-    > Commit labels follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/): `feat` introduces functionality, `fix` corrects defects, and `chore(release)` records version preparation. `chore(merge)` labels integration commits while the original feature and fix commits remain in history. The `chore` type is a project convention with no implicit SemVer bump; release configuration controls pre-release progression and stable promotion. Preparing a release commit does not itself publish an artifact.
-    >
-    > The `v` prefix is a Git tag convention; the package version is `1.0.0`. Intermediate beta releases (`beta.1` and `beta.3` through `beta.10`) are omitted from the diagram. The initial commit is repository scaffolding, not a published stable SDK.
+    > Commit labels follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/).
 
 3. Rules
 

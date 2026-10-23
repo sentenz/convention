@@ -46,16 +46,6 @@ Pre-release identifiers can be appended to the next target version to indicate t
 
 1. Concepts and Components
 
-    - `rc`
-      > Release candidate identifier.
-      >
-      > Example progression: `1.0.0` -> `1.1.0-rc.1` -> `1.1.0-rc.2` -> `1.1.0`
-
-    - `next`
-      > Distribution channel identifier for iterative upcoming releases.
-      >
-      > Example progression: `1.0.0` -> `1.1.0-next.1` -> `1.1.0-next.2` -> `1.1.0`
-
     - `alpha`
       > Unstable pre-release identifier for early testing.
       >
@@ -65,6 +55,16 @@ Pre-release identifiers can be appended to the next target version to indicate t
       > More stable pre-release identifier for broader testing.
       >
       > Example progression: `1.0.0` -> `1.1.0-beta.1` -> `1.1.0-beta.2` -> `1.1.0`
+
+    - `rc`
+      > Release candidate identifier.
+      >
+      > Example progression: `1.0.0` -> `1.1.0-rc.1` -> `1.1.0-rc.2` -> `1.1.0`
+
+    - `next`
+      > Distribution channel identifier for iterative upcoming releases.
+      >
+      > Example progression: `1.0.0` -> `1.1.0-next.1` -> `1.1.0-next.2` -> `1.1.0`
 
 2. Rules
 

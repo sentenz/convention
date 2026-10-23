@@ -4,6 +4,7 @@
   - [1.1. Semantic Versioning (SemVer)](#11-semantic-versioning-semver)
     - [1.1.1. Release](#111-release)
     - [1.1.2. Pre-release](#112-pre-release)
+    - [1.1.3. Git Flow Workflow](#113-git-flow-workflow)
 - [2. References](#2-references)
 
 ## 1. Category
@@ -71,8 +72,72 @@ Pre-release identifiers can be appended to the next target version to indicate t
     2. Numeric suffixes (`.1`, `.2`, ...) should increment sequentially per identifier.
     3. Promoting to stable removes the pre-release suffix and publishes the final version.
 
+#### 1.1.3. Git Flow Workflow
+
+[Git Flow](../articles/branching-strategies.md#12-git-flow) separates feature integration on `develop`, release stabilization on a `release/*` branch, and stable releases on `main`. The following payment SDK example illustrates a first stable release with payment creation, refunds, and webhook verification. It is an illustrative scenario, not the release history of a specific SDK.
+
+1. Concepts and Components
+
+    - Feature Integration
+      > Feature branches originate from `develop` and return through reviewed pull requests. Alpha releases provide early snapshots for internal integration testing.
+
+    - Release Stabilization
+      > Once the planned scope is complete, create `release/1.0.0` from `develop`. Publish beta versions for merchant sandbox testing and release candidates for final qualification. Restrict this branch to release fixes, documentation, and version preparation.
+
+    - Stable Release
+      > Merge the approved release branch into `main`, validate the merge result and final artifact, and publish `1.0.0`. Merge the release branch back into `develop` so subsequent development retains the release fixes.
+
+2. Representation and Diagrams
+
+    The diagram follows the [SemVer precedence example](https://semver.org/#spec-item-11):
+
+    ```plaintext
+    1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
+    ```
+
+    ```mermaid
+    gitGraph TB:
+        commit id: "Initialize SDK"
+        branch develop
+        checkout develop
+
+        branch "feature/payment-api"
+        commit id: "Implement payments and refunds"
+        checkout develop
+        merge "feature/payment-api" tag: "v1.0.0-alpha"
+
+        commit id: "Correct authentication" tag: "v1.0.0-alpha.1"
+        commit id: "Add webhook verification" tag: "v1.0.0-alpha.beta"
+
+        branch "release/1.0.0"
+        checkout "release/1.0.0"
+        commit id: "Freeze release scope" tag: "v1.0.0-beta"
+        commit id: "Correct retry handling" tag: "v1.0.0-beta.2"
+        commit id: "Complete beta stabilization" tag: "v1.0.0-beta.11"
+        commit id: "Qualify release candidate" tag: "v1.0.0-rc.1"
+
+        checkout main
+        merge "release/1.0.0" id: "Publish stable SDK" tag: "v1.0.0"
+
+        checkout develop
+        merge "release/1.0.0" id: "Integrate release fixes"
+    ```
+
+    > [!NOTE]
+    > The `v` prefix is a Git tag convention; the package version is `1.0.0`. Intermediate beta releases (`beta.1` and `beta.3` through `beta.10`) are omitted from the diagram. The initial commit is repository scaffolding, not a published stable SDK.
+
+3. Rules
+
+    1. SemVer defines version precedence; branch placement and testing stages are project conventions. A pre-release label does not by itself establish release readiness.
+    2. `alpha.beta` is a valid pre-release identifier sequence, not a standardized stage between alpha and beta. It appears here to reproduce the specification example. Prefer numbered identifiers such as `alpha.1`, `beta.1`, and `rc.1` for routine release automation.
+    3. Numeric identifiers compare numerically (`beta.2 < beta.11`), numeric identifiers precede nonnumeric identifiers (`alpha.1 < alpha.beta`), and nonnumeric identifiers compare in ASCII sort order (`alpha < beta < rc`). When preceding identifiers match, additional identifiers increase precedence (`alpha < alpha.1`). Every pre-release has lower precedence than the corresponding stable version.
+    4. Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Never replace an already published version or move its release tag; publish a new version for subsequent changes.
+    5. If qualification finds a release-blocking defect, fix it on the release branch and publish another candidate, such as `1.0.0-rc.2`. Complete the release gates before publishing the stable version.
+
 ## 2. References
 
+- Semantic Versioning [Specification](https://semver.org/) page.
+- Sentenz [Branching Strategies](../articles/branching-strategies.md) article.
 - Sentenz [Versioning](../articles/versioning.md) article.
 - Sentenz [Commit](../articles/commit.md) article.
 - Sentenz [Changelog](../articles/changelog.md) article.

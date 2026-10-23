@@ -136,8 +136,7 @@ Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workfl
 
 ## 2. References
 
-- Semantic Versioning [Specification](https://semver.org/) page.
-- Sentenz [Branching Strategies](../articles/branching-strategies.md) article.
 - Sentenz [Versioning](../articles/versioning.md) article.
 - Sentenz [Commit](../articles/commit.md) article.
 - Sentenz [Changelog](../articles/changelog.md) article.
+- Sentenz [Branching Strategies](../articles/branching-strategies.md) article.

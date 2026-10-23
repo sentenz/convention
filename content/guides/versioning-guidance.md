@@ -59,7 +59,7 @@ Pre-release identifiers can be appended to a target version to distinguish a pre
     - `rc`
       > A pre-release identifier used for release candidates.
       >
-      > Example progression: `1.0.0` -> `1.1.0-rc.1` -> `1.1.0-rc.2` -> `1.1.0`
+      > Example progression: `1.0.0` -> `1.1.0-rc.0` -> `1.1.0-rc.1` -> `1.1.0`
 
     - `next`
       > A pre-release identifier used to distribute iterative builds of upcoming releases.
@@ -92,7 +92,7 @@ Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workfl
     The following version sequence follows the [SemVer precedence rules](https://semver.org/#spec-item-11):
 
     ```plaintext
-    1.0.0-alpha.0 < 1.0.0-alpha.1 < 1.0.0-alpha.2 < 1.0.0-beta.0 < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.1 < 1.0.0
+    1.0.0-alpha.0 < 1.0.0-alpha.1 < 1.0.0-alpha.2 < 1.0.0-beta.0 < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.0 < 1.0.0
     ```
 
     ```mermaid
@@ -114,7 +114,7 @@ Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workfl
         commit id: "chore(release): prepare 1.0.0-beta.0" tag: "v1.0.0-beta.0"
         commit id: "fix(payments): prevent duplicate charges" tag: "v1.0.0-beta.1"
         commit id: "chore(release): prepare 1.0.0-beta.2" tag: "v1.0.0-beta.2"
-        commit id: "chore(release): prepare 1.0.0-rc.1" tag: "v1.0.0-rc.1"
+        commit id: "chore(release): prepare 1.0.0-rc.0" tag: "v1.0.0-rc.0"
 
         checkout main
         merge "release/1.0.0" id: "chore(release): version 1.0.0" tag: "v1.0.0"
@@ -129,10 +129,10 @@ Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workfl
 3. Rules
 
     1. SemVer defines version precedence, whereas branch assignments and testing stages are project-specific conventions. A pre-release label alone does not establish release readiness.
-    2. This workflow starts alpha and beta numbering at `.0` (`alpha.0` and `beta.0`) and release-candidate numbering at `.1` (`rc.1`). These starting values are project conventions, not SemVer requirements.
+    2. This workflow starts alpha, beta, and release-candidate numbering at `.0` (`alpha.0`, `beta.0`, and `rc.0`). These starting values are project conventions, not SemVer requirements.
     3. Pre-release identifiers are compared from left to right. Numeric identifiers are compared numerically (`alpha.0 < alpha.1 < alpha.2` and `beta.0 < beta.1 < beta.2`), while non-numeric identifiers are compared lexically in ASCII sort order (`alpha < beta < rc`). When preceding identifiers match, additional identifiers increase precedence. Every pre-release has lower precedence than the corresponding stable version.
     4. Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Do not replace a published version or move its release tag; publish a new version for subsequent changes.
-    5. If a release-blocking defect is discovered during qualification, fix it on the release branch and publish another candidate, such as `1.0.0-rc.2`. Complete all release gates before publishing the stable version.
+    5. If a release-blocking defect is discovered during qualification, fix it on the release branch and publish another candidate, such as `1.0.0-rc.1`. Complete all release gates before publishing the stable version.
 
 ## 2. References
 

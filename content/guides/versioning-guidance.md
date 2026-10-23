@@ -55,12 +55,15 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
     1. Public API Contract
 
         Define the public API before assigning compatibility meaning to version numbers. API contracts may be expressed in code, documentation, or both.
+
     2. Change Impact
 
         Select the highest-impact change included in a release. A breaking change takes precedence over backward-compatible features and fixes.
+
     3. Release Immutability
 
         Treat published release contents as immutable. A correction requires a new version rather than replacement of a published artifact.
+
     4. Initial Development Policy
 
         During initial development (`0.y.z`), the public API may change without the compatibility guarantees associated with `1.0.0` and later versions. The project must define its release policy for this phase.
@@ -106,12 +109,15 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
     1. Identifier Syntax
 
         Separate pre-release identifiers with periods. Each identifier must be nonempty and contain only ASCII letters, digits, or hyphens; purely numeric identifiers must not contain leading zeroes.
+
     2. Identifier Precedence
 
         Compare identifiers from left to right: numeric identifiers compare numerically, non-numeric identifiers compare in ASCII lexical order, and numeric identifiers have lower precedence than non-numeric identifiers. When shared identifiers are equal, additional identifiers increase precedence.
+
     3. Stage Numbering
 
         Incrementing suffixes such as `alpha.0`, `alpha.1`, and `beta.0` and starting counters at `.0` are project conventions, not SemVer requirements.
+
     4. Stable Release Qualification
 
         Publish a stable version without the pre-release suffix only after completing the project's release gates.
@@ -133,9 +139,11 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
     1. Identifier Syntax
 
         Build identifiers must be nonempty and contain only ASCII letters, digits, or hyphens.
+
     2. Version Precedence
 
         Do not use build metadata to express API compatibility or pre-release ordering.
+
     3. Artifact Traceability
 
         Preserve traceability from a published artifact to its source revision; build metadata does not replace an immutable release artifact or version tag.
@@ -167,15 +175,19 @@ Release practices map changes to version identifiers and govern when those ident
     1. Compatibility Assessment
 
         Evaluate changes against the declared public API. Commit-message types assist automation but do not establish compatibility on their own.
+
     2. Release Automation
 
         Configure release tooling to determine the next version, generate release notes or update `CHANGELOG.md`, and publish from a verified revision.
+
     3. Version Tags
 
         Use unique, immutable Git tags such as `v1.1.0` to identify published revisions. The `v` prefix is a repository tagging convention, not part of the SemVer version string.
+
     4. Publication Immutability
 
         Publish a new version for subsequent corrections. Do not move a published tag or replace an existing version's contents.
+
     5. Pre-release Channels
 
         Configure pre-release distribution channels and rules explicitly. A channel label does not, by itself, guarantee readiness or change the SemVer precedence algorithm.
@@ -239,15 +251,19 @@ The following example applies [Git Flow](../articles/branching-strategies.md#12-
     1. Release Qualification
 
         Apply release gates, including automated tests, compatibility checks, and artifact verification, before publishing each pre-release or stable release.
+
     2. Stage Counters
 
         Start numeric stage counters at `.0` for this workflow; the starting value is a repository convention.
+
     3. Candidate Corrections
 
         If final qualification reveals a release-blocking defect, correct it on the release branch and publish a new candidate, for example `1.0.0-rc.1`.
+
     4. Release Publication
 
         Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Do not republish an existing version.
+
     5. Fix Reconciliation
 
         Integrate stabilization fixes back into `develop` after merging the release into `main`.

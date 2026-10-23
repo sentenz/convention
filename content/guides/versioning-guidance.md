@@ -1,6 +1,6 @@
 # Versioning Guidance
 
-Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a branching-strategy-independent release workflow that uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
+Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a Git Flow release workflow that uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
 
 > [!NOTE]
 > SemVer specifies version syntax and precedence, commit-message conventions, branch policies, testing stages, and release tooling are separate project decisions.
@@ -12,7 +12,7 @@ Versioning guidance defines how software release identifiers are selected, valid
     - [1.1.3. Build Metadata](#113-build-metadata)
 - [2. Best Practice](#2-best-practice)
   - [2.1. Release Determination and Automation](#21-release-determination-and-automation)
-  - [2.2. Branching Workflow](#22-branching-workflow)
+  - [2.2. Git Flow Release Workflow](#22-git-flow-release-workflow)
 - [3. References](#3-references)
 
 ## 1. Category
@@ -192,83 +192,81 @@ Release practices map changes to version identifiers and govern when those ident
 
         Configure pre-release distribution channels and rules explicitly. A channel label does not, by itself, guarantee readiness or change the SemVer precedence algorithm.
 
-### 2.2. Branching Workflow
+### 2.2. Git Flow Release Workflow
 
-A branching workflow determines where changes are integrated, release candidates are prepared, and stable versions are published. These activities are independent of the version identifier format. The selected [branching strategy](../articles/branching-strategies.md) may use a single shared branch, separate integration and production branches, or an optional short-lived release branch.
-
-The following lifecycle applies across these strategies. Branch names and merge operations follow the repository's branching policy rather than requirements imposed by SemVer.
+The following example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to a first stable release of a payments software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`. This branch assignment is a project workflow, not a SemVer rule.
 
 1. Concepts and Components
 
-    - Change Integration
-      > Integrate approved features and fixes into the repository's designated integration branch. In trunk-based workflows this is commonly `main` or `trunk`; other workflows may use `develop`. Validated integration revisions may be published as alpha pre-releases.
+    - Feature Integration
+      > Create feature branches from `develop` and integrate changes through reviewed pull requests. Publish alpha snapshots from validated integration commits for early testing.
 
-    - Release Preparation
-      > Select the target stable version and the source revision for release qualification. Prepare beta releases and release candidates on the shared integration branch or a dedicated stabilization branch when isolation is required.
-
-    - Release Qualification
-      > Test each candidate against compatibility, security, and artifact requirements. Restrict changes during stabilization to corrections needed for the intended release.
+    - Release Stabilization
+      > Create `release/1.0.0` from `develop` when the release scope is complete. Publish beta versions for testing in merchant sandboxes and release candidates for final qualification. Restrict changes to release fixes, documentation, and version preparation.
 
     - Stable Publication
-      > Publish the stable version from a verified source revision and artifact, using a unique, immutable version tag. The publishing branch and any required merges depend on the selected branching strategy.
-
-    - Fix Reconciliation
-      > Ensure that changes made during release stabilization remain part of ongoing development. A single-branch workflow may require no additional merge; workflows with separate branches must propagate the fixes to the applicable integration branch.
+      > Merge the approved release branch into `main`, validate the resulting commit and final artifact, and publish `1.0.0` with an immutable tag. Merge release fixes back into `develop` to preserve them in subsequent development.
 
 2. Sequence and Diagram
 
-    The following example illustrates version progression toward `1.0.0`. The `alpha`, `beta`, and `rc` stages are optional project conventions; version precedence follows the [SemVer specification](https://semver.org/spec/v2.0.0.html#spec-item-11):
+    The example uses project-defined `alpha`, `beta`, and `rc` stages. Its identifiers follow the [SemVer precedence rules](https://semver.org/spec/v2.0.0.html#spec-item-11):
 
     ```plaintext
     1.0.0-alpha.0 < 1.0.0-alpha.1 < 1.0.0-alpha.2 < 1.0.0-beta.0 < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.0 < 1.0.0
     ```
 
-    The release lifecycle does not assume a particular branch topology:
-
     ```mermaid
-    flowchart TD
-        A["Integrate approved changes"] --> B["Select target version and release source"]
-        B --> C["Build and validate release candidate"]
-        C --> D{"Release gates passed?"}
-        D -->|No| E["Apply fixes and prepare next candidate"]
-        E --> C
-        D -->|Yes| F["Verify final release revision and artifact"]
-        F --> G["Create immutable version tag and publish"]
-        G --> H["Reconcile fixes with ongoing development"]
+    gitGraph TB:
+        commit id: "chore(sdk): initialize project"
+        branch develop
+        checkout develop
+
+        branch "feature/api"
+        commit id: "feat(payments): add payments and refunds"
+        checkout develop
+        merge "feature/api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha.0"
+
+        commit id: "fix(auth): correct authentication handling" tag: "v1.0.0-alpha.1"
+        commit id: "feat(webhooks): add signature verification" tag: "v1.0.0-alpha.2"
+
+        branch "release/1.0.0"
+        checkout "release/1.0.0"
+        commit id: "chore(release): prepare 1.0.0-beta.0" tag: "v1.0.0-beta.0"
+        commit id: "fix(payments): prevent duplicate charges" tag: "v1.0.0-beta.1"
+        commit id: "chore(release): prepare 1.0.0-beta.2" tag: "v1.0.0-beta.2"
+        commit id: "chore(release): prepare 1.0.0-rc.0" tag: "v1.0.0-rc.0"
+
+        checkout main
+        merge "release/1.0.0" id: "chore(release): version 1.0.0" tag: "v1.0.0"
+
+        checkout develop
+        merge "release/1.0.0" id: "chore(merge): integrate release fixes"
     ```
 
     > [!NOTE]
-    > A pre-release may be published from a validated candidate for testing. A stable release requires separate confirmation of the final published revision and artifact. Branch promotion, merge direction, and release-channel configuration are defined by the repository's workflow.
+    > Git tags in the diagram mark release revisions. The publication pipeline must validate the merged `main` revision and its artifact before making the final tag and stable release available.
 
 3. Rules
 
-    1. Branch Selection
-
-        Define the integration and publication branches according to the selected strategy. For example, trunk-based development may publish directly from `main`, whereas a multi-branch workflow may integrate on `develop` and publish from `main`.
-
-    2. Stabilization Branches
-
-        Create a dedicated release branch only when release-specific stabilization or parallel maintenance requires it. Branch creation is not a SemVer requirement.
-
-    3. Release Qualification
+    1. Release Qualification
 
         Apply release gates, including automated tests, compatibility checks, and artifact verification, before publishing each pre-release or stable release.
 
-    4. Stage Counters
+    2. Stage Counters
 
-        Starting numeric pre-release stage counters at `.0` is a repository convention, not a SemVer requirement.
+        Start numeric stage counters at `.0` for this workflow; the starting value is a repository convention.
 
-    5. Candidate Corrections
+    3. Candidate Corrections
 
-        Apply release-blocking corrections to the candidate's source revision or branch and publish a new pre-release identifier, for example `1.0.0-rc.1`, rather than replacing an existing release.
+        If final qualification reveals a release-blocking defect, correct it on the release branch and publish a new candidate, for example `1.0.0-rc.1`.
 
-    6. Release Publication
+    4. Release Publication
 
-        Publish from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Do not move a published tag or overwrite a published version.
+        Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Do not republish an existing version.
 
-    7. Fix Reconciliation
+    5. Fix Reconciliation
 
-        Propagate stabilization fixes to all relevant development or maintenance branches. A single-branch workflow may already contain the fixes, whereas a multi-branch workflow may require a merge or cherry-pick.
+        Integrate stabilization fixes back into `develop` after merging the release into `main`.
 
 ## 3. References
 
@@ -278,4 +276,4 @@ The following lifecycle applies across these strategies. Branch names and merge 
 - Sentenz [Branching Strategies](../articles/branching-strategies.md) article.
 - Semantic Versioning [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) specification.
 - Conventional Commits [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) specification.
-- Mermaid [Flowcharts](https://mermaid.js.org/syntax/flowchart.html) documentation.
+- Mermaid [GitGraph Diagrams](https://mermaid.js.org/syntax/gitgraph.html) documentation.

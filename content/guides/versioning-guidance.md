@@ -1,95 +1,170 @@
 # Versioning Guidance
 
+Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a Git Flow release workflow that uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
+
+SemVer specifies version syntax and precedence; commit-message conventions, branch policies, testing stages, and release tooling are separate project decisions.
+
 - [1. Category](#1-category)
   - [1.1. Semantic Versioning (SemVer)](#11-semantic-versioning-semver)
-    - [1.1.1. Release](#111-release)
+    - [1.1.1. Stable Release](#111-stable-release)
     - [1.1.2. Pre-release](#112-pre-release)
-    - [1.1.3. Workflow](#113-workflow)
-- [2. References](#2-references)
+    - [1.1.3. Build Metadata](#113-build-metadata)
+- [2. Best Practice](#2-best-practice)
+  - [2.1. Release Determination and Automation](#21-release-determination-and-automation)
+  - [2.2. Git Flow Release Workflow](#22-git-flow-release-workflow)
+- [3. References](#3-references)
 
 ## 1. Category
 
+This guidance uses SemVer as the release identifier scheme. Stable releases, pre-releases, and build metadata have distinct roles within that scheme. Alternative schemes, including Calendar Versioning (CalVer), are described in the [Versioning](../articles/versioning.md) article.
+
 ### 1.1. Semantic Versioning (SemVer)
 
-[Semantic Versioning (SemVer)](../articles/versioning.md#11-semantic-versioning-semver) and [Conventional Commits](../articles/commit.md#11-conventional-commits) are commonly used together to automate version tagging and updates to `CHANGELOG.md` in release pipelines.
+The SemVer 2.0.0 specification assigns meaning to changes in a declared public application programming interface (API). A version has three required numeric components and may include pre-release identifiers and build metadata.
 
-#### 1.1.1. Release
+```plaintext
+MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]
+```
 
-[Semantic Versioning (SemVer)](../articles/versioning.md#11-semantic-versioning-semver) specifies a three-component version format: `MAJOR.MINOR.PATCH`.
+The bracketed portions in this representation are optional; brackets are not part of a version identifier. The required numeric components are non-negative integers without leading zeroes.
+
+#### 1.1.1. Stable Release
+
+A stable release has no pre-release suffix. Once a public API reaches version `1.0.0`, changes to that API determine which numeric component increases.
 
 1. Concepts and Components
 
     - `MAJOR`
-      > Increments when backward-incompatible changes are introduced.
+      > Increments for backward-incompatible API changes. The minor and patch components reset to zero.
       >
-      > Example: `1.0.0` -> `2.0.0`
+      > Example: `1.4.2` → `2.0.0`.
 
     - `MINOR`
-      > Increments when backward-compatible functionality is added.
+      > Increments for backward-compatible functionality added to the public API. The patch component resets to zero.
       >
-      > Example: `1.0.0` -> `1.1.0`
+      > Example: `1.4.2` → `1.5.0`.
 
     - `PATCH`
-      > Increments when backward-compatible bug fixes are introduced.
+      > Increments for backward-compatible bug fixes.
       >
-      > Example: `1.0.0` -> `1.0.1`
+      > Example: `1.4.2` → `1.4.3`.
 
 2. Rules
 
-    1. Commit messages should follow [Conventional Commits](../articles/commit.md#11-conventional-commits) to enable release tooling to detect change types.
-    2. Versions should follow the `MAJOR.MINOR.PATCH` format, with the appropriate component incremented according to the changes included in each release.
-    3. The release workflow should create a version tag and update `CHANGELOG.md`.
+    1. Define the public API before assigning compatibility meaning to version numbers. API contracts may be expressed in code, documentation, or both.
+    2. Select the highest-impact change included in a release. A breaking change takes precedence over backward-compatible features and fixes.
+    3. Treat published release contents as immutable. A correction requires a new version rather than replacement of a published artifact.
+    4. During initial development (`0.y.z`), the public API may change without the compatibility guarantees associated with `1.0.0` and later versions. The project must define its release policy for this phase.
 
 #### 1.1.2. Pre-release
 
-Pre-release identifiers can be appended to a target version to distinguish a pre-release from its corresponding stable release.
+A pre-release appends a hyphen and dot-separated identifiers to a target version, such as `1.1.0-beta.1`. Every pre-release has lower precedence than the corresponding stable version. SemVer defines identifier syntax and ordering, but does not prescribe testing stages or release-readiness criteria.
 
-1. Concepts and Components
+1. Common Identifiers
 
-    - `alpha`
-      > An unstable pre-release identifier used for early testing.
+    - Alpha (`alpha`)
+      > A project-defined label commonly used for early integration and exploratory testing.
       >
-      > Example progression: `1.0.0` -> `1.1.0-alpha.0` -> `1.1.0-alpha.1` -> `1.1.0-alpha.2` -> `1.1.0`
+      > Example: `1.1.0-alpha.0` → `1.1.0-alpha.1`.
 
-    - `beta`
-      > A pre-release identifier typically used for broader testing.
+    - Beta (`beta`)
+      > A project-defined label commonly used for broader compatibility and acceptance testing.
       >
-      > Example progression: `1.0.0` -> `1.1.0-beta.0` -> `1.1.0-beta.1` -> `1.1.0-beta.2` -> `1.1.0`
+      > Example: `1.1.0-beta.0` → `1.1.0-beta.1`.
 
-    - `rc`
-      > A pre-release identifier used for release candidates.
+    - Release Candidate (`rc`)
+      > A project-defined label commonly used for builds undergoing final release qualification.
       >
-      > Example progression: `1.0.0` -> `1.1.0-rc.0` -> `1.1.0-rc.1` -> `1.1.0`
+      > Example: `1.1.0-rc.0` → `1.1.0-rc.1`.
 
-    - `next`
-      > A pre-release identifier used to distribute iterative builds of upcoming releases.
+    - Next (`next`)
+      > A project-defined label used by some release pipelines for iterative preview builds; it does not imply a SemVer-defined stage.
       >
-      > Example progression: `1.0.0` -> `1.1.0-next.1` -> `1.1.0-next.2` -> `1.1.0`
+      > Example: `1.1.0-next.1` → `1.1.0-next.2`.
+
+2. Examples and Explanations
+
+    The following sequence illustrates SemVer precedence for the same target stable version:
+
+    ```plaintext
+    1.1.0-alpha.0 < 1.1.0-alpha.1 < 1.1.0-beta.0 < 1.1.0-rc.0 < 1.1.0
+    ```
+
+    Labels are ordered lexically when compared as non-numeric identifiers. Consequently, `next` does not inherently precede `alpha`, `beta`, or `rc` in a release process; for the same core version, `beta` sorts before `next` and `next` sorts before `rc`.
+
+3. Rules
+
+    1. Separate pre-release identifiers with periods. Each identifier must be nonempty and contain only ASCII letters, digits, or hyphens; purely numeric identifiers must not contain leading zeroes.
+    2. Compare identifiers from left to right: numeric identifiers compare numerically, non-numeric identifiers compare in ASCII lexical order, and numeric identifiers have lower precedence than non-numeric identifiers. When shared identifiers are equal, additional identifiers increase precedence.
+    3. Incrementing suffixes such as `alpha.0`, `alpha.1`, and `beta.0` and starting counters at `.0` are project conventions, not SemVer requirements.
+    4. Publish a stable version without the pre-release suffix only after completing the project's release gates.
+
+#### 1.1.3. Build Metadata
+
+Build metadata appends a plus sign and dot-separated identifiers to a stable or pre-release version. It identifies build provenance without changing SemVer precedence.
+
+1. Examples and Explanations
+
+    - Stable Build
+      > `1.1.0+build.27` and `1.1.0+build.28` have equal SemVer precedence.
+
+    - Pre-release Build
+      > `1.1.0-rc.1+sha.a2e62b` identifies a release-candidate build without changing its precedence relative to `1.1.0-rc.1`.
 
 2. Rules
 
-    1. Pre-release versions are derived from the next planned stable version.
-    2. Numeric suffixes (such as `.0`, `.1`, and `.2`) should increase sequentially for each pre-release identifier.
-    3. To publish a stable release, remove the pre-release suffix and publish the resulting version.
+    1. Build identifiers must be nonempty and contain only ASCII letters, digits, or hyphens.
+    2. Do not use build metadata to express API compatibility or pre-release ordering.
+    3. Preserve traceability from a published artifact to its source revision; build metadata does not replace an immutable release artifact or version tag.
 
-#### 1.1.3. Workflow
+## 2. Best Practice
 
-Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workflow illustrates how features are developed, integrated, and verified before the first stable release. Feature integration takes place on `develop`, release stabilization on a `release/*` branch, and stable releases on `main`.
+Release practices map changes to version identifiers and govern when those identifiers are published. The following conventions are recommended for repositories using SemVer, Conventional Commits, and Git Flow; they are not additional requirements of the SemVer specification.
+
+### 2.1. Release Determination and Automation
+
+[Conventional Commits](../articles/commit.md#11-conventional-commits) provides machine-readable change descriptions that release tooling can map to SemVer increments. This mapping depends on correct commit classification and project-specific tool configuration.
+
+1. Change Classification
+
+    - Breaking Change
+      > A commit marked with `!` after its type or scope, or a `BREAKING CHANGE:` footer, signals an incompatible API change and normally leads to a major release.
+
+    - Feature (`feat`)
+      > A backward-compatible feature normally leads to a minor release.
+
+    - Fix (`fix`)
+      > A backward-compatible defect correction normally leads to a patch release.
+
+    - Other Changes
+      > Documentation, maintenance, and other commit types do not necessarily trigger releases. Their effect depends on the configured release rules and any public API impact.
+
+2. Rules
+
+    1. Evaluate changes against the declared public API. Commit-message types assist automation but do not establish compatibility on their own.
+    2. Configure release tooling to determine the next version, generate release notes or update `CHANGELOG.md`, and publish from a verified revision.
+    3. Use unique, immutable Git tags such as `v1.1.0` to identify published revisions. The `v` prefix is a repository tagging convention, not part of the SemVer version string.
+    4. Publish a new version for subsequent corrections. Do not move a published tag or replace an existing version's contents.
+    5. Configure pre-release distribution channels and rules explicitly. A channel label does not, by itself, guarantee readiness or change the SemVer precedence algorithm.
+
+### 2.2. Git Flow Release Workflow
+
+The following example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to a first stable release of a payments software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`. This branch assignment is a project workflow, not a SemVer rule.
 
 1. Concepts and Components
 
     - Feature Integration
-      > Feature branches are created from `develop` and merged back through reviewed pull requests. Alpha releases provide early snapshots for internal integration testing.
+      > Create feature branches from `develop` and integrate changes through reviewed pull requests. Publish alpha snapshots from validated integration commits for early testing.
 
     - Release Stabilization
-      > Once the planned scope is complete, create `release/1.0.0` from `develop`. Publish beta versions for testing in merchant sandboxes and release candidates for final qualification. Limit changes on this branch to release fixes, documentation, and version preparation.
+      > Create `release/1.0.0` from `develop` when the release scope is complete. Publish beta versions for testing in merchant sandboxes and release candidates for final qualification. Restrict changes to release fixes, documentation, and version preparation.
 
-    - Stable Release
-      > Merge the approved release branch into `main`, validate the merge result and final artifact, and publish `1.0.0`. Merge the release branch back into `develop` to retain its fixes in subsequent development.
+    - Stable Publication
+      > Merge the approved release branch into `main`, validate the resulting commit and final artifact, and publish `1.0.0` with an immutable tag. Merge release fixes back into `develop` to preserve them in subsequent development.
 
 2. Sequence and Diagram
 
-    The following version sequence follows the [SemVer precedence rules](https://semver.org/#spec-item-11):
+    The example uses project-defined `alpha`, `beta`, and `rc` stages. Its identifiers follow the [SemVer precedence rules](https://semver.org/spec/v2.0.0.html#spec-item-11):
 
     ```plaintext
     1.0.0-alpha.0 < 1.0.0-alpha.1 < 1.0.0-alpha.2 < 1.0.0-beta.0 < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.0 < 1.0.0
@@ -124,19 +199,22 @@ Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workfl
     ```
 
     > [!NOTE]
-    > Commit labels follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+    > Git tags in the diagram mark release revisions. The publication pipeline must validate the merged `main` revision and its artifact before making the final tag and stable release available.
 
 3. Rules
 
-    1. SemVer defines version precedence, whereas branch assignments and testing stages are project-specific conventions. A pre-release label alone does not establish release readiness.
-    2. This workflow starts alpha, beta, and release-candidate numbering at `.0` (`alpha.0`, `beta.0`, and `rc.0`). These starting values are project conventions, not SemVer requirements.
-    3. Pre-release identifiers are compared from left to right. Numeric identifiers are compared numerically (`alpha.0 < alpha.1 < alpha.2` and `beta.0 < beta.1 < beta.2`), while non-numeric identifiers are compared lexically in ASCII sort order (`alpha < beta < rc`). When preceding identifiers match, additional identifiers increase precedence. Every pre-release has lower precedence than the corresponding stable version.
-    4. Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Do not replace a published version or move its release tag; publish a new version for subsequent changes.
-    5. If a release-blocking defect is discovered during qualification, fix it on the release branch and publish another candidate, such as `1.0.0-rc.1`. Complete all release gates before publishing the stable version.
+    1. Apply release gates, including automated tests, compatibility checks, and artifact verification, before publishing each pre-release or stable release.
+    2. Start numeric stage counters at `.0` for this workflow; the starting value is a repository convention.
+    3. If final qualification reveals a release-blocking defect, correct it on the release branch and publish a new candidate, for example `1.0.0-rc.1`.
+    4. Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Do not republish an existing version.
+    5. Integrate stabilization fixes back into `develop` after merging the release into `main`.
 
-## 2. References
+## 3. References
 
 - Sentenz [Versioning](../articles/versioning.md) article.
 - Sentenz [Commit](../articles/commit.md) article.
 - Sentenz [Changelog](../articles/changelog.md) article.
 - Sentenz [Branching Strategies](../articles/branching-strategies.md) article.
+- Semantic Versioning [Semantic Versioning 2.0.0](https://semver.org/spec/v2.0.0.html) specification.
+- Conventional Commits [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/) specification.
+- Mermaid [GitGraph Diagrams](https://mermaid.js.org/syntax/gitgraph.html) documentation.

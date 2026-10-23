@@ -101,10 +101,10 @@ Pre-release identifiers can be appended to the next target version to indicate t
         branch develop
         checkout develop
 
-        branch "feature/payment-api"
+        branch "feature/api"
         commit id: "feat(payments): add payments and refunds"
         checkout develop
-        merge "feature/payment-api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha"
+        merge "feature/api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha"
 
         commit id: "fix(auth): correct authentication handling" tag: "v1.0.0-alpha.1"
         commit id: "feat(webhooks): add signature verification" tag: "v1.0.0-alpha.beta"

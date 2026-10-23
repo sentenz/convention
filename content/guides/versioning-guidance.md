@@ -1,6 +1,6 @@
 # Versioning Guidance
 
-Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a Git Flow release workflow that uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for release automation.
+Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a release workflow compatible with different branching strategies, using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for release automation and Git Flow as a worked example.
 
 > [!NOTE]
 > SemVer specifies version syntax and precedence, commit-message conventions, branch policies, testing stages, and release tooling are separate project decisions.
@@ -12,7 +12,7 @@ Versioning guidance defines how software release identifiers are selected, valid
     - [1.1.3. Build Metadata](#113-build-metadata)
 - [2. Best Practice](#2-best-practice)
   - [2.1. Release Determination and Automation](#21-release-determination-and-automation)
-  - [2.2. Git Flow Release Workflow](#22-git-flow-release-workflow)
+  - [2.2. Branching Workflow](#22-branching-workflow)
 - [3. References](#3-references)
 
 ## 1. Category
@@ -150,7 +150,7 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 
 ## 2. Best Practice
 
-Release practices map changes to version identifiers and govern when those identifiers are published. The following conventions are recommended for repositories using SemVer, Conventional Commits, and Git Flow; they are not additional requirements of the SemVer specification.
+Release practices map changes to version identifiers and govern when those identifiers are published. The following conventions combine SemVer with Conventional Commits and a repository-defined branching strategy; they are not additional requirements of the SemVer specification.
 
 ### 2.1. Release Determination and Automation
 
@@ -192,24 +192,26 @@ Release practices map changes to version identifiers and govern when those ident
 
         Configure pre-release distribution channels and rules explicitly. A channel label does not, by itself, guarantee readiness or change the SemVer precedence algorithm.
 
-### 2.2. Git Flow Release Workflow
+### 2.2. Branching Workflow
 
-The following example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to a first stable release of a payments software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`. This branch assignment is a project workflow, not a SemVer rule.
+A branching workflow coordinates change integration, release stabilization, qualification, and publication. Branch roles and merge operations depend on the selected [branching strategy](../articles/branching-strategies.md), not on SemVer. For example, trunk-based development can publish from a single integration branch, whereas Git Flow maintains separate integration, release, and stable branches.
+
+The following worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a payments software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`. These branch assignments illustrate one implementation rather than a required release topology.
 
 1. Concepts and Components
 
     - Feature Integration
-      > Create feature branches from `develop` and integrate changes through reviewed pull requests. Publish alpha snapshots from validated integration commits for early testing.
+      > Integrate reviewed changes into the project's designated integration branch. In the Git Flow example, create feature branches from `develop` and merge them through reviewed pull requests. Publish alpha snapshots from validated integration commits for early testing.
 
     - Release Stabilization
-      > Create `release/1.0.0` from `develop` when the release scope is complete. Publish beta versions for testing in merchant sandboxes and release candidates for final qualification. Restrict changes to release fixes, documentation, and version preparation.
+      > Qualify a selected release revision on the integration branch or, when isolation is required, on a dedicated release branch. In the Git Flow example, create `release/1.0.0` from `develop` when the release scope is complete. Publish beta versions for testing in merchant sandboxes and release candidates for final qualification. Restrict stabilization changes to release fixes, documentation, and version preparation.
 
     - Stable Publication
-      > Merge the approved release branch into `main`, validate the resulting commit and final artifact, and publish `1.0.0` with an immutable tag. Merge release fixes back into `develop` to preserve them in subsequent development.
+      > Validate the final revision and artifact before publishing the stable release with an immutable tag. In the Git Flow example, merge the approved release branch into `main`, validate the merge result, and publish `1.0.0`. Merge release fixes back into `develop` to preserve them in subsequent development.
 
 2. Sequence and Diagram
 
-    The example uses project-defined `alpha`, `beta`, and `rc` stages. Its identifiers follow the [SemVer precedence rules](https://semver.org/spec/v2.0.0.html#spec-item-11):
+    The Git Flow example uses project-defined `alpha`, `beta`, and `rc` stages. Its identifiers follow the [SemVer precedence rules](https://semver.org/spec/v2.0.0.html#spec-item-11):
 
     ```plaintext
     1.0.0-alpha.0 < 1.0.0-alpha.1 < 1.0.0-alpha.2 < 1.0.0-beta.0 < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.0 < 1.0.0
@@ -258,7 +260,7 @@ The following example applies [Git Flow](../articles/branching-strategies.md#12-
 
     3. Candidate Corrections
 
-        If final qualification reveals a release-blocking defect, correct it on the release branch and publish a new candidate, for example `1.0.0-rc.1`.
+        If final qualification reveals a release-blocking defect, correct the candidate's source revision and publish a new candidate, for example `1.0.0-rc.1`. In the Git Flow example, apply the correction on `release/1.0.0`.
 
     4. Release Publication
 
@@ -266,7 +268,7 @@ The following example applies [Git Flow](../articles/branching-strategies.md#12-
 
     5. Fix Reconciliation
 
-        Integrate stabilization fixes back into `develop` after merging the release into `main`.
+        Ensure stabilization fixes are retained in ongoing development. The Git Flow example merges the release branch back into `develop` after merging into `main`; single-branch workflows do not require that additional merge.
 
 ## 3. References
 

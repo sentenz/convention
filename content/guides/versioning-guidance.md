@@ -92,10 +92,8 @@ Pre-release identifiers can be appended to the next target version to indicate t
     The diagram follows the [SemVer precedence example](https://semver.org/#spec-item-11):
 
     ```plaintext
-    1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0
+    1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.1 < 1.0.0
     ```
-
-    Intermediate beta releases (`beta.1` and `beta.3` through `beta.10`) are omitted for brevity. The diagram shows selected releases, not every version increment.
 
     ```mermaid
     gitGraph:
@@ -114,8 +112,8 @@ Pre-release identifiers can be appended to the next target version to indicate t
         branch "release/1.0.0"
         checkout "release/1.0.0"
         commit id: "chore(release): prepare 1.0.0-beta" tag: "v1.0.0-beta"
-        commit id: "fix(payments): prevent duplicate charges" tag: "v1.0.0-beta.2"
-        commit id: "chore(release): prepare 1.0.0-beta.11" tag: "v1.0.0-beta.11"
+        commit id: "fix(payments): prevent duplicate charges" tag: "v1.0.0-beta.1"
+        commit id: "chore(release): prepare 1.0.0-beta.2" tag: "v1.0.0-beta.2"
         commit id: "chore(release): prepare 1.0.0-rc.1" tag: "v1.0.0-rc.1"
 
         checkout main
@@ -132,7 +130,7 @@ Pre-release identifiers can be appended to the next target version to indicate t
 
     1. SemVer defines version precedence; branch placement and testing stages are project conventions. A pre-release label does not by itself establish release readiness.
     2. `alpha.beta` is a valid pre-release identifier sequence, not a standardized stage between alpha and beta. It appears here to reproduce the specification example. Prefer numbered identifiers such as `alpha.1`, `beta.1`, and `rc.1` for routine release automation.
-    3. Numeric identifiers compare numerically (`beta.2 < beta.11`), numeric identifiers precede nonnumeric identifiers (`alpha.1 < alpha.beta`), and nonnumeric identifiers compare in ASCII sort order (`alpha < beta < rc`). When preceding identifiers match, additional identifiers increase precedence (`alpha < alpha.1`). Every pre-release has lower precedence than the corresponding stable version.
+    3. Numeric identifiers compare numerically (`beta.1 < beta.2`), numeric identifiers precede nonnumeric identifiers (`alpha.1 < alpha.beta`), and nonnumeric identifiers compare in ASCII sort order (`alpha < beta < rc`). When preceding identifiers match, additional identifiers increase precedence (`alpha < alpha.1`). Every pre-release has lower precedence than the corresponding stable version.
     4. Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Never replace an already published version or move its release tag; publish a new version for subsequent changes.
     5. If qualification finds a release-blocking defect, fix it on the release branch and publish another candidate, such as `1.0.0-rc.2`. Complete the release gates before publishing the stable version.
 

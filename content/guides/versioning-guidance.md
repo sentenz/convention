@@ -49,12 +49,12 @@ Pre-release identifiers can be appended to a target version to distinguish a pre
     - `alpha`
       > An unstable pre-release identifier used for early testing.
       >
-      > Example progression: `1.0.0` -> `1.1.0-alpha.1` -> `1.1.0-alpha.2` -> `1.1.0`
+      > Example progression: `1.0.0` -> `1.1.0-alpha.0` -> `1.1.0-alpha.1` -> `1.1.0-alpha.2` -> `1.1.0`
 
     - `beta`
       > A pre-release identifier typically used for broader testing.
       >
-      > Example progression: `1.0.0` -> `1.1.0-beta.1` -> `1.1.0-beta.2` -> `1.1.0`
+      > Example progression: `1.0.0` -> `1.1.0-beta.0` -> `1.1.0-beta.1` -> `1.1.0-beta.2` -> `1.1.0`
 
     - `rc`
       > A pre-release identifier used for release candidates.
@@ -69,7 +69,7 @@ Pre-release identifiers can be appended to a target version to distinguish a pre
 2. Rules
 
     1. Pre-release versions are derived from the next planned stable version.
-    2. Numeric suffixes (such as `.1` and `.2`) should increase sequentially for each pre-release identifier.
+    2. Numeric suffixes (such as `.0`, `.1`, and `.2`) should increase sequentially for each pre-release identifier.
     3. To publish a stable release, remove the pre-release suffix and publish the resulting version.
 
 #### 1.1.3. Workflow
@@ -104,14 +104,14 @@ Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workfl
         branch "feature/api"
         commit id: "feat(payments): add payments and refunds"
         checkout develop
-        merge "feature/api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha"
+        merge "feature/api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha.0"
 
         commit id: "fix(auth): correct authentication handling" tag: "v1.0.0-alpha.1"
-        commit id: "feat(webhooks): add signature verification" tag: "v1.0.0-alpha.beta"
+        commit id: "feat(webhooks): add signature verification" tag: "v1.0.0-alpha.2"
 
         branch "release/1.0.0"
         checkout "release/1.0.0"
-        commit id: "chore(release): prepare 1.0.0-beta" tag: "v1.0.0-beta"
+        commit id: "chore(release): prepare 1.0.0-beta.0" tag: "v1.0.0-beta.0"
         commit id: "fix(payments): prevent duplicate charges" tag: "v1.0.0-beta.1"
         commit id: "chore(release): prepare 1.0.0-beta.2" tag: "v1.0.0-beta.2"
         commit id: "chore(release): prepare 1.0.0-rc.1" tag: "v1.0.0-rc.1"
@@ -129,8 +129,8 @@ Based on [Git Flow](../articles/branching-strategies.md#12-git-flow), the workfl
 3. Rules
 
     1. SemVer defines version precedence, whereas branch assignments and testing stages are project-specific conventions. A pre-release label alone does not establish release readiness.
-    2. The identifier sequence `alpha.beta` is valid under SemVer but does not represent a standardized stage between alpha and beta. It is included to reproduce the example in the specification. For routine release automation, prefer numbered identifiers such as `alpha.1`, `beta.1`, and `rc.1`.
-    3. Numeric identifiers are compared numerically (`beta.1 < beta.2`), numeric identifiers have lower precedence than non-numeric identifiers (`alpha.1 < alpha.beta`), and non-numeric identifiers are compared lexically in ASCII sort order (`alpha < beta < rc`). When preceding identifiers match, additional identifiers increase precedence (`alpha < alpha.1`). Every pre-release has lower precedence than the corresponding stable version.
+    2. This workflow starts alpha and beta numbering at `.0` (`alpha.0` and `beta.0`) and release-candidate numbering at `.1` (`rc.1`). These starting values are project conventions, not SemVer requirements.
+    3. Pre-release identifiers are compared from left to right. Numeric identifiers are compared numerically (`alpha.0 < alpha.1 < alpha.2` and `beta.0 < beta.1 < beta.2`), while non-numeric identifiers are compared lexically in ASCII sort order (`alpha < beta < rc`). When preceding identifiers match, additional identifiers increase precedence. Every pre-release has lower precedence than the corresponding stable version.
     4. Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Do not replace a published version or move its release tag; publish a new version for subsequent changes.
     5. If a release-blocking defect is discovered during qualification, fix it on the release branch and publish another candidate, such as `1.0.0-rc.2`. Complete all release gates before publishing the stable version.
 

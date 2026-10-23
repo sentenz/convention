@@ -97,33 +97,35 @@ Pre-release identifiers can be appended to the next target version to indicate t
 
     ```mermaid
     gitGraph TB:
-        commit id: "Initialize SDK"
+        commit id: "chore(sdk): initialize project"
         branch develop
         checkout develop
 
         branch "feature/payment-api"
-        commit id: "Implement payments and refunds"
+        commit id: "feat(payments): add payments and refunds"
         checkout develop
-        merge "feature/payment-api" tag: "v1.0.0-alpha"
+        merge "feature/payment-api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha"
 
-        commit id: "Correct authentication" tag: "v1.0.0-alpha.1"
-        commit id: "Add webhook verification" tag: "v1.0.0-alpha.beta"
+        commit id: "fix(auth): correct authentication handling" tag: "v1.0.0-alpha.1"
+        commit id: "feat(webhooks): add signature verification" tag: "v1.0.0-alpha.beta"
 
         branch "release/1.0.0"
         checkout "release/1.0.0"
-        commit id: "Freeze release scope" tag: "v1.0.0-beta"
-        commit id: "Correct retry handling" tag: "v1.0.0-beta.2"
-        commit id: "Complete beta stabilization" tag: "v1.0.0-beta.11"
-        commit id: "Qualify release candidate" tag: "v1.0.0-rc.1"
+        commit id: "chore(release): prepare 1.0.0-beta" tag: "v1.0.0-beta"
+        commit id: "fix(payments): prevent duplicate charges on retry" tag: "v1.0.0-beta.2"
+        commit id: "chore(release): prepare 1.0.0-beta.11" tag: "v1.0.0-beta.11"
+        commit id: "chore(release): prepare 1.0.0-rc.1" tag: "v1.0.0-rc.1"
 
         checkout main
-        merge "release/1.0.0" id: "Publish stable SDK" tag: "v1.0.0"
+        merge "release/1.0.0" id: "chore(release): prepare 1.0.0" tag: "v1.0.0"
 
         checkout develop
-        merge "release/1.0.0" id: "Integrate release fixes"
+        merge "release/1.0.0" id: "chore(merge): integrate release fixes"
     ```
 
     > [!NOTE]
+    > Commit labels follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/): `feat` introduces functionality, `fix` corrects defects, and `chore(release)` records version preparation. `chore(merge)` labels integration commits while the original feature and fix commits remain in history. The `chore` type is a project convention with no implicit SemVer bump; release configuration controls pre-release progression and stable promotion. Preparing a release commit does not itself publish an artifact.
+    >
     > The `v` prefix is a Git tag convention; the package version is `1.0.0`. Intermediate beta releases (`beta.1` and `beta.3` through `beta.10`) are omitted from the diagram. The initial commit is repository scaffolding, not a published stable SDK.
 
 3. Rules

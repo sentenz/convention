@@ -74,7 +74,7 @@ Pre-release identifiers can be appended to the next target version to indicate t
 
 #### 1.1.3. Git Flow Workflow
 
-[Git Flow](../articles/branching-strategies.md#12-git-flow) separates feature integration on `develop`, release stabilization on a `release/*` branch, and stable releases on `main`. The following payment SDK example illustrates a first stable release with payment creation, refunds, and webhook verification. It is an illustrative scenario, not the release history of a specific SDK.
+[Git Flow](../articles/branching-strategies.md#12-git-flow) separates feature integration on `develop`, release stabilization on a `release/*` branch, and stable releases on `main`. The workflow illustrates a first stable release with features creation and verification.
 
 1. Concepts and Components
 
@@ -89,7 +89,7 @@ Pre-release identifiers can be appended to the next target version to indicate t
 
 2. Representation and Diagrams
 
-    The diagram follows the [SemVer precedence example](https://semver.org/#spec-item-11):
+    The diagram adheres the [SemVer precedence](https://semver.org/#spec-item-11):
 
     ```plaintext
     1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.1 < 1.0.0

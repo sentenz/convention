@@ -1,9 +1,9 @@
 # Versioning Guidance
 
-Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a release workflow compatible with different branching strategies, using [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for release automation and Git Flow as a worked example.
+Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a release workflow.
 
 > [!NOTE]
-> SemVer specifies version syntax and precedence, commit-message conventions, branch policies, testing stages, and release tooling are separate project decisions.
+> SemVer specifies version syntax and precedence, commit-message conventions, and branching strategies are separate project decisions.
 
 - [1. Category](#1-category)
   - [1.1. Semantic Versioning (SemVer)](#11-semantic-versioning-semver)
@@ -17,17 +17,18 @@ Versioning guidance defines how software release identifiers are selected, valid
 
 ## 1. Category
 
-This guidance uses SemVer as the release identifier scheme. Stable releases, pre-releases, and build metadata have distinct roles within that scheme. Alternative schemes, including Calendar Versioning (CalVer), are described in the [Versioning](../articles/versioning.md) article.
-
 ### 1.1. Semantic Versioning (SemVer)
 
-The SemVer 2.0.0 specification assigns meaning to changes in a declared public application programming interface (API). A version has three required numeric components and may include pre-release identifiers and build metadata.
+The Semantic Versioning (SemVer) specification defines three required numeric components and with optional pre-release identifiers and build metadata.
+
+Stable releases, pre-releases, and build metadata have distinct roles within that scheme.
 
 ```plaintext
 MAJOR.MINOR.PATCH[-PRERELEASE][+BUILD]
 ```
 
-The bracketed portions in this representation are optional; brackets are not part of a version identifier. The required numeric components are non-negative integers without leading zeroes.
+> [!NOTE]
+> The bracketed portions in the representation are optional. The required numeric components are non-negative integers without leading zeroes.
 
 #### 1.1.1. Stable Release
 

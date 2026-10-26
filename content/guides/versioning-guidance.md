@@ -147,7 +147,7 @@ Build metadata records build provenance using project-defined labels such as `bu
 A branching workflow coordinates change integration, release stabilization, qualification, and publication.
 
 > [!NOTE]
-> The worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a payments software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`.
+> The worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`.
 >
 > Commit labels in the diagram follow [Conventional Commits](../articles/commit.md#11-conventional-commits). The `v` prefix on Git tags is a repository convention, not part of the SemVer version string.
 
@@ -156,10 +156,10 @@ gitGraph TB:
     commit id: "chore(sdk): initialize project"
     branch develop
 
-    branch "feature/payment-api"
+    branch "feature/api"
     commit id: "feat(payments): add payments and refunds"
     checkout develop
-    merge "feature/payment-api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha.0"
+    merge "feature/api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha.0"
 
     commit id: "fix(auth): correct authentication handling" tag: "v1.0.0-alpha.1"
     branch "feature/webhooks"
@@ -179,8 +179,6 @@ gitGraph TB:
     checkout develop
     merge "release/1.0.0" id: "chore(merge): integrate release fixes"
 ```
-
-The graph shows release revisions and their ancestry. Before merging the release branch into `main`, qualify the release candidate against the project's release gates. If qualification reveals a blocking defect, fix it on the release branch and publish another candidate, such as `1.0.0-rc.1`. Validate the merge result and final artifact before publishing `1.0.0` from the revision tagged `v1.0.0`. Merge the release branch back into `develop` to retain stabilization fixes.
 
 ## 3. References
 

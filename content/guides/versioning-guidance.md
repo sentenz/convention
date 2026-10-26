@@ -127,7 +127,7 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
 
 Build metadata appends a plus sign and dot-separated identifiers to a stable or pre-release version. It identifies build provenance without changing SemVer precedence.
 
-1. Examples and Explanations
+1. Concepts and Components
 
     - Stable Build
       > `1.1.0+build.27` and `1.1.0+build.28` have equal SemVer precedence.

@@ -152,13 +152,12 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 
 ## 2. Best Practice
 
-Release practices govern how versioned changes are integrated, qualified, and published. The following workflow applies SemVer within a repository-defined branching strategy.
-
 ### 2.1. Branching Workflow
 
-A branching workflow coordinates change integration, release stabilization, qualification, and publication. Branch roles and merge operations depend on the selected [branching strategy](../articles/branching-strategies.md), not on SemVer. For example, trunk-based development can publish from a single integration branch, whereas Git Flow maintains separate integration, release, and stable branches.
+A branching workflow coordinates change integration, release stabilization, qualification, and publication. Branch roles and merge operations depend on the selected [branching strategy](../articles/branching-strategies.md), not on SemVer.
 
-The following worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a payments software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`. These branch assignments illustrate one implementation rather than a required release topology.
+> [!NOTE]
+> The worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a payments software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`. These branch assignments illustrate one implementation rather than a required release topology.
 
 1. Concepts and Components
 
@@ -170,14 +169,8 @@ The following worked example applies [Git Flow](../articles/branching-strategies
 
 2. Sequence and Diagram
 
-    The Git Flow example uses project-defined `alpha`, `beta`, and `rc` stages. Its identifiers follow the [SemVer precedence rules](https://semver.org/spec/v2.0.0.html#spec-item-11):
-
-    ```plaintext
-    1.0.0-alpha.0 < 1.0.0-alpha.1 < 1.0.0-alpha.2 < 1.0.0-beta.0 < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.0 < 1.0.0
-    ```
-
     > [!NOTE]
-    > Commit labels in the diagram follow [Conventional Commits](../articles/commit.md#11-conventional-commits). Release tooling can use these labels to help determine version increments and generate release notes, subject to project-specific configuration and assessment of public API compatibility. The `v` prefix on Git tags is a repository convention, not part of the SemVer version string.
+    > Commit labels in the diagram follow [Conventional Commits](../articles/commit.md#11-conventional-commits). The `v` prefix on Git tags is a repository convention, not part of the SemVer version string.
 
     ```mermaid
     gitGraph TB:
@@ -206,9 +199,6 @@ The following worked example applies [Git Flow](../articles/branching-strategies
         checkout develop
         merge "release/1.0.0" id: "chore(merge): integrate release fixes"
     ```
-
-    > [!NOTE]
-    > Git tags in the diagram mark release revisions. The publication pipeline must validate the merged `main` revision and its artifact before making the final tag and stable release available.
 
 3. Rules
 

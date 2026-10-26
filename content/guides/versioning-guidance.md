@@ -109,8 +109,8 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 
     | Metadata | Description | Example |
     | --- | --- | --- |
-    | Stable Build | Identifies a stable-release build without changing SemVer precedence. | `1.1.0+build.27` and `1.1.0+build.28` have equal precedence. |
-    | Pre-release Build | Identifies a pre-release build without changing SemVer precedence. | `1.1.0-rc.1+sha.a2e62b` has the same precedence as `1.1.0-rc.1`. |
+    | Build Number (`build`) | A project-defined build number used to distinguish builds without changing SemVer precedence. | `1.1.0+build.27` |
+    | Source Revision (`sha`) | A project-defined source revision identifier used to trace a build to its source commit without changing SemVer precedence. | `1.1.0-rc.1+sha.a2e62b` |
 
 2. Rules
 

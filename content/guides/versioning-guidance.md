@@ -107,10 +107,10 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 
 1. Concepts and Components
 
-    | Component | Description |
-    | --- | --- |
-    | Stable Build | `1.1.0+build.27` and `1.1.0+build.28` have equal SemVer precedence. |
-    | Pre-release Build | `1.1.0-rc.1+sha.a2e62b` identifies a release-candidate build without changing its precedence relative to `1.1.0-rc.1`. |
+    | Metadata | Description | Example |
+    | --- | --- | --- |
+    | Stable Build | Identifies a stable-release build without changing SemVer precedence. | `1.1.0+build.27` and `1.1.0+build.28` have equal precedence. |
+    | Pre-release Build | Identifies a pre-release build without changing SemVer precedence. | `1.1.0-rc.1+sha.a2e62b` has the same precedence as `1.1.0-rc.1`. |
 
 2. Rules
 

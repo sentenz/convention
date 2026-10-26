@@ -36,20 +36,11 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
 
 1. Concepts and Components
 
-    - `MAJOR`
-      > Increments for backward-incompatible API changes. The minor and patch components reset to zero.
-      >
-      > Example: `1.4.2` → `2.0.0`.
-
-    - `MINOR`
-      > Increments for backward-compatible functionality added to the public API. The patch component resets to zero.
-      >
-      > Example: `1.4.2` → `1.5.0`.
-
-    - `PATCH`
-      > Increments for backward-compatible bug fixes.
-      >
-      > Example: `1.4.2` → `1.4.3`.
+    | Component | Description | Example |
+    | --- | --- | --- |
+    | `MAJOR` | Increments for backward-incompatible API changes. The minor and patch components reset to zero. | `1.4.2` → `2.0.0` |
+    | `MINOR` | Increments for backward-compatible functionality added to the public API. The patch component resets to zero. | `1.4.2` → `1.5.0` |
+    | `PATCH` | Increments for backward-compatible bug fixes. | `1.4.2` → `1.4.3` |
 
 2. Rules
 
@@ -75,25 +66,12 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
 
 1. Identifiers
 
-    - Alpha (`alpha`)
-      > A project-defined label commonly used for early integration and exploratory testing.
-      >
-      > Example: `1.1.0-alpha.0` → `1.1.0-alpha.1`.
-
-    - Beta (`beta`)
-      > A project-defined label commonly used for broader compatibility and acceptance testing.
-      >
-      > Example: `1.1.0-beta.0` → `1.1.0-beta.1`.
-
-    - Release Candidate (`rc`)
-      > A project-defined label commonly used for builds undergoing final release qualification.
-      >
-      > Example: `1.1.0-rc.0` → `1.1.0-rc.1`.
-
-    - Next (`next`)
-      > A project-defined label used by some release pipelines for iterative preview builds; it does not imply a SemVer-defined stage.
-      >
-      > Example: `1.1.0-next.1` → `1.1.0-next.2`.
+    | Identifier | Description | Example |
+    | --- | --- | --- |
+    | Alpha (`alpha`) | A project-defined label commonly used for early integration and exploratory testing. | `1.1.0-alpha.0` → `1.1.0-alpha.1` |
+    | Beta (`beta`) | A project-defined label commonly used for broader compatibility and acceptance testing. | `1.1.0-beta.0` → `1.1.0-beta.1` |
+    | Release Candidate (`rc`) | A project-defined label commonly used for builds undergoing final release qualification. | `1.1.0-rc.0` → `1.1.0-rc.1` |
+    | Next (`next`) | A project-defined label used by some release pipelines for iterative preview builds; it does not imply a SemVer-defined stage. | `1.1.0-next.1` → `1.1.0-next.2` |
 
 2. Examples and Explanations
 
@@ -129,11 +107,10 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 
 1. Concepts and Components
 
-    - Stable Build
-      > `1.1.0+build.27` and `1.1.0+build.28` have equal SemVer precedence.
-
-    - Pre-release Build
-      > `1.1.0-rc.1+sha.a2e62b` identifies a release-candidate build without changing its precedence relative to `1.1.0-rc.1`.
+    | Component | Description |
+    | --- | --- |
+    | Stable Build | `1.1.0+build.27` and `1.1.0+build.28` have equal SemVer precedence. |
+    | Pre-release Build | `1.1.0-rc.1+sha.a2e62b` identifies a release-candidate build without changing its precedence relative to `1.1.0-rc.1`. |
 
 2. Rules
 
@@ -201,14 +178,11 @@ The following worked example applies [Git Flow](../articles/branching-strategies
 
 1. Concepts and Components
 
-    - Feature Integration
-      > Integrate reviewed changes into the project's designated integration branch. In the Git Flow example, create feature branches from `develop` and merge them through reviewed pull requests. Publish alpha snapshots from validated integration commits for early testing.
-
-    - Release Stabilization
-      > Qualify a selected release revision on the integration branch or, when isolation is required, on a dedicated release branch. In the Git Flow example, create `release/1.0.0` from `develop` when the release scope is complete. Publish beta versions for testing in merchant sandboxes and release candidates for final qualification. Restrict stabilization changes to release fixes, documentation, and version preparation.
-
-    - Stable Publication
-      > Validate the final revision and artifact before publishing the stable release with an immutable tag. In the Git Flow example, merge the approved release branch into `main`, validate the merge result, and publish `1.0.0`. Merge release fixes back into `develop` to preserve them in subsequent development.
+    | Component | Description |
+    | --- | --- |
+    | Feature Integration | Integrate reviewed changes into the project's designated integration branch. In the Git Flow example, create feature branches from `develop` and merge them through reviewed pull requests. Publish alpha snapshots from validated integration commits for early testing. |
+    | Release Stabilization | Qualify a selected release revision on the integration branch or, when isolation is required, on a dedicated release branch. In the Git Flow example, create `release/1.0.0` from `develop` when the release scope is complete. Publish beta versions for testing in merchant sandboxes and release candidates for final qualification. Restrict stabilization changes to release fixes, documentation, and version preparation. |
+    | Stable Publication | Validate the final revision and artifact before publishing the stable release with an immutable tag. In the Git Flow example, merge the approved release branch into `main`, validate the merge result, and publish `1.0.0`. Merge release fixes back into `develop` to preserve them in subsequent development. |
 
 2. Sequence and Diagram
 

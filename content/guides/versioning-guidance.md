@@ -11,8 +11,7 @@ Versioning guidance defines how software release identifiers are selected, valid
     - [1.1.2. Pre-release](#112-pre-release)
     - [1.1.3. Build Metadata](#113-build-metadata)
 - [2. Best Practice](#2-best-practice)
-  - [2.1. Release Determination and Automation](#21-release-determination-and-automation)
-  - [2.2. Branching Workflow](#22-branching-workflow)
+  - [2.1. Branching Workflow](#21-branching-workflow)
 - [3. References](#3-references)
 
 ## 1. Category
@@ -153,49 +152,9 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 
 ## 2. Best Practice
 
-Release practices map changes to version identifiers and govern when those identifiers are published. The following conventions combine SemVer with Conventional Commits and a repository-defined branching strategy; they are not additional requirements of the SemVer specification.
+Release practices govern how versioned changes are integrated, qualified, and published. The following workflow applies SemVer within a repository-defined branching strategy.
 
-### 2.1. Release Determination and Automation
-
-[Conventional Commits](../articles/commit.md#11-conventional-commits) provides machine-readable change descriptions that release tooling can map to SemVer increments. This mapping depends on correct commit classification and project-specific tool configuration.
-
-1. Classification
-
-    - Breaking Change
-      > A commit marked with `!` after its type or scope, or a `BREAKING CHANGE:` footer, signals an incompatible API change and normally leads to a major release.
-
-    - Feature (`feat`)
-      > A backward-compatible feature normally leads to a minor release.
-
-    - Fix (`fix`)
-      > A backward-compatible defect correction normally leads to a patch release.
-
-    - Other Changes
-      > Documentation, maintenance, and other commit types do not necessarily trigger releases. Their effect depends on the configured release rules and any public API impact.
-
-2. Rules
-
-    1. Compatibility Assessment
-
-        Evaluate changes against the declared public API. Commit-message types assist automation but do not establish compatibility on their own.
-
-    2. Release Automation
-
-        Configure release tooling to determine the next version, generate release notes or update `CHANGELOG.md`, and publish from a verified revision.
-
-    3. Version Tags
-
-        Use unique, immutable Git tags such as `v1.1.0` to identify published revisions. The `v` prefix is a repository tagging convention, not part of the SemVer version string.
-
-    4. Publication Immutability
-
-        Publish a new version for subsequent corrections. Do not move a published tag or replace an existing version's contents.
-
-    5. Pre-release Channels
-
-        Configure pre-release distribution channels and rules explicitly. A channel label does not, by itself, guarantee readiness or change the SemVer precedence algorithm.
-
-### 2.2. Branching Workflow
+### 2.1. Branching Workflow
 
 A branching workflow coordinates change integration, release stabilization, qualification, and publication. Branch roles and merge operations depend on the selected [branching strategy](../articles/branching-strategies.md), not on SemVer. For example, trunk-based development can publish from a single integration branch, whereas Git Flow maintains separate integration, release, and stable branches.
 
@@ -216,6 +175,9 @@ The following worked example applies [Git Flow](../articles/branching-strategies
     ```plaintext
     1.0.0-alpha.0 < 1.0.0-alpha.1 < 1.0.0-alpha.2 < 1.0.0-beta.0 < 1.0.0-beta.1 < 1.0.0-beta.2 < 1.0.0-rc.0 < 1.0.0
     ```
+
+    > [!NOTE]
+    > Commit labels in the diagram follow [Conventional Commits](../articles/commit.md#11-conventional-commits). Release tooling can use these labels to help determine version increments and generate release notes, subject to project-specific configuration and assessment of public API compatibility. The `v` prefix on Git tags is a repository convention, not part of the SemVer version string.
 
     ```mermaid
     gitGraph TB:

@@ -135,7 +135,7 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
     1.1.0-rc.1+sha.a2e62b = 1.1.0-rc.1
     ```
 
-    The `=` denotes equal precedence, not identical version strings or artifact contents. The build numbers `27` and `28` distinguish builds, but do not affect their ordering. Similarly, `sha.a2e62b` records a source revision without changing the precedence of `1.1.0-rc.1`.
+    The `=` symbol denotes equal precedence, not identical version strings or artifact contents. The build numbers `27` and `28` distinguish builds, but do not affect their ordering. Similarly, `sha.a2e62b` records a source revision without changing the precedence of `1.1.0-rc.1`.
 
     Build metadata does not promote a pre-release to a stable release: `1.1.0-rc.1+build.28` still has lower precedence than `1.1.0+build.27`. Labels such as `build` and `sha` are project conventions, not SemVer-defined metadata types.
 
@@ -161,37 +161,36 @@ A branching workflow coordinates change integration, release stabilization, qual
 
 > [!NOTE]
 > The worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`.
-
-> [!NOTE]
+>
 > Commit labels in the diagram follow [Conventional Commits](../articles/commit.md#11-conventional-commits). The `v` prefix on Git tags is a repository convention, not part of the SemVer version string.
 
-    ```mermaid
-    gitGraph TB:
-        commit id: "chore(sdk): initialize project"
-        branch develop
-        checkout develop
+```mermaid
+gitGraph TB:
+    commit id: "chore(sdk): initialize project"
+    branch develop
+    checkout develop
 
-        branch "feature/api"
-        commit id: "feat(payments): add payments and refunds"
-        checkout develop
-        merge "feature/api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha.0"
+    branch "feature/api"
+    commit id: "feat(payments): add payments and refunds"
+    checkout develop
+    merge "feature/api" id: "chore(merge): integrate payment API" tag: "v1.0.0-alpha.0"
 
-        commit id: "fix(auth): correct authentication handling" tag: "v1.0.0-alpha.1"
-        commit id: "feat(webhooks): add signature verification" tag: "v1.0.0-alpha.2"
+    commit id: "fix(auth): correct authentication handling" tag: "v1.0.0-alpha.1"
+    commit id: "feat(webhooks): add signature verification" tag: "v1.0.0-alpha.2"
 
-        branch "release/1.0.0"
-        checkout "release/1.0.0"
-        commit id: "chore(release): prepare 1.0.0-beta.0" tag: "v1.0.0-beta.0"
-        commit id: "fix(payments): prevent duplicate charges" tag: "v1.0.0-beta.1"
-        commit id: "chore(release): prepare 1.0.0-beta.2" tag: "v1.0.0-beta.2"
-        commit id: "chore(release): prepare 1.0.0-rc.0" tag: "v1.0.0-rc.0"
+    branch "release/1.0.0"
+    checkout "release/1.0.0"
+    commit id: "chore(release): prepare 1.0.0-beta.0" tag: "v1.0.0-beta.0"
+    commit id: "fix(payments): prevent duplicate charges" tag: "v1.0.0-beta.1"
+    commit id: "chore(release): prepare 1.0.0-beta.2" tag: "v1.0.0-beta.2"
+    commit id: "chore(release): prepare 1.0.0-rc.0" tag: "v1.0.0-rc.0"
 
-        checkout main
-        merge "release/1.0.0" id: "chore(release): version 1.0.0" tag: "v1.0.0"
+    checkout main
+    merge "release/1.0.0" id: "chore(release): version 1.0.0" tag: "v1.0.0"
 
-        checkout develop
-        merge "release/1.0.0" id: "chore(merge): integrate release fixes"
-    ```
+    checkout develop
+    merge "release/1.0.0" id: "chore(merge): integrate release fixes"
+```
 
 ## 3. References
 

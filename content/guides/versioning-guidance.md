@@ -85,7 +85,6 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
     | Alpha (`alpha`) | A project-defined label commonly used for early integration and exploratory testing. | `1.1.0-alpha.0` → `1.1.0-alpha.1` |
     | Beta (`beta`) | A project-defined label commonly used for broader compatibility and acceptance testing. | `1.1.0-beta.0` → `1.1.0-beta.1` |
     | Release Candidate (`rc`) | A project-defined label commonly used for builds undergoing final release qualification. | `1.1.0-rc.0` → `1.1.0-rc.1` |
-    | Next (`next`) | A project-defined label used by some release pipelines for iterative preview builds; it does not imply a SemVer-defined stage. | `1.1.0-next.1` → `1.1.0-next.2` |
 
 2. Examples and Explanations
 
@@ -95,7 +94,7 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
     1.1.0-alpha.0 < 1.1.0-alpha.1 < 1.1.0-beta.0 < 1.1.0-rc.0 < 1.1.0
     ```
 
-    Labels are ordered lexically when compared as non-numeric identifiers. Consequently, `next` does not inherently precede `alpha`, `beta`, or `rc` in a release process; for the same core version, `beta` sorts before `next` and `next` sorts before `rc`.
+    Non-numeric identifiers are compared in ASCII lexical order. For the same core version, `alpha` sorts before `beta`, and `beta` sorts before `rc`.
 
 3. Rules
 

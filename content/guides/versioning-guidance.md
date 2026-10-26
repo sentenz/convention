@@ -73,7 +73,10 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
 
 #### 1.1.2. Pre-release
 
-A pre-release appends a hyphen and dot-separated identifiers to a target version, such as `1.1.0-beta.1`. Every pre-release has lower precedence than the corresponding stable version. SemVer defines identifier syntax and ordering, but does not prescribe testing stages or release-readiness criteria.
+A pre-release appends a hyphen and dot-separated identifiers to a target version, such as `1.1.0-beta.1`. Every pre-release has lower precedence than the corresponding stable version.
+
+> [!NOTE]
+> SemVer defines identifier syntax and ordering, but does not prescribe testing stages or release-readiness criteria.
 
 1. Concepts and Components
 
@@ -125,14 +128,14 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 
 2. Examples and Explanations
 
-    The following comparisons illustrate equal SemVer precedence despite differences in build metadata:
+    The comparisons illustrate equal SemVer precedence despite differences in build metadata:
 
     ```plaintext
     1.1.0+build.27 = 1.1.0+build.28
     1.1.0-rc.1+sha.a2e62b = 1.1.0-rc.1
     ```
 
-    Here, `=` denotes equal precedence, not identical version strings or artifact contents. The build numbers `27` and `28` distinguish builds, but do not affect their ordering. Similarly, `sha.a2e62b` records a source revision without changing the precedence of `1.1.0-rc.1`.
+    The `=` denotes equal precedence, not identical version strings or artifact contents. The build numbers `27` and `28` distinguish builds, but do not affect their ordering. Similarly, `sha.a2e62b` records a source revision without changing the precedence of `1.1.0-rc.1`.
 
     Build metadata does not promote a pre-release to a stable release: `1.1.0-rc.1+build.28` still has lower precedence than `1.1.0+build.27`. Labels such as `build` and `sha` are project conventions, not SemVer-defined metadata types.
 
@@ -157,17 +160,9 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 A branching workflow coordinates change integration, release stabilization, qualification, and publication. Branch roles and merge operations depend on the selected [branching strategy](../articles/branching-strategies.md), not on SemVer.
 
 > [!NOTE]
-> The worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a payments software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`. These branch assignments illustrate one implementation rather than a required release topology.
+> The worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`.
 
-1. Concepts and Components
-
-    | Component | Description |
-    | --- | --- |
-    | Feature Integration | Integrate reviewed changes into the project's designated integration branch. In the Git Flow example, create feature branches from `develop` and merge them through reviewed pull requests. Publish alpha snapshots from validated integration commits for early testing. |
-    | Release Stabilization | Qualify a selected release revision on the integration branch or, when isolation is required, on a dedicated release branch. In the Git Flow example, create `release/1.0.0` from `develop` when the release scope is complete. Publish beta versions for testing in merchant sandboxes and release candidates for final qualification. Restrict stabilization changes to release fixes, documentation, and version preparation. |
-    | Stable Publication | Validate the final revision and artifact before publishing the stable release with an immutable tag. In the Git Flow example, merge the approved release branch into `main`, validate the merge result, and publish `1.0.0`. Merge release fixes back into `develop` to preserve them in subsequent development. |
-
-2. Sequence and Diagram
+1. Sequence and Diagram
 
     > [!NOTE]
     > Commit labels in the diagram follow [Conventional Commits](../articles/commit.md#11-conventional-commits). The `v` prefix on Git tags is a repository convention, not part of the SemVer version string.
@@ -199,28 +194,6 @@ A branching workflow coordinates change integration, release stabilization, qual
         checkout develop
         merge "release/1.0.0" id: "chore(merge): integrate release fixes"
     ```
-
-3. Rules
-
-    1. Release Qualification
-
-        Apply release gates, including automated tests, compatibility checks, and artifact verification, before publishing each pre-release or stable release.
-
-    2. Stage Counters
-
-        Start numeric stage counters at `.0` for this workflow; the starting value is a repository convention.
-
-    3. Candidate Corrections
-
-        If final qualification reveals a release-blocking defect, correct the candidate's source revision and publish a new candidate, for example `1.0.0-rc.1`. In the Git Flow example, apply the correction on `release/1.0.0`.
-
-    4. Release Publication
-
-        Publish each version from a validated commit, create a unique version tag, and update `CHANGELOG.md`. Do not republish an existing version.
-
-    5. Fix Reconciliation
-
-        Ensure stabilization fixes are retained in ongoing development. The Git Flow example merges the release branch back into `develop` after merging into `main`; single-branch workflows do not require that additional merge.
 
 ## 3. References
 

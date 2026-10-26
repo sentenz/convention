@@ -42,7 +42,19 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
     | `MINOR` | Increments for backward-compatible functionality added to the public API. The patch component resets to zero. | `1.4.2` → `1.5.0` |
     | `PATCH` | Increments for backward-compatible bug fixes. | `1.4.2` → `1.4.3` |
 
-2. Rules
+2. Examples and Explanations
+
+    The following sequence illustrates successive stable releases and their SemVer precedence:
+
+    ```plaintext
+    1.4.2 < 1.4.3 < 1.5.0 < 2.0.0
+    ```
+
+    Starting from `1.4.2`, a backward-compatible bug fix produces `1.4.3`. Adding backward-compatible public API functionality then produces `1.5.0`, resetting the patch component to zero. A subsequent backward-incompatible API change produces `2.0.0`, resetting both the minor and patch components to zero.
+
+    When a release combines multiple change types, the highest-impact change determines the increment. For example, a release containing both a backward-compatible feature and a bug fix advances `1.4.2` to `1.5.0`.
+
+3. Rules
 
     1. Public API Contract
 
@@ -112,7 +124,20 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
     | Build Number (`build`) | A project-defined build number used to distinguish builds without changing SemVer precedence. | `1.1.0+build.27` |
     | Source Revision (`sha`) | A project-defined source revision identifier used to trace a build to its source commit without changing SemVer precedence. | `1.1.0-rc.1+sha.a2e62b` |
 
-2. Rules
+2. Examples and Explanations
+
+    The following comparisons illustrate equal SemVer precedence despite differences in build metadata:
+
+    ```plaintext
+    1.1.0+build.27 = 1.1.0+build.28
+    1.1.0-rc.1+sha.a2e62b = 1.1.0-rc.1
+    ```
+
+    Here, `=` denotes equal precedence, not identical version strings or artifact contents. The build numbers `27` and `28` distinguish builds, but do not affect their ordering. Similarly, `sha.a2e62b` records a source revision without changing the precedence of `1.1.0-rc.1`.
+
+    Build metadata does not promote a pre-release to a stable release: `1.1.0-rc.1+build.28` still has lower precedence than `1.1.0+build.27`. Labels such as `build` and `sha` are project conventions, not SemVer-defined metadata types.
+
+3. Rules
 
     1. Identifier Syntax
 

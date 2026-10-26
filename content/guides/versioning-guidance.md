@@ -3,7 +3,7 @@
 Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a release workflow.
 
 > [!NOTE]
-> SemVer specifies version syntax and precedence, commit-message conventions, and branching strategies are separate project decisions.
+> SemVer specifies version syntax and precedence. Commit-message conventions and branching strategies are separate project decisions.
 
 - [1. Category](#1-category)
   - [1.1. Semantic Versioning (SemVer)](#11-semantic-versioning-semver)
@@ -18,7 +18,7 @@ Versioning guidance defines how software release identifiers are selected, valid
 
 ### 1.1. Semantic Versioning (SemVer)
 
-The Semantic Versioning (SemVer) specification defines three required numeric components and with optional pre-release identifiers and build metadata.
+The Semantic Versioning (SemVer) specification defines three required numeric components with optional pre-release identifiers and build metadata.
 
 Stable releases, pre-releases, and build metadata have distinct roles within that scheme.
 
@@ -49,9 +49,7 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
     1.4.2 < 1.4.3 < 1.5.0 < 2.0.0
     ```
 
-    Starting from `1.4.2`, a backward-compatible bug fix produces `1.4.3`. Adding backward-compatible public API functionality then produces `1.5.0`, resetting the patch component to zero. A subsequent backward-incompatible API change produces `2.0.0`, resetting both the minor and patch components to zero.
-
-    When a release combines multiple change types, the highest-impact change determines the increment. For example, a release containing both a backward-compatible feature and a bug fix advances `1.4.2` to `1.5.0`.
+    A release containing both a backward-compatible feature and a bug fix advances `1.4.2` to `1.5.0`.
 
 3. Rules
 
@@ -94,8 +92,6 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
     1.1.0-alpha.0 < 1.1.0-alpha.1 < 1.1.0-beta.0 < 1.1.0-rc.0 < 1.1.0
     ```
 
-    Non-numeric identifiers are compared in ASCII lexical order. For the same core version, `alpha` sorts before `beta`, and `beta` sorts before `rc`.
-
 3. Rules
 
     1. Identifier Syntax
@@ -116,39 +112,31 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
 
 #### 1.1.3. Build Metadata
 
-Build metadata appends a plus sign and dot-separated identifiers to a stable or pre-release version. It identifies build provenance without changing SemVer precedence.
+Build metadata records build provenance using project-defined labels such as `build` and `sha`. The [Versioning article](../articles/versioning.md#11-semantic-versioning-semver) defines its syntax.
 
 1. Concepts and Components
 
     | Metadata | Description | Example |
     | --- | --- | --- |
-    | Build Number (`build`) | A project-defined build number used to distinguish builds without changing SemVer precedence. | `1.1.0+build.27` |
-    | Source Revision (`sha`) | A project-defined source revision identifier used to trace a build to its source commit without changing SemVer precedence. | `1.1.0-rc.1+sha.a2e62b` |
+    | Build Number (`build`) | A build number used to distinguish builds. | `1.1.0+build.27` |
+    | Source Revision (`sha`) | A source revision identifier used to trace a build to its source commit. | `1.1.0-rc.1+sha.a2e62b` |
 
 2. Examples and Explanations
 
-    The comparisons illustrate equal SemVer precedence despite differences in build metadata:
+    Build metadata does not affect SemVer precedence:
 
     ```plaintext
     1.1.0+build.27 = 1.1.0+build.28
     1.1.0-rc.1+sha.a2e62b = 1.1.0-rc.1
     ```
 
-    The `=` symbol denotes equal precedence, not identical version strings or artifact contents. The build numbers `27` and `28` distinguish builds, but do not affect their ordering. Similarly, `sha.a2e62b` records a source revision without changing the precedence of `1.1.0-rc.1`.
+    The `=` symbol denotes equal precedence, not identical version strings or artifact contents.
 
-    Build metadata does not promote a pre-release to a stable release: `1.1.0-rc.1+build.28` still has lower precedence than `1.1.0+build.27`. Labels such as `build` and `sha` are project conventions, not SemVer-defined metadata types.
+    Build metadata does not promote a pre-release to a stable release: `1.1.0-rc.1+build.28` still has lower precedence than `1.1.0+build.27`.
 
 3. Rules
 
-    1. Identifier Syntax
-
-        Build identifiers must be nonempty and contain only ASCII letters, digits, or hyphens.
-
-    2. Version Precedence
-
-        Do not use build metadata to express API compatibility or pre-release ordering.
-
-    3. Artifact Traceability
+    1. Artifact Traceability
 
         Preserve traceability from a published artifact to its source revision; build metadata does not replace an immutable release artifact or version tag.
 
@@ -156,7 +144,7 @@ Build metadata appends a plus sign and dot-separated identifiers to a stable or 
 
 ### 2.1. Branching Workflow
 
-A branching workflow coordinates change integration, release stabilization, qualification, and publication. Branch roles and merge operations depend on the selected [branching strategy](../articles/branching-strategies.md), not on SemVer.
+A branching workflow coordinates change integration, release stabilization, qualification, and publication.
 
 > [!NOTE]
 > The worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`.

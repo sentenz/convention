@@ -64,7 +64,7 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
 
 A pre-release appends a hyphen and dot-separated identifiers to a target version, such as `1.1.0-beta.1`. Every pre-release has lower precedence than the corresponding stable version. SemVer defines identifier syntax and ordering, but does not prescribe testing stages or release-readiness criteria.
 
-1. Identifiers
+1. Concepts and Components
 
     | Identifier | Description | Example |
     | --- | --- | --- |

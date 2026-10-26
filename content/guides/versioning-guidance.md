@@ -59,7 +59,7 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
 
     2. Change Impact
 
-        Select the highest-impact change included in a release. A breaking change takes precedence over backward-compatible features and fixes.
+        For versions `1.0.0` and later, select the increment required by the included changes: major for backward-incompatible public API changes; otherwise minor for backward-compatible public API additions or deprecations; otherwise patch for backward-compatible bug fixes.
 
     3. Release Immutability
 
@@ -67,7 +67,7 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
 
     4. Initial Development Policy
 
-        During initial development (`0.y.z`), the public API may change without the compatibility guarantees associated with `1.0.0` and later versions. The project must define its release policy for this phase.
+        During initial development (`0.y.z`), the public API is not considered stable. Document the project's policy for version increments and compatibility during this phase.
 
 #### 1.1.2. Pre-release
 
@@ -100,11 +100,11 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
 
     2. Identifier Precedence
 
-        Compare identifiers from left to right: numeric identifiers compare numerically, non-numeric identifiers compare in ASCII lexical order, and numeric identifiers have lower precedence than non-numeric identifiers. When shared identifiers are equal, additional identifiers increase precedence.
+        For pre-release versions with identical major, minor, and patch components, compare identifiers from left to right until a difference is found. Compare numeric identifiers numerically and non-numeric identifiers in ASCII lexical order; numeric identifiers have lower precedence than non-numeric identifiers. If all shared identifiers match, the version with additional identifiers has higher precedence.
 
     3. Stage Numbering
 
-        Incrementing suffixes such as `alpha.0`, `alpha.1`, and `beta.0` and starting counters at `.0` are project conventions, not SemVer requirements.
+        Document the project's pre-release labels, starting counters, and counter-increment policy. Labels such as `alpha`, `beta`, and `rc`, and starting counters at `.0`, are project conventions.
 
     4. Stable Release Qualification
 
@@ -138,7 +138,7 @@ Build metadata records build provenance using project-defined labels such as `bu
 
     1. Artifact Traceability
 
-        Preserve traceability from a published artifact to its source revision; build metadata does not replace an immutable release artifact or version tag.
+        Record the source revision associated with each published artifact. When build metadata contains a source identifier, ensure that it resolves to that revision.
 
 ## 2. Best Practice
 

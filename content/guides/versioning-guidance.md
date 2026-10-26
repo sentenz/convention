@@ -43,7 +43,7 @@ A stable release has no pre-release suffix. Once a public API reaches version `1
 
 2. Examples and Explanations
 
-    The following sequence illustrates successive stable releases and their SemVer precedence:
+    The sequence illustrates successive stable releases and their SemVer precedence:
 
     ```plaintext
     1.4.2 < 1.4.3 < 1.5.0 < 2.0.0
@@ -89,7 +89,7 @@ A pre-release appends a hyphen and dot-separated identifiers to a target version
 
 2. Examples and Explanations
 
-    The following sequence illustrates SemVer precedence for the same target stable version:
+    The sequence illustrates SemVer precedence for the same target stable version:
 
     ```plaintext
     1.1.0-alpha.0 < 1.1.0-alpha.1 < 1.1.0-beta.0 < 1.1.0-rc.0 < 1.1.0
@@ -162,10 +162,8 @@ A branching workflow coordinates change integration, release stabilization, qual
 > [!NOTE]
 > The worked example applies [Git Flow](../articles/branching-strategies.md#12-git-flow) to the first stable release of a software development kit (SDK). Feature integration occurs on `develop`, release stabilization on `release/1.0.0`, and stable publication on `main`.
 
-1. Sequence and Diagram
-
-    > [!NOTE]
-    > Commit labels in the diagram follow [Conventional Commits](../articles/commit.md#11-conventional-commits). The `v` prefix on Git tags is a repository convention, not part of the SemVer version string.
+> [!NOTE]
+> Commit labels in the diagram follow [Conventional Commits](../articles/commit.md#11-conventional-commits). The `v` prefix on Git tags is a repository convention, not part of the SemVer version string.
 
     ```mermaid
     gitGraph TB:

@@ -1,9 +1,9 @@
 # Versioning Guidance
 
-Versioning guidance defines how software release identifiers are selected, validated, and published. This guide applies [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) to stable and pre-release versions and describes a release workflow.
+Versioning guidance defines how software release identifiers are selected, validated, and published.
 
 > [!NOTE]
-> SemVer specifies version syntax and precedence. Commit-message conventions and branching strategies are separate project decisions.
+> Versioning guidance specifies version syntax and precedence. Commit-message conventions and branching strategies are separate project decisions.
 
 - [1. Category](#1-category)
   - [1.1. Semantic Versioning (SemVer)](#11-semantic-versioning-semver)
@@ -18,7 +18,7 @@ Versioning guidance defines how software release identifiers are selected, valid
 
 ### 1.1. Semantic Versioning (SemVer)
 
-The Semantic Versioning (SemVer) specification defines three required numeric components with optional pre-release identifiers and build metadata.
+The [Semantic Versioning (SemVer)](https://semver.org/spec/v2.0.0.html) specification defines three required numeric components with optional pre-release identifiers and build metadata.
 
 Stable releases, pre-releases, and build metadata have distinct roles within that scheme.
 

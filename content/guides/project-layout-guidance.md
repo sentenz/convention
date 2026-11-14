@@ -1539,7 +1539,7 @@ The declarative management of [Kubernetes objects using Kustomize](https://kubec
 
 1. Layout and Structure
 
-    Group reusable composite actions under `actions/` in a dedicated `actions-registry` repository. Keep registry workflows in `.github/workflows/` and keep each action's metadata, scripts, and supporting files together.
+    Group reusable composite actions under `actions/` in a dedicated `actions-registry` repository.
 
     ```text
     actions-registry/
@@ -1565,7 +1565,7 @@ The declarative management of [Kubernetes objects using Kustomize](https://kubec
     └── README.md
     ```
 
-2. Directory and File Descriptions
+2. Directory and File
 
     | Path | Purpose |
     | --- | --- |

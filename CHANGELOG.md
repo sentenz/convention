@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.29.2](https://github.com/sentenz/convention/compare/2.29.1...2.29.2) (2026-11-14)
+
+### Bug Fixes
+
+* **guides:** add GitHub Actions registry layout guidance ([#600](https://github.com/sentenz/convention/issues/600)) ([d443b81](https://github.com/sentenz/convention/commit/d443b81fc74c09cfe36d206911c8bd2ff961cac2))
+
 ## [2.29.1](https://github.com/sentenz/convention/compare/2.29.0...2.29.1) (2026-10-10)
 
 ### Bug Fixes

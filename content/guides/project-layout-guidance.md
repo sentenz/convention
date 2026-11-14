@@ -1596,13 +1596,6 @@ The declarative management of [Kubernetes objects using Kustomize](https://kubec
           node-version: '20'
     ```
 
-4. Trade-offs
-
-    - A dedicated directory keeps the repository root small as the action catalog grows.
-    - A [`CODEOWNERS` rule](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) such as `/actions/security-scanner/ @my-org/secops-team` scopes review ownership to one action. Require code owner approval through branch protection or a ruleset to enforce those reviews.
-    - Metadata validators can target `actions/**/action.yml`, while `actionlint` checks workflow files.
-    - Consumer references are longer and must include `actions/`. When moving an existing action, update consumer references for releases that use the new layout.
-
 ## 2. References
 
 - Sentenz [Project Layout](../articles/project-layout.md) article.

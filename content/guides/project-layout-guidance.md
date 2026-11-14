@@ -19,6 +19,8 @@
   - [1.6. Kubernetes](#16-kubernetes)
     - [1.6.1. Charts](#161-charts)
     - [1.6.2. Project](#162-project)
+  - [1.7. GitHub Actions](#17-github-actions)
+    - [1.7.1. Actions Registry](#171-actions-registry)
 - [2. References](#2-references)
 
 ## 1. Category
@@ -1530,6 +1532,69 @@ The declarative management of [Kubernetes objects using Kustomize](https://kubec
       ```sh
       make k8s-destroy
       ```
+
+### 1.7. GitHub Actions
+
+#### 1.7.1. Actions Registry
+
+1. Layout and Structure
+
+    Group reusable composite actions under `actions/` in a dedicated `actions-registry` repository.
+
+    ```text
+    actions-registry/
+    ├── .github/
+    │   └── workflows/
+    │       ├── test-registry.yml
+    │       └── validate-action.yml
+    ├── actions/
+    │   ├── setup-node/
+    │   │   ├── scripts/
+    │   │   │   └── configure-cache.sh
+    │   │   ├── action.yml
+    │   │   └── README.md
+    │   ├── docker-build/
+    │   │   ├── action.yml
+    │   │   └── README.md
+    │   └── notify-slack/
+    │       ├── action.yml
+    │       └── template.json
+    ├── .gitignore
+    ├── CONTRIBUTING.md
+    ├── LICENSE
+    └── README.md
+    ```
+
+2. Directory and File
+
+    | Path | Purpose |
+    | --- | --- |
+    | `.github/workflows/test-registry.yml` | Runs integration tests for registry actions. |
+    | `.github/workflows/validate-action.yml` | Lints registry workflows and validates action metadata against the GitHub Actions schema. |
+    | `actions/<action>/` | Contains the action's `action.yml` manifest and any action-specific documentation, scripts, or templates. |
+    | `CONTRIBUTING.md` | Describes how to add and test actions under `actions/`. |
+    | `README.md` | Serves as the registry catalog and lists each action's path and usage. |
+
+3. Examples and Explanations
+
+    In a consumer workflow, include the action directory in the [`uses` reference](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#jobsjob_idstepsuses). GitHub resolves that directory at the specified ref and reads its [action metadata](https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax).
+
+    | Registry layout | Consumer reference |
+    | --- | --- |
+    | Actions at the repository root | `uses: my-org/actions-registry/setup-node@v1` |
+    | Actions under `actions/` | `uses: my-org/actions-registry/actions/setup-node@v1` |
+
+    In `test-registry.yml`, check out the registry before invoking an action through a path relative to the runner workspace.
+
+    ```yaml
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Test Setup Node Action
+        uses: ./actions/setup-node
+        with:
+          node-version: '20'
+    ```
 
 ## 2. References
 

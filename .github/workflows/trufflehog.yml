@@ -24,7 +24,7 @@ jobs:
           persist-credentials: false
 
       - name: Run TruffleHog
-        uses: sentenz/actions/trufflehog@ac68a6837f8890c4570767c0d1f21bcfc133ab1a # 1.5.8
+        uses: sentenz/actions/trufflehog@23361c53dc10a0980b449d78bb4481e4997da7d3 # 1.7.1
         with:
           path: ./
           extra-args: --debug
